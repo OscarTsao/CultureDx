@@ -1,0 +1,7 @@
+dataset:
+  name: edaic
+  language: en
+  coding_system: dsm5
+  transcript_format: dialogue
+  data_path: data/raw/edaic
+  split_strategy: fixed

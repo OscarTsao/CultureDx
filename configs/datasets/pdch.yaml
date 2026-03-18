@@ -1,0 +1,7 @@
+dataset:
+  name: pdch
+  language: zh
+  coding_system: hamd17
+  transcript_format: dialogue
+  data_path: data/raw/pdch
+  split_strategy: kfold_5

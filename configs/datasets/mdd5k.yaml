@@ -1,0 +1,7 @@
+dataset:
+  name: mdd5k
+  language: zh
+  coding_system: icd10
+  transcript_format: dialogue
+  data_path: data/raw/mdd5k
+  split_strategy: stratified
