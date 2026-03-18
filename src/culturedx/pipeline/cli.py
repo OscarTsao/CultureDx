@@ -36,6 +36,8 @@ def run(
     limit: int | None,
 ) -> None:
     """Run an experiment with a given config and dataset."""
+    from culturedx.pipeline.runner import ExperimentRunner
+
     # 1. Load config
     if len(config) == 1:
         cfg = load_config(config[0])
@@ -62,7 +64,7 @@ def run(
 
     llm = OllamaClient(
         base_url=cfg.llm.base_url,
-        model=cfg.llm.model_id,
+        model=cfg.dataset.name or "qwen3:14b",
         temperature=cfg.llm.temperature,
         top_k=cfg.llm.top_k,
         timeout=cfg.request_timeout_sec,
@@ -105,16 +107,32 @@ def run(
         mode = SingleModelMode(llm_client=llm)
 
     # 6. Run experiment
-    from culturedx.pipeline.runner import ExperimentRunner
+    base_output = output_dir or cfg.output_dir
+    if output_dir:
+        # Explicit output dir: use as-is
+        run_dir = Path(output_dir)
+        run_dir.mkdir(parents=True, exist_ok=True)
+    else:
+        # Auto-generate timestamped run dir
+        run_dir = ExperimentRunner.create_run_dir(base_output, cfg.mode.type, dataset)
 
-    effective_output = output_dir or cfg.output_dir
     runner = ExperimentRunner(
         mode=mode,
-        output_dir=effective_output,
+        output_dir=run_dir,
         evidence_pipeline=evidence_pipeline,
     )
 
+    click.echo(f"Output directory: {run_dir}")
     click.echo(f"Running CultureDx mode={cfg.mode.type} on {len(cases)} cases...")
+
+    # Save run metadata
+    runner.save_run_info(
+        config_dict=cfg.model_dump(),
+        dataset_name=dataset,
+        num_cases=len(cases),
+        mode_type=cfg.mode.type,
+    )
+
     results = runner.run(cases)
 
     # 7. Evaluate
@@ -125,7 +143,7 @@ def run(
     else:
         click.echo("No ground truth labels found; skipping evaluation.")
 
-    click.echo(f"Predictions saved to {effective_output}/predictions.jsonl")
+    click.echo(f"Predictions saved to {run_dir}/predictions.jsonl")
     click.echo("Run complete.")
 
 
