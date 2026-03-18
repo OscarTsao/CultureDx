@@ -77,9 +77,10 @@ def run(
     if with_evidence:
         click.echo("Evidence extraction: ENABLED")
         from culturedx.evidence.pipeline import EvidencePipeline
-        from culturedx.evidence.retriever import MockRetriever
+        from culturedx.evidence.retriever_factory import create_retriever
 
-        retriever = MockRetriever()
+        retriever = create_retriever(cfg.evidence.retriever)
+        click.echo(f"Retriever: {cfg.evidence.retriever.name}")
         evidence_pipeline = EvidencePipeline(
             llm_client=llm,
             retriever=retriever,
