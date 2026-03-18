@@ -6,6 +6,7 @@ from culturedx.core.models import (
     ClinicalCase,
     SymptomSpan,
     CriterionEvidence,
+    DisorderEvidence,
     EvidenceBrief,
     CriterionResult,
     CheckerOutput,
@@ -137,3 +138,38 @@ class TestDiagnosisResult:
         )
         assert result.decision == "abstain"
         assert result.primary_diagnosis is None
+
+
+class TestDisorderEvidence:
+    def test_create_disorder_evidence(self):
+        ce = CriterionEvidence(
+            criterion_id="F32.A1",
+            spans=[SymptomSpan(text="情绪低落", turn_id=1, symptom_type="mood")],
+            confidence=0.9,
+        )
+        de = DisorderEvidence(
+            disorder_code="F32",
+            disorder_name="Depressive episode",
+            criteria_evidence=[ce],
+        )
+        assert de.disorder_code == "F32"
+        assert len(de.criteria_evidence) == 1
+
+    def test_evidence_brief_with_disorders(self):
+        brief = EvidenceBrief(
+            case_id="test_001",
+            language="zh",
+            symptom_spans=[
+                SymptomSpan(
+                    text="头疼", turn_id=1, symptom_type="somatic", is_somatic=True
+                ),
+            ],
+            disorder_evidence=[
+                DisorderEvidence(
+                    disorder_code="F32", disorder_name="Depressive episode"
+                ),
+            ],
+        )
+        assert len(brief.symptom_spans) == 1
+        assert brief.symptom_spans[0].is_somatic is True
+        assert len(brief.disorder_evidence) == 1

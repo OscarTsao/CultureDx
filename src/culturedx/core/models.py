@@ -48,8 +48,9 @@ class SymptomSpan:
 
     text: str
     turn_id: int
-    symptom_type: str
+    symptom_type: str  # "somatic", "emotional", "behavioral", "cognitive"
     mapped_criterion: str | None = None
+    is_somatic: bool = False
 
 
 @dataclass
@@ -62,11 +63,22 @@ class CriterionEvidence:
 
 
 @dataclass
+class DisorderEvidence:
+    """Evidence collected for a single candidate disorder."""
+
+    disorder_code: str  # e.g., "F32"
+    disorder_name: str  # e.g., "Depressive episode"
+    criteria_evidence: list[CriterionEvidence] = field(default_factory=list)
+
+
+@dataclass
 class EvidenceBrief:
     """Assembled evidence brief for a case, per criterion per disorder."""
 
     case_id: str
     language: str
+    symptom_spans: list[SymptomSpan] = field(default_factory=list)
+    disorder_evidence: list[DisorderEvidence] = field(default_factory=list)
     criteria_evidence: list[CriterionEvidence] = field(default_factory=list)
 
 
