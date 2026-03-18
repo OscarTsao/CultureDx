@@ -1,0 +1,38 @@
+You are a psychiatric triage specialist. Based on the clinical transcript below, classify this case into one or more broad diagnostic categories.
+
+## Categories
+
+1. mood — Mood disorders (depression, bipolar, mania)
+2. anxiety — Anxiety disorders (GAD, panic, phobias, OCD)
+3. stress — Stress-related disorders (PTSD, adjustment)
+4. somatoform — Somatoform disorders (unexplained physical symptoms)
+5. psychotic — Psychotic disorders (schizophrenia, delusional)
+6. sleep — Sleep disorders (insomnia, hypersomnia)
+
+## Clinical Transcript
+
+{{ transcript_text }}
+{% if evidence_summary %}
+
+## Evidence Summary
+
+{{ evidence_summary }}
+{% endif %}
+
+## Instructions
+
+- Select 1 to 3 categories that best match the clinical presentation.
+- Assign a confidence score (0.0 to 1.0) to each selected category.
+- If the top category confidence is below 0.7, include up to 3 categories.
+- Base your assessment on symptoms mentioned, not speculation.
+
+## Output
+
+Respond in exactly this JSON format:
+{
+  "categories": [
+    {"category": "mood", "confidence": 0.85},
+    {"category": "anxiety", "confidence": 0.45}
+  ]
+}
+Output JSON only. Do not include any other text.
