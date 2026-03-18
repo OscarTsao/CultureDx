@@ -9,6 +9,7 @@ from pathlib import Path
 
 from culturedx.core.models import ClinicalCase, DiagnosisResult
 from culturedx.eval.metrics import compute_diagnosis_metrics
+from culturedx.evidence.pipeline import EvidencePipeline
 from culturedx.modes.base import BaseModeOrchestrator
 
 logger = logging.getLogger(__name__)
@@ -21,16 +22,21 @@ class ExperimentRunner:
         self,
         mode: BaseModeOrchestrator,
         output_dir: str | Path,
+        evidence_pipeline: "EvidencePipeline | None" = None,
     ) -> None:
         self.mode = mode
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
+        self.evidence_pipeline = evidence_pipeline
 
     def run(self, cases: list[ClinicalCase]) -> list[DiagnosisResult]:
         results = []
         for i, case in enumerate(cases):
             logger.info("Processing case %d/%d: %s", i + 1, len(cases), case.case_id)
-            result = self.mode.diagnose(case)
+            evidence = None
+            if self.evidence_pipeline is not None:
+                evidence = self.evidence_pipeline.extract(case)
+            result = self.mode.diagnose(case, evidence=evidence)
             results.append(result)
         self._save_predictions(results)
         return results

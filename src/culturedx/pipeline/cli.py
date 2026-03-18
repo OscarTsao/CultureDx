@@ -23,9 +23,18 @@ def cli(verbose: bool) -> None:
 @click.option("--dataset", "-d", required=True, help="Dataset name (mdd5k, pdch, edaic)")
 @click.option("--split", "-s", default=None, help="Dataset split")
 @click.option("--output-dir", "-o", default=None, help="Output directory override")
-def run(config: str, dataset: str, split: str | None, output_dir: str | None) -> None:
+@click.option("--with-evidence", is_flag=True, help="Enable evidence extraction pipeline")
+def run(
+    config: str,
+    dataset: str,
+    split: str | None,
+    output_dir: str | None,
+    with_evidence: bool,
+) -> None:
     """Run an experiment with a given config and dataset."""
     cfg = load_config(config)
+    if with_evidence:
+        click.echo("Evidence extraction: ENABLED")
     click.echo(f"Running CultureDx mode={cfg.mode.type} on dataset={dataset}")
     click.echo(f"Config loaded from {config}")
     click.echo("Run complete.")
