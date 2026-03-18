@@ -1,7 +1,10 @@
 # tests/test_cli.py
 """Tests for CLI entry point."""
+from unittest.mock import MagicMock, patch
+
 import pytest
 from click.testing import CliRunner
+
 from culturedx.pipeline.cli import cli
 
 
@@ -22,10 +25,35 @@ class TestCLI:
         runner = CliRunner()
         config_file = tmp_path / "test_config.yaml"
         config_file.write_text(
-            "seed: 42\noutput_dir: outputs\nmode:\n  name: single\n  type: single\n"
+            "seed: 42\noutput_dir: " + str(tmp_path / "outputs") + "\nmode:\n  name: single\n  type: single\n"
         )
-        result = runner.invoke(
-            cli, ["run", "-c", str(config_file), "-d", "mdd5k", "--with-evidence"]
-        )
-        assert result.exit_code == 0
+
+        mock_adapter = MagicMock()
+        mock_adapter.load.return_value = []
+        mock_get_adapter = MagicMock(return_value=mock_adapter)
+
+        mock_runner_instance = MagicMock()
+        mock_runner_instance.run.return_value = []
+        mock_runner_cls = MagicMock(return_value=mock_runner_instance)
+
+        with (
+            patch("culturedx.data.adapters.get_adapter", mock_get_adapter),
+            patch("culturedx.llm.client.OllamaClient", MagicMock()),
+            patch("culturedx.evidence.pipeline.EvidencePipeline", MagicMock()),
+            patch("culturedx.evidence.retriever.MockRetriever", MagicMock()),
+            patch("culturedx.modes.single.SingleModelMode", MagicMock()),
+            patch("culturedx.pipeline.runner.ExperimentRunner", mock_runner_cls),
+        ):
+            result = runner.invoke(
+                cli,
+                [
+                    "run",
+                    "-c", str(config_file),
+                    "-d", "mdd5k",
+                    "--with-evidence",
+                    "--data-path", "/home/user/YuNing/CultureDx/tests/fixtures/mdd5k_sample.json",
+                ],
+            )
+
+        assert result.exit_code == 0, result.output
         assert "Evidence extraction: ENABLED" in result.output

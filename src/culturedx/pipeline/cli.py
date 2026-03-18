@@ -20,30 +20,112 @@ def cli(verbose: bool) -> None:
 
 @cli.command()
 @click.option("--config", "-c", required=True, multiple=True, type=click.Path(exists=True))
-@click.option("--dataset", "-d", required=True, help="Dataset name (mdd5k, pdch, edaic)")
+@click.option("--dataset", "-d", required=True, help="Dataset name (lingxidiag16k, mdd5k_raw, ...)")
 @click.option("--split", "-s", default=None, help="Dataset split")
 @click.option("--output-dir", "-o", default=None, help="Output directory override")
 @click.option("--with-evidence", is_flag=True, help="Enable evidence extraction pipeline")
+@click.option("--data-path", default=None, help="Override dataset path")
+@click.option("--limit", "-n", default=None, type=int, help="Limit number of cases to process")
 def run(
     config: tuple[str, ...],
     dataset: str,
     split: str | None,
     output_dir: str | None,
     with_evidence: bool,
+    data_path: str | None,
+    limit: int | None,
 ) -> None:
     """Run an experiment with a given config and dataset."""
+    # 1. Load config
     if len(config) == 1:
         cfg = load_config(config[0])
     else:
         cfg = load_config(config[0], overrides=list(config[1:]))
+
+    # 2. Load dataset
+    from culturedx.data.adapters import get_adapter
+
+    effective_data_path = data_path or cfg.dataset.data_path
+    if not effective_data_path:
+        click.echo("ERROR: No data path. Use --data-path or set dataset.data_path in config.", err=True)
+        raise SystemExit(1)
+
+    click.echo(f"Loading dataset '{dataset}' from {effective_data_path}...")
+    adapter = get_adapter(dataset, effective_data_path)
+    cases = adapter.load(split=split)
+    if limit:
+        cases = cases[:limit]
+    click.echo(f"Loaded {len(cases)} cases.")
+
+    # 3. Create LLM client
+    from culturedx.llm.client import OllamaClient
+
+    llm = OllamaClient(
+        base_url=cfg.llm.base_url,
+        model=cfg.dataset.name or "qwen3:14b",
+        temperature=cfg.llm.temperature,
+        top_k=cfg.llm.top_k,
+        timeout=cfg.request_timeout_sec,
+        cache_path=Path(cfg.cache_dir) / "llm_cache.db",
+        provider=cfg.llm.provider,
+    )
+
+    # 4. Create evidence pipeline (optional)
+    evidence_pipeline = None
     if with_evidence:
         click.echo("Evidence extraction: ENABLED")
+        from culturedx.evidence.pipeline import EvidencePipeline
+        from culturedx.evidence.retriever import MockRetriever
+
+        retriever = MockRetriever()
+        evidence_pipeline = EvidencePipeline(
+            llm_client=llm,
+            retriever=retriever,
+            target_disorders=cfg.mode.target_disorders or ["F32", "F41.1"],
+            somatization_enabled=cfg.evidence.somatization.enabled,
+            somatization_llm_fallback=cfg.evidence.somatization.llm_fallback,
+            top_k=cfg.evidence.top_k_final,
+            min_confidence=cfg.evidence.min_confidence,
+        )
+
+    # 5. Create mode
     if cfg.mode.type == "mas":
         click.echo("MAS mode: ENABLED")
+        from culturedx.modes.mas import MASMode
+
+        mode = MASMode(
+            llm_client=llm,
+            target_disorders=cfg.mode.target_disorders,
+        )
         if cfg.mode.target_disorders:
             click.echo(f"Target disorders: {', '.join(cfg.mode.target_disorders)}")
-    click.echo(f"Running CultureDx mode={cfg.mode.type} on dataset={dataset}")
-    click.echo(f"Config loaded from {', '.join(config)}")
+    else:
+        from culturedx.modes.single import SingleModelMode
+
+        mode = SingleModelMode(llm_client=llm)
+
+    # 6. Run experiment
+    from culturedx.pipeline.runner import ExperimentRunner
+
+    effective_output = output_dir or cfg.output_dir
+    runner = ExperimentRunner(
+        mode=mode,
+        output_dir=effective_output,
+        evidence_pipeline=evidence_pipeline,
+    )
+
+    click.echo(f"Running CultureDx mode={cfg.mode.type} on {len(cases)} cases...")
+    results = runner.run(cases)
+
+    # 7. Evaluate
+    has_labels = any(c.diagnoses for c in cases)
+    if has_labels:
+        metrics = runner.evaluate(results, cases)
+        click.echo(f"Evaluation metrics: {metrics}")
+    else:
+        click.echo("No ground truth labels found; skipping evaluation.")
+
+    click.echo(f"Predictions saved to {effective_output}/predictions.jsonl")
     click.echo("Run complete.")
 
 
