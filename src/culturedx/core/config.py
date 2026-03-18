@@ -27,6 +27,7 @@ class ModeConfig(BaseModel):
     name: str = "single"
     type: str = "single"
     variants: list[str] | None = None
+    target_disorders: list[str] | None = None
 
 
 class DatasetConfig(BaseModel):

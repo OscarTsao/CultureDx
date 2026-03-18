@@ -19,24 +19,31 @@ def cli(verbose: bool) -> None:
 
 
 @cli.command()
-@click.option("--config", "-c", required=True, type=click.Path(exists=True))
+@click.option("--config", "-c", required=True, multiple=True, type=click.Path(exists=True))
 @click.option("--dataset", "-d", required=True, help="Dataset name (mdd5k, pdch, edaic)")
 @click.option("--split", "-s", default=None, help="Dataset split")
 @click.option("--output-dir", "-o", default=None, help="Output directory override")
 @click.option("--with-evidence", is_flag=True, help="Enable evidence extraction pipeline")
 def run(
-    config: str,
+    config: tuple[str, ...],
     dataset: str,
     split: str | None,
     output_dir: str | None,
     with_evidence: bool,
 ) -> None:
     """Run an experiment with a given config and dataset."""
-    cfg = load_config(config)
+    if len(config) == 1:
+        cfg = load_config(config[0])
+    else:
+        cfg = load_config(config[0], overrides=list(config[1:]))
     if with_evidence:
         click.echo("Evidence extraction: ENABLED")
+    if cfg.mode.type == "mas":
+        click.echo("MAS mode: ENABLED")
+        if cfg.mode.target_disorders:
+            click.echo(f"Target disorders: {', '.join(cfg.mode.target_disorders)}")
     click.echo(f"Running CultureDx mode={cfg.mode.type} on dataset={dataset}")
-    click.echo(f"Config loaded from {config}")
+    click.echo(f"Config loaded from {', '.join(config)}")
     click.echo("Run complete.")
 
 
