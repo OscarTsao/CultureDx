@@ -10,6 +10,7 @@ mode:
 
 llm:
   provider: ollama
+  model_id: "qwen3:14b"
   base_url: http://localhost:11434
   temperature: 0.0
   top_k: 1

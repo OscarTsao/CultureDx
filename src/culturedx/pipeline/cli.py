@@ -62,7 +62,7 @@ def run(
 
     llm = OllamaClient(
         base_url=cfg.llm.base_url,
-        model=cfg.dataset.name or "qwen3:14b",
+        model=cfg.llm.model_id,
         temperature=cfg.llm.temperature,
         top_k=cfg.llm.top_k,
         timeout=cfg.request_timeout_sec,

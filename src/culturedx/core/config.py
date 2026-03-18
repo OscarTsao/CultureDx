@@ -11,6 +11,7 @@ from pydantic import BaseModel, ConfigDict
 
 class LLMConfig(BaseModel):
     provider: str = "ollama"
+    model_id: str = "qwen3:14b"
     base_url: str = "http://localhost:11434"
     temperature: float = 0.0
     top_k: int = 1
