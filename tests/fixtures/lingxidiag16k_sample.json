@@ -1,0 +1,35 @@
+[
+  {
+    "patient_id": "100001",
+    "cleaned_text": "医生：您好，最近有什么不舒服的地方吗？\n患者：最近一个月情绪很低落，失眠严重，什么都不想做。\n医生：睡眠情况具体怎样？\n患者：入睡困难，经常凌晨两三点才能睡着，早上五点就醒了。",
+    "DiagnosisCode": "F32.900",
+    "Diagnosis": "抑郁发作",
+    "icd_clf_label": ["F32"],
+    "four_class_label": "Depression",
+    "Age": "28",
+    "Gender": "女",
+    "ChiefComplaint": "情绪低落、失眠1个月"
+  },
+  {
+    "patient_id": "100002",
+    "cleaned_text": "医生：你好，最近有什么困扰你的事情吗？\n患者：我总是很紧张，心跳加速，有时候觉得喘不过气来。\n医生：这种情况持续多久了？\n患者：差不多半年了，最近越来越严重，晚上也睡不好。",
+    "DiagnosisCode": "F41.200",
+    "Diagnosis": "焦虑抑郁状态",
+    "icd_clf_label": ["F41"],
+    "four_class_label": "Anxiety",
+    "Age": "35",
+    "Gender": "男",
+    "ChiefComplaint": "紧张、心悸半年"
+  },
+  {
+    "patient_id": "100003",
+    "cleaned_text": "医生：你主要有什么症状？\n患者：我情绪很低，而且总是担心各种事情，还经常头疼。\n医生：食欲怎么样？\n患者：吃不下饭，体重掉了不少，注意力也很难集中。",
+    "DiagnosisCode": "F32.900,F41.100",
+    "Diagnosis": "抑郁焦虑共病",
+    "icd_clf_label": ["F32", "F41"],
+    "four_class_label": "Mixed",
+    "Age": "42",
+    "Gender": "女",
+    "ChiefComplaint": "情绪低落、焦虑、头痛2月"
+  }
+]
