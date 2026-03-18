@@ -1,0 +1,186 @@
+"""Confidence Calibrator — statistical, no LLM.
+
+Computes calibrated diagnostic confidence from:
+- Criterion checker confidence scores
+- Evidence coverage
+- Logic engine threshold satisfaction ratio
+- Somatization mapper hit rate (if applicable)
+"""
+from __future__ import annotations
+
+import logging
+from dataclasses import dataclass, field
+
+from culturedx.core.models import CheckerOutput, CriterionResult, EvidenceBrief
+
+logger = logging.getLogger(__name__)
+
+
+@dataclass
+class CalibratedDiagnosis:
+    """A diagnosis with calibrated confidence and decision."""
+    disorder_code: str
+    confidence: float
+    decision: str  # "diagnosis" or "abstain"
+    evidence_coverage: float = 0.0
+    avg_criterion_confidence: float = 0.0
+    threshold_ratio: float = 0.0
+
+
+@dataclass
+class CalibrationOutput:
+    """Complete calibrator output."""
+    primary: CalibratedDiagnosis | None = None
+    comorbid: list[CalibratedDiagnosis] = field(default_factory=list)
+    abstained: list[CalibratedDiagnosis] = field(default_factory=list)
+
+
+class ConfidenceCalibrator:
+    """Statistical confidence calibrator for diagnostic decisions.
+    
+    No LLM. Combines multiple signals into a calibrated confidence score.
+    """
+
+    def __init__(
+        self,
+        abstain_threshold: float = 0.3,
+        comorbid_threshold: float = 0.5,
+        evidence_weight: float = 0.3,
+        criterion_weight: float = 0.4,
+        threshold_weight: float = 0.3,
+    ) -> None:
+        self.abstain_threshold = abstain_threshold
+        self.comorbid_threshold = comorbid_threshold
+        self.evidence_weight = evidence_weight
+        self.criterion_weight = criterion_weight
+        self.threshold_weight = threshold_weight
+
+    def calibrate(
+        self,
+        confirmed_disorders: list[str],
+        checker_outputs: list[CheckerOutput],
+        evidence: EvidenceBrief | None = None,
+    ) -> CalibrationOutput:
+        """Calibrate confidence for confirmed disorders.
+        
+        Args:
+            confirmed_disorders: Disorder codes confirmed by logic engine.
+            checker_outputs: All checker outputs (confirmed + rejected).
+            evidence: Optional evidence brief for coverage computation.
+        """
+        # Build checker map
+        checker_map = {co.disorder: co for co in checker_outputs}
+
+        # Compute calibrated scores for confirmed disorders
+        scored = []
+        for code in confirmed_disorders:
+            co = checker_map.get(code)
+            if co is None:
+                continue
+            cal = self._compute_calibrated(code, co, evidence)
+            scored.append(cal)
+
+        # Sort by confidence descending
+        scored.sort(key=lambda c: c.confidence, reverse=True)
+
+        # Split into primary, comorbid, abstained
+        primary = None
+        comorbid = []
+        abstained = []
+
+        for cal in scored:
+            if cal.confidence < self.abstain_threshold:
+                cal.decision = "abstain"
+                abstained.append(cal)
+            elif primary is None:
+                cal.decision = "diagnosis"
+                primary = cal
+            elif cal.confidence >= self.comorbid_threshold:
+                cal.decision = "diagnosis"
+                comorbid.append(cal)
+            else:
+                cal.decision = "diagnosis"
+                comorbid.append(cal)
+
+        return CalibrationOutput(
+            primary=primary,
+            comorbid=comorbid,
+            abstained=abstained,
+        )
+
+    def _compute_calibrated(
+        self,
+        disorder_code: str,
+        checker_output: CheckerOutput,
+        evidence: EvidenceBrief | None,
+    ) -> CalibratedDiagnosis:
+        """Compute calibrated confidence for a single disorder."""
+        # 1. Average criterion confidence (for met criteria)
+        met_criteria = [
+            cr for cr in checker_output.criteria if cr.status == "met"
+        ]
+        avg_conf = (
+            sum(cr.confidence for cr in met_criteria) / len(met_criteria)
+            if met_criteria
+            else 0.0
+        )
+
+        # 2. Threshold satisfaction ratio
+        required = checker_output.criteria_required
+        if required > 0:
+            threshold_ratio = min(1.0, checker_output.criteria_met_count / required)
+        else:
+            threshold_ratio = 1.0 if checker_output.criteria_met_count > 0 else 0.0
+
+        # 3. Evidence coverage (what fraction of criteria have evidence spans)
+        evidence_coverage = self._compute_evidence_coverage(
+            disorder_code, checker_output, evidence
+        )
+
+        # Weighted combination
+        confidence = (
+            self.criterion_weight * avg_conf
+            + self.threshold_weight * threshold_ratio
+            + self.evidence_weight * evidence_coverage
+        )
+        confidence = max(0.0, min(1.0, confidence))
+
+        return CalibratedDiagnosis(
+            disorder_code=disorder_code,
+            confidence=confidence,
+            decision="",  # Set by calibrate()
+            evidence_coverage=evidence_coverage,
+            avg_criterion_confidence=avg_conf,
+            threshold_ratio=threshold_ratio,
+        )
+
+    @staticmethod
+    def _compute_evidence_coverage(
+        disorder_code: str,
+        checker_output: CheckerOutput,
+        evidence: EvidenceBrief | None,
+    ) -> float:
+        """Compute what fraction of criteria have supporting evidence."""
+        if not evidence:
+            # Without evidence, use criterion checker evidence field
+            total = len(checker_output.criteria)
+            if total == 0:
+                return 0.0
+            has_evidence = sum(
+                1 for cr in checker_output.criteria
+                if cr.evidence is not None and cr.evidence.strip()
+            )
+            return has_evidence / total
+
+        # With evidence brief, check disorder-specific evidence
+        for de in evidence.disorder_evidence:
+            if de.disorder_code == disorder_code:
+                total_criteria = len(checker_output.criteria)
+                if total_criteria == 0:
+                    return 0.0
+                covered = sum(
+                    1 for ce in de.criteria_evidence if ce.spans
+                )
+                return min(1.0, covered / total_criteria)
+
+        return 0.0
