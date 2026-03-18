@@ -184,5 +184,70 @@ def smoke() -> None:
     click.echo("Smoke test passed (fixture files found).")
 
 
+@cli.command()
+@click.option("--config", "-c", required=True, multiple=True, type=click.Path(exists=True))
+@click.option("--dataset", "-d", required=True, help="Dataset name")
+@click.option("--data-path", default=None, help="Override dataset path")
+@click.option("--modes", "-m", default=None, help="Comma-separated modes (default: all)")
+@click.option("--output-dir", "-o", default="outputs/sweeps", help="Sweep output directory")
+@click.option("--limit", "-n", default=None, type=int, help="Limit cases per condition")
+@click.option("--dry-run", is_flag=True, help="Plan sweep without executing")
+def sweep(
+    config: tuple[str, ...],
+    dataset: str,
+    data_path: str | None,
+    modes: str | None,
+    output_dir: str,
+    limit: int | None,
+    dry_run: bool,
+) -> None:
+    """Run ablation sweep across modes and conditions."""
+    from culturedx.pipeline.sweep import SweepRunner, build_ablation_conditions
+
+    # Load config
+    if len(config) == 1:
+        cfg = load_config(config[0])
+    else:
+        cfg = load_config(config[0], overrides=list(config[1:]))
+
+    # Parse modes
+    mode_list = modes.split(",") if modes else None
+
+    # Build conditions
+    conditions = build_ablation_conditions(
+        modes=mode_list,
+        target_disorders=cfg.mode.target_disorders,
+    )
+
+    click.echo(f"Sweep: {len(conditions)} conditions")
+    for c in conditions:
+        click.echo(f"  - {c.name} (mode={c.mode_type}, evidence={c.with_evidence}, somat={c.with_somatization})")
+
+    if dry_run:
+        click.echo("Dry run complete. No experiments executed.")
+        return
+
+    # Load dataset
+    from culturedx.data.adapters import get_adapter
+
+    effective_data_path = data_path or cfg.dataset.data_path
+    if not effective_data_path:
+        click.echo("ERROR: No data path.", err=True)
+        raise SystemExit(1)
+
+    adapter = get_adapter(dataset, effective_data_path)
+    cases = adapter.load()
+    if limit:
+        cases = cases[:limit]
+    click.echo(f"Loaded {len(cases)} cases.")
+
+    # Run sweep
+    runner = SweepRunner(base_output_dir=output_dir)
+    report = runner.run_sweep(conditions, cases, sweep_name=f"ablation_{dataset}")
+
+    click.echo(f"Sweep complete. {len(report.results)} conditions executed.")
+    click.echo(f"Report: {output_dir}")
+
+
 if __name__ == "__main__":
     cli()

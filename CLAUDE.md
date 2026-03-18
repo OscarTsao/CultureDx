@@ -29,6 +29,12 @@ uv run culturedx run --config configs/base.yaml --dataset mdd5k --with-evidence
 uv pip install -e ".[retrieval]"
 ```
 
+```bash
+# Sweep
+uv run culturedx sweep --config configs/base.yaml -c configs/hied.yaml -d mdd5k --dry-run
+uv run culturedx sweep --config configs/base.yaml -d mdd5k --modes hied,single -n 50
+```
+
 ## Package Architecture (src/culturedx/)
 
 | Module | Purpose |
@@ -58,6 +64,21 @@ uv pip install -e ".[retrieval]"
 | ontology/symptom_map.py | Chinese somatic symptom → criterion mapping (38 entries) |
 | prompts/agents/ | Bilingual Jinja2 prompts for MAS agents |
 | eval/evidence_metrics.py | Criterion coverage, evidence precision |
+| agents/triage.py | Triage: broad ICD-10 category classification |
+| agents/specialist.py | Free-form disorder specialist reasoning |
+| agents/perspective.py | Perspective agents (bio/psych/social/cultural) |
+| agents/judge.py | LLM judge for specialist & debate modes |
+| modes/hied.py | HiED: 4-stage primary pipeline (triage→checker→logic→calibrator) |
+| modes/psycot.py | PsyCoT: flat criterion checking (no triage) |
+| modes/specialist.py | Specialist-MAS: triage→specialists→judge |
+| modes/debate.py | Debate-MAS: 4 perspectives × 2 rounds→judge |
+| diagnosis/logic_engine.py | Deterministic ICD-10 threshold rules (no LLM) |
+| diagnosis/calibrator.py | Statistical confidence scoring (no LLM) |
+| diagnosis/comorbidity.py | ICD-10 exclusion rules for comorbidity |
+| eval/cross_lingual.py | Cross-lingual evidence gap test, AURC |
+| eval/report.py | Markdown + JSON evaluation report generator |
+| pipeline/sweep.py | Ablation sweep runner |
+| evidence/retriever_factory.py | Config-driven retriever selection |
 
 ## Key Invariants
 
@@ -71,6 +92,11 @@ uv pip install -e ".[retrieval]"
 8. Retriever optional dep: sentence-transformers only needed for BGEM3Retriever
 9. Evidence pipeline: extract → somatize (Chinese only) → match → assemble
 10. MAS mode: criterion checker per disorder → differential diagnosis synthesis
+11. HiED pipeline: Triage → Criterion Checkers → Logic Engine (deterministic) → Calibrator (statistical)
+12. PsyCoT: no triage, checks ALL disorders sequentially
+13. Logic Engine uses ICD-10 threshold dispatch (core_total, first_rank, min_symptoms, etc.)
+14. Comorbidity: F33 supersedes F32, F31 supersedes F32/F33, F20 supersedes F22
+15. 5 MAS modes: hied (primary), psycot (alt B), specialist (alt A), debate (alt C), single (baseline)
 
 ## Code Conventions
 
