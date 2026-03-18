@@ -1,0 +1,16 @@
+pools:
+  worker:
+    - name: qwen3-4b
+      provider: ollama
+      model_id: "qwen3:4b"
+      role: worker
+  reasoner:
+    - name: qwen3-14b
+      provider: ollama
+      model_id: "qwen3:14b"
+      role: reasoner
+  judge:
+    - name: qwen3-32b
+      provider: ollama
+      model_id: "qwen3:32b"
+      role: judge

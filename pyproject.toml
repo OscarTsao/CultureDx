@@ -39,3 +39,9 @@ markers = [
     "integration: marks tests requiring Ollama",
     "slow: marks slow tests",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+    "pytest-cov>=7.0.0",
+]

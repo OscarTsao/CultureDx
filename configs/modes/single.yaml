@@ -1,0 +1,8 @@
+mode:
+  name: single
+  type: single
+  variants:
+    - zero_shot
+    - zero_shot_evidence
+    - few_shot
+    - few_shot_evidence

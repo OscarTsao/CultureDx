@@ -1,0 +1,21 @@
+seed: 42
+output_dir: outputs/runs
+cache_dir: data/cache
+log_level: INFO
+request_timeout_sec: 300
+
+mode:
+  name: single
+  type: single
+
+llm:
+  provider: ollama
+  base_url: http://localhost:11434
+  temperature: 0.0
+  top_k: 1
+  max_retries: 3
+
+eval:
+  binary_threshold_phq8: 10
+  binary_threshold_hamd17: 8
+  bootstrap_resamples: 10000
