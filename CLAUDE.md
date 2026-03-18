@@ -40,8 +40,11 @@ uv pip install -e ".[retrieval]"
 | llm/cache.py | SQLite-backed LLM response cache |
 | llm/json_utils.py | JSON extraction from LLM responses |
 | agents/base.py | BaseAgent ABC |
+| agents/criterion_checker.py | CriterionCheckerAgent: per-disorder ICD-10 criteria evaluation |
+| agents/differential.py | DifferentialDiagnosisAgent: cross-disorder differential synthesis |
 | modes/base.py | BaseModeOrchestrator ABC |
 | modes/single.py | Single-model baseline (zero-shot/few-shot) |
+| modes/mas.py | MASMode orchestrator: checker + differential pipeline |
 | eval/metrics.py | Diagnosis and severity metrics |
 | pipeline/runner.py | ExperimentRunner |
 | pipeline/cli.py | Click CLI entry point |
@@ -53,6 +56,7 @@ uv pip install -e ".[retrieval]"
 | evidence/pipeline.py | End-to-end evidence extraction orchestrator |
 | ontology/icd10.py | ICD-10 criterion definitions (13 disorders) |
 | ontology/symptom_map.py | Chinese somatic symptom → criterion mapping (38 entries) |
+| prompts/agents/ | Bilingual Jinja2 prompts for MAS agents |
 | eval/evidence_metrics.py | Criterion coverage, evidence precision |
 
 ## Key Invariants
@@ -66,6 +70,7 @@ uv pip install -e ".[retrieval]"
 7. EvidenceBrief uses DisorderEvidence (per-disorder) as primary structure
 8. Retriever optional dep: sentence-transformers only needed for BGEM3Retriever
 9. Evidence pipeline: extract → somatize (Chinese only) → match → assemble
+10. MAS mode: criterion checker per disorder → differential diagnosis synthesis
 
 ## Code Conventions
 
