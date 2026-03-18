@@ -1,0 +1,25 @@
+You are a psychiatric symptom extraction expert. Extract all symptom-related expressions from the following clinical dialogue.
+
+Dialogue:
+{% for turn in turns %}
+[Turn {{ turn.turn_id }}] {{ turn.speaker }}: {{ turn.text }}
+{% endfor %}
+
+Output extracted symptoms in JSON format:
+{
+  "symptoms": [
+    {
+      "text": "symptom text as stated",
+      "turn_id": turn_number,
+      "symptom_type": "somatic|emotional|behavioral|cognitive"
+    }
+  ]
+}
+
+symptom_type categories:
+- somatic: Physical symptoms (headache, insomnia, palpitations, chest tightness, appetite changes)
+- emotional: Emotional symptoms (depressed mood, anxiety, fear, irritability)
+- behavioral: Behavioral symptoms (avoidance, self-harm, decreased activity)
+- cognitive: Cognitive symptoms (poor concentration, memory problems, self-blame)
+
+Output only JSON, no other text.
