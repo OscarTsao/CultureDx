@@ -30,7 +30,10 @@ class SingleModelMode(BaseModeOrchestrator):
         self, case: ClinicalCase, evidence: EvidenceBrief | None = None
     ) -> DiagnosisResult:
         lang = case.language
-        template_name = f"zero_shot_{lang}.jinja"
+        if evidence and evidence.disorder_evidence:
+            template_name = f"zero_shot_evidence_{lang}.jinja"
+        else:
+            template_name = f"zero_shot_{lang}.jinja"
         template = self._env.get_template(template_name)
 
         prompt = template.render(

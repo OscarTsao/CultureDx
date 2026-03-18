@@ -1,0 +1,34 @@
+You are a psychiatric diagnostic expert. Based on the following clinical dialogue and extracted symptom evidence, determine the most likely psychiatric diagnosis for the patient.
+
+## Clinical Dialogue
+
+{% for turn in transcript %}
+{{ turn.speaker }}: {{ turn.text }}
+{% endfor %}
+
+## Extracted Symptom Evidence
+
+{% if evidence and evidence.disorder_evidence %}
+{% for de in evidence.disorder_evidence %}
+### {{ de.disorder_code }} {{ de.disorder_name }}
+
+{% for ce in de.criteria_evidence %}
+- **{{ ce.criterion_id }}** (confidence: {{ "%.2f"|format(ce.confidence) }})
+{% for span in ce.spans %}
+  - Turn {{ span.turn_id }}: "{{ span.text }}"
+{% endfor %}
+{% endfor %}
+{% endfor %}
+{% else %}
+No symptom evidence available.
+{% endif %}
+
+## Output Requirements
+
+Considering both the dialogue and the evidence above, respond in JSON format:
+{
+  "primary_diagnosis": "ICD-10 code (e.g., F32)",
+  "comorbid_diagnoses": ["other comorbid codes"],
+  "confidence": 0.0 to 1.0 confidence score,
+  "reasoning": "brief diagnostic reasoning citing evidence above"
+}

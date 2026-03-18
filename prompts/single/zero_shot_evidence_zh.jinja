@@ -1,0 +1,34 @@
+你是一位精神科诊断专家。请根据以下临床对话和提取到的症状证据，判断患者最可能的精神疾病诊断。
+
+## 临床对话
+
+{% for turn in transcript %}
+{{ turn.speaker }}: {{ turn.text }}
+{% endfor %}
+
+## 提取到的症状证据
+
+{% if evidence and evidence.disorder_evidence %}
+{% for de in evidence.disorder_evidence %}
+### {{ de.disorder_code }} {{ de.disorder_name }}
+
+{% for ce in de.criteria_evidence %}
+- **{{ ce.criterion_id }}** (置信度: {{ "%.2f"|format(ce.confidence) }})
+{% for span in ce.spans %}
+  - Turn {{ span.turn_id }}: "{{ span.text }}"
+{% endfor %}
+{% endfor %}
+{% endfor %}
+{% else %}
+无可用的症状证据。
+{% endif %}
+
+## 输出要求
+
+请结合对话内容和上述证据，以JSON格式输出：
+{
+  "primary_diagnosis": "ICD-10编码（如F32）",
+  "comorbid_diagnoses": ["其他共病编码"],
+  "confidence": 0.0到1.0之间的置信度,
+  "reasoning": "简短的诊断理由，引用上述证据"
+}
