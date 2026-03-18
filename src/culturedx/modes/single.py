@@ -43,7 +43,7 @@ class SingleModelMode(BaseModeOrchestrator):
         raw = self.llm.generate(prompt, prompt_hash=prompt_hash, language=lang)
         parsed = extract_json_from_response(raw)
 
-        if parsed is None:
+        if parsed is None or not isinstance(parsed, dict):
             return DiagnosisResult(
                 case_id=case.case_id,
                 primary_diagnosis=None,

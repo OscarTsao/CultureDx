@@ -39,6 +39,10 @@ class ExperimentRunner:
         self, results: list[DiagnosisResult], cases: list[ClinicalCase]
     ) -> dict:
         """Evaluate results against ground truth."""
+        if len(results) != len(cases):
+            raise ValueError(
+                f"results ({len(results)}) and cases ({len(cases)}) must have same length"
+            )
         metrics = {}
 
         # Diagnosis metrics (if cases have diagnoses)

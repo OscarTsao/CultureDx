@@ -31,6 +31,17 @@ class OllamaClient:
         self.timeout = timeout
         self._cache = LLMCache(cache_path) if cache_path else None
 
+    def close(self) -> None:
+        """Close the cache connection."""
+        if self._cache:
+            self._cache.close()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        self.close()
+
     @staticmethod
     def compute_prompt_hash(prompt_text: str) -> str:
         """SHA-256 hash of a prompt template for cache keying."""
