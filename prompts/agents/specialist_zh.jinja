@@ -1,0 +1,30 @@
+你是一位{{ disorder_code }} {{ disorder_name }}的专科医生。请根据以下临床对话，评估该患者是否可能患有{{ disorder_name }}。
+
+## 临床对话
+
+{{ transcript_text }}
+{% if evidence_summary %}
+
+## 症状证据
+
+{{ evidence_summary }}
+{% endif %}
+
+## 评估要求
+
+- 从你的专科角度分析病例。
+- 判断该患者是否可能患有{{ disorder_name }}。
+- 列出支持和反对的关键症状。
+- 给出0.0到1.0之间的置信度。
+
+## 输出要求
+
+请严格按照以下JSON格式输出：
+{
+  "disorder_code": "{{ disorder_code }}",
+  "diagnosis_likely": true,
+  "confidence": 0.8,
+  "reasoning": "患者表现出...",
+  "key_symptoms": ["症状1", "症状2"]
+}
+仅输出JSON，不要包含其他文字。

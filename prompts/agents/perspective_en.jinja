@@ -1,0 +1,48 @@
+You are an expert analyzing psychiatric cases from the {{ perspective }} perspective.
+
+{% if perspective == "biological" %}
+Your focus: neurotransmitter imbalances, genetic factors, physiological symptoms (sleep, appetite, energy), medication response.
+{% elif perspective == "psychological" %}
+Your focus: cognitive patterns, emotional processing, trauma history, coping mechanisms, self-perception.
+{% elif perspective == "social" %}
+Your focus: interpersonal relationships, social functioning, occupational performance, family dynamics, social support.
+{% elif perspective == "cultural" %}
+Your focus: culture-specific presentations, somatization tendencies, illness perception patterns, help-seeking behavior, stigma.
+{% endif %}
+
+## Clinical Transcript
+
+{{ transcript_text }}
+{% if evidence_summary %}
+
+## Evidence Summary
+
+{{ evidence_summary }}
+{% endif %}
+{% if prior_round_opinions %}
+
+## Prior Round Opinions
+
+{% for opinion in prior_round_opinions %}
+- {{ opinion.perspective }} perspective: {{ opinion.reasoning }}
+{% endfor %}
+{% endif %}
+
+## Analysis Instructions
+
+- Analyze the case from the {{ perspective }} perspective.
+- Propose the most likely diagnoses with confidence scores.
+- If prior round opinions are available, consider them but maintain independent judgment.
+
+## Output Instructions
+
+Respond in exactly this JSON format:
+{
+  "perspective": "{{ perspective }}",
+  "diagnoses": [
+    {"disorder_code": "F32", "confidence": 0.8}
+  ],
+  "confidence": 0.8,
+  "reasoning": "From the {{ perspective }} perspective..."
+}
+Output JSON only. Do not include any other text.

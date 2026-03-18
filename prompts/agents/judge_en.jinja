@@ -1,0 +1,40 @@
+You are a psychiatric diagnosis reviewer. Below are assessments from multiple disorder specialists for the same case. Synthesize these opinions into a final diagnosis.
+
+## Clinical Transcript Summary
+
+{{ transcript_text }}
+{% if evidence_summary %}
+
+## Evidence Summary
+
+{{ evidence_summary }}
+{% endif %}
+
+## Specialist Opinions
+
+{% for opinion in specialist_opinions %}
+### {{ opinion.disorder_code }} Specialist
+- Diagnosis likely: {{ "Yes" if opinion.diagnosis_likely else "No" }}
+- Confidence: {{ opinion.confidence }}
+- Reasoning: {{ opinion.reasoning }}
+- Key symptoms: {{ opinion.key_symptoms | join(", ") }}
+
+{% endfor %}
+
+## Synthesis Instructions
+
+- Synthesize all specialist opinions into a final diagnosis.
+- If multiple disorders co-exist, list comorbid diagnoses.
+- If evidence is insufficient, choose "abstain".
+
+## Output Instructions
+
+Respond in exactly this JSON format:
+{
+  "primary_diagnosis": "F32",
+  "comorbid_diagnoses": ["F41.1"],
+  "confidence": 0.85,
+  "decision": "diagnosis",
+  "reasoning": "Based on the combined analysis..."
+}
+Output JSON only. Do not include any other text.

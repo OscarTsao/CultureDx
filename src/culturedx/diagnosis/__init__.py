@@ -4,6 +4,10 @@ from culturedx.diagnosis.calibrator import (
     CalibrationOutput,
     ConfidenceCalibrator,
 )
+from culturedx.diagnosis.comorbidity import (
+    ComorbidityResolver,
+    ComorbidityResult,
+)
 from culturedx.diagnosis.logic_engine import (
     DiagnosticLogicEngine,
     LogicEngineOutput,
@@ -13,6 +17,8 @@ from culturedx.diagnosis.logic_engine import (
 __all__ = [
     "CalibratedDiagnosis",
     "CalibrationOutput",
+    "ComorbidityResolver",
+    "ComorbidityResult",
     "ConfidenceCalibrator",
     "DiagnosticLogicEngine",
     "LogicEngineOutput",

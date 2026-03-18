@@ -1,0 +1,30 @@
+You are a specialist in {{ disorder_code }} {{ disorder_name }}. Based on the clinical transcript below, assess whether the patient is likely to have {{ disorder_name }}.
+
+## Clinical Transcript
+
+{{ transcript_text }}
+{% if evidence_summary %}
+
+## Evidence Summary
+
+{{ evidence_summary }}
+{% endif %}
+
+## Assessment Instructions
+
+- Analyze the case from your specialist perspective.
+- Determine if the patient likely has {{ disorder_name }}.
+- List key symptoms supporting or contradicting the diagnosis.
+- Provide confidence between 0.0 and 1.0.
+
+## Output Instructions
+
+Respond in exactly this JSON format:
+{
+  "disorder_code": "{{ disorder_code }}",
+  "diagnosis_likely": true,
+  "confidence": 0.8,
+  "reasoning": "The patient exhibits...",
+  "key_symptoms": ["symptom1", "symptom2"]
+}
+Output JSON only. Do not include any other text.
