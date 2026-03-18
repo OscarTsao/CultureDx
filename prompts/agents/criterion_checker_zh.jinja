@@ -1,0 +1,40 @@
+你是一位中文精神科诊断的临床标准评估员。请根据以下信息，评估ICD-10诊断 {{ disorder_code }} {{ disorder_name }} 的各项标准是否满足。
+
+## 诊断标准
+
+{% for criterion_id, criterion in criteria.items() %}
+[{{ criterion_id }}] ({{ criterion.type }}) {{ criterion.text_zh }}
+{% endfor %}
+
+## 临床对话
+
+{{ transcript_text }}
+{% if evidence_summary %}
+
+## 症状证据
+
+{{ evidence_summary }}
+{% endif %}
+
+## 评估要求
+
+- 独立评估每一条标准。
+- `status` 只能使用 `met`、`not_met` 或 `insufficient_evidence`。
+- 证据含糊、冲突或不足时，默认使用 `insufficient_evidence`，保持保守。
+- `evidence` 提供来自临床对话的简短证据引文；如果没有明确证据，填写 `null`。
+- `confidence` 填写 0.0 到 1.0 之间的浮点数。
+
+## 输出要求
+
+请严格按照以下JSON格式输出：
+{
+  "criteria": [
+    {
+      "criterion_id": "B1",
+      "status": "met",
+      "evidence": "患者报告持续情绪低落超过3周",
+      "confidence": 0.85
+    }
+  ]
+}
+仅输出JSON，不要包含其他文字。

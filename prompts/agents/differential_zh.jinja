@@ -1,0 +1,36 @@
+你是一位ICD-10精神科疾病的鉴别诊断专家。请根据以下各障碍的标准评估结果，确定最可能的主要诊断和共病诊断。
+
+## 标准评估结果
+
+{% for result in checker_results %}
+### {{ result.disorder }} {{ result.disorder_name }}（{{ result.criteria_met_count }}/{{ result.criteria_required }}项标准满足）
+
+{% for c in result.criteria -%}
+- [{{ c.criterion_id }}] {% if c.status == "met" %}已满足{% elif c.status == "not_met" %}未满足{% else %}证据不足{% endif %}（置信度: {{ "%.2f" | format(c.confidence) }}）{% if c.evidence %} — {{ c.evidence }}{% endif %}
+{% endfor %}
+{% endfor %}
+
+## 对话摘要
+
+{{ transcript_summary }}
+
+## 鉴别诊断要求
+
+1. 比较所有候选障碍的证据强度。
+2. 只有当满足的标准数量达到或超过所需阈值时，该障碍才能作为诊断。
+3. 考虑共病：如果多个障碍各自独立满足阈值，则可以同时诊断。
+4. 选择证据支持最强的障碍作为主要诊断。
+5. 将其他独立满足阈值的障碍列为共病诊断。
+6. 如果没有障碍满足阈值，将primary_diagnosis设为null。
+7. 推理必须严格基于上述标准评估结果，不得超出证据进行推测。
+
+## 输出要求
+
+请严格按照以下JSON格式输出：
+{
+  "primary_diagnosis": "F32",
+  "comorbid_diagnoses": ["F41.1"],
+  "confidence": 0.82,
+  "reasoning": "F32满足5/4项所需标准，证据充分..."
+}
+仅输出JSON，不要包含其他文字。

@@ -92,20 +92,44 @@ def run(
         )
 
     # 5. Create mode
-    if cfg.mode.type == "mas":
-        click.echo("MAS mode: ENABLED")
-        from culturedx.modes.mas import MASMode
+    mode_type = cfg.mode.type
+    click.echo(f"Mode: {mode_type}")
 
+    if mode_type == "hied":
+        from culturedx.modes.hied import HiEDMode
+        mode = HiEDMode(
+            llm_client=llm,
+            target_disorders=cfg.mode.target_disorders,
+        )
+    elif mode_type == "psycot":
+        from culturedx.modes.psycot import PsyCoTMode
+        mode = PsyCoTMode(
+            llm_client=llm,
+            target_disorders=cfg.mode.target_disorders,
+        )
+    elif mode_type == "mas":
+        from culturedx.modes.mas import MASMode
         mode = MASMode(
             llm_client=llm,
             target_disorders=cfg.mode.target_disorders,
         )
-        if cfg.mode.target_disorders:
-            click.echo(f"Target disorders: {', '.join(cfg.mode.target_disorders)}")
+    elif mode_type == "specialist":
+        from culturedx.modes.specialist import SpecialistMode
+        mode = SpecialistMode(
+            llm_client=llm,
+            target_disorders=cfg.mode.target_disorders,
+        )
+    elif mode_type == "debate":
+        from culturedx.modes.debate import DebateMode
+        mode = DebateMode(
+            llm_client=llm,
+        )
     else:
         from culturedx.modes.single import SingleModelMode
-
         mode = SingleModelMode(llm_client=llm)
+
+    if cfg.mode.target_disorders:
+        click.echo(f"Target disorders: {', '.join(cfg.mode.target_disorders)}")
 
     # 6. Run experiment
     base_output = output_dir or cfg.output_dir

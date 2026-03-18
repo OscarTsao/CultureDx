@@ -1,0 +1,15 @@
+# Specialist mode configuration overlay
+mode:
+  name: specialist
+  type: specialist
+  target_disorders:
+    - F32
+    - F33
+    - F41.1
+    - F42
+
+llm:
+  provider: ollama
+  model_id: "qwen3:14b"
+  temperature: 0.0
+  top_k: 1

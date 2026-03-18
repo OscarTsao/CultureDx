@@ -1,0 +1,16 @@
+# HiED mode configuration overlay
+# Usage: uv run culturedx run --config configs/base.yaml --config configs/hied.yaml -d mdd5k
+mode:
+  name: hied
+  type: hied
+  target_disorders:
+    - F32
+    - F33
+    - F41.1
+    - F42
+
+llm:
+  provider: ollama
+  model_id: "qwen3:14b"
+  temperature: 0.0
+  top_k: 1
