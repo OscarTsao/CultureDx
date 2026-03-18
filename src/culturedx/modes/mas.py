@@ -144,7 +144,7 @@ class MASMode(BaseModeOrchestrator):
 
     def _identify_candidates(self, evidence: EvidenceBrief | None) -> list[str]:
         """Identify candidate disorders to check."""
-        if self.target_disorders:
+        if self.target_disorders is not None:
             return self.target_disorders
         if evidence and evidence.disorder_evidence:
             return [de.disorder_code for de in evidence.disorder_evidence]

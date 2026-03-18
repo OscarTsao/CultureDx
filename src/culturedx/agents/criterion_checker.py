@@ -9,7 +9,7 @@ from jinja2 import Environment, FileSystemLoader
 from culturedx.agents.base import AgentInput, AgentOutput, BaseAgent
 from culturedx.core.models import CriterionResult
 from culturedx.llm.json_utils import extract_json_from_response
-from culturedx.ontology.icd10 import get_disorder_criteria, get_disorder_name
+from culturedx.ontology.icd10 import get_disorder_criteria, get_disorder_name, get_disorder_threshold
 
 logger = logging.getLogger(__name__)
 
@@ -114,7 +114,7 @@ class CriterionCheckerAgent(BaseAgent):
                         criterion_id=item.get("criterion_id", ""),
                         status=status,
                         evidence=item.get("evidence"),
-                        confidence=float(item.get("confidence", 0.0)),
+                        confidence=max(0.0, min(1.0, float(item.get("confidence", 0.0)))),
                     )
                 )
 
@@ -132,9 +132,7 @@ class CriterionCheckerAgent(BaseAgent):
         met_count = sum(1 for r in results if r.status == "met")
 
         # Get threshold info for criteria_required
-        from culturedx.ontology.icd10 import _load
-        disorders = _load()["disorders"]
-        threshold = disorders.get(disorder_code, {}).get("threshold", {})
+        threshold = get_disorder_threshold(disorder_code)
         required = _compute_required(disorder_code, criteria, threshold)
 
         return {

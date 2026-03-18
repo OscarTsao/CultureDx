@@ -105,7 +105,7 @@ class DifferentialDiagnosisAgent(BaseAgent):
             comorbid = parsed.get("comorbid_diagnoses", [])
             if not isinstance(comorbid, list):
                 comorbid = []
-            confidence = float(parsed.get("confidence", 0.0))
+            confidence = max(0.0, min(1.0, float(parsed.get("confidence", 0.0))))
             decision = "diagnosis" if primary else "abstain"
         else:
             primary = None

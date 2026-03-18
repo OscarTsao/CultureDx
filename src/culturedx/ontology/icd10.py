@@ -60,6 +60,15 @@ def get_disorder_name(disorder_code: str, language: str = "en") -> str | None:
     return disorders[disorder_code].get(key)
 
 
+def get_disorder_threshold(disorder_code: str) -> dict:
+    """Return the threshold dict for a disorder, or {} if not found."""
+    disorders = _load()["disorders"]
+    disorder = disorders.get(disorder_code)
+    if disorder is None:
+        return {}
+    return copy.deepcopy(disorder.get("threshold", {}))
+
+
 def _clear_cache() -> None:
     """Clear module cache (for testing only)."""
     global _CACHE
