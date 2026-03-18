@@ -45,6 +45,31 @@ class ModelPoolConfig(BaseModel):
     role: str = ""
 
 
+class RetrieverConfig(BaseModel):
+    name: str = "mock"  # mock, bge-m3, qwen3-embedding, nv-embed-v2
+    model_id: str = ""
+    embedding_dim: int = 1024
+    max_length: int = 512
+    batch_size: int = 32
+    cache_dir: str = "data/cache/retriever"
+    device: str = "auto"
+
+
+class SomatizationConfig(BaseModel):
+    enabled: bool = True
+    ontology_path: str = "src/culturedx/ontology/data/somatization_map.json"
+    llm_fallback: bool = True
+
+
+class EvidenceConfig(BaseModel):
+    enabled: bool = True
+    retriever: RetrieverConfig = RetrieverConfig()
+    somatization: SomatizationConfig = SomatizationConfig()
+    top_k_retrieval: int = 20
+    top_k_final: int = 10
+    min_confidence: float = 0.1
+
+
 class CultureDxConfig(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
@@ -57,6 +82,7 @@ class CultureDxConfig(BaseModel):
     llm: LLMConfig = LLMConfig()
     eval: EvalConfig = EvalConfig()
     dataset: DatasetConfig = DatasetConfig()
+    evidence: EvidenceConfig = EvidenceConfig()
 
 
 def load_config(

@@ -52,3 +52,25 @@ class TestLoadConfig:
             overrides=[CONFIGS_DIR / "modes" / "single.yaml"],
         )
         assert cfg.mode.type == "single"
+
+
+class TestEvidenceConfig:
+    def test_evidence_config_defaults(self):
+        from culturedx.core.config import EvidenceConfig
+        cfg = EvidenceConfig()
+        assert cfg.retriever.name == "mock"
+        assert cfg.somatization.enabled is True
+        assert cfg.top_k_retrieval == 20
+        assert cfg.top_k_final == 10
+
+    def test_retriever_config(self):
+        from culturedx.core.config import RetrieverConfig
+        cfg = RetrieverConfig(name="bge-m3", model_id="BAAI/bge-m3")
+        assert cfg.embedding_dim == 1024
+        assert cfg.device == "auto"
+
+    def test_culturedx_config_has_evidence(self):
+        from culturedx.core.config import CultureDxConfig
+        cfg = CultureDxConfig()
+        assert hasattr(cfg, "evidence")
+        assert cfg.evidence.retriever.name == "mock"

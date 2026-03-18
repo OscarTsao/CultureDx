@@ -1,0 +1,17 @@
+evidence:
+  enabled: true
+  retriever:
+    name: bge-m3
+    model_id: BAAI/bge-m3
+    embedding_dim: 1024
+    max_length: 512
+    batch_size: 32
+    cache_dir: data/cache/retriever
+    device: auto
+  somatization:
+    enabled: true
+    ontology_path: src/culturedx/ontology/data/somatization_map.json
+    llm_fallback: true
+  top_k_retrieval: 20
+  top_k_final: 10
+  min_confidence: 0.1
