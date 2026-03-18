@@ -23,6 +23,10 @@ uv run pytest -m "not integration"
 uv run culturedx --help
 uv run culturedx smoke
 uv run culturedx run --config configs/base.yaml --dataset mdd5k
+uv run culturedx run --config configs/base.yaml --dataset mdd5k --with-evidence
+
+# Install with retrieval (BGE-M3)
+uv pip install -e ".[retrieval]"
 ```
 
 ## Package Architecture (src/culturedx/)
@@ -41,6 +45,15 @@ uv run culturedx run --config configs/base.yaml --dataset mdd5k
 | eval/metrics.py | Diagnosis and severity metrics |
 | pipeline/runner.py | ExperimentRunner |
 | pipeline/cli.py | Click CLI entry point |
+| evidence/extractor.py | LLM-based symptom span extraction |
+| evidence/somatization.py | Chinese somatization mapper (ontology + LLM fallback) |
+| evidence/retriever.py | BaseRetriever ABC, MockRetriever, BGEM3Retriever |
+| evidence/criteria_matcher.py | Per-criterion evidence retrieval with somatization boost |
+| evidence/brief.py | Evidence Brief assembly per-disorder per-criterion |
+| evidence/pipeline.py | End-to-end evidence extraction orchestrator |
+| ontology/icd10.py | ICD-10 criterion definitions (13 disorders) |
+| ontology/symptom_map.py | Chinese somatic symptom → criterion mapping (38 entries) |
+| eval/evidence_metrics.py | Criterion coverage, evidence precision |
 
 ## Key Invariants
 
@@ -49,6 +62,10 @@ uv run culturedx run --config configs/base.yaml --dataset mdd5k
 3. All datasets normalize to ClinicalCase dataclass
 4. DiagnosisResult.decision is "diagnosis" or "abstain"
 5. No gold features at inference
+6. Somatization mapper: ontology lookup first, LLM fallback for unknown somatic symptoms
+7. EvidenceBrief uses DisorderEvidence (per-disorder) as primary structure
+8. Retriever optional dep: sentence-transformers only needed for BGEM3Retriever
+9. Evidence pipeline: extract → somatize (Chinese only) → match → assemble
 
 ## Code Conventions
 
