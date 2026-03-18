@@ -57,7 +57,6 @@ class RetrieverConfig(BaseModel):
 
 class SomatizationConfig(BaseModel):
     enabled: bool = True
-    ontology_path: str = "src/culturedx/ontology/data/somatization_map.json"
     llm_fallback: bool = True
 
 

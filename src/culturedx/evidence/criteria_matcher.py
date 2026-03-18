@@ -64,7 +64,9 @@ class CriteriaMatcher:
                 )
             )
 
-        confidence = results[0].score if results else 0.0
+        # Confidence from the best matching result after filtering
+        filtered_results = [r for r in results if r.score >= self.min_score]
+        confidence = filtered_results[0].score if filtered_results else 0.0
         return CriterionEvidence(
             criterion_id=criterion_id,
             spans=spans,
@@ -85,7 +87,7 @@ class CriteriaMatcher:
             return []
 
         results = []
-        for crit_id, crit_info in criteria.items():
+        for crit_id in criteria:
             full_id = f"{disorder_code}.{crit_id}"
             crit_text = get_criterion_text(
                 disorder_code, crit_id, language=language

@@ -28,6 +28,12 @@ class SymptomExtractor:
 
     def extract(self, case: ClinicalCase) -> list[SymptomSpan]:
         """Extract symptom mentions from the transcript."""
+        if case.language not in ("zh", "en"):
+            logger.warning(
+                "Unsupported language '%s' for extraction, skipping case %s",
+                case.language, case.case_id,
+            )
+            return []
         template_name = f"extract_symptoms_{case.language}.jinja"
         template = self._env.get_template(template_name)
 

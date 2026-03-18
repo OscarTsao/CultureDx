@@ -30,6 +30,17 @@ class SingleModelMode(BaseModeOrchestrator):
         self, case: ClinicalCase, evidence: EvidenceBrief | None = None
     ) -> DiagnosisResult:
         lang = case.language
+        if lang not in ("zh", "en"):
+            return DiagnosisResult(
+                case_id=case.case_id,
+                primary_diagnosis=None,
+                confidence=0.0,
+                decision="abstain",
+                mode="single",
+                model_name=self.llm.model,
+                prompt_hash="",
+                language_used=lang,
+            )
         if evidence and evidence.disorder_evidence:
             template_name = f"zero_shot_evidence_{lang}.jinja"
         else:

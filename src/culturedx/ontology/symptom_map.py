@@ -1,6 +1,7 @@
 """Somatization symptom ontology: Chinese somatic expressions to criteria mapping."""
 from __future__ import annotations
 
+import copy
 import json
 from pathlib import Path
 
@@ -18,16 +19,23 @@ def _load() -> dict:
 
 
 def load_somatization_map() -> dict:
-    """Return the full symptom-to-criteria mapping dict."""
-    return _load()
+    """Return the full symptom-to-criteria mapping dict (deep copy for safety)."""
+    return copy.deepcopy(_load())
 
 
 def lookup_symptom(symptom_text: str) -> dict | None:
-    """Look up a symptom in the ontology. Returns entry dict or None."""
-    return _load().get(symptom_text)
+    """Look up a symptom in the ontology. Returns entry dict copy or None."""
+    entry = _load().get(symptom_text)
+    return copy.deepcopy(entry) if entry is not None else None
 
 
 def get_criteria_for_symptom(symptom_text: str) -> list[str]:
     """Return list of criterion IDs mapped to this symptom, or empty list."""
-    entry = lookup_symptom(symptom_text)
-    return entry["criteria"] if entry else []
+    entry = _load().get(symptom_text)
+    return list(entry["criteria"]) if entry else []
+
+
+def _clear_cache() -> None:
+    """Clear module cache (for testing only)."""
+    global _CACHE
+    _CACHE = None
