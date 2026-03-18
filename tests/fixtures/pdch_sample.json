@@ -1,0 +1,22 @@
+[
+  {
+    "case_id": "pdch_001",
+    "dialogue": [
+      {"speaker": "doctor", "text": "你最近心情怎么样？"},
+      {"speaker": "patient", "text": "很不好，整天都没有精神。"},
+      {"speaker": "doctor", "text": "睡眠情况呢？"},
+      {"speaker": "patient", "text": "入睡困难，经常凌晨三四点就醒了。"}
+    ],
+    "hamd17": {"item1": 2, "item2": 1, "item3": 1, "item4": 2, "item5": 1, "item6": 1, "item7": 2, "item8": 0, "item9": 0, "item10": 1, "item11": 1, "item12": 0, "item13": 1, "item14": 0, "item15": 1, "item16": 1, "item17": 0},
+    "hamd17_total": 15
+  },
+  {
+    "case_id": "pdch_002",
+    "dialogue": [
+      {"speaker": "doctor", "text": "你来看什么问题？"},
+      {"speaker": "patient", "text": "就是有点睡不好，其他还好。"}
+    ],
+    "hamd17": {"item1": 0, "item2": 0, "item3": 0, "item4": 1, "item5": 0, "item6": 0, "item7": 0, "item8": 0, "item9": 0, "item10": 0, "item11": 0, "item12": 0, "item13": 0, "item14": 0, "item15": 0, "item16": 0, "item17": 0},
+    "hamd17_total": 1
+  }
+]

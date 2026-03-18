@@ -1,0 +1,35 @@
+[
+  {
+    "case_id": "mdd5k_001",
+    "dialogue": [
+      {"speaker": "doctor", "text": "你好，请问你最近有什么不舒服的地方吗？"},
+      {"speaker": "patient", "text": "医生，我最近两个月一直失眠，头疼，什么都不想做。"},
+      {"speaker": "doctor", "text": "情绪方面呢？"},
+      {"speaker": "patient", "text": "心情一直很低落，对什么都没兴趣了。"}
+    ],
+    "diagnosis": ["F32"],
+    "diagnosis_text": "Depressive episode"
+  },
+  {
+    "case_id": "mdd5k_002",
+    "dialogue": [
+      {"speaker": "doctor", "text": "你来看诊是因为什么问题呢？"},
+      {"speaker": "patient", "text": "我总是很紧张，心跳加速，胸闷。"},
+      {"speaker": "doctor", "text": "这种状况持续多久了？"},
+      {"speaker": "patient", "text": "半年多了，有时候突然会很害怕，觉得自己要死了。"}
+    ],
+    "diagnosis": ["F41.0"],
+    "diagnosis_text": "Panic disorder"
+  },
+  {
+    "case_id": "mdd5k_003",
+    "dialogue": [
+      {"speaker": "doctor", "text": "你主要有哪些症状？"},
+      {"speaker": "patient", "text": "我情绪很低落，经常想哭，而且总是担心各种事情。"},
+      {"speaker": "doctor", "text": "睡眠怎么样？"},
+      {"speaker": "patient", "text": "睡不好，经常半夜醒来，白天也紧张得不行。"}
+    ],
+    "diagnosis": ["F32", "F41.1"],
+    "diagnosis_text": "Depressive episode with generalized anxiety"
+  }
+]
