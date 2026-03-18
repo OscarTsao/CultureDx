@@ -3,5 +3,5 @@ dataset:
   language: en
   coding_system: dsm5
   transcript_format: dialogue
-  data_path: data/raw/edaic
+  data_path: data/raw/daic_explain
   split_strategy: fixed

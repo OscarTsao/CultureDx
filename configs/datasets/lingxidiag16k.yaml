@@ -1,7 +1,7 @@
 dataset:
-  name: mdd5k
+  name: lingxidiag16k
   language: zh
   coding_system: icd10
   transcript_format: dialogue
-  data_path: data/raw/mdd5k_repo
+  data_path: data/raw/lingxidiag16k
   split_strategy: stratified
