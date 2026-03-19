@@ -22,6 +22,7 @@ from culturedx.core.models import (
     EvidenceBrief,
 )
 from culturedx.diagnosis.calibrator import ConfidenceCalibrator
+from culturedx.diagnosis.comorbidity import ComorbidityResolver
 from culturedx.diagnosis.logic_engine import DiagnosticLogicEngine
 from culturedx.modes.base import BaseModeOrchestrator
 from culturedx.ontology.icd10 import get_disorder_name
@@ -65,6 +66,9 @@ class HiEDMode(BaseModeOrchestrator):
             abstain_threshold=abstain_threshold,
             comorbid_threshold=comorbid_threshold,
         )
+
+        # Stage 4b: Comorbidity resolver
+        self.comorbidity_resolver = ComorbidityResolver()
 
     def diagnose(
         self, case: ClinicalCase, evidence: EvidenceBrief | None = None
@@ -160,12 +164,29 @@ class HiEDMode(BaseModeOrchestrator):
                 language_used=lang,
             )
 
+        # === Stage 4b: Comorbidity Resolution ===
+        # Build confidence map from calibrated scores
+        all_calibrated = [cal_output.primary] + cal_output.comorbid
+        confidences = {c.disorder_code: c.confidence for c in all_calibrated}
+        confirmed_codes = [c.disorder_code for c in all_calibrated]
+
+        comorbidity_result = self.comorbidity_resolver.resolve(
+            confirmed=confirmed_codes,
+            confidences=confidences,
+        )
+
+        # Find the calibrated diagnosis for the resolved primary
+        primary_cal = next(
+            (c for c in all_calibrated if c.disorder_code == comorbidity_result.primary),
+            cal_output.primary,
+        )
+
         return DiagnosisResult(
             case_id=case.case_id,
-            primary_diagnosis=cal_output.primary.disorder_code,
-            comorbid_diagnoses=[c.disorder_code for c in cal_output.comorbid],
-            confidence=cal_output.primary.confidence,
-            decision=cal_output.primary.decision,
+            primary_diagnosis=comorbidity_result.primary,
+            comorbid_diagnoses=comorbidity_result.comorbid,
+            confidence=primary_cal.confidence,
+            decision=primary_cal.decision,
             criteria_results=checker_outputs,
             mode="hied",
             model_name=self.llm.model,

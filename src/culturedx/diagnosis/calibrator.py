@@ -125,8 +125,18 @@ class ConfidenceCalibrator:
             else 0.0
         )
 
-        # 2. Threshold satisfaction ratio
-        required = checker_output.criteria_required
+        # 2. Threshold satisfaction ratio (use ICD-10 ontology required count)
+        from culturedx.ontology.icd10 import get_disorder_threshold
+        threshold = get_disorder_threshold(disorder_code)
+        if threshold:
+            # Use the ontology's minimum required count
+            required = threshold.get("min_total") or threshold.get("min_symptoms") or threshold.get("min_other", 0)
+            if threshold.get("min_core"):
+                required = max(required, threshold["min_core"])
+            required = max(required, 1)
+        else:
+            required = checker_output.criteria_required
+
         if required > 0:
             threshold_ratio = min(1.0, checker_output.criteria_met_count / required)
         else:
