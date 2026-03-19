@@ -19,6 +19,7 @@ class SingleModelMode(BaseModeOrchestrator):
         llm_client,
         prompts_dir: str | Path = "prompts/single",
     ) -> None:
+        self.mode_name = "single"
         self.llm = llm_client
         self.prompts_dir = Path(prompts_dir)
         self._env = Environment(
@@ -36,7 +37,7 @@ class SingleModelMode(BaseModeOrchestrator):
                 primary_diagnosis=None,
                 confidence=0.0,
                 decision="abstain",
-                mode="single",
+                mode=self.mode_name,
                 model_name=self.llm.model,
                 prompt_hash="",
                 language_used=lang,
@@ -63,7 +64,7 @@ class SingleModelMode(BaseModeOrchestrator):
                 primary_diagnosis=None,
                 confidence=0.0,
                 decision="abstain",
-                mode="single",
+                mode=self.mode_name,
                 model_name=self.llm.model,
                 prompt_hash=prompt_hash,
                 language_used=case.language,
@@ -75,7 +76,7 @@ class SingleModelMode(BaseModeOrchestrator):
             comorbid_diagnoses=parsed.get("comorbid_diagnoses", []),
             confidence=parsed.get("confidence", 0.0),
             decision="diagnosis",
-            mode="single",
+            mode=self.mode_name,
             model_name=self.llm.model,
             prompt_hash=prompt_hash,
             language_used=case.language,

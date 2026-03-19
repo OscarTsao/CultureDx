@@ -101,7 +101,7 @@ class SpecialistMode(BaseModeOrchestrator):
                 comorbid_diagnoses=judge_output.parsed.get("comorbid_diagnoses", []),
                 confidence=judge_output.parsed.get("confidence", 0.0),
                 decision=judge_output.parsed.get("decision", "abstain"),
-                mode="specialist",
+                mode=self.mode_name,
                 model_name=self.llm.model,
                 language_used=lang,
             )

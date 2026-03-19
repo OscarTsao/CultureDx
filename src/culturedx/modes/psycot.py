@@ -100,7 +100,7 @@ class PsyCoTMode(BaseModeOrchestrator):
                 confidence=0.0,
                 decision="abstain",
                 criteria_results=checker_outputs,
-                mode="psycot",
+                mode=self.mode_name,
                 model_name=self.llm.model,
                 language_used=lang,
             )
@@ -119,7 +119,7 @@ class PsyCoTMode(BaseModeOrchestrator):
                 confidence=0.0,
                 decision="abstain",
                 criteria_results=checker_outputs,
-                mode="psycot",
+                mode=self.mode_name,
                 model_name=self.llm.model,
                 language_used=lang,
             )
@@ -146,7 +146,7 @@ class PsyCoTMode(BaseModeOrchestrator):
             confidence=primary_cal.confidence,
             decision=primary_cal.decision,
             criteria_results=checker_outputs,
-            mode="psycot",
+            mode=self.mode_name,
             model_name=self.llm.model,
             language_used=lang,
         )

@@ -29,6 +29,7 @@ def mock_mode(mock_llm):
     mode.llm = mock_llm
     mode.prompts_dir = Path("prompts/single")
     mode._env = Environment(loader=DictLoader(_MOCK_TEMPLATES))
+    mode.mode_name = "single"
     return mode
 
 

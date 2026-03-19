@@ -85,7 +85,7 @@ class MASMode(BaseModeOrchestrator):
                 confidence=diff_output.parsed["confidence"],
                 decision=diff_output.parsed["decision"],
                 criteria_results=checker_outputs,
-                mode="mas",
+                mode=self.mode_name,
                 model_name=self.llm.model,
                 prompt_hash=diff_output.prompt_hash,
                 language_used=lang,

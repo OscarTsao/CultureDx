@@ -66,20 +66,11 @@ class DebateMode(BaseModeOrchestrator):
         prior_opinions: list[dict] = []
 
         for round_num in range(1, self.num_rounds + 1):
-            round_opinions = []
-            for perspective in PERSPECTIVES:
-                agent = self.perspective_agents[perspective]
-                agent_input = AgentInput(
-                    transcript_text=transcript_text,
-                    evidence={"evidence_summary": evidence_summary} if evidence_summary else None,
-                    language=lang,
-                    extra={"prior_round_opinions": prior_opinions if round_num > 1 else []},
-                )
-                output = agent.run(agent_input)
-                if output.parsed:
-                    output.parsed["round"] = round_num
-                    round_opinions.append(output.parsed)
-
+            round_opinions = self._parallel_perspective_round(
+                transcript_text, evidence_summary, lang,
+                prior_opinions if round_num > 1 else [],
+                round_num,
+            )
             all_opinions.extend(round_opinions)
             prior_opinions = round_opinions
 
@@ -107,7 +98,7 @@ class DebateMode(BaseModeOrchestrator):
                 comorbid_diagnoses=judge_output.parsed.get("comorbid_diagnoses", []),
                 confidence=judge_output.parsed.get("confidence", 0.0),
                 decision=judge_output.parsed.get("decision", "abstain"),
-                mode="debate",
+                mode=self.mode_name,
                 model_name=self.llm.model,
                 language_used=lang,
             )
@@ -130,3 +121,50 @@ class DebateMode(BaseModeOrchestrator):
                 "key_symptoms": [],
             })
         return converted
+
+    def _parallel_perspective_round(
+        self,
+        transcript_text: str,
+        evidence_summary: str | None,
+        lang: str,
+        prior_opinions: list[dict],
+        round_num: int,
+        max_workers: int = 4,
+    ) -> list[dict]:
+        """Run perspective agents in parallel for one debate round."""
+        from concurrent.futures import ThreadPoolExecutor, as_completed
+
+        def _run_one(perspective: str) -> dict | None:
+            agent = self.perspective_agents[perspective]
+            agent_input = AgentInput(
+                transcript_text=transcript_text,
+                evidence={"evidence_summary": evidence_summary} if evidence_summary else None,
+                language=lang,
+                extra={"prior_round_opinions": prior_opinions},
+            )
+            output = agent.run(agent_input)
+            if output.parsed:
+                output.parsed["round"] = round_num
+                return output.parsed
+            return None
+
+        opinions = []
+        workers = min(len(PERSPECTIVES), max_workers)
+        if workers <= 1:
+            for p in PERSPECTIVES:
+                result = _run_one(p)
+                if result:
+                    opinions.append(result)
+        else:
+            with ThreadPoolExecutor(max_workers=workers) as executor:
+                future_map = {executor.submit(_run_one, p): p for p in PERSPECTIVES}
+                for future in as_completed(future_map):
+                    try:
+                        result = future.result()
+                        if result:
+                            opinions.append(result)
+                    except Exception:
+                        logger.warning(
+                            "Perspective agent failed for %s", future_map[future], exc_info=True
+                        )
+        return opinions
