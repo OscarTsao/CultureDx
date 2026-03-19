@@ -149,7 +149,7 @@ def main():
     parser.add_argument("--n-cases", type=int, default=20)
     parser.add_argument("--model", type=str, default="qwen3:32b")
     parser.add_argument("--base-url", type=str, default="http://localhost:11434")
-    parser.add_argument("--output-dir", type=str, default="outputs/pilot_v4")
+    parser.add_argument("--output-dir", type=str, default="outputs/pilot_v5")
     parser.add_argument("--cache-dir", type=str, default="data/cache")
     parser.add_argument("--modes", type=str, default="hied,single",
                         help="Comma-separated modes to run")
@@ -180,8 +180,8 @@ def main():
         model=args.model,
         temperature=0.0,
         top_k=1,
-        timeout=300,
-        cache_path=Path(args.cache_dir) / "pilot_v4_cache.db",
+        timeout=600,
+        cache_path=Path(args.cache_dir) / "pilot_v5_cache.db",
         disable_thinking=True,
     )
 

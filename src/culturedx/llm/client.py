@@ -63,28 +63,30 @@ class OllamaClient:
         if not prompt_hash:
             prompt_hash = self.compute_prompt_hash(prompt)
 
-        effective_prompt = f"/no_think\n{prompt}" if self.disable_thinking else prompt
-
         # Check cache
         if self._cache:
-            cached = self._cache.get(self.provider, self.model, prompt_hash, language, effective_prompt)
+            cached = self._cache.get(self.provider, self.model, prompt_hash, language, prompt)
             if cached is not None:
                 return cached
+
+        request_body = {
+            "model": self.model,
+            "prompt": prompt,
+            "stream": False,
+            "options": {
+                "temperature": self.temperature,
+                "top_k": self.top_k,
+            },
+        }
+        if self.disable_thinking:
+            request_body["think"] = False
 
         max_retries = 3
         for attempt in range(max_retries):
             try:
                 response = httpx.post(
                     f"{self.base_url}/api/generate",
-                    json={
-                        "model": self.model,
-                        "prompt": effective_prompt,
-                        "stream": False,
-                        "options": {
-                            "temperature": self.temperature,
-                            "top_k": self.top_k,
-                        },
-                    },
+                    json=request_body,
                     timeout=self.timeout,
                 )
                 response.raise_for_status()
@@ -104,7 +106,7 @@ class OllamaClient:
 
         # Store in cache
         if self._cache:
-            self._cache.put(self.provider, self.model, prompt_hash, language, effective_prompt, text)
+            self._cache.put(self.provider, self.model, prompt_hash, language, prompt, text)
 
         return text
 
