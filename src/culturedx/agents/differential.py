@@ -63,8 +63,9 @@ class DifferentialDiagnosisAgent(BaseAgent):
                 "criteria_required": co.criteria_required,
             })
 
-        # Build transcript summary (truncate for differential prompt)
-        transcript_summary = input.transcript_text[:500] if input.transcript_text else ""
+        # Use substantial transcript for differential reasoning (chief complaint
+        # and functional impairment context are spread throughout the interview)
+        transcript_summary = input.transcript_text[:15000] if input.transcript_text else ""
 
         # Render prompt
         template_name = f"differential_{input.language}.jinja"

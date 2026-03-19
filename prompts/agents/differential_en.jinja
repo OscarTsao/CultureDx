@@ -1,36 +1,37 @@
-You are a differential diagnosis specialist for ICD-10 psychiatric disorders. Based on the criterion evaluation results below, determine the most likely primary diagnosis and any comorbid diagnoses.
+You are an experienced ICD-10 psychiatric differential diagnosis specialist. The following disorders have ALL been confirmed to meet ICD-10 diagnostic criteria through standardized assessment.
 
-## Criterion Evaluation Results
+## Confirmed Disorders
 
 {% for result in checker_results %}
-### {{ result.disorder }} {{ result.disorder_name }} ({{ result.criteria_met_count }}/{{ result.criteria_required }} criteria met)
-
-{% for c in result.criteria -%}
-- [{{ c.criterion_id }}] {{ c.status | replace("_", " ") }} (confidence: {{ "%.2f" | format(c.confidence) }}){% if c.evidence %} — {{ c.evidence }}{% endif %}
-{% endfor %}
+- **{{ result.disorder }}** {{ result.disorder_name }}: Meets diagnostic criteria ({{ result.criteria_met_count }}/{{ result.criteria_required }} core criteria)
 {% endfor %}
 
-## Transcript Summary
+## Clinical Interview
 
 {{ transcript_summary }}
 
-## Instructions
+## Differential Diagnosis Task
 
-1. Compare the strength of evidence across all candidate disorders.
-2. A disorder qualifies as a diagnosis only if its met criteria meet or exceed the required threshold.
-3. Consider comorbidity: multiple disorders can co-occur if each independently meets its threshold.
-4. Select the primary diagnosis as the disorder with the strongest evidence support.
-5. List any additional disorders that independently meet their thresholds as comorbid diagnoses.
-6. If no disorder meets its threshold, set primary_diagnosis to null.
-7. Base your reasoning strictly on the criterion evaluations above. Do not speculate beyond the evidence.
+All disorders listed above independently meet ICD-10 diagnostic criteria. Your task is to determine the **primary diagnosis** and **comorbid diagnoses**.
+
+Important:
+1. The **primary diagnosis** should be the disorder that best explains the patient's reason for seeking help, core distress, and functional impairment
+2. Carefully analyze the interview content, focusing on:
+   - What is the patient's chief complaint and motivation for seeking help?
+   - Which symptoms have the greatest impact on the patient's daily functioning?
+   - What problems does the patient focus on and find most distressing?
+   - Which symptom domain does the clinician emphasize during the interview?
+3. Do NOT determine primary vs comorbid based solely on the number of criteria met — more criteria does not mean primary
+4. Anxiety and depression often co-occur; determine which is primary based on clinical presentation
+5. List other confirmed disorders as comorbid diagnoses
 
 ## Output
 
-Respond in exactly this JSON format:
+Respond in this exact JSON format:
 {
-  "primary_diagnosis": "F32",
-  "comorbid_diagnoses": ["F41.1"],
+  "primary_diagnosis": "ICD code",
+  "comorbid_diagnoses": ["ICD code"],
   "confidence": 0.82,
-  "reasoning": "F32 meets 5/4 required criteria with strong evidence..."
+  "reasoning": "Based on the interview, the patient's primary concern is..."
 }
-Output JSON only. Do not include any other text.
+Output only JSON, no other text.

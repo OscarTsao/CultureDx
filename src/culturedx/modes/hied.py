@@ -13,6 +13,7 @@ from pathlib import Path
 
 from culturedx.agents.base import AgentInput
 from culturedx.agents.criterion_checker import CriterionCheckerAgent
+from culturedx.agents.differential import DifferentialDiagnosisAgent
 from culturedx.agents.triage import TriageAgent
 from culturedx.core.models import (
     CheckerOutput,
@@ -66,6 +67,10 @@ class HiEDMode(BaseModeOrchestrator):
             abstain_threshold=abstain_threshold,
             comorbid_threshold=comorbid_threshold,
         )
+
+        # Stage 4.5: Differential disambiguation (for close calls)
+        self.differential = DifferentialDiagnosisAgent(llm_client, prompts_dir)
+        self.differential_threshold = 0.05
 
         # Stage 4b: Comorbidity resolver
         self.comorbidity_resolver = ComorbidityResolver()
@@ -147,9 +152,24 @@ class HiEDMode(BaseModeOrchestrator):
                 language_used=lang,
             )
 
+        # === Stage 4.5: Differential Disambiguation ===
+        all_calibrated = [cal_output.primary] + cal_output.comorbid
+        if len(all_calibrated) >= 2:
+            gap = all_calibrated[0].confidence - all_calibrated[1].confidence
+            if gap < self.differential_threshold:
+                logger.info(
+                    "Case %s: confidence gap %.4f < %.2f, running differential",
+                    case.case_id, gap, self.differential_threshold,
+                )
+                diff_result = self._run_differential(
+                    case, checker_outputs, logic_output, lang, transcript_text,
+                )
+                if diff_result is not None:
+                    return diff_result
+                logger.info("Differential inconclusive, falling back to calibrator")
+
         # === Stage 4b: Comorbidity Resolution ===
         # Build confidence map from calibrated scores
-        all_calibrated = [cal_output.primary] + cal_output.comorbid
         confidences = {c.disorder_code: c.confidence for c in all_calibrated}
         confirmed_codes = [c.disorder_code for c in all_calibrated]
 
@@ -170,6 +190,60 @@ class HiEDMode(BaseModeOrchestrator):
             comorbid_diagnoses=comorbidity_result.comorbid,
             confidence=primary_cal.confidence,
             decision=primary_cal.decision,
+            criteria_results=checker_outputs,
+            mode=self.mode_name,
+            model_name=self.llm.model,
+            language_used=lang,
+        )
+
+    def _run_differential(
+        self,
+        case: ClinicalCase,
+        checker_outputs: list[CheckerOutput],
+        logic_output,
+        lang: str,
+        transcript_text: str,
+    ) -> DiagnosisResult | None:
+        """Run differential diagnosis to disambiguate close-confidence disorders."""
+        confirmed_set = set(logic_output.confirmed_codes)
+        confirmed_checker_outputs = [
+            co for co in checker_outputs if co.disorder in confirmed_set
+        ]
+        disorder_names = {
+            code: get_disorder_name(code, lang) or code
+            for code in confirmed_set
+        }
+        diff_input = AgentInput(
+            transcript_text=transcript_text,
+            language=lang,
+            extra={
+                "checker_outputs": confirmed_checker_outputs,
+                "case_id": case.case_id,
+                "disorder_names": disorder_names,
+            },
+        )
+        diff_output = self.differential.run(diff_input)
+
+        if not diff_output.parsed or not diff_output.parsed.get("primary_diagnosis"):
+            return None
+
+        primary = diff_output.parsed["primary_diagnosis"]
+        if primary not in confirmed_set:
+            logger.warning(
+                "Differential returned %s not in confirmed set %s",
+                primary, confirmed_set,
+            )
+            return None
+
+        comorbid = diff_output.parsed.get("comorbid_diagnoses", [])
+        confidence = diff_output.parsed.get("confidence", 0.0)
+
+        return DiagnosisResult(
+            case_id=case.case_id,
+            primary_diagnosis=primary,
+            comorbid_diagnoses=[c for c in comorbid if c in confirmed_set],
+            confidence=confidence,
+            decision="diagnosis",
             criteria_results=checker_outputs,
             mode=self.mode_name,
             model_name=self.llm.model,

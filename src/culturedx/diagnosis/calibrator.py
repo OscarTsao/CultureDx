@@ -25,6 +25,8 @@ class CalibratedDiagnosis:
     evidence_coverage: float = 0.0
     avg_criterion_confidence: float = 0.0
     threshold_ratio: float = 0.0
+    criteria_met_count: int = 0
+    criteria_total_count: int = 0
 
 
 @dataclass
@@ -150,6 +152,9 @@ class ConfidenceCalibrator:
         )
         confidence = max(0.0, min(1.0, confidence))
 
+        met_count = len(met_criteria)
+        total_count = len(checker_output.criteria)
+
         return CalibratedDiagnosis(
             disorder_code=disorder_code,
             confidence=confidence,
@@ -157,6 +162,8 @@ class ConfidenceCalibrator:
             evidence_coverage=evidence_coverage,
             avg_criterion_confidence=avg_conf,
             threshold_ratio=threshold_ratio,
+            criteria_met_count=met_count,
+            criteria_total_count=total_count,
         )
 
     @staticmethod
@@ -165,28 +172,39 @@ class ConfidenceCalibrator:
         checker_output: CheckerOutput,
         evidence: EvidenceBrief | None,
     ) -> float:
-        """Compute what fraction of criteria have supporting evidence."""
+        """Compute what fraction of met criteria have supporting evidence.
+
+        Normalized by met criteria count (not total) to avoid penalizing
+        disorders with more criteria, where unmet criteria naturally lack evidence.
+        """
         if not evidence:
-            # Without evidence, use criterion checker evidence field
-            total = len(checker_output.criteria)
-            if total == 0:
+            met_criteria = [
+                cr for cr in checker_output.criteria if cr.status == "met"
+            ]
+            total_met = len(met_criteria)
+            if total_met == 0:
                 return 0.0
             has_evidence = sum(
-                1 for cr in checker_output.criteria
+                1 for cr in met_criteria
                 if cr.evidence is not None and cr.evidence.strip()
             )
-            return has_evidence / total
+            return has_evidence / total_met
 
         # With evidence brief, check disorder-specific evidence
         for de in evidence.disorder_evidence:
             if de.disorder_code == disorder_code:
-                total_criteria = len(checker_output.criteria)
-                if total_criteria == 0:
+                met_criteria_ids = {
+                    cr.criterion_id for cr in checker_output.criteria
+                    if cr.status == "met"
+                }
+                total_met = len(met_criteria_ids)
+                if total_met == 0:
                     return 0.0
                 covered = sum(
-                    1 for ce in de.criteria_evidence if ce.spans
+                    1 for ce in de.criteria_evidence
+                    if ce.spans and ce.criterion_id in met_criteria_ids
                 )
-                return min(1.0, covered / total_criteria)
+                return min(1.0, covered / total_met)
 
         return 0.0
 

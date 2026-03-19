@@ -1,36 +1,37 @@
-你是一位ICD-10精神科疾病的鉴别诊断专家。请根据以下各障碍的标准评估结果，确定最可能的主要诊断和共病诊断。
+你是一位经验丰富的ICD-10精神科鉴别诊断专家。以下障碍均已通过ICD-10标准化评估确认满足诊断标准。
 
-## 标准评估结果
+## 确认满足诊断标准的障碍
 
 {% for result in checker_results %}
-### {{ result.disorder }} {{ result.disorder_name }}（{{ result.criteria_met_count }}/{{ result.criteria_required }}项标准满足）
-
-{% for c in result.criteria -%}
-- [{{ c.criterion_id }}] {% if c.status == "met" %}已满足{% elif c.status == "not_met" %}未满足{% else %}证据不足{% endif %}（置信度: {{ "%.2f" | format(c.confidence) }}）{% if c.evidence %} — {{ c.evidence }}{% endif %}
-{% endfor %}
+- **{{ result.disorder }}** {{ result.disorder_name }}：满足诊断标准（{{ result.criteria_met_count }}/{{ result.criteria_required }}项核心标准）
 {% endfor %}
 
-## 对话摘要
+## 临床对话
 
 {{ transcript_summary }}
 
-## 鉴别诊断要求
+## 鉴别诊断任务
 
-1. 比较所有候选障碍的证据强度。
-2. 只有当满足的标准数量达到或超过所需阈值时，该障碍才能作为诊断。
-3. 考虑共病：如果多个障碍各自独立满足阈值，则可以同时诊断。
-4. 选择证据支持最强的障碍作为主要诊断。
-5. 将其他独立满足阈值的障碍列为共病诊断。
-6. 如果没有障碍满足阈值，将primary_diagnosis设为null。
-7. 推理必须严格基于上述标准评估结果，不得超出证据进行推测。
+以上所有障碍均已独立满足ICD-10诊断标准。你的任务是确定**主要诊断**和**共病诊断**。
+
+请注意：
+1. **主要诊断**应是最能解释患者就诊原因、核心困扰和功能损害的障碍
+2. 请仔细分析对话内容，关注：
+   - 患者最主要的主诉和求助动机是什么？
+   - 哪些症状对患者的日常功能影响最大？
+   - 患者自己最关注、最困扰的问题是什么？
+   - 医生在对话中倾向于关注哪个方面的症状？
+3. 不要仅凭满足标准的数量来判断主次——标准数量多并不意味着该障碍是主要诊断
+4. 焦虑和抑郁常常共病，需要根据临床表现判断哪个是原发性的
+5. 其他满足标准的障碍列为共病诊断
 
 ## 输出要求
 
 请严格按照以下JSON格式输出：
 {
-  "primary_diagnosis": "F32",
-  "comorbid_diagnoses": ["F41.1"],
+  "primary_diagnosis": "ICD代码",
+  "comorbid_diagnoses": ["ICD代码"],
   "confidence": 0.82,
-  "reasoning": "F32满足5/4项所需标准，证据充分..."
+  "reasoning": "根据对话内容，患者的主要就诊原因是..."
 }
 仅输出JSON，不要包含其他文字。
