@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import sqlite3
+import threading
 from pathlib import Path
 
 
@@ -13,7 +14,8 @@ class LLMCache:
     def __init__(self, db_path: str | Path) -> None:
         self.db_path = Path(db_path)
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
-        self._conn = sqlite3.connect(str(self.db_path))
+        self._conn = sqlite3.connect(str(self.db_path), check_same_thread=False)
+        self._lock = threading.Lock()
         self._conn.execute(
             "CREATE TABLE IF NOT EXISTS cache ("
             "  provider TEXT, model TEXT, prompt_hash TEXT, language TEXT,"
@@ -40,11 +42,12 @@ class LLMCache:
         self, provider: str, model: str, prompt_hash: str, language: str, input_text: str
     ) -> str | None:
         input_hash = self._hash_input(input_text)
-        row = self._conn.execute(
-            "SELECT response FROM cache "
-            "WHERE provider=? AND model=? AND prompt_hash=? AND language=? AND input_hash=?",
-            (provider, model, prompt_hash, language, input_hash),
-        ).fetchone()
+        with self._lock:
+            row = self._conn.execute(
+                "SELECT response FROM cache "
+                "WHERE provider=? AND model=? AND prompt_hash=? AND language=? AND input_hash=?",
+                (provider, model, prompt_hash, language, input_hash),
+            ).fetchone()
         return row[0] if row else None
 
     def put(
@@ -57,23 +60,26 @@ class LLMCache:
         response: str,
     ) -> None:
         input_hash = self._hash_input(input_text)
-        self._conn.execute(
-            "INSERT OR REPLACE INTO cache "
-            "(provider, model, prompt_hash, language, input_hash, response) "
-            "VALUES (?, ?, ?, ?, ?, ?)",
-            (provider, model, prompt_hash, language, input_hash, response),
-        )
-        self._write_count += 1
-        if self._write_count % 10 == 0:
-            self._conn.commit()
+        with self._lock:
+            self._conn.execute(
+                "INSERT OR REPLACE INTO cache "
+                "(provider, model, prompt_hash, language, input_hash, response) "
+                "VALUES (?, ?, ?, ?, ?, ?)",
+                (provider, model, prompt_hash, language, input_hash, response),
+            )
+            self._write_count += 1
+            if self._write_count % 10 == 0:
+                self._conn.commit()
 
     def flush(self) -> None:
         """Commit any pending writes."""
-        self._conn.commit()
+        with self._lock:
+            self._conn.commit()
 
     def close(self) -> None:
-        self._conn.commit()
-        self._conn.close()
+        with self._lock:
+            self._conn.commit()
+            self._conn.close()
 
     def __del__(self) -> None:
         try:
