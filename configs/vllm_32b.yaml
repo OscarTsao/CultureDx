@@ -1,0 +1,26 @@
+# vLLM backend config for qwen3:32b on RTX 5090 (32GB)
+# Usage: uv run culturedx run -c configs/base.yaml -c configs/vllm_32b.yaml -d mdd5k_raw --data-path data/raw/mdd5k_repo
+#
+# Requires vLLM server running:
+#   vllm serve Qwen/Qwen3-32B --tensor-parallel-size 1 --max-model-len 32768 \
+#     --gpu-memory-utilization 0.9 --dtype auto --port 8000
+
+llm:
+  provider: vllm
+  model_id: "Qwen/Qwen3-32B"
+  base_url: http://localhost:8000
+  temperature: 0.0
+  top_k: 1
+  max_retries: 3
+  disable_thinking: true
+  max_concurrent: 6  # vLLM handles concurrent requests via continuous batching
+
+mode:
+  name: hied
+  type: hied
+  target_disorders:
+    - F32
+    - F33
+    - F41.1
+    - F42
+    - F43.1
