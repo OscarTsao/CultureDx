@@ -124,7 +124,11 @@ class DiagnosticLogicEngine:
     def _eval_core_total(
         self, code: str, threshold: dict, criteria: dict, met_ids: set[str]
     ) -> LogicEngineResult:
-        """min_core + min_total (e.g., F32, F33)."""
+        """min_core + min_total (e.g., F32, F33).
+
+        For F33 (recurrence_required=True), criterion A (recurrence evidence)
+        must be specifically met in addition to core/total counts.
+        """
         min_core = threshold["min_core"]
         min_total = threshold["min_total"]
 
@@ -133,12 +137,32 @@ class DiagnosticLogicEngine:
         total_met = len(met_ids & set(criteria.keys()))
 
         meets = core_met >= min_core and total_met >= min_total
+
+        # Check recurrence requirement (F33: must have criterion A = prior episode)
+        if meets and threshold.get("recurrence_required"):
+            # Criterion A must be specifically met for recurrent depression
+            if "A" not in met_ids:
+                meets = False
+                return LogicEngineResult(
+                    disorder_code=code,
+                    meets_threshold=False,
+                    met_count=total_met,
+                    required_count=min_total,
+                    rule_explanation=f"Core: {core_met}/{min_core}, Total: {total_met}/{min_total}, "
+                    f"but recurrence criterion A not met",
+                )
+
         return LogicEngineResult(
             disorder_code=code,
             meets_threshold=meets,
             met_count=total_met,
             required_count=min_total,
-            rule_explanation=f"Core: {core_met}/{min_core}, Total: {total_met}/{min_total}",
+            rule_explanation=f"Core: {core_met}/{min_core}, Total: {total_met}/{min_total}"
+            + (
+                ", recurrence confirmed"
+                if threshold.get("recurrence_required") and "A" in met_ids
+                else ""
+            ),
         )
 
     def _eval_first_rank(
