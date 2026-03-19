@@ -7,6 +7,32 @@ from scipy import stats
 from sklearn.metrics import f1_score
 
 
+def normalize_icd_code(code: str, level: str = "parent") -> str:
+    """Normalize ICD-10 code to parent level for cross-granularity comparison.
+
+    Examples:
+        normalize_icd_code("F41.1") -> "F41"
+        normalize_icd_code("F32.901") -> "F32"
+        normalize_icd_code("F43.1") -> "F43"
+        normalize_icd_code("F32") -> "F32"
+    """
+    if level == "parent":
+        return code.split(".")[0]
+    return code
+
+
+def normalize_code_list(codes: list[str], level: str = "parent") -> list[str]:
+    """Normalize a list of ICD-10 codes, removing duplicates while preserving order."""
+    seen = set()
+    result = []
+    for c in codes:
+        normalized = normalize_icd_code(c, level)
+        if normalized not in seen:
+            seen.add(normalized)
+            result.append(normalized)
+    return result
+
+
 def top_k_accuracy(
     preds: list[list[str]], golds: list[list[str]], k: int = 1
 ) -> float:
@@ -48,9 +74,19 @@ def pearson_r(preds: list[float], golds: list[float]) -> float:
 
 
 def compute_diagnosis_metrics(
-    preds: list[list[str]], golds: list[list[str]]
+    preds: list[list[str]], golds: list[list[str]], normalize: str | None = "parent"
 ) -> dict:
-    """Compute all diagnosis metrics."""
+    """Compute all diagnosis metrics.
+
+    Args:
+        preds: Predicted diagnosis lists per case.
+        golds: Ground truth diagnosis lists per case.
+        normalize: ICD code normalization level ("parent" or None).
+    """
+    if normalize:
+        preds = [normalize_code_list(p, normalize) for p in preds]
+        golds = [normalize_code_list(g, normalize) for g in golds]
+
     primary_preds = [p[0] if p else "unknown" for p in preds]
     primary_golds = [g[0] if g else "unknown" for g in golds]
     return {

@@ -22,6 +22,9 @@ class LLMCache:
             ")"
         )
         self._conn.commit()
+        self._conn.execute("PRAGMA journal_mode=WAL")
+        self._conn.execute("PRAGMA synchronous=NORMAL")
+        self._write_count = 0
 
     def __enter__(self):
         return self
@@ -60,7 +63,20 @@ class LLMCache:
             "VALUES (?, ?, ?, ?, ?, ?)",
             (provider, model, prompt_hash, language, input_hash, response),
         )
+        self._write_count += 1
+        if self._write_count % 10 == 0:
+            self._conn.commit()
+
+    def flush(self) -> None:
+        """Commit any pending writes."""
         self._conn.commit()
 
     def close(self) -> None:
+        self._conn.commit()
         self._conn.close()
+
+    def __del__(self) -> None:
+        try:
+            self.flush()
+        except Exception:
+            pass

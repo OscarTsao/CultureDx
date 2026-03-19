@@ -95,6 +95,12 @@ class DiagnosticLogicEngine:
             return self._eval_ocd(co.disorder, threshold, criteria_def, met_ids)
         if "frequency_per_week" in threshold:
             return self._eval_frequency(co.disorder, threshold, criteria_def, met_ids)
+        if "trauma_required" in threshold:
+            return self._eval_trauma(co.disorder, threshold, criteria_def, met_ids)
+        if "onset_within_month" in threshold:
+            return self._eval_adjustment(co.disorder, threshold, criteria_def, met_ids)
+        if "min_somatic_groups" in threshold:
+            return self._eval_somatoform(co.disorder, threshold, criteria_def, met_ids)
 
         # Fallback: generic count check
         total_criteria = len(criteria_def)
@@ -304,4 +310,83 @@ class DiagnosticLogicEngine:
             met_count=met_count,
             required_count=2,
             rule_explanation=f"Core met: {'yes' if core_met else 'no'}, Total: {met_count}/{total}",
+        )
+
+    def _eval_trauma(
+        self, code: str, threshold: dict, criteria: dict, met_ids: set[str]
+    ) -> LogicEngineResult:
+        """PTSD (F43.1): trauma criterion required + symptoms from each cluster."""
+        # Criterion A (trauma) must be met
+        trauma_ids = {k for k, v in criteria.items() if v.get("type") == "trauma"}
+        trauma_met = len(met_ids & trauma_ids) >= len(trauma_ids) if trauma_ids else True
+
+        # Other symptom clusters
+        re_experience = {k for k, v in criteria.items() if v.get("type") == "re_experience"}
+        avoidance = {k for k, v in criteria.items() if v.get("type") == "avoidance"}
+        arousal = {k for k, v in criteria.items() if v.get("type") == "arousal"}
+
+        re_met = len(met_ids & re_experience) > 0 if re_experience else True
+        avoid_met = len(met_ids & avoidance) > 0 if avoidance else True
+        arousal_met = len(met_ids & arousal) > 0 if arousal else True
+
+        # If no typed criteria, fall back to core + count check
+        if not trauma_ids and not re_experience and not avoidance and not arousal:
+            core_ids = {k for k, v in criteria.items() if v.get("type") == "core"}
+            core_met = len(met_ids & core_ids) >= len(core_ids) if core_ids else True
+            non_core_met = len(met_ids & (set(criteria.keys()) - core_ids))
+            meets = core_met and non_core_met >= 1
+        else:
+            meets = trauma_met and re_met and avoid_met and arousal_met
+
+        total_met = len(met_ids & set(criteria.keys()))
+        return LogicEngineResult(
+            disorder_code=code,
+            meets_threshold=meets,
+            met_count=total_met,
+            required_count=len(criteria),
+            rule_explanation=f"Trauma: {'yes' if trauma_met else 'no'}, "
+            f"Re-experience: {'yes' if re_met else 'no'}, "
+            f"Avoidance: {'yes' if avoid_met else 'no'}, "
+            f"Arousal: {'yes' if arousal_met else 'no'}",
+        )
+
+    def _eval_adjustment(
+        self, code: str, threshold: dict, criteria: dict, met_ids: set[str]
+    ) -> LogicEngineResult:
+        """Adjustment disorder (F43.2): onset within 1 month of stressor + distress."""
+        core_ids = {k for k, v in criteria.items() if v.get("type") == "core"}
+        core_met = len(met_ids & core_ids)
+
+        total_met = len(met_ids & set(criteria.keys()))
+        # Adjustment requires identifiable stressor (core) + emotional/behavioral response
+        meets = core_met >= len(core_ids) if core_ids else total_met >= 2
+        return LogicEngineResult(
+            disorder_code=code,
+            meets_threshold=meets,
+            met_count=total_met,
+            required_count=len(core_ids) if core_ids else 2,
+            rule_explanation=f"Core: {core_met}/{len(core_ids)}, Total: {total_met}/{len(criteria)}",
+        )
+
+    def _eval_somatoform(
+        self, code: str, threshold: dict, criteria: dict, met_ids: set[str]
+    ) -> LogicEngineResult:
+        """Somatoform (F45): min somatic symptom groups + core criteria."""
+        min_groups = threshold.get("min_somatic_groups", 2)
+
+        somatic_ids = {k for k, v in criteria.items() if v.get("type") == "somatic"}
+        core_ids = {k for k, v in criteria.items() if v.get("type") == "core"}
+
+        somatic_met = len(met_ids & somatic_ids)
+        core_met = len(met_ids & core_ids) >= len(core_ids) if core_ids else True
+
+        total_met = len(met_ids & set(criteria.keys()))
+        meets = core_met and somatic_met >= min_groups
+        return LogicEngineResult(
+            disorder_code=code,
+            meets_threshold=meets,
+            met_count=total_met,
+            required_count=min_groups + (len(core_ids) if core_ids else 0),
+            rule_explanation=f"Core: {'yes' if core_met else 'no'}, "
+            f"Somatic groups: {somatic_met}/{min_groups}",
         )

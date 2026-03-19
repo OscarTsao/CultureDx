@@ -38,6 +38,7 @@ class SpecialistMode(BaseModeOrchestrator):
         prompts_dir: str | Path = "prompts/agents",
         target_disorders: list[str] | None = None,
     ) -> None:
+        self.mode_name = "specialist"
         self.llm = llm_client
         self.prompts_dir = Path(prompts_dir)
         self.target_disorders = target_disorders
@@ -74,21 +75,10 @@ class SpecialistMode(BaseModeOrchestrator):
         if not candidate_codes:
             return self._abstain(case, lang)
 
-        # Stage 2: Specialist agents
-        specialist_opinions = []
-        for code in candidate_codes:
-            name = get_disorder_name(code, lang) or code
-            evidence_summary = evidence_map.get(code)
-
-            spec_input = AgentInput(
-                transcript_text=transcript_text,
-                evidence={"evidence_summary": evidence_summary} if evidence_summary else None,
-                language=lang,
-                extra={"disorder_code": code, "disorder_name": name},
-            )
-            output = self.specialist.run(spec_input)
-            if output.parsed:
-                specialist_opinions.append(output.parsed)
+        # Stage 2: Specialist agents (parallel)
+        specialist_opinions = self._parallel_specialist_opinions(
+            candidate_codes, transcript_text, evidence_map, lang,
+        )
 
         if not specialist_opinions:
             return self._abstain(case, lang)
@@ -118,41 +108,46 @@ class SpecialistMode(BaseModeOrchestrator):
 
         return self._abstain(case, lang)
 
-    def _abstain(self, case: ClinicalCase, lang: str) -> DiagnosisResult:
-        return DiagnosisResult(
-            case_id=case.case_id,
-            primary_diagnosis=None,
-            confidence=0.0,
-            decision="abstain",
-            mode="specialist",
-            model_name=self.llm.model,
-            language_used=lang,
-        )
+    def _parallel_specialist_opinions(
+        self,
+        candidate_codes: list[str],
+        transcript_text: str,
+        evidence_map: dict[str, str],
+        lang: str,
+        max_workers: int = 4,
+    ) -> list[dict]:
+        """Run specialist agents in parallel."""
+        from concurrent.futures import ThreadPoolExecutor, as_completed
 
-    @staticmethod
-    def _build_transcript_text(case: ClinicalCase) -> str:
-        lines = []
-        for turn in case.transcript:
-            speaker = turn.speaker.capitalize()
-            lines.append(f"{speaker}: {turn.text}")
-        return "\n".join(lines)
+        def _run_one(code: str) -> dict | None:
+            name = get_disorder_name(code, lang) or code
+            evidence_summary = evidence_map.get(code)
+            spec_input = AgentInput(
+                transcript_text=transcript_text,
+                evidence={"evidence_summary": evidence_summary} if evidence_summary else None,
+                language=lang,
+                extra={"disorder_code": code, "disorder_name": name},
+            )
+            output = self.specialist.run(spec_input)
+            return output.parsed if output.parsed else None
 
-    @staticmethod
-    def _build_evidence_map(evidence: EvidenceBrief) -> dict[str, str]:
-        result = {}
-        for de in evidence.disorder_evidence:
-            parts = []
-            for ce in de.criteria_evidence:
-                span_texts = [s.text for s in ce.spans]
-                if span_texts:
-                    parts.append(f"[{ce.criterion_id}] (conf={ce.confidence:.2f}): " + "; ".join(span_texts))
-            if parts:
-                result[de.disorder_code] = "\n".join(parts)
-        return result
-
-    @staticmethod
-    def _build_global_evidence_summary(evidence: EvidenceBrief | None) -> str | None:
-        if not evidence or not evidence.symptom_spans:
-            return None
-        symptoms = [s.text for s in evidence.symptom_spans[:20]]
-        return "Extracted symptoms: " + "; ".join(symptoms)
+        opinions = []
+        workers = min(len(candidate_codes), max_workers)
+        if workers <= 1:
+            for code in candidate_codes:
+                result = _run_one(code)
+                if result:
+                    opinions.append(result)
+        else:
+            with ThreadPoolExecutor(max_workers=workers) as executor:
+                future_map = {executor.submit(_run_one, c): c for c in candidate_codes}
+                for future in as_completed(future_map):
+                    try:
+                        result = future.result()
+                        if result:
+                            opinions.append(result)
+                    except Exception:
+                        logger.warning(
+                            "Specialist failed for %s", future_map[future], exc_info=True
+                        )
+        return opinions

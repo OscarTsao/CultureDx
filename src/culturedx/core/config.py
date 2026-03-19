@@ -16,6 +16,8 @@ class LLMConfig(BaseModel):
     temperature: float = 0.0
     top_k: int = 1
     max_retries: int = 3
+    disable_thinking: bool = True
+    max_concurrent: int = 4
 
 
 class EvalConfig(BaseModel):

@@ -99,10 +99,14 @@ class MDD5kRawAdapter(BaseDatasetAdapter):
                     label = json.load(f)
                 icd_full = label.get("ICD_Code", "")
                 diagnosis_text = label.get("Diagnosis_Result", "")
-                # Extract parent code: "F32.901" -> "F32"
+                # Handle comma-separated codes: "F32.900,F41.101" -> ["F32", "F41"]
                 if icd_full:
-                    parent = icd_full.split(".")[0]
-                    diagnoses = [parent]
+                    seen = set()
+                    for code in icd_full.split(","):
+                        parent = code.strip().split(".")[0]
+                        if parent and parent not in seen:
+                            seen.add(parent)
+                            diagnoses.append(parent)
 
             cases.append(
                 ClinicalCase(
@@ -113,7 +117,7 @@ class MDD5kRawAdapter(BaseDatasetAdapter):
                     transcript_format="dialogue",
                     coding_system="icd10",
                     diagnoses=diagnoses,
-                    comorbid=False,
+                    comorbid=len(diagnoses) > 1,
                     metadata={
                         "diagnosis_text": diagnosis_text,
                         "icd_code_full": icd_full,

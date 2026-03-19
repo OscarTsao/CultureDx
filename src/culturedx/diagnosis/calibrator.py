@@ -128,14 +128,9 @@ class ConfidenceCalibrator:
         # 2. Threshold satisfaction ratio (use ICD-10 ontology required count)
         from culturedx.ontology.icd10 import get_disorder_threshold
         threshold = get_disorder_threshold(disorder_code)
-        if threshold:
-            # Use the ontology's minimum required count
-            required = threshold.get("min_total") or threshold.get("min_symptoms") or threshold.get("min_other", 0)
-            if threshold.get("min_core"):
-                required = max(required, threshold["min_core"])
-            required = max(required, 1)
-        else:
-            required = checker_output.criteria_required
+        required = self._compute_required_from_threshold(
+            threshold, checker_output, disorder_code
+        )
 
         if required > 0:
             threshold_ratio = min(1.0, checker_output.criteria_met_count / required)
@@ -194,3 +189,83 @@ class ConfidenceCalibrator:
                 return min(1.0, covered / total_criteria)
 
         return 0.0
+
+    @staticmethod
+    def _compute_required_from_threshold(
+        threshold: dict, checker_output: CheckerOutput, disorder_code: str
+    ) -> int:
+        """Compute the effective required criterion count from ICD-10 threshold.
+
+        Handles all threshold schemas to ensure fair confidence comparison
+        across disorders with different threshold types.
+        """
+        if not threshold:
+            return max(checker_output.criteria_required, 1)
+
+        # Schema: min_core + min_total (F32, F33)
+        if "min_total" in threshold:
+            return max(threshold["min_total"], threshold.get("min_core", 0))
+
+        # Schema: min_symptoms (F41.1 GAD)
+        if "min_symptoms" in threshold:
+            return threshold["min_symptoms"]
+
+        # Schema: all_required (F22)
+        if threshold.get("all_required"):
+            from culturedx.ontology.icd10 import get_disorder_criteria
+            criteria = get_disorder_criteria(disorder_code)
+            return len(criteria) if criteria else checker_output.criteria_required
+
+        # Schema: min_first_rank + min_other (F20)
+        if "min_first_rank" in threshold and "min_other" in threshold:
+            # Easier path: 1 first-rank symptom
+            return threshold["min_first_rank"]
+
+        # Schema: core_required + min_additional (F40)
+        if "min_additional" in threshold:
+            from culturedx.ontology.icd10 import get_disorder_criteria
+            criteria = get_disorder_criteria(disorder_code) or {}
+            core_count = sum(
+                1 for v in criteria.values() if v.get("type") == "core"
+            )
+            return core_count + threshold["min_additional"]
+
+        # Schema: attacks_per_month + min_symptoms_per_attack (F41.0)
+        if "min_symptoms_per_attack" in threshold:
+            from culturedx.ontology.icd10 import get_disorder_criteria
+            criteria = get_disorder_criteria(disorder_code) or {}
+            core_count = sum(
+                1 for v in criteria.values() if v.get("type") == "core"
+            )
+            return core_count + threshold["min_symptoms_per_attack"]
+
+        # Schema: min_episodes + at_least_one_manic (F31)
+        if "min_episodes" in threshold:
+            return 2  # core + manic
+
+        # Schema: duration_weeks + distress_required (F42 OCD)
+        if "distress_required" in threshold:
+            return 3  # core + distress + obs/comp
+
+        # Schema: frequency_per_week (F51)
+        if "frequency_per_week" in threshold:
+            return 2  # core + at least 1 symptom, as logic engine requires
+
+        # Schema: trauma_required (F43.1 PTSD)
+        if "trauma_required" in threshold:
+            from culturedx.ontology.icd10 import get_disorder_criteria
+            criteria = get_disorder_criteria(disorder_code) or {}
+            return len(criteria) if criteria else 3
+
+        # Schema: min_somatic_groups (F45)
+        if "min_somatic_groups" in threshold:
+            return threshold["min_somatic_groups"] + 1  # groups + core
+
+        # Schema: onset_within_month (F43.2 adjustment)
+        if "onset_within_month" in threshold:
+            from culturedx.ontology.icd10 import get_disorder_criteria
+            criteria = get_disorder_criteria(disorder_code) or {}
+            return len(criteria) if criteria else 2
+
+        # Fallback
+        return max(checker_output.criteria_required, 1)

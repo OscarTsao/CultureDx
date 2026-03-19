@@ -60,16 +60,18 @@ def run(
     click.echo(f"Loaded {len(cases)} cases.")
 
     # 3. Create LLM client
-    from culturedx.llm.client import OllamaClient
+    from culturedx.llm import create_llm_client
 
-    llm = OllamaClient(
+    llm = create_llm_client(
+        provider=cfg.llm.provider,
         base_url=cfg.llm.base_url,
         model=cfg.llm.model_id,
         temperature=cfg.llm.temperature,
         top_k=cfg.llm.top_k,
         timeout=cfg.request_timeout_sec,
         cache_path=Path(cfg.cache_dir) / "llm_cache.db",
-        provider=cfg.llm.provider,
+        disable_thinking=getattr(cfg.llm, 'disable_thinking', True),
+        max_concurrent=getattr(cfg.llm, 'max_concurrent', 4),
     )
 
     # 4. Create evidence pipeline (optional)
@@ -202,7 +204,7 @@ def sweep(
     dry_run: bool,
 ) -> None:
     """Run ablation sweep across modes and conditions."""
-    from culturedx.pipeline.sweep import SweepRunner, build_ablation_conditions
+    from culturedx.pipeline.sweep import SweepCondition, SweepRunner, build_ablation_conditions
 
     # Load config
     if len(config) == 1:
@@ -241,11 +243,100 @@ def sweep(
         cases = cases[:limit]
     click.echo(f"Loaded {len(cases)} cases.")
 
-    # Run sweep
+    # Create LLM client
+    from culturedx.llm import create_llm_client
+
+    llm = create_llm_client(
+        provider=cfg.llm.provider,
+        base_url=cfg.llm.base_url,
+        model=cfg.llm.model_id,
+        temperature=cfg.llm.temperature,
+        top_k=cfg.llm.top_k,
+        timeout=cfg.request_timeout_sec,
+        cache_path=Path(cfg.cache_dir) / "llm_cache.db",
+        disable_thinking=getattr(cfg.llm, 'disable_thinking', True),
+        max_concurrent=getattr(cfg.llm, 'max_concurrent', 4),
+    )
+
+    def run_fn(condition: SweepCondition, cases_list: list) -> tuple:
+        """Execute a single sweep condition and return (results, metrics)."""
+        from culturedx.pipeline.runner import ExperimentRunner
+
+        # Create mode for this condition
+        mode_type = condition.mode_type
+        if mode_type == "hied":
+            from culturedx.modes.hied import HiEDMode
+            mode = HiEDMode(llm_client=llm, target_disorders=condition.target_disorders)
+        elif mode_type == "psycot":
+            from culturedx.modes.psycot import PsyCoTMode
+            mode = PsyCoTMode(llm_client=llm, target_disorders=condition.target_disorders)
+        elif mode_type == "mas":
+            from culturedx.modes.mas import MASMode
+            mode = MASMode(llm_client=llm, target_disorders=condition.target_disorders)
+        elif mode_type == "specialist":
+            from culturedx.modes.specialist import SpecialistMode
+            mode = SpecialistMode(llm_client=llm, target_disorders=condition.target_disorders)
+        elif mode_type == "debate":
+            from culturedx.modes.debate import DebateMode
+            mode = DebateMode(llm_client=llm)
+        else:
+            from culturedx.modes.single import SingleModelMode
+            mode = SingleModelMode(llm_client=llm)
+
+        # Create evidence pipeline if condition requests it
+        evidence_pipeline = None
+        if condition.with_evidence:
+            from culturedx.evidence.pipeline import EvidencePipeline
+            from culturedx.evidence.retriever_factory import create_retriever
+
+            retriever = create_retriever(cfg.evidence.retriever)
+            evidence_pipeline = EvidencePipeline(
+                llm_client=llm,
+                retriever=retriever,
+                target_disorders=condition.target_disorders or cfg.mode.target_disorders or ["F32", "F41.1"],
+                somatization_enabled=condition.with_somatization,
+                somatization_llm_fallback=cfg.evidence.somatization.llm_fallback,
+                top_k=cfg.evidence.top_k_final,
+                min_confidence=cfg.evidence.min_confidence,
+            )
+
+        # Run through ExperimentRunner
+        cond_dir = Path(output_dir) / f"ablation_{dataset}" / condition.name
+        cond_dir.mkdir(parents=True, exist_ok=True)
+        runner = ExperimentRunner(
+            mode=mode,
+            output_dir=cond_dir,
+            evidence_pipeline=evidence_pipeline,
+        )
+        results = runner.run(cases_list)
+
+        # Evaluate if ground truth available
+        has_labels = any(c.diagnoses for c in cases_list)
+        if has_labels:
+            metrics = runner.evaluate(results, cases_list)
+        else:
+            metrics = {}
+
+        return results, metrics
+
+    # Run sweep with run_fn
     runner = SweepRunner(base_output_dir=output_dir)
-    report = runner.run_sweep(conditions, cases, sweep_name=f"ablation_{dataset}")
+    report = runner.run_sweep(
+        conditions, cases, run_fn=run_fn, sweep_name=f"ablation_{dataset}",
+    )
 
     click.echo(f"Sweep complete. {len(report.results)} conditions executed.")
+    if report.results:
+        click.echo("\nResults summary:")
+        for r in report.results:
+            dx_metrics = r.metrics.get("diagnosis", {})
+            top1 = dx_metrics.get("top1_accuracy", "N/A")
+            f1 = dx_metrics.get("macro_f1", "N/A")
+            click.echo(
+                f"  {r.condition.name:30s} top1={top1}  f1={f1}  "
+                f"dx={r.num_diagnosed}  abstain={r.num_abstained}  "
+                f"time={r.duration_sec:.1f}s"
+            )
     click.echo(f"Report: {output_dir}")
 
 

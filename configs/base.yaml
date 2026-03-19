@@ -15,6 +15,7 @@ llm:
   temperature: 0.0
   top_k: 1
   max_retries: 3
+  disable_thinking: true
 
 eval:
   binary_threshold_phq8: 10

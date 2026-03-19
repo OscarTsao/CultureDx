@@ -17,7 +17,6 @@ from culturedx.agents.triage import TriageAgent
 from culturedx.core.models import (
     CheckerOutput,
     ClinicalCase,
-    CriterionResult,
     DiagnosisResult,
     EvidenceBrief,
 )
@@ -48,6 +47,7 @@ class HiEDMode(BaseModeOrchestrator):
         abstain_threshold: float = 0.3,
         comorbid_threshold: float = 0.5,
     ) -> None:
+        self.mode_name = "hied"
         self.llm = llm_client
         self.prompts_dir = Path(prompts_dir)
         self.target_disorders = target_disorders
@@ -104,27 +104,10 @@ class HiEDMode(BaseModeOrchestrator):
 
         logger.info("Case %s: %d candidate disorders from triage", case.case_id, len(candidate_codes))
 
-        # === Stage 2: Criterion Checkers ===
-        checker_outputs: list[CheckerOutput] = []
-        for disorder_code in candidate_codes:
-            name = get_disorder_name(disorder_code, lang) or disorder_code
-            evidence_summary = evidence_map.get(disorder_code)
-
-            checker_input = AgentInput(
-                transcript_text=transcript_text,
-                evidence={"evidence_summary": evidence_summary} if evidence_summary else None,
-                language=lang,
-                extra={"disorder_code": disorder_code},
-            )
-            output = self.checker.run(checker_input)
-            if output.parsed:
-                co = CheckerOutput(
-                    disorder=output.parsed["disorder"],
-                    criteria=output.parsed["criteria"],
-                    criteria_met_count=output.parsed["criteria_met_count"],
-                    criteria_required=output.parsed["criteria_required"],
-                )
-                checker_outputs.append(co)
+        # === Stage 2: Criterion Checkers (parallel) ===
+        checker_outputs = self._parallel_check_criteria(
+            self.checker, candidate_codes, transcript_text, evidence_map, lang,
+        )
 
         if not checker_outputs:
             return self._abstain(case, lang, criteria_results=[])
@@ -192,48 +175,3 @@ class HiEDMode(BaseModeOrchestrator):
             model_name=self.llm.model,
             language_used=lang,
         )
-
-    def _abstain(
-        self, case: ClinicalCase, lang: str, criteria_results: list[CheckerOutput] | None = None
-    ) -> DiagnosisResult:
-        return DiagnosisResult(
-            case_id=case.case_id,
-            primary_diagnosis=None,
-            confidence=0.0,
-            decision="abstain",
-            criteria_results=criteria_results or [],
-            mode="hied",
-            model_name=self.llm.model,
-            language_used=lang,
-        )
-
-    @staticmethod
-    def _build_transcript_text(case: ClinicalCase) -> str:
-        lines = []
-        for turn in case.transcript:
-            speaker = turn.speaker.capitalize()
-            lines.append(f"{speaker}: {turn.text}")
-        return "\n".join(lines)
-
-    @staticmethod
-    def _build_evidence_map(evidence: EvidenceBrief) -> dict[str, str]:
-        result = {}
-        for de in evidence.disorder_evidence:
-            parts = []
-            for ce in de.criteria_evidence:
-                span_texts = [s.text for s in ce.spans]
-                if span_texts:
-                    parts.append(
-                        f"[{ce.criterion_id}] (conf={ce.confidence:.2f}): "
-                        + "; ".join(span_texts)
-                    )
-            if parts:
-                result[de.disorder_code] = "\n".join(parts)
-        return result
-
-    @staticmethod
-    def _build_global_evidence_summary(evidence: EvidenceBrief | None) -> str | None:
-        if not evidence or not evidence.symptom_spans:
-            return None
-        symptoms = [s.text for s in evidence.symptom_spans[:20]]
-        return "Extracted symptoms: " + "; ".join(symptoms)

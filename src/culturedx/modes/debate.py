@@ -37,6 +37,7 @@ class DebateMode(BaseModeOrchestrator):
         prompts_dir: str | Path = "prompts/agents",
         num_rounds: int = 2,
     ) -> None:
+        self.mode_name = "debate"
         self.llm = llm_client
         self.prompts_dir = Path(prompts_dir)
         self.num_rounds = num_rounds
@@ -129,29 +130,3 @@ class DebateMode(BaseModeOrchestrator):
                 "key_symptoms": [],
             })
         return converted
-
-    def _abstain(self, case: ClinicalCase, lang: str) -> DiagnosisResult:
-        return DiagnosisResult(
-            case_id=case.case_id,
-            primary_diagnosis=None,
-            confidence=0.0,
-            decision="abstain",
-            mode="debate",
-            model_name=self.llm.model,
-            language_used=lang,
-        )
-
-    @staticmethod
-    def _build_transcript_text(case: ClinicalCase) -> str:
-        lines = []
-        for turn in case.transcript:
-            speaker = turn.speaker.capitalize()
-            lines.append(f"{speaker}: {turn.text}")
-        return "\n".join(lines)
-
-    @staticmethod
-    def _build_global_evidence_summary(evidence: EvidenceBrief | None) -> str | None:
-        if not evidence or not evidence.symptom_spans:
-            return None
-        symptoms = [s.text for s in evidence.symptom_spans[:20]]
-        return "Extracted symptoms: " + "; ".join(symptoms)
