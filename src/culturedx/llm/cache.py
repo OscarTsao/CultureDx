@@ -14,7 +14,7 @@ class LLMCache:
     def __init__(self, db_path: str | Path) -> None:
         self.db_path = Path(db_path)
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
-        self._conn = sqlite3.connect(str(self.db_path), check_same_thread=False)
+        self._conn = sqlite3.connect(str(self.db_path), check_same_thread=False, timeout=30)
         self._lock = threading.Lock()
         self._conn.execute(
             "CREATE TABLE IF NOT EXISTS cache ("
@@ -61,15 +61,18 @@ class LLMCache:
     ) -> None:
         input_hash = self._hash_input(input_text)
         with self._lock:
-            self._conn.execute(
-                "INSERT OR REPLACE INTO cache "
-                "(provider, model, prompt_hash, language, input_hash, response) "
-                "VALUES (?, ?, ?, ?, ?, ?)",
-                (provider, model, prompt_hash, language, input_hash, response),
-            )
-            self._write_count += 1
-            if self._write_count % 10 == 0:
-                self._conn.commit()
+            try:
+                self._conn.execute(
+                    "INSERT OR REPLACE INTO cache "
+                    "(provider, model, prompt_hash, language, input_hash, response) "
+                    "VALUES (?, ?, ?, ?, ?, ?)",
+                    (provider, model, prompt_hash, language, input_hash, response),
+                )
+                self._write_count += 1
+                if self._write_count % 10 == 0:
+                    self._conn.commit()
+            except sqlite3.OperationalError:
+                pass  # Cache write failed (likely lock contention); LLM result still returned
 
     def flush(self) -> None:
         """Commit any pending writes."""

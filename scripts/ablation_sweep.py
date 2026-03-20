@@ -354,6 +354,12 @@ def main():
                         help="Print conditions and exit")
     parser.add_argument("--diff-threshold", type=float, default=0.10,
                         help="Differential diagnosis threshold for HiED mode (default 0.10; set 0.0 to disable)")
+    parser.add_argument("--dataset", type=str, default="mdd5k_raw",
+                        help="Dataset adapter name (default: mdd5k_raw). "
+                             "Available: lingxidiag16k, mdd5k, mdd5k_raw, pdch, edaic")
+    parser.add_argument("--data-path", type=str, default=None,
+                        help="Path to dataset files. Defaults: mdd5k_raw -> data/raw/mdd5k_repo, "
+                             "lingxidiag16k -> data/raw/lingxidiag16k")
     args = parser.parse_args()
 
     # Auto-detect base URL
@@ -428,8 +434,17 @@ def main():
 
     # Load dataset
     from culturedx.data.adapters import get_adapter
-    logger.info("Loading MDD-5k raw dataset...")
-    adapter = get_adapter("mdd5k_raw", "data/raw/mdd5k_repo")
+
+    _DEFAULT_DATA_PATHS: dict[str, str] = {
+        "mdd5k_raw": "data/raw/mdd5k_repo",
+        "mdd5k": "data/raw/mdd5k_repo",
+        "lingxidiag16k": "data/raw/lingxidiag16k",
+        "pdch": "data/raw/pdch",
+        "edaic": "data/raw/edaic",
+    }
+    data_path = args.data_path or _DEFAULT_DATA_PATHS.get(args.dataset, f"data/raw/{args.dataset}")
+    logger.info("Loading dataset '%s' from %s ...", args.dataset, data_path)
+    adapter = get_adapter(args.dataset, data_path)
     all_cases = adapter.load()
     logger.info("Loaded %d cases total", len(all_cases))
 
