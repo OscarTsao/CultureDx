@@ -47,6 +47,7 @@ class HiEDMode(BaseModeOrchestrator):
         target_disorders: list[str] | None = None,
         abstain_threshold: float = 0.3,
         comorbid_threshold: float = 0.5,
+        differential_threshold: float = 0.10,
     ) -> None:
         self.mode_name = "hied"
         self.llm = llm_client
@@ -70,7 +71,7 @@ class HiEDMode(BaseModeOrchestrator):
 
         # Stage 4.5: Differential disambiguation (for close calls)
         self.differential = DifferentialDiagnosisAgent(llm_client, prompts_dir)
-        self.differential_threshold = 0.05
+        self.differential_threshold = differential_threshold
 
         # Stage 4b: Comorbidity resolver
         self.comorbidity_resolver = ComorbidityResolver()

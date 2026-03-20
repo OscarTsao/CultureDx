@@ -90,17 +90,17 @@ class EvidencePipeline:
                 symptom_spans, sentences
             )
 
-        # 4. Criteria matching per target disorder
-        criteria_results = {}
-        for disorder_code in self.target_disorders:
-            evidence_list = self._matcher.match_for_disorder(
-                disorder_code=disorder_code,
-                sentences=sentences,
-                turn_ids=turn_ids,
-                language=case.language,
-                somatization_map=somatization_map,
-            )
-            criteria_results[disorder_code] = evidence_list
+        # 4. Batch criteria matching across all disorders (encode sentences once)
+        criteria_results = self._matcher.match_all_disorders(
+            disorder_codes=self.target_disorders,
+            sentences=sentences,
+            turn_ids=turn_ids,
+            language=case.language,
+            somatization_map=somatization_map,
+        )
+
+        # 4b. Contrastive scoring: mark shared vs unique evidence across disorders
+        criteria_results = self._matcher.add_contrastive_scores(criteria_results)
 
         # 5. Assemble EvidenceBrief
         return self._assembler.assemble(

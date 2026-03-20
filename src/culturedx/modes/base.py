@@ -2,6 +2,9 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
+import logging
+
+logger = logging.getLogger(__name__)
 
 from culturedx.core.models import (
     CheckerOutput,
@@ -25,13 +28,46 @@ class BaseModeOrchestrator(ABC):
         ...
 
     @staticmethod
-    def _build_transcript_text(case: ClinicalCase) -> str:
-        """Build formatted transcript text from case turns."""
+    def _build_transcript_text(
+        case: ClinicalCase, max_chars: int = 20000,
+    ) -> str:
+        """Build formatted transcript text from case turns.
+
+        For long transcripts, keeps first and last turns (head/tail truncation)
+        to stay within context window. Clinical assessments have important info
+        at the start (chief complaint) and end (summary/formulation).
+        """
         lines = []
         for turn in case.transcript:
             speaker = turn.speaker.capitalize()
             lines.append(f"{speaker}: {turn.text}")
-        return "\n".join(lines)
+        full = "\n".join(lines)
+
+        if len(full) <= max_chars:
+            return full
+
+        # Head/tail truncation: keep first 60% and last 40% of budget
+        head_budget = int(max_chars * 0.6)
+        tail_budget = max_chars - head_budget
+
+        head_lines = []
+        head_len = 0
+        for line in lines:
+            if head_len + len(line) + 1 > head_budget:
+                break
+            head_lines.append(line)
+            head_len += len(line) + 1
+
+        tail_lines = []
+        tail_len = 0
+        for line in reversed(lines):
+            if tail_len + len(line) + 1 > tail_budget:
+                break
+            tail_lines.insert(0, line)
+            tail_len += len(line) + 1
+
+        marker = "\n[...对话中间部分省略 / middle turns omitted...]\n"
+        return "\n".join(head_lines) + marker + "\n".join(tail_lines)
 
     @staticmethod
     def _build_evidence_map(evidence: EvidenceBrief) -> dict[str, str]:
@@ -83,17 +119,24 @@ class BaseModeOrchestrator(ABC):
         transcript_text: str,
         evidence_map: dict[str, str],
         lang: str,
-        max_workers: int = 4,
+        max_workers: int | None = None,
     ) -> list:
         """Run criterion checkers in parallel using ThreadPoolExecutor.
 
         Returns list of CheckerOutput for disorders that produced valid results.
+
+        max_workers is auto-detected from LLM client:
+        - Ollama (NUM_PARALLEL=1): sequential to avoid timeout cascading
+        - vLLM (continuous batching): parallel for real concurrency
         """
         from concurrent.futures import ThreadPoolExecutor, as_completed
 
         from culturedx.agents.base import AgentInput
         from culturedx.core.models import CheckerOutput
         from culturedx.ontology.icd10 import get_disorder_name
+
+        if max_workers is None:
+            max_workers = getattr(self.llm, "max_concurrent", 1)
 
         def _check_one(disorder_code: str) -> CheckerOutput | None:
             get_disorder_name(disorder_code, lang) or disorder_code

@@ -27,20 +27,24 @@ class VLLMClient:
     def __init__(
         self,
         base_url: str = "http://localhost:8000",
-        model: str = "qwen3:32b",
+        model: str = "Qwen/Qwen3-32B-AWQ",
         temperature: float = 0.0,
         top_k: int = 1,
+        top_p: float = 1.0,
         timeout: int = 300,
+        max_tokens: int = 1024,
         cache_path: Path | str | None = None,
         provider: str = "vllm",
-        max_concurrent: int = 6,
+        max_concurrent: int = 4,
         disable_thinking: bool = True,
     ) -> None:
         self.base_url = base_url.rstrip("/")
         self.model = model
         self.temperature = temperature
         self.top_k = top_k
+        self.top_p = top_p
         self.timeout = timeout
+        self.max_tokens = max_tokens
         self.provider = provider
         self.max_concurrent = max_concurrent
         self.disable_thinking = disable_thinking
@@ -54,10 +58,8 @@ class VLLMClient:
         json_schema: dict | None = None,
     ) -> str:
         """Generate a single response via vLLM OpenAI-compatible API."""
-        effective_prompt = f"/no_think\n{prompt}" if self.disable_thinking else prompt
-
         # Check cache
-        input_hash = hashlib.sha256(effective_prompt.encode()).hexdigest()
+        input_hash = hashlib.sha256(prompt.encode()).hexdigest()
         if self._cache:
             cached = self._cache.get(
                 self.provider, self.model, prompt_hash, language, input_hash
@@ -66,15 +68,18 @@ class VLLMClient:
                 return cached
 
         # Build request
-        messages = [{"role": "user", "content": effective_prompt}]
+        messages = [{"role": "user", "content": prompt}]
         body = {
             "model": self.model,
             "messages": messages,
             "temperature": self.temperature,
-            "max_tokens": 4096,
+            "top_p": self.top_p,
+            "max_tokens": self.max_tokens,
         }
+        if self.disable_thinking:
+            body["chat_template_kwargs"] = {"enable_thinking": False}
         if json_schema:
-            body["extra_body"] = {"guided_json": json_schema}
+            body["guided_json"] = json_schema
 
         # Call with retries
         max_retries = 3

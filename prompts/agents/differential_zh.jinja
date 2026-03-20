@@ -3,7 +3,14 @@
 ## 确认满足诊断标准的障碍
 
 {% for result in checker_results %}
-- **{{ result.disorder }}** {{ result.disorder_name }}：满足诊断标准（{{ result.criteria_met_count }}/{{ result.criteria_required }}项核心标准）
+### {{ result.disorder }} {{ result.disorder_name }}（满足 {{ result.criteria_met_count }}/{{ result.criteria_required }} 项核心标准）
+
+| 标准 | 状态 | 置信度 | 证据 |
+|------|------|--------|------|
+{% for cr in result.criteria %}
+| {{ cr.criterion_id }} | {{ cr.status }} | {{ "%.2f"|format(cr.confidence) }} | {{ cr.evidence or "无" }} |
+{% endfor %}
+
 {% endfor %}
 
 ## 临床对话
@@ -22,8 +29,10 @@
    - 患者自己最关注、最困扰的问题是什么？
    - 医生在对话中倾向于关注哪个方面的症状？
 3. 不要仅凭满足标准的数量来判断主次——标准数量多并不意味着该障碍是主要诊断
-4. 焦虑和抑郁常常共病，需要根据临床表现判断哪个是原发性的
-5. 其他满足标准的障碍列为共病诊断
+4. 注意：不同障碍的标准数量不同（如F32有11项标准，F41.1有7项标准），因此满足标准的绝对数量不能直接比较。满足10/11 vs 5/7在诊断意义上可能等价
+5. 请特别关注：(a) 每个障碍的核心标准满足情况和证据质量，(b) 哪些标准证据是该障碍特异性的（vs 多个障碍共享的证据）
+6. 焦虑和抑郁常常共病，需要根据临床表现判断哪个是原发性的
+7. 其他满足标准的障碍列为共病诊断
 
 ## 输出要求
 

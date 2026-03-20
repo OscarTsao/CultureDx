@@ -47,9 +47,10 @@ class SingleModelMode(BaseModeOrchestrator):
         else:
             template_name = f"zero_shot_{lang}.jinja"
         template = self._env.get_template(template_name)
+        transcript_text = self._build_transcript_text(case)
 
         prompt = template.render(
-            transcript=case.transcript,
+            transcript_text=transcript_text,
             evidence=evidence,
         )
         source, _, _ = self._env.loader.get_source(self._env, template_name)

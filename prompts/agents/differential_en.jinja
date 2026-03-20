@@ -3,7 +3,14 @@ You are an experienced ICD-10 psychiatric differential diagnosis specialist. The
 ## Confirmed Disorders
 
 {% for result in checker_results %}
-- **{{ result.disorder }}** {{ result.disorder_name }}: Meets diagnostic criteria ({{ result.criteria_met_count }}/{{ result.criteria_required }} core criteria)
+### {{ result.disorder }} {{ result.disorder_name }} ({{ result.criteria_met_count }}/{{ result.criteria_required }} core criteria met)
+
+| Criterion | Status | Confidence | Evidence |
+|-----------|--------|------------|----------|
+{% for cr in result.criteria %}
+| {{ cr.criterion_id }} | {{ cr.status }} | {{ "%.2f"|format(cr.confidence) }} | {{ cr.evidence or "None" }} |
+{% endfor %}
+
 {% endfor %}
 
 ## Clinical Interview
@@ -22,8 +29,10 @@ Important:
    - What problems does the patient focus on and find most distressing?
    - Which symptom domain does the clinician emphasize during the interview?
 3. Do NOT determine primary vs comorbid based solely on the number of criteria met — more criteria does not mean primary
-4. Anxiety and depression often co-occur; determine which is primary based on clinical presentation
-5. List other confirmed disorders as comorbid diagnoses
+4. Note: Different disorders have different numbers of criteria (e.g., F32 has 11 criteria, F41.1 has 7). Absolute counts of met criteria are NOT directly comparable. Meeting 10/11 vs 5/7 may be diagnostically equivalent
+5. Pay special attention to: (a) whether CORE criteria for each disorder are met with strong evidence, (b) which evidence is disorder-SPECIFIC vs shared across multiple disorders
+6. Anxiety and depression often co-occur; determine which is primary based on clinical presentation
+7. List other confirmed disorders as comorbid diagnoses
 
 ## Output
 

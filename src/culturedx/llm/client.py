@@ -58,6 +58,7 @@ class OllamaClient:
         prompt: str,
         prompt_hash: str = "",
         language: str = "zh",
+        json_schema: dict | None = None,
     ) -> str:
         """Send prompt to Ollama and return response text."""
         if not prompt_hash:

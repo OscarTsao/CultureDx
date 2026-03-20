@@ -37,6 +37,33 @@ def _compute_required(disorder_code: str, criteria: dict, threshold: dict) -> in
     return len(criteria)
 
 
+# JSON schema for guided decoding (vLLM structured output)
+CHECKER_JSON_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "criteria": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "criterion_id": {"type": "string"},
+                    "status": {
+                        "type": "string",
+                        "enum": ["met", "not_met", "insufficient_evidence"],
+                    },
+                    "evidence": {
+                        "anyOf": [{"type": "string"}, {"type": "null"}]
+                    },
+                    "confidence": {"type": "number"},
+                },
+                "required": ["criterion_id", "status", "confidence"],
+            },
+        }
+    },
+    "required": ["criteria"],
+}
+
+
 class CriterionCheckerAgent(BaseAgent):
     """Evaluates ICD-10 diagnostic criteria for a single disorder."""
 
@@ -85,8 +112,16 @@ class CriterionCheckerAgent(BaseAgent):
         source, _, _ = self._env.loader.get_source(self._env, template_name)
         prompt_hash = self.llm.compute_prompt_hash(source)
 
-        # Call LLM
-        raw = self.llm.generate(prompt, prompt_hash=prompt_hash, language=input.language)
+        # Use guided JSON if the LLM client supports it (vLLM)
+        gen_kwargs: dict = {}
+        if hasattr(self.llm, 'generate'):
+            import inspect
+            sig = inspect.signature(self.llm.generate)
+            if 'json_schema' in sig.parameters:
+                gen_kwargs['json_schema'] = CHECKER_JSON_SCHEMA
+        raw = self.llm.generate(
+            prompt, prompt_hash=prompt_hash, language=input.language, **gen_kwargs
+        )
 
         # Parse response
         parsed = extract_json_from_response(raw)

@@ -60,6 +60,7 @@ class CriterionEvidence:
     criterion_id: str
     spans: list[SymptomSpan] = field(default_factory=list)
     confidence: float = 0.0
+    uniqueness_score: float = 1.0  # 1.0 = unique to this disorder, 0.0 = shared with all
 
 
 @dataclass

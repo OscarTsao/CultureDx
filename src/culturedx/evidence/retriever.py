@@ -31,6 +31,23 @@ class BaseRetriever(ABC):
         """Retrieve top-k most relevant sentences for a query."""
         ...
 
+    def retrieve_batch(
+        self,
+        queries: list[str],
+        sentences: list[str],
+        top_k: int = 10,
+        turn_ids: list[int] | None = None,
+    ) -> list[list[RetrievalResult]]:
+        """Batch retrieve: encode sentences once for multiple queries.
+
+        Default implementation calls retrieve() per query.
+        Subclasses can override for optimized batch processing.
+        """
+        return [
+            self.retrieve(q, sentences, top_k, turn_ids)
+            for q in queries
+        ]
+
 
 class MockRetriever(BaseRetriever):
     """Deterministic hash-based retriever for testing."""
@@ -116,3 +133,39 @@ class BGEM3Retriever(BaseRetriever):
                 )
             )
         return results
+
+    def retrieve_batch(
+        self,
+        queries: list[str],
+        sentences: list[str],
+        top_k: int = 10,
+        turn_ids: list[int] | None = None,
+    ) -> list[list[RetrievalResult]]:
+        """Batch retrieve: encode sentences once for all queries."""
+        if not sentences or not queries:
+            return [[] for _ in queries]
+        if turn_ids is None:
+            turn_ids = list(range(len(sentences)))
+
+        # Encode all at once — this is the key optimization
+        query_embs = self._model.encode(queries, normalize_embeddings=True)
+        sent_embs = self._model.encode(sentences, normalize_embeddings=True)
+
+        # All-pairs cosine similarity: (n_sent, n_queries)
+        scores_matrix = np.dot(sent_embs, query_embs.T)
+
+        all_results = []
+        for qi in range(len(queries)):
+            scores = scores_matrix[:, qi]
+            top_indices = np.argsort(scores)[::-1][:top_k]
+            results = []
+            for idx in top_indices:
+                results.append(
+                    RetrievalResult(
+                        text=sentences[idx],
+                        turn_id=turn_ids[idx],
+                        score=float(scores[idx]),
+                    )
+                )
+            all_results.append(results)
+        return all_results

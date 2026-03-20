@@ -1,11 +1,16 @@
-You are a psychiatric symptom extraction expert. Extract all symptom-related expressions from the following clinical dialogue.
+You are a psychiatric symptom extraction expert. Extract the most important symptom expressions from the following clinical dialogue (maximum 15).
+
+Prioritize:
+1. Somatic symptoms (palpitations, chest tightness, dizziness, etc.) - most important for differential diagnosis
+2. Core psychiatric symptoms (depressed mood, anxiety, obsessions, etc.)
+3. Functional impairment symptoms
 
 Dialogue:
 {% for turn in turns %}
 [Turn {{ turn.turn_id }}] {{ turn.speaker }}: {{ turn.text }}
 {% endfor %}
 
-Output extracted symptoms in JSON format:
+Output extracted symptoms in JSON format (maximum 15):
 {
   "symptoms": [
     {
@@ -22,4 +27,4 @@ symptom_type categories:
 - behavioral: Behavioral symptoms (avoidance, self-harm, decreased activity)
 - cognitive: Cognitive symptoms (poor concentration, memory problems, self-blame)
 
-Output only JSON, no other text.
+Output only JSON, no other text. Maximum 15 symptoms.
