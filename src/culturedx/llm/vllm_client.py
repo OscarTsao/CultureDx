@@ -32,7 +32,7 @@ class VLLMClient:
         top_k: int = 1,
         top_p: float = 1.0,
         timeout: int = 300,
-        max_tokens: int = 1024,
+        max_tokens: int = 2048,
         cache_path: Path | str | None = None,
         provider: str = "vllm",
         max_concurrent: int = 4,

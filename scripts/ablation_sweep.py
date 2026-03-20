@@ -148,11 +148,11 @@ def stratified_sample(cases, n: int, seed: int = 42) -> list:
     return selected
 
 
-def create_mode(mode_name: str, llm_client, target_disorders: list[str]):
+def create_mode(mode_name: str, llm_client, target_disorders: list[str], diff_threshold: float = 0.10):
     """Create a mode orchestrator."""
     if mode_name == "hied":
         from culturedx.modes.hied import HiEDMode
-        return HiEDMode(llm_client=llm_client, target_disorders=target_disorders, differential_threshold=0.10)
+        return HiEDMode(llm_client=llm_client, target_disorders=target_disorders, differential_threshold=diff_threshold)
     elif mode_name == "psycot":
         from culturedx.modes.psycot import PsyCoTMode
         return PsyCoTMode(llm_client=llm_client, target_disorders=target_disorders)
@@ -200,6 +200,7 @@ def run_condition(
     cases: list,
     llm_client,
     output_dir: Path,
+    diff_threshold: float = 0.10,
 ) -> dict:
     """Run a single ablation condition on all cases."""
     logger.info("=" * 60)
@@ -211,7 +212,7 @@ def run_condition(
     )
     logger.info("=" * 60)
 
-    mode = create_mode(condition.mode_type, llm_client, condition.target_disorders)
+    mode = create_mode(condition.mode_type, llm_client, condition.target_disorders, diff_threshold=diff_threshold)
     evidence_pipeline = create_evidence_pipeline(llm_client, condition)
 
     results = []
@@ -351,6 +352,8 @@ def main():
                         help="Resume from a prior sweep directory")
     parser.add_argument("--dry-run", action="store_true",
                         help="Print conditions and exit")
+    parser.add_argument("--diff-threshold", type=float, default=0.10,
+                        help="Differential diagnosis threshold for HiED mode (default 0.10; set 0.0 to disable)")
     args = parser.parse_args()
 
     # Auto-detect base URL
@@ -480,7 +483,7 @@ def main():
             continue
 
         logger.info("Condition %d/%d: %s", i + 1, len(conditions), condition.name)
-        metrics = run_condition(condition, cases, llm, sweep_dir)
+        metrics = run_condition(condition, cases, llm, sweep_dir, diff_threshold=args.diff_threshold)
         all_metrics[condition.name] = metrics
 
         m = metrics["metrics_parent_normalized"]

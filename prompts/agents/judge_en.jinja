@@ -31,10 +31,10 @@ You are a psychiatric diagnosis reviewer. Below are assessments from multiple di
 
 Respond in exactly this JSON format:
 {
-  "primary_diagnosis": "F32",
-  "comorbid_diagnoses": ["F41.1"],
-  "confidence": 0.85,
-  "decision": "diagnosis",
-  "reasoning": "Based on the combined analysis..."
+  "primary_diagnosis": "<ICD-10 diagnosis code>",
+  "comorbid_diagnoses": ["<comorbid code 1>"],
+  "confidence": "<number between 0.0 and 1.0>",
+  "decision": "<diagnosis or abstain>",
+  "reasoning": "<combined analysis reasoning>"
 }
 Output JSON only. Do not include any other text.

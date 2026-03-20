@@ -31,10 +31,10 @@
 
 请严格按照以下JSON格式输出：
 {
-  "primary_diagnosis": "F32",
-  "comorbid_diagnoses": ["F41.1"],
-  "confidence": 0.85,
-  "decision": "diagnosis",
-  "reasoning": "综合分析..."
+  "primary_diagnosis": "<ICD-10诊断代码>",
+  "comorbid_diagnoses": ["<共病代码1>"],
+  "confidence": "<0.0到1.0之间的数值>",
+  "decision": "<diagnosis 或 abstain>",
+  "reasoning": "<综合分析依据>"
 }
 仅输出JSON，不要包含其他文字。

@@ -22,9 +22,9 @@ You are a specialist in {{ disorder_code }} {{ disorder_name }}. Based on the cl
 Respond in exactly this JSON format:
 {
   "disorder_code": "{{ disorder_code }}",
-  "diagnosis_likely": true,
-  "confidence": 0.8,
-  "reasoning": "The patient exhibits...",
-  "key_symptoms": ["symptom1", "symptom2"]
+  "diagnosis_likely": "<true or false>",
+  "confidence": "<number between 0.0 and 1.0>",
+  "reasoning": "<detailed clinical analysis>",
+  "key_symptoms": ["<key symptom 1>", "<key symptom 2>"]
 }
 Output JSON only. Do not include any other text.
