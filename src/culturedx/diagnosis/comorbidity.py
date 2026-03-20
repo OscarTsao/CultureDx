@@ -28,24 +28,6 @@ EXCLUSION_RULES: list[tuple[str, str]] = [
     # (not exclusion, just hierarchy — no rule here)
 ]
 
-# Disorders that commonly co-occur (valid comorbidity)
-VALID_COMORBIDITIES: set[tuple[str, str]] = {
-    ("F32", "F41.1"),   # Depression + GAD
-    ("F33", "F41.1"),   # Recurrent depression + GAD
-    ("F32", "F42"),     # Depression + OCD
-    ("F33", "F42"),     # Recurrent depression + OCD
-    ("F32", "F51"),     # Depression + sleep disorder
-    ("F33", "F51"),     # Recurrent depression + sleep disorder
-    ("F41.1", "F42"),   # GAD + OCD
-    ("F41.0", "F41.1"), # Panic + GAD
-    ("F32", "F43.1"),   # Depression + PTSD
-    ("F33", "F43.1"),   # Recurrent depression + PTSD
-    ("F32", "F45"),     # Depression + somatoform
-    ("F33", "F45"),     # Recurrent depression + somatoform
-    ("F41.1", "F45"),   # GAD + somatoform
-}
-
-
 @dataclass
 class ComorbidityResult:
     """Result of comorbidity resolution."""
@@ -127,10 +109,3 @@ class ComorbidityResolver:
             excluded=excluded,
             exclusion_reasons=reasons,
         )
-
-    @staticmethod
-    def is_valid_comorbidity(code_a: str, code_b: str) -> bool:
-        """Check if two disorders can validly co-occur."""
-        pair = tuple(sorted([code_a, code_b]))
-        # Check both orderings
-        return (code_a, code_b) in VALID_COMORBIDITIES or (code_b, code_a) in VALID_COMORBIDITIES

@@ -141,6 +141,12 @@ class BaseModeOrchestrator(ABC):
         def _check_one(disorder_code: str) -> CheckerOutput | None:
             get_disorder_name(disorder_code, lang) or disorder_code
             evidence_summary = evidence_map.get(disorder_code)
+
+            # Lightweight somatization hints when no evidence pipeline
+            if not evidence_summary and lang == "zh":
+                from culturedx.ontology.symptom_map import scan_somatic_hints
+                evidence_summary = scan_somatic_hints(transcript_text, disorder_code)
+
             checker_input = AgentInput(
                 transcript_text=transcript_text,
                 evidence={"evidence_summary": evidence_summary} if evidence_summary else None,

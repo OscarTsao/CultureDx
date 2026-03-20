@@ -39,3 +39,27 @@ def _clear_cache() -> None:
     """Clear module cache (for testing only)."""
     global _CACHE
     _CACHE = None
+
+
+def scan_somatic_hints(transcript_text: str, disorder_code: str) -> str | None:
+    """Scan transcript for known somatic expressions relevant to a disorder.
+
+    Returns a short hint string for the criterion checker prompt,
+    or None if no relevant somatic keywords are found.
+    """
+    somatization_data = _load()
+    hints = []
+    seen_criteria: set[str] = set()
+
+    for symptom_text, entry in somatization_data.items():
+        if symptom_text in transcript_text:
+            criteria = entry.get("criteria", [])
+            for crit in criteria:
+                if crit.startswith(disorder_code) and crit not in seen_criteria:
+                    seen_criteria.add(crit)
+                    hints.append(f"- \"{symptom_text}\" → {crit}")
+
+    if not hints:
+        return None
+
+    return "以下躯体化表述在对话中被检测到，可能与该障碍的诊断标准相关：\n" + "\n".join(hints)

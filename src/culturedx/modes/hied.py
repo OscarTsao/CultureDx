@@ -135,10 +135,16 @@ class HiEDMode(BaseModeOrchestrator):
             )
 
         # === Stage 4: Calibrator (statistical) ===
+        # Build confirmation type map from logic engine results
+        confirmation_types = {
+            r.disorder_code: r.confirmation_type
+            for r in logic_output.confirmed
+        }
         cal_output = self.calibrator.calibrate(
             confirmed_disorders=logic_output.confirmed_codes,
             checker_outputs=checker_outputs,
             evidence=evidence,
+            confirmation_types=confirmation_types,
         )
 
         if cal_output.primary is None:

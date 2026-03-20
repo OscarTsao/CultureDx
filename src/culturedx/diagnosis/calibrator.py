@@ -15,6 +15,9 @@ from culturedx.core.models import CheckerOutput, CriterionResult, EvidenceBrief
 
 logger = logging.getLogger(__name__)
 
+# Common Chinese stop characters that inflate character-set overlap
+_ZH_STOP_CHARS = frozenset("的了是我有在不会很也都你他她它这那个人们要和就")
+
 
 def _evidence_overlaps(a: str, b: str) -> bool:
     """Check if two evidence strings share substantial word-level overlap."""
@@ -22,9 +25,9 @@ def _evidence_overlaps(a: str, b: str) -> bool:
         return False
     if a in b or b in a:
         return True
-    # Character-level set overlap for Chinese text
-    set_a = set(a)
-    set_b = set(b)
+    # Character-level set overlap for Chinese text, filtering stop chars
+    set_a = set(a) - _ZH_STOP_CHARS
+    set_b = set(b) - _ZH_STOP_CHARS
     if not set_a or not set_b:
         return False
     overlap = len(set_a & set_b) / len(set_a | set_b)
@@ -102,6 +105,7 @@ class ConfidenceCalibrator:
         confirmed_disorders: list[str],
         checker_outputs: list[CheckerOutput],
         evidence: EvidenceBrief | None = None,
+        confirmation_types: dict[str, str] | None = None,
     ) -> CalibrationOutput:
         """Calibrate confidence for confirmed disorders.
         
@@ -125,11 +129,18 @@ class ConfidenceCalibrator:
                 continue
             if self.version >= 2:
                 cal = self._compute_calibrated_v2(
-                    code, co, confirmed_outputs, evidence
+                    code, co, confirmed_outputs, evidence,
                 )
             else:
                 cal = self._compute_calibrated(code, co, evidence)
             scored.append(cal)
+
+        # Apply soft confirmation penalty
+        if confirmation_types:
+            for cal in scored:
+                ctype = confirmation_types.get(cal.disorder_code)
+                if ctype == "soft":
+                    cal.confidence *= 0.85
 
         # Sort by confidence descending
         scored.sort(key=lambda c: c.confidence, reverse=True)
@@ -355,9 +366,17 @@ class ConfidenceCalibrator:
     def _compute_margin_score(
         checker_output: CheckerOutput, disorder_code: str, required: int,
     ) -> float:
-        """Score for how far criteria met exceeds the minimum threshold."""
+        """Score for how far criteria met exceeds the minimum threshold.
+
+        Normalized by max possible excess for the disorder so that
+        F41.1 (5 criteria, threshold 4, max excess 1) and F32 (11
+        criteria, threshold 4, max excess 7) are on equal footing when
+        all criteria are met.
+        """
         import math
+
         met_count = sum(1 for cr in checker_output.criteria if cr.status == "met")
+        total_criteria = len(checker_output.criteria)
 
         if required <= 0:
             return 0.5
@@ -366,7 +385,9 @@ class ConfidenceCalibrator:
         if excess <= 0:
             return 0.0
 
-        return min(1.0, math.log1p(excess) / math.log(8))
+        max_excess = max(total_criteria - required, 1)
+        excess_ratio = excess / max_excess  # [0, 1] regardless of checklist length
+        return min(1.0, math.log1p(excess_ratio * 7) / math.log(8))
 
     @staticmethod
     def _compute_variance_penalty(checker_output: CheckerOutput) -> float:

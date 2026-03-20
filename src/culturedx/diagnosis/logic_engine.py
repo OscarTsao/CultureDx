@@ -22,6 +22,7 @@ class LogicEngineResult:
     met_count: int
     required_count: int
     rule_explanation: str = ""
+    confirmation_type: str = "standard"  # "standard" or "soft"
 
 
 @dataclass  
@@ -54,8 +55,16 @@ class DiagnosticLogicEngine:
             else:
                 rejected.append(result)
 
-        # Sort confirmed by met_count descending (strongest evidence first)
-        confirmed.sort(key=lambda r: r.met_count, reverse=True)
+        # Sort confirmed by proportion met (met/required), then by absolute count
+        # as tiebreaker. This prevents disorders with longer checklists (e.g., F32
+        # with 11 criteria) from always outranking shorter ones (e.g., F41.1 with 5).
+        confirmed.sort(
+            key=lambda r: (
+                r.met_count / max(r.required_count, 1),
+                r.met_count,
+            ),
+            reverse=True,
+        )
 
         return LogicEngineOutput(confirmed=confirmed, rejected=rejected)
 
@@ -86,7 +95,10 @@ class DiagnosticLogicEngine:
         if "core_required" in threshold and "min_additional" in threshold:
             return self._eval_core_additional(co.disorder, threshold, criteria_def, met_ids)
         if "min_symptoms" in threshold:
-            return self._eval_min_symptoms(co.disorder, threshold, criteria_def, met_ids)
+            return self._eval_min_symptoms(
+                co.disorder, threshold, criteria_def, met_ids,
+                all_criteria=co.criteria,
+            )
         if "attacks_per_month" in threshold:
             return self._eval_panic(co.disorder, threshold, criteria_def, met_ids)
         if "min_episodes" in threshold:
@@ -218,14 +230,55 @@ class DiagnosticLogicEngine:
         )
 
     def _eval_min_symptoms(
-        self, code: str, threshold: dict, criteria: dict, met_ids: set[str]
+        self, code: str, threshold: dict, criteria: dict, met_ids: set[str],
+        all_criteria: list | None = None,
     ) -> LogicEngineResult:
-        """min_symptoms count (e.g., F41.1 GAD, F45)."""
+        """min_symptoms count (e.g., F41.1 GAD, F45).
+
+        Supports soft confirmation: if met_count == min_symp - 1 and the
+        shortfall is due to ``insufficient_evidence`` (not ``not_met``),
+        the disorder is confirmed with confirmation_type="soft" so the
+        calibrator can apply a penalty.
+        """
         min_symp = threshold["min_symptoms"]
-        met_count = len(met_ids & set(criteria.keys()))
+        criteria_keys = set(criteria.keys())
+        met_count = len(met_ids & criteria_keys)
+
+        if met_count >= min_symp:
+            return LogicEngineResult(
+                disorder_code=code,
+                meets_threshold=True,
+                met_count=met_count,
+                required_count=min_symp,
+                rule_explanation=f"Symptoms: {met_count}/{min_symp}",
+            )
+
+        # Soft confirmation: exactly 1 short, and the gap is insufficient_evidence
+        if met_count == min_symp - 1 and all_criteria is not None:
+            unmet = [
+                cr for cr in all_criteria
+                if cr.criterion_id in criteria_keys and cr.status != "met"
+            ]
+            n_insufficient = sum(
+                1 for cr in unmet if cr.status == "insufficient_evidence"
+            )
+            n_not_met = sum(1 for cr in unmet if cr.status == "not_met")
+            if n_insufficient > 0 and n_not_met <= 1:
+                return LogicEngineResult(
+                    disorder_code=code,
+                    meets_threshold=True,
+                    met_count=met_count,
+                    required_count=min_symp,
+                    rule_explanation=(
+                        f"Symptoms: {met_count}/{min_symp} "
+                        f"(soft: {n_insufficient} insufficient_evidence)"
+                    ),
+                    confirmation_type="soft",
+                )
+
         return LogicEngineResult(
             disorder_code=code,
-            meets_threshold=met_count >= min_symp,
+            meets_threshold=False,
             met_count=met_count,
             required_count=min_symp,
             rule_explanation=f"Symptoms: {met_count}/{min_symp}",

@@ -138,9 +138,120 @@ class TestLogicEngineMultiple:
         result = engine.evaluate([co])
         assert "X99" not in result.confirmed_codes
 
-    def test_confirmed_sorted_by_met_count(self, engine):
+    def test_confirmed_sorted_by_proportion(self, engine):
         co1 = _make_checker("F41.1", met=["A", "B1", "B2", "B3", "B4"], not_met=[])
-        co2 = _make_checker("F32", met=["B1", "B2", "C1", "C2"], not_met=["B3"])
+        co2 = _make_checker("F32", met=["B1", "B2", "C1", "C2", "C3", "C4", "C5", "C6"],
+                            not_met=["B3"])
         result = engine.evaluate([co1, co2])
-        # F41.1 has 5 met, F32 has 4 → F41.1 should be first
-        assert result.confirmed[0].disorder_code == "F41.1"
+        # F41.1: 5/4 = 1.25 proportion; F32: 8/4 = 2.0 proportion
+        # F32 has higher proportion, so it should be first
+        assert result.confirmed[0].disorder_code == "F32"
+        # But if F41.1 has 5/4=1.25 and F32 has 4/4=1.0:
+        co3 = _make_checker("F32", met=["B1", "B2", "C1", "C2"], not_met=["B3"])
+        result2 = engine.evaluate([co1, co3])
+        # F41.1: 5/4=1.25 > F32: 4/4=1.0 → F41.1 first
+        assert result2.confirmed[0].disorder_code == "F41.1"
+
+
+def _make_checker_with_insufficient(
+    disorder: str,
+    met: list[str],
+    insufficient: list[str],
+    not_met: list[str],
+    required: int = 0,
+) -> CheckerOutput:
+    """Helper that creates a CheckerOutput with insufficient_evidence criteria."""
+    criteria = []
+    for cid in met:
+        criteria.append(CriterionResult(criterion_id=cid, status="met", confidence=0.9))
+    for cid in insufficient:
+        criteria.append(
+            CriterionResult(criterion_id=cid, status="insufficient_evidence", confidence=0.4)
+        )
+    for cid in not_met:
+        criteria.append(CriterionResult(criterion_id=cid, status="not_met", confidence=0.1))
+    return CheckerOutput(
+        disorder=disorder,
+        criteria=criteria,
+        criteria_met_count=len(met),
+        criteria_required=required,
+    )
+
+
+class TestSoftThresholdF41:
+    """Test soft confirmation for F41.1 with insufficient_evidence criteria."""
+
+    def test_soft_confirm_3met_1insufficient(self, engine):
+        """3 met + 1 insufficient_evidence + 1 not_met -> soft confirm."""
+        co = _make_checker_with_insufficient(
+            "F41.1",
+            met=["A", "B2", "B3"],
+            insufficient=["B1"],
+            not_met=["B4"],
+        )
+        result = engine.evaluate([co])
+        assert "F41.1" in result.confirmed_codes
+        r = result.confirmed[0]
+        assert r.confirmation_type == "soft"
+        assert r.met_count == 3
+
+    def test_soft_confirm_3met_2insufficient(self, engine):
+        """3 met + 2 insufficient_evidence + 0 not_met -> soft confirm."""
+        co = _make_checker_with_insufficient(
+            "F41.1",
+            met=["B2", "B3", "B4"],
+            insufficient=["A", "B1"],
+            not_met=[],
+        )
+        result = engine.evaluate([co])
+        assert "F41.1" in result.confirmed_codes
+        r = result.confirmed[0]
+        assert r.confirmation_type == "soft"
+
+    def test_no_soft_when_all_not_met(self, engine):
+        """3 met + 0 insufficient + 2 not_met -> hard reject (not soft)."""
+        co = _make_checker_with_insufficient(
+            "F41.1",
+            met=["A", "B2", "B3"],
+            insufficient=[],
+            not_met=["B1", "B4"],
+        )
+        result = engine.evaluate([co])
+        assert "F41.1" not in result.confirmed_codes
+
+    def test_no_soft_when_2_short(self, engine):
+        """2 met + 2 insufficient + 1 not_met -> reject (2 short, not 1)."""
+        co = _make_checker_with_insufficient(
+            "F41.1",
+            met=["B3", "B4"],
+            insufficient=["A", "B1"],
+            not_met=["B2"],
+        )
+        result = engine.evaluate([co])
+        assert "F41.1" not in result.confirmed_codes
+
+    def test_standard_confirm_4met(self, engine):
+        """4 met -> standard confirm, not soft."""
+        co = _make_checker_with_insufficient(
+            "F41.1",
+            met=["A", "B1", "B2", "B3"],
+            insufficient=[],
+            not_met=["B4"],
+        )
+        result = engine.evaluate([co])
+        assert "F41.1" in result.confirmed_codes
+        r = result.confirmed[0]
+        assert r.confirmation_type == "standard"
+
+    def test_backward_compat_f32(self, engine):
+        """F32 uses core_total, not min_symptoms -- should be unaffected."""
+        co = _make_checker_with_insufficient(
+            "F32",
+            met=["B1", "B2", "C1", "C2", "C3"],
+            insufficient=[],
+            not_met=["B3", "C4"],
+        )
+        result = engine.evaluate([co])
+        assert "F32" in result.confirmed_codes
+        r = result.confirmed[0]
+        assert r.confirmation_type == "standard"

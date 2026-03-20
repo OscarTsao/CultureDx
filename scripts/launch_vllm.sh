@@ -114,7 +114,7 @@ case "${1:-start}" in
             --quantization awq \
             --trust-remote-code \
             --no-enable-log-requests \
-            --enforce-eager \
+            --enable-prefix-caching \
             > "$LOGFILE" 2>&1 &
 
         VLLM_PID=$!

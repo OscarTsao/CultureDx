@@ -6,7 +6,6 @@ import pytest
 from culturedx.diagnosis.comorbidity import (
     ComorbidityResolver,
     EXCLUSION_RULES,
-    VALID_COMORBIDITIES,
 )
 
 
@@ -67,11 +66,6 @@ class TestComorbidityResolver:
         )
         assert len(result.exclusion_reasons) > 0
         assert "F33 excludes F32" in result.exclusion_reasons
-
-    def test_is_valid_comorbidity(self):
-        assert ComorbidityResolver.is_valid_comorbidity("F32", "F41.1")
-        assert ComorbidityResolver.is_valid_comorbidity("F41.1", "F32")  # Order shouldn't matter
-        assert not ComorbidityResolver.is_valid_comorbidity("F20", "F31")  # Not in valid set
 
     def test_confidence_ordering(self):
         """Higher confidence disorder becomes primary."""
