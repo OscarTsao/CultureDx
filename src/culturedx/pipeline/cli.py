@@ -102,6 +102,7 @@ def run(
         mode = HiEDMode(
             llm_client=llm,
             target_disorders=cfg.mode.target_disorders,
+            contrastive_enabled=cfg.mode.contrastive_enabled,
         )
     elif mode_type == "psycot":
         from culturedx.modes.psycot import PsyCoTMode
@@ -266,7 +267,7 @@ def sweep(
         mode_type = condition.mode_type
         if mode_type == "hied":
             from culturedx.modes.hied import HiEDMode
-            mode = HiEDMode(llm_client=llm, target_disorders=condition.target_disorders)
+            mode = HiEDMode(llm_client=llm, target_disorders=condition.target_disorders, contrastive_enabled=cfg.mode.contrastive_enabled)
         elif mode_type == "psycot":
             from culturedx.modes.psycot import PsyCoTMode
             mode = PsyCoTMode(llm_client=llm, target_disorders=condition.target_disorders)

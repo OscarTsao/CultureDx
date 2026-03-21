@@ -1,0 +1,46 @@
+You are a psychiatric differential diagnosis specialist. Your task is to determine which disorder each shared symptom primarily belongs to.
+
+## Clinical Transcript
+
+{{ transcript_text }}
+
+## Shared Symptom Evaluation
+
+The following symptoms were marked as "met" in both disorders. Based on the clinical transcript, determine which disorder each symptom primarily belongs to.
+
+{% for pair in shared_pairs %}
+{% set ev_key_a = pair.disorder_a ~ "_" ~ pair.criterion_a %}
+{% set ev_key_b = pair.disorder_b ~ "_" ~ pair.criterion_b %}
+{% set ev_a = checker_evidence.get(ev_key_a, {}) %}
+{% set ev_b = checker_evidence.get(ev_key_b, {}) %}
+### Symptom Domain: {{ pair.symptom_domain }}
+
+**{{ pair.disorder_a }} — {{ disorder_names.get(pair.disorder_a, pair.disorder_a) }}**
+Criterion {{ pair.criterion_a }}: {{ ev_a.get("evidence", "no evidence") }}
+(confidence: {{ ev_a.get("confidence", 0) }})
+
+**{{ pair.disorder_b }} — {{ disorder_names.get(pair.disorder_b, pair.disorder_b) }}**
+Criterion {{ pair.criterion_b }}: {{ ev_b.get("evidence", "no evidence") }}
+(confidence: {{ ev_b.get("confidence", 0) }})
+
+**Disambiguation guidance:** {{ pair.disambiguation_hint_en }}
+
+{% endfor %}
+
+## Output Instructions
+
+For each symptom domain, determine which disorder code the symptom primarily belongs to, or "both" for true comorbidity.
+Provide your confidence in the attribution (0.0-1.0).
+
+Respond in exactly this JSON format:
+{
+  "attributions": [
+    {
+      "symptom_domain": "concentration",
+      "primary_attribution": "F41.1",
+      "attribution_confidence": 0.82,
+      "reasoning": "Patient explicitly links concentration difficulty to worry cycles"
+    }
+  ]
+}
+Output JSON only. Do not include any other text.

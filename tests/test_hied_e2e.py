@@ -532,3 +532,150 @@ class TestHiEDE2E:
             f"Expected F41.1 to win on margin but got {result.primary_diagnosis!r} "
             f"(confidence={result.confidence:.4f})"
         )
+
+
+    # ------------------------------------------------------------------
+    # Case 7: Contrastive fires — F32 criteria downgraded, F41.1 wins
+    # ------------------------------------------------------------------
+
+    def test_contrastive_shifts_ranking_to_f41_1(self):
+        """When contrastive is enabled and shared criteria favor F41.1,
+        F32's shared criteria get downgraded, shifting ranking toward F41.1.
+
+        Setup:
+        - F32: 6 met including C4(concentration), C6(sleep) — shared with F41.1
+        - F41.1: 5 met (all) including B3, B4 — shared with F32
+        - Contrastive attributes concentration->F41.1, sleep->F41.1 (high conf)
+        - After downgrade: F32 C4->insuff, C6->insuff, losing 2 met -> 4 met
+        - F32 still confirmed (4 met >= 4 total), but lower calibrator score
+        - F41.1 unchanged -> now ranks higher
+        """
+        f32_resp = _f32_checker_response()
+        f41_resp = _f41_1_all_met_response()
+
+        class ContrastiveMockLLM(MockLLMClient):
+            def generate(self, prompt, **kwargs):
+                if "共享症状评估" in prompt or "Shared Symptom Evaluation" in prompt:
+                    return json.dumps({
+                        "attributions": [
+                            {
+                                "symptom_domain": "concentration",
+                                "primary_attribution": "F41.1",
+                                "attribution_confidence": 0.85,
+                                "reasoning": "worry-driven",
+                            },
+                            {
+                                "symptom_domain": "sleep",
+                                "primary_attribution": "F41.1",
+                                "attribution_confidence": 0.82,
+                                "reasoning": "anxiety insomnia",
+                            },
+                            {
+                                "symptom_domain": "psychomotor",
+                                "primary_attribution": "both",
+                                "attribution_confidence": 0.55,
+                                "reasoning": "ambiguous",
+                            },
+                            {
+                                "symptom_domain": "fatigue",
+                                "primary_attribution": "both",
+                                "attribution_confidence": 0.50,
+                                "reasoning": "ambiguous",
+                            },
+                        ]
+                    })
+                return super().generate(prompt, **kwargs)
+
+        llm = ContrastiveMockLLM({"F32": f32_resp, "F41.1": f41_resp})
+        mode = HiEDMode(
+            llm_client=llm,
+            prompts_dir=PROMPTS_DIR,
+            target_disorders=["F32", "F41.1"],
+            contrastive_enabled=True,
+            differential_threshold=0.0,
+        )
+        result = mode.diagnose(_make_case())
+        assert result.decision == "diagnosis"
+        assert result.primary_diagnosis == "F41.1"
+
+    # ------------------------------------------------------------------
+    # Case 8: Contrastive disabled — same inputs, V10 behavior
+    # ------------------------------------------------------------------
+
+    def test_contrastive_disabled_preserves_v10_behavior(self):
+        """With contrastive_enabled=False, same case uses original V10
+        calibrator ranking. F41.1 wins on margin (1.0 vs F32's 0.53)
+        because the gap exceeds differential_threshold so differential
+        does not fire.
+        """
+        f32_resp = _f32_checker_response()
+        f41_resp = _f41_1_all_met_response()
+        llm = MockLLMClient({"F32": f32_resp, "F41.1": f41_resp})
+        mode = HiEDMode(
+            llm_client=llm,
+            prompts_dir=PROMPTS_DIR,
+            target_disorders=["F32", "F41.1"],
+            contrastive_enabled=False,
+        )
+        result = mode.diagnose(_make_case())
+        assert result.decision == "diagnosis"
+        # V10 calibrator: F41.1 margin=1.0 > F32 margin=0.53 -> F41.1 primary
+        assert result.primary_diagnosis == "F41.1"
+        assert "F32" in result.comorbid_diagnoses
+
+    # ------------------------------------------------------------------
+    # Case 9: Contrastive skipped — only one disorder confirmed
+    # ------------------------------------------------------------------
+
+    def test_contrastive_skipped_single_disorder(self):
+        """Contrastive enabled but only F32 passes checker. No shared
+        criteria are both-met -> contrastive not called -> normal F32.
+        """
+        f32_resp = _f32_checker_response()
+        f41_resp = _f41_1_below_threshold_response()
+        llm = MockLLMClient({"F32": f32_resp, "F41.1": f41_resp})
+        mode = HiEDMode(
+            llm_client=llm,
+            prompts_dir=PROMPTS_DIR,
+            target_disorders=["F32", "F41.1"],
+            contrastive_enabled=True,
+        )
+        result = mode.diagnose(_make_case())
+        assert result.decision == "diagnosis"
+        assert result.primary_diagnosis == "F32"
+
+    # ------------------------------------------------------------------
+    # Case 10: Contrastive returns "both" — comorbidity preserved
+    # ------------------------------------------------------------------
+
+    def test_contrastive_both_preserves_comorbidity(self):
+        """When contrastive returns 'both' for all pairs, no criteria are
+        downgraded -> both disorders confirmed with original scores.
+        """
+        f32_resp = _f32_checker_response()
+        f41_resp = _f41_1_all_met_response()
+
+        class BothMockLLM(MockLLMClient):
+            def generate(self, prompt, **kwargs):
+                if "共享症状评估" in prompt or "Shared Symptom Evaluation" in prompt:
+                    return json.dumps({
+                        "attributions": [
+                            {"symptom_domain": d, "primary_attribution": "both",
+                             "attribution_confidence": 0.90, "reasoning": "comorbid"}
+                            for d in ["concentration", "sleep", "psychomotor", "fatigue"]
+                        ]
+                    })
+                return super().generate(prompt, **kwargs)
+
+        llm = BothMockLLM({"F32": f32_resp, "F41.1": f41_resp})
+        mode = HiEDMode(
+            llm_client=llm,
+            prompts_dir=PROMPTS_DIR,
+            target_disorders=["F32", "F41.1"],
+            contrastive_enabled=True,
+        )
+        result = mode.diagnose(_make_case())
+        assert result.decision == "diagnosis"
+        # "both" means no downgrade -> same as V10 -> F41.1 primary (margin advantage)
+        assert result.primary_diagnosis == "F41.1"
+        assert "F32" in result.comorbid_diagnoses

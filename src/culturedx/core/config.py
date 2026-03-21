@@ -31,6 +31,7 @@ class ModeConfig(BaseModel):
     type: str = "single"
     variants: list[str] | None = None
     target_disorders: list[str] | None = None
+    contrastive_enabled: bool = False
 
 
 class DatasetConfig(BaseModel):

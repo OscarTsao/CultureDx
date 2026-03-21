@@ -1,0 +1,46 @@
+你是一位精神科鉴别诊断专家。你的任务是判断共享症状主要归属于哪个障碍。
+
+## 临床对话
+
+{{ transcript_text }}
+
+## 共享症状评估
+
+以下症状在两个障碍中都被标记为"满足"。请根据临床对话判断每个症状主要归属于哪个障碍。
+
+{% for pair in shared_pairs %}
+{% set ev_key_a = pair.disorder_a ~ "_" ~ pair.criterion_a %}
+{% set ev_key_b = pair.disorder_b ~ "_" ~ pair.criterion_b %}
+{% set ev_a = checker_evidence.get(ev_key_a, {}) %}
+{% set ev_b = checker_evidence.get(ev_key_b, {}) %}
+### 症状领域：{{ pair.symptom_domain }}
+
+**{{ pair.disorder_a }} — {{ disorder_names.get(pair.disorder_a, pair.disorder_a) }}**
+标准 {{ pair.criterion_a }}：{{ ev_a.get("evidence", "无证据") }}
+（置信度：{{ ev_a.get("confidence", 0) }}）
+
+**{{ pair.disorder_b }} — {{ disorder_names.get(pair.disorder_b, pair.disorder_b) }}**
+标准 {{ pair.criterion_b }}：{{ ev_b.get("evidence", "无证据") }}
+（置信度：{{ ev_b.get("confidence", 0) }}）
+
+**鉴别要点：** {{ pair.disambiguation_hint_zh }}
+
+{% endfor %}
+
+## 输出要求
+
+对每个症状领域，判断该症状主要归属于哪个障碍代码，或"both"（真正共病）。
+给出你对归属判断的置信度（0.0-1.0）。
+
+请严格按以下JSON格式输出：
+{
+  "attributions": [
+    {
+      "symptom_domain": "concentration",
+      "primary_attribution": "F41.1",
+      "attribution_confidence": 0.82,
+      "reasoning": "患者明确将注意力问题与担忧联系起来"
+    }
+  ]
+}
+仅输出JSON，不要包含其他文字。
