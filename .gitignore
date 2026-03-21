@@ -5,7 +5,6 @@ dist/
 .venv/
 data/raw/
 data/cache/
-outputs/
 *.db
 *.sqlite
 .env

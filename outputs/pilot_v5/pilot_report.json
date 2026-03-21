@@ -1,0 +1,970 @@
+{
+  "hied": {
+    "mode": "hied",
+    "n_cases": 20,
+    "metrics_parent_normalized": {
+      "top1_accuracy": 0.55,
+      "top3_accuracy": 0.85,
+      "macro_f1": 0.35714285714285715
+    },
+    "metrics_exact": {
+      "top1_accuracy": 0.25,
+      "top3_accuracy": 0.5,
+      "macro_f1": 0.22448979591836735
+    },
+    "case_details": [
+      {
+        "case_id": "patient_226",
+        "gold": [
+          "F41"
+        ],
+        "gold_parent": "F41",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F32"
+        ],
+        "confidence": 0.96,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_140",
+        "gold": [
+          "F41"
+        ],
+        "gold_parent": "F41",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F32"
+        ],
+        "confidence": 0.968,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_911",
+        "gold": [
+          "F41"
+        ],
+        "gold_parent": "F41",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F43.1",
+          "F32"
+        ],
+        "confidence": 0.964,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_914",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F43.1",
+          "F32"
+        ],
+        "confidence": 0.964,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_137",
+        "gold": [
+          "F41"
+        ],
+        "gold_parent": "F41",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F32"
+        ],
+        "confidence": 0.964,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_182",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F32",
+          "F43.1"
+        ],
+        "confidence": 0.968,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_980",
+        "gold": [
+          "F41"
+        ],
+        "gold_parent": "F41",
+        "pred_primary": "F32",
+        "pred_parent": "F32",
+        "pred_comorbid": [
+          "F41.1",
+          "F43.1"
+        ],
+        "confidence": 0.96,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_325",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F32"
+        ],
+        "confidence": 0.972,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_255",
+        "gold": [
+          "F39"
+        ],
+        "gold_parent": "F39",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F32"
+        ],
+        "confidence": 0.94,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_1026",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F32",
+        "pred_parent": "F32",
+        "pred_comorbid": [],
+        "confidence": 0.9227272727272727,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_533",
+        "gold": [
+          "F51"
+        ],
+        "gold_parent": "F51",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F32"
+        ],
+        "confidence": 0.964,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_36",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F32",
+        "pred_parent": "F32",
+        "pred_comorbid": [
+          "F41.1"
+        ],
+        "confidence": 1.0,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_250",
+        "gold": [
+          "F41"
+        ],
+        "gold_parent": "F41",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F32"
+        ],
+        "confidence": 0.964,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_209",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F32",
+          "F43.1"
+        ],
+        "confidence": 0.964,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_918",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F32",
+        "pred_parent": "F32",
+        "pred_comorbid": [],
+        "confidence": 0.971111111111111,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_728",
+        "gold": [
+          "F41"
+        ],
+        "gold_parent": "F41",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [],
+        "confidence": 0.964,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_300",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F32",
+        "pred_parent": "F32",
+        "pred_comorbid": [
+          "F41.1"
+        ],
+        "confidence": 0.9644444444444444,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_391",
+        "gold": [
+          "F98"
+        ],
+        "gold_parent": "F98",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F33"
+        ],
+        "confidence": 0.96,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_808",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F32"
+        ],
+        "confidence": 0.96,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_719",
+        "gold": [
+          "F42"
+        ],
+        "gold_parent": "F42",
+        "pred_primary": "F42",
+        "pred_parent": "F42",
+        "pred_comorbid": [],
+        "confidence": 0.98,
+        "decision": "diagnosis",
+        "match_parent": true
+      }
+    ],
+    "total_seconds": 1496.3
+  },
+  "single": {
+    "mode": "single",
+    "n_cases": 20,
+    "metrics_parent_normalized": {
+      "top1_accuracy": 0.5,
+      "top3_accuracy": 0.75,
+      "macro_f1": 0.2583333333333333
+    },
+    "metrics_exact": {
+      "top1_accuracy": 0.05,
+      "top3_accuracy": 0.05,
+      "macro_f1": 0.08333333333333333
+    },
+    "case_details": [
+      {
+        "case_id": "patient_226",
+        "gold": [
+          "F41"
+        ],
+        "gold_parent": "F41",
+        "pred_primary": "F32.9",
+        "pred_parent": "F32",
+        "pred_comorbid": [
+          "F41.1",
+          "F40.0"
+        ],
+        "confidence": 0.92,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_140",
+        "gold": [
+          "F41"
+        ],
+        "gold_parent": "F41",
+        "pred_primary": "F32.3",
+        "pred_parent": "F32",
+        "pred_comorbid": [
+          "F41.1",
+          "F50.9",
+          "N94.1"
+        ],
+        "confidence": 0.92,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_911",
+        "gold": [
+          "F41"
+        ],
+        "gold_parent": "F41",
+        "pred_primary": "F40.1",
+        "pred_parent": "F40",
+        "pred_comorbid": [
+          "F32.0",
+          "F41.1"
+        ],
+        "confidence": 0.92,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_914",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F32.3",
+        "pred_parent": "F32",
+        "pred_comorbid": [
+          "F20.9",
+          "F41.1",
+          "F40.1"
+        ],
+        "confidence": 0.92,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_137",
+        "gold": [
+          "F41"
+        ],
+        "gold_parent": "F41",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F33.0",
+          "F40.1"
+        ],
+        "confidence": 0.92,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_182",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F32.3",
+        "pred_parent": "F32",
+        "pred_comorbid": [
+          "F20.9",
+          "F41.1",
+          "F50.61"
+        ],
+        "confidence": 0.95,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_980",
+        "gold": [
+          "F41"
+        ],
+        "gold_parent": "F41",
+        "pred_primary": "F32.3",
+        "pred_parent": "F32",
+        "pred_comorbid": [
+          "F41.1",
+          "F50.9"
+        ],
+        "confidence": 0.92,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_325",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F32.3",
+        "pred_parent": "F32",
+        "pred_comorbid": [
+          "F41.1"
+        ],
+        "confidence": 0.92,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_255",
+        "gold": [
+          "F39"
+        ],
+        "gold_parent": "F39",
+        "pred_primary": "F33.2",
+        "pred_parent": "F33",
+        "pred_comorbid": [
+          "F40.0",
+          "F41.1",
+          "F50.61"
+        ],
+        "confidence": 0.85,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_1026",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F32.3",
+        "pred_parent": "F32",
+        "pred_comorbid": [
+          "F41.1",
+          "F40.0"
+        ],
+        "confidence": 0.92,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_533",
+        "gold": [
+          "F51"
+        ],
+        "gold_parent": "F51",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F33.0"
+        ],
+        "confidence": 0.92,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_36",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F33.2",
+        "pred_parent": "F33",
+        "pred_comorbid": [
+          "F41.1",
+          "F42.81"
+        ],
+        "confidence": 0.95,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_250",
+        "gold": [
+          "F41"
+        ],
+        "gold_parent": "F41",
+        "pred_primary": "F32.9",
+        "pred_parent": "F32",
+        "pred_comorbid": [
+          "F41.1",
+          "F50.9"
+        ],
+        "confidence": 0.92,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_209",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F32.3",
+        "pred_parent": "F32",
+        "pred_comorbid": [
+          "F40.0",
+          "F50.61",
+          "F60.7"
+        ],
+        "confidence": 0.92,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_918",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F32.3",
+        "pred_parent": "F32",
+        "pred_comorbid": [
+          "F41.1",
+          "F50.61"
+        ],
+        "confidence": 0.92,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_728",
+        "gold": [
+          "F41"
+        ],
+        "gold_parent": "F41",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F41.81",
+          "F41.9"
+        ],
+        "confidence": 0.92,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_300",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F32.3",
+        "pred_parent": "F32",
+        "pred_comorbid": [
+          "F40.1",
+          "F50.61"
+        ],
+        "confidence": 0.92,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_391",
+        "gold": [
+          "F98"
+        ],
+        "gold_parent": "F98",
+        "pred_primary": "F32.3",
+        "pred_parent": "F32",
+        "pred_comorbid": [
+          "F41.1",
+          "F50.61"
+        ],
+        "confidence": 0.92,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_808",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F33.0",
+        "pred_parent": "F33",
+        "pred_comorbid": [
+          "F40.1",
+          "F45.81"
+        ],
+        "confidence": 0.92,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_719",
+        "gold": [
+          "F42"
+        ],
+        "gold_parent": "F42",
+        "pred_primary": "F42",
+        "pred_parent": "F42",
+        "pred_comorbid": [
+          "F41.1",
+          "F41.8"
+        ],
+        "confidence": 0.92,
+        "decision": "diagnosis",
+        "match_parent": true
+      }
+    ],
+    "total_seconds": 197.2
+  },
+  "psycot": {
+    "mode": "psycot",
+    "n_cases": 20,
+    "metrics_parent_normalized": {
+      "top1_accuracy": 0.55,
+      "top3_accuracy": 0.85,
+      "macro_f1": 0.35714285714285715
+    },
+    "metrics_exact": {
+      "top1_accuracy": 0.25,
+      "top3_accuracy": 0.5,
+      "macro_f1": 0.22448979591836735
+    },
+    "case_details": [
+      {
+        "case_id": "patient_226",
+        "gold": [
+          "F41"
+        ],
+        "gold_parent": "F41",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F32"
+        ],
+        "confidence": 0.96,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_140",
+        "gold": [
+          "F41"
+        ],
+        "gold_parent": "F41",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F32"
+        ],
+        "confidence": 0.968,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_911",
+        "gold": [
+          "F41"
+        ],
+        "gold_parent": "F41",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F43.1",
+          "F32"
+        ],
+        "confidence": 0.964,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_914",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F43.1",
+          "F32"
+        ],
+        "confidence": 0.964,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_137",
+        "gold": [
+          "F41"
+        ],
+        "gold_parent": "F41",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F32"
+        ],
+        "confidence": 0.964,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_182",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F32",
+          "F43.1"
+        ],
+        "confidence": 0.968,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_980",
+        "gold": [
+          "F41"
+        ],
+        "gold_parent": "F41",
+        "pred_primary": "F32",
+        "pred_parent": "F32",
+        "pred_comorbid": [
+          "F41.1",
+          "F43.1"
+        ],
+        "confidence": 0.96,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_325",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F32"
+        ],
+        "confidence": 0.972,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_255",
+        "gold": [
+          "F39"
+        ],
+        "gold_parent": "F39",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F32"
+        ],
+        "confidence": 0.94,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_1026",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F32",
+        "pred_parent": "F32",
+        "pred_comorbid": [],
+        "confidence": 0.9227272727272727,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_533",
+        "gold": [
+          "F51"
+        ],
+        "gold_parent": "F51",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F32"
+        ],
+        "confidence": 0.964,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_36",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F32",
+        "pred_parent": "F32",
+        "pred_comorbid": [
+          "F41.1"
+        ],
+        "confidence": 1.0,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_250",
+        "gold": [
+          "F41"
+        ],
+        "gold_parent": "F41",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F32"
+        ],
+        "confidence": 0.964,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_209",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F32",
+          "F43.1"
+        ],
+        "confidence": 0.964,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_918",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F32",
+        "pred_parent": "F32",
+        "pred_comorbid": [],
+        "confidence": 0.971111111111111,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_728",
+        "gold": [
+          "F41"
+        ],
+        "gold_parent": "F41",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [],
+        "confidence": 0.964,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_300",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F32",
+        "pred_parent": "F32",
+        "pred_comorbid": [
+          "F41.1"
+        ],
+        "confidence": 0.9644444444444444,
+        "decision": "diagnosis",
+        "match_parent": true
+      },
+      {
+        "case_id": "patient_391",
+        "gold": [
+          "F98"
+        ],
+        "gold_parent": "F98",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F33"
+        ],
+        "confidence": 0.96,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_808",
+        "gold": [
+          "F32"
+        ],
+        "gold_parent": "F32",
+        "pred_primary": "F41.1",
+        "pred_parent": "F41",
+        "pred_comorbid": [
+          "F32"
+        ],
+        "confidence": 0.96,
+        "decision": "diagnosis",
+        "match_parent": false
+      },
+      {
+        "case_id": "patient_719",
+        "gold": [
+          "F42"
+        ],
+        "gold_parent": "F42",
+        "pred_primary": "F42",
+        "pred_parent": "F42",
+        "pred_comorbid": [],
+        "confidence": 0.98,
+        "decision": "diagnosis",
+        "match_parent": true
+      }
+    ],
+    "total_seconds": 0.0
+  }
+}

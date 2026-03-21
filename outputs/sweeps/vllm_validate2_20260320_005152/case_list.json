@@ -1,0 +1,24 @@
+{
+  "n_cases": 3,
+  "seed": 42,
+  "cases": [
+    {
+      "case_id": "patient_808",
+      "diagnoses": [
+        "F32"
+      ]
+    },
+    {
+      "case_id": "patient_263",
+      "diagnoses": [
+        "F41"
+      ]
+    },
+    {
+      "case_id": "patient_164",
+      "diagnoses": [
+        "F39"
+      ]
+    }
+  ]
+}

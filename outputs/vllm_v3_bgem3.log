@@ -1,0 +1,1267 @@
+2026-03-20 07:12:07,767 ablation INFO Resuming sweep from outputs/sweeps/vllm_v3_fixes_evidence_20260320_034418 (2 conditions done)
+2026-03-20 07:12:07,771 ablation INFO Loading MDD-5k raw dataset...
+2026-03-20 07:12:08,008 ablation INFO Loaded 925 cases total
+2026-03-20 07:12:08,009 ablation INFO Sampled 50 cases: {'F42': 1, 'F41': 17, 'F32': 22, 'F51': 1, 'F98': 1, 'F39': 3, 'F45': 1, 'Z71': 1, 'F50': 1, 'F43': 1, 'F31': 1}
+2026-03-20 07:12:08,053 ablation INFO Skipping 1/3: hied_no_evidence (already completed)
+2026-03-20 07:12:08,053 ablation INFO Condition 2/3: hied_bge-m3_evidence
+2026-03-20 07:12:08,053 ablation INFO ============================================================
+2026-03-20 07:12:08,053 ablation INFO Running condition: hied_bge-m3_evidence
+2026-03-20 07:12:08,053 ablation INFO   mode=hied evidence=True retriever=bge-m3 somatization=True
+2026-03-20 07:12:08,053 ablation INFO ============================================================
+2026-03-20 07:12:09,899 sentence_transformers.SentenceTransformer INFO Load pretrained SentenceTransformer: BAAI/bge-m3
+2026-03-20 07:12:10,153 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-20 07:12:10,164 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/modules.json "HTTP/1.1 200 OK"
+2026-03-20 07:12:10,364 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-20 07:12:10,375 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-20 07:12:10,579 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-20 07:12:10,590 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-20 07:12:10,799 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-20 07:12:10,810 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/README.md "HTTP/1.1 200 OK"
+2026-03-20 07:12:11,014 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-20 07:12:11,027 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/modules.json "HTTP/1.1 200 OK"
+2026-03-20 07:12:11,232 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-20 07:12:11,242 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-20 07:12:11,449 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-20 07:12:11,656 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-20 07:12:11,667 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config.json "HTTP/1.1 200 OK"
+2026-03-20 07:12:11,887 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 118804.18it/s]
+2026-03-20 07:12:12,088 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-20 07:12:12,168 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-20 07:12:12,178 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config.json "HTTP/1.1 200 OK"
+2026-03-20 07:12:12,318 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/commits/main "HTTP/1.1 200 OK"
+2026-03-20 07:12:12,391 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-20 07:12:12,402 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-20 07:12:12,556 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/discussions?p=0 "HTTP/1.1 200 OK"
+2026-03-20 07:12:12,616 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-20 07:12:12,791 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/commits/refs%2Fpr%2F130 "HTTP/1.1 200 OK"
+2026-03-20 07:12:12,838 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-20 07:12:13,021 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/refs%2Fpr%2F130/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-03-20 07:12:13,738 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/refs%2Fpr%2F130/model.safetensors "HTTP/1.1 302 Found"
+2026-03-20 07:12:14,307 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-20 07:12:14,512 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-20 07:12:14,522 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-20 07:12:14,723 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-20 07:12:14,728 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_759
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.01s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.21s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.33s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:06<00:20,  6.70s/it]Batches:  50%|█████     | 2/4 [00:10<00:10,  5.13s/it]Batches:  75%|███████▌  | 3/4 [00:14<00:04,  4.34s/it]Batches: 100%|██████████| 4/4 [00:17<00:00,  3.97s/it]Batches: 100%|██████████| 4/4 [00:17<00:00,  4.39s/it]
+2026-03-20 07:12:36,942 ablation INFO [hied_bge-m3_evidence] 1/50 evidence extracted for patient_759 (15 spans)
+2026-03-20 07:12:36,942 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:12:36,942 culturedx.modes.hied INFO Case patient_759: 5 candidate disorders from triage
+2026-03-20 07:13:15,128 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:13:33,402 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:13:50,395 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:14:02,321 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:14:03,251 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:14:03,253 ablation INFO [hied_bge-m3_evidence] 1/50 case=patient_759 pred=F42 gold=['F42'] conf=0.629 (108.5s)
+2026-03-20 07:14:03,254 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_335
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.06s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.20s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.33s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:06<00:27,  6.88s/it]Batches:  40%|████      | 2/5 [00:11<00:16,  5.50s/it]Batches:  60%|██████    | 3/5 [00:15<00:09,  4.86s/it]Batches:  80%|████████  | 4/5 [00:18<00:04,  4.25s/it]Batches: 100%|██████████| 5/5 [00:19<00:00,  3.10s/it]Batches: 100%|██████████| 5/5 [00:19<00:00,  3.98s/it]
+2026-03-20 07:14:27,806 ablation INFO [hied_bge-m3_evidence] 2/50 evidence extracted for patient_335 (15 spans)
+2026-03-20 07:14:27,806 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:14:27,806 culturedx.modes.hied INFO Case patient_335: 5 candidate disorders from triage
+2026-03-20 07:14:55,602 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:15:20,962 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:15:43,076 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:15:56,639 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:15:57,792 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:15:57,794 ablation INFO [hied_bge-m3_evidence] 2/50 case=patient_335 pred=F41.1 gold=['F41'] conf=0.575 (114.5s)
+2026-03-20 07:15:57,794 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_742
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.94s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.15s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.27s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:06<00:20,  6.82s/it]Batches:  50%|█████     | 2/4 [00:11<00:10,  5.35s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.74s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.21s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.64s/it]
+2026-03-20 07:16:20,906 ablation INFO [hied_bge-m3_evidence] 3/50 evidence extracted for patient_742 (15 spans)
+2026-03-20 07:16:20,906 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:16:20,906 culturedx.modes.hied INFO Case patient_742: 5 candidate disorders from triage
+2026-03-20 07:16:48,792 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:17:03,568 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:17:21,837 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:17:34,389 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:17:39,058 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:17:39,081 ablation INFO [hied_bge-m3_evidence] 3/50 case=patient_742 pred=F42 gold=['F32'] conf=0.578 (101.3s)
+2026-03-20 07:17:39,082 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_174
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.21s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.35s/it]
+Batches:   0%|          | 0/3 [00:00<?, ?it/s]Batches:  33%|███▎      | 1/3 [00:07<00:14,  7.21s/it]Batches:  67%|██████▋   | 2/3 [00:11<00:05,  5.39s/it]Batches: 100%|██████████| 3/3 [00:14<00:00,  4.40s/it]Batches: 100%|██████████| 3/3 [00:14<00:00,  4.85s/it]
+2026-03-20 07:17:58,349 ablation INFO [hied_bge-m3_evidence] 4/50 evidence extracted for patient_174 (15 spans)
+2026-03-20 07:17:58,350 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:17:58,350 culturedx.modes.hied INFO Case patient_174: 5 candidate disorders from triage
+2026-03-20 07:18:35,393 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:18:48,027 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:19:01,202 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:19:11,874 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:19:15,220 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:19:15,221 ablation INFO [hied_bge-m3_evidence] 4/50 case=patient_174 pred=F32 gold=['F32'] conf=0.648 (96.1s)
+2026-03-20 07:19:15,221 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_313
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.96s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.18s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.29s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:07<00:30,  7.57s/it]Batches:  40%|████      | 2/5 [00:11<00:17,  5.70s/it]Batches:  60%|██████    | 3/5 [00:15<00:09,  4.78s/it]Batches:  80%|████████  | 4/5 [00:19<00:04,  4.22s/it]Batches: 100%|██████████| 5/5 [00:20<00:00,  3.24s/it]Batches: 100%|██████████| 5/5 [00:20<00:00,  4.10s/it]
+2026-03-20 07:19:40,321 ablation INFO [hied_bge-m3_evidence] 5/50 evidence extracted for patient_313 (15 spans)
+2026-03-20 07:19:40,321 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:19:40,321 culturedx.modes.hied INFO Case patient_313: 5 candidate disorders from triage
+2026-03-20 07:20:17,635 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:20:37,283 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:20:54,606 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:21:01,688 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:21:09,165 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:21:09,167 ablation INFO [hied_bge-m3_evidence] 5/50 case=patient_313 pred=F32 gold=['F32'] conf=0.626 (113.9s)
+2026-03-20 07:21:09,168 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_524
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.13s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.06s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.22s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:06<00:20,  6.87s/it]Batches:  50%|█████     | 2/4 [00:10<00:10,  5.20s/it]Batches:  75%|███████▌  | 3/4 [00:14<00:04,  4.43s/it]Batches: 100%|██████████| 4/4 [00:17<00:00,  3.92s/it]Batches: 100%|██████████| 4/4 [00:17<00:00,  4.39s/it]
+2026-03-20 07:21:31,174 ablation INFO [hied_bge-m3_evidence] 6/50 evidence extracted for patient_524 (15 spans)
+2026-03-20 07:21:31,174 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:21:31,174 culturedx.modes.hied INFO Case patient_524: 5 candidate disorders from triage
+2026-03-20 07:22:05,735 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:22:24,195 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:22:38,617 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:22:50,156 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:22:52,272 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:22:52,274 ablation INFO [hied_bge-m3_evidence] 6/50 case=patient_524 pred=F32 gold=['F41'] conf=0.545 (103.1s)
+2026-03-20 07:22:52,274 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_182
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.21s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.34s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:06<00:26,  6.66s/it]Batches:  40%|████      | 2/5 [00:11<00:15,  5.33s/it]Batches:  60%|██████    | 3/5 [00:15<00:09,  4.84s/it]Batches:  80%|████████  | 4/5 [00:18<00:04,  4.31s/it]Batches: 100%|██████████| 5/5 [00:21<00:00,  3.71s/it]Batches: 100%|██████████| 5/5 [00:21<00:00,  4.29s/it]
+2026-03-20 07:23:18,432 ablation INFO [hied_bge-m3_evidence] 7/50 evidence extracted for patient_182 (15 spans)
+2026-03-20 07:23:18,432 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:23:18,432 culturedx.modes.hied INFO Case patient_182: 5 candidate disorders from triage
+2026-03-20 07:23:53,396 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:24:08,651 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:24:27,858 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:24:36,187 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:24:41,934 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:24:41,936 ablation INFO [hied_bge-m3_evidence] 7/50 case=patient_182 pred=F32 gold=['F32'] conf=0.714 (109.7s)
+2026-03-20 07:24:41,936 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_808
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.22s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.35s/it]
+Batches:   0%|          | 0/3 [00:00<?, ?it/s]Batches:  33%|███▎      | 1/3 [00:07<00:14,  7.10s/it]Batches:  67%|██████▋   | 2/3 [00:11<00:05,  5.25s/it]Batches: 100%|██████████| 3/3 [00:14<00:00,  4.56s/it]Batches: 100%|██████████| 3/3 [00:14<00:00,  4.93s/it]
+2026-03-20 07:25:01,467 ablation INFO [hied_bge-m3_evidence] 8/50 evidence extracted for patient_808 (15 spans)
+2026-03-20 07:25:01,467 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:25:01,467 culturedx.modes.hied INFO Case patient_808: 5 candidate disorders from triage
+2026-03-20 07:25:36,455 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:25:58,669 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:26:10,675 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:26:20,482 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:26:24,625 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:26:24,627 ablation INFO [hied_bge-m3_evidence] 8/50 case=patient_808 pred=F32 gold=['F32'] conf=0.667 (102.7s)
+2026-03-20 07:26:24,627 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_103
+2026-03-20 07:26:24,628 culturedx.evidence.somatization WARNING LLM fallback failed for symptom: 心跳加快这种情况有发生，尤其是在工作上感到紧张或争吵后会比较明显。感觉胸口发闷，有时候伴随着出汗和呼吸急促。
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.93s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.06s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.19s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:08<00:24,  8.08s/it]Batches:  50%|█████     | 2/4 [00:12<00:11,  5.85s/it]Batches:  75%|███████▌  | 3/4 [00:16<00:04,  4.91s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.25s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.85s/it]
+2026-03-20 07:26:48,408 ablation INFO [hied_bge-m3_evidence] 9/50 evidence extracted for patient_103 (15 spans)
+2026-03-20 07:26:48,408 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:26:48,408 culturedx.modes.hied INFO Case patient_103: 5 candidate disorders from triage
+2026-03-20 07:27:30,979 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:27:47,024 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:28:00,317 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:28:15,472 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:28:26,173 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:28:26,175 ablation INFO [hied_bge-m3_evidence] 9/50 case=patient_103 pred=F32 gold=['F32'] conf=0.608 (121.5s)
+2026-03-20 07:28:26,176 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_918
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.08s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.13s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.27s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:06<00:19,  6.40s/it]Batches:  50%|█████     | 2/4 [00:10<00:10,  5.31s/it]Batches:  75%|███████▌  | 3/4 [00:14<00:04,  4.48s/it]Batches: 100%|██████████| 4/4 [00:17<00:00,  3.77s/it]Batches: 100%|██████████| 4/4 [00:17<00:00,  4.28s/it]
+2026-03-20 07:28:47,845 ablation INFO [hied_bge-m3_evidence] 10/50 evidence extracted for patient_918 (15 spans)
+2026-03-20 07:28:47,846 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:28:47,846 culturedx.modes.hied INFO Case patient_918: 5 candidate disorders from triage
+2026-03-20 07:29:10,994 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:29:32,568 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:29:50,113 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:30:02,129 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:30:06,895 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:30:06,896 ablation INFO [hied_bge-m3_evidence] 10/50 case=patient_918 pred=F32 gold=['F32'] conf=0.606 (100.7s)
+2026-03-20 07:30:06,897 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_134
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.00s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.18s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.30s/it]
+Batches:   0%|          | 0/3 [00:00<?, ?it/s]Batches:  33%|███▎      | 1/3 [00:07<00:14,  7.08s/it]Batches:  67%|██████▋   | 2/3 [00:10<00:05,  5.04s/it]Batches: 100%|██████████| 3/3 [00:13<00:00,  4.14s/it]Batches: 100%|██████████| 3/3 [00:13<00:00,  4.58s/it]
+2026-03-20 07:30:25,269 ablation INFO [hied_bge-m3_evidence] 11/50 evidence extracted for patient_134 (15 spans)
+2026-03-20 07:30:25,269 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:30:25,269 culturedx.modes.hied INFO Case patient_134: 5 candidate disorders from triage
+2026-03-20 07:30:52,387 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:31:11,122 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:31:28,239 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:31:38,467 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:31:39,346 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:31:39,349 ablation INFO [hied_bge-m3_evidence] 11/50 case=patient_134 pred=F41.1 gold=['F41'] conf=0.603 (92.5s)
+2026-03-20 07:31:39,349 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_859
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.82s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.09s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.20s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:07<00:31,  7.81s/it]Batches:  40%|████      | 2/5 [00:12<00:17,  5.94s/it]Batches:  60%|██████    | 3/5 [00:16<00:10,  5.24s/it]Batches:  80%|████████  | 4/5 [00:20<00:04,  4.54s/it]Batches: 100%|██████████| 5/5 [00:22<00:00,  3.86s/it]Batches: 100%|██████████| 5/5 [00:22<00:00,  4.60s/it]
+2026-03-20 07:32:06,750 ablation INFO [hied_bge-m3_evidence] 12/50 evidence extracted for patient_859 (15 spans)
+2026-03-20 07:32:06,751 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:32:06,751 culturedx.modes.hied INFO Case patient_859: 5 candidate disorders from triage
+2026-03-20 07:32:37,641 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:32:48,446 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:33:09,573 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:33:24,967 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:33:34,320 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:33:34,334 culturedx.modes.hied INFO Case patient_859: confidence gap 0.0009 < 0.02, running differential
+2026-03-20 07:33:43,215 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:33:43,216 ablation INFO [hied_bge-m3_evidence] 12/50 case=patient_859 pred=F32 gold=['F32'] conf=0.820 (123.9s)
+2026-03-20 07:33:43,216 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_619
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.09s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.21s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.34s/it]
+Batches:   0%|          | 0/3 [00:00<?, ?it/s]Batches:  33%|███▎      | 1/3 [00:06<00:13,  6.57s/it]Batches:  67%|██████▋   | 2/3 [00:09<00:04,  4.67s/it]Batches: 100%|██████████| 3/3 [00:12<00:00,  3.87s/it]Batches: 100%|██████████| 3/3 [00:12<00:00,  4.28s/it]
+2026-03-20 07:34:00,743 ablation INFO [hied_bge-m3_evidence] 13/50 evidence extracted for patient_619 (15 spans)
+2026-03-20 07:34:00,744 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:34:00,744 culturedx.modes.hied INFO Case patient_619: 5 candidate disorders from triage
+2026-03-20 07:34:35,519 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:34:43,644 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:34:56,259 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:35:08,293 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:35:09,825 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:35:09,827 culturedx.modes.hied INFO Case patient_619: confidence gap 0.0050 < 0.02, running differential
+2026-03-20 07:35:18,388 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:35:18,388 ablation INFO [hied_bge-m3_evidence] 13/50 case=patient_619 pred=F32 gold=['F51'] conf=0.820 (95.2s)
+2026-03-20 07:35:18,388 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_563
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.09s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.20s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.33s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:08<00:33,  8.27s/it]Batches:  40%|████      | 2/5 [00:12<00:17,  5.89s/it]Batches:  60%|██████    | 3/5 [00:16<00:09,  4.93s/it]Batches:  80%|████████  | 4/5 [00:19<00:04,  4.30s/it]Batches: 100%|██████████| 5/5 [00:22<00:00,  3.69s/it]Batches: 100%|██████████| 5/5 [00:22<00:00,  4.44s/it]
+2026-03-20 07:35:45,292 ablation INFO [hied_bge-m3_evidence] 14/50 evidence extracted for patient_563 (15 spans)
+2026-03-20 07:35:45,293 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:35:45,293 culturedx.modes.hied INFO Case patient_563: 5 candidate disorders from triage
+2026-03-20 07:36:11,404 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:36:36,178 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:36:52,068 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:37:06,702 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:37:10,764 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:37:10,766 ablation INFO [hied_bge-m3_evidence] 14/50 case=patient_563 pred=F32 gold=['F98'] conf=0.718 (112.4s)
+2026-03-20 07:37:10,767 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_1029
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.93s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.22s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:07<00:31,  7.77s/it]Batches:  40%|████      | 2/5 [00:12<00:17,  5.81s/it]Batches:  60%|██████    | 3/5 [00:16<00:10,  5.18s/it]Batches:  80%|████████  | 4/5 [00:20<00:04,  4.51s/it]Batches: 100%|██████████| 5/5 [00:22<00:00,  3.81s/it]Batches: 100%|██████████| 5/5 [00:22<00:00,  4.54s/it]
+2026-03-20 07:37:37,931 ablation INFO [hied_bge-m3_evidence] 15/50 evidence extracted for patient_1029 (15 spans)
+2026-03-20 07:37:37,931 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:37:37,931 culturedx.modes.hied INFO Case patient_1029: 5 candidate disorders from triage
+2026-03-20 07:38:14,087 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:38:34,795 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:38:50,811 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:39:02,069 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:39:04,873 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:39:04,875 ablation INFO [hied_bge-m3_evidence] 15/50 case=patient_1029 pred=F32 gold=['F32'] conf=0.645 (114.1s)
+2026-03-20 07:39:04,875 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_271
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.14s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.22s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.36s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:22,  7.54s/it]Batches:  50%|█████     | 2/4 [00:11<00:11,  5.68s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.95s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.38s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.88s/it]
+2026-03-20 07:39:29,129 ablation INFO [hied_bge-m3_evidence] 16/50 evidence extracted for patient_271 (15 spans)
+2026-03-20 07:39:29,129 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:39:29,129 culturedx.modes.hied INFO Case patient_271: 5 candidate disorders from triage
+2026-03-20 07:39:55,392 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:40:10,704 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:40:33,810 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:40:47,095 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:40:58,107 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:40:58,110 ablation INFO [hied_bge-m3_evidence] 16/50 case=patient_271 pred=F32 gold=['F39'] conf=0.667 (113.2s)
+2026-03-20 07:40:58,110 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_731
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  1.96s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.13s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:23,  7.76s/it]Batches:  50%|█████     | 2/4 [00:12<00:11,  5.73s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.71s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.07s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.66s/it]
+2026-03-20 07:41:21,041 ablation INFO [hied_bge-m3_evidence] 17/50 evidence extracted for patient_731 (15 spans)
+2026-03-20 07:41:21,041 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:41:21,041 culturedx.modes.hied INFO Case patient_731: 5 candidate disorders from triage
+2026-03-20 07:41:43,440 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:42:00,811 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:42:20,745 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:42:36,221 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:42:36,572 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:42:36,574 ablation INFO [hied_bge-m3_evidence] 17/50 case=patient_731 pred=F41.1 gold=['F45'] conf=0.498 (98.5s)
+2026-03-20 07:42:36,574 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_1013
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.13s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.06s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.22s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:08<00:26,  8.88s/it]Batches:  50%|█████     | 2/4 [00:13<00:12,  6.36s/it]Batches:  75%|███████▌  | 3/4 [00:17<00:05,  5.11s/it]Batches: 100%|██████████| 4/4 [00:20<00:00,  4.38s/it]Batches: 100%|██████████| 4/4 [00:20<00:00,  5.09s/it]
+2026-03-20 07:43:01,402 ablation INFO [hied_bge-m3_evidence] 18/50 evidence extracted for patient_1013 (15 spans)
+2026-03-20 07:43:01,402 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:43:01,402 culturedx.modes.hied INFO Case patient_1013: 5 candidate disorders from triage
+2026-03-20 07:43:45,311 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:44:06,329 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:44:22,290 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:44:31,426 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:44:37,845 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:44:37,847 ablation INFO [hied_bge-m3_evidence] 18/50 case=patient_1013 pred=F32 gold=['F41'] conf=0.625 (121.3s)
+2026-03-20 07:44:37,848 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_760
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.89s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.15s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.26s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:08<00:24,  8.22s/it]Batches:  50%|█████     | 2/4 [00:12<00:11,  5.88s/it]Batches:  75%|███████▌  | 3/4 [00:16<00:04,  4.82s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.10s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.75s/it]
+2026-03-20 07:45:01,390 ablation INFO [hied_bge-m3_evidence] 19/50 evidence extracted for patient_760 (15 spans)
+2026-03-20 07:45:01,390 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:45:01,390 culturedx.modes.hied INFO Case patient_760: 5 candidate disorders from triage
+2026-03-20 07:45:35,570 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:45:54,432 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:46:09,768 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:46:23,918 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:46:24,923 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:46:24,926 ablation INFO [hied_bge-m3_evidence] 19/50 case=patient_760 pred=F32 gold=['F41'] conf=0.683 (107.1s)
+2026-03-20 07:46:24,926 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_250
+2026-03-20 07:46:24,926 culturedx.evidence.somatization WARNING LLM fallback failed for symptom: 心跳特别快，尤其是在感觉到紧张或是突然想到工作上的压力时。
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.24s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.37s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:06<00:20,  6.92s/it]Batches:  50%|█████     | 2/4 [00:11<00:10,  5.37s/it]Batches:  75%|███████▌  | 3/4 [00:14<00:04,  4.58s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.08s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.54s/it]
+2026-03-20 07:46:47,848 ablation INFO [hied_bge-m3_evidence] 20/50 evidence extracted for patient_250 (15 spans)
+2026-03-20 07:46:47,848 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:46:47,848 culturedx.modes.hied INFO Case patient_250: 5 candidate disorders from triage
+2026-03-20 07:47:14,231 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:47:28,899 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:47:40,125 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:47:54,912 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:48:01,846 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:48:01,848 ablation INFO [hied_bge-m3_evidence] 20/50 case=patient_250 pred=F32 gold=['F41'] conf=0.684 (96.9s)
+2026-03-20 07:48:01,848 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_973
+2026-03-20 07:48:01,849 culturedx.evidence.somatization WARNING LLM fallback failed for symptom: 入睡困难，尤其是在楼上装修之后
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.09s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.23s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.36s/it]
+Batches:   0%|          | 0/3 [00:00<?, ?it/s]Batches:  33%|███▎      | 1/3 [00:08<00:16,  8.16s/it]Batches:  67%|██████▋   | 2/3 [00:12<00:05,  5.86s/it]Batches: 100%|██████████| 3/3 [00:15<00:00,  4.70s/it]Batches: 100%|██████████| 3/3 [00:15<00:00,  5.25s/it]
+2026-03-20 07:48:22,318 ablation INFO [hied_bge-m3_evidence] 21/50 evidence extracted for patient_973 (15 spans)
+2026-03-20 07:48:22,319 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:48:22,319 culturedx.modes.hied INFO Case patient_973: 5 candidate disorders from triage
+2026-03-20 07:48:50,224 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:49:06,458 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:49:18,986 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:49:35,418 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:49:44,623 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:49:44,625 ablation INFO [hied_bge-m3_evidence] 21/50 case=patient_973 pred=F32 gold=['F41'] conf=0.631 (102.8s)
+2026-03-20 07:49:44,625 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_914
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.91s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  1.97s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.11s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:08<00:33,  8.49s/it]Batches:  40%|████      | 2/5 [00:13<00:18,  6.26s/it]Batches:  60%|██████    | 3/5 [00:17<00:10,  5.28s/it]Batches:  80%|████████  | 4/5 [00:20<00:04,  4.57s/it]Batches: 100%|██████████| 5/5 [00:23<00:00,  3.81s/it]Batches: 100%|██████████| 5/5 [00:23<00:00,  4.65s/it]
+2026-03-20 07:50:12,110 ablation INFO [hied_bge-m3_evidence] 22/50 evidence extracted for patient_914 (15 spans)
+2026-03-20 07:50:12,110 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:50:12,110 culturedx.modes.hied INFO Case patient_914: 5 candidate disorders from triage
+2026-03-20 07:50:46,628 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:51:05,827 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:51:20,107 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:51:35,022 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:51:35,022 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:51:35,025 culturedx.modes.hied INFO Case patient_914: confidence gap 0.0153 < 0.02, running differential
+2026-03-20 07:51:44,449 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:51:44,449 ablation INFO [hied_bge-m3_evidence] 22/50 case=patient_914 pred=F32 gold=['F32'] conf=0.820 (119.8s)
+2026-03-20 07:51:44,449 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_762
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.87s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.12s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.23s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:23,  7.95s/it]Batches:  50%|█████     | 2/4 [00:12<00:11,  5.95s/it]Batches:  75%|███████▌  | 3/4 [00:16<00:05,  5.01s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.29s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.89s/it]
+2026-03-20 07:52:08,505 ablation INFO [hied_bge-m3_evidence] 23/50 evidence extracted for patient_762 (15 spans)
+2026-03-20 07:52:08,505 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:52:08,505 culturedx.modes.hied INFO Case patient_762: 5 candidate disorders from triage
+2026-03-20 07:52:32,415 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:52:49,386 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:53:08,929 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:53:22,829 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:53:24,654 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:53:24,655 ablation INFO [hied_bge-m3_evidence] 23/50 case=patient_762 pred=F32 gold=['F32'] conf=0.636 (100.2s)
+2026-03-20 07:53:24,656 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_728
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.08s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.21s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.34s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:08<00:24,  8.19s/it]Batches:  50%|█████     | 2/4 [00:11<00:10,  5.40s/it]Batches:  75%|███████▌  | 3/4 [00:14<00:04,  4.41s/it]Batches: 100%|██████████| 4/4 [00:17<00:00,  3.68s/it]Batches: 100%|██████████| 4/4 [00:17<00:00,  4.36s/it]
+2026-03-20 07:53:46,769 ablation INFO [hied_bge-m3_evidence] 24/50 evidence extracted for patient_728 (15 spans)
+2026-03-20 07:53:46,770 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:53:46,770 culturedx.modes.hied INFO Case patient_728: 5 candidate disorders from triage
+2026-03-20 07:54:20,389 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:54:20,390 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:54:41,305 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:54:51,812 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:54:52,813 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:54:52,815 ablation INFO [hied_bge-m3_evidence] 24/50 case=patient_728 pred=F41.1 gold=['F41'] conf=0.603 (88.2s)
+2026-03-20 07:54:52,815 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_911
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.09s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.25s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.38s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:23,  7.70s/it]Batches:  50%|█████     | 2/4 [00:11<00:11,  5.57s/it]Batches:  75%|███████▌  | 3/4 [00:16<00:04,  4.98s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.24s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.79s/it]
+2026-03-20 07:55:16,741 ablation INFO [hied_bge-m3_evidence] 25/50 evidence extracted for patient_911 (15 spans)
+2026-03-20 07:55:16,742 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:55:16,742 culturedx.modes.hied INFO Case patient_911: 5 candidate disorders from triage
+2026-03-20 07:55:43,079 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:56:03,777 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:56:16,328 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:56:31,897 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:56:40,847 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:56:40,851 culturedx.modes.hied INFO Case patient_911: confidence gap 0.0093 < 0.02, running differential
+2026-03-20 07:56:50,031 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:56:50,031 ablation INFO [hied_bge-m3_evidence] 25/50 case=patient_911 pred=F41.1 gold=['F41'] conf=0.820 (117.2s)
+2026-03-20 07:56:50,032 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_426
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.89s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.13s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.24s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:23,  7.70s/it]Batches:  50%|█████     | 2/4 [00:11<00:11,  5.64s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.71s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.11s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.67s/it]
+2026-03-20 07:57:13,217 ablation INFO [hied_bge-m3_evidence] 26/50 evidence extracted for patient_426 (15 spans)
+2026-03-20 07:57:13,218 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:57:13,218 culturedx.modes.hied INFO Case patient_426: 5 candidate disorders from triage
+2026-03-20 07:57:34,391 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:57:46,241 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:58:11,058 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:58:25,431 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:58:37,562 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:58:37,566 ablation INFO [hied_bge-m3_evidence] 26/50 case=patient_426 pred=F41.1 gold=['F41'] conf=0.584 (107.5s)
+2026-03-20 07:58:37,566 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_1009
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.97s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.17s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.29s/it]
+Batches:   0%|          | 0/3 [00:00<?, ?it/s]Batches:  33%|███▎      | 1/3 [00:07<00:15,  7.74s/it]Batches:  67%|██████▋   | 2/3 [00:11<00:05,  5.57s/it]Batches: 100%|██████████| 3/3 [00:14<00:00,  4.37s/it]Batches: 100%|██████████| 3/3 [00:14<00:00,  4.91s/it]
+2026-03-20 07:58:56,892 ablation INFO [hied_bge-m3_evidence] 27/50 evidence extracted for patient_1009 (15 spans)
+2026-03-20 07:58:56,892 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 07:58:56,892 culturedx.modes.hied INFO Case patient_1009: 5 candidate disorders from triage
+2026-03-20 07:59:16,711 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:59:26,026 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:59:50,301 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 07:59:58,743 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:00:03,936 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:00:03,938 ablation INFO [hied_bge-m3_evidence] 27/50 case=patient_1009 pred=F42 gold=['Z71'] conf=0.547 (86.4s)
+2026-03-20 08:00:03,938 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_701
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.05s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.25s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:08<00:26,  8.93s/it]Batches:  50%|█████     | 2/4 [00:13<00:12,  6.36s/it]Batches:  75%|███████▌  | 3/4 [00:17<00:05,  5.23s/it]Batches: 100%|██████████| 4/4 [00:20<00:00,  4.51s/it]Batches: 100%|██████████| 4/4 [00:20<00:00,  5.19s/it]
+2026-03-20 08:00:29,216 ablation INFO [hied_bge-m3_evidence] 28/50 evidence extracted for patient_701 (15 spans)
+2026-03-20 08:00:29,217 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:00:29,217 culturedx.modes.hied INFO Case patient_701: 5 candidate disorders from triage
+2026-03-20 08:01:05,202 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:01:36,603 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:01:51,965 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:02:02,416 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:02:05,821 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:02:05,823 ablation INFO [hied_bge-m3_evidence] 28/50 case=patient_701 pred=F32 gold=['F32'] conf=0.664 (121.9s)
+2026-03-20 08:02:05,824 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_714
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.86s/it]Batches: 100%|██████████| 2/2 [00:03<00:00,  1.80s/it]Batches: 100%|██████████| 2/2 [00:03<00:00,  1.96s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:23,  7.80s/it]Batches:  50%|█████     | 2/4 [00:12<00:11,  5.72s/it]Batches:  75%|███████▌  | 3/4 [00:16<00:05,  5.04s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.34s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.89s/it]
+2026-03-20 08:02:29,308 ablation INFO [hied_bge-m3_evidence] 29/50 evidence extracted for patient_714 (15 spans)
+2026-03-20 08:02:29,308 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:02:29,308 culturedx.modes.hied INFO Case patient_714: 5 candidate disorders from triage
+2026-03-20 08:03:07,181 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:03:19,671 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:03:34,102 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:03:49,559 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:03:58,038 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:03:58,041 culturedx.modes.hied INFO Case patient_714: confidence gap 0.0121 < 0.02, running differential
+2026-03-20 08:04:06,839 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:04:06,840 ablation INFO [hied_bge-m3_evidence] 29/50 case=patient_714 pred=F32 gold=['F41'] conf=0.820 (121.0s)
+2026-03-20 08:04:06,840 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_655
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.05s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.19s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.32s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:07<00:29,  7.47s/it]Batches:  40%|████      | 2/5 [00:11<00:16,  5.53s/it]Batches:  60%|██████    | 3/5 [00:15<00:09,  4.70s/it]Batches:  80%|████████  | 4/5 [00:18<00:04,  4.19s/it]Batches: 100%|██████████| 5/5 [00:20<00:00,  3.25s/it]Batches: 100%|██████████| 5/5 [00:20<00:00,  4.07s/it]
+2026-03-20 08:04:31,837 ablation INFO [hied_bge-m3_evidence] 30/50 evidence extracted for patient_655 (15 spans)
+2026-03-20 08:04:31,838 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:04:31,838 culturedx.modes.hied INFO Case patient_655: 5 candidate disorders from triage
+2026-03-20 08:04:59,669 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:05:15,069 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:05:34,052 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:05:49,108 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:06:00,023 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:06:00,025 ablation INFO [hied_bge-m3_evidence] 30/50 case=patient_655 pred=F42 gold=['F32'] conf=0.581 (113.2s)
+2026-03-20 08:06:00,025 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_62
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.70s/it]Batches: 100%|██████████| 2/2 [00:03<00:00,  1.82s/it]Batches: 100%|██████████| 2/2 [00:03<00:00,  1.95s/it]
+Batches:   0%|          | 0/3 [00:00<?, ?it/s]Batches:  33%|███▎      | 1/3 [00:08<00:16,  8.42s/it]Batches:  67%|██████▋   | 2/3 [00:12<00:05,  5.93s/it]Batches: 100%|██████████| 3/3 [00:15<00:00,  4.73s/it]Batches: 100%|██████████| 3/3 [00:15<00:00,  5.30s/it]
+2026-03-20 08:06:19,847 ablation INFO [hied_bge-m3_evidence] 31/50 evidence extracted for patient_62 (15 spans)
+2026-03-20 08:06:19,847 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:06:19,847 culturedx.modes.hied INFO Case patient_62: 5 candidate disorders from triage
+2026-03-20 08:07:01,659 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:07:25,184 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:07:38,625 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:07:45,922 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:07:51,749 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:07:51,751 ablation INFO [hied_bge-m3_evidence] 31/50 case=patient_62 pred=F32 gold=['F41'] conf=0.597 (111.7s)
+2026-03-20 08:07:51,751 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_161
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.91s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  1.99s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.13s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:23,  7.95s/it]Batches:  50%|█████     | 2/4 [00:14<00:14,  7.15s/it]Batches:  75%|███████▌  | 3/4 [00:18<00:05,  5.81s/it]Batches: 100%|██████████| 4/4 [00:22<00:00,  4.82s/it]Batches: 100%|██████████| 4/4 [00:22<00:00,  5.52s/it]
+2026-03-20 08:08:18,084 ablation INFO [hied_bge-m3_evidence] 32/50 evidence extracted for patient_161 (15 spans)
+2026-03-20 08:08:18,084 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:08:18,084 culturedx.modes.hied INFO Case patient_161: 5 candidate disorders from triage
+2026-03-20 08:08:52,020 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:09:07,107 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:09:19,273 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:09:48,816 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:09:51,723 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:09:51,726 culturedx.diagnosis.comorbidity INFO Exclusion: F33 excludes F32
+2026-03-20 08:09:51,726 ablation INFO [hied_bge-m3_evidence] 32/50 case=patient_161 pred=F41.1 gold=['F32', 'F34'] conf=0.560 (120.0s)
+2026-03-20 08:09:51,726 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_827
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.12s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.01s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.18s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:07<00:31,  7.81s/it]Batches:  40%|████      | 2/5 [00:12<00:17,  5.84s/it]Batches:  60%|██████    | 3/5 [00:16<00:10,  5.03s/it]Batches:  80%|████████  | 4/5 [00:19<00:04,  4.39s/it]Batches: 100%|██████████| 5/5 [00:21<00:00,  3.58s/it]Batches: 100%|██████████| 5/5 [00:21<00:00,  4.38s/it]
+2026-03-20 08:10:17,986 ablation INFO [hied_bge-m3_evidence] 33/50 evidence extracted for patient_827 (15 spans)
+2026-03-20 08:10:17,986 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:10:17,986 culturedx.modes.hied INFO Case patient_827: 5 candidate disorders from triage
+2026-03-20 08:10:52,771 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:11:12,932 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:11:25,065 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:11:39,284 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:11:40,011 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:11:40,013 ablation INFO [hied_bge-m3_evidence] 33/50 case=patient_827 pred=F32 gold=['F50'] conf=0.655 (108.3s)
+2026-03-20 08:11:40,013 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_300
+2026-03-20 08:11:40,013 culturedx.evidence.somatization WARNING LLM fallback failed for symptom: 心跳加快，特别是在夜深人静的时候，这种感觉很让人慌乱。
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.80s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.09s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.20s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:22,  7.39s/it]Batches:  50%|█████     | 2/4 [00:11<00:10,  5.33s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.64s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.09s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.59s/it]
+2026-03-20 08:12:02,772 ablation INFO [hied_bge-m3_evidence] 34/50 evidence extracted for patient_300 (15 spans)
+2026-03-20 08:12:02,772 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:12:02,772 culturedx.modes.hied INFO Case patient_300: 5 candidate disorders from triage
+2026-03-20 08:12:30,182 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:12:50,759 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:13:08,064 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:13:22,787 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:13:23,642 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:13:23,646 culturedx.modes.hied INFO Case patient_300: confidence gap 0.0179 < 0.02, running differential
+2026-03-20 08:13:32,311 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:13:32,312 ablation INFO [hied_bge-m3_evidence] 34/50 case=patient_300 pred=F32 gold=['F32'] conf=0.820 (112.3s)
+2026-03-20 08:13:32,312 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_617
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.96s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.16s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.28s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:08<00:24,  8.12s/it]Batches:  50%|█████     | 2/4 [00:12<00:11,  5.96s/it]Batches:  75%|███████▌  | 3/4 [00:16<00:04,  4.84s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  3.98s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.68s/it]
+2026-03-20 08:13:55,621 ablation INFO [hied_bge-m3_evidence] 35/50 evidence extracted for patient_617 (15 spans)
+2026-03-20 08:13:55,621 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:13:55,621 culturedx.modes.hied INFO Case patient_617: 5 candidate disorders from triage
+2026-03-20 08:14:29,844 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:14:47,459 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:15:00,674 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:15:10,303 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:15:14,042 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:15:14,043 ablation INFO [hied_bge-m3_evidence] 35/50 case=patient_617 pred=F32 gold=['F41'] conf=0.653 (101.7s)
+2026-03-20 08:15:14,044 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_949
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.95s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.13s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.25s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:21,  7.09s/it]Batches:  50%|█████     | 2/4 [00:11<00:11,  5.52s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.79s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.15s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.65s/it]
+2026-03-20 08:15:37,153 ablation INFO [hied_bge-m3_evidence] 36/50 evidence extracted for patient_949 (15 spans)
+2026-03-20 08:15:37,154 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:15:37,154 culturedx.modes.hied INFO Case patient_949: 5 candidate disorders from triage
+2026-03-20 08:16:10,825 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:16:23,368 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:16:43,229 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:16:59,320 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:17:01,626 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:17:01,630 ablation INFO [hied_bge-m3_evidence] 36/50 case=patient_949 pred=F42 gold=['F43'] conf=0.665 (107.6s)
+2026-03-20 08:17:01,630 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_467
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.13s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.23s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.36s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:23,  7.80s/it]Batches:  50%|█████     | 2/4 [00:12<00:11,  5.74s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.85s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.17s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.75s/it]
+2026-03-20 08:17:25,386 ablation INFO [hied_bge-m3_evidence] 37/50 evidence extracted for patient_467 (15 spans)
+2026-03-20 08:17:25,387 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:17:25,387 culturedx.modes.hied INFO Case patient_467: 5 candidate disorders from triage
+2026-03-20 08:17:51,358 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:18:06,577 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:18:17,439 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:18:35,781 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:18:44,585 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:18:44,587 ablation INFO [hied_bge-m3_evidence] 37/50 case=patient_467 pred=F32 gold=['F31'] conf=0.718 (103.0s)
+2026-03-20 08:18:44,587 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_54
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.11s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.22s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.35s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:22,  7.37s/it]Batches:  50%|█████     | 2/4 [00:11<00:11,  5.68s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.74s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.22s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.73s/it]
+2026-03-20 08:19:08,231 ablation INFO [hied_bge-m3_evidence] 38/50 evidence extracted for patient_54 (15 spans)
+2026-03-20 08:19:08,231 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:19:08,231 culturedx.modes.hied INFO Case patient_54: 5 candidate disorders from triage
+2026-03-20 08:19:54,397 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:20:12,628 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:20:30,421 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:20:42,602 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:20:45,178 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:20:45,181 ablation INFO [hied_bge-m3_evidence] 38/50 case=patient_54 pred=F32 gold=['F32'] conf=0.693 (120.6s)
+2026-03-20 08:20:45,181 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_1026
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.60s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.02s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.11s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:06<00:20,  6.82s/it]Batches:  50%|█████     | 2/4 [00:10<00:10,  5.25s/it]Batches:  75%|███████▌  | 3/4 [00:14<00:04,  4.51s/it]Batches: 100%|██████████| 4/4 [00:17<00:00,  4.00s/it]Batches: 100%|██████████| 4/4 [00:17<00:00,  4.45s/it]
+2026-03-20 08:21:07,223 ablation INFO [hied_bge-m3_evidence] 39/50 evidence extracted for patient_1026 (15 spans)
+2026-03-20 08:21:07,223 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:21:07,224 culturedx.modes.hied INFO Case patient_1026: 5 candidate disorders from triage
+2026-03-20 08:21:36,761 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:21:47,831 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:22:01,326 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:22:15,388 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:22:21,260 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:22:21,262 ablation INFO [hied_bge-m3_evidence] 39/50 case=patient_1026 pred=F32 gold=['F32'] conf=0.634 (96.1s)
+2026-03-20 08:22:21,263 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_36
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.01s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.18s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.30s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:07<00:30,  7.52s/it]Batches:  40%|████      | 2/5 [00:11<00:16,  5.51s/it]Batches:  60%|██████    | 3/5 [00:15<00:09,  4.89s/it]Batches:  80%|████████  | 4/5 [00:19<00:04,  4.27s/it]Batches: 100%|██████████| 5/5 [00:21<00:00,  3.62s/it]Batches: 100%|██████████| 5/5 [00:21<00:00,  4.31s/it]
+2026-03-20 08:22:47,433 ablation INFO [hied_bge-m3_evidence] 40/50 evidence extracted for patient_36 (15 spans)
+2026-03-20 08:22:47,433 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:22:47,433 culturedx.modes.hied INFO Case patient_36: 5 candidate disorders from triage
+2026-03-20 08:23:22,112 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:23:38,058 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:23:56,021 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:24:08,277 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:24:21,658 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:24:21,659 ablation INFO [hied_bge-m3_evidence] 40/50 case=patient_36 pred=F32 gold=['F32'] conf=0.667 (120.4s)
+2026-03-20 08:24:21,660 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_15
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.08s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.11s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.26s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:08<00:35,  8.84s/it]Batches:  40%|████      | 2/5 [00:15<00:22,  7.54s/it]Batches:  60%|██████    | 3/5 [00:22<00:14,  7.41s/it]Batches:  80%|████████  | 4/5 [00:26<00:06,  6.04s/it]Batches: 100%|██████████| 5/5 [00:29<00:00,  5.01s/it]Batches: 100%|██████████| 5/5 [00:29<00:00,  5.97s/it]
+2026-03-20 08:24:56,039 ablation INFO [hied_bge-m3_evidence] 41/50 evidence extracted for patient_15 (15 spans)
+2026-03-20 08:24:56,039 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:24:56,039 culturedx.modes.hied INFO Case patient_15: 5 candidate disorders from triage
+2026-03-20 08:24:56,144 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 08:24:56,144 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 08:24:56,144 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 08:24:56,144 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 08:24:57,209 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 08:24:57,209 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 08:24:57,210 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 08:24:57,210 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 08:24:59,275 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 08:24:59,276 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 08:24:59,275 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 08:24:59,276 culturedx.modes.base WARNING Criterion checker failed for F32
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 177, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 150, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 122, in run
+    raw = self.llm.generate(
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 08:24:59,276 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 08:24:59,277 culturedx.modes.base WARNING Criterion checker failed for F33
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 177, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 150, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 122, in run
+    raw = self.llm.generate(
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 08:25:19,870 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:25:29,377 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:25:35,953 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:25:35,955 ablation INFO [hied_bge-m3_evidence] 41/50 case=patient_15 pred=F41.1 gold=['F32'] conf=0.567 (74.3s)
+2026-03-20 08:25:35,955 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_421
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.07s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.20s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.33s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:06<00:20,  6.99s/it]Batches:  50%|█████     | 2/4 [00:11<00:11,  5.53s/it]Batches:  75%|███████▌  | 3/4 [00:14<00:04,  4.56s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.09s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.57s/it]
+2026-03-20 08:25:58,891 ablation INFO [hied_bge-m3_evidence] 42/50 evidence extracted for patient_421 (15 spans)
+2026-03-20 08:25:58,891 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:25:58,891 culturedx.modes.hied INFO Case patient_421: 5 candidate disorders from triage
+2026-03-20 08:26:33,346 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:26:49,548 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:27:05,723 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:27:13,463 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:27:20,203 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:27:20,206 ablation INFO [hied_bge-m3_evidence] 42/50 case=patient_421 pred=F32 gold=['F41'] conf=0.696 (104.3s)
+2026-03-20 08:27:20,206 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_931
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.80s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.21s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:21,  7.17s/it]Batches:  50%|█████     | 2/4 [00:10<00:10,  5.19s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.71s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.08s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.56s/it]
+2026-03-20 08:27:42,856 ablation INFO [hied_bge-m3_evidence] 43/50 evidence extracted for patient_931 (15 spans)
+2026-03-20 08:27:42,856 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:27:42,856 culturedx.modes.hied INFO Case patient_931: 5 candidate disorders from triage
+2026-03-20 08:28:03,718 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:28:15,748 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:28:37,208 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:28:51,322 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:29:05,187 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:29:05,190 culturedx.diagnosis.comorbidity INFO Exclusion: F33 excludes F32
+2026-03-20 08:29:05,190 ablation INFO [hied_bge-m3_evidence] 43/50 case=patient_931 pred=F42 gold=['F41'] conf=0.591 (105.0s)
+2026-03-20 08:29:05,191 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_255
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.03s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.15s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.28s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:06<00:20,  6.68s/it]Batches:  50%|█████     | 2/4 [00:10<00:10,  5.00s/it]Batches:  75%|███████▌  | 3/4 [00:13<00:04,  4.28s/it]Batches: 100%|██████████| 4/4 [00:16<00:00,  3.65s/it]Batches: 100%|██████████| 4/4 [00:16<00:00,  4.15s/it]
+2026-03-20 08:29:26,379 ablation INFO [hied_bge-m3_evidence] 44/50 evidence extracted for patient_255 (15 spans)
+2026-03-20 08:29:26,379 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:29:26,379 culturedx.modes.hied INFO Case patient_255: 5 candidate disorders from triage
+2026-03-20 08:30:02,608 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:30:11,422 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:30:24,441 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:30:32,819 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:30:40,778 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:30:40,780 ablation INFO [hied_bge-m3_evidence] 44/50 case=patient_255 pred=F32 gold=['F39'] conf=0.553 (95.6s)
+2026-03-20 08:30:40,780 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_812
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.09s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.23s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.36s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:22,  7.35s/it]Batches:  50%|█████     | 2/4 [00:11<00:10,  5.40s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.59s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.13s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.61s/it]
+2026-03-20 08:31:03,956 ablation INFO [hied_bge-m3_evidence] 45/50 evidence extracted for patient_812 (15 spans)
+2026-03-20 08:31:03,956 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:31:03,956 culturedx.modes.hied INFO Case patient_812: 5 candidate disorders from triage
+2026-03-20 08:31:40,702 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:31:58,905 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:32:16,564 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:32:25,211 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:32:30,304 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:32:30,306 ablation INFO [hied_bge-m3_evidence] 45/50 case=patient_812 pred=F32 gold=['F39'] conf=0.669 (109.5s)
+2026-03-20 08:32:30,307 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_296
+2026-03-20 08:32:30,307 culturedx.evidence.somatization WARNING LLM fallback failed for symptom: 头晕，尤其是在情绪特别低落或者压力很大的时候
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.05s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.01s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.16s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:22,  7.63s/it]Batches:  50%|█████     | 2/4 [00:11<00:11,  5.70s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.85s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.17s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.73s/it]
+2026-03-20 08:32:53,584 ablation INFO [hied_bge-m3_evidence] 46/50 evidence extracted for patient_296 (15 spans)
+2026-03-20 08:32:53,585 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:32:53,585 culturedx.modes.hied INFO Case patient_296: 5 candidate disorders from triage
+2026-03-20 08:33:30,139 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:33:50,137 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:34:07,787 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:34:08,670 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:34:21,246 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:34:21,248 ablation INFO [hied_bge-m3_evidence] 46/50 case=patient_296 pred=F32 gold=['F32'] conf=0.674 (110.9s)
+2026-03-20 08:34:21,248 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_333
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.11s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.24s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.37s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:23,  7.85s/it]Batches:  50%|█████     | 2/4 [00:12<00:12,  6.01s/it]Batches:  75%|███████▌  | 3/4 [00:16<00:05,  5.06s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.42s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.98s/it]
+2026-03-20 08:34:45,931 ablation INFO [hied_bge-m3_evidence] 47/50 evidence extracted for patient_333 (15 spans)
+2026-03-20 08:34:45,931 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:34:45,931 culturedx.modes.hied INFO Case patient_333: 5 candidate disorders from triage
+2026-03-20 08:35:14,176 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:35:28,359 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:35:41,349 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:35:56,566 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:36:14,837 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:36:14,840 ablation INFO [hied_bge-m3_evidence] 47/50 case=patient_333 pred=F42 gold=['F41'] conf=0.675 (113.6s)
+2026-03-20 08:36:14,840 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_325
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.00s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.22s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.33s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:08<00:24,  8.03s/it]Batches:  50%|█████     | 2/4 [00:12<00:12,  6.04s/it]Batches:  75%|███████▌  | 3/4 [00:16<00:04,  4.88s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.16s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.81s/it]
+2026-03-20 08:36:38,757 ablation INFO [hied_bge-m3_evidence] 48/50 evidence extracted for patient_325 (15 spans)
+2026-03-20 08:36:38,757 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:36:38,757 culturedx.modes.hied INFO Case patient_325: 5 candidate disorders from triage
+2026-03-20 08:37:07,633 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:37:21,139 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:37:34,401 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:37:51,881 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:37:59,304 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:37:59,306 ablation INFO [hied_bge-m3_evidence] 48/50 case=patient_325 pred=F32 gold=['F32'] conf=0.668 (104.5s)
+2026-03-20 08:37:59,306 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_401
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.01s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.19s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.32s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:22,  7.39s/it]Batches:  50%|█████     | 2/4 [00:11<00:10,  5.38s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.75s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.13s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.64s/it]
+2026-03-20 08:38:22,506 ablation INFO [hied_bge-m3_evidence] 49/50 evidence extracted for patient_401 (15 spans)
+2026-03-20 08:38:22,506 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:38:22,506 culturedx.modes.hied INFO Case patient_401: 5 candidate disorders from triage
+2026-03-20 08:38:56,344 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:39:11,921 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:39:25,925 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:39:40,305 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:39:41,027 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:39:41,029 culturedx.diagnosis.comorbidity INFO Exclusion: F33 excludes F32
+2026-03-20 08:39:41,029 ablation INFO [hied_bge-m3_evidence] 49/50 case=patient_401 pred=F33 gold=['F41'] conf=0.552 (101.7s)
+2026-03-20 08:39:41,030 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_209
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.09s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.09s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.24s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:08<00:32,  8.18s/it]Batches:  40%|████      | 2/5 [00:14<00:21,  7.12s/it]Batches:  60%|██████    | 3/5 [00:18<00:11,  5.68s/it]Batches:  80%|████████  | 4/5 [00:22<00:04,  4.88s/it]Batches: 100%|██████████| 5/5 [00:24<00:00,  3.94s/it]Batches: 100%|██████████| 5/5 [00:24<00:00,  4.89s/it]
+2026-03-20 08:40:09,994 ablation INFO [hied_bge-m3_evidence] 50/50 evidence extracted for patient_209 (15 spans)
+2026-03-20 08:40:09,994 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:40:09,994 culturedx.modes.hied INFO Case patient_209: 5 candidate disorders from triage
+2026-03-20 08:40:36,999 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:40:52,339 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:41:03,771 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:41:20,946 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:41:30,341 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:41:30,344 ablation INFO [hied_bge-m3_evidence] 50/50 case=patient_209 pred=F32 gold=['F32'] conf=0.718 (109.3s)
+2026-03-20 08:41:30,359 ablation INFO [hied_bge-m3_evidence] top1=0.480 top3=0.720 f1=0.108 time=5356s (107.1s/case)
+2026-03-20 08:41:30,359 ablation INFO Condition 3/3: hied_bge-m3_no_somatization
+2026-03-20 08:41:30,359 ablation INFO ============================================================
+2026-03-20 08:41:30,359 ablation INFO Running condition: hied_bge-m3_no_somatization
+2026-03-20 08:41:30,359 ablation INFO   mode=hied evidence=True retriever=bge-m3 somatization=False
+2026-03-20 08:41:30,359 ablation INFO ============================================================
+2026-03-20 08:41:30,359 sentence_transformers.SentenceTransformer INFO Load pretrained SentenceTransformer: BAAI/bge-m3
+2026-03-20 08:41:30,635 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-20 08:41:30,646 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/modules.json "HTTP/1.1 200 OK"
+2026-03-20 08:41:30,853 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-20 08:41:30,865 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-20 08:41:31,080 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-20 08:41:31,091 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-20 08:41:31,292 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-20 08:41:31,304 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/README.md "HTTP/1.1 200 OK"
+2026-03-20 08:41:31,502 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-20 08:41:31,513 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/modules.json "HTTP/1.1 200 OK"
+2026-03-20 08:41:31,716 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-20 08:41:31,726 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-20 08:41:31,926 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-20 08:41:32,488 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-20 08:41:32,499 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config.json "HTTP/1.1 200 OK"
+2026-03-20 08:41:32,784 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 71567.66it/s]
+2026-03-20 08:41:32,988 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-20 08:41:33,076 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-20 08:41:33,086 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config.json "HTTP/1.1 200 OK"
+2026-03-20 08:41:33,213 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/commits/main "HTTP/1.1 200 OK"
+2026-03-20 08:41:33,285 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-20 08:41:33,295 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-20 08:41:33,444 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/discussions?p=0 "HTTP/1.1 200 OK"
+2026-03-20 08:41:33,499 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-20 08:41:33,667 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/commits/refs%2Fpr%2F130 "HTTP/1.1 200 OK"
+2026-03-20 08:41:33,707 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-20 08:41:33,883 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/refs%2Fpr%2F130/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-03-20 08:41:34,553 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/refs%2Fpr%2F130/model.safetensors "HTTP/1.1 302 Found"
+2026-03-20 08:41:35,291 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-20 08:41:35,508 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-20 08:41:35,518 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-20 08:41:35,724 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-20 08:41:35,727 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_759
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.03s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.01s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.17s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:23,  7.88s/it]Batches:  50%|█████     | 2/4 [00:12<00:11,  5.79s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.82s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.28s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.83s/it]
+2026-03-20 08:41:59,427 ablation INFO [hied_bge-m3_no_somatization] 1/50 evidence extracted for patient_759 (15 spans)
+2026-03-20 08:41:59,427 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:41:59,427 culturedx.modes.hied INFO Case patient_759: 5 candidate disorders from triage
+2026-03-20 08:41:59,432 ablation INFO [hied_bge-m3_no_somatization] 1/50 case=patient_759 pred=F42 gold=['F42'] conf=0.629 (23.7s)
+2026-03-20 08:41:59,433 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_335
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.96s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.23s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:07<00:31,  7.88s/it]Batches:  40%|████      | 2/5 [00:12<00:17,  5.79s/it]Batches:  60%|██████    | 3/5 [00:16<00:09,  4.94s/it]Batches:  80%|████████  | 4/5 [00:19<00:04,  4.36s/it]Batches: 100%|██████████| 5/5 [00:21<00:00,  3.36s/it]Batches: 100%|██████████| 5/5 [00:21<00:00,  4.24s/it]
+2026-03-20 08:42:25,101 ablation INFO [hied_bge-m3_no_somatization] 2/50 evidence extracted for patient_335 (15 spans)
+2026-03-20 08:42:25,101 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:42:25,101 culturedx.modes.hied INFO Case patient_335: 5 candidate disorders from triage
+2026-03-20 08:42:40,748 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:42:40,750 ablation INFO [hied_bge-m3_no_somatization] 2/50 case=patient_335 pred=F41.1 gold=['F41'] conf=0.561 (41.3s)
+2026-03-20 08:42:40,751 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_742
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.13s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.07s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.23s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:06<00:20,  6.82s/it]Batches:  50%|█████     | 2/4 [00:11<00:11,  5.63s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.66s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.10s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.59s/it]
+2026-03-20 08:43:03,610 ablation INFO [hied_bge-m3_no_somatization] 3/50 evidence extracted for patient_742 (15 spans)
+2026-03-20 08:43:03,610 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:43:03,611 culturedx.modes.hied INFO Case patient_742: 5 candidate disorders from triage
+2026-03-20 08:43:03,617 ablation INFO [hied_bge-m3_no_somatization] 3/50 case=patient_742 pred=F42 gold=['F32'] conf=0.578 (22.9s)
+2026-03-20 08:43:03,617 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_174
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.15s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.25s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.39s/it]
+Batches:   0%|          | 0/3 [00:00<?, ?it/s]Batches:  33%|███▎      | 1/3 [00:07<00:14,  7.28s/it]Batches:  67%|██████▋   | 2/3 [00:11<00:05,  5.21s/it]Batches: 100%|██████████| 3/3 [00:14<00:00,  4.33s/it]Batches: 100%|██████████| 3/3 [00:14<00:00,  4.78s/it]
+2026-03-20 08:43:22,726 ablation INFO [hied_bge-m3_no_somatization] 4/50 evidence extracted for patient_174 (15 spans)
+2026-03-20 08:43:22,726 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:43:22,726 culturedx.modes.hied INFO Case patient_174: 5 candidate disorders from triage
+2026-03-20 08:43:50,434 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:43:50,436 ablation INFO [hied_bge-m3_no_somatization] 4/50 case=patient_174 pred=F32 gold=['F32'] conf=0.648 (46.8s)
+2026-03-20 08:43:50,436 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_313
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.08s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.24s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:07<00:30,  7.59s/it]Batches:  40%|████      | 2/5 [00:12<00:17,  5.82s/it]Batches:  60%|██████    | 3/5 [00:16<00:09,  4.98s/it]Batches:  80%|████████  | 4/5 [00:19<00:04,  4.29s/it]Batches: 100%|██████████| 5/5 [00:20<00:00,  3.27s/it]Batches: 100%|██████████| 5/5 [00:20<00:00,  4.17s/it]
+2026-03-20 08:44:15,763 ablation INFO [hied_bge-m3_no_somatization] 5/50 evidence extracted for patient_313 (15 spans)
+2026-03-20 08:44:15,763 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:44:15,763 culturedx.modes.hied INFO Case patient_313: 5 candidate disorders from triage
+2026-03-20 08:44:31,399 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:44:31,400 ablation INFO [hied_bge-m3_no_somatization] 5/50 case=patient_313 pred=F32 gold=['F32'] conf=0.626 (41.0s)
+2026-03-20 08:44:31,401 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_524
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.11s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.23s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.36s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:22,  7.45s/it]Batches:  50%|█████     | 2/4 [00:11<00:11,  5.71s/it]Batches:  75%|███████▌  | 3/4 [00:16<00:05,  5.09s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.38s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.90s/it]
+2026-03-20 08:44:55,720 ablation INFO [hied_bge-m3_no_somatization] 6/50 evidence extracted for patient_524 (15 spans)
+2026-03-20 08:44:55,720 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:44:55,720 culturedx.modes.hied INFO Case patient_524: 5 candidate disorders from triage
+2026-03-20 08:45:11,979 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:45:11,981 ablation INFO [hied_bge-m3_no_somatization] 6/50 case=patient_524 pred=F32 gold=['F41'] conf=0.545 (40.6s)
+2026-03-20 08:45:11,981 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_182
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.11s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.23s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.36s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:06<00:25,  6.33s/it]Batches:  40%|████      | 2/5 [00:10<00:14,  4.82s/it]Batches:  60%|██████    | 3/5 [00:13<00:08,  4.35s/it]Batches:  80%|████████  | 4/5 [00:17<00:03,  3.96s/it]Batches: 100%|██████████| 5/5 [00:19<00:00,  3.44s/it]Batches: 100%|██████████| 5/5 [00:19<00:00,  3.96s/it]
+2026-03-20 08:45:36,487 ablation INFO [hied_bge-m3_no_somatization] 7/50 evidence extracted for patient_182 (15 spans)
+2026-03-20 08:45:36,487 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:45:36,487 culturedx.modes.hied INFO Case patient_182: 5 candidate disorders from triage
+2026-03-20 08:45:53,500 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:45:53,502 ablation INFO [hied_bge-m3_no_somatization] 7/50 case=patient_182 pred=F32 gold=['F32'] conf=0.714 (41.5s)
+2026-03-20 08:45:53,503 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_808
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.87s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  1.99s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.12s/it]
+Batches:   0%|          | 0/3 [00:00<?, ?it/s]Batches:  33%|███▎      | 1/3 [00:07<00:14,  7.24s/it]Batches:  67%|██████▋   | 2/3 [00:11<00:05,  5.38s/it]Batches: 100%|██████████| 3/3 [00:14<00:00,  4.58s/it]Batches: 100%|██████████| 3/3 [00:14<00:00,  4.98s/it]
+2026-03-20 08:46:12,689 ablation INFO [hied_bge-m3_no_somatization] 8/50 evidence extracted for patient_808 (15 spans)
+2026-03-20 08:46:12,690 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:46:12,690 culturedx.modes.hied INFO Case patient_808: 5 candidate disorders from triage
+2026-03-20 08:46:40,461 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:46:40,463 ablation INFO [hied_bge-m3_no_somatization] 8/50 case=patient_808 pred=F32 gold=['F32'] conf=0.667 (47.0s)
+2026-03-20 08:46:40,463 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_103
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.83s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.15s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.25s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:23,  7.69s/it]Batches:  50%|█████     | 2/4 [00:11<00:11,  5.51s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.83s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.16s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.71s/it]
+2026-03-20 08:47:03,807 ablation INFO [hied_bge-m3_no_somatization] 9/50 evidence extracted for patient_103 (15 spans)
+2026-03-20 08:47:03,807 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:47:03,807 culturedx.modes.hied INFO Case patient_103: 5 candidate disorders from triage
+2026-03-20 08:47:37,726 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:47:48,112 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:47:48,113 ablation INFO [hied_bge-m3_no_somatization] 9/50 case=patient_103 pred=F32 gold=['F32'] conf=0.635 (67.7s)
+2026-03-20 08:47:48,114 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_918
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.94s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.15s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.27s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:22,  7.48s/it]Batches:  50%|█████     | 2/4 [00:11<00:11,  5.57s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.74s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  3.89s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.51s/it]
+2026-03-20 08:48:10,729 ablation INFO [hied_bge-m3_no_somatization] 10/50 evidence extracted for patient_918 (15 spans)
+2026-03-20 08:48:10,729 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:48:10,729 culturedx.modes.hied INFO Case patient_918: 5 candidate disorders from triage
+2026-03-20 08:48:10,732 ablation INFO [hied_bge-m3_no_somatization] 10/50 case=patient_918 pred=F32 gold=['F32'] conf=0.606 (22.6s)
+2026-03-20 08:48:10,732 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_134
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.01s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.18s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.30s/it]
+Batches:   0%|          | 0/3 [00:00<?, ?it/s]Batches:  33%|███▎      | 1/3 [00:07<00:15,  7.91s/it]Batches:  67%|██████▋   | 2/3 [00:11<00:05,  5.61s/it]Batches: 100%|██████████| 3/3 [00:15<00:00,  4.52s/it]Batches: 100%|██████████| 3/3 [00:15<00:00,  5.05s/it]
+2026-03-20 08:48:30,480 ablation INFO [hied_bge-m3_no_somatization] 11/50 evidence extracted for patient_134 (15 spans)
+2026-03-20 08:48:30,480 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:48:30,480 culturedx.modes.hied INFO Case patient_134: 5 candidate disorders from triage
+2026-03-20 08:48:56,284 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:49:06,194 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:49:06,197 culturedx.modes.hied INFO Case patient_134: confidence gap 0.0042 < 0.02, running differential
+2026-03-20 08:49:14,864 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:49:14,864 ablation INFO [hied_bge-m3_no_somatization] 11/50 case=patient_134 pred=F41.1 gold=['F41'] conf=0.820 (64.1s)
+2026-03-20 08:49:14,864 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_859
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.06s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.19s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.32s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:07<00:30,  7.62s/it]Batches:  40%|████      | 2/5 [00:12<00:17,  5.81s/it]Batches:  60%|██████    | 3/5 [00:16<00:10,  5.02s/it]Batches:  80%|████████  | 4/5 [00:19<00:04,  4.43s/it]Batches: 100%|██████████| 5/5 [00:22<00:00,  3.77s/it]Batches: 100%|██████████| 5/5 [00:22<00:00,  4.47s/it]
+2026-03-20 08:49:41,882 ablation INFO [hied_bge-m3_no_somatization] 12/50 evidence extracted for patient_859 (15 spans)
+2026-03-20 08:49:41,883 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:49:41,883 culturedx.modes.hied INFO Case patient_859: 5 candidate disorders from triage
+2026-03-20 08:49:41,887 culturedx.modes.hied INFO Case patient_859: confidence gap 0.0009 < 0.02, running differential
+2026-03-20 08:49:50,820 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:49:50,820 ablation INFO [hied_bge-m3_no_somatization] 12/50 case=patient_859 pred=F32 gold=['F32'] conf=0.820 (36.0s)
+2026-03-20 08:49:50,821 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_619
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.72s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.06s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.16s/it]
+Batches:   0%|          | 0/3 [00:00<?, ?it/s]Batches:  33%|███▎      | 1/3 [00:07<00:15,  7.68s/it]Batches:  67%|██████▋   | 2/3 [00:11<00:05,  5.20s/it]Batches: 100%|██████████| 3/3 [00:14<00:00,  4.19s/it]Batches: 100%|██████████| 3/3 [00:14<00:00,  4.71s/it]
+2026-03-20 08:50:09,294 ablation INFO [hied_bge-m3_no_somatization] 13/50 evidence extracted for patient_619 (15 spans)
+2026-03-20 08:50:09,294 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:50:09,294 culturedx.modes.hied INFO Case patient_619: 5 candidate disorders from triage
+2026-03-20 08:50:31,597 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:50:42,174 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:50:42,176 culturedx.modes.hied INFO Case patient_619: confidence gap 0.0136 < 0.02, running differential
+2026-03-20 08:50:50,572 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:50:50,572 ablation INFO [hied_bge-m3_no_somatization] 13/50 case=patient_619 pred=F41.1 gold=['F51'] conf=0.820 (59.8s)
+2026-03-20 08:50:50,573 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_563
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.94s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.09s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.22s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:07<00:28,  7.20s/it]Batches:  40%|████      | 2/5 [00:11<00:16,  5.35s/it]Batches:  60%|██████    | 3/5 [00:15<00:09,  4.73s/it]Batches:  80%|████████  | 4/5 [00:18<00:04,  4.22s/it]Batches: 100%|██████████| 5/5 [00:21<00:00,  3.65s/it]Batches: 100%|██████████| 5/5 [00:21<00:00,  4.26s/it]
+2026-03-20 08:51:16,352 ablation INFO [hied_bge-m3_no_somatization] 14/50 evidence extracted for patient_563 (15 spans)
+2026-03-20 08:51:16,352 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:51:16,352 culturedx.modes.hied INFO Case patient_563: 5 candidate disorders from triage
+2026-03-20 08:51:42,936 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:52:00,171 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:52:00,173 ablation INFO [hied_bge-m3_no_somatization] 14/50 case=patient_563 pred=F32 gold=['F98'] conf=0.712 (69.6s)
+2026-03-20 08:52:00,173 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_1029
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.82s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  1.87s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.01s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:08<00:33,  8.43s/it]Batches:  40%|████      | 2/5 [00:12<00:17,  5.88s/it]Batches:  60%|██████    | 3/5 [00:16<00:09,  4.88s/it]Batches:  80%|████████  | 4/5 [00:19<00:04,  4.29s/it]Batches: 100%|██████████| 5/5 [00:22<00:00,  3.67s/it]Batches: 100%|██████████| 5/5 [00:22<00:00,  4.44s/it]
+2026-03-20 08:52:26,389 ablation INFO [hied_bge-m3_no_somatization] 15/50 evidence extracted for patient_1029 (15 spans)
+2026-03-20 08:52:26,389 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:52:26,389 culturedx.modes.hied INFO Case patient_1029: 5 candidate disorders from triage
+2026-03-20 08:52:55,242 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:53:03,210 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:53:03,212 ablation INFO [hied_bge-m3_no_somatization] 15/50 case=patient_1029 pred=F32 gold=['F32'] conf=0.718 (63.0s)
+2026-03-20 08:53:03,212 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_271
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.90s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.07s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.19s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:21,  7.30s/it]Batches:  50%|█████     | 2/4 [00:12<00:11,  5.84s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.92s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.32s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.84s/it]
+2026-03-20 08:53:26,958 ablation INFO [hied_bge-m3_no_somatization] 16/50 evidence extracted for patient_271 (15 spans)
+2026-03-20 08:53:26,958 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:53:26,958 culturedx.modes.hied INFO Case patient_271: 5 candidate disorders from triage
+2026-03-20 08:53:26,962 ablation INFO [hied_bge-m3_no_somatization] 16/50 case=patient_271 pred=F32 gold=['F39'] conf=0.667 (23.8s)
+2026-03-20 08:53:26,962 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_731
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.98s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.09s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.22s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:22,  7.66s/it]Batches:  50%|█████     | 2/4 [00:12<00:11,  5.79s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.87s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.24s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.80s/it]
+2026-03-20 08:53:50,606 ablation INFO [hied_bge-m3_no_somatization] 17/50 evidence extracted for patient_731 (15 spans)
+2026-03-20 08:53:50,606 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:53:50,606 culturedx.modes.hied INFO Case patient_731: 5 candidate disorders from triage
+2026-03-20 08:53:50,608 ablation INFO [hied_bge-m3_no_somatization] 17/50 case=patient_731 pred=F41.1 gold=['F45'] conf=0.498 (23.6s)
+2026-03-20 08:53:50,609 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_1013
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.88s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.14s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.25s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:23,  7.75s/it]Batches:  50%|█████     | 2/4 [00:12<00:11,  5.91s/it]Batches:  75%|███████▌  | 3/4 [00:16<00:05,  5.06s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.33s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.91s/it]
+2026-03-20 08:54:14,751 ablation INFO [hied_bge-m3_no_somatization] 18/50 evidence extracted for patient_1013 (15 spans)
+2026-03-20 08:54:14,751 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:54:14,751 culturedx.modes.hied INFO Case patient_1013: 5 candidate disorders from triage
+2026-03-20 08:54:42,694 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:54:59,944 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:54:59,946 ablation INFO [hied_bge-m3_no_somatization] 18/50 case=patient_1013 pred=F32 gold=['F41'] conf=0.693 (69.3s)
+2026-03-20 08:54:59,947 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_760
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.97s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.19s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.31s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:08<00:24,  8.33s/it]Batches:  50%|█████     | 2/4 [00:12<00:12,  6.00s/it]Batches:  75%|███████▌  | 3/4 [00:16<00:04,  4.88s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.23s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.87s/it]
+2026-03-20 08:55:24,053 ablation INFO [hied_bge-m3_no_somatization] 19/50 evidence extracted for patient_760 (15 spans)
+2026-03-20 08:55:24,053 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:55:24,053 culturedx.modes.hied INFO Case patient_760: 5 candidate disorders from triage
+2026-03-20 08:55:39,706 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:55:39,708 ablation INFO [hied_bge-m3_no_somatization] 19/50 case=patient_760 pred=F32 gold=['F41'] conf=0.683 (39.8s)
+2026-03-20 08:55:39,709 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_250
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.07s/it]Batches: 100%|██████████| 2/2 [00:03<00:00,  1.70s/it]Batches: 100%|██████████| 2/2 [00:03<00:00,  1.90s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:06<00:20,  7.00s/it]Batches:  50%|█████     | 2/4 [00:10<00:10,  5.14s/it]Batches:  75%|███████▌  | 3/4 [00:14<00:04,  4.49s/it]Batches: 100%|██████████| 4/4 [00:17<00:00,  3.99s/it]Batches: 100%|██████████| 4/4 [00:17<00:00,  4.45s/it]
+2026-03-20 08:56:01,315 ablation INFO [hied_bge-m3_no_somatization] 20/50 evidence extracted for patient_250 (15 spans)
+2026-03-20 08:56:01,315 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:56:01,315 culturedx.modes.hied INFO Case patient_250: 5 candidate disorders from triage
+2026-03-20 08:56:17,692 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:56:17,694 ablation INFO [hied_bge-m3_no_somatization] 20/50 case=patient_250 pred=F32 gold=['F41'] conf=0.684 (38.0s)
+2026-03-20 08:56:17,694 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_973
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.94s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.18s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.30s/it]
+Batches:   0%|          | 0/3 [00:00<?, ?it/s]Batches:  33%|███▎      | 1/3 [00:08<00:17,  8.89s/it]Batches:  67%|██████▋   | 2/3 [00:13<00:06,  6.12s/it]Batches: 100%|██████████| 3/3 [00:16<00:00,  4.94s/it]Batches: 100%|██████████| 3/3 [00:16<00:00,  5.53s/it]
+2026-03-20 08:56:38,902 ablation INFO [hied_bge-m3_no_somatization] 21/50 evidence extracted for patient_973 (15 spans)
+2026-03-20 08:56:38,902 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:56:38,902 culturedx.modes.hied INFO Case patient_973: 5 candidate disorders from triage
+2026-03-20 08:57:06,522 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:57:16,107 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:57:16,108 ablation INFO [hied_bge-m3_no_somatization] 21/50 case=patient_973 pred=F32 gold=['F41'] conf=0.629 (58.4s)
+2026-03-20 08:57:16,109 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_914
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.05s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.25s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:07<00:30,  7.58s/it]Batches:  40%|████      | 2/5 [00:12<00:17,  5.73s/it]Batches:  60%|██████    | 3/5 [00:16<00:10,  5.04s/it]Batches:  80%|████████  | 4/5 [00:19<00:04,  4.44s/it]Batches: 100%|██████████| 5/5 [00:22<00:00,  3.78s/it]Batches: 100%|██████████| 5/5 [00:22<00:00,  4.47s/it]
+2026-03-20 08:57:42,984 ablation INFO [hied_bge-m3_no_somatization] 22/50 evidence extracted for patient_914 (15 spans)
+2026-03-20 08:57:42,985 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:57:42,985 culturedx.modes.hied INFO Case patient_914: 5 candidate disorders from triage
+2026-03-20 08:58:14,188 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:58:17,195 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:58:17,198 ablation INFO [hied_bge-m3_no_somatization] 22/50 case=patient_914 pred=F32 gold=['F32'] conf=0.688 (61.1s)
+2026-03-20 08:58:17,199 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_762
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.90s/it]Batches: 100%|██████████| 2/2 [00:03<00:00,  1.57s/it]Batches: 100%|██████████| 2/2 [00:03<00:00,  1.77s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:23,  7.71s/it]Batches:  50%|█████     | 2/4 [00:12<00:11,  5.95s/it]Batches:  75%|███████▌  | 3/4 [00:16<00:04,  4.91s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.22s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.82s/it]
+2026-03-20 08:58:40,022 ablation INFO [hied_bge-m3_no_somatization] 23/50 evidence extracted for patient_762 (15 spans)
+2026-03-20 08:58:40,022 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:58:40,022 culturedx.modes.hied INFO Case patient_762: 5 candidate disorders from triage
+2026-03-20 08:59:06,620 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:59:12,007 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 08:59:12,009 ablation INFO [hied_bge-m3_no_somatization] 23/50 case=patient_762 pred=F32 gold=['F32'] conf=0.587 (54.8s)
+2026-03-20 08:59:12,010 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_728
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.90s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.17s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.28s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:22,  7.62s/it]Batches:  50%|█████     | 2/4 [00:11<00:10,  5.32s/it]Batches:  75%|███████▌  | 3/4 [00:14<00:04,  4.31s/it]Batches: 100%|██████████| 4/4 [00:17<00:00,  3.63s/it]Batches: 100%|██████████| 4/4 [00:17<00:00,  4.26s/it]
+2026-03-20 08:59:33,609 ablation INFO [hied_bge-m3_no_somatization] 24/50 evidence extracted for patient_728 (15 spans)
+2026-03-20 08:59:33,609 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 08:59:33,609 culturedx.modes.hied INFO Case patient_728: 5 candidate disorders from triage
+2026-03-20 09:00:02,392 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:00:04,351 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:00:04,353 culturedx.modes.hied INFO Case patient_728: confidence gap 0.0054 < 0.02, running differential
+2026-03-20 09:00:12,529 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:00:12,530 ablation INFO [hied_bge-m3_no_somatization] 24/50 case=patient_728 pred=F42 gold=['F41'] conf=0.820 (60.5s)
+2026-03-20 09:00:12,530 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_911
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.12s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.13s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.28s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:06<00:20,  6.76s/it]Batches:  50%|█████     | 2/4 [00:10<00:10,  5.18s/it]Batches:  75%|███████▌  | 3/4 [00:14<00:04,  4.55s/it]Batches: 100%|██████████| 4/4 [00:17<00:00,  3.93s/it]Batches: 100%|██████████| 4/4 [00:17<00:00,  4.40s/it]
+2026-03-20 09:00:34,715 ablation INFO [hied_bge-m3_no_somatization] 25/50 evidence extracted for patient_911 (15 spans)
+2026-03-20 09:00:34,715 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:00:34,715 culturedx.modes.hied INFO Case patient_911: 5 candidate disorders from triage
+2026-03-20 09:01:04,052 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:01:11,767 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:01:11,769 culturedx.modes.hied INFO Case patient_911: confidence gap 0.0068 < 0.02, running differential
+2026-03-20 09:01:20,634 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:01:20,635 ablation INFO [hied_bge-m3_no_somatization] 25/50 case=patient_911 pred=F43.1 gold=['F41'] conf=0.820 (68.1s)
+2026-03-20 09:01:20,635 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_426
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.82s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.00s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.12s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:06<00:20,  6.85s/it]Batches:  50%|█████     | 2/4 [00:11<00:10,  5.34s/it]Batches:  75%|███████▌  | 3/4 [00:14<00:04,  4.56s/it]Batches: 100%|██████████| 4/4 [00:17<00:00,  3.99s/it]Batches: 100%|██████████| 4/4 [00:17<00:00,  4.47s/it]
+2026-03-20 09:01:42,772 ablation INFO [hied_bge-m3_no_somatization] 26/50 evidence extracted for patient_426 (15 spans)
+2026-03-20 09:01:42,772 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:01:42,772 culturedx.modes.hied INFO Case patient_426: 5 candidate disorders from triage
+2026-03-20 09:02:08,468 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:02:17,129 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:02:17,130 ablation INFO [hied_bge-m3_no_somatization] 26/50 case=patient_426 pred=F41.1 gold=['F41'] conf=0.573 (56.5s)
+2026-03-20 09:02:17,131 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_1009
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.08s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.12s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.27s/it]
+Batches:   0%|          | 0/3 [00:00<?, ?it/s]Batches:  33%|███▎      | 1/3 [00:06<00:13,  6.62s/it]Batches:  67%|██████▋   | 2/3 [00:09<00:04,  4.67s/it]Batches: 100%|██████████| 3/3 [00:12<00:00,  3.85s/it]Batches: 100%|██████████| 3/3 [00:12<00:00,  4.27s/it]
+2026-03-20 09:02:34,475 ablation INFO [hied_bge-m3_no_somatization] 27/50 evidence extracted for patient_1009 (15 spans)
+2026-03-20 09:02:34,475 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:02:34,475 culturedx.modes.hied INFO Case patient_1009: 5 candidate disorders from triage
+2026-03-20 09:02:57,996 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:02:57,998 ablation INFO [hied_bge-m3_no_somatization] 27/50 case=patient_1009 pred=F42 gold=['Z71'] conf=0.547 (40.9s)
+2026-03-20 09:02:57,998 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_701
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.98s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.16s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.28s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:08<00:24,  8.29s/it]Batches:  50%|█████     | 2/4 [00:12<00:11,  5.97s/it]Batches:  75%|███████▌  | 3/4 [00:16<00:04,  4.98s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.28s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.91s/it]
+2026-03-20 09:03:22,226 ablation INFO [hied_bge-m3_no_somatization] 28/50 evidence extracted for patient_701 (15 spans)
+2026-03-20 09:03:22,226 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:03:22,226 culturedx.modes.hied INFO Case patient_701: 5 candidate disorders from triage
+2026-03-20 09:03:58,819 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:04:00,436 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:04:00,438 ablation INFO [hied_bge-m3_no_somatization] 28/50 case=patient_701 pred=F32 gold=['F32'] conf=0.667 (62.4s)
+2026-03-20 09:04:00,438 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_714
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.71s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.06s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.16s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:21,  7.28s/it]Batches:  50%|█████     | 2/4 [00:11<00:10,  5.31s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.72s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.10s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.60s/it]
+2026-03-20 09:04:23,159 ablation INFO [hied_bge-m3_no_somatization] 29/50 evidence extracted for patient_714 (15 spans)
+2026-03-20 09:04:23,159 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:04:23,159 culturedx.modes.hied INFO Case patient_714: 5 candidate disorders from triage
+2026-03-20 09:04:23,163 culturedx.modes.hied INFO Case patient_714: confidence gap 0.0121 < 0.02, running differential
+2026-03-20 09:04:32,363 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:04:32,363 ablation INFO [hied_bge-m3_no_somatization] 29/50 case=patient_714 pred=F32 gold=['F41'] conf=0.820 (31.9s)
+2026-03-20 09:04:32,364 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_655
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.74s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.08s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.17s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:07<00:30,  7.69s/it]Batches:  40%|████      | 2/5 [00:11<00:16,  5.58s/it]Batches:  60%|██████    | 3/5 [00:15<00:09,  4.87s/it]Batches:  80%|████████  | 4/5 [00:19<00:04,  4.35s/it]Batches: 100%|██████████| 5/5 [00:20<00:00,  3.26s/it]Batches: 100%|██████████| 5/5 [00:20<00:00,  4.14s/it]
+2026-03-20 09:04:57,432 ablation INFO [hied_bge-m3_no_somatization] 30/50 evidence extracted for patient_655 (15 spans)
+2026-03-20 09:04:57,432 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:04:57,432 culturedx.modes.hied INFO Case patient_655: 5 candidate disorders from triage
+2026-03-20 09:05:30,414 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:05:30,416 ablation INFO [hied_bge-m3_no_somatization] 30/50 case=patient_655 pred=F32 gold=['F32'] conf=0.640 (58.1s)
+2026-03-20 09:05:30,416 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_62
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.02s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.24s/it]
+Batches:   0%|          | 0/3 [00:00<?, ?it/s]Batches:  33%|███▎      | 1/3 [00:07<00:15,  7.75s/it]Batches:  67%|██████▋   | 2/3 [00:11<00:05,  5.55s/it]Batches: 100%|██████████| 3/3 [00:15<00:00,  4.56s/it]Batches: 100%|██████████| 3/3 [00:15<00:00,  5.05s/it]
+2026-03-20 09:05:50,044 ablation INFO [hied_bge-m3_no_somatization] 31/50 evidence extracted for patient_62 (15 spans)
+2026-03-20 09:05:50,045 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:05:50,045 culturedx.modes.hied INFO Case patient_62: 5 candidate disorders from triage
+2026-03-20 09:05:50,049 ablation INFO [hied_bge-m3_no_somatization] 31/50 case=patient_62 pred=F32 gold=['F41'] conf=0.597 (19.6s)
+2026-03-20 09:05:50,049 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_161
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.01s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.17s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.30s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:23,  7.79s/it]Batches:  50%|█████     | 2/4 [00:13<00:13,  6.85s/it]Batches:  75%|███████▌  | 3/4 [00:18<00:05,  5.70s/it]Batches: 100%|██████████| 4/4 [00:21<00:00,  4.77s/it]Batches: 100%|██████████| 4/4 [00:21<00:00,  5.42s/it]
+2026-03-20 09:06:16,326 ablation INFO [hied_bge-m3_no_somatization] 32/50 evidence extracted for patient_161 (15 spans)
+2026-03-20 09:06:16,326 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:06:16,326 culturedx.modes.hied INFO Case patient_161: 5 candidate disorders from triage
+2026-03-20 09:06:42,868 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:06:42,870 culturedx.diagnosis.comorbidity INFO Exclusion: F33 excludes F32
+2026-03-20 09:06:42,870 ablation INFO [hied_bge-m3_no_somatization] 32/50 case=patient_161 pred=F41.1 gold=['F32', 'F34'] conf=0.560 (52.8s)
+2026-03-20 09:06:42,871 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_827
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.08s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.15s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.29s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:07<00:30,  7.54s/it]Batches:  40%|████      | 2/5 [00:12<00:17,  5.79s/it]Batches:  60%|██████    | 3/5 [00:16<00:09,  4.94s/it]Batches:  80%|████████  | 4/5 [00:19<00:04,  4.36s/it]Batches: 100%|██████████| 5/5 [00:22<00:00,  3.73s/it]Batches: 100%|██████████| 5/5 [00:22<00:00,  4.42s/it]
+2026-03-20 09:07:09,579 ablation INFO [hied_bge-m3_no_somatization] 33/50 evidence extracted for patient_827 (15 spans)
+2026-03-20 09:07:09,579 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:07:09,579 culturedx.modes.hied INFO Case patient_827: 5 candidate disorders from triage
+2026-03-20 09:07:09,582 ablation INFO [hied_bge-m3_no_somatization] 33/50 case=patient_827 pred=F32 gold=['F50'] conf=0.655 (26.7s)
+2026-03-20 09:07:09,582 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_300
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.74s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.08s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.18s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:21,  7.24s/it]Batches:  50%|█████     | 2/4 [00:11<00:10,  5.48s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.72s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.09s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.61s/it]
+2026-03-20 09:07:32,380 ablation INFO [hied_bge-m3_no_somatization] 34/50 evidence extracted for patient_300 (15 spans)
+2026-03-20 09:07:32,380 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:07:32,380 culturedx.modes.hied INFO Case patient_300: 5 candidate disorders from triage
+2026-03-20 09:07:32,384 culturedx.modes.hied INFO Case patient_300: confidence gap 0.0179 < 0.02, running differential
+2026-03-20 09:07:42,099 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:07:42,121 ablation INFO [hied_bge-m3_no_somatization] 34/50 case=patient_300 pred=F32 gold=['F32'] conf=0.880 (32.5s)
+2026-03-20 09:07:42,122 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_617
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.88s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.12s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.24s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:22,  7.51s/it]Batches:  50%|█████     | 2/4 [00:11<00:11,  5.56s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.64s/it]Batches: 100%|██████████| 4/4 [00:17<00:00,  3.85s/it]Batches: 100%|██████████| 4/4 [00:17<00:00,  4.47s/it]
+2026-03-20 09:08:04,495 ablation INFO [hied_bge-m3_no_somatization] 35/50 evidence extracted for patient_617 (15 spans)
+2026-03-20 09:08:04,495 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:08:04,495 culturedx.modes.hied INFO Case patient_617: 5 candidate disorders from triage
+2026-03-20 09:08:29,463 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:08:37,999 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:08:38,001 ablation INFO [hied_bge-m3_no_somatization] 35/50 case=patient_617 pred=F32 gold=['F41'] conf=0.658 (55.9s)
+2026-03-20 09:08:38,001 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_949
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.02s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.17s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.30s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:23,  7.77s/it]Batches:  50%|█████     | 2/4 [00:12<00:11,  5.91s/it]Batches:  75%|███████▌  | 3/4 [00:16<00:04,  4.98s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.32s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.89s/it]
+2026-03-20 09:09:02,162 ablation INFO [hied_bge-m3_no_somatization] 36/50 evidence extracted for patient_949 (15 spans)
+2026-03-20 09:09:02,162 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:09:02,162 culturedx.modes.hied INFO Case patient_949: 5 candidate disorders from triage
+2026-03-20 09:09:02,168 ablation INFO [hied_bge-m3_no_somatization] 36/50 case=patient_949 pred=F42 gold=['F43'] conf=0.665 (24.2s)
+2026-03-20 09:09:02,169 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_467
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.80s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.09s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.20s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:22,  7.62s/it]Batches:  50%|█████     | 2/4 [00:11<00:10,  5.50s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.82s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.15s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.69s/it]
+2026-03-20 09:09:25,356 ablation INFO [hied_bge-m3_no_somatization] 37/50 evidence extracted for patient_467 (15 spans)
+2026-03-20 09:09:25,356 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:09:25,356 culturedx.modes.hied INFO Case patient_467: 5 candidate disorders from triage
+2026-03-20 09:09:37,762 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:09:37,764 ablation INFO [hied_bge-m3_no_somatization] 37/50 case=patient_467 pred=F32 gold=['F31'] conf=0.718 (35.6s)
+2026-03-20 09:09:37,764 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_54
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.91s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.13s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.25s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:22,  7.41s/it]Batches:  50%|█████     | 2/4 [00:11<00:11,  5.69s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.84s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.30s/it]Batches: 100%|██████████| 4/4 [00:19<00:00,  4.80s/it]
+2026-03-20 09:10:01,455 ablation INFO [hied_bge-m3_no_somatization] 38/50 evidence extracted for patient_54 (15 spans)
+2026-03-20 09:10:01,455 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:10:01,455 culturedx.modes.hied INFO Case patient_54: 5 candidate disorders from triage
+2026-03-20 09:10:31,442 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:10:31,445 ablation INFO [hied_bge-m3_no_somatization] 38/50 case=patient_54 pred=F32 gold=['F32'] conf=0.685 (53.7s)
+2026-03-20 09:10:31,445 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_1026
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.13s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.22s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.36s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:06<00:19,  6.38s/it]Batches:  50%|█████     | 2/4 [00:10<00:09,  4.90s/it]Batches:  75%|███████▌  | 3/4 [00:13<00:04,  4.32s/it]Batches: 100%|██████████| 4/4 [00:17<00:00,  3.89s/it]Batches: 100%|██████████| 4/4 [00:17<00:00,  4.27s/it]
+2026-03-20 09:10:53,262 ablation INFO [hied_bge-m3_no_somatization] 39/50 evidence extracted for patient_1026 (15 spans)
+2026-03-20 09:10:53,262 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:10:53,263 culturedx.modes.hied INFO Case patient_1026: 5 candidate disorders from triage
+2026-03-20 09:11:17,893 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:11:17,896 ablation INFO [hied_bge-m3_no_somatization] 39/50 case=patient_1026 pred=F32 gold=['F32'] conf=0.630 (46.5s)
+2026-03-20 09:11:17,897 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_36
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.09s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.20s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.34s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:06<00:27,  6.99s/it]Batches:  40%|████      | 2/5 [00:11<00:16,  5.48s/it]Batches:  60%|██████    | 3/5 [00:15<00:09,  4.79s/it]Batches:  80%|████████  | 4/5 [00:18<00:04,  4.29s/it]Batches: 100%|██████████| 5/5 [00:21<00:00,  3.70s/it]Batches: 100%|██████████| 5/5 [00:21<00:00,  4.31s/it]
+2026-03-20 09:11:44,142 ablation INFO [hied_bge-m3_no_somatization] 40/50 evidence extracted for patient_36 (15 spans)
+2026-03-20 09:11:44,142 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:11:44,142 culturedx.modes.hied INFO Case patient_36: 5 candidate disorders from triage
+2026-03-20 09:12:03,244 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:12:03,246 ablation INFO [hied_bge-m3_no_somatization] 40/50 case=patient_36 pred=F32 gold=['F32'] conf=0.667 (45.4s)
+2026-03-20 09:12:03,247 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_15
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.09s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.19s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.33s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:08<00:35,  8.96s/it]Batches:  40%|████      | 2/5 [00:15<00:22,  7.65s/it]Batches:  60%|██████    | 3/5 [00:21<00:13,  6.91s/it]Batches:  80%|████████  | 4/5 [00:25<00:05,  5.81s/it]Batches: 100%|██████████| 5/5 [00:29<00:00,  4.92s/it]Batches: 100%|██████████| 5/5 [00:29<00:00,  5.84s/it]
+2026-03-20 09:12:37,103 ablation INFO [hied_bge-m3_no_somatization] 41/50 evidence extracted for patient_15 (15 spans)
+2026-03-20 09:12:37,104 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:12:37,104 culturedx.modes.hied INFO Case patient_15: 5 candidate disorders from triage
+2026-03-20 09:12:37,181 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 09:12:37,181 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 09:12:37,181 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 09:12:37,181 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 09:12:38,242 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 09:12:38,243 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 09:12:38,243 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 09:12:38,243 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 09:12:40,311 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 09:12:40,311 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 09:12:40,311 culturedx.modes.base WARNING Criterion checker failed for F32
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 177, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 150, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 122, in run
+    raw = self.llm.generate(
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 09:12:40,313 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 09:12:40,313 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 09:12:40,314 culturedx.modes.base WARNING Criterion checker failed for F33
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 177, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 150, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 122, in run
+    raw = self.llm.generate(
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 09:12:40,315 ablation INFO [hied_bge-m3_no_somatization] 41/50 case=patient_15 pred=F41.1 gold=['F32'] conf=0.567 (37.1s)
+2026-03-20 09:12:40,315 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_421
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.99s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.21s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.33s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:22,  7.50s/it]Batches:  50%|█████     | 2/4 [00:11<00:10,  5.49s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.64s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.05s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.59s/it]
+2026-03-20 09:13:03,329 ablation INFO [hied_bge-m3_no_somatization] 42/50 evidence extracted for patient_421 (15 spans)
+2026-03-20 09:13:03,329 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:13:03,329 culturedx.modes.hied INFO Case patient_421: 5 candidate disorders from triage
+2026-03-20 09:13:29,930 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:13:36,957 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:13:36,959 ablation INFO [hied_bge-m3_no_somatization] 42/50 case=patient_421 pred=F32 gold=['F41'] conf=0.684 (56.6s)
+2026-03-20 09:13:36,960 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_931
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.22s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.35s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:21,  7.05s/it]Batches:  50%|█████     | 2/4 [00:11<00:10,  5.47s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.79s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.19s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.67s/it]
+2026-03-20 09:14:00,337 ablation INFO [hied_bge-m3_no_somatization] 43/50 evidence extracted for patient_931 (15 spans)
+2026-03-20 09:14:00,337 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:14:00,337 culturedx.modes.hied INFO Case patient_931: 5 candidate disorders from triage
+2026-03-20 09:14:00,341 culturedx.diagnosis.comorbidity INFO Exclusion: F33 excludes F32
+2026-03-20 09:14:00,341 ablation INFO [hied_bge-m3_no_somatization] 43/50 case=patient_931 pred=F42 gold=['F41'] conf=0.591 (23.4s)
+2026-03-20 09:14:00,342 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_255
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.11s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.23s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.36s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:06<00:18,  6.30s/it]Batches:  50%|█████     | 2/4 [00:10<00:09,  4.82s/it]Batches:  75%|███████▌  | 3/4 [00:13<00:04,  4.08s/it]Batches: 100%|██████████| 4/4 [00:15<00:00,  3.49s/it]Batches: 100%|██████████| 4/4 [00:15<00:00,  3.97s/it]
+2026-03-20 09:14:20,936 ablation INFO [hied_bge-m3_no_somatization] 44/50 evidence extracted for patient_255 (15 spans)
+2026-03-20 09:14:20,936 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:14:20,936 culturedx.modes.hied INFO Case patient_255: 5 candidate disorders from triage
+2026-03-20 09:14:20,939 ablation INFO [hied_bge-m3_no_somatization] 44/50 case=patient_255 pred=F32 gold=['F39'] conf=0.553 (20.6s)
+2026-03-20 09:14:20,939 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_812
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.12s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.23s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.36s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:21,  7.07s/it]Batches:  50%|█████     | 2/4 [00:11<00:10,  5.32s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.77s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.09s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.58s/it]
+2026-03-20 09:14:44,006 ablation INFO [hied_bge-m3_no_somatization] 45/50 evidence extracted for patient_812 (15 spans)
+2026-03-20 09:14:44,006 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:14:44,006 culturedx.modes.hied INFO Case patient_812: 5 candidate disorders from triage
+2026-03-20 09:15:11,478 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:15:20,543 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:15:20,545 ablation INFO [hied_bge-m3_no_somatization] 45/50 case=patient_812 pred=F32 gold=['F39'] conf=0.669 (59.6s)
+2026-03-20 09:15:20,546 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_296
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.20s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.34s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:06<00:20,  6.97s/it]Batches:  50%|█████     | 2/4 [00:11<00:10,  5.24s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.81s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.17s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.63s/it]
+2026-03-20 09:15:43,737 ablation INFO [hied_bge-m3_no_somatization] 46/50 evidence extracted for patient_296 (15 spans)
+2026-03-20 09:15:43,737 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:15:43,737 culturedx.modes.hied INFO Case patient_296: 5 candidate disorders from triage
+2026-03-20 09:15:43,741 ablation INFO [hied_bge-m3_no_somatization] 46/50 case=patient_296 pred=F32 gold=['F32'] conf=0.674 (23.2s)
+2026-03-20 09:15:43,741 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_333
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.77s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.01s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.13s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:06<00:19,  6.63s/it]Batches:  50%|█████     | 2/4 [00:11<00:11,  5.57s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.81s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.22s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.67s/it]
+2026-03-20 09:16:06,699 ablation INFO [hied_bge-m3_no_somatization] 47/50 evidence extracted for patient_333 (15 spans)
+2026-03-20 09:16:06,699 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:16:06,699 culturedx.modes.hied INFO Case patient_333: 5 candidate disorders from triage
+2026-03-20 09:16:24,551 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:16:24,553 ablation INFO [hied_bge-m3_no_somatization] 47/50 case=patient_333 pred=F42 gold=['F41'] conf=0.675 (40.8s)
+2026-03-20 09:16:24,554 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_325
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.83s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.12s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.22s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:08<00:24,  8.09s/it]Batches:  50%|█████     | 2/4 [00:12<00:11,  5.71s/it]Batches:  75%|███████▌  | 3/4 [00:16<00:04,  4.95s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.09s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.74s/it]
+2026-03-20 09:16:47,971 ablation INFO [hied_bge-m3_no_somatization] 48/50 evidence extracted for patient_325 (15 spans)
+2026-03-20 09:16:47,971 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:16:47,971 culturedx.modes.hied INFO Case patient_325: 5 candidate disorders from triage
+2026-03-20 09:17:04,150 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:17:04,152 ablation INFO [hied_bge-m3_no_somatization] 48/50 case=patient_325 pred=F32 gold=['F32'] conf=0.668 (39.6s)
+2026-03-20 09:17:04,152 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_401
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.02s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.17s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.30s/it]
+Batches:   0%|          | 0/4 [00:00<?, ?it/s]Batches:  25%|██▌       | 1/4 [00:07<00:22,  7.42s/it]Batches:  50%|█████     | 2/4 [00:11<00:10,  5.41s/it]Batches:  75%|███████▌  | 3/4 [00:15<00:04,  4.74s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.16s/it]Batches: 100%|██████████| 4/4 [00:18<00:00,  4.66s/it]
+2026-03-20 09:17:27,394 ablation INFO [hied_bge-m3_no_somatization] 49/50 evidence extracted for patient_401 (15 spans)
+2026-03-20 09:17:27,395 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:17:27,395 culturedx.modes.hied INFO Case patient_401: 5 candidate disorders from triage
+2026-03-20 09:17:27,398 culturedx.diagnosis.comorbidity INFO Exclusion: F33 excludes F32
+2026-03-20 09:17:27,398 ablation INFO [hied_bge-m3_no_somatization] 49/50 case=patient_401 pred=F33 gold=['F41'] conf=0.552 (23.2s)
+2026-03-20 09:17:27,399 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case patient_209
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.00s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.01s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.16s/it]
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:07<00:31,  7.90s/it]Batches:  40%|████      | 2/5 [00:13<00:20,  6.71s/it]Batches:  60%|██████    | 3/5 [00:17<00:10,  5.33s/it]Batches:  80%|████████  | 4/5 [00:20<00:04,  4.55s/it]Batches: 100%|██████████| 5/5 [00:22<00:00,  3.60s/it]Batches: 100%|██████████| 5/5 [00:22<00:00,  4.54s/it]
+2026-03-20 09:17:54,446 ablation INFO [hied_bge-m3_no_somatization] 50/50 evidence extracted for patient_209 (15 spans)
+2026-03-20 09:17:54,446 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 09:17:54,446 culturedx.modes.hied INFO Case patient_209: 5 candidate disorders from triage
+2026-03-20 09:18:11,236 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 09:18:11,238 ablation INFO [hied_bge-m3_no_somatization] 50/50 case=patient_209 pred=F32 gold=['F32'] conf=0.718 (43.8s)
+2026-03-20 09:18:11,249 ablation INFO [hied_bge-m3_no_somatization] top1=0.460 top3=0.740 f1=0.098 time=2196s (43.9s/case)
+2026-03-20 09:18:11,249 ablation INFO 
+================================================================================
+2026-03-20 09:18:11,249 ablation INFO ABLATION SWEEP RESULTS
+2026-03-20 09:18:11,249 ablation INFO ================================================================================
+2026-03-20 09:18:11,249 ablation INFO Condition                              Top-1    Top-3       F1  Time(s)   s/case
+2026-03-20 09:18:11,249 ablation INFO --------------------------------------------------------------------------------
+2026-03-20 09:18:11,249 ablation INFO hied_no_evidence                       0.500    0.660    0.163   2558.4     51.2
+2026-03-20 09:18:11,249 ablation INFO hied_bge-m3_evidence                   0.480    0.720    0.108   5355.6    107.1
+2026-03-20 09:18:11,249 ablation INFO hied_bge-m3_no_somatization            0.460    0.740    0.098   2195.5     43.9
+2026-03-20 09:18:11,249 ablation INFO 
+Report saved to: outputs/sweeps/vllm_v3_fixes_evidence_20260320_034418/sweep_report.json

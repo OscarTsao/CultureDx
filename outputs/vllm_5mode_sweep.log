@@ -1,0 +1,529 @@
+2026-03-20 00:46:05,343 ablation INFO Loading MDD-5k raw dataset...
+2026-03-20 00:46:05,581 ablation INFO Loaded 925 cases total
+2026-03-20 00:46:05,582 ablation INFO Sampled 50 cases: {'F42': 1, 'F41': 17, 'F32': 22, 'F51': 1, 'F98': 1, 'F39': 3, 'F45': 1, 'Z71': 1, 'F50': 1, 'F43': 1, 'F31': 1}
+2026-03-20 00:46:05,613 ablation INFO Condition 1/5: hied_no_evidence
+2026-03-20 00:46:05,613 ablation INFO ============================================================
+2026-03-20 00:46:05,613 ablation INFO Running condition: hied_no_evidence
+2026-03-20 00:46:05,613 ablation INFO   mode=hied evidence=False retriever=none somatization=False
+2026-03-20 00:46:05,613 ablation INFO ============================================================
+2026-03-20 00:46:05,625 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 00:46:05,625 culturedx.modes.hied INFO Case patient_759: 5 candidate disorders from triage
+2026-03-20 00:46:05,766 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:05,766 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 00:46:05,766 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:05,767 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:05,767 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:05,767 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 00:46:05,767 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 00:46:05,767 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 00:46:06,824 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:06,825 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:06,825 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 00:46:06,825 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 00:46:06,825 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:06,825 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 00:46:06,825 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:06,826 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 00:46:08,881 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:08,881 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:08,881 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:08,881 culturedx.modes.base WARNING Criterion checker failed for F41.1
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 141, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 114, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 89, in run
+    raw = self.llm.generate(prompt, prompt_hash=prompt_hash, language=input.language)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:08,882 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:08,882 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:08,882 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:08,883 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:08,883 culturedx.modes.base WARNING Criterion checker failed for F33
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 141, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 114, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 89, in run
+    raw = self.llm.generate(prompt, prompt_hash=prompt_hash, language=input.language)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:08,883 culturedx.modes.base WARNING Criterion checker failed for F32
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 141, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 114, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 89, in run
+    raw = self.llm.generate(prompt, prompt_hash=prompt_hash, language=input.language)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:08,884 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:08,884 culturedx.modes.base WARNING Criterion checker failed for F42
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 141, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 114, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 89, in run
+    raw = self.llm.generate(prompt, prompt_hash=prompt_hash, language=input.language)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:08,904 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:08,904 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 00:46:09,927 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:09,927 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 00:46:11,949 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:11,952 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:11,952 culturedx.modes.base WARNING Criterion checker failed for F43.1
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 141, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 114, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 89, in run
+    raw = self.llm.generate(prompt, prompt_hash=prompt_hash, language=input.language)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:11,953 ablation INFO [hied_no_evidence] 1/50 case=patient_759 pred=None gold=['F42'] conf=0.000 (6.3s)
+2026-03-20 00:46:11,953 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 00:46:11,953 culturedx.modes.hied INFO Case patient_335: 5 candidate disorders from triage
+2026-03-20 00:46:11,988 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:11,988 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 00:46:12,041 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:12,041 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:12,041 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:12,041 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 00:46:12,042 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 00:46:12,042 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 00:46:13,018 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:13,018 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 00:46:13,104 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:13,104 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:13,105 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 00:46:13,105 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 00:46:13,105 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:13,105 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 00:46:15,049 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:15,049 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:15,049 culturedx.modes.base WARNING Criterion checker failed for F33
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 141, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 114, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 89, in run
+    raw = self.llm.generate(prompt, prompt_hash=prompt_hash, language=input.language)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:15,077 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:15,077 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 00:46:15,166 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:15,166 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:15,167 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:15,167 culturedx.modes.base WARNING Criterion checker failed for F41.1
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 141, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 114, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 89, in run
+    raw = self.llm.generate(prompt, prompt_hash=prompt_hash, language=input.language)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:15,167 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:15,167 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:15,167 culturedx.modes.base WARNING Criterion checker failed for F32
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 141, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 114, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 89, in run
+    raw = self.llm.generate(prompt, prompt_hash=prompt_hash, language=input.language)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:15,167 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:15,168 culturedx.modes.base WARNING Criterion checker failed for F42
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 141, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 114, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 89, in run
+    raw = self.llm.generate(prompt, prompt_hash=prompt_hash, language=input.language)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:16,107 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:16,107 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 00:46:18,136 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:18,136 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:18,136 culturedx.modes.base WARNING Criterion checker failed for F43.1
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 141, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 114, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 89, in run
+    raw = self.llm.generate(prompt, prompt_hash=prompt_hash, language=input.language)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:18,137 ablation INFO [hied_no_evidence] 2/50 case=patient_335 pred=None gold=['F41'] conf=0.000 (6.2s)
+2026-03-20 00:46:18,137 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 00:46:18,137 culturedx.modes.hied INFO Case patient_742: 5 candidate disorders from triage
+2026-03-20 00:46:18,222 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:18,222 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:18,222 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 00:46:18,222 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:18,222 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 00:46:18,223 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:18,223 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 00:46:18,223 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 00:46:19,303 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:19,303 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 00:46:19,304 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:19,304 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 00:46:19,304 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:19,304 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:19,304 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 00:46:19,305 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 00:46:21,389 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:21,389 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:21,389 culturedx.modes.base WARNING Criterion checker failed for F33
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 141, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 114, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 89, in run
+    raw = self.llm.generate(prompt, prompt_hash=prompt_hash, language=input.language)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:21,389 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:21,390 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:21,390 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:21,390 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:21,390 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:21,391 culturedx.modes.base WARNING Criterion checker failed for F41.1
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 141, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 114, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 89, in run
+    raw = self.llm.generate(prompt, prompt_hash=prompt_hash, language=input.language)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:21,391 culturedx.modes.base WARNING Criterion checker failed for F32
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 141, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 114, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 89, in run
+    raw = self.llm.generate(prompt, prompt_hash=prompt_hash, language=input.language)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:21,390 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:21,391 culturedx.modes.base WARNING Criterion checker failed for F42
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 141, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 114, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 89, in run
+    raw = self.llm.generate(prompt, prompt_hash=prompt_hash, language=input.language)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:21,420 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:21,420 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 00:46:22,449 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:22,449 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 00:46:24,477 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 00:46:24,477 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:24,478 culturedx.modes.base WARNING Criterion checker failed for F43.1
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 141, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 114, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 89, in run
+    raw = self.llm.generate(prompt, prompt_hash=prompt_hash, language=input.language)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 00:46:24,479 ablation INFO [hied_no_evidence] 3/50 case=patient_742 pred=None gold=['F32'] conf=0.000 (6.3s)
+2026-03-20 00:46:24,479 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 00:46:24,479 culturedx.modes.hied INFO Case patient_174: 5 candidate disorders from triage

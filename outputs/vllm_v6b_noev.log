@@ -1,0 +1,204 @@
+2026-03-20 11:57:17,687 ablation INFO Loading MDD-5k raw dataset...
+2026-03-20 11:57:17,934 ablation INFO Loaded 925 cases total
+2026-03-20 11:57:17,935 ablation INFO Sampled 50 cases: {'F42': 1, 'F41': 17, 'F32': 22, 'F51': 1, 'F98': 1, 'F39': 3, 'F45': 1, 'Z71': 1, 'F50': 1, 'F43': 1, 'F31': 1}
+2026-03-20 11:57:17,980 ablation INFO Condition 1/1: hied_no_evidence
+2026-03-20 11:57:17,980 ablation INFO ============================================================
+2026-03-20 11:57:17,980 ablation INFO Running condition: hied_no_evidence
+2026-03-20 11:57:17,980 ablation INFO   mode=hied evidence=False retriever=none somatization=False
+2026-03-20 11:57:17,980 ablation INFO ============================================================
+2026-03-20 11:57:17,992 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:57:17,992 culturedx.modes.hied INFO Case patient_759: 5 candidate disorders from triage
+2026-03-20 11:57:17,997 ablation INFO [hied_no_evidence] 1/50 case=patient_759 pred=F42 gold=['F42'] conf=0.905 (0.0s)
+2026-03-20 11:57:17,997 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:57:17,997 culturedx.modes.hied INFO Case patient_335: 5 candidate disorders from triage
+2026-03-20 11:57:17,999 culturedx.modes.hied INFO Case patient_335: confidence gap 0.0825 < 0.10, running differential
+2026-03-20 11:57:32,818 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 11:57:32,818 ablation INFO [hied_no_evidence] 2/50 case=patient_335 pred=F32 gold=['F41'] conf=0.850 (14.8s)
+2026-03-20 11:57:32,818 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:57:32,818 culturedx.modes.hied INFO Case patient_742: 5 candidate disorders from triage
+2026-03-20 11:57:32,823 culturedx.modes.hied INFO Case patient_742: confidence gap 0.0783 < 0.10, running differential
+2026-03-20 11:57:46,244 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 11:57:46,245 ablation INFO [hied_no_evidence] 3/50 case=patient_742 pred=F33 gold=['F32'] conf=0.850 (13.4s)
+2026-03-20 11:57:46,245 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:57:46,245 culturedx.modes.hied INFO Case patient_174: 5 candidate disorders from triage
+2026-03-20 11:57:46,248 ablation INFO [hied_no_evidence] 4/50 case=patient_174 pred=F32 gold=['F32'] conf=0.837 (0.0s)
+2026-03-20 11:57:46,248 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:57:46,248 culturedx.modes.hied INFO Case patient_313: 5 candidate disorders from triage
+2026-03-20 11:57:46,250 ablation INFO [hied_no_evidence] 5/50 case=patient_313 pred=None gold=['F32'] conf=0.000 (0.0s)
+2026-03-20 11:57:46,250 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:57:46,250 culturedx.modes.hied INFO Case patient_524: 5 candidate disorders from triage
+2026-03-20 11:57:46,252 ablation INFO [hied_no_evidence] 6/50 case=patient_524 pred=F32 gold=['F41'] conf=0.784 (0.0s)
+2026-03-20 11:57:46,252 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:57:46,252 culturedx.modes.hied INFO Case patient_182: 5 candidate disorders from triage
+2026-03-20 11:57:46,253 ablation INFO [hied_no_evidence] 7/50 case=patient_182 pred=F32 gold=['F32'] conf=0.925 (0.0s)
+2026-03-20 11:57:46,253 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:57:46,253 culturedx.modes.hied INFO Case patient_808: 5 candidate disorders from triage
+2026-03-20 11:57:46,255 ablation INFO [hied_no_evidence] 8/50 case=patient_808 pred=F32 gold=['F32'] conf=0.811 (0.0s)
+2026-03-20 11:57:46,255 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:57:46,255 culturedx.modes.hied INFO Case patient_103: 5 candidate disorders from triage
+2026-03-20 11:57:46,257 culturedx.modes.hied INFO Case patient_103: confidence gap 0.0294 < 0.10, running differential
+2026-03-20 11:57:56,185 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 11:57:56,186 ablation INFO [hied_no_evidence] 9/50 case=patient_103 pred=F32 gold=['F32'] conf=0.820 (9.9s)
+2026-03-20 11:57:56,186 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:57:56,186 culturedx.modes.hied INFO Case patient_918: 5 candidate disorders from triage
+2026-03-20 11:57:56,191 ablation INFO [hied_no_evidence] 10/50 case=patient_918 pred=F32 gold=['F32'] conf=0.861 (0.0s)
+2026-03-20 11:57:56,191 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:57:56,191 culturedx.modes.hied INFO Case patient_134: 5 candidate disorders from triage
+2026-03-20 11:57:56,192 ablation INFO [hied_no_evidence] 11/50 case=patient_134 pred=F41.1 gold=['F41'] conf=0.878 (0.0s)
+2026-03-20 11:57:56,193 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:57:56,193 culturedx.modes.hied INFO Case patient_859: 5 candidate disorders from triage
+2026-03-20 11:57:56,195 culturedx.modes.hied INFO Case patient_859: confidence gap 0.0362 < 0.10, running differential
+2026-03-20 11:57:56,195 ablation INFO [hied_no_evidence] 12/50 case=patient_859 pred=F32 gold=['F32'] conf=0.880 (0.0s)
+2026-03-20 11:57:56,195 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:57:56,195 culturedx.modes.hied INFO Case patient_619: 5 candidate disorders from triage
+2026-03-20 11:57:56,196 ablation INFO [hied_no_evidence] 13/50 case=patient_619 pred=None gold=['F51'] conf=0.000 (0.0s)
+2026-03-20 11:57:56,196 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:57:56,196 culturedx.modes.hied INFO Case patient_563: 5 candidate disorders from triage
+2026-03-20 11:57:56,197 ablation INFO [hied_no_evidence] 14/50 case=patient_563 pred=F32 gold=['F98'] conf=0.949 (0.0s)
+2026-03-20 11:57:56,197 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:57:56,197 culturedx.modes.hied INFO Case patient_1029: 5 candidate disorders from triage
+2026-03-20 11:57:56,199 culturedx.modes.hied INFO Case patient_1029: confidence gap 0.0630 < 0.10, running differential
+2026-03-20 11:57:56,199 ablation INFO [hied_no_evidence] 15/50 case=patient_1029 pred=F32 gold=['F32'] conf=0.880 (0.0s)
+2026-03-20 11:57:56,199 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:57:56,199 culturedx.modes.hied INFO Case patient_271: 5 candidate disorders from triage
+2026-03-20 11:57:56,200 ablation INFO [hied_no_evidence] 16/50 case=patient_271 pred=F32 gold=['F39'] conf=0.870 (0.0s)
+2026-03-20 11:57:56,200 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:57:56,200 culturedx.modes.hied INFO Case patient_731: 5 candidate disorders from triage
+2026-03-20 11:57:56,201 ablation INFO [hied_no_evidence] 17/50 case=patient_731 pred=None gold=['F45'] conf=0.000 (0.0s)
+2026-03-20 11:57:56,201 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:57:56,201 culturedx.modes.hied INFO Case patient_1013: 5 candidate disorders from triage
+2026-03-20 11:57:56,202 culturedx.modes.hied INFO Case patient_1013: confidence gap 0.0309 < 0.10, running differential
+2026-03-20 11:58:06,433 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 11:58:06,433 ablation INFO [hied_no_evidence] 18/50 case=patient_1013 pred=F32 gold=['F41'] conf=0.880 (10.2s)
+2026-03-20 11:58:06,433 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:58:06,433 culturedx.modes.hied INFO Case patient_760: 5 candidate disorders from triage
+2026-03-20 11:58:06,435 ablation INFO [hied_no_evidence] 19/50 case=patient_760 pred=None gold=['F41'] conf=0.000 (0.0s)
+2026-03-20 11:58:06,435 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:58:06,435 culturedx.modes.hied INFO Case patient_250: 5 candidate disorders from triage
+2026-03-20 11:58:06,438 culturedx.modes.hied INFO Case patient_250: confidence gap 0.0692 < 0.10, running differential
+2026-03-20 11:58:06,438 ablation INFO [hied_no_evidence] 20/50 case=patient_250 pred=F41.1 gold=['F41'] conf=0.880 (0.0s)
+2026-03-20 11:58:06,438 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:58:06,438 culturedx.modes.hied INFO Case patient_973: 5 candidate disorders from triage
+2026-03-20 11:58:06,442 ablation INFO [hied_no_evidence] 21/50 case=patient_973 pred=F41.1 gold=['F41'] conf=0.897 (0.0s)
+2026-03-20 11:58:06,442 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:58:06,442 culturedx.modes.hied INFO Case patient_914: 5 candidate disorders from triage
+2026-03-20 11:58:06,444 culturedx.modes.hied INFO Case patient_914: confidence gap 0.0439 < 0.10, running differential
+2026-03-20 11:58:06,444 ablation INFO [hied_no_evidence] 22/50 case=patient_914 pred=F32 gold=['F32'] conf=0.880 (0.0s)
+2026-03-20 11:58:06,445 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:58:06,445 culturedx.modes.hied INFO Case patient_762: 5 candidate disorders from triage
+2026-03-20 11:58:06,446 culturedx.modes.hied INFO Case patient_762: confidence gap 0.0027 < 0.10, running differential
+2026-03-20 11:58:23,102 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 11:58:23,102 ablation INFO [hied_no_evidence] 23/50 case=patient_762 pred=F32 gold=['F32'] conf=0.850 (16.7s)
+2026-03-20 11:58:23,102 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:58:23,102 culturedx.modes.hied INFO Case patient_728: 5 candidate disorders from triage
+2026-03-20 11:58:23,105 ablation INFO [hied_no_evidence] 24/50 case=patient_728 pred=F41.1 gold=['F41'] conf=0.765 (0.0s)
+2026-03-20 11:58:23,105 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:58:23,105 culturedx.modes.hied INFO Case patient_911: 5 candidate disorders from triage
+2026-03-20 11:58:23,108 culturedx.modes.hied INFO Case patient_911: confidence gap 0.0419 < 0.10, running differential
+2026-03-20 11:59:18,283 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 11:59:18,283 ablation INFO [hied_no_evidence] 25/50 case=patient_911 pred=F43.1 gold=['F41'] conf=0.880 (55.2s)
+2026-03-20 11:59:18,283 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:59:18,283 culturedx.modes.hied INFO Case patient_426: 5 candidate disorders from triage
+2026-03-20 11:59:18,287 ablation INFO [hied_no_evidence] 26/50 case=patient_426 pred=F41.1 gold=['F41'] conf=0.903 (0.0s)
+2026-03-20 11:59:18,287 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:59:18,287 culturedx.modes.hied INFO Case patient_1009: 5 candidate disorders from triage
+2026-03-20 11:59:18,288 ablation INFO [hied_no_evidence] 27/50 case=patient_1009 pred=None gold=['Z71'] conf=0.000 (0.0s)
+2026-03-20 11:59:18,288 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:59:18,288 culturedx.modes.hied INFO Case patient_701: 5 candidate disorders from triage
+2026-03-20 11:59:18,292 culturedx.modes.hied INFO Case patient_701: confidence gap 0.0646 < 0.10, running differential
+2026-03-20 11:59:44,727 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 11:59:44,727 ablation INFO [hied_no_evidence] 28/50 case=patient_701 pred=F32 gold=['F32'] conf=0.880 (26.4s)
+2026-03-20 11:59:44,727 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:59:44,727 culturedx.modes.hied INFO Case patient_714: 5 candidate disorders from triage
+2026-03-20 11:59:44,729 ablation INFO [hied_no_evidence] 29/50 case=patient_714 pred=F32 gold=['F41'] conf=0.785 (0.0s)
+2026-03-20 11:59:44,730 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:59:44,730 culturedx.modes.hied INFO Case patient_655: 5 candidate disorders from triage
+2026-03-20 11:59:44,731 ablation INFO [hied_no_evidence] 30/50 case=patient_655 pred=F32 gold=['F32'] conf=0.893 (0.0s)
+2026-03-20 11:59:44,731 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:59:44,731 culturedx.modes.hied INFO Case patient_62: 5 candidate disorders from triage
+2026-03-20 11:59:44,733 ablation INFO [hied_no_evidence] 31/50 case=patient_62 pred=None gold=['F41'] conf=0.000 (0.0s)
+2026-03-20 11:59:44,733 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:59:44,733 culturedx.modes.hied INFO Case patient_161: 5 candidate disorders from triage
+2026-03-20 11:59:44,735 ablation INFO [hied_no_evidence] 32/50 case=patient_161 pred=F32 gold=['F32', 'F34'] conf=0.767 (0.0s)
+2026-03-20 11:59:44,735 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:59:44,735 culturedx.modes.hied INFO Case patient_827: 5 candidate disorders from triage
+2026-03-20 11:59:44,736 ablation INFO [hied_no_evidence] 33/50 case=patient_827 pred=F32 gold=['F50'] conf=0.827 (0.0s)
+2026-03-20 11:59:44,736 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:59:44,737 culturedx.modes.hied INFO Case patient_300: 5 candidate disorders from triage
+2026-03-20 11:59:44,738 culturedx.modes.hied INFO Case patient_300: confidence gap 0.0940 < 0.10, running differential
+2026-03-20 11:59:58,781 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 11:59:58,781 ablation INFO [hied_no_evidence] 34/50 case=patient_300 pred=F32 gold=['F32'] conf=0.880 (14.0s)
+2026-03-20 11:59:58,781 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 11:59:58,781 culturedx.modes.hied INFO Case patient_617: 5 candidate disorders from triage
+2026-03-20 11:59:58,784 culturedx.modes.hied INFO Case patient_617: confidence gap 0.0333 < 0.10, running differential
+2026-03-20 12:00:09,066 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 12:00:09,067 ablation INFO [hied_no_evidence] 35/50 case=patient_617 pred=F32 gold=['F41'] conf=0.850 (10.3s)
+2026-03-20 12:00:09,067 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 12:00:09,067 culturedx.modes.hied INFO Case patient_949: 5 candidate disorders from triage
+2026-03-20 12:00:09,072 culturedx.modes.hied INFO Case patient_949: confidence gap 0.0225 < 0.10, running differential
+2026-03-20 12:00:09,072 ablation INFO [hied_no_evidence] 36/50 case=patient_949 pred=F32 gold=['F43'] conf=0.880 (0.0s)
+2026-03-20 12:00:09,072 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 12:00:09,072 culturedx.modes.hied INFO Case patient_467: 5 candidate disorders from triage
+2026-03-20 12:00:09,074 ablation INFO [hied_no_evidence] 37/50 case=patient_467 pred=F32 gold=['F31'] conf=0.888 (0.0s)
+2026-03-20 12:00:09,074 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 12:00:09,074 culturedx.modes.hied INFO Case patient_54: 5 candidate disorders from triage
+2026-03-20 12:00:09,078 culturedx.modes.hied INFO Case patient_54: confidence gap 0.0194 < 0.10, running differential
+2026-03-20 12:00:18,671 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 12:00:18,680 ablation INFO [hied_no_evidence] 38/50 case=patient_54 pred=F32 gold=['F32'] conf=0.880 (9.6s)
+2026-03-20 12:00:18,680 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 12:00:18,680 culturedx.modes.hied INFO Case patient_1026: 5 candidate disorders from triage
+2026-03-20 12:00:18,682 ablation INFO [hied_no_evidence] 39/50 case=patient_1026 pred=F32 gold=['F32'] conf=0.760 (0.0s)
+2026-03-20 12:00:18,682 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 12:00:18,682 culturedx.modes.hied INFO Case patient_36: 5 candidate disorders from triage
+2026-03-20 12:00:18,684 ablation INFO [hied_no_evidence] 40/50 case=patient_36 pred=F32 gold=['F32'] conf=0.963 (0.0s)
+2026-03-20 12:00:18,684 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 12:00:18,684 culturedx.modes.hied INFO Case patient_15: 5 candidate disorders from triage
+2026-03-20 12:00:18,687 culturedx.modes.hied INFO Case patient_15: confidence gap 0.0171 < 0.10, running differential
+2026-03-20 12:00:18,687 ablation INFO [hied_no_evidence] 41/50 case=patient_15 pred=F32 gold=['F32'] conf=0.880 (0.0s)
+2026-03-20 12:00:18,687 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 12:00:18,687 culturedx.modes.hied INFO Case patient_421: 5 candidate disorders from triage
+2026-03-20 12:00:18,689 culturedx.modes.hied INFO Case patient_421: confidence gap 0.0630 < 0.10, running differential
+2026-03-20 12:00:32,958 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 12:00:32,958 ablation INFO [hied_no_evidence] 42/50 case=patient_421 pred=F32 gold=['F41'] conf=0.820 (14.3s)
+2026-03-20 12:00:32,958 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 12:00:32,958 culturedx.modes.hied INFO Case patient_931: 5 candidate disorders from triage
+2026-03-20 12:00:32,962 culturedx.modes.hied INFO Case patient_931: confidence gap 0.0322 < 0.10, running differential
+2026-03-20 12:00:32,962 ablation INFO [hied_no_evidence] 43/50 case=patient_931 pred=F33 gold=['F41'] conf=0.880 (0.0s)
+2026-03-20 12:00:32,962 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 12:00:32,962 culturedx.modes.hied INFO Case patient_255: 5 candidate disorders from triage
+2026-03-20 12:00:32,964 culturedx.modes.hied INFO Case patient_255: confidence gap 0.0261 < 0.10, running differential
+2026-03-20 12:00:47,888 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 12:00:47,888 ablation INFO [hied_no_evidence] 44/50 case=patient_255 pred=F32 gold=['F39'] conf=0.820 (14.9s)
+2026-03-20 12:00:47,888 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 12:00:47,888 culturedx.modes.hied INFO Case patient_812: 5 candidate disorders from triage
+2026-03-20 12:00:47,893 ablation INFO [hied_no_evidence] 45/50 case=patient_812 pred=F41.1 gold=['F39'] conf=0.889 (0.0s)
+2026-03-20 12:00:47,893 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 12:00:47,893 culturedx.modes.hied INFO Case patient_296: 5 candidate disorders from triage
+2026-03-20 12:00:47,895 ablation INFO [hied_no_evidence] 46/50 case=patient_296 pred=F32 gold=['F32'] conf=0.851 (0.0s)
+2026-03-20 12:00:47,895 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 12:00:47,895 culturedx.modes.hied INFO Case patient_333: 5 candidate disorders from triage
+2026-03-20 12:00:47,897 culturedx.modes.hied INFO Case patient_333: confidence gap 0.0776 < 0.10, running differential
+2026-03-20 12:00:47,897 ablation INFO [hied_no_evidence] 47/50 case=patient_333 pred=F41.1 gold=['F41'] conf=0.880 (0.0s)
+2026-03-20 12:00:47,897 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 12:00:47,897 culturedx.modes.hied INFO Case patient_325: 5 candidate disorders from triage
+2026-03-20 12:00:47,899 culturedx.modes.hied INFO Case patient_325: confidence gap 0.0877 < 0.10, running differential
+2026-03-20 12:01:02,479 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 12:01:02,479 ablation INFO [hied_no_evidence] 48/50 case=patient_325 pred=F32 gold=['F32'] conf=0.820 (14.6s)
+2026-03-20 12:01:02,480 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 12:01:02,480 culturedx.modes.hied INFO Case patient_401: 5 candidate disorders from triage
+2026-03-20 12:01:02,483 ablation INFO [hied_no_evidence] 49/50 case=patient_401 pred=F43.1 gold=['F41'] conf=0.847 (0.0s)
+2026-03-20 12:01:02,483 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 12:01:02,483 culturedx.modes.hied INFO Case patient_209: 5 candidate disorders from triage
+2026-03-20 12:01:02,485 culturedx.modes.hied INFO Case patient_209: confidence gap 0.0625 < 0.10, running differential
+2026-03-20 12:01:23,890 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 12:01:23,891 ablation INFO [hied_no_evidence] 50/50 case=patient_209 pred=F32 gold=['F32'] conf=0.880 (21.4s)
+2026-03-20 12:01:24,314 ablation INFO [hied_no_evidence] top1=0.540 top3=0.680 f1=0.172 time=246s (4.9s/case)
+2026-03-20 12:01:24,314 ablation INFO 
+================================================================================
+2026-03-20 12:01:24,314 ablation INFO ABLATION SWEEP RESULTS
+2026-03-20 12:01:24,314 ablation INFO ================================================================================
+2026-03-20 12:01:24,314 ablation INFO Condition                              Top-1    Top-3       F1  Time(s)   s/case
+2026-03-20 12:01:24,314 ablation INFO --------------------------------------------------------------------------------
+2026-03-20 12:01:24,314 ablation INFO hied_no_evidence                       0.540    0.680    0.172    245.9      4.9
+2026-03-20 12:01:24,314 ablation INFO 
+Report saved to: outputs/sweeps/vllm_v6b_contrastive_20260320_115717/sweep_report.json

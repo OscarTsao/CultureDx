@@ -1,0 +1,106 @@
+2026-03-19 19:53:42,040 pilot INFO Loading MDD-5k raw dataset...
+2026-03-19 19:53:42,311 pilot INFO Loaded 925 cases total
+2026-03-19 19:53:42,312 pilot INFO Sampled 20 cases: {'F41': 7, 'F32': 9, 'F39': 1, 'F51': 1, 'F98': 1, 'F42': 1}
+2026-03-19 19:53:42,337 pilot INFO ============================================================
+2026-03-19 19:53:42,337 pilot INFO Running mode: hied
+2026-03-19 19:53:42,337 pilot INFO ============================================================
+2026-03-19 19:53:42,348 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 19:53:42,348 culturedx.modes.hied INFO Case patient_226: 5 candidate disorders from triage
+2026-03-19 19:53:42,354 culturedx.modes.hied INFO Case patient_226: confidence gap 0.0040 < 0.05, running differential
+2026-03-19 19:53:48,538 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 19:53:48,539 pilot INFO [hied] 1/20 case=patient_226 pred=F32 gold=['F41'] (6.2s)
+2026-03-19 19:53:48,539 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 19:53:48,539 culturedx.modes.hied INFO Case patient_140: 5 candidate disorders from triage
+2026-03-19 19:53:48,542 culturedx.modes.hied INFO Case patient_140: confidence gap 0.0080 < 0.05, running differential
+2026-03-19 19:53:55,398 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 19:53:55,399 pilot INFO [hied] 2/20 case=patient_140 pred=F32 gold=['F41'] (6.9s)
+2026-03-19 19:53:55,399 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 19:53:55,399 culturedx.modes.hied INFO Case patient_911: 5 candidate disorders from triage
+2026-03-19 19:53:55,401 culturedx.modes.hied INFO Case patient_911: confidence gap 0.0060 < 0.05, running differential
+2026-03-19 19:54:01,575 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 19:54:01,575 pilot INFO [hied] 3/20 case=patient_911 pred=F41.1 gold=['F41'] (6.2s)
+2026-03-19 19:54:01,575 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 19:54:01,575 culturedx.modes.hied INFO Case patient_914: 5 candidate disorders from triage
+2026-03-19 19:54:01,579 culturedx.modes.hied INFO Case patient_914: confidence gap 0.0060 < 0.05, running differential
+2026-03-19 19:54:08,580 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 19:54:08,581 pilot INFO [hied] 4/20 case=patient_914 pred=F32 gold=['F32'] (7.0s)
+2026-03-19 19:54:08,581 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 19:54:08,581 culturedx.modes.hied INFO Case patient_137: 5 candidate disorders from triage
+2026-03-19 19:54:08,584 culturedx.modes.hied INFO Case patient_137: confidence gap 0.0015 < 0.05, running differential
+2026-03-19 19:54:15,602 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 19:54:15,603 pilot INFO [hied] 5/20 case=patient_137 pred=F32 gold=['F41'] (7.0s)
+2026-03-19 19:54:15,603 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 19:54:15,603 culturedx.modes.hied INFO Case patient_182: 5 candidate disorders from triage
+2026-03-19 19:54:15,605 culturedx.modes.hied INFO Case patient_182: confidence gap 0.0153 < 0.05, running differential
+2026-03-19 19:54:22,001 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 19:54:22,001 pilot INFO [hied] 6/20 case=patient_182 pred=F32 gold=['F32'] (6.4s)
+2026-03-19 19:54:22,002 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 19:54:22,002 culturedx.modes.hied INFO Case patient_980: 5 candidate disorders from triage
+2026-03-19 19:54:22,004 culturedx.modes.hied INFO Case patient_980: confidence gap 0.0120 < 0.05, running differential
+2026-03-19 19:54:29,166 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 19:54:29,167 pilot INFO [hied] 7/20 case=patient_980 pred=F32 gold=['F41'] (7.2s)
+2026-03-19 19:54:29,167 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 19:54:29,167 culturedx.modes.hied INFO Case patient_325: 5 candidate disorders from triage
+2026-03-19 19:54:29,168 culturedx.modes.hied INFO Case patient_325: confidence gap 0.0095 < 0.05, running differential
+2026-03-19 19:54:35,653 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 19:54:35,654 pilot INFO [hied] 8/20 case=patient_325 pred=F32 gold=['F32'] (6.5s)
+2026-03-19 19:54:35,654 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 19:54:35,654 culturedx.modes.hied INFO Case patient_255: 5 candidate disorders from triage
+2026-03-19 19:54:35,659 culturedx.modes.hied INFO Case patient_255: confidence gap 0.0425 < 0.05, running differential
+2026-03-19 19:54:42,136 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 19:54:42,137 pilot INFO [hied] 9/20 case=patient_255 pred=F32 gold=['F39'] (6.5s)
+2026-03-19 19:54:42,137 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 19:54:42,137 culturedx.modes.hied INFO Case patient_1026: 5 candidate disorders from triage
+2026-03-19 19:54:42,139 pilot INFO [hied] 10/20 case=patient_1026 pred=F32 gold=['F32'] (0.0s)
+2026-03-19 19:54:42,139 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 19:54:42,140 culturedx.modes.hied INFO Case patient_533: 5 candidate disorders from triage
+2026-03-19 19:54:42,141 pilot INFO [hied] 11/20 case=patient_533 pred=F41.1 gold=['F51'] (0.0s)
+2026-03-19 19:54:42,141 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 19:54:42,141 culturedx.modes.hied INFO Case patient_36: 5 candidate disorders from triage
+2026-03-19 19:54:42,143 culturedx.modes.hied INFO Case patient_36: confidence gap 0.0400 < 0.05, running differential
+2026-03-19 19:54:49,284 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 19:54:49,297 pilot INFO [hied] 12/20 case=patient_36 pred=F32 gold=['F32'] (7.2s)
+2026-03-19 19:54:49,297 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 19:54:49,297 culturedx.modes.hied INFO Case patient_250: 5 candidate disorders from triage
+2026-03-19 19:54:49,300 culturedx.modes.hied INFO Case patient_250: confidence gap 0.0151 < 0.05, running differential
+2026-03-19 19:54:56,325 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 19:54:56,325 pilot INFO [hied] 13/20 case=patient_250 pred=F32 gold=['F41'] (7.0s)
+2026-03-19 19:54:56,326 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 19:54:56,326 culturedx.modes.hied INFO Case patient_209: 5 candidate disorders from triage
+2026-03-19 19:54:56,328 culturedx.modes.hied INFO Case patient_209: confidence gap 0.0022 < 0.05, running differential
+2026-03-19 19:55:03,765 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 19:55:03,766 pilot INFO [hied] 14/20 case=patient_209 pred=F32 gold=['F32'] (7.4s)
+2026-03-19 19:55:03,766 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 19:55:03,766 culturedx.modes.hied INFO Case patient_918: 5 candidate disorders from triage
+2026-03-19 19:55:03,770 pilot INFO [hied] 15/20 case=patient_918 pred=F32 gold=['F32'] (0.0s)
+2026-03-19 19:55:03,770 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 19:55:03,770 culturedx.modes.hied INFO Case patient_728: 5 candidate disorders from triage
+2026-03-19 19:55:03,772 pilot INFO [hied] 16/20 case=patient_728 pred=F41.1 gold=['F41'] (0.0s)
+2026-03-19 19:55:03,772 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 19:55:03,772 culturedx.modes.hied INFO Case patient_300: 5 candidate disorders from triage
+2026-03-19 19:55:03,773 culturedx.modes.hied INFO Case patient_300: confidence gap 0.0084 < 0.05, running differential
+2026-03-19 19:55:11,102 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 19:55:11,102 pilot INFO [hied] 17/20 case=patient_300 pred=F32 gold=['F32'] (7.3s)
+2026-03-19 19:55:11,102 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 19:55:11,102 culturedx.modes.hied INFO Case patient_391: 5 candidate disorders from triage
+2026-03-19 19:55:11,105 culturedx.modes.hied INFO Case patient_391: confidence gap 0.0152 < 0.05, running differential
+2026-03-19 19:55:17,458 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 19:55:17,459 pilot INFO [hied] 18/20 case=patient_391 pred=F32 gold=['F98'] (6.4s)
+2026-03-19 19:55:17,459 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 19:55:17,459 culturedx.modes.hied INFO Case patient_808: 5 candidate disorders from triage
+2026-03-19 19:55:17,462 culturedx.modes.hied INFO Case patient_808: confidence gap 0.0025 < 0.05, running differential
+2026-03-19 19:55:24,566 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 19:55:24,567 pilot INFO [hied] 19/20 case=patient_808 pred=F32 gold=['F32'] (7.1s)
+2026-03-19 19:55:24,567 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 19:55:24,567 culturedx.modes.hied INFO Case patient_719: 5 candidate disorders from triage
+2026-03-19 19:55:24,570 pilot INFO [hied] 20/20 case=patient_719 pred=F42 gold=['F42'] (0.0s)
+2026-03-19 19:55:24,951 pilot INFO [hied] Done in 102.2s — Parent-norm: top1=0.600 top3=0.850 f1=0.353
+2026-03-19 19:55:24,951 pilot INFO 
+======================================================================
+2026-03-19 19:55:24,951 pilot INFO PILOT EXPERIMENT RESULTS
+2026-03-19 19:55:24,951 pilot INFO ======================================================================
+2026-03-19 19:55:24,951 pilot INFO Mode            Top-1    Top-3       F1  Time(s)   s/case
+2026-03-19 19:55:24,951 pilot INFO ----------------------------------------------------------------------
+2026-03-19 19:55:24,951 pilot INFO hied            0.600    0.850    0.353    102.2      5.1
+2026-03-19 19:55:24,951 pilot INFO 
+Report saved to: outputs/pilot_v7/pilot_report.json

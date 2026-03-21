@@ -1,0 +1,16 @@
+{
+  "condition": "hied_bge-m3_evidence",
+  "n_cases": 50,
+  "metrics_parent_normalized": {
+    "top1_accuracy": 0.46,
+    "top3_accuracy": 0.72,
+    "macro_f1": 0.10318922459674117
+  },
+  "metrics_exact": {
+    "top1_accuracy": 0.4,
+    "top3_accuracy": 0.4,
+    "macro_f1": 0.06981436642453591
+  },
+  "total_seconds": 9885.5,
+  "avg_seconds_per_case": 197.7
+}

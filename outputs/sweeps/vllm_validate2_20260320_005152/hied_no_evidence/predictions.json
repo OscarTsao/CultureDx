@@ -1,0 +1,48 @@
+{
+  "condition": "hied_no_evidence",
+  "mode": "hied",
+  "with_evidence": false,
+  "retriever": "none",
+  "with_somatization": false,
+  "n_cases": 3,
+  "total_seconds": 6.2,
+  "avg_seconds_per_case": 2.1,
+  "predictions": [
+    {
+      "case_id": "patient_808",
+      "primary_diagnosis": null,
+      "comorbid_diagnoses": [],
+      "confidence": 0.0,
+      "decision": "abstain",
+      "criteria_results": [],
+      "mode": "hied",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_263",
+      "primary_diagnosis": null,
+      "comorbid_diagnoses": [],
+      "confidence": 0.0,
+      "decision": "abstain",
+      "criteria_results": [],
+      "mode": "hied",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_164",
+      "primary_diagnosis": null,
+      "comorbid_diagnoses": [],
+      "confidence": 0.0,
+      "decision": "abstain",
+      "criteria_results": [],
+      "mode": "hied",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "",
+      "language_used": "zh"
+    }
+  ]
+}

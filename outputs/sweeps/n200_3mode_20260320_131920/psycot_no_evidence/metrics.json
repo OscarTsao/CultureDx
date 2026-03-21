@@ -1,0 +1,16 @@
+{
+  "condition": "psycot_no_evidence",
+  "n_cases": 200,
+  "metrics_parent_normalized": {
+    "top1_accuracy": 0.51,
+    "top3_accuracy": 0.67,
+    "macro_f1": 0.0668778419251009
+  },
+  "metrics_exact": {
+    "top1_accuracy": 0.285,
+    "top3_accuracy": 0.375,
+    "macro_f1": 0.038918918918918924
+  },
+  "total_seconds": 0.3,
+  "avg_seconds_per_case": 0.0
+}

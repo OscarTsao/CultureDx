@@ -1,0 +1,43 @@
+{
+  "sweep_name": "v10_mdd5k",
+  "timestamp": "2026-03-21T03:48:07.951974",
+  "provider": "vllm",
+  "model": "Qwen/Qwen3-32B-AWQ",
+  "n_cases": 200,
+  "seed": 42,
+  "n_conditions": 2,
+  "conditions": {
+    "hied_no_evidence": {
+      "condition": "hied_no_evidence",
+      "n_cases": 200,
+      "metrics_parent_normalized": {
+        "top1_accuracy": 0.525,
+        "top3_accuracy": 0.71,
+        "macro_f1": 0.07227438099885058
+      },
+      "metrics_exact": {
+        "top1_accuracy": 0.31,
+        "top3_accuracy": 0.425,
+        "macro_f1": 0.043957219251336895
+      },
+      "total_seconds": 12753.7,
+      "avg_seconds_per_case": 63.8
+    },
+    "psycot_no_evidence": {
+      "condition": "psycot_no_evidence",
+      "n_cases": 200,
+      "metrics_parent_normalized": {
+        "top1_accuracy": 0.445,
+        "top3_accuracy": 0.66,
+        "macro_f1": 0.06156833401548719
+      },
+      "metrics_exact": {
+        "top1_accuracy": 0.14,
+        "top3_accuracy": 0.375,
+        "macro_f1": 0.03565276828434723
+      },
+      "total_seconds": 2284.3,
+      "avg_seconds_per_case": 11.4
+    }
+  }
+}

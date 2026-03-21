@@ -1,0 +1,27 @@
+{
+  "sweep_name": "contrastive_off_mdd5k",
+  "timestamp": "2026-03-21T16:50:32.265274",
+  "provider": "vllm",
+  "model": "Qwen/Qwen3-32B-AWQ",
+  "n_cases": 200,
+  "seed": 42,
+  "n_conditions": 1,
+  "conditions": {
+    "hied_no_evidence": {
+      "condition": "hied_no_evidence",
+      "n_cases": 200,
+      "metrics_parent_normalized": {
+        "top1_accuracy": 0.53,
+        "top3_accuracy": 0.705,
+        "macro_f1": 0.07904203926405592
+      },
+      "metrics_exact": {
+        "top1_accuracy": 0.31,
+        "top3_accuracy": 0.42,
+        "macro_f1": 0.05049645390070921
+      },
+      "total_seconds": 13036.3,
+      "avg_seconds_per_case": 65.2
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "condition": "hied_no_evidence",
+  "n_cases": 50,
+  "metrics_parent_normalized": {
+    "top1_accuracy": 0.42,
+    "top3_accuracy": 0.6,
+    "macro_f1": 0.15418803418803417
+  },
+  "metrics_exact": {
+    "top1_accuracy": 0.3,
+    "top3_accuracy": 0.36,
+    "macro_f1": 0.10400000000000001
+  },
+  "total_seconds": 2722.0,
+  "avg_seconds_per_case": 54.4
+}

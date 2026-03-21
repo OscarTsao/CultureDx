@@ -1,0 +1,731 @@
+{
+  "mode": "specialist",
+  "n_cases": 50,
+  "total_seconds": 3359.1,
+  "avg_seconds_per_case": 67.2,
+  "predictions": [
+    {
+      "case_id": "patient_759",
+      "primary_diagnosis": "F42",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F32"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_335",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_742",
+      "primary_diagnosis": "F33",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_174",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_313",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_524",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_182",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_808",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_103",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_918",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_134",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_859",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_619",
+      "primary_diagnosis": "F41.1",
+      "comorbid_diagnoses": [
+        "F32"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_563",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_1029",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_271",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_731",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_1013",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_760",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_250",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_973",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_914",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_762",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_728",
+      "primary_diagnosis": "F41.1",
+      "comorbid_diagnoses": [
+        "F32"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_911",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_426",
+      "primary_diagnosis": "F41.1",
+      "comorbid_diagnoses": [
+        "F32"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_1009",
+      "primary_diagnosis": "F41.1",
+      "comorbid_diagnoses": [],
+      "confidence": 0.8,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_701",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_714",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_655",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_62",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_161",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_827",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_300",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_617",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_949",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_467",
+      "primary_diagnosis": "F33",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_54",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_1026",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_36",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_15",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_421",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_931",
+      "primary_diagnosis": "F33",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_255",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_812",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_296",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_333",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.82,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_325",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_401",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_209",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "specialist",
+      "model_name": "qwen3:32b",
+      "prompt_hash": "",
+      "language_used": "zh"
+    }
+  ]
+}

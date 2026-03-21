@@ -1,0 +1,13 @@
+{
+  "condition": "n200_3mode_20260320_131920/psycot_no_evidence",
+  "n_cases": 200,
+  "comorbidity": {
+    "hamming_accuracy": 0.41291666666666665,
+    "subset_accuracy": 0.2,
+    "comorbidity_detection_f1": 0.17391304347826086,
+    "label_coverage": 0.6433333333333333,
+    "label_precision": 0.4308333333333333,
+    "avg_predicted_labels": 1.755,
+    "avg_gold_labels": 1.105
+  }
+}

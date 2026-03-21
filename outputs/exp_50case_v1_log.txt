@@ -1,0 +1,1486 @@
+2026-03-19 19:57:15,192 pilot INFO Loading MDD-5k raw dataset...
+2026-03-19 19:57:15,424 pilot INFO Loaded 925 cases total
+2026-03-19 19:57:15,425 pilot INFO Sampled 50 cases: {'F42': 1, 'F41': 17, 'F32': 22, 'F51': 1, 'F98': 1, 'F39': 3, 'F45': 1, 'Z71': 1, 'F50': 1, 'F43': 1, 'F31': 1}
+2026-03-19 19:57:15,449 pilot INFO ============================================================
+2026-03-19 19:57:15,449 pilot INFO Running mode: hied
+2026-03-19 19:57:15,449 pilot INFO ============================================================
+2026-03-19 19:57:15,459 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 19:57:15,459 culturedx.modes.hied INFO Case patient_759: 5 candidate disorders from triage
+2026-03-19 19:57:28,778 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 19:57:41,011 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 19:58:00,576 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 19:58:19,843 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 19:58:33,756 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 19:58:33,758 culturedx.modes.hied INFO Case patient_759: confidence gap 0.0100 < 0.05, running differential
+2026-03-19 19:58:40,160 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 19:58:40,161 pilot INFO [hied] 1/50 case=patient_759 pred=F42 gold=['F42'] (84.7s)
+2026-03-19 19:58:40,161 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 19:58:40,161 culturedx.modes.hied INFO Case patient_335: 5 candidate disorders from triage
+2026-03-19 19:59:07,713 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:08:40,196 culturedx.llm.client WARNING LLM call failed (attempt 1/3): timed out. Retrying in 1s...
+2026-03-19 20:08:40,221 culturedx.llm.client WARNING LLM call failed (attempt 1/3): timed out. Retrying in 1s...
+2026-03-19 20:08:40,270 culturedx.llm.client WARNING LLM call failed (attempt 1/3): timed out. Retrying in 1s...
+2026-03-19 20:08:55,898 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:09:12,589 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:09:28,067 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:18:41,376 culturedx.llm.client WARNING LLM call failed (attempt 2/3): timed out. Retrying in 2s...
+2026-03-19 20:19:05,991 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:19:05,993 culturedx.modes.hied INFO Case patient_335: confidence gap 0.0057 < 0.05, running differential
+2026-03-19 20:19:12,010 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:19:12,011 pilot INFO [hied] 2/50 case=patient_335 pred=F32 gold=['F41'] (1231.9s)
+2026-03-19 20:19:12,011 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:19:12,011 culturedx.modes.hied INFO Case patient_742: 5 candidate disorders from triage
+2026-03-19 20:19:25,884 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:19:48,981 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:20:11,374 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:20:24,583 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:20:36,766 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:20:36,768 culturedx.modes.hied INFO Case patient_742: confidence gap 0.0058 < 0.05, running differential
+2026-03-19 20:20:44,235 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:20:44,235 culturedx.modes.hied WARNING Differential returned F33.2 not in confirmed set {'F33', 'F32'}
+2026-03-19 20:20:44,235 culturedx.modes.hied INFO Differential inconclusive, falling back to calibrator
+2026-03-19 20:20:44,235 culturedx.diagnosis.comorbidity INFO Exclusion: F33 excludes F32
+2026-03-19 20:20:44,235 pilot INFO [hied] 3/50 case=patient_742 pred=F33 gold=['F32'] (92.2s)
+2026-03-19 20:20:44,235 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:20:44,235 culturedx.modes.hied INFO Case patient_174: 5 candidate disorders from triage
+2026-03-19 20:20:54,469 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:21:15,783 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:21:35,041 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:21:44,641 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:21:54,505 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:21:54,506 pilot INFO [hied] 4/50 case=patient_174 pred=F32 gold=['F32'] (70.3s)
+2026-03-19 20:21:54,506 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:21:54,507 culturedx.modes.hied INFO Case patient_313: 5 candidate disorders from triage
+2026-03-19 20:22:06,198 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:22:32,770 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:22:46,598 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:23:14,021 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:23:27,202 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:23:27,204 culturedx.modes.hied INFO Case patient_313: confidence gap 0.0020 < 0.05, running differential
+2026-03-19 20:23:34,016 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:23:34,017 pilot INFO [hied] 5/50 case=patient_313 pred=F32 gold=['F32'] (99.5s)
+2026-03-19 20:23:34,017 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:23:34,017 culturedx.modes.hied INFO Case patient_524: 5 candidate disorders from triage
+2026-03-19 20:23:54,959 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:24:05,988 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:24:27,050 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:24:42,837 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:24:54,162 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:24:54,164 culturedx.modes.hied INFO Case patient_524: confidence gap 0.0040 < 0.05, running differential
+2026-03-19 20:25:01,198 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:25:01,199 pilot INFO [hied] 6/50 case=patient_524 pred=F32 gold=['F41'] (87.2s)
+2026-03-19 20:25:01,199 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:25:01,199 culturedx.modes.hied INFO Case patient_182: 5 candidate disorders from triage
+2026-03-19 20:25:01,202 culturedx.modes.hied INFO Case patient_182: confidence gap 0.0153 < 0.05, running differential
+2026-03-19 20:25:08,351 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:25:08,352 pilot INFO [hied] 7/50 case=patient_182 pred=F32 gold=['F32'] (7.2s)
+2026-03-19 20:25:08,352 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:25:08,352 culturedx.modes.hied INFO Case patient_808: 5 candidate disorders from triage
+2026-03-19 20:25:08,360 culturedx.modes.hied INFO Case patient_808: confidence gap 0.0025 < 0.05, running differential
+2026-03-19 20:25:08,361 pilot INFO [hied] 8/50 case=patient_808 pred=F32 gold=['F32'] (0.0s)
+2026-03-19 20:25:08,361 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:25:08,361 culturedx.modes.hied INFO Case patient_103: 5 candidate disorders from triage
+2026-03-19 20:25:29,837 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:25:40,201 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:25:51,851 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:26:13,104 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:26:23,576 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:26:23,578 culturedx.modes.hied INFO Case patient_103: confidence gap 0.0055 < 0.05, running differential
+2026-03-19 20:26:30,731 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:26:30,731 pilot INFO [hied] 9/50 case=patient_103 pred=F32 gold=['F32'] (82.4s)
+2026-03-19 20:26:30,731 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:26:30,731 culturedx.modes.hied INFO Case patient_918: 5 candidate disorders from triage
+2026-03-19 20:26:30,734 pilot INFO [hied] 10/50 case=patient_918 pred=F32 gold=['F32'] (0.0s)
+2026-03-19 20:26:30,734 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:26:30,734 culturedx.modes.hied INFO Case patient_134: 5 candidate disorders from triage
+2026-03-19 20:26:45,595 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:27:01,304 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:27:11,149 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:27:20,287 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:27:29,078 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:27:29,080 pilot INFO [hied] 11/50 case=patient_134 pred=F41.1 gold=['F41'] (58.3s)
+2026-03-19 20:27:29,080 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:27:29,080 culturedx.modes.hied INFO Case patient_859: 5 candidate disorders from triage
+2026-03-19 20:27:52,013 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:28:04,383 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:28:29,147 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:28:42,276 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:28:54,520 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:28:54,522 culturedx.modes.hied INFO Case patient_859: confidence gap 0.0093 < 0.05, running differential
+2026-03-19 20:29:02,290 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:29:02,291 pilot INFO [hied] 12/50 case=patient_859 pred=F32 gold=['F32'] (93.2s)
+2026-03-19 20:29:02,291 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:29:02,291 culturedx.modes.hied INFO Case patient_619: 5 candidate disorders from triage
+2026-03-19 20:29:17,749 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:29:33,667 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:29:42,059 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:29:51,587 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:29:59,751 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:29:59,752 pilot INFO [hied] 13/50 case=patient_619 pred=F41.1 gold=['F51'] (57.5s)
+2026-03-19 20:29:59,752 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:29:59,752 culturedx.modes.hied INFO Case patient_563: 5 candidate disorders from triage
+2026-03-19 20:30:28,630 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:30:53,374 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:31:05,817 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:31:20,758 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:31:35,040 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:31:35,042 pilot INFO [hied] 14/50 case=patient_563 pred=F32 gold=['F98'] (95.3s)
+2026-03-19 20:31:35,042 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:31:35,042 culturedx.modes.hied INFO Case patient_1029: 5 candidate disorders from triage
+2026-03-19 20:32:00,917 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:32:15,107 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:32:27,947 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:32:49,294 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:33:02,020 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:33:02,022 culturedx.modes.hied INFO Case patient_1029: confidence gap 0.0115 < 0.05, running differential
+2026-03-19 20:33:09,288 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:33:09,289 pilot INFO [hied] 15/50 case=patient_1029 pred=F32 gold=['F32'] (94.2s)
+2026-03-19 20:33:09,289 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:33:09,289 culturedx.modes.hied INFO Case patient_271: 5 candidate disorders from triage
+2026-03-19 20:33:22,157 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:33:44,527 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:34:06,842 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:34:21,637 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:34:33,970 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:34:33,972 culturedx.modes.hied INFO Case patient_271: confidence gap 0.0140 < 0.05, running differential
+2026-03-19 20:34:40,687 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:34:40,688 pilot INFO [hied] 16/50 case=patient_271 pred=F32 gold=['F39'] (91.4s)
+2026-03-19 20:34:40,688 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:34:40,688 culturedx.modes.hied INFO Case patient_731: 5 candidate disorders from triage
+2026-03-19 20:34:54,161 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:35:19,046 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:35:39,211 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:35:50,690 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:36:03,970 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:36:03,972 culturedx.modes.hied INFO Case patient_731: confidence gap 0.0080 < 0.05, running differential
+2026-03-19 20:36:11,056 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:36:11,056 pilot INFO [hied] 17/50 case=patient_731 pred=F32 gold=['F45'] (90.4s)
+2026-03-19 20:36:11,057 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:36:11,057 culturedx.modes.hied INFO Case patient_1013: 5 candidate disorders from triage
+2026-03-19 20:36:35,763 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:36:46,844 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:37:01,251 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:37:19,851 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:37:31,162 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:37:31,163 culturedx.modes.hied INFO Case patient_1013: confidence gap 0.0000 < 0.05, running differential
+2026-03-19 20:37:38,606 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:37:38,607 pilot INFO [hied] 18/50 case=patient_1013 pred=F32 gold=['F41'] (87.6s)
+2026-03-19 20:37:38,607 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:37:38,607 culturedx.modes.hied INFO Case patient_760: 5 candidate disorders from triage
+2026-03-19 20:37:50,860 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:38:04,721 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:38:27,415 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:38:54,312 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:39:05,868 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:39:05,870 culturedx.modes.hied INFO Case patient_760: confidence gap 0.0040 < 0.05, running differential
+2026-03-19 20:39:13,233 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:39:13,234 pilot INFO [hied] 19/50 case=patient_760 pred=F32 gold=['F41'] (94.6s)
+2026-03-19 20:39:13,234 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:39:13,234 culturedx.modes.hied INFO Case patient_250: 5 candidate disorders from triage
+2026-03-19 20:39:13,236 culturedx.modes.hied INFO Case patient_250: confidence gap 0.0151 < 0.05, running differential
+2026-03-19 20:39:13,236 pilot INFO [hied] 20/50 case=patient_250 pred=F32 gold=['F41'] (0.0s)
+2026-03-19 20:39:13,236 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:39:13,236 culturedx.modes.hied INFO Case patient_973: 5 candidate disorders from triage
+2026-03-19 20:39:23,437 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:39:34,609 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:39:54,728 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:40:15,382 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:40:25,641 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:40:25,643 culturedx.modes.hied INFO Case patient_973: confidence gap 0.0200 < 0.05, running differential
+2026-03-19 20:40:32,424 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:40:32,425 pilot INFO [hied] 21/50 case=patient_973 pred=F41.1 gold=['F41'] (79.2s)
+2026-03-19 20:40:32,425 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:40:32,425 culturedx.modes.hied INFO Case patient_914: 5 candidate disorders from triage
+2026-03-19 20:40:32,428 culturedx.modes.hied INFO Case patient_914: confidence gap 0.0060 < 0.05, running differential
+2026-03-19 20:40:39,821 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:40:39,822 pilot INFO [hied] 22/50 case=patient_914 pred=F32 gold=['F32'] (7.4s)
+2026-03-19 20:40:39,822 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:40:39,822 culturedx.modes.hied INFO Case patient_762: 5 candidate disorders from triage
+2026-03-19 20:40:52,944 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:41:18,151 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:41:30,071 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:41:49,130 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:42:00,957 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:42:00,958 culturedx.modes.hied INFO Case patient_762: confidence gap 0.0107 < 0.05, running differential
+2026-03-19 20:42:07,685 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:42:07,686 pilot INFO [hied] 23/50 case=patient_762 pred=F32 gold=['F32'] (87.9s)
+2026-03-19 20:42:07,686 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:42:07,686 culturedx.modes.hied INFO Case patient_728: 5 candidate disorders from triage
+2026-03-19 20:42:07,689 pilot INFO [hied] 24/50 case=patient_728 pred=F41.1 gold=['F41'] (0.0s)
+2026-03-19 20:42:07,689 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:42:07,689 culturedx.modes.hied INFO Case patient_911: 5 candidate disorders from triage
+2026-03-19 20:42:07,691 culturedx.modes.hied INFO Case patient_911: confidence gap 0.0060 < 0.05, running differential
+2026-03-19 20:42:14,444 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:42:14,445 pilot INFO [hied] 25/50 case=patient_911 pred=F41.1 gold=['F41'] (6.8s)
+2026-03-19 20:42:14,445 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:42:14,445 culturedx.modes.hied INFO Case patient_426: 5 candidate disorders from triage
+2026-03-19 20:42:27,917 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:42:46,552 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:43:06,062 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:43:17,866 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:43:29,515 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:43:29,517 pilot INFO [hied] 26/50 case=patient_426 pred=F41.1 gold=['F41'] (75.1s)
+2026-03-19 20:43:29,517 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:43:29,517 culturedx.modes.hied INFO Case patient_1009: 5 candidate disorders from triage
+2026-03-19 20:43:44,384 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:43:54,172 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:44:09,776 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:44:17,833 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:44:25,538 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:44:25,539 pilot INFO [hied] 27/50 case=patient_1009 pred=F41.1 gold=['Z71'] (56.0s)
+2026-03-19 20:44:25,539 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:44:25,539 culturedx.modes.hied INFO Case patient_701: 5 candidate disorders from triage
+2026-03-19 20:44:46,293 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:44:59,027 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:45:20,802 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:45:33,631 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:45:45,914 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:45:45,916 culturedx.modes.hied INFO Case patient_701: confidence gap 0.0022 < 0.05, running differential
+2026-03-19 20:45:53,047 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:45:53,048 pilot INFO [hied] 28/50 case=patient_701 pred=F32 gold=['F32'] (87.5s)
+2026-03-19 20:45:53,048 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:45:53,048 culturedx.modes.hied INFO Case patient_714: 5 candidate disorders from triage
+2026-03-19 20:46:05,270 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:46:22,760 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:46:40,521 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:46:51,556 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:47:02,142 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:47:02,144 culturedx.modes.hied INFO Case patient_714: confidence gap 0.0100 < 0.05, running differential
+2026-03-19 20:47:09,579 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:47:09,579 pilot INFO [hied] 29/50 case=patient_714 pred=F32 gold=['F41'] (76.5s)
+2026-03-19 20:47:09,579 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:47:09,579 culturedx.modes.hied INFO Case patient_655: 5 candidate disorders from triage
+2026-03-19 20:47:21,578 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:47:35,249 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:47:54,730 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:48:18,217 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:48:30,804 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:48:30,805 culturedx.modes.hied INFO Case patient_655: confidence gap 0.0100 < 0.05, running differential
+2026-03-19 20:48:37,718 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:48:37,718 pilot INFO [hied] 30/50 case=patient_655 pred=F32 gold=['F32'] (88.1s)
+2026-03-19 20:48:37,718 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:48:37,719 culturedx.modes.hied INFO Case patient_62: 5 candidate disorders from triage
+2026-03-19 20:48:49,076 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:49:09,851 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:49:30,240 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:49:39,705 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:49:49,465 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:49:49,467 culturedx.modes.hied INFO Case patient_62: confidence gap 0.0000 < 0.05, running differential
+2026-03-19 20:49:56,828 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:49:56,829 culturedx.modes.hied WARNING Differential returned F33.2 not in confirmed set {'F33', 'F32'}
+2026-03-19 20:49:56,829 culturedx.modes.hied INFO Differential inconclusive, falling back to calibrator
+2026-03-19 20:49:56,829 culturedx.diagnosis.comorbidity INFO Exclusion: F33 excludes F32
+2026-03-19 20:49:56,829 pilot INFO [hied] 31/50 case=patient_62 pred=F33 gold=['F41'] (79.1s)
+2026-03-19 20:49:56,829 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:49:56,829 culturedx.modes.hied INFO Case patient_161: 5 candidate disorders from triage
+2026-03-19 20:50:21,394 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:50:35,667 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:50:51,162 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:51:12,758 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:51:28,601 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:51:28,604 culturedx.modes.hied INFO Case patient_161: confidence gap 0.0151 < 0.05, running differential
+2026-03-19 20:51:35,710 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 20:51:35,711 pilot INFO [hied] 32/50 case=patient_161 pred=F32 gold=['F32', 'F34'] (98.9s)
+2026-03-19 20:51:35,711 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 20:51:35,711 culturedx.modes.hied INFO Case patient_827: 5 candidate disorders from triage
+2026-03-19 20:51:50,672 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:01:35,732 culturedx.llm.client WARNING LLM call failed (attempt 1/3): timed out. Retrying in 1s...
+2026-03-19 21:01:35,793 culturedx.llm.client WARNING LLM call failed (attempt 1/3): timed out. Retrying in 1s...
+2026-03-19 21:01:35,818 culturedx.llm.client WARNING LLM call failed (attempt 1/3): timed out. Retrying in 1s...
+2026-03-19 21:01:49,319 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:02:12,064 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:02:46,795 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:03:01,067 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:03:01,069 culturedx.modes.hied INFO Case patient_827: confidence gap 0.0062 < 0.05, running differential
+2026-03-19 21:03:07,700 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:03:07,701 pilot INFO [hied] 33/50 case=patient_827 pred=F41.1 gold=['F50'] (692.0s)
+2026-03-19 21:03:07,701 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 21:03:07,701 culturedx.modes.hied INFO Case patient_300: 5 candidate disorders from triage
+2026-03-19 21:03:07,703 culturedx.modes.hied INFO Case patient_300: confidence gap 0.0084 < 0.05, running differential
+2026-03-19 21:03:14,398 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:03:14,399 pilot INFO [hied] 34/50 case=patient_300 pred=F32 gold=['F32'] (6.7s)
+2026-03-19 21:03:14,399 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 21:03:14,399 culturedx.modes.hied INFO Case patient_617: 5 candidate disorders from triage
+2026-03-19 21:03:23,346 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:03:32,981 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:03:48,692 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:04:05,792 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:04:14,799 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:04:14,801 culturedx.modes.hied INFO Case patient_617: confidence gap 0.0000 < 0.05, running differential
+2026-03-19 21:04:21,382 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:04:21,383 pilot INFO [hied] 35/50 case=patient_617 pred=F32 gold=['F41'] (67.0s)
+2026-03-19 21:04:21,383 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 21:04:21,383 culturedx.modes.hied INFO Case patient_949: 5 candidate disorders from triage
+2026-03-19 21:04:43,832 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:04:57,672 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:05:11,920 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:14:21,489 culturedx.llm.client WARNING LLM call failed (attempt 1/3): timed out. Retrying in 1s...
+2026-03-19 21:14:36,068 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:24:22,594 culturedx.llm.client WARNING LLM call failed (attempt 2/3): timed out. Retrying in 2s...
+2026-03-19 21:34:24,680 culturedx.llm.client ERROR LLM call failed after 3 attempts: timed out
+2026-03-19 21:34:24,680 culturedx.modes.base WARNING Criterion checker failed for F33
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpcore/_sync/connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 136, in handle_request
+    raise exc
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpcore/_backends/sync.py", line 126, in read
+    with map_exceptions(exc_map):
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadTimeout: timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 134, in _parallel_check_criteria
+    future_to_code = {
+                 ^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 107, in _check_one
+    evidence_summary = evidence_map.get(disorder_code)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 89, in run
+    raw = self.llm.generate(prompt, prompt_hash=prompt_hash, language=input.language)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/client.py", line 87, in generate
+    response = httpx.post(
+               ^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_api.py", line 304, in post
+    return request(
+           ^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_api.py", line 109, in request
+    return client.request(
+           ^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadTimeout: timed out
+2026-03-19 21:34:24,686 culturedx.modes.hied INFO Case patient_949: confidence gap 0.0133 < 0.05, running differential
+2026-03-19 21:34:31,554 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:34:31,554 pilot INFO [hied] 36/50 case=patient_949 pred=F32 gold=['F43'] (1810.2s)
+2026-03-19 21:34:31,555 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 21:34:31,555 culturedx.modes.hied INFO Case patient_467: 5 candidate disorders from triage
+2026-03-19 21:34:41,706 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:34:59,545 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:35:19,255 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:35:30,839 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:35:41,250 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:35:41,252 pilot INFO [hied] 37/50 case=patient_467 pred=F32 gold=['F31'] (69.7s)
+2026-03-19 21:35:41,252 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 21:35:41,252 culturedx.modes.hied INFO Case patient_54: 5 candidate disorders from triage
+2026-03-19 21:36:03,804 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:36:17,480 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:36:33,042 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:36:55,075 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:37:08,295 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:37:08,297 culturedx.modes.hied INFO Case patient_54: confidence gap 0.0022 < 0.05, running differential
+2026-03-19 21:37:15,528 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:37:15,528 pilot INFO [hied] 38/50 case=patient_54 pred=F33 gold=['F32'] (94.3s)
+2026-03-19 21:37:15,529 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 21:37:15,529 culturedx.modes.hied INFO Case patient_1026: 5 candidate disorders from triage
+2026-03-19 21:37:15,531 pilot INFO [hied] 39/50 case=patient_1026 pred=F32 gold=['F32'] (0.0s)
+2026-03-19 21:37:15,531 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 21:37:15,531 culturedx.modes.hied INFO Case patient_36: 5 candidate disorders from triage
+2026-03-19 21:37:15,533 culturedx.modes.hied INFO Case patient_36: confidence gap 0.0400 < 0.05, running differential
+2026-03-19 21:37:22,288 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:37:22,289 pilot INFO [hied] 40/50 case=patient_36 pred=F32 gold=['F32'] (6.8s)
+2026-03-19 21:37:22,289 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 21:37:22,289 culturedx.modes.hied INFO Case patient_15: 5 candidate disorders from triage
+2026-03-19 21:37:41,593 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:38:08,732 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:38:23,043 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:38:45,562 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:39:00,279 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:39:00,282 culturedx.modes.hied INFO Case patient_15: confidence gap 0.0000 < 0.05, running differential
+2026-03-19 21:39:07,296 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:39:07,297 pilot INFO [hied] 41/50 case=patient_15 pred=F32 gold=['F32'] (105.0s)
+2026-03-19 21:39:07,297 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 21:39:07,297 culturedx.modes.hied INFO Case patient_421: 5 candidate disorders from triage
+2026-03-19 21:39:39,336 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:39:53,890 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:40:07,740 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:40:28,370 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:40:42,898 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:40:42,900 culturedx.modes.hied INFO Case patient_421: confidence gap 0.0067 < 0.05, running differential
+2026-03-19 21:40:50,396 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:40:50,396 pilot INFO [hied] 42/50 case=patient_421 pred=F32 gold=['F41'] (103.1s)
+2026-03-19 21:40:50,396 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 21:40:50,396 culturedx.modes.hied INFO Case patient_931: 5 candidate disorders from triage
+2026-03-19 21:41:08,769 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:41:19,837 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:41:32,135 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:41:51,929 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:42:02,629 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:42:02,631 culturedx.modes.hied INFO Case patient_931: confidence gap 0.0103 < 0.05, running differential
+2026-03-19 21:42:09,789 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:42:09,789 pilot INFO [hied] 43/50 case=patient_931 pred=F33 gold=['F41'] (79.4s)
+2026-03-19 21:42:09,790 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 21:42:09,790 culturedx.modes.hied INFO Case patient_255: 5 candidate disorders from triage
+2026-03-19 21:42:09,792 culturedx.modes.hied INFO Case patient_255: confidence gap 0.0425 < 0.05, running differential
+2026-03-19 21:42:09,792 pilot INFO [hied] 44/50 case=patient_255 pred=F32 gold=['F39'] (0.0s)
+2026-03-19 21:42:09,792 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 21:42:09,792 culturedx.modes.hied INFO Case patient_812: 5 candidate disorders from triage
+2026-03-19 21:42:31,467 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:42:50,755 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:43:03,008 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:43:15,849 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:43:27,163 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:43:27,164 culturedx.modes.hied INFO Case patient_812: confidence gap 0.0120 < 0.05, running differential
+2026-03-19 21:43:34,118 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:43:34,119 pilot INFO [hied] 45/50 case=patient_812 pred=F32 gold=['F39'] (84.3s)
+2026-03-19 21:43:34,119 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 21:43:34,119 culturedx.modes.hied INFO Case patient_296: 5 candidate disorders from triage
+2026-03-19 21:43:46,125 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:43:57,842 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:44:16,734 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:44:35,723 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:44:47,441 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:44:47,442 culturedx.modes.hied INFO Case patient_296: confidence gap 0.0000 < 0.05, running differential
+2026-03-19 21:44:54,361 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:44:54,361 culturedx.modes.hied WARNING Differential returned F33.2 not in confirmed set {'F41.1', 'F33', 'F32'}
+2026-03-19 21:44:54,362 culturedx.modes.hied INFO Differential inconclusive, falling back to calibrator
+2026-03-19 21:44:54,362 culturedx.diagnosis.comorbidity INFO Exclusion: F33 excludes F32
+2026-03-19 21:44:54,362 pilot INFO [hied] 46/50 case=patient_296 pred=F33 gold=['F32'] (80.2s)
+2026-03-19 21:44:54,362 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 21:44:54,362 culturedx.modes.hied INFO Case patient_333: 5 candidate disorders from triage
+2026-03-19 21:45:14,130 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:45:27,890 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:45:40,444 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:46:04,132 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:46:16,713 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:46:16,715 culturedx.modes.hied INFO Case patient_333: confidence gap 0.0120 < 0.05, running differential
+2026-03-19 21:46:23,561 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:46:23,561 pilot INFO [hied] 47/50 case=patient_333 pred=F32 gold=['F41'] (89.2s)
+2026-03-19 21:46:23,562 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 21:46:23,562 culturedx.modes.hied INFO Case patient_325: 5 candidate disorders from triage
+2026-03-19 21:46:23,564 culturedx.modes.hied INFO Case patient_325: confidence gap 0.0095 < 0.05, running differential
+2026-03-19 21:46:23,564 pilot INFO [hied] 48/50 case=patient_325 pred=F32 gold=['F32'] (0.0s)
+2026-03-19 21:46:23,564 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 21:46:23,564 culturedx.modes.hied INFO Case patient_401: 5 candidate disorders from triage
+2026-03-19 21:46:55,484 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:47:09,988 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:47:23,784 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:47:44,744 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:47:58,317 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:47:58,319 culturedx.modes.hied INFO Case patient_401: confidence gap 0.0171 < 0.05, running differential
+2026-03-19 21:48:05,500 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:48:05,501 culturedx.modes.hied WARNING Differential returned F33.2 not in confirmed set {'F33', 'F32'}
+2026-03-19 21:48:05,501 culturedx.modes.hied INFO Differential inconclusive, falling back to calibrator
+2026-03-19 21:48:05,501 culturedx.diagnosis.comorbidity INFO Exclusion: F33 excludes F32
+2026-03-19 21:48:05,501 pilot INFO [hied] 49/50 case=patient_401 pred=F33 gold=['F41'] (101.9s)
+2026-03-19 21:48:05,501 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-19 21:48:05,501 culturedx.modes.hied INFO Case patient_209: 5 candidate disorders from triage
+2026-03-19 21:48:05,503 culturedx.modes.hied INFO Case patient_209: confidence gap 0.0022 < 0.05, running differential
+2026-03-19 21:48:05,504 pilot INFO [hied] 50/50 case=patient_209 pred=F32 gold=['F32'] (0.0s)
+2026-03-19 21:48:05,884 pilot INFO [hied] Done in 6650.0s — Parent-norm: top1=0.500 top3=0.720 f1=0.172
+2026-03-19 21:48:05,884 pilot INFO ============================================================
+2026-03-19 21:48:05,884 pilot INFO Running mode: single
+2026-03-19 21:48:05,884 pilot INFO ============================================================
+2026-03-19 21:48:16,270 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:48:16,272 pilot INFO [single] 1/50 case=patient_759 pred=F42.0 gold=['F42'] (10.4s)
+2026-03-19 21:48:30,187 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:48:30,189 pilot INFO [single] 2/50 case=patient_335 pred=F32.3 gold=['F41'] (13.9s)
+2026-03-19 21:48:40,525 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:48:40,526 pilot INFO [single] 3/50 case=patient_742 pred=F32.3 gold=['F32'] (10.3s)
+2026-03-19 21:48:48,877 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:48:48,878 pilot INFO [single] 4/50 case=patient_174 pred=F32.9 gold=['F32'] (8.4s)
+2026-03-19 21:49:00,331 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:49:00,332 pilot INFO [single] 5/50 case=patient_313 pred=F32.9 gold=['F32'] (11.5s)
+2026-03-19 21:49:09,943 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:49:09,944 pilot INFO [single] 6/50 case=patient_524 pred=F41.1 gold=['F41'] (9.6s)
+2026-03-19 21:49:09,944 pilot INFO [single] 7/50 case=patient_182 pred=F32.3 gold=['F32'] (0.0s)
+2026-03-19 21:49:09,945 pilot INFO [single] 8/50 case=patient_808 pred=F33.0 gold=['F32'] (0.0s)
+2026-03-19 21:49:19,663 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:49:19,663 pilot INFO [single] 9/50 case=patient_103 pred=F32.3 gold=['F32'] (9.7s)
+2026-03-19 21:49:19,664 pilot INFO [single] 10/50 case=patient_918 pred=F32.3 gold=['F32'] (0.0s)
+2026-03-19 21:49:27,087 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:49:27,088 pilot INFO [single] 11/50 case=patient_134 pred=F41.1 gold=['F41'] (7.4s)
+2026-03-19 21:49:38,203 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:49:38,205 pilot INFO [single] 12/50 case=patient_859 pred=F32.3 gold=['F32'] (11.1s)
+2026-03-19 21:49:44,819 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:49:44,820 pilot INFO [single] 13/50 case=patient_619 pred=F41.1 gold=['F51'] (6.6s)
+2026-03-19 21:49:56,858 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:49:56,859 pilot INFO [single] 14/50 case=patient_563 pred=F32.3 gold=['F98'] (12.0s)
+2026-03-19 21:50:08,277 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:50:08,278 pilot INFO [single] 15/50 case=patient_1029 pred=F32.3 gold=['F32'] (11.4s)
+2026-03-19 21:50:18,918 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:50:18,919 pilot INFO [single] 16/50 case=patient_271 pred=F32.3 gold=['F39'] (10.6s)
+2026-03-19 21:50:30,137 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:50:30,138 pilot INFO [single] 17/50 case=patient_731 pred=F40.2 gold=['F45'] (11.2s)
+2026-03-19 21:50:39,284 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:50:39,284 pilot INFO [single] 18/50 case=patient_1013 pred=F32.3 gold=['F41'] (9.1s)
+2026-03-19 21:50:49,384 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:50:49,385 pilot INFO [single] 19/50 case=patient_760 pred=F32.3 gold=['F41'] (10.1s)
+2026-03-19 21:50:49,385 pilot INFO [single] 20/50 case=patient_250 pred=F32.9 gold=['F41'] (0.0s)
+2026-03-19 21:50:58,018 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:50:58,019 pilot INFO [single] 21/50 case=patient_973 pred=F41.1 gold=['F41'] (8.6s)
+2026-03-19 21:50:58,019 pilot INFO [single] 22/50 case=patient_914 pred=F32.3 gold=['F32'] (0.0s)
+2026-03-19 21:51:08,844 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:51:08,845 pilot INFO [single] 23/50 case=patient_762 pred=F33.0 gold=['F32'] (10.8s)
+2026-03-19 21:51:08,846 pilot INFO [single] 24/50 case=patient_728 pred=F41.1 gold=['F41'] (0.0s)
+2026-03-19 21:51:08,846 pilot INFO [single] 25/50 case=patient_911 pred=F40.1 gold=['F41'] (0.0s)
+2026-03-19 21:51:18,981 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:51:18,983 pilot INFO [single] 26/50 case=patient_426 pred=F41.1 gold=['F41'] (10.1s)
+2026-03-19 21:51:26,017 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:51:26,018 pilot INFO [single] 27/50 case=patient_1009 pred=F41.1 gold=['Z71'] (7.0s)
+2026-03-19 21:51:37,500 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:51:37,501 pilot INFO [single] 28/50 case=patient_701 pred=F32.3 gold=['F32'] (11.5s)
+2026-03-19 21:51:47,122 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:51:47,123 pilot INFO [single] 29/50 case=patient_714 pred=F32.9 gold=['F41'] (9.6s)
+2026-03-19 21:51:57,623 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:51:57,624 pilot INFO [single] 30/50 case=patient_655 pred=F32.3 gold=['F32'] (10.5s)
+2026-03-19 21:52:06,739 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:52:06,740 pilot INFO [single] 31/50 case=patient_62 pred=F32.9 gold=['F41'] (9.1s)
+2026-03-19 21:52:19,129 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:52:19,130 pilot INFO [single] 32/50 case=patient_161 pred=F33.0 gold=['F32', 'F34'] (12.4s)
+2026-03-19 21:52:31,289 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:52:31,290 pilot INFO [single] 33/50 case=patient_827 pred=F50.2 gold=['F50'] (12.2s)
+2026-03-19 21:52:31,291 pilot INFO [single] 34/50 case=patient_300 pred=F32.3 gold=['F32'] (0.0s)
+2026-03-19 21:52:39,955 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:52:39,956 pilot INFO [single] 35/50 case=patient_617 pred=F32.9 gold=['F41'] (8.7s)
+2026-03-19 21:52:52,183 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:52:52,184 pilot INFO [single] 36/50 case=patient_949 pred=F32.3 gold=['F43'] (12.2s)
+2026-03-19 21:53:01,206 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:53:01,207 pilot INFO [single] 37/50 case=patient_467 pred=F31.9 gold=['F31'] (9.0s)
+2026-03-19 21:53:12,988 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:53:12,989 pilot INFO [single] 38/50 case=patient_54 pred=F33.1 gold=['F32'] (11.8s)
+2026-03-19 21:53:12,989 pilot INFO [single] 39/50 case=patient_1026 pred=F32.3 gold=['F32'] (0.0s)
+2026-03-19 21:53:12,990 pilot INFO [single] 40/50 case=patient_36 pred=F33.2 gold=['F32'] (0.0s)
+2026-03-19 21:53:27,121 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:53:27,122 pilot INFO [single] 41/50 case=patient_15 pred=F32.3 gold=['F32'] (14.1s)
+2026-03-19 21:53:39,255 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:53:39,256 pilot INFO [single] 42/50 case=patient_421 pred=F32.3 gold=['F41'] (12.1s)
+2026-03-19 21:53:49,147 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:53:49,148 pilot INFO [single] 43/50 case=patient_931 pred=F33.2 gold=['F41'] (9.9s)
+2026-03-19 21:53:49,148 pilot INFO [single] 44/50 case=patient_255 pred=F33.2 gold=['F39'] (0.0s)
+2026-03-19 21:53:59,457 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:53:59,458 pilot INFO [single] 45/50 case=patient_812 pred=F33.2 gold=['F39'] (10.3s)
+2026-03-19 21:54:09,909 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:54:09,910 pilot INFO [single] 46/50 case=patient_296 pred=F33.0 gold=['F32'] (10.5s)
+2026-03-19 21:54:20,700 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:54:20,701 pilot INFO [single] 47/50 case=patient_333 pred=F41.1 gold=['F41'] (10.8s)
+2026-03-19 21:54:20,701 pilot INFO [single] 48/50 case=patient_325 pred=F32.3 gold=['F32'] (0.0s)
+2026-03-19 21:54:32,398 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:54:32,399 pilot INFO [single] 49/50 case=patient_401 pred=F32.9 gold=['F41'] (11.7s)
+2026-03-19 21:54:32,400 pilot INFO [single] 50/50 case=patient_209 pred=F32.3 gold=['F32'] (0.0s)
+2026-03-19 21:54:32,402 pilot INFO [single] Done in 386.5s — Parent-norm: top1=0.500 top3=0.720 f1=0.317
+2026-03-19 21:54:32,403 pilot INFO ============================================================
+2026-03-19 21:54:32,403 pilot INFO Running mode: specialist
+2026-03-19 21:54:32,403 pilot INFO ============================================================
+2026-03-19 21:54:44,543 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:54:55,872 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:55:06,337 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:55:17,332 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:55:28,112 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:55:39,944 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:55:39,945 pilot INFO [specialist] 1/50 case=patient_759 pred=F42 gold=['F42'] (67.5s)
+2026-03-19 21:55:54,537 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:56:09,865 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:56:22,289 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:56:35,585 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:56:50,761 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:57:08,331 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:57:08,332 pilot INFO [specialist] 2/50 case=patient_335 pred=F32 gold=['F41'] (88.4s)
+2026-03-19 21:57:20,080 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:57:30,724 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:57:41,866 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:57:51,802 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:58:03,535 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:58:16,037 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:58:16,038 pilot INFO [specialist] 3/50 case=patient_742 pred=F33 gold=['F32'] (67.7s)
+2026-03-19 21:58:24,465 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:58:33,408 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:58:41,965 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:58:50,678 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:58:59,422 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:59:07,941 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:59:07,942 pilot INFO [specialist] 4/50 case=patient_174 pred=F32 gold=['F32'] (51.9s)
+2026-03-19 21:59:19,168 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:59:30,697 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:59:42,274 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 21:59:54,469 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:00:06,608 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:00:19,474 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:00:19,475 pilot INFO [specialist] 5/50 case=patient_313 pred=F32 gold=['F32'] (71.5s)
+2026-03-19 22:00:29,365 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:00:40,669 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:00:52,382 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:01:03,054 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:01:14,007 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:01:26,556 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:01:26,557 pilot INFO [specialist] 6/50 case=patient_524 pred=F32 gold=['F41'] (67.1s)
+2026-03-19 22:01:39,273 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:01:50,270 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:02:02,360 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:02:14,738 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:02:27,540 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:02:41,566 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:02:41,567 pilot INFO [specialist] 7/50 case=patient_182 pred=F32 gold=['F32'] (75.0s)
+2026-03-19 22:02:51,906 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:03:00,035 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:03:09,570 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:03:18,985 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:03:28,094 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:03:38,131 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:03:38,132 pilot INFO [specialist] 8/50 case=patient_808 pred=F32 gold=['F32'] (56.6s)
+2026-03-19 22:03:46,603 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:03:55,964 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:04:05,540 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:04:14,787 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:04:25,049 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:04:34,533 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:04:34,535 pilot INFO [specialist] 9/50 case=patient_103 pred=F32 gold=['F32'] (56.4s)
+2026-03-19 22:04:44,316 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:04:53,584 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:05:03,633 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:05:13,275 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:05:22,670 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:05:33,712 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:05:33,713 pilot INFO [specialist] 10/50 case=patient_918 pred=F32 gold=['F32'] (59.2s)
+2026-03-19 22:05:41,798 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:05:50,002 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:05:57,342 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:06:04,605 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:06:11,850 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:06:20,124 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:06:20,125 pilot INFO [specialist] 11/50 case=patient_134 pred=F32 gold=['F41'] (46.4s)
+2026-03-19 22:06:31,391 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:06:42,542 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:06:55,243 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:07:05,867 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:07:18,172 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:07:31,384 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:07:31,385 pilot INFO [specialist] 12/50 case=patient_859 pred=F32 gold=['F32'] (71.3s)
+2026-03-19 22:07:37,854 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:07:45,930 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:07:53,120 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:07:59,831 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:08:06,932 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:08:15,070 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:08:15,070 pilot INFO [specialist] 13/50 case=patient_619 pred=F41.1 gold=['F51'] (43.7s)
+2026-03-19 22:08:28,605 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:08:40,315 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:08:53,353 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:09:05,538 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:09:18,763 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:09:32,977 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:09:32,979 pilot INFO [specialist] 14/50 case=patient_563 pred=F32 gold=['F98'] (77.9s)
+2026-03-19 22:09:44,651 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:09:56,762 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:10:07,744 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:10:18,491 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:10:29,750 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:10:43,838 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:10:43,839 pilot INFO [specialist] 15/50 case=patient_1029 pred=F32 gold=['F32'] (70.9s)
+2026-03-19 22:10:55,307 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:11:05,825 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:11:17,675 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:11:29,484 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:11:41,518 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:11:54,683 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:11:54,684 pilot INFO [specialist] 16/50 case=patient_271 pred=F32 gold=['F39'] (70.8s)
+2026-03-19 22:12:06,461 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:12:18,126 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:12:28,599 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:12:39,847 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:12:52,138 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:13:04,390 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:13:04,391 pilot INFO [specialist] 17/50 case=patient_731 pred=F32 gold=['F45'] (69.7s)
+2026-03-19 22:13:15,944 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:13:25,533 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:13:35,761 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:13:45,758 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:13:55,589 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:14:06,334 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:14:06,335 pilot INFO [specialist] 18/50 case=patient_1013 pred=F32 gold=['F41'] (61.9s)
+2026-03-19 22:14:16,640 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:14:27,783 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:14:38,765 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:14:49,810 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:15:00,745 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:15:12,014 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:15:12,015 pilot INFO [specialist] 19/50 case=patient_760 pred=F32 gold=['F41'] (65.7s)
+2026-03-19 22:15:22,818 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:15:33,415 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:15:45,612 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:15:57,771 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:16:09,161 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:16:21,312 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:16:21,314 pilot INFO [specialist] 20/50 case=patient_250 pred=F32 gold=['F41'] (69.3s)
+2026-03-19 22:16:29,166 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:16:38,211 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:16:46,834 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:16:56,121 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:17:04,643 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:17:14,504 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:17:14,505 pilot INFO [specialist] 21/50 case=patient_973 pred=F32 gold=['F41'] (53.2s)
+2026-03-19 22:17:28,291 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:17:41,583 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:17:55,123 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:18:09,702 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:18:22,936 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:18:38,536 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:18:38,537 pilot INFO [specialist] 22/50 case=patient_914 pred=F32 gold=['F32'] (84.0s)
+2026-03-19 22:18:49,888 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:19:00,917 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:19:11,881 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:19:22,634 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:19:33,276 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:19:44,822 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:19:44,823 pilot INFO [specialist] 23/50 case=patient_762 pred=F32 gold=['F32'] (66.3s)
+2026-03-19 22:19:51,538 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:19:58,349 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:20:05,349 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:20:13,359 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:20:20,132 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:20:27,490 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:20:27,491 pilot INFO [specialist] 24/50 case=patient_728 pred=F41.1 gold=['F41'] (42.7s)
+2026-03-19 22:20:38,351 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:20:47,548 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:20:57,748 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:21:07,484 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:21:18,147 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:21:29,202 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:21:29,202 pilot INFO [specialist] 25/50 case=patient_911 pred=F32 gold=['F41'] (61.7s)
+2026-03-19 22:21:40,216 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:21:51,344 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:22:02,258 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:22:12,745 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:22:24,215 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:22:35,663 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:22:35,664 pilot INFO [specialist] 26/50 case=patient_426 pred=F41.1 gold=['F41'] (66.5s)
+2026-03-19 22:22:43,859 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:22:50,799 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:22:57,041 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:23:04,069 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:23:11,340 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:23:19,994 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:23:19,995 pilot INFO [specialist] 27/50 case=patient_1009 pred=F41.1 gold=['Z71'] (44.3s)
+2026-03-19 22:23:32,484 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:23:44,357 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:23:55,672 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:24:08,444 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:24:20,695 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:24:33,485 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:24:33,486 pilot INFO [specialist] 28/50 case=patient_701 pred=F32 gold=['F32'] (73.5s)
+2026-03-19 22:24:43,652 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:24:54,478 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:25:03,221 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:25:13,375 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:25:22,949 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:25:35,057 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:25:35,058 pilot INFO [specialist] 29/50 case=patient_714 pred=F32 gold=['F41'] (61.6s)
+2026-03-19 22:25:46,442 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:25:57,252 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:26:08,493 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:26:18,387 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:26:31,031 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:26:44,567 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:26:44,568 pilot INFO [specialist] 30/50 case=patient_655 pred=F32 gold=['F32'] (69.5s)
+2026-03-19 22:26:52,836 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:27:01,410 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:27:10,274 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:27:20,295 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:27:28,802 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:27:39,138 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:27:39,139 pilot INFO [specialist] 31/50 case=patient_62 pred=F32 gold=['F41'] (54.6s)
+2026-03-19 22:27:54,559 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:28:07,042 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:28:19,793 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:28:34,051 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:28:48,183 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:29:03,791 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:29:03,793 pilot INFO [specialist] 32/50 case=patient_161 pred=F32 gold=['F32', 'F34'] (84.7s)
+2026-03-19 22:29:17,725 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:29:30,970 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:29:44,344 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:29:56,253 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:30:09,439 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:30:23,850 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:30:23,852 pilot INFO [specialist] 33/50 case=patient_827 pred=F32 gold=['F50'] (80.1s)
+2026-03-19 22:30:35,082 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:30:46,233 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:30:57,424 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:31:07,661 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:31:17,615 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:31:29,419 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:31:29,420 pilot INFO [specialist] 34/50 case=patient_300 pred=F32 gold=['F32'] (65.6s)
+2026-03-19 22:31:38,567 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:31:46,215 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:31:54,750 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:32:03,460 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:32:12,605 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:32:21,681 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:32:21,682 pilot INFO [specialist] 35/50 case=patient_617 pred=F32 gold=['F41'] (52.3s)
+2026-03-19 22:32:36,318 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:32:49,067 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:33:02,253 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:33:15,773 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:33:29,612 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:33:43,970 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:33:43,972 pilot INFO [specialist] 36/50 case=patient_949 pred=F32 gold=['F43'] (82.3s)
+2026-03-19 22:33:53,817 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:34:02,767 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:34:13,000 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:34:23,134 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:34:33,963 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:34:45,755 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:34:45,756 pilot INFO [specialist] 37/50 case=patient_467 pred=F33 gold=['F31'] (61.8s)
+2026-03-19 22:34:58,187 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:35:10,038 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:35:21,880 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:35:32,909 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:35:45,753 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:35:59,602 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:35:59,603 pilot INFO [specialist] 38/50 case=patient_54 pred=F32 gold=['F32'] (73.8s)
+2026-03-19 22:36:09,863 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:36:21,014 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:36:31,461 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:36:41,959 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:36:52,431 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:37:03,598 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:37:03,600 pilot INFO [specialist] 39/50 case=patient_1026 pred=F32 gold=['F32'] (64.0s)
+2026-03-19 22:37:15,011 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:37:26,438 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:37:39,376 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:37:51,430 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:38:04,143 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:38:17,276 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:38:17,277 pilot INFO [specialist] 40/50 case=patient_36 pred=F32 gold=['F32'] (73.7s)
+2026-03-19 22:38:33,480 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:38:48,350 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:39:02,341 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:39:17,500 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:39:32,263 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:39:48,447 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:39:48,448 pilot INFO [specialist] 41/50 case=patient_15 pred=F32 gold=['F32'] (91.2s)
+2026-03-19 22:40:00,895 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:40:12,910 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:40:27,215 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:40:40,679 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:40:54,677 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:41:09,626 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:41:09,627 pilot INFO [specialist] 42/50 case=patient_421 pred=F32 gold=['F41'] (81.2s)
+2026-03-19 22:41:19,559 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:41:30,000 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:41:40,511 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:41:50,735 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:42:00,896 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:42:11,471 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:42:11,472 pilot INFO [specialist] 43/50 case=patient_931 pred=F33 gold=['F41'] (61.8s)
+2026-03-19 22:42:20,629 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:42:30,397 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:42:38,721 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:42:47,771 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:42:58,218 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:43:08,743 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:43:08,744 pilot INFO [specialist] 44/50 case=patient_255 pred=F32 gold=['F39'] (57.3s)
+2026-03-19 22:43:19,185 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:43:32,077 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:43:43,701 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:43:55,502 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:44:07,309 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:44:20,297 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:44:20,298 pilot INFO [specialist] 45/50 case=patient_812 pred=F32 gold=['F39'] (71.6s)
+2026-03-19 22:44:31,464 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:44:42,530 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:44:52,633 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:45:03,374 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:45:14,057 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:45:27,249 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:45:27,250 pilot INFO [specialist] 46/50 case=patient_296 pred=F32 gold=['F32'] (67.0s)
+2026-03-19 22:45:39,997 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:45:51,633 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:46:03,978 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:46:15,638 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:46:29,781 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:46:44,183 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:46:44,185 pilot INFO [specialist] 47/50 case=patient_333 pred=F32 gold=['F41'] (76.9s)
+2026-03-19 22:46:54,268 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:47:04,698 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:47:14,131 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:47:24,655 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:47:35,257 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:47:46,334 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:47:46,335 pilot INFO [specialist] 48/50 case=patient_325 pred=F32 gold=['F32'] (62.2s)
+2026-03-19 22:47:58,126 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:48:09,466 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:48:21,776 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:48:35,304 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:48:48,907 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:49:03,909 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:49:03,910 pilot INFO [specialist] 49/50 case=patient_401 pred=F32 gold=['F41'] (77.6s)
+2026-03-19 22:49:17,980 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:49:32,162 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:49:45,924 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:50:00,329 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:50:14,984 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:50:31,452 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:50:31,453 pilot INFO [specialist] 50/50 case=patient_209 pred=F32 gold=['F32'] (87.5s)
+2026-03-19 22:50:31,456 pilot INFO [specialist] Done in 3359.1s — Parent-norm: top1=0.480 top3=0.780 f1=0.154
+2026-03-19 22:50:31,456 pilot INFO ============================================================
+2026-03-19 22:50:31,456 pilot INFO Running mode: debate
+2026-03-19 22:50:31,456 pilot INFO ============================================================
+2026-03-19 22:50:44,217 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:50:56,371 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:51:09,714 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:51:22,035 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:51:35,325 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:51:48,123 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:52:00,948 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:52:14,638 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:52:28,067 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:52:28,068 pilot INFO [debate] 1/50 case=patient_759 pred=F42 gold=['F42'] (116.6s)
+2026-03-19 22:52:41,093 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:52:55,686 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:53:09,381 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:53:23,699 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:53:37,191 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:53:52,194 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:54:06,299 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:54:20,957 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:54:36,356 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:54:36,357 pilot INFO [debate] 2/50 case=patient_335 pred=F32 gold=['F41'] (128.3s)
+2026-03-19 22:54:47,786 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:54:58,923 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:55:10,947 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:55:23,394 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:55:35,074 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:55:47,459 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:55:59,236 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:56:12,056 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:56:25,400 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:56:25,401 pilot INFO [debate] 3/50 case=patient_742 pred=F32 gold=['F32'] (109.0s)
+2026-03-19 22:56:33,625 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:56:42,346 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:56:51,885 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:57:01,714 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:57:11,613 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:57:20,607 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:57:29,099 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:57:39,383 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:57:50,065 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:57:50,066 pilot INFO [debate] 4/50 case=patient_174 pred=F32 gold=['F32'] (84.7s)
+2026-03-19 22:58:03,297 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:58:15,646 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:58:27,403 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:58:39,100 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:58:43,894 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:58:56,805 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:59:09,111 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:59:22,700 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:59:36,648 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:59:36,649 pilot INFO [debate] 5/50 case=patient_313 pred=F32 gold=['F32'] (106.6s)
+2026-03-19 22:59:47,974 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 22:59:58,947 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:00:10,900 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:00:22,081 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:00:34,596 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:00:46,317 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:00:58,168 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:01:09,479 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:01:21,282 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:01:21,283 pilot INFO [debate] 6/50 case=patient_524 pred=F32 gold=['F41'] (104.6s)
+2026-03-19 23:01:33,898 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:01:49,400 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:02:00,693 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:02:14,262 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:02:20,562 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:02:32,405 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:02:48,026 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:03:00,955 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:03:14,871 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:03:14,872 pilot INFO [debate] 7/50 case=patient_182 pred=F32 gold=['F32'] (113.6s)
+2026-03-19 23:03:25,454 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:03:36,816 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:03:46,881 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:03:56,395 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:04:01,564 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:04:12,701 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:04:24,463 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:04:34,944 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:04:46,327 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:04:46,328 pilot INFO [debate] 8/50 case=patient_808 pred=F32 gold=['F32'] (91.5s)
+2026-03-19 23:04:56,333 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:05:06,658 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:05:16,259 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:05:25,714 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:05:36,270 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:05:46,446 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:05:56,073 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:06:06,280 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:06:17,889 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:06:17,890 pilot INFO [debate] 9/50 case=patient_103 pred=F32 gold=['F32'] (91.6s)
+2026-03-19 23:06:28,458 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:06:38,712 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:06:47,701 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:06:59,140 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:07:08,667 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:07:19,543 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:07:31,352 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:07:41,901 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:07:53,469 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:07:53,470 pilot INFO [debate] 10/50 case=patient_918 pred=F32 gold=['F32'] (95.6s)
+2026-03-19 23:08:01,145 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:08:10,592 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:08:18,706 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:08:26,485 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:08:36,631 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:08:44,577 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:08:52,789 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:09:01,280 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:09:10,274 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:09:10,275 pilot INFO [debate] 11/50 case=patient_134 pred=F32 gold=['F41'] (76.8s)
+2026-03-19 23:09:22,622 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:09:34,814 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:09:45,357 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:09:57,382 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:10:08,513 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:10:21,112 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:10:33,856 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:10:46,279 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:10:58,914 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:10:58,915 pilot INFO [debate] 12/50 case=patient_859 pred=F32 gold=['F32'] (108.6s)
+2026-03-19 23:11:06,600 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:11:15,103 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:11:23,518 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:11:33,189 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:11:39,750 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:11:48,411 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:11:56,994 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:12:05,066 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:12:13,897 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:12:13,897 pilot INFO [debate] 13/50 case=patient_619 pred=F32 gold=['F51'] (75.0s)
+2026-03-19 23:12:26,025 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:12:39,046 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:12:52,724 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:13:06,652 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:13:20,915 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:13:35,005 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:13:50,284 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:14:02,549 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:14:17,393 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:14:17,394 pilot INFO [debate] 14/50 case=patient_563 pred=F32 gold=['F98'] (123.5s)
+2026-03-19 23:14:30,439 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:14:42,327 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:14:54,535 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:15:06,387 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:15:11,453 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:15:23,864 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:15:39,042 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:15:52,109 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:16:05,545 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:16:05,547 pilot INFO [debate] 15/50 case=patient_1029 pred=F32 gold=['F32'] (108.2s)
+2026-03-19 23:16:17,598 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:16:29,881 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:16:41,487 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:16:53,390 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:17:06,255 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:17:18,125 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:17:30,419 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:17:42,610 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:17:55,434 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:17:55,435 pilot INFO [debate] 16/50 case=patient_271 pred=F32 gold=['F39'] (109.9s)
+2026-03-19 23:18:07,777 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:18:21,292 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:18:34,289 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:18:46,713 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:18:59,581 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:19:13,157 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:19:26,252 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:19:40,665 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:19:54,323 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:19:54,324 pilot INFO [debate] 17/50 case=patient_731 pred=F32 gold=['F45'] (118.9s)
+2026-03-19 23:20:05,399 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:20:15,779 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:20:26,949 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:20:37,555 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:20:49,118 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:21:00,388 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:21:11,012 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:21:22,056 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:21:34,512 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:21:34,513 pilot INFO [debate] 18/50 case=patient_1013 pred=F32 gold=['F41'] (100.2s)
+2026-03-19 23:21:46,017 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:21:58,080 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:22:09,846 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:22:20,476 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:22:32,955 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:22:43,911 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:22:55,646 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:23:08,094 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:23:21,398 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:23:21,399 pilot INFO [debate] 19/50 case=patient_760 pred=F32 gold=['F41'] (106.9s)
+2026-03-19 23:23:34,618 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:23:47,656 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:23:59,129 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:24:10,889 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:24:15,680 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:24:29,008 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:24:42,479 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:24:54,334 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:25:07,945 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:25:07,946 pilot INFO [debate] 20/50 case=patient_250 pred=F32 gold=['F41'] (106.5s)
+2026-03-19 23:25:18,414 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:25:27,713 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:25:37,635 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:25:45,968 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:25:57,511 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:26:09,015 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:26:17,659 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:26:27,816 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:26:38,309 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:26:38,310 pilot INFO [debate] 21/50 case=patient_973 pred=F32 gold=['F41'] (90.4s)
+2026-03-19 23:26:52,051 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:27:06,045 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:27:21,222 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:27:36,307 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:27:50,592 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:28:04,894 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:28:20,016 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:28:35,556 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:28:51,312 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:28:51,313 pilot INFO [debate] 22/50 case=patient_914 pred=F32 gold=['F32'] (133.0s)
+2026-03-19 23:29:02,240 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:29:13,273 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:29:24,594 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:29:36,120 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:29:41,489 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:29:52,903 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:30:04,007 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:30:15,643 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:30:28,745 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:30:28,746 pilot INFO [debate] 23/50 case=patient_762 pred=F32 gold=['F32'] (97.4s)
+2026-03-19 23:30:36,939 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:30:44,881 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:30:52,379 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:30:59,517 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:31:08,574 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:31:16,261 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:31:24,130 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:31:32,867 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:31:42,016 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:31:42,017 pilot INFO [debate] 24/50 case=patient_728 pred=F41.1 gold=['F41'] (73.3s)
+2026-03-19 23:31:52,006 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:32:02,684 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:32:13,448 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:32:23,151 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:32:33,597 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:32:44,723 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:32:55,595 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:33:05,756 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:33:16,564 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:33:16,565 pilot INFO [debate] 25/50 case=patient_911 pred=F32 gold=['F41'] (94.5s)
+2026-03-19 23:33:27,271 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:33:39,238 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:33:50,714 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:34:02,323 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:34:13,416 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:34:25,427 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:34:37,791 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:34:49,587 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:35:03,229 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:35:03,230 pilot INFO [debate] 26/50 case=patient_426 pred=F41.0 gold=['F41'] (106.7s)
+2026-03-19 23:35:10,647 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:35:18,113 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:35:25,426 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:35:32,650 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:35:40,386 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:35:47,986 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:35:55,830 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:36:03,558 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:36:11,106 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:36:11,107 pilot INFO [debate] 27/50 case=patient_1009 pred=F41.1 gold=['Z71'] (67.9s)
+2026-03-19 23:36:23,558 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:36:37,027 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:36:49,631 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:37:01,729 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:37:06,931 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:37:20,057 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:37:33,861 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:37:46,545 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:38:00,394 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:38:00,396 pilot INFO [debate] 28/50 case=patient_701 pred=F32 gold=['F32'] (109.3s)
+2026-03-19 23:38:11,075 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:38:21,089 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:38:31,089 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:38:40,317 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:38:51,440 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:39:01,261 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:39:11,819 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:39:22,419 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:39:33,978 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:39:33,979 pilot INFO [debate] 29/50 case=patient_714 pred=F32 gold=['F41'] (93.6s)
+2026-03-19 23:39:44,694 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:39:56,556 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:40:08,453 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:40:19,257 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:40:30,189 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:40:42,500 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:40:54,458 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:41:05,911 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:41:19,132 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:41:19,133 pilot INFO [debate] 30/50 case=patient_655 pred=F32 gold=['F32'] (105.2s)
+2026-03-19 23:41:27,942 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:41:37,345 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:41:47,481 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:41:57,219 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:42:07,144 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:42:17,336 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:42:26,443 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:42:37,172 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:42:48,017 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:42:48,018 pilot INFO [debate] 31/50 case=patient_62 pred=F32 gold=['F41'] (88.9s)
+2026-03-19 23:43:01,339 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:43:14,932 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:43:29,131 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:43:43,345 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:43:57,626 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:44:12,393 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:44:27,118 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:44:40,885 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:44:56,098 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:44:56,100 pilot INFO [debate] 32/50 case=patient_161 pred=F32 gold=['F32', 'F34'] (128.1s)
+2026-03-19 23:45:09,486 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:45:22,851 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:45:37,977 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:45:52,245 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:46:08,097 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:46:22,646 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:46:36,239 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:46:51,489 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:47:04,901 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:47:04,902 pilot INFO [debate] 33/50 case=patient_827 pred=F50.2 gold=['F50'] (128.8s)
+2026-03-19 23:47:15,006 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:47:26,398 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:47:37,069 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:47:48,105 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:47:59,390 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:48:10,685 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:48:21,198 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:48:32,992 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:48:45,138 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:48:45,139 pilot INFO [debate] 34/50 case=patient_300 pred=F32 gold=['F32'] (100.2s)
+2026-03-19 23:48:54,225 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:49:02,510 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:49:11,620 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:49:20,390 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:49:29,221 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:49:38,789 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:49:48,083 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:49:57,656 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:50:07,685 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:50:07,686 pilot INFO [debate] 35/50 case=patient_617 pred=F32 gold=['F41'] (82.5s)
+2026-03-19 23:50:22,003 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:50:34,332 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:50:49,185 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:51:03,467 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:51:18,182 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:51:33,545 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:51:48,106 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:52:03,834 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:52:18,511 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:52:18,512 pilot INFO [debate] 36/50 case=patient_949 pred=F32 gold=['F43'] (130.8s)
+2026-03-19 23:52:28,926 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:52:38,328 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:52:49,155 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:52:59,660 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:53:10,585 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:53:21,510 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:53:31,606 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:53:43,612 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:53:55,744 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:53:55,745 pilot INFO [debate] 37/50 case=patient_467 pred=F31.9 gold=['F31'] (97.2s)
+2026-03-19 23:54:07,171 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:54:19,430 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:54:31,866 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:54:43,902 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:54:56,937 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:55:09,696 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:55:22,532 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:55:34,408 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:55:47,604 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:55:47,605 pilot INFO [debate] 38/50 case=patient_54 pred=F32 gold=['F32'] (111.9s)
+2026-03-19 23:55:58,214 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:56:08,136 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:56:19,332 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:56:30,492 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:56:36,044 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:56:46,404 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:56:57,352 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:57:09,000 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:57:20,321 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:57:20,322 pilot INFO [debate] 39/50 case=patient_1026 pred=F32 gold=['F32'] (92.7s)
+2026-03-19 23:57:33,097 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:57:44,877 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:57:56,540 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:58:10,705 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:58:22,880 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:58:35,019 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:58:49,531 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:59:02,659 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:59:16,001 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:59:16,003 pilot INFO [debate] 40/50 case=patient_36 pred=F32 gold=['F32'] (115.7s)
+2026-03-19 23:59:32,178 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-19 23:59:48,882 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:00:04,247 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:00:20,580 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:00:28,281 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:00:43,375 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:01:00,256 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:01:17,778 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:01:34,835 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:01:34,836 pilot INFO [debate] 41/50 case=patient_15 pred=F32.3 gold=['F32'] (138.8s)
+2026-03-20 00:01:48,898 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:02:01,151 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:02:14,374 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:02:26,736 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:02:40,300 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:02:54,652 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:03:07,535 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:03:20,233 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:03:34,315 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:03:34,316 pilot INFO [debate] 42/50 case=patient_421 pred=F32 gold=['F41'] (119.5s)
+2026-03-20 00:03:45,047 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:03:55,649 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:04:06,272 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:04:18,028 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:04:29,159 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:04:40,260 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:04:52,430 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:05:03,727 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:05:15,916 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:05:15,917 pilot INFO [debate] 43/50 case=patient_931 pred=F32 gold=['F41'] (101.6s)
+2026-03-20 00:05:28,387 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:05:38,869 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:05:48,825 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:05:59,349 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:06:05,902 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:06:17,961 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:06:28,705 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:06:41,433 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:06:52,696 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:06:52,697 pilot INFO [debate] 44/50 case=patient_255 pred=F31.81 gold=['F39'] (96.8s)
+2026-03-20 00:07:03,333 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:07:15,800 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:07:27,826 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:07:40,122 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:07:53,023 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:08:05,725 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:08:18,593 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:08:29,559 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:08:44,071 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:08:44,072 pilot INFO [debate] 45/50 case=patient_812 pred=F32 gold=['F39'] (111.4s)
+2026-03-20 00:08:56,516 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:09:06,698 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:09:18,120 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:09:30,343 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:09:36,766 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:09:48,746 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:09:59,338 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:10:11,993 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:10:28,104 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:10:28,105 pilot INFO [debate] 46/50 case=patient_296 pred=F32 gold=['F32'] (104.0s)
+2026-03-20 00:10:40,761 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:10:53,687 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:11:06,649 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:11:20,869 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:11:34,033 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:11:47,095 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:12:00,305 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:12:15,120 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:12:27,994 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:12:27,995 pilot INFO [debate] 47/50 case=patient_333 pred=F41.1 gold=['F41'] (119.9s)
+2026-03-20 00:12:38,074 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:12:49,299 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:13:00,221 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:13:10,632 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:13:21,884 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:13:32,681 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:13:43,004 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:13:54,730 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:14:06,398 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:14:06,399 pilot INFO [debate] 48/50 case=patient_325 pred=F32 gold=['F32'] (98.4s)
+2026-03-20 00:14:19,354 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:14:32,752 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:14:46,257 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:14:59,226 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:15:13,250 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:15:26,468 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:15:39,687 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:15:53,494 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:16:08,430 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:16:08,431 pilot INFO [debate] 49/50 case=patient_401 pred=F32 gold=['F41'] (122.0s)
+2026-03-20 00:16:23,252 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:16:36,372 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:16:51,182 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:17:07,223 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:17:20,989 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:17:36,988 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:17:52,213 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:18:07,968 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:18:24,634 httpx INFO HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-03-20 00:18:24,636 pilot INFO [debate] 50/50 case=patient_209 pred=F32 gold=['F32'] (136.2s)
+2026-03-20 00:18:24,639 pilot INFO [debate] Done in 5273.2s — Parent-norm: top1=0.560 top3=0.840 f1=0.331
+2026-03-20 00:18:24,640 pilot INFO 
+======================================================================
+2026-03-20 00:18:24,640 pilot INFO PILOT EXPERIMENT RESULTS
+2026-03-20 00:18:24,640 pilot INFO ======================================================================
+2026-03-20 00:18:24,640 pilot INFO Mode            Top-1    Top-3       F1  Time(s)   s/case
+2026-03-20 00:18:24,640 pilot INFO ----------------------------------------------------------------------
+2026-03-20 00:18:24,640 pilot INFO hied            0.500    0.720    0.172   6650.0    133.0
+2026-03-20 00:18:24,640 pilot INFO single          0.500    0.720    0.317    386.5      7.7
+2026-03-20 00:18:24,640 pilot INFO specialist      0.480    0.780    0.154   3359.1     67.2
+2026-03-20 00:18:24,640 pilot INFO debate          0.560    0.840    0.331   5273.2    105.5
+2026-03-20 00:18:24,640 pilot INFO 
+Report saved to: outputs/exp_50case_v1/pilot_report.json

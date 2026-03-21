@@ -1,0 +1,766 @@
+2026-03-20 03:44:18,439 ablation INFO Loading MDD-5k raw dataset...
+2026-03-20 03:44:18,682 ablation INFO Loaded 925 cases total
+2026-03-20 03:44:18,683 ablation INFO Sampled 50 cases: {'F42': 1, 'F41': 17, 'F32': 22, 'F51': 1, 'F98': 1, 'F39': 3, 'F45': 1, 'Z71': 1, 'F50': 1, 'F43': 1, 'F31': 1}
+2026-03-20 03:44:18,716 ablation INFO Condition 1/6: hied_no_evidence
+2026-03-20 03:44:18,716 ablation INFO ============================================================
+2026-03-20 03:44:18,716 ablation INFO Running condition: hied_no_evidence
+2026-03-20 03:44:18,716 ablation INFO   mode=hied evidence=False retriever=none somatization=False
+2026-03-20 03:44:18,716 ablation INFO ============================================================
+2026-03-20 03:44:18,728 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 03:44:18,728 culturedx.modes.hied INFO Case patient_759: 5 candidate disorders from triage
+2026-03-20 03:44:42,122 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:44:54,033 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:45:02,801 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:45:04,136 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:45:05,059 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:45:05,060 ablation INFO [hied_no_evidence] 1/50 case=patient_759 pred=F42 gold=['F42'] conf=0.905 (46.3s)
+2026-03-20 03:45:05,061 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 03:45:05,061 culturedx.modes.hied INFO Case patient_335: 5 candidate disorders from triage
+2026-03-20 03:45:30,107 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:45:41,573 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:45:47,867 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:45:52,318 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:45:53,627 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:45:53,637 ablation INFO [hied_no_evidence] 2/50 case=patient_335 pred=F32 gold=['F41'] conf=0.860 (48.6s)
+2026-03-20 03:45:53,637 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 03:45:53,637 culturedx.modes.hied INFO Case patient_742: 5 candidate disorders from triage
+2026-03-20 03:46:17,291 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:46:31,757 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:46:36,253 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:46:40,690 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:46:42,625 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:46:42,626 ablation INFO [hied_no_evidence] 3/50 case=patient_742 pred=F32 gold=['F32'] conf=0.845 (49.0s)
+2026-03-20 03:46:42,626 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 03:46:42,626 culturedx.modes.hied INFO Case patient_174: 5 candidate disorders from triage
+2026-03-20 03:47:05,190 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:47:11,711 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:47:20,390 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:47:29,637 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:47:36,010 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:47:36,011 ablation INFO [hied_no_evidence] 4/50 case=patient_174 pred=F32 gold=['F32'] conf=0.840 (53.4s)
+2026-03-20 03:47:36,011 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 03:47:36,011 culturedx.modes.hied INFO Case patient_313: 5 candidate disorders from triage
+2026-03-20 03:48:01,488 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:48:13,848 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:48:20,585 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:48:23,093 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:48:30,321 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:48:30,322 ablation INFO [hied_no_evidence] 5/50 case=patient_313 pred=None gold=['F32'] conf=0.000 (54.3s)
+2026-03-20 03:48:30,322 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 03:48:30,322 culturedx.modes.hied INFO Case patient_524: 5 candidate disorders from triage
+2026-03-20 03:49:07,725 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:49:14,427 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:49:24,191 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:49:24,301 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:49:26,409 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:49:26,411 ablation INFO [hied_no_evidence] 6/50 case=patient_524 pred=F32 gold=['F41'] conf=0.900 (56.1s)
+2026-03-20 03:49:26,411 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 03:49:26,411 culturedx.modes.hied INFO Case patient_182: 5 candidate disorders from triage
+2026-03-20 03:49:51,641 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:50:03,928 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:50:10,115 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:50:10,881 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:50:14,419 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:50:14,420 ablation INFO [hied_no_evidence] 7/50 case=patient_182 pred=F32 gold=['F32'] conf=0.929 (48.0s)
+2026-03-20 03:50:14,420 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 03:50:14,420 culturedx.modes.hied INFO Case patient_808: 5 candidate disorders from triage
+2026-03-20 03:50:39,655 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:50:50,530 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:50:56,309 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:50:59,589 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:51:03,329 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:51:03,353 ablation INFO [hied_no_evidence] 8/50 case=patient_808 pred=F32 gold=['F32'] conf=0.870 (48.9s)
+2026-03-20 03:51:03,353 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 03:51:03,353 culturedx.modes.hied INFO Case patient_103: 5 candidate disorders from triage
+2026-03-20 03:51:28,661 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:51:41,910 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:51:53,122 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:51:53,451 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:51:53,451 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:51:53,452 ablation INFO [hied_no_evidence] 9/50 case=patient_103 pred=F32 gold=['F32'] conf=0.874 (50.1s)
+2026-03-20 03:51:53,453 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 03:51:53,453 culturedx.modes.hied INFO Case patient_918: 5 candidate disorders from triage
+2026-03-20 03:52:18,474 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:52:30,365 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:52:35,308 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:52:36,071 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:52:40,559 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:52:40,560 ablation INFO [hied_no_evidence] 10/50 case=patient_918 pred=F32 gold=['F32'] conf=0.860 (47.1s)
+2026-03-20 03:52:40,560 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 03:52:40,560 culturedx.modes.hied INFO Case patient_134: 5 candidate disorders from triage
+2026-03-20 03:53:06,216 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:53:18,816 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:53:18,816 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:53:22,755 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:53:27,537 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:53:27,538 ablation INFO [hied_no_evidence] 11/50 case=patient_134 pred=F41.1 gold=['F41'] conf=0.878 (47.0s)
+2026-03-20 03:53:27,539 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 03:53:27,539 culturedx.modes.hied INFO Case patient_859: 5 candidate disorders from triage
+2026-03-20 03:53:53,653 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:54:06,268 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:54:12,243 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:54:13,230 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:54:17,869 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:54:17,872 ablation INFO [hied_no_evidence] 12/50 case=patient_859 pred=F32 gold=['F32'] conf=0.940 (50.3s)
+2026-03-20 03:54:17,872 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 03:54:17,872 culturedx.modes.hied INFO Case patient_619: 5 candidate disorders from triage
+2026-03-20 03:54:41,531 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:54:54,810 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:54:57,731 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:54:58,538 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:55:01,621 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:55:01,622 ablation INFO [hied_no_evidence] 13/50 case=patient_619 pred=None gold=['F51'] conf=0.000 (43.8s)
+2026-03-20 03:55:01,622 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 03:55:01,622 culturedx.modes.hied INFO Case patient_563: 5 candidate disorders from triage
+2026-03-20 03:55:26,825 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:55:40,932 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:55:52,697 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:55:56,686 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:55:57,314 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:55:57,315 ablation INFO [hied_no_evidence] 14/50 case=patient_563 pred=F43.1 gold=['F98'] conf=0.715 (55.7s)
+2026-03-20 03:55:57,315 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 03:55:57,315 culturedx.modes.hied INFO Case patient_1029: 5 candidate disorders from triage
+2026-03-20 03:56:21,949 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:56:27,509 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:56:40,297 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:56:42,870 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:56:54,036 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:56:54,038 ablation INFO [hied_no_evidence] 15/50 case=patient_1029 pred=F32 gold=['F32'] conf=0.942 (56.7s)
+2026-03-20 03:56:54,038 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 03:56:54,038 culturedx.modes.hied INFO Case patient_271: 5 candidate disorders from triage
+2026-03-20 03:57:17,381 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:57:24,953 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:57:34,618 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:57:35,931 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:57:49,899 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:57:49,900 ablation INFO [hied_no_evidence] 16/50 case=patient_271 pred=F32 gold=['F39'] conf=0.915 (55.9s)
+2026-03-20 03:57:49,900 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 03:57:49,900 culturedx.modes.hied INFO Case patient_731: 5 candidate disorders from triage
+2026-03-20 03:58:13,241 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:58:26,114 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:58:34,000 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:58:37,052 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:58:37,177 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:58:37,178 ablation INFO [hied_no_evidence] 17/50 case=patient_731 pred=F32 gold=['F45'] conf=0.696 (47.3s)
+2026-03-20 03:58:37,178 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 03:58:37,178 culturedx.modes.hied INFO Case patient_1013: 5 candidate disorders from triage
+2026-03-20 03:59:01,164 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:59:15,020 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:59:22,102 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:59:24,711 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:59:27,805 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:59:27,829 ablation INFO [hied_no_evidence] 18/50 case=patient_1013 pred=F32 gold=['F41'] conf=0.923 (50.7s)
+2026-03-20 03:59:27,829 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 03:59:27,829 culturedx.modes.hied INFO Case patient_760: 5 candidate disorders from triage
+2026-03-20 03:59:53,202 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 03:59:58,430 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:00:07,753 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:00:15,810 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:00:29,445 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:00:29,447 ablation INFO [hied_no_evidence] 19/50 case=patient_760 pred=F32 gold=['F41'] conf=0.870 (61.6s)
+2026-03-20 04:00:29,447 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:00:29,447 culturedx.modes.hied INFO Case patient_250: 5 candidate disorders from triage
+2026-03-20 04:00:55,378 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:01:07,686 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:01:08,635 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:01:12,956 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:01:16,799 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:01:16,801 culturedx.modes.hied INFO Case patient_250: confidence gap 0.0051 < 0.02, running differential
+2026-03-20 04:01:25,338 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:01:25,338 ablation INFO [hied_no_evidence] 20/50 case=patient_250 pred=F32 gold=['F41'] conf=0.820 (55.9s)
+2026-03-20 04:01:25,338 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:01:25,338 culturedx.modes.hied INFO Case patient_973: 5 candidate disorders from triage
+2026-03-20 04:01:48,940 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:02:02,697 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:02:11,078 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:02:14,821 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:02:15,349 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:02:15,351 culturedx.modes.hied INFO Case patient_973: confidence gap 0.0115 < 0.02, running differential
+2026-03-20 04:02:24,393 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:02:24,394 ablation INFO [hied_no_evidence] 21/50 case=patient_973 pred=F41.1 gold=['F41'] conf=0.820 (59.1s)
+2026-03-20 04:02:24,394 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:02:24,394 culturedx.modes.hied INFO Case patient_914: 5 candidate disorders from triage
+2026-03-20 04:02:48,432 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:03:01,758 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:03:07,132 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:03:07,377 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:03:14,676 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:03:14,678 ablation INFO [hied_no_evidence] 22/50 case=patient_914 pred=F32 gold=['F32'] conf=0.929 (50.3s)
+2026-03-20 04:03:14,679 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:03:14,679 culturedx.modes.hied INFO Case patient_762: 5 candidate disorders from triage
+2026-03-20 04:03:39,304 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:03:45,394 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:03:56,781 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:03:57,489 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:04:03,655 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:04:03,656 ablation INFO [hied_no_evidence] 23/50 case=patient_762 pred=F41.1 gold=['F32'] conf=0.823 (49.0s)
+2026-03-20 04:04:03,657 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:04:03,657 culturedx.modes.hied INFO Case patient_728: 5 candidate disorders from triage
+2026-03-20 04:04:27,576 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:04:32,822 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:04:39,909 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:04:43,955 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:04:50,490 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:04:50,491 ablation INFO [hied_no_evidence] 24/50 case=patient_728 pred=F41.1 gold=['F41'] conf=0.765 (46.8s)
+2026-03-20 04:04:50,491 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:04:50,491 culturedx.modes.hied INFO Case patient_911: 5 candidate disorders from triage
+2026-03-20 04:05:15,363 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:05:21,048 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:05:33,026 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:05:34,203 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:05:42,594 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:05:42,597 ablation INFO [hied_no_evidence] 25/50 case=patient_911 pred=F41.1 gold=['F41'] conf=0.908 (52.1s)
+2026-03-20 04:05:42,597 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:05:42,597 culturedx.modes.hied INFO Case patient_426: 5 candidate disorders from triage
+2026-03-20 04:06:08,767 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:06:19,673 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:06:24,911 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:06:26,026 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:06:30,390 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:06:30,392 ablation INFO [hied_no_evidence] 26/50 case=patient_426 pred=F41.1 gold=['F41'] conf=0.903 (47.8s)
+2026-03-20 04:06:30,392 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:06:30,392 culturedx.modes.hied INFO Case patient_1009: 5 candidate disorders from triage
+2026-03-20 04:06:55,753 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:07:06,057 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:07:07,768 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:07:10,476 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:07:11,494 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:07:11,495 ablation INFO [hied_no_evidence] 27/50 case=patient_1009 pred=None gold=['Z71'] conf=0.000 (41.1s)
+2026-03-20 04:07:11,495 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:07:11,495 culturedx.modes.hied INFO Case patient_701: 5 candidate disorders from triage
+2026-03-20 04:07:35,224 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:07:42,851 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:07:53,026 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:07:54,118 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:08:00,129 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:08:00,131 ablation INFO [hied_no_evidence] 28/50 case=patient_701 pred=F32 gold=['F32'] conf=0.898 (48.6s)
+2026-03-20 04:08:00,131 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:08:00,131 culturedx.modes.hied INFO Case patient_714: 5 candidate disorders from triage
+2026-03-20 04:08:24,164 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:08:37,323 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:08:42,785 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:08:48,966 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:08:54,737 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:08:54,738 ablation INFO [hied_no_evidence] 29/50 case=patient_714 pred=None gold=['F41'] conf=0.000 (54.6s)
+2026-03-20 04:08:54,738 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:08:54,738 culturedx.modes.hied INFO Case patient_655: 5 candidate disorders from triage
+2026-03-20 04:09:19,877 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:09:32,660 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:09:39,114 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:09:42,388 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:09:44,568 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:09:44,570 culturedx.modes.hied INFO Case patient_655: confidence gap 0.0049 < 0.02, running differential
+2026-03-20 04:09:53,442 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:09:53,442 ablation INFO [hied_no_evidence] 30/50 case=patient_655 pred=F32 gold=['F32'] conf=0.820 (58.7s)
+2026-03-20 04:09:53,442 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:09:53,442 culturedx.modes.hied INFO Case patient_62: 5 candidate disorders from triage
+2026-03-20 04:10:19,131 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:10:32,010 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:10:44,544 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:10:47,599 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:10:48,678 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:10:48,680 ablation INFO [hied_no_evidence] 31/50 case=patient_62 pred=F32 gold=['F41'] conf=0.815 (55.2s)
+2026-03-20 04:10:48,680 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:10:48,680 culturedx.modes.hied INFO Case patient_161: 5 candidate disorders from triage
+2026-03-20 04:11:11,835 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:11:26,258 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:11:32,617 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:11:33,163 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:11:35,244 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:11:35,246 ablation INFO [hied_no_evidence] 32/50 case=patient_161 pred=F32 gold=['F32', 'F34'] conf=0.913 (46.6s)
+2026-03-20 04:11:35,246 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:11:35,246 culturedx.modes.hied INFO Case patient_827: 5 candidate disorders from triage
+2026-03-20 04:12:00,838 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:12:12,805 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:12:24,203 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:12:26,447 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:12:27,504 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:12:27,507 ablation INFO [hied_no_evidence] 33/50 case=patient_827 pred=F32 gold=['F50'] conf=0.888 (52.3s)
+2026-03-20 04:12:27,507 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:12:27,507 culturedx.modes.hied INFO Case patient_300: 5 candidate disorders from triage
+2026-03-20 04:12:52,293 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:13:04,078 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:13:09,891 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:13:11,467 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:13:14,873 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:13:14,875 ablation INFO [hied_no_evidence] 34/50 case=patient_300 pred=F41.1 gold=['F32'] conf=0.889 (47.4s)
+2026-03-20 04:13:14,875 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:13:14,875 culturedx.modes.hied INFO Case patient_617: 5 candidate disorders from triage
+2026-03-20 04:13:39,121 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:13:51,979 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:13:57,101 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:13:59,827 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:14:01,180 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:14:01,182 ablation INFO [hied_no_evidence] 35/50 case=patient_617 pred=F32 gold=['F41'] conf=0.882 (46.3s)
+2026-03-20 04:14:01,182 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:14:01,182 culturedx.modes.hied INFO Case patient_949: 5 candidate disorders from triage
+2026-03-20 04:14:26,337 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:14:39,655 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:14:45,944 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:14:50,792 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:14:51,072 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:14:51,074 ablation INFO [hied_no_evidence] 36/50 case=patient_949 pred=F32 gold=['F43'] conf=0.940 (49.9s)
+2026-03-20 04:14:51,075 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:14:51,075 culturedx.modes.hied INFO Case patient_467: 5 candidate disorders from triage
+2026-03-20 04:15:14,402 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:15:22,701 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:15:32,039 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:15:36,152 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:15:39,988 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:15:39,989 ablation INFO [hied_no_evidence] 37/50 case=patient_467 pred=F32 gold=['F31'] conf=0.927 (48.9s)
+2026-03-20 04:15:39,990 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:15:39,990 culturedx.modes.hied INFO Case patient_54: 5 candidate disorders from triage
+2026-03-20 04:16:08,514 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:16:21,098 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:16:25,974 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:16:33,024 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:16:35,511 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:16:35,512 ablation INFO [hied_no_evidence] 38/50 case=patient_54 pred=F32 gold=['F32'] conf=0.943 (55.5s)
+2026-03-20 04:16:35,513 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:16:35,513 culturedx.modes.hied INFO Case patient_1026: 5 candidate disorders from triage
+2026-03-20 04:16:59,279 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:17:12,256 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:17:17,358 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:17:17,711 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:17:22,494 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:17:22,495 ablation INFO [hied_no_evidence] 39/50 case=patient_1026 pred=F32 gold=['F32'] conf=0.826 (47.0s)
+2026-03-20 04:17:22,495 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:17:22,495 culturedx.modes.hied INFO Case patient_36: 5 candidate disorders from triage
+2026-03-20 04:17:47,473 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:18:00,454 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:18:09,678 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:18:12,172 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:18:15,135 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:18:15,137 ablation INFO [hied_no_evidence] 40/50 case=patient_36 pred=F32 gold=['F32'] conf=0.935 (52.6s)
+2026-03-20 04:18:15,137 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:18:15,137 culturedx.modes.hied INFO Case patient_15: 5 candidate disorders from triage
+2026-03-20 04:18:50,048 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:19:02,983 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:19:12,754 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:19:12,892 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:19:16,862 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:19:16,863 ablation INFO [hied_no_evidence] 41/50 case=patient_15 pred=None gold=['F32'] conf=0.000 (61.7s)
+2026-03-20 04:19:16,863 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:19:16,863 culturedx.modes.hied INFO Case patient_421: 5 candidate disorders from triage
+2026-03-20 04:19:43,005 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:19:55,045 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:20:01,059 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:20:05,147 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:20:08,029 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:20:08,031 ablation INFO [hied_no_evidence] 42/50 case=patient_421 pred=F32 gold=['F41'] conf=0.942 (51.2s)
+2026-03-20 04:20:08,031 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:20:08,031 culturedx.modes.hied INFO Case patient_931: 5 candidate disorders from triage
+2026-03-20 04:20:31,851 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:20:38,571 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:20:48,066 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:20:52,084 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:20:57,607 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:20:57,610 culturedx.diagnosis.comorbidity INFO Exclusion: F33 excludes F32
+2026-03-20 04:20:57,610 ablation INFO [hied_no_evidence] 43/50 case=patient_931 pred=F33 gold=['F41'] conf=0.921 (49.6s)
+2026-03-20 04:20:57,610 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:20:57,610 culturedx.modes.hied INFO Case patient_255: 5 candidate disorders from triage
+2026-03-20 04:21:22,066 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:21:27,924 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:21:39,589 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:21:42,484 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:21:47,755 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:21:47,756 ablation INFO [hied_no_evidence] 44/50 case=patient_255 pred=F32 gold=['F39'] conf=0.837 (50.1s)
+2026-03-20 04:21:47,757 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:21:47,757 culturedx.modes.hied INFO Case patient_812: 5 candidate disorders from triage
+2026-03-20 04:22:13,435 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:22:26,349 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:22:32,628 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:22:36,531 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:22:36,858 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:22:36,860 ablation INFO [hied_no_evidence] 45/50 case=patient_812 pred=F41.1 gold=['F39'] conf=0.889 (49.1s)
+2026-03-20 04:22:36,860 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:22:36,860 culturedx.modes.hied INFO Case patient_296: 5 candidate disorders from triage
+2026-03-20 04:23:02,213 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:23:13,779 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:23:18,315 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:23:22,245 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:23:24,507 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:23:24,508 ablation INFO [hied_no_evidence] 46/50 case=patient_296 pred=F32 gold=['F32'] conf=0.898 (47.6s)
+2026-03-20 04:23:24,508 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:23:24,508 culturedx.modes.hied INFO Case patient_333: 5 candidate disorders from triage
+2026-03-20 04:23:48,562 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:23:54,425 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:24:06,160 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:24:09,022 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:24:13,687 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:24:13,689 ablation INFO [hied_no_evidence] 47/50 case=patient_333 pred=F41.1 gold=['F41'] conf=0.903 (49.2s)
+2026-03-20 04:24:13,689 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:24:13,689 culturedx.modes.hied INFO Case patient_325: 5 candidate disorders from triage
+2026-03-20 04:24:36,974 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:24:52,982 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:24:58,127 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:25:02,674 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:25:04,532 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:25:04,535 culturedx.modes.hied INFO Case patient_325: confidence gap 0.0053 < 0.02, running differential
+2026-03-20 04:25:13,693 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:25:13,693 ablation INFO [hied_no_evidence] 48/50 case=patient_325 pred=F32 gold=['F32'] conf=0.820 (60.0s)
+2026-03-20 04:25:13,693 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:25:13,693 culturedx.modes.hied INFO Case patient_401: 5 candidate disorders from triage
+2026-03-20 04:25:37,933 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:25:50,836 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:25:56,683 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:25:59,275 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:26:01,561 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:26:01,562 ablation INFO [hied_no_evidence] 49/50 case=patient_401 pred=F32 gold=['F41'] conf=0.794 (47.9s)
+2026-03-20 04:26:01,562 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:26:01,562 culturedx.modes.hied INFO Case patient_209: 5 candidate disorders from triage
+2026-03-20 04:26:26,242 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:26:31,831 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:26:44,573 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:26:44,656 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:26:57,135 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:26:57,137 ablation INFO [hied_no_evidence] 50/50 case=patient_209 pred=F32 gold=['F32'] conf=0.938 (55.6s)
+2026-03-20 04:26:57,562 ablation INFO [hied_no_evidence] top1=0.500 top3=0.660 f1=0.163 time=2558s (51.2s/case)
+2026-03-20 04:26:57,562 ablation INFO Condition 2/6: hied_mock_evidence
+2026-03-20 04:26:57,562 ablation INFO ============================================================
+2026-03-20 04:26:57,562 ablation INFO Running condition: hied_mock_evidence
+2026-03-20 04:26:57,562 ablation INFO   mode=hied evidence=True retriever=mock somatization=True
+2026-03-20 04:26:57,562 ablation INFO ============================================================
+2026-03-20 04:26:57,589 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:26:57,589 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 04:26:58,614 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:26:58,615 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 04:27:00,640 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:27:00,640 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:27:00,640 ablation WARNING [hied_mock_evidence] Evidence extraction failed for patient_759: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:27:00,640 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:27:00,640 culturedx.modes.hied INFO Case patient_759: 5 candidate disorders from triage
+2026-03-20 04:27:00,648 ablation INFO [hied_mock_evidence] 1/50 case=patient_759 pred=F42 gold=['F42'] conf=0.905 (3.1s)
+2026-03-20 04:27:00,678 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:27:00,679 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 04:27:01,716 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:27:01,716 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 04:27:03,748 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:27:03,748 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:27:03,748 ablation WARNING [hied_mock_evidence] Evidence extraction failed for patient_335: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:27:03,748 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:27:03,748 culturedx.modes.hied INFO Case patient_335: 5 candidate disorders from triage
+2026-03-20 04:27:03,753 ablation INFO [hied_mock_evidence] 2/50 case=patient_335 pred=F32 gold=['F41'] conf=0.860 (3.1s)
+2026-03-20 04:27:03,780 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:27:03,780 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 04:27:04,807 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:27:04,807 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 04:27:06,834 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:27:06,834 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:27:06,834 ablation WARNING [hied_mock_evidence] Evidence extraction failed for patient_742: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:27:06,834 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:27:06,834 culturedx.modes.hied INFO Case patient_742: 5 candidate disorders from triage
+2026-03-20 04:27:06,837 ablation INFO [hied_mock_evidence] 3/50 case=patient_742 pred=F32 gold=['F32'] conf=0.845 (3.1s)
+2026-03-20 04:27:39,508 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:27:39,509 culturedx.evidence.extractor WARNING Failed to parse symptoms for case patient_174
+2026-03-20 04:27:39,509 culturedx.evidence.pipeline INFO Extracted 0 symptom spans for case patient_174
+2026-03-20 04:27:39,515 ablation INFO [hied_mock_evidence] 4/50 evidence extracted for patient_174 (0 spans)
+2026-03-20 04:27:39,515 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:27:39,515 culturedx.modes.hied INFO Case patient_174: 5 candidate disorders from triage
+2026-03-20 04:27:39,590 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:27:39,591 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 04:27:39,591 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:27:39,591 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 04:27:40,646 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:27:40,646 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 04:27:40,646 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:27:40,647 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 04:27:42,695 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:27:42,695 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:27:42,696 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:27:42,696 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:27:42,696 culturedx.modes.base WARNING Criterion checker failed for F32
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 177, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 150, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 122, in run
+    raw = self.llm.generate(
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:27:42,697 culturedx.modes.base WARNING Criterion checker failed for F33
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 177, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 150, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 122, in run
+    raw = self.llm.generate(
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:28:03,517 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:28:06,341 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:28:12,783 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:28:12,784 ablation INFO [hied_mock_evidence] 4/50 case=patient_174 pred=None gold=['F32'] conf=0.000 (65.9s)
+2026-03-20 04:28:12,816 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:28:12,816 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 04:28:13,848 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:28:13,848 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 04:28:15,880 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:28:15,880 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:28:15,880 ablation WARNING [hied_mock_evidence] Evidence extraction failed for patient_313: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:28:15,880 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:28:15,880 culturedx.modes.hied INFO Case patient_313: 5 candidate disorders from triage
+2026-03-20 04:28:15,883 ablation INFO [hied_mock_evidence] 5/50 case=patient_313 pred=None gold=['F32'] conf=0.000 (3.1s)
+2026-03-20 04:28:15,910 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:28:15,910 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 04:28:16,939 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:28:16,939 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 04:28:18,973 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:28:18,973 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:28:18,973 ablation WARNING [hied_mock_evidence] Evidence extraction failed for patient_524: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:28:18,973 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:28:18,973 culturedx.modes.hied INFO Case patient_524: 5 candidate disorders from triage
+2026-03-20 04:28:18,976 ablation INFO [hied_mock_evidence] 6/50 case=patient_524 pred=F32 gold=['F41'] conf=0.900 (3.1s)
+2026-03-20 04:28:19,001 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:28:19,001 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 04:28:20,028 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:28:20,028 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 04:28:22,056 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:28:22,056 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:28:22,056 ablation WARNING [hied_mock_evidence] Evidence extraction failed for patient_182: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:28:22,056 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:28:22,056 culturedx.modes.hied INFO Case patient_182: 5 candidate disorders from triage
+2026-03-20 04:28:22,059 ablation INFO [hied_mock_evidence] 7/50 case=patient_182 pred=F32 gold=['F32'] conf=0.929 (3.1s)
+2026-03-20 04:28:55,870 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:28:55,871 culturedx.evidence.extractor WARNING Failed to parse symptoms for case patient_808
+2026-03-20 04:28:55,871 culturedx.evidence.pipeline INFO Extracted 0 symptom spans for case patient_808
+2026-03-20 04:28:55,877 ablation INFO [hied_mock_evidence] 8/50 evidence extracted for patient_808 (0 spans)
+2026-03-20 04:28:55,877 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:28:55,877 culturedx.modes.hied INFO Case patient_808: 5 candidate disorders from triage
+2026-03-20 04:28:55,901 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:28:55,901 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 04:28:55,934 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:28:55,935 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 04:28:56,925 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:28:56,925 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 04:28:56,957 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:28:56,957 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 04:28:58,948 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:28:58,948 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:28:58,949 culturedx.modes.base WARNING Criterion checker failed for F32
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 177, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 150, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 122, in run
+    raw = self.llm.generate(
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:28:58,982 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:28:58,982 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:28:58,982 culturedx.modes.base WARNING Criterion checker failed for F33
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 177, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 150, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 122, in run
+    raw = self.llm.generate(
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:29:21,045 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:29:28,621 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:29:29,312 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:29:29,313 ablation INFO [hied_mock_evidence] 8/50 case=patient_808 pred=F41.1 gold=['F32'] conf=0.733 (67.3s)
+2026-03-20 04:29:29,340 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:29:29,340 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 04:29:30,366 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:29:30,366 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 04:29:32,392 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:29:32,392 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:29:32,392 ablation WARNING [hied_mock_evidence] Evidence extraction failed for patient_103: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:29:32,392 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:29:32,392 culturedx.modes.hied INFO Case patient_103: 5 candidate disorders from triage
+2026-03-20 04:29:32,396 ablation INFO [hied_mock_evidence] 9/50 case=patient_103 pred=F32 gold=['F32'] conf=0.874 (3.1s)
+2026-03-20 04:29:32,421 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:29:32,421 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 04:29:33,448 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:29:33,448 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 04:29:35,474 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:29:35,474 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:29:35,474 ablation WARNING [hied_mock_evidence] Evidence extraction failed for patient_918: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:29:35,474 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:29:35,474 culturedx.modes.hied INFO Case patient_918: 5 candidate disorders from triage
+2026-03-20 04:29:35,483 ablation INFO [hied_mock_evidence] 10/50 case=patient_918 pred=F32 gold=['F32'] conf=0.860 (3.1s)
+2026-03-20 04:30:06,286 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-20 04:30:06,286 culturedx.evidence.extractor WARNING Failed to parse symptoms for case patient_134
+2026-03-20 04:30:06,286 culturedx.evidence.pipeline INFO Extracted 0 symptom spans for case patient_134
+2026-03-20 04:30:06,290 ablation INFO [hied_mock_evidence] 11/50 evidence extracted for patient_134 (0 spans)
+2026-03-20 04:30:06,290 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-20 04:30:06,290 culturedx.modes.hied INFO Case patient_134: 5 candidate disorders from triage
+2026-03-20 04:30:06,365 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:30:06,365 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 04:30:06,365 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:30:06,365 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-20 04:30:07,411 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:30:07,411 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 04:30:07,411 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:30:07,411 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-20 04:30:09,458 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:30:09,458 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:30:09,458 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-20 04:30:09,458 culturedx.modes.base WARNING Criterion checker failed for F33
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 177, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 150, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 122, in run
+    raw = self.llm.generate(
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:30:09,459 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:30:09,459 culturedx.modes.base WARNING Criterion checker failed for F32
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 177, in _parallel_check_criteria
+    co = future.result()
+         ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/user/miniforge3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/base.py", line 150, in _check_one
+    output = checker.run(checker_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/agents/criterion_checker.py", line 122, in run
+    raw = self.llm.generate(
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-20 04:30:30,954 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"

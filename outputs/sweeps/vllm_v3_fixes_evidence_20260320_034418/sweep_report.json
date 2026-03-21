@@ -1,0 +1,59 @@
+{
+  "sweep_name": "ablation",
+  "timestamp": "2026-03-20T09:18:11.249098",
+  "provider": "vllm",
+  "model": "Qwen/Qwen3-32B-AWQ",
+  "n_cases": 50,
+  "seed": 42,
+  "n_conditions": 3,
+  "conditions": {
+    "hied_no_evidence": {
+      "condition": "hied_no_evidence",
+      "n_cases": 50,
+      "metrics_parent_normalized": {
+        "top1_accuracy": 0.5,
+        "top3_accuracy": 0.66,
+        "macro_f1": 0.16277568585260893
+      },
+      "metrics_exact": {
+        "top1_accuracy": 0.38,
+        "top3_accuracy": 0.42,
+        "macro_f1": 0.1103030303030303
+      },
+      "total_seconds": 2558.4,
+      "avg_seconds_per_case": 51.2
+    },
+    "hied_bge-m3_evidence": {
+      "condition": "hied_bge-m3_evidence",
+      "n_cases": 50,
+      "metrics_parent_normalized": {
+        "top1_accuracy": 0.48,
+        "top3_accuracy": 0.72,
+        "macro_f1": 0.10773809523809524
+      },
+      "metrics_exact": {
+        "top1_accuracy": 0.38,
+        "top3_accuracy": 0.4,
+        "macro_f1": 0.06868131868131869
+      },
+      "total_seconds": 5355.6,
+      "avg_seconds_per_case": 107.1
+    },
+    "hied_bge-m3_no_somatization": {
+      "condition": "hied_bge-m3_no_somatization",
+      "n_cases": 50,
+      "metrics_parent_normalized": {
+        "top1_accuracy": 0.46,
+        "top3_accuracy": 0.74,
+        "macro_f1": 0.09821428571428571
+      },
+      "metrics_exact": {
+        "top1_accuracy": 0.4,
+        "top3_accuracy": 0.42,
+        "macro_f1": 0.0663265306122449
+      },
+      "total_seconds": 2195.5,
+      "avg_seconds_per_case": 43.9
+    }
+  }
+}
