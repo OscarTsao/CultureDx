@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from culturedx.core.models import ClinicalCase, DiagnosisResult
-from culturedx.eval.metrics import compute_diagnosis_metrics
+from culturedx.eval.metrics import compute_comorbidity_metrics, compute_diagnosis_metrics
 from culturedx.evidence.pipeline import EvidencePipeline
 from culturedx.modes.base import BaseModeOrchestrator
 
@@ -113,6 +113,10 @@ class ExperimentRunner:
                     preds.append(pred_dx)
                     golds.append(c.diagnoses)
             metrics["diagnosis"] = compute_diagnosis_metrics(preds, golds)
+
+            # Comorbidity metrics (multi-label evaluation)
+            comorbid_metrics = compute_comorbidity_metrics(preds, golds)
+            metrics["comorbidity"] = comorbid_metrics
 
         # Severity metrics deferred to Phase 2 — requires structured severity output
         # from LLM, not available in single-model baseline.
