@@ -148,11 +148,11 @@ def stratified_sample(cases, n: int, seed: int = 42) -> list:
     return selected
 
 
-def create_mode(mode_name: str, llm_client, target_disorders: list[str], diff_threshold: float = 0.10):
+def create_mode(mode_name: str, llm_client, target_disorders: list[str], diff_threshold: float = 0.10, contrastive_enabled: bool = False):
     """Create a mode orchestrator."""
     if mode_name == "hied":
         from culturedx.modes.hied import HiEDMode
-        return HiEDMode(llm_client=llm_client, target_disorders=target_disorders, differential_threshold=diff_threshold)
+        return HiEDMode(llm_client=llm_client, target_disorders=target_disorders, differential_threshold=diff_threshold, contrastive_enabled=contrastive_enabled)
     elif mode_name == "psycot":
         from culturedx.modes.psycot import PsyCoTMode
         return PsyCoTMode(llm_client=llm_client, target_disorders=target_disorders)
@@ -201,18 +201,19 @@ def run_condition(
     llm_client,
     output_dir: Path,
     diff_threshold: float = 0.10,
+    contrastive_enabled: bool = False,
 ) -> dict:
     """Run a single ablation condition on all cases."""
     logger.info("=" * 60)
     logger.info("Running condition: %s", condition.name)
     logger.info(
-        "  mode=%s evidence=%s retriever=%s somatization=%s",
+        "  mode=%s evidence=%s retriever=%s somatization=%s contrastive=%s",
         condition.mode_type, condition.with_evidence,
-        condition.retriever, condition.with_somatization,
+        condition.retriever, condition.with_somatization, contrastive_enabled,
     )
     logger.info("=" * 60)
 
-    mode = create_mode(condition.mode_type, llm_client, condition.target_disorders, diff_threshold=diff_threshold)
+    mode = create_mode(condition.mode_type, llm_client, condition.target_disorders, diff_threshold=diff_threshold, contrastive_enabled=contrastive_enabled)
     evidence_pipeline = create_evidence_pipeline(llm_client, condition)
 
     results = []
@@ -354,6 +355,8 @@ def main():
                         help="Print conditions and exit")
     parser.add_argument("--diff-threshold", type=float, default=0.10,
                         help="Differential diagnosis threshold for HiED mode (default 0.10; set 0.0 to disable)")
+    parser.add_argument("--contrastive", action="store_true",
+                        help="Enable contrastive criterion disambiguation (Stage 2.5) for HiED mode")
     parser.add_argument("--dataset", type=str, default="mdd5k_raw",
                         help="Dataset adapter name (default: mdd5k_raw). "
                              "Available: lingxidiag16k, mdd5k, mdd5k_raw, pdch, edaic")
@@ -498,7 +501,7 @@ def main():
             continue
 
         logger.info("Condition %d/%d: %s", i + 1, len(conditions), condition.name)
-        metrics = run_condition(condition, cases, llm, sweep_dir, diff_threshold=args.diff_threshold)
+        metrics = run_condition(condition, cases, llm, sweep_dir, diff_threshold=args.diff_threshold, contrastive_enabled=args.contrastive)
         all_metrics[condition.name] = metrics
 
         m = metrics["metrics_parent_normalized"]
