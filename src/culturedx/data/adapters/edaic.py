@@ -36,7 +36,7 @@ class EDAICAdapter(BaseDatasetAdapter):
                     dataset="edaic",
                     transcript_format="dialogue",
                     coding_system="dsm5",
-                    diagnoses=[],
+                    diagnoses=["F32"] if binary else [],
                     severity={"phq8": item["phq8"], "phq8_total": total},
                     metadata={"binary": binary},
                 )
