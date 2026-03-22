@@ -1,0 +1,43 @@
+{
+  "sweep_name": "evidence_lingxidiag",
+  "timestamp": "2026-03-22T01:50:14.486988",
+  "provider": "vllm",
+  "model": "Qwen/Qwen3-32B-AWQ",
+  "n_cases": 200,
+  "seed": 42,
+  "n_conditions": 2,
+  "conditions": {
+    "hied_no_evidence": {
+      "condition": "hied_no_evidence",
+      "n_cases": 200,
+      "metrics_parent_normalized": {
+        "top1_accuracy": 0.405,
+        "top3_accuracy": 0.57,
+        "macro_f1": 0.09559542736013325
+      },
+      "metrics_exact": {
+        "top1_accuracy": 0.28,
+        "top3_accuracy": 0.325,
+        "macro_f1": 0.053127413127413134
+      },
+      "total_seconds": 2701.3,
+      "avg_seconds_per_case": 13.5
+    },
+    "hied_bge-m3_evidence": {
+      "condition": "hied_bge-m3_evidence",
+      "n_cases": 200,
+      "metrics_parent_normalized": {
+        "top1_accuracy": 0.4,
+        "top3_accuracy": 0.725,
+        "macro_f1": 0.09367569619435291
+      },
+      "metrics_exact": {
+        "top1_accuracy": 0.27,
+        "top3_accuracy": 0.385,
+        "macro_f1": 0.05776723276723277
+      },
+      "total_seconds": 9435.7,
+      "avg_seconds_per_case": 47.2
+    }
+  }
+}
