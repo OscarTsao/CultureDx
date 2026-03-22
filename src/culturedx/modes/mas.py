@@ -49,7 +49,9 @@ class MASMode(BaseModeOrchestrator):
             return self._abstain(case, lang)
 
         # Step 2: Build transcript text
-        transcript_text = self._build_transcript_text(case)
+        # When evidence is provided, transcript is supplementary — reduce budget
+        max_chars = 8000 if evidence else 20000
+        transcript_text = self._build_transcript_text(case, max_chars=max_chars)
 
         # Step 3: Build evidence summary per disorder
         evidence_map = self._build_evidence_map(evidence) if evidence else {}

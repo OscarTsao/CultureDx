@@ -58,7 +58,9 @@ class DebateMode(BaseModeOrchestrator):
         if lang not in ("zh", "en"):
             return self._abstain(case, lang)
 
-        transcript_text = self._build_transcript_text(case)
+        # When evidence is provided, transcript is supplementary — reduce budget
+        max_chars = 8000 if evidence else 20000
+        transcript_text = self._build_transcript_text(case, max_chars=max_chars)
         evidence_summary = self._build_global_evidence_summary(evidence)
 
         # === Debate Rounds ===
