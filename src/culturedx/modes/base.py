@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 import logging
+import time
 
 logger = logging.getLogger(__name__)
 
@@ -129,6 +130,7 @@ class BaseModeOrchestrator(ABC):
         - Ollama (NUM_PARALLEL=1): sequential to avoid timeout cascading
         - vLLM (continuous batching): parallel for real concurrency
         """
+        t_start = time.monotonic()
         from concurrent.futures import ThreadPoolExecutor, as_completed
 
         from culturedx.agents.base import AgentInput
@@ -189,4 +191,13 @@ class BaseModeOrchestrator(ABC):
                         logging.getLogger(__name__).warning(
                             "Criterion checker failed for %s", code, exc_info=True
                         )
+        t_total = time.monotonic() - t_start
+        actual_workers = getattr(self.llm, "max_concurrent", 1)
+        logger.info(
+            "Checker timing: %d disorders in %.1fs (%.1fs/disorder, %d workers)",
+            len(disorder_codes),
+            t_total,
+            t_total / max(len(disorder_codes), 1),
+            actual_workers,
+        )
         return checker_outputs

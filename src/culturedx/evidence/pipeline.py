@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import logging
+import time
 from pathlib import Path
 
 from culturedx.core.models import ClinicalCase, EvidenceBrief
@@ -62,6 +63,8 @@ class EvidencePipeline:
 
     def extract(self, case: ClinicalCase) -> EvidenceBrief:
         """Run the full evidence extraction pipeline for a case."""
+        t0 = time.monotonic()
+
         # 1. Get patient turn sentences
         patient_turns = case.patient_turns()
         sentences = [t.text for t in patient_turns]
@@ -80,8 +83,10 @@ class EvidencePipeline:
                 len(symptom_spans),
                 case.case_id,
             )
+        t_extract = time.monotonic() - t0
 
         # 3. Somatization mapping (Chinese only, if enabled)
+        t1 = time.monotonic()
         somatization_map = {}
         if self._somatizer is not None and case.language == "zh":
             context = " ".join(sentences)
@@ -89,8 +94,10 @@ class EvidencePipeline:
             somatization_map = self._build_somatization_boost_map(
                 symptom_spans, sentences
             )
+        t_somat = time.monotonic() - t1
 
         # 4. Batch criteria matching across all disorders (encode sentences once)
+        t2 = time.monotonic()
         criteria_results = self._matcher.match_all_disorders(
             disorder_codes=self.target_disorders,
             sentences=sentences,
@@ -98,17 +105,32 @@ class EvidencePipeline:
             language=case.language,
             somatization_map=somatization_map,
         )
+        t_match = time.monotonic() - t2
 
         # 4b. Contrastive scoring: mark shared vs unique evidence across disorders
+        t3 = time.monotonic()
         criteria_results = self._matcher.add_contrastive_scores(criteria_results)
 
         # 5. Assemble EvidenceBrief
-        return self._assembler.assemble(
+        result = self._assembler.assemble(
             case_id=case.case_id,
             language=case.language,
             symptom_spans=symptom_spans,
             criteria_results=criteria_results,
         )
+        t_assemble = time.monotonic() - t3
+
+        logger.info(
+            "Evidence timing for %s: extract=%.1fs somat=%.1fs"
+            " match=%.1fs assemble=%.1fs total=%.1fs",
+            case.case_id,
+            t_extract,
+            t_somat,
+            t_match,
+            t_assemble,
+            time.monotonic() - t0,
+        )
+        return result
 
     @staticmethod
     def _build_somatization_boost_map(
