@@ -10070,4 +10070,1380 @@
 2026-03-23 18:36:01,294 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 333990954
 2026-03-23 18:36:01,296 ablation INFO [psycot_bge-m3_no_somatization] 155/200 case=333990954 pred=F32 gold=['F32'] conf=0.746 (9.6s)
 2026-03-23 18:36:01,296 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 349644561
-Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.11s/it]
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.11s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.23s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.36s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.59s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.59s/it]
+2026-03-23 18:36:09,619 ablation INFO [psycot_bge-m3_no_somatization] 156/200 evidence extracted for 349644561 (15 spans)
+2026-03-23 18:36:09,619 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 349644561
+2026-03-23 18:36:09,622 ablation INFO [psycot_bge-m3_no_somatization] 156/200 case=349644561 pred=F32 gold=['F39'] conf=0.727 (8.3s)
+2026-03-23 18:36:09,622 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 396295298
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.03s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.19s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.32s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.47s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.47s/it]
+2026-03-23 18:36:17,735 ablation INFO [psycot_bge-m3_no_somatization] 157/200 evidence extracted for 396295298 (15 spans)
+2026-03-23 18:36:17,735 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 396295298
+2026-03-23 18:36:17,739 ablation INFO [psycot_bge-m3_no_somatization] 157/200 case=396295298 pred=F32 gold=['F32', 'F41'] conf=0.790 (8.1s)
+2026-03-23 18:36:17,739 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 378626260
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.93s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.11s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.23s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.12s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.12s/it]
+2026-03-23 18:36:25,319 ablation INFO [psycot_bge-m3_no_somatization] 158/200 evidence extracted for 378626260 (15 spans)
+2026-03-23 18:36:25,319 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 378626260
+2026-03-23 18:36:25,322 ablation INFO [psycot_bge-m3_no_somatization] 158/200 case=378626260 pred=F32 gold=['F41'] conf=0.667 (7.6s)
+2026-03-23 18:36:25,322 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 366816712
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.01s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.15s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.28s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.28s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.28s/it]
+2026-03-23 18:36:33,171 ablation INFO [psycot_bge-m3_no_somatization] 159/200 evidence extracted for 366816712 (15 spans)
+2026-03-23 18:36:33,171 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 366816712
+2026-03-23 18:36:33,174 ablation INFO [psycot_bge-m3_no_somatization] 159/200 case=366816712 pred=F32 gold=['F41'] conf=0.693 (7.9s)
+2026-03-23 18:36:33,174 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 332655191
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.06s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.24s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.36s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.43s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.43s/it]
+2026-03-23 18:36:41,334 ablation INFO [psycot_bge-m3_no_somatization] 160/200 evidence extracted for 332655191 (15 spans)
+2026-03-23 18:36:41,335 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 332655191
+2026-03-23 18:36:41,338 ablation INFO [psycot_bge-m3_no_somatization] 160/200 case=332655191 pred=F42 gold=['F51'] conf=0.719 (8.2s)
+2026-03-23 18:36:41,339 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 328280086
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.96s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.17s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.29s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.11s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.11s/it]
+2026-03-23 18:36:49,031 ablation INFO [psycot_bge-m3_no_somatization] 161/200 evidence extracted for 328280086 (15 spans)
+2026-03-23 18:36:49,031 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 328280086
+2026-03-23 18:36:49,033 ablation INFO [psycot_bge-m3_no_somatization] 161/200 case=328280086 pred=F32 gold=['F32'] conf=0.696 (7.7s)
+2026-03-23 18:36:49,034 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 335761044
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.63s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.00s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.10s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.35s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.35s/it]
+2026-03-23 18:36:56,586 ablation INFO [psycot_bge-m3_no_somatization] 162/200 evidence extracted for 335761044 (15 spans)
+2026-03-23 18:36:56,586 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 335761044
+2026-03-23 18:36:56,589 ablation INFO [psycot_bge-m3_no_somatization] 162/200 case=335761044 pred=F32 gold=['F32'] conf=0.742 (7.6s)
+2026-03-23 18:36:56,589 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 316714451
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.86s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.11s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.22s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.80s/it]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.80s/it]
+2026-03-23 18:37:03,838 ablation INFO [psycot_bge-m3_no_somatization] 163/200 evidence extracted for 316714451 (15 spans)
+2026-03-23 18:37:03,838 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 316714451
+2026-03-23 18:37:03,841 ablation INFO [psycot_bge-m3_no_somatization] 163/200 case=316714451 pred=F32 gold=['F32'] conf=0.657 (7.3s)
+2026-03-23 18:37:03,841 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 385781395
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.20s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.19s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.34s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.46s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.46s/it]
+2026-03-23 18:37:11,988 ablation INFO [psycot_bge-m3_no_somatization] 164/200 evidence extracted for 385781395 (15 spans)
+2026-03-23 18:37:11,988 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 385781395
+2026-03-23 18:37:11,991 ablation INFO [psycot_bge-m3_no_somatization] 164/200 case=385781395 pred=F41.1 gold=['F41'] conf=0.728 (8.1s)
+2026-03-23 18:37:11,991 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 322632615
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.09s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.24s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.37s/it]
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.81s/it]Batches: 100%|██████████| 2/2 [00:05<00:00,  2.44s/it]Batches: 100%|██████████| 2/2 [00:05<00:00,  2.64s/it]
+2026-03-23 18:37:22,032 ablation INFO [psycot_bge-m3_no_somatization] 165/200 evidence extracted for 322632615 (15 spans)
+2026-03-23 18:37:22,032 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 322632615
+2026-03-23 18:37:22,035 ablation INFO [psycot_bge-m3_no_somatization] 165/200 case=322632615 pred=F32 gold=['F41'] conf=0.728 (10.0s)
+2026-03-23 18:37:22,035 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 320172231
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.85s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.12s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.23s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.31s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.31s/it]
+2026-03-23 18:37:29,811 ablation INFO [psycot_bge-m3_no_somatization] 166/200 evidence extracted for 320172231 (15 spans)
+2026-03-23 18:37:29,811 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 320172231
+2026-03-23 18:37:29,814 ablation INFO [psycot_bge-m3_no_somatization] 166/200 case=320172231 pred=F32 gold=['F45'] conf=0.742 (7.8s)
+2026-03-23 18:37:29,814 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 320646856
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.83s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  1.91s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.05s/it]
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.32s/it]Batches: 100%|██████████| 2/2 [00:05<00:00,  2.93s/it]Batches: 100%|██████████| 2/2 [00:05<00:00,  2.99s/it]
+2026-03-23 18:37:39,906 ablation INFO [psycot_bge-m3_no_somatization] 167/200 evidence extracted for 320646856 (15 spans)
+2026-03-23 18:37:39,906 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 320646856
+2026-03-23 18:37:39,908 ablation INFO [psycot_bge-m3_no_somatization] 167/200 case=320646856 pred=F32 gold=['F32', 'F41'] conf=0.694 (10.1s)
+2026-03-23 18:37:39,908 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 339519683
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.95s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.15s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.27s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.81s/it]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.81s/it]
+2026-03-23 18:37:47,274 ablation INFO [psycot_bge-m3_no_somatization] 168/200 evidence extracted for 339519683 (15 spans)
+2026-03-23 18:37:47,274 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 339519683
+2026-03-23 18:37:47,276 ablation INFO [psycot_bge-m3_no_somatization] 168/200 case=339519683 pred=F32 gold=['F39'] conf=0.681 (7.4s)
+2026-03-23 18:37:47,276 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 351654588
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.01s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.16s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.29s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.23s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.23s/it]
+2026-03-23 18:37:55,090 ablation INFO [psycot_bge-m3_no_somatization] 169/200 evidence extracted for 351654588 (15 spans)
+2026-03-23 18:37:55,090 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 351654588
+2026-03-23 18:37:55,094 ablation INFO [psycot_bge-m3_no_somatization] 169/200 case=351654588 pred=F41.1 gold=['F39', 'F41'] conf=0.737 (7.8s)
+2026-03-23 18:37:55,095 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 395673178
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.72s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.07s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.17s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.38s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.38s/it]
+2026-03-23 18:38:02,814 ablation INFO [psycot_bge-m3_no_somatization] 170/200 evidence extracted for 395673178 (15 spans)
+2026-03-23 18:38:02,814 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 395673178
+2026-03-23 18:38:02,817 ablation INFO [psycot_bge-m3_no_somatization] 170/200 case=395673178 pred=F32 gold=['F32'] conf=0.763 (7.7s)
+2026-03-23 18:38:02,818 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 355194606
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.02s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.18s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.30s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.08s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.08s/it]
+2026-03-23 18:38:10,506 ablation INFO [psycot_bge-m3_no_somatization] 171/200 evidence extracted for 355194606 (15 spans)
+2026-03-23 18:38:10,506 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 355194606
+2026-03-23 18:38:10,509 ablation INFO [psycot_bge-m3_no_somatization] 171/200 case=355194606 pred=F32 gold=['F41'] conf=0.690 (7.7s)
+2026-03-23 18:38:10,509 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 353463822
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.08s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.15s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.29s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.01s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.01s/it]
+2026-03-23 18:38:18,110 ablation INFO [psycot_bge-m3_no_somatization] 172/200 evidence extracted for 353463822 (15 spans)
+2026-03-23 18:38:18,110 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 353463822
+2026-03-23 18:38:18,112 ablation INFO [psycot_bge-m3_no_somatization] 172/200 case=353463822 pred=F42 gold=['F41'] conf=0.716 (7.6s)
+2026-03-23 18:38:18,112 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 367338688
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.96s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.18s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.30s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.95s/it]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.95s/it]
+2026-03-23 18:38:25,664 ablation INFO [psycot_bge-m3_no_somatization] 173/200 evidence extracted for 367338688 (15 spans)
+2026-03-23 18:38:25,664 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 367338688
+2026-03-23 18:38:25,668 ablation INFO [psycot_bge-m3_no_somatization] 173/200 case=367338688 pred=F32 gold=['F41'] conf=0.740 (7.6s)
+2026-03-23 18:38:25,668 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 359530873
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.90s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.13s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.24s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.21s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.21s/it]
+2026-03-23 18:38:33,374 ablation INFO [psycot_bge-m3_no_somatization] 174/200 evidence extracted for 359530873 (15 spans)
+2026-03-23 18:38:33,374 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 359530873
+2026-03-23 18:38:33,376 ablation INFO [psycot_bge-m3_no_somatization] 174/200 case=359530873 pred=F32 gold=['F41'] conf=0.702 (7.7s)
+2026-03-23 18:38:33,377 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 333527373
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.04s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.12s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.26s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.97s/it]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.97s/it]
+2026-03-23 18:38:40,870 ablation INFO [psycot_bge-m3_no_somatization] 175/200 evidence extracted for 333527373 (15 spans)
+2026-03-23 18:38:40,870 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 333527373
+2026-03-23 18:38:40,873 ablation INFO [psycot_bge-m3_no_somatization] 175/200 case=333527373 pred=F32 gold=['F41'] conf=0.658 (7.5s)
+2026-03-23 18:38:40,873 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 388893431
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.74s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.08s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.18s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.17s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.17s/it]
+2026-03-23 18:38:48,405 ablation INFO [psycot_bge-m3_no_somatization] 176/200 evidence extracted for 388893431 (15 spans)
+2026-03-23 18:38:48,405 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 388893431
+2026-03-23 18:38:48,409 ablation INFO [psycot_bge-m3_no_somatization] 176/200 case=388893431 pred=F32 gold=['F39'] conf=0.675 (7.5s)
+2026-03-23 18:38:48,409 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 335958565
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.89s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.11s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.23s/it]
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.31s/it]Batches: 100%|██████████| 2/2 [00:05<00:00,  2.58s/it]Batches: 100%|██████████| 2/2 [00:05<00:00,  2.69s/it]
+2026-03-23 18:38:58,250 ablation INFO [psycot_bge-m3_no_somatization] 177/200 evidence extracted for 335958565 (15 spans)
+2026-03-23 18:38:58,250 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 335958565
+2026-03-23 18:38:58,253 ablation INFO [psycot_bge-m3_no_somatization] 177/200 case=335958565 pred=F32 gold=['F51'] conf=0.682 (9.8s)
+2026-03-23 18:38:58,253 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 323134405
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.92s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.15s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.26s/it]
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.68s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  1.96s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.07s/it]
+2026-03-23 18:39:06,927 ablation INFO [psycot_bge-m3_no_somatization] 178/200 evidence extracted for 323134405 (15 spans)
+2026-03-23 18:39:06,927 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 323134405
+2026-03-23 18:39:06,931 ablation INFO [psycot_bge-m3_no_somatization] 178/200 case=323134405 pred=F32 gold=['F32'] conf=0.692 (8.7s)
+2026-03-23 18:39:06,932 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 366673333
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.87s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.14s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.25s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.35s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.35s/it]
+2026-03-23 18:39:14,789 ablation INFO [psycot_bge-m3_no_somatization] 179/200 evidence extracted for 366673333 (15 spans)
+2026-03-23 18:39:14,789 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 366673333
+2026-03-23 18:39:14,794 ablation INFO [psycot_bge-m3_no_somatization] 179/200 case=366673333 pred=F32 gold=['F32'] conf=0.662 (7.9s)
+2026-03-23 18:39:14,794 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 314922549
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.73s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.06s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.16s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.17s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.17s/it]
+2026-03-23 18:39:22,300 ablation INFO [psycot_bge-m3_no_somatization] 180/200 evidence extracted for 314922549 (15 spans)
+2026-03-23 18:39:22,300 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 314922549
+2026-03-23 18:39:22,305 ablation INFO [psycot_bge-m3_no_somatization] 180/200 case=314922549 pred=F32 gold=['F41', 'F51'] conf=0.749 (7.5s)
+2026-03-23 18:39:22,305 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 326255124
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.73s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.07s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.17s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.86s/it]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.86s/it]
+2026-03-23 18:39:29,512 ablation INFO [psycot_bge-m3_no_somatization] 181/200 evidence extracted for 326255124 (15 spans)
+2026-03-23 18:39:29,512 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 326255124
+2026-03-23 18:39:29,516 ablation INFO [psycot_bge-m3_no_somatization] 181/200 case=326255124 pred=F32 gold=['F98'] conf=0.660 (7.2s)
+2026-03-23 18:39:29,517 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 315178698
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.03s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.16s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.29s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.62s/it]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.62s/it]
+2026-03-23 18:39:36,722 ablation INFO [psycot_bge-m3_no_somatization] 182/200 evidence extracted for 315178698 (15 spans)
+2026-03-23 18:39:36,722 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 315178698
+2026-03-23 18:39:36,726 ablation INFO [psycot_bge-m3_no_somatization] 182/200 case=315178698 pred=F32 gold=['F32', 'F51'] conf=0.692 (7.2s)
+2026-03-23 18:39:36,726 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 355957248
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.18s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.17s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.32s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.23s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.23s/it]
+2026-03-23 18:39:44,615 ablation INFO [psycot_bge-m3_no_somatization] 183/200 evidence extracted for 355957248 (15 spans)
+2026-03-23 18:39:44,615 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 355957248
+2026-03-23 18:39:44,618 ablation INFO [psycot_bge-m3_no_somatization] 183/200 case=355957248 pred=F32 gold=['F41'] conf=0.697 (7.9s)
+2026-03-23 18:39:44,618 culturedx.evidence.extractor WARNING Failed to parse symptoms for case 340609800
+2026-03-23 18:39:44,619 culturedx.evidence.pipeline INFO Extracted 0 symptom spans for case 340609800
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.92s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.14s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.26s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.39s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.39s/it]
+2026-03-23 18:39:52,524 ablation INFO [psycot_bge-m3_no_somatization] 184/200 evidence extracted for 340609800 (0 spans)
+2026-03-23 18:39:52,524 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 340609800
+2026-03-23 18:39:52,527 ablation INFO [psycot_bge-m3_no_somatization] 184/200 case=340609800 pred=F32 gold=['Others'] conf=0.739 (7.9s)
+2026-03-23 18:39:52,528 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 391899793
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.80s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.21s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.01s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.01s/it]
+2026-03-23 18:39:59,956 ablation INFO [psycot_bge-m3_no_somatization] 185/200 evidence extracted for 391899793 (15 spans)
+2026-03-23 18:39:59,956 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 391899793
+2026-03-23 18:39:59,959 ablation INFO [psycot_bge-m3_no_somatization] 185/200 case=391899793 pred=F42 gold=['Others'] conf=0.718 (7.4s)
+2026-03-23 18:39:59,959 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 307975249
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.86s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.12s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.23s/it]
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.83s/it]Batches: 100%|██████████| 2/2 [00:03<00:00,  1.76s/it]Batches: 100%|██████████| 2/2 [00:03<00:00,  1.92s/it]
+2026-03-23 18:40:08,282 ablation INFO [psycot_bge-m3_no_somatization] 186/200 evidence extracted for 307975249 (15 spans)
+2026-03-23 18:40:08,282 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 307975249
+2026-03-23 18:40:08,284 ablation INFO [psycot_bge-m3_no_somatization] 186/200 case=307975249 pred=F41.1 gold=['F98'] conf=0.727 (8.3s)
+2026-03-23 18:40:08,284 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 309951732
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.08s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.26s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.38s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.76s/it]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.76s/it]
+2026-03-23 18:40:15,822 ablation INFO [psycot_bge-m3_no_somatization] 187/200 evidence extracted for 309951732 (15 spans)
+2026-03-23 18:40:15,822 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 309951732
+2026-03-23 18:40:15,825 ablation INFO [psycot_bge-m3_no_somatization] 187/200 case=309951732 pred=F32 gold=['F32'] conf=0.769 (7.5s)
+2026-03-23 18:40:15,825 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 370640122
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.89s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.14s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.25s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.23s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.23s/it]
+2026-03-23 18:40:23,568 ablation INFO [psycot_bge-m3_no_somatization] 188/200 evidence extracted for 370640122 (15 spans)
+2026-03-23 18:40:23,568 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 370640122
+2026-03-23 18:40:23,571 ablation INFO [psycot_bge-m3_no_somatization] 188/200 case=370640122 pred=F32 gold=['F41'] conf=0.660 (7.7s)
+2026-03-23 18:40:23,571 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 334217522
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.94s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  1.97s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.12s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.30s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.30s/it]
+2026-03-23 18:40:31,109 ablation INFO [psycot_bge-m3_no_somatization] 189/200 evidence extracted for 334217522 (15 spans)
+2026-03-23 18:40:31,109 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 334217522
+2026-03-23 18:40:31,112 ablation INFO [psycot_bge-m3_no_somatization] 189/200 case=334217522 pred=F32 gold=['F32'] conf=0.685 (7.5s)
+2026-03-23 18:40:31,112 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 391244639
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.89s/it]Batches: 100%|██████████| 2/2 [00:03<00:00,  1.61s/it]Batches: 100%|██████████| 2/2 [00:03<00:00,  1.80s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.90s/it]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.90s/it]
+2026-03-23 18:40:37,637 ablation INFO [psycot_bge-m3_no_somatization] 190/200 evidence extracted for 391244639 (15 spans)
+2026-03-23 18:40:37,638 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 391244639
+2026-03-23 18:40:37,640 ablation INFO [psycot_bge-m3_no_somatization] 190/200 case=391244639 pred=F42 gold=['F41'] conf=0.678 (6.5s)
+2026-03-23 18:40:37,641 culturedx.evidence.extractor WARNING Failed to parse symptoms for case 360965312
+2026-03-23 18:40:37,641 culturedx.evidence.pipeline INFO Extracted 0 symptom spans for case 360965312
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.23s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.36s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.35s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.35s/it]
+2026-03-23 18:40:45,713 ablation INFO [psycot_bge-m3_no_somatization] 191/200 evidence extracted for 360965312 (0 spans)
+2026-03-23 18:40:45,713 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 360965312
+2026-03-23 18:40:45,715 ablation INFO [psycot_bge-m3_no_somatization] 191/200 case=360965312 pred=F32 gold=['F39', 'F41'] conf=0.640 (8.1s)
+2026-03-23 18:40:45,715 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 315796323
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.96s/it]Batches: 100%|██████████| 2/2 [00:03<00:00,  1.47s/it]Batches: 100%|██████████| 2/2 [00:03<00:00,  1.69s/it]
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.31s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.22s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.38s/it]
+2026-03-23 18:40:53,876 ablation INFO [psycot_bge-m3_no_somatization] 192/200 evidence extracted for 315796323 (15 spans)
+2026-03-23 18:40:53,876 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 315796323
+2026-03-23 18:40:53,881 ablation INFO [psycot_bge-m3_no_somatization] 192/200 case=315796323 pred=F32 gold=['F32'] conf=0.760 (8.2s)
+2026-03-23 18:40:53,882 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 343484857
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.96s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.14s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.26s/it]
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.22s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.29s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.43s/it]
+2026-03-23 18:41:03,272 ablation INFO [psycot_bge-m3_no_somatization] 193/200 evidence extracted for 343484857 (15 spans)
+2026-03-23 18:41:03,272 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 343484857
+2026-03-23 18:41:03,275 ablation INFO [psycot_bge-m3_no_somatization] 193/200 case=343484857 pred=F41.1 gold=['F32'] conf=0.728 (9.4s)
+2026-03-23 18:41:03,275 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 388568155
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.86s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.14s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.25s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.33s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.33s/it]
+2026-03-23 18:41:11,113 ablation INFO [psycot_bge-m3_no_somatization] 194/200 evidence extracted for 388568155 (15 spans)
+2026-03-23 18:41:11,113 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 388568155
+2026-03-23 18:41:11,116 ablation INFO [psycot_bge-m3_no_somatization] 194/200 case=388568155 pred=F32 gold=['F41'] conf=0.771 (7.8s)
+2026-03-23 18:41:11,117 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 330990298
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.15s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.24s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.38s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.14s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.14s/it]
+2026-03-23 18:41:19,016 ablation INFO [psycot_bge-m3_no_somatization] 195/200 evidence extracted for 330990298 (15 spans)
+2026-03-23 18:41:19,016 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 330990298
+2026-03-23 18:41:19,018 ablation INFO [psycot_bge-m3_no_somatization] 195/200 case=330990298 pred=F32 gold=['F32'] conf=0.686 (7.9s)
+2026-03-23 18:41:19,018 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 355050274
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.89s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.13s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.24s/it]
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.46s/it]Batches: 100%|██████████| 2/2 [00:05<00:00,  2.35s/it]Batches: 100%|██████████| 2/2 [00:05<00:00,  2.52s/it]
+2026-03-23 18:41:28,551 ablation INFO [psycot_bge-m3_no_somatization] 196/200 evidence extracted for 355050274 (15 spans)
+2026-03-23 18:41:28,551 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 355050274
+2026-03-23 18:41:28,559 ablation INFO [psycot_bge-m3_no_somatization] 196/200 case=355050274 pred=F41.1 gold=['F41'] conf=0.740 (9.5s)
+2026-03-23 18:41:28,560 culturedx.evidence.extractor WARNING Failed to parse symptoms for case 386432506
+2026-03-23 18:41:28,560 culturedx.evidence.pipeline INFO Extracted 0 symptom spans for case 386432506
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.86s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.12s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.23s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.69s/it]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.69s/it]
+2026-03-23 18:41:35,714 ablation INFO [psycot_bge-m3_no_somatization] 197/200 evidence extracted for 386432506 (0 spans)
+2026-03-23 18:41:35,714 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 386432506
+2026-03-23 18:41:35,717 ablation INFO [psycot_bge-m3_no_somatization] 197/200 case=386432506 pred=F32 gold=['F32'] conf=0.700 (7.2s)
+2026-03-23 18:41:35,717 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 304492604
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.63s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.02s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.11s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.97s/it]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.97s/it]
+2026-03-23 18:41:42,921 ablation INFO [psycot_bge-m3_no_somatization] 198/200 evidence extracted for 304492604 (15 spans)
+2026-03-23 18:41:42,921 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 304492604
+2026-03-23 18:41:42,923 ablation INFO [psycot_bge-m3_no_somatization] 198/200 case=304492604 pred=F32 gold=['F32'] conf=0.706 (7.2s)
+2026-03-23 18:41:42,923 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 308173154
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.89s/it]Batches: 100%|██████████| 2/2 [00:03<00:00,  1.68s/it]Batches: 100%|██████████| 2/2 [00:03<00:00,  1.86s/it]
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.44s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.28s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.45s/it]
+2026-03-23 18:41:51,560 ablation INFO [psycot_bge-m3_no_somatization] 199/200 evidence extracted for 308173154 (15 spans)
+2026-03-23 18:41:51,560 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 308173154
+2026-03-23 18:41:51,565 ablation INFO [psycot_bge-m3_no_somatization] 199/200 case=308173154 pred=F32 gold=['F32'] conf=0.716 (8.6s)
+2026-03-23 18:41:51,565 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 395109689
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.00s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.18s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.31s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.29s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.29s/it]
+2026-03-23 18:41:59,473 ablation INFO [psycot_bge-m3_no_somatization] 200/200 evidence extracted for 395109689 (15 spans)
+2026-03-23 18:41:59,473 culturedx.modes.psycot INFO PsyCoT checking 5 disorders for case 395109689
+2026-03-23 18:41:59,478 ablation INFO [psycot_bge-m3_no_somatization] 200/200 case=395109689 pred=F32 gold=['F32'] conf=0.659 (7.9s)
+2026-03-23 18:41:59,510 ablation INFO [psycot_bge-m3_no_somatization] top1=0.410 top3=0.740 f1=0.083 time=1579s (7.9s/case)
+2026-03-23 18:41:59,510 ablation INFO Condition 7/9: single_no_evidence
+2026-03-23 18:41:59,510 ablation INFO ============================================================
+2026-03-23 18:41:59,510 ablation INFO Running condition: single_no_evidence
+2026-03-23 18:41:59,510 ablation INFO   mode=single evidence=False retriever=none somatization=False contrastive=False
+2026-03-23 18:41:59,510 ablation INFO ============================================================
+2026-03-23 18:42:02,932 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:42:02,932 ablation INFO [single_no_evidence] 1/200 case=302102824 pred=F32.1 gold=['F32'] conf=0.850 (3.4s)
+2026-03-23 18:42:05,623 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:42:05,623 ablation INFO [single_no_evidence] 2/200 case=374594711 pred=F40.0 gold=['F41'] conf=0.850 (2.7s)
+2026-03-23 18:42:08,626 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:42:08,626 ablation INFO [single_no_evidence] 3/200 case=332205630 pred=F32.1 gold=['F32'] conf=0.850 (3.0s)
+2026-03-23 18:42:11,733 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:42:11,733 ablation INFO [single_no_evidence] 4/200 case=361814874 pred=F32.1 gold=['Others'] conf=0.920 (3.1s)
+2026-03-23 18:42:14,549 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:42:14,586 ablation INFO [single_no_evidence] 5/200 case=391692051 pred=F32.0 gold=['F41'] conf=0.850 (2.9s)
+2026-03-23 18:42:17,126 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:42:17,127 ablation INFO [single_no_evidence] 6/200 case=378003230 pred=F32.1 gold=['F41'] conf=0.850 (2.5s)
+2026-03-23 18:42:19,621 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:42:19,622 ablation INFO [single_no_evidence] 7/200 case=310670547 pred=F32.1 gold=['F32'] conf=0.900 (2.5s)
+2026-03-23 18:42:22,498 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:42:22,499 ablation INFO [single_no_evidence] 8/200 case=316058356 pred=F32.3 gold=['F41'] conf=0.850 (2.9s)
+2026-03-23 18:42:25,388 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:42:25,388 ablation INFO [single_no_evidence] 9/200 case=370091705 pred=F32.3 gold=['F41'] conf=0.850 (2.9s)
+2026-03-23 18:42:28,425 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:42:28,425 ablation INFO [single_no_evidence] 10/200 case=390607394 pred=F32.3 gold=['F32'] conf=0.920 (3.0s)
+2026-03-23 18:42:31,003 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:42:31,008 ablation INFO [single_no_evidence] 11/200 case=361069597 pred=F32.1 gold=['F32'] conf=0.900 (2.6s)
+2026-03-23 18:42:33,931 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:42:33,932 ablation INFO [single_no_evidence] 12/200 case=319694171 pred=F32.1 gold=['F32'] conf=0.900 (2.9s)
+2026-03-23 18:42:36,830 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:42:36,831 ablation INFO [single_no_evidence] 13/200 case=367540683 pred=F32.1 gold=['F41'] conf=0.850 (2.9s)
+2026-03-23 18:42:39,360 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:42:39,360 ablation INFO [single_no_evidence] 14/200 case=308011698 pred=F32.9 gold=['F41'] conf=0.850 (2.5s)
+2026-03-23 18:42:42,597 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:42:42,652 ablation INFO [single_no_evidence] 15/200 case=354495999 pred=F32.3 gold=['F39'] conf=0.920 (3.3s)
+2026-03-23 18:42:45,535 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:42:45,535 ablation INFO [single_no_evidence] 16/200 case=325948302 pred=F32.9 gold=['F32'] conf=0.850 (2.9s)
+2026-03-23 18:42:48,368 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:42:48,369 ablation INFO [single_no_evidence] 17/200 case=380185730 pred=F32.3 gold=['F32'] conf=0.850 (2.8s)
+2026-03-23 18:42:51,288 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:42:51,289 ablation INFO [single_no_evidence] 18/200 case=379325163 pred=F32.1 gold=['F41'] conf=0.850 (2.9s)
+2026-03-23 18:42:54,108 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:42:54,108 ablation INFO [single_no_evidence] 19/200 case=341010875 pred=F41.1 gold=['F41'] conf=0.850 (2.8s)
+2026-03-23 18:42:56,783 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:42:56,784 ablation INFO [single_no_evidence] 20/200 case=386122517 pred=F32.1 gold=['F41'] conf=0.850 (2.7s)
+2026-03-23 18:42:59,926 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:42:59,927 ablation INFO [single_no_evidence] 21/200 case=366964913 pred=F32.3 gold=['F32'] conf=0.920 (3.1s)
+2026-03-23 18:43:02,810 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:43:02,810 ablation INFO [single_no_evidence] 22/200 case=357558979 pred=F41.1 gold=['F51'] conf=0.850 (2.9s)
+2026-03-23 18:43:05,554 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:43:05,560 ablation INFO [single_no_evidence] 23/200 case=377940719 pred=F32.0 gold=['F98'] conf=0.750 (2.8s)
+2026-03-23 18:43:08,474 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:43:08,474 ablation INFO [single_no_evidence] 24/200 case=328496950 pred=F32.1 gold=['Others'] conf=0.850 (2.9s)
+2026-03-23 18:43:11,309 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:43:11,310 ablation INFO [single_no_evidence] 25/200 case=393419608 pred=F32.9 gold=['F41', 'F45'] conf=0.850 (2.8s)
+2026-03-23 18:43:14,129 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:43:14,129 ablation INFO [single_no_evidence] 26/200 case=395137898 pred=F32.3 gold=['F32'] conf=0.850 (2.8s)
+2026-03-23 18:43:16,692 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:43:16,693 ablation INFO [single_no_evidence] 27/200 case=341129032 pred=F32.0 gold=['F41'] conf=0.850 (2.6s)
+2026-03-23 18:43:19,108 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:43:19,109 ablation INFO [single_no_evidence] 28/200 case=314457593 pred=F32.1 gold=['F32'] conf=0.850 (2.4s)
+2026-03-23 18:43:22,214 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:43:22,214 ablation INFO [single_no_evidence] 29/200 case=306401808 pred=F20.0 gold=['Others'] conf=0.850 (3.1s)
+2026-03-23 18:43:25,282 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:43:25,282 ablation INFO [single_no_evidence] 30/200 case=368276980 pred=F41.1 gold=['F41'] conf=0.850 (3.1s)
+2026-03-23 18:43:27,925 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:43:27,925 ablation INFO [single_no_evidence] 31/200 case=383483096 pred=F32.1 gold=['F32'] conf=0.920 (2.6s)
+2026-03-23 18:43:30,844 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:43:30,844 ablation INFO [single_no_evidence] 32/200 case=307071521 pred=F41.1 gold=['Others'] conf=0.850 (2.9s)
+2026-03-23 18:43:33,652 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:43:33,652 ablation INFO [single_no_evidence] 33/200 case=398059903 pred=F32.3 gold=['F32', 'F41'] conf=0.850 (2.8s)
+2026-03-23 18:43:36,956 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:43:36,957 ablation INFO [single_no_evidence] 34/200 case=375486434 pred=F32.3 gold=['F31'] conf=0.920 (3.3s)
+2026-03-23 18:43:40,437 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:43:40,443 ablation INFO [single_no_evidence] 35/200 case=303823491 pred=F20.0 gold=['Others'] conf=0.920 (3.5s)
+2026-03-23 18:43:43,362 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:43:43,363 ablation INFO [single_no_evidence] 36/200 case=332494912 pred=F40.2 gold=['Others'] conf=0.850 (2.9s)
+2026-03-23 18:43:46,233 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:43:46,233 ablation INFO [single_no_evidence] 37/200 case=372816939 pred=F32.0 gold=['Others'] conf=0.850 (2.9s)
+2026-03-23 18:43:49,136 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:43:49,136 ablation INFO [single_no_evidence] 38/200 case=357977169 pred=F32.0 gold=['F32'] conf=0.850 (2.9s)
+2026-03-23 18:43:52,766 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:43:52,766 ablation INFO [single_no_evidence] 39/200 case=301228145 pred=F32.1 gold=['F43'] conf=0.850 (3.6s)
+2026-03-23 18:43:55,629 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:43:55,629 ablation INFO [single_no_evidence] 40/200 case=388582714 pred=F41.1 gold=['F41'] conf=0.850 (2.9s)
+2026-03-23 18:43:58,399 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:43:58,399 ablation INFO [single_no_evidence] 41/200 case=384411817 pred=F41.1 gold=['F32'] conf=0.850 (2.8s)
+2026-03-23 18:44:01,485 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:44:01,485 ablation INFO [single_no_evidence] 42/200 case=302333546 pred=F32.1 gold=['Others'] conf=0.920 (3.1s)
+2026-03-23 18:44:04,285 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:44:04,285 ablation INFO [single_no_evidence] 43/200 case=377976745 pred=F32.1 gold=['F41'] conf=0.920 (2.8s)
+2026-03-23 18:44:07,201 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:44:07,201 ablation INFO [single_no_evidence] 44/200 case=377025798 pred=F40.0 gold=['F41'] conf=0.850 (2.9s)
+2026-03-23 18:44:10,382 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:44:10,382 ablation INFO [single_no_evidence] 45/200 case=372723926 pred=F41.1 gold=['F41'] conf=0.850 (3.2s)
+2026-03-23 18:44:13,420 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:44:13,420 ablation INFO [single_no_evidence] 46/200 case=337550615 pred=F40.1 gold=['F32', 'F41'] conf=0.920 (3.0s)
+2026-03-23 18:44:16,279 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:44:16,285 ablation INFO [single_no_evidence] 47/200 case=344756218 pred=F32.0 gold=['F32'] conf=0.850 (2.9s)
+2026-03-23 18:44:19,747 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:44:19,747 ablation INFO [single_no_evidence] 48/200 case=344600167 pred=F32.1 gold=['Others'] conf=0.850 (3.5s)
+2026-03-23 18:44:22,072 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:44:22,073 ablation INFO [single_no_evidence] 49/200 case=321580243 pred=F32.3 gold=['F32'] conf=0.850 (2.3s)
+2026-03-23 18:44:24,515 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:44:24,516 ablation INFO [single_no_evidence] 50/200 case=328837800 pred=F32.3 gold=['F39'] conf=0.850 (2.4s)
+2026-03-23 18:44:27,477 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:44:27,477 ablation INFO [single_no_evidence] 51/200 case=334780882 pred=F32.0 gold=['F32'] conf=0.850 (3.0s)
+2026-03-23 18:44:30,297 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:44:30,298 ablation INFO [single_no_evidence] 52/200 case=370555774 pred=F42.0 gold=['F41'] conf=0.850 (2.8s)
+2026-03-23 18:44:33,549 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:44:33,550 ablation INFO [single_no_evidence] 53/200 case=336975270 pred=F32.0 gold=['Z71'] conf=0.850 (3.3s)
+2026-03-23 18:44:36,419 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:44:36,420 ablation INFO [single_no_evidence] 54/200 case=361567193 pred=F32.9 gold=['F41'] conf=0.850 (2.9s)
+2026-03-23 18:44:39,416 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:44:39,417 ablation INFO [single_no_evidence] 55/200 case=378320102 pred=F40.0 gold=['F39', 'Z71'] conf=0.850 (3.0s)
+2026-03-23 18:44:42,477 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:44:42,477 ablation INFO [single_no_evidence] 56/200 case=355062211 pred=F32.3 gold=['F32'] conf=0.850 (3.1s)
+2026-03-23 18:44:45,221 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:44:45,221 ablation INFO [single_no_evidence] 57/200 case=397563010 pred=F32.0 gold=['F32'] conf=0.850 (2.7s)
+2026-03-23 18:44:47,833 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:44:47,833 ablation INFO [single_no_evidence] 58/200 case=364898800 pred=F41.1 gold=['F32'] conf=0.850 (2.6s)
+2026-03-23 18:44:50,851 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:44:50,851 ablation INFO [single_no_evidence] 59/200 case=317927300 pred=F32.0 gold=['F41'] conf=0.850 (3.0s)
+2026-03-23 18:44:54,228 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:44:54,229 ablation INFO [single_no_evidence] 60/200 case=332904930 pred=F41.1 gold=['F41'] conf=0.850 (3.4s)
+2026-03-23 18:44:57,078 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:44:57,079 ablation INFO [single_no_evidence] 61/200 case=321168499 pred=F32.0 gold=['F32'] conf=0.850 (2.9s)
+2026-03-23 18:45:00,050 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:45:00,051 ablation INFO [single_no_evidence] 62/200 case=317916868 pred=F32.1 gold=['F39'] conf=0.850 (3.0s)
+2026-03-23 18:45:03,094 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:45:03,094 ablation INFO [single_no_evidence] 63/200 case=349844524 pred=F32.0 gold=['F32'] conf=0.850 (3.0s)
+2026-03-23 18:45:06,157 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:45:06,157 ablation INFO [single_no_evidence] 64/200 case=354444532 pred=F41.1 gold=['F41', 'F51'] conf=0.850 (3.1s)
+2026-03-23 18:45:08,921 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:45:08,921 ablation INFO [single_no_evidence] 65/200 case=373050564 pred=F32.1 gold=['F98'] conf=0.850 (2.8s)
+2026-03-23 18:45:12,106 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:45:12,106 ablation INFO [single_no_evidence] 66/200 case=342783614 pred=F32.1 gold=['F41', 'F51'] conf=0.850 (3.2s)
+2026-03-23 18:45:15,346 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:45:15,346 ablation INFO [single_no_evidence] 67/200 case=374156384 pred=F33.3 gold=['F32'] conf=0.920 (3.2s)
+2026-03-23 18:45:17,905 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:45:17,905 ablation INFO [single_no_evidence] 68/200 case=355749412 pred=F32.1 gold=['F32'] conf=0.850 (2.6s)
+2026-03-23 18:45:20,742 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:45:20,742 ablation INFO [single_no_evidence] 69/200 case=300489834 pred=F40.1 gold=['F41', 'F42'] conf=0.850 (2.8s)
+2026-03-23 18:45:23,793 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:45:23,794 ablation INFO [single_no_evidence] 70/200 case=372688798 pred=F40.0 gold=['F45'] conf=0.850 (3.1s)
+2026-03-23 18:45:26,432 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:45:26,438 ablation INFO [single_no_evidence] 71/200 case=345041803 pred=F41.1 gold=['F32'] conf=0.850 (2.6s)
+2026-03-23 18:45:29,339 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:45:29,340 ablation INFO [single_no_evidence] 72/200 case=399403078 pred=F41.0 gold=['F32'] conf=0.850 (2.9s)
+2026-03-23 18:45:32,305 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:45:32,305 ablation INFO [single_no_evidence] 73/200 case=360035057 pred=F32.3 gold=['F32'] conf=0.920 (3.0s)
+2026-03-23 18:45:35,004 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:45:35,004 ablation INFO [single_no_evidence] 74/200 case=309323646 pred=F32.0 gold=['F41'] conf=0.850 (2.7s)
+2026-03-23 18:45:37,984 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:45:37,984 ablation INFO [single_no_evidence] 75/200 case=361496798 pred=F32.1 gold=['F41'] conf=0.850 (3.0s)
+2026-03-23 18:45:40,654 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:45:40,655 ablation INFO [single_no_evidence] 76/200 case=391869945 pred=F32.1 gold=['F41'] conf=0.850 (2.7s)
+2026-03-23 18:45:44,279 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:45:44,279 ablation INFO [single_no_evidence] 77/200 case=391705886 pred=F32.3 gold=['F32'] conf=0.920 (3.6s)
+2026-03-23 18:45:47,423 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:45:47,423 ablation INFO [single_no_evidence] 78/200 case=363133453 pred=F48.0 gold=['F98'] conf=0.750 (3.1s)
+2026-03-23 18:45:50,082 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:45:50,082 ablation INFO [single_no_evidence] 79/200 case=394321045 pred=F32.0 gold=['F41'] conf=0.850 (2.7s)
+2026-03-23 18:45:52,494 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:45:52,494 ablation INFO [single_no_evidence] 80/200 case=325175069 pred=F32.0 gold=['F32', 'F41'] conf=0.850 (2.4s)
+2026-03-23 18:45:55,318 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:45:55,318 ablation INFO [single_no_evidence] 81/200 case=336543853 pred=F41.1 gold=['F41'] conf=0.850 (2.8s)
+2026-03-23 18:45:58,131 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:45:58,132 ablation INFO [single_no_evidence] 82/200 case=339584846 pred=F41.1 gold=['F41'] conf=0.850 (2.8s)
+2026-03-23 18:46:00,824 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:46:00,831 ablation INFO [single_no_evidence] 83/200 case=377075043 pred=F32.3 gold=['F32'] conf=0.920 (2.7s)
+2026-03-23 18:46:04,270 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:46:04,270 ablation INFO [single_no_evidence] 84/200 case=318437218 pred=F32.0 gold=['F41'] conf=0.920 (3.4s)
+2026-03-23 18:46:07,202 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:46:07,202 ablation INFO [single_no_evidence] 85/200 case=339926146 pred=F32.1 gold=['F41'] conf=0.850 (2.9s)
+2026-03-23 18:46:10,174 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:46:10,174 ablation INFO [single_no_evidence] 86/200 case=326673459 pred=F32.0 gold=['F32'] conf=0.850 (3.0s)
+2026-03-23 18:46:13,099 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:46:13,099 ablation INFO [single_no_evidence] 87/200 case=323239137 pred=F40.0 gold=['F41'] conf=0.850 (2.9s)
+2026-03-23 18:46:16,197 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:46:16,197 ablation INFO [single_no_evidence] 88/200 case=372527362 pred=F42.0 gold=['F42'] conf=0.920 (3.1s)
+2026-03-23 18:46:19,310 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:46:19,310 ablation INFO [single_no_evidence] 89/200 case=394865146 pred=F32.0 gold=['F32'] conf=0.850 (3.1s)
+2026-03-23 18:46:21,983 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:46:21,983 ablation INFO [single_no_evidence] 90/200 case=307309481 pred=F32.1 gold=['F32'] conf=0.850 (2.7s)
+2026-03-23 18:46:24,939 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:46:24,939 ablation INFO [single_no_evidence] 91/200 case=305844910 pred=F32.1 gold=['F41'] conf=0.850 (3.0s)
+2026-03-23 18:46:28,033 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:46:28,033 ablation INFO [single_no_evidence] 92/200 case=366129631 pred=F33.3 gold=['F32'] conf=0.850 (3.1s)
+2026-03-23 18:46:30,941 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:46:30,941 ablation INFO [single_no_evidence] 93/200 case=308750197 pred=F32.1 gold=['F32'] conf=0.850 (2.9s)
+2026-03-23 18:46:33,881 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:46:33,881 ablation INFO [single_no_evidence] 94/200 case=364626010 pred=F32.3 gold=['F39'] conf=0.850 (2.9s)
+2026-03-23 18:46:36,404 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:46:36,409 ablation INFO [single_no_evidence] 95/200 case=378153711 pred=F41.1 gold=['F41'] conf=0.850 (2.5s)
+2026-03-23 18:46:38,952 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:46:38,953 ablation INFO [single_no_evidence] 96/200 case=390272745 pred=F41.1 gold=['F41'] conf=0.850 (2.5s)
+2026-03-23 18:46:42,724 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:46:42,725 ablation INFO [single_no_evidence] 97/200 case=395537754 pred=F32.1 gold=['F31'] conf=0.920 (3.8s)
+2026-03-23 18:46:45,233 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:46:45,234 ablation INFO [single_no_evidence] 98/200 case=349883107 pred=F32.3 gold=['F41'] conf=0.850 (2.5s)
+2026-03-23 18:46:48,342 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:46:48,342 ablation INFO [single_no_evidence] 99/200 case=397418990 pred=F32.3 gold=['F32'] conf=0.920 (3.1s)
+2026-03-23 18:46:51,560 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:46:51,560 ablation INFO [single_no_evidence] 100/200 case=396451360 pred=F32.3 gold=['F32'] conf=0.920 (3.2s)
+2026-03-23 18:46:54,327 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:46:54,327 ablation INFO [single_no_evidence] 101/200 case=352312627 pred=F32.1 gold=['F41'] conf=0.850 (2.8s)
+2026-03-23 18:46:57,043 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:46:57,043 ablation INFO [single_no_evidence] 102/200 case=390898865 pred=F32.0 gold=['F32'] conf=0.850 (2.7s)
+2026-03-23 18:46:59,938 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:46:59,938 ablation INFO [single_no_evidence] 103/200 case=371610869 pred=F32.3 gold=['F41'] conf=0.850 (2.9s)
+2026-03-23 18:47:02,406 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:47:02,406 ablation INFO [single_no_evidence] 104/200 case=343822874 pred=F32.1 gold=['F32', 'F41'] conf=0.850 (2.5s)
+2026-03-23 18:47:05,266 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:47:05,266 ablation INFO [single_no_evidence] 105/200 case=375437641 pred=F41.1 gold=['F32', 'F98'] conf=0.850 (2.9s)
+2026-03-23 18:47:07,856 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:47:07,856 ablation INFO [single_no_evidence] 106/200 case=394810479 pred=F64.1 gold=['Others'] conf=0.750 (2.6s)
+2026-03-23 18:47:10,429 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:47:10,436 ablation INFO [single_no_evidence] 107/200 case=378910946 pred=F20.9 gold=['F32', 'F41'] conf=0.850 (2.6s)
+2026-03-23 18:47:13,119 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:47:13,120 ablation INFO [single_no_evidence] 108/200 case=374444739 pred=F41.1 gold=['F51'] conf=0.850 (2.7s)
+2026-03-23 18:47:16,139 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:47:16,140 ablation INFO [single_no_evidence] 109/200 case=370977041 pred=F32.0 gold=['F32', 'F41'] conf=0.850 (3.0s)
+2026-03-23 18:47:19,123 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:47:19,123 ablation INFO [single_no_evidence] 110/200 case=333092870 pred=F32.1 gold=['F41'] conf=0.850 (3.0s)
+2026-03-23 18:47:22,551 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:47:22,552 ablation INFO [single_no_evidence] 111/200 case=338534045 pred=F40.1 gold=['Others'] conf=0.920 (3.4s)
+2026-03-23 18:47:25,469 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:47:25,469 ablation INFO [single_no_evidence] 112/200 case=372812649 pred=F32.0 gold=['F32'] conf=0.850 (2.9s)
+2026-03-23 18:47:27,920 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:47:27,921 ablation INFO [single_no_evidence] 113/200 case=316358318 pred=F41.1 gold=['F41'] conf=0.850 (2.5s)
+2026-03-23 18:47:30,486 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:47:30,487 ablation INFO [single_no_evidence] 114/200 case=367032609 pred=F32.0 gold=['F41'] conf=0.850 (2.6s)
+2026-03-23 18:47:33,502 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:47:33,502 ablation INFO [single_no_evidence] 115/200 case=354568583 pred=F32.1 gold=['F32'] conf=0.920 (3.0s)
+2026-03-23 18:47:36,758 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:47:36,758 ablation INFO [single_no_evidence] 116/200 case=349934657 pred=F32.1 gold=['F39'] conf=0.850 (3.3s)
+2026-03-23 18:47:39,698 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:47:39,698 ablation INFO [single_no_evidence] 117/200 case=313177467 pred=F32.9 gold=['F32'] conf=0.850 (2.9s)
+2026-03-23 18:47:42,497 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:47:42,498 ablation INFO [single_no_evidence] 118/200 case=355187653 pred=F32.1 gold=['F51'] conf=0.850 (2.8s)
+2026-03-23 18:47:45,789 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:47:45,795 ablation INFO [single_no_evidence] 119/200 case=355155561 pred=F41.1 gold=['Others'] conf=0.850 (3.3s)
+2026-03-23 18:47:48,969 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:47:48,969 ablation INFO [single_no_evidence] 120/200 case=345878624 pred=F32.3 gold=['F98'] conf=0.850 (3.2s)
+2026-03-23 18:47:51,959 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:47:51,960 ablation INFO [single_no_evidence] 121/200 case=311492359 pred=F41.1 gold=['F41'] conf=0.850 (3.0s)
+2026-03-23 18:47:54,816 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:47:54,816 ablation INFO [single_no_evidence] 122/200 case=376583903 pred=F32.0 gold=['Z71'] conf=0.850 (2.9s)
+2026-03-23 18:47:57,334 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:47:57,334 ablation INFO [single_no_evidence] 123/200 case=375501498 pred=F32.0 gold=['Others'] conf=0.850 (2.5s)
+2026-03-23 18:47:59,988 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:47:59,989 ablation INFO [single_no_evidence] 124/200 case=331984735 pred=F32.9 gold=['F41'] conf=0.850 (2.7s)
+2026-03-23 18:48:02,930 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:48:02,931 ablation INFO [single_no_evidence] 125/200 case=376252095 pred=F41.1 gold=['F41', 'F51'] conf=0.920 (2.9s)
+2026-03-23 18:48:06,102 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:48:06,103 ablation INFO [single_no_evidence] 126/200 case=341022175 pred=F32.0 gold=['F41'] conf=0.850 (3.2s)
+2026-03-23 18:48:08,866 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:48:08,866 ablation INFO [single_no_evidence] 127/200 case=360324562 pred=F32.9 gold=['F41'] conf=0.850 (2.8s)
+2026-03-23 18:48:11,961 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:48:11,962 ablation INFO [single_no_evidence] 128/200 case=391647327 pred=F32.0 gold=['Others'] conf=0.850 (3.1s)
+2026-03-23 18:48:14,673 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:48:14,674 ablation INFO [single_no_evidence] 129/200 case=341299236 pred=F32.1 gold=['F32'] conf=0.850 (2.7s)
+2026-03-23 18:48:17,453 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:48:17,453 ablation INFO [single_no_evidence] 130/200 case=318198668 pred=F32.0 gold=['F41'] conf=0.850 (2.8s)
+2026-03-23 18:48:20,354 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:48:20,354 ablation INFO [single_no_evidence] 131/200 case=358904497 pred=F32.3 gold=['F32'] conf=0.850 (2.9s)
+2026-03-23 18:48:23,306 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:48:23,306 ablation INFO [single_no_evidence] 132/200 case=337199218 pred=F33.0 gold=['F41'] conf=0.850 (3.0s)
+2026-03-23 18:48:25,961 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:48:25,962 ablation INFO [single_no_evidence] 133/200 case=347019926 pred=F32.3 gold=['F32'] conf=0.920 (2.7s)
+2026-03-23 18:48:29,010 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:48:29,010 ablation INFO [single_no_evidence] 134/200 case=397366139 pred=F33.3 gold=['F41'] conf=0.850 (3.0s)
+2026-03-23 18:48:31,653 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:48:31,653 ablation INFO [single_no_evidence] 135/200 case=387909562 pred=F40.1 gold=['F41'] conf=0.850 (2.6s)
+2026-03-23 18:48:34,615 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:48:34,615 ablation INFO [single_no_evidence] 136/200 case=365513549 pred=F40.1 gold=['F51'] conf=0.920 (3.0s)
+2026-03-23 18:48:37,711 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:48:37,711 ablation INFO [single_no_evidence] 137/200 case=376253906 pred=F40.0 gold=['F41'] conf=0.850 (3.1s)
+2026-03-23 18:48:40,495 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:48:40,495 ablation INFO [single_no_evidence] 138/200 case=341480811 pred=F42.0 gold=['F42'] conf=0.850 (2.8s)
+2026-03-23 18:48:43,422 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:48:43,422 ablation INFO [single_no_evidence] 139/200 case=363757407 pred=F32.0 gold=['F41', 'F42'] conf=0.850 (2.9s)
+2026-03-23 18:48:46,282 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:48:46,283 ablation INFO [single_no_evidence] 140/200 case=353799698 pred=F41.1 gold=['F42'] conf=0.850 (2.9s)
+2026-03-23 18:48:48,854 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:48:48,854 ablation INFO [single_no_evidence] 141/200 case=398710785 pred=F41.1 gold=['F51'] conf=0.850 (2.6s)
+2026-03-23 18:48:51,656 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:48:51,656 ablation INFO [single_no_evidence] 142/200 case=381660279 pred=F32.1 gold=['F32'] conf=0.850 (2.8s)
+2026-03-23 18:48:54,776 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:48:54,776 ablation INFO [single_no_evidence] 143/200 case=366662462 pred=F41.1 gold=['F43'] conf=0.850 (3.1s)
+2026-03-23 18:48:57,684 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:48:57,685 ablation INFO [single_no_evidence] 144/200 case=346650025 pred=F32.9 gold=['F32'] conf=0.850 (2.9s)
+2026-03-23 18:49:00,490 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:49:00,490 ablation INFO [single_no_evidence] 145/200 case=393073156 pred=F32.9 gold=['F32'] conf=0.850 (2.8s)
+2026-03-23 18:49:03,384 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:49:03,385 ablation INFO [single_no_evidence] 146/200 case=386640839 pred=F33.3 gold=['F42'] conf=0.850 (2.9s)
+2026-03-23 18:49:05,923 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:49:05,923 ablation INFO [single_no_evidence] 147/200 case=364614520 pred=F32.3 gold=['F32'] conf=0.900 (2.5s)
+2026-03-23 18:49:08,791 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:49:08,791 ablation INFO [single_no_evidence] 148/200 case=353040830 pred=F41.1 gold=['F39'] conf=0.850 (2.9s)
+2026-03-23 18:49:11,516 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:49:11,517 ablation INFO [single_no_evidence] 149/200 case=314723264 pred=F33.3 gold=['F41', 'F51'] conf=0.850 (2.7s)
+2026-03-23 18:49:14,474 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:49:14,474 ablation INFO [single_no_evidence] 150/200 case=344461655 pred=F41.1 gold=['F41'] conf=0.850 (3.0s)
+2026-03-23 18:49:17,602 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:49:17,602 ablation INFO [single_no_evidence] 151/200 case=398663351 pred=F32.3 gold=['F32'] conf=0.920 (3.1s)
+2026-03-23 18:49:20,452 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:49:20,453 ablation INFO [single_no_evidence] 152/200 case=370801947 pred=F32.0 gold=['Others'] conf=0.750 (2.9s)
+2026-03-23 18:49:23,201 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:49:23,202 ablation INFO [single_no_evidence] 153/200 case=317744207 pred=F32.1 gold=['F41'] conf=0.850 (2.7s)
+2026-03-23 18:49:26,172 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:49:26,172 ablation INFO [single_no_evidence] 154/200 case=323621627 pred=F41.1 gold=['F42'] conf=0.850 (3.0s)
+2026-03-23 18:49:28,814 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:49:28,821 ablation INFO [single_no_evidence] 155/200 case=333990954 pred=F32.0 gold=['F32'] conf=0.850 (2.6s)
+2026-03-23 18:49:32,172 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:49:32,172 ablation INFO [single_no_evidence] 156/200 case=349644561 pred=F32.3 gold=['F39'] conf=0.950 (3.4s)
+2026-03-23 18:49:35,398 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:49:35,399 ablation INFO [single_no_evidence] 157/200 case=396295298 pred=F32.1 gold=['F32', 'F41'] conf=0.950 (3.2s)
+2026-03-23 18:49:38,331 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:49:38,331 ablation INFO [single_no_evidence] 158/200 case=378626260 pred=F41.1 gold=['F41'] conf=0.850 (2.9s)
+2026-03-23 18:49:41,146 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:49:41,146 ablation INFO [single_no_evidence] 159/200 case=366816712 pred=F32.1 gold=['F41'] conf=0.850 (2.8s)
+2026-03-23 18:49:44,324 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:49:44,325 ablation INFO [single_no_evidence] 160/200 case=332655191 pred=F32.1 gold=['F51'] conf=0.850 (3.2s)
+2026-03-23 18:49:47,194 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:49:47,194 ablation INFO [single_no_evidence] 161/200 case=328280086 pred=F41.1 gold=['F32'] conf=0.850 (2.9s)
+2026-03-23 18:49:49,834 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:49:49,834 ablation INFO [single_no_evidence] 162/200 case=335761044 pred=F32.1 gold=['F32'] conf=0.850 (2.6s)
+2026-03-23 18:49:52,495 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:49:52,496 ablation INFO [single_no_evidence] 163/200 case=316714451 pred=F41.1 gold=['F32'] conf=0.850 (2.7s)
+2026-03-23 18:49:55,512 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:49:55,513 ablation INFO [single_no_evidence] 164/200 case=385781395 pred=F32.1 gold=['F41'] conf=0.850 (3.0s)
+2026-03-23 18:49:58,690 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:49:58,691 ablation INFO [single_no_evidence] 165/200 case=322632615 pred=F32.1 gold=['F41'] conf=0.850 (3.2s)
+2026-03-23 18:50:01,837 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:50:01,838 ablation INFO [single_no_evidence] 166/200 case=320172231 pred=F32.0 gold=['F45'] conf=0.850 (3.1s)
+2026-03-23 18:50:04,850 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:50:04,856 ablation INFO [single_no_evidence] 167/200 case=320646856 pred=F41.1 gold=['F32', 'F41'] conf=0.850 (3.0s)
+2026-03-23 18:50:08,115 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:50:08,115 ablation INFO [single_no_evidence] 168/200 case=339519683 pred=F33.3 gold=['F39'] conf=0.920 (3.3s)
+2026-03-23 18:50:11,348 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:50:11,348 ablation INFO [single_no_evidence] 169/200 case=351654588 pred=F44.71 gold=['F39', 'F41'] conf=0.850 (3.2s)
+2026-03-23 18:50:14,392 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:50:14,392 ablation INFO [single_no_evidence] 170/200 case=395673178 pred=F32.1 gold=['F32'] conf=0.850 (3.0s)
+2026-03-23 18:50:17,245 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:50:17,245 ablation INFO [single_no_evidence] 171/200 case=355194606 pred=F32.1 gold=['F41'] conf=0.850 (2.9s)
+2026-03-23 18:50:19,883 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:50:19,884 ablation INFO [single_no_evidence] 172/200 case=353463822 pred=F40.1 gold=['F41'] conf=0.850 (2.6s)
+2026-03-23 18:50:22,793 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:50:22,793 ablation INFO [single_no_evidence] 173/200 case=367338688 pred=F41.1 gold=['F41'] conf=0.850 (2.9s)
+2026-03-23 18:50:25,481 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:50:25,481 ablation INFO [single_no_evidence] 174/200 case=359530873 pred=F32.1 gold=['F41'] conf=0.850 (2.7s)
+2026-03-23 18:50:27,918 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:50:27,918 ablation INFO [single_no_evidence] 175/200 case=333527373 pred=F41.1 gold=['F41'] conf=0.850 (2.4s)
+2026-03-23 18:50:31,093 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:50:31,093 ablation INFO [single_no_evidence] 176/200 case=388893431 pred=F32.3 gold=['F39'] conf=0.920 (3.2s)
+2026-03-23 18:50:34,420 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:50:34,420 ablation INFO [single_no_evidence] 177/200 case=335958565 pred=F33.0 gold=['F51'] conf=0.850 (3.3s)
+2026-03-23 18:50:37,476 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:50:37,477 ablation INFO [single_no_evidence] 178/200 case=323134405 pred=F32.0 gold=['F32'] conf=0.850 (3.1s)
+2026-03-23 18:50:40,835 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:50:40,836 ablation INFO [single_no_evidence] 179/200 case=366673333 pred=F32.3 gold=['F32'] conf=0.850 (3.4s)
+2026-03-23 18:50:43,589 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:50:43,589 ablation INFO [single_no_evidence] 180/200 case=314922549 pred=F32.3 gold=['F41', 'F51'] conf=0.850 (2.8s)
+2026-03-23 18:50:46,616 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:50:46,616 ablation INFO [single_no_evidence] 181/200 case=326255124 pred=F32.0 gold=['F98'] conf=0.850 (3.0s)
+2026-03-23 18:50:49,393 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:50:49,394 ablation INFO [single_no_evidence] 182/200 case=315178698 pred=F32.3 gold=['F32', 'F51'] conf=0.850 (2.8s)
+2026-03-23 18:50:52,775 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:50:52,775 ablation INFO [single_no_evidence] 183/200 case=355957248 pred=F32.1 gold=['F41'] conf=0.850 (3.4s)
+2026-03-23 18:50:56,211 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:50:56,211 ablation INFO [single_no_evidence] 184/200 case=340609800 pred=F42.0 gold=['Others'] conf=0.850 (3.4s)
+2026-03-23 18:50:59,254 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:50:59,254 ablation INFO [single_no_evidence] 185/200 case=391899793 pred=F32.3 gold=['Others'] conf=0.920 (3.0s)
+2026-03-23 18:51:02,183 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:51:02,183 ablation INFO [single_no_evidence] 186/200 case=307975249 pred=F41.1 gold=['F98'] conf=0.850 (2.9s)
+2026-03-23 18:51:05,230 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:51:05,230 ablation INFO [single_no_evidence] 187/200 case=309951732 pred=F32.3 gold=['F32'] conf=0.850 (3.0s)
+2026-03-23 18:51:07,961 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:51:07,961 ablation INFO [single_no_evidence] 188/200 case=370640122 pred=F41.1 gold=['F41'] conf=0.850 (2.7s)
+2026-03-23 18:51:11,127 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:51:11,128 ablation INFO [single_no_evidence] 189/200 case=334217522 pred=F32.0 gold=['F32'] conf=0.850 (3.2s)
+2026-03-23 18:51:14,092 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:51:14,092 ablation INFO [single_no_evidence] 190/200 case=391244639 pred=F32.0 gold=['F41'] conf=0.850 (3.0s)
+2026-03-23 18:51:17,257 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:51:17,258 ablation INFO [single_no_evidence] 191/200 case=360965312 pred=F33.0 gold=['F39', 'F41'] conf=0.850 (3.2s)
+2026-03-23 18:51:19,851 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:51:19,851 ablation INFO [single_no_evidence] 192/200 case=315796323 pred=F32.3 gold=['F32'] conf=0.850 (2.6s)
+2026-03-23 18:51:23,089 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:51:23,090 ablation INFO [single_no_evidence] 193/200 case=343484857 pred=F33.0 gold=['F32'] conf=0.850 (3.2s)
+2026-03-23 18:51:25,558 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:51:25,558 ablation INFO [single_no_evidence] 194/200 case=388568155 pred=F32.3 gold=['F41'] conf=0.850 (2.5s)
+2026-03-23 18:51:28,145 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:51:28,145 ablation INFO [single_no_evidence] 195/200 case=330990298 pred=F32.0 gold=['F32'] conf=0.850 (2.6s)
+2026-03-23 18:51:31,605 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:51:31,606 ablation INFO [single_no_evidence] 196/200 case=355050274 pred=F32.3 gold=['F41'] conf=0.920 (3.5s)
+2026-03-23 18:51:34,392 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:51:34,392 ablation INFO [single_no_evidence] 197/200 case=386432506 pred=F32.3 gold=['F32'] conf=0.850 (2.8s)
+2026-03-23 18:51:36,952 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:51:36,952 ablation INFO [single_no_evidence] 198/200 case=304492604 pred=F32.0 gold=['F32'] conf=0.850 (2.6s)
+2026-03-23 18:51:39,809 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:51:39,809 ablation INFO [single_no_evidence] 199/200 case=308173154 pred=F32.1 gold=['F32'] conf=0.850 (2.9s)
+2026-03-23 18:51:42,839 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:51:42,840 ablation INFO [single_no_evidence] 200/200 case=395109689 pred=F42.0 gold=['F32'] conf=0.850 (3.0s)
+2026-03-23 18:51:42,852 ablation INFO [single_no_evidence] top1=0.405 top3=0.525 f1=0.078 time=583s (2.9s/case)
+2026-03-23 18:51:42,852 ablation INFO Condition 8/9: single_bge-m3_evidence
+2026-03-23 18:51:42,852 ablation INFO ============================================================
+2026-03-23 18:51:42,852 ablation INFO Running condition: single_bge-m3_evidence
+2026-03-23 18:51:42,852 ablation INFO   mode=single evidence=True retriever=bge-m3 somatization=True contrastive=False
+2026-03-23 18:51:42,852 ablation INFO ============================================================
+2026-03-23 18:51:42,852 sentence_transformers.SentenceTransformer INFO Load pretrained SentenceTransformer: BAAI/bge-m3
+2026-03-23 18:51:43,245 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 18:51:43,257 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/modules.json "HTTP/1.1 200 OK"
+2026-03-23 18:51:43,471 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 18:51:43,484 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-23 18:51:43,692 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 18:51:43,704 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-23 18:51:43,914 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 18:51:43,925 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/README.md "HTTP/1.1 200 OK"
+2026-03-23 18:51:44,140 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 18:51:44,152 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/modules.json "HTTP/1.1 200 OK"
+2026-03-23 18:51:44,359 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 18:51:44,371 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-23 18:51:44,590 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-23 18:51:44,800 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 18:51:44,811 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config.json "HTTP/1.1 200 OK"
+2026-03-23 18:51:45,017 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 53564.13it/s]
+2026-03-23 18:51:45,229 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-23 18:51:45,314 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 18:51:45,326 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config.json "HTTP/1.1 200 OK"
+2026-03-23 18:51:45,462 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/commits/main "HTTP/1.1 200 OK"
+2026-03-23 18:51:45,529 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 18:51:45,541 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-23 18:51:45,696 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/discussions?p=0 "HTTP/1.1 200 OK"
+2026-03-23 18:51:45,752 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-23 18:51:45,930 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/commits/refs%2Fpr%2F130 "HTTP/1.1 200 OK"
+2026-03-23 18:51:45,959 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-23 18:51:46,354 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/refs%2Fpr%2F130/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-03-23 18:51:46,880 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/refs%2Fpr%2F130/model.safetensors "HTTP/1.1 302 Found"
+2026-03-23 18:51:47,651 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-23 18:51:47,871 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 18:51:47,882 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-23 18:51:48,094 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-23 18:51:48,100 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 302102824
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.03s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.24s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.49s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.49s/it]
+2026-03-23 18:51:56,064 ablation INFO [single_bge-m3_evidence] 1/200 evidence extracted for 302102824 (15 spans)
+2026-03-23 18:52:04,612 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:52:04,613 ablation INFO [single_bge-m3_evidence] 1/200 case=302102824 pred=F32 gold=['F32'] conf=0.850 (16.5s)
+2026-03-23 18:52:04,613 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 374594711
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.88s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.06s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.18s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.44s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.44s/it]
+2026-03-23 18:52:12,426 ablation INFO [single_bge-m3_evidence] 2/200 evidence extracted for 374594711 (15 spans)
+2026-03-23 18:52:19,841 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:52:19,841 ablation INFO [single_bge-m3_evidence] 2/200 case=374594711 pred=F41.1 gold=['F41'] conf=0.720 (15.2s)
+2026-03-23 18:52:19,841 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 332205630
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.85s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.12s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.23s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.23s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.23s/it]
+2026-03-23 18:52:27,541 ablation INFO [single_bge-m3_evidence] 3/200 evidence extracted for 332205630 (15 spans)
+2026-03-23 18:52:34,269 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 18:52:34,270 ablation INFO [single_bge-m3_evidence] 3/200 case=332205630 pred=F32 gold=['F32'] conf=0.750 (14.4s)
+2026-03-23 18:52:34,270 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 361814874
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.92s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.05s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.18s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.37s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.37s/it]
+2026-03-23 18:52:42,009 ablation INFO [single_bge-m3_evidence] 4/200 evidence extracted for 361814874 (15 spans)
+2026-03-23 18:52:42,041 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-23 18:52:42,041 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-23 18:52:43,072 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-23 18:52:43,072 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-23 18:52:45,104 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-23 18:52:45,104 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/scripts/ablation_sweep.py", line 557, in <module>
+    main()
+  File "/home/user/YuNing/CultureDx/scripts/ablation_sweep.py", line 504, in main
+    metrics = run_condition(condition, cases, llm, sweep_dir, diff_threshold=args.diff_threshold, contrastive_enabled=args.contrastive)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/scripts/ablation_sweep.py", line 242, in run_condition
+    result = mode.diagnose(case, evidence=evidence)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/single.py", line 61, in diagnose
+    raw = self.llm.generate(prompt, prompt_hash=prompt_hash, language=lang)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-23 23:55:41,958 ablation INFO Resuming sweep from outputs/sweeps/final_lingxidiag_20260323_131847 (7 conditions done)
+2026-03-23 23:55:41,963 ablation INFO Loading dataset 'lingxidiag16k' from data/raw/lingxidiag16k ...
+2026-03-23 23:55:43,376 ablation INFO Loaded 14000 cases total
+2026-03-23 23:55:43,381 ablation INFO Sampled 200 cases: {'F32': 74, 'F41': 71, 'Others': 17, 'F39': 12, 'F51': 7, 'F98': 6, 'F31': 2, 'F43': 2, 'Z71': 2, 'F45': 2, 'F42': 5}
+2026-03-23 23:55:43,420 ablation INFO Skipping 1/9: hied_no_evidence (already completed)
+2026-03-23 23:55:43,420 ablation INFO Skipping 2/9: hied_bge-m3_evidence (already completed)
+2026-03-23 23:55:43,420 ablation INFO Skipping 3/9: hied_bge-m3_no_somatization (already completed)
+2026-03-23 23:55:43,420 ablation INFO Skipping 4/9: psycot_no_evidence (already completed)
+2026-03-23 23:55:43,420 ablation INFO Skipping 5/9: psycot_bge-m3_evidence (already completed)
+2026-03-23 23:55:43,420 ablation INFO Skipping 6/9: psycot_bge-m3_no_somatization (already completed)
+2026-03-23 23:55:43,420 ablation INFO Skipping 7/9: single_no_evidence (already completed)
+2026-03-23 23:55:43,420 ablation INFO Condition 8/9: single_bge-m3_evidence
+2026-03-23 23:55:43,420 ablation INFO ============================================================
+2026-03-23 23:55:43,420 ablation INFO Running condition: single_bge-m3_evidence
+2026-03-23 23:55:43,420 ablation INFO   mode=single evidence=True retriever=bge-m3 somatization=True contrastive=False
+2026-03-23 23:55:43,420 ablation INFO ============================================================
+2026-03-23 23:55:45,200 sentence_transformers.SentenceTransformer INFO Load pretrained SentenceTransformer: BAAI/bge-m3
+2026-03-23 23:55:45,460 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:55:45,472 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/modules.json "HTTP/1.1 200 OK"
+2026-03-23 23:55:46,037 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:55:46,047 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-23 23:55:46,249 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:55:46,260 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-23 23:55:46,462 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:55:46,472 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/README.md "HTTP/1.1 200 OK"
+2026-03-23 23:55:46,680 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:55:46,692 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/modules.json "HTTP/1.1 200 OK"
+2026-03-23 23:55:46,894 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:55:46,905 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-23 23:55:47,114 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-23 23:55:47,316 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:55:47,328 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config.json "HTTP/1.1 200 OK"
+2026-03-23 23:55:47,554 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 70982.20it/s]
+2026-03-23 23:55:47,760 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-23 23:55:47,853 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:55:47,865 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config.json "HTTP/1.1 200 OK"
+2026-03-23 23:55:47,989 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/commits/main "HTTP/1.1 200 OK"
+2026-03-23 23:55:48,117 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:55:48,129 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-23 23:55:48,214 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/discussions?p=0 "HTTP/1.1 200 OK"
+2026-03-23 23:55:48,343 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-23 23:55:48,452 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/commits/refs%2Fpr%2F130 "HTTP/1.1 200 OK"
+2026-03-23 23:55:48,557 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-23 23:55:48,737 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/refs%2Fpr%2F130/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-03-23 23:55:49,528 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/refs%2Fpr%2F130/model.safetensors "HTTP/1.1 302 Found"
+2026-03-23 23:55:50,138 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-23 23:55:50,157 ablation INFO Resuming sweep from outputs/sweeps/final_lingxidiag_20260323_131847 (7 conditions done)
+2026-03-23 23:55:50,162 ablation INFO Loading dataset 'lingxidiag16k' from data/raw/lingxidiag16k ...
+2026-03-23 23:55:50,370 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:55:50,396 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-23 23:55:50,600 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-23 23:55:50,604 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 302102824
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]2026-03-23 23:55:51,563 ablation INFO Loaded 14000 cases total
+2026-03-23 23:55:51,569 ablation INFO Sampled 200 cases: {'F32': 74, 'F41': 71, 'Others': 17, 'F39': 12, 'F51': 7, 'F98': 6, 'F31': 2, 'F43': 2, 'Z71': 2, 'F45': 2, 'F42': 5}
+2026-03-23 23:55:51,610 ablation INFO Skipping 1/9: hied_no_evidence (already completed)
+2026-03-23 23:55:51,610 ablation INFO Skipping 2/9: hied_bge-m3_evidence (already completed)
+2026-03-23 23:55:51,610 ablation INFO Skipping 3/9: hied_bge-m3_no_somatization (already completed)
+2026-03-23 23:55:51,610 ablation INFO Skipping 4/9: psycot_no_evidence (already completed)
+2026-03-23 23:55:51,610 ablation INFO Skipping 5/9: psycot_bge-m3_evidence (already completed)
+2026-03-23 23:55:51,610 ablation INFO Skipping 6/9: psycot_bge-m3_no_somatization (already completed)
+2026-03-23 23:55:51,610 ablation INFO Skipping 7/9: single_no_evidence (already completed)
+2026-03-23 23:55:51,610 ablation INFO Condition 8/9: single_bge-m3_evidence
+2026-03-23 23:55:51,610 ablation INFO ============================================================
+2026-03-23 23:55:51,610 ablation INFO Running condition: single_bge-m3_evidence
+2026-03-23 23:55:51,610 ablation INFO   mode=single evidence=True retriever=bge-m3 somatization=True contrastive=False
+2026-03-23 23:55:51,610 ablation INFO ============================================================
+2026-03-23 23:55:53,505 sentence_transformers.SentenceTransformer INFO Load pretrained SentenceTransformer: BAAI/bge-m3
+2026-03-23 23:55:53,747 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:55:53,760 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/modules.json "HTTP/1.1 200 OK"
+2026-03-23 23:55:53,964 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:55:53,977 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config_sentence_transformers.json "HTTP/1.1 200 OK"
+Batches:  50%|█████     | 1/2 [00:03<00:03,  3.41s/it]2026-03-23 23:55:54,182 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:55:54,194 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-23 23:55:54,399 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:55:54,412 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/README.md "HTTP/1.1 200 OK"
+2026-03-23 23:55:54,621 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:55:54,633 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/modules.json "HTTP/1.1 200 OK"
+2026-03-23 23:55:54,863 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:55:54,875 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-23 23:55:55,089 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-23 23:55:55,330 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:55:55,342 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config.json "HTTP/1.1 200 OK"
+2026-03-23 23:55:55,587 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+Batches: 100%|██████████| 2/2 [00:05<00:00,  2.36s/it]Batches: 100%|██████████| 2/2 [00:05<00:00,  2.52s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 49312.11it/s]
+2026-03-23 23:55:55,803 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-23 23:55:55,908 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:55:55,936 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config.json "HTTP/1.1 200 OK"
+2026-03-23 23:55:56,040 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/commits/main "HTTP/1.1 200 OK"
+2026-03-23 23:55:56,157 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:55:56,169 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-23 23:55:56,270 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/discussions?p=0 "HTTP/1.1 200 OK"
+2026-03-23 23:55:56,375 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-23 23:55:56,506 ablation INFO Resuming sweep from outputs/sweeps/final_lingxidiag_20260323_131847 (7 conditions done)
+2026-03-23 23:55:56,510 ablation INFO Loading dataset 'lingxidiag16k' from data/raw/lingxidiag16k ...
+2026-03-23 23:55:56,511 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/commits/refs%2Fpr%2F130 "HTTP/1.1 200 OK"
+2026-03-23 23:55:56,600 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-23 23:55:56,779 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/refs%2Fpr%2F130/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-03-23 23:55:57,182 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/refs%2Fpr%2F130/model.safetensors "HTTP/1.1 302 Found"
+2026-03-23 23:55:57,986 ablation INFO Loaded 14000 cases total
+2026-03-23 23:55:57,992 ablation INFO Sampled 200 cases: {'F32': 74, 'F41': 71, 'Others': 17, 'F39': 12, 'F51': 7, 'F98': 6, 'F31': 2, 'F43': 2, 'Z71': 2, 'F45': 2, 'F42': 5}
+2026-03-23 23:55:58,036 ablation INFO Skipping 1/9: hied_no_evidence (already completed)
+2026-03-23 23:55:58,036 ablation INFO Skipping 2/9: hied_bge-m3_evidence (already completed)
+2026-03-23 23:55:58,036 ablation INFO Skipping 3/9: hied_bge-m3_no_somatization (already completed)
+2026-03-23 23:55:58,036 ablation INFO Skipping 4/9: psycot_no_evidence (already completed)
+2026-03-23 23:55:58,036 ablation INFO Skipping 5/9: psycot_bge-m3_evidence (already completed)
+2026-03-23 23:55:58,036 ablation INFO Skipping 6/9: psycot_bge-m3_no_somatization (already completed)
+2026-03-23 23:55:58,036 ablation INFO Skipping 7/9: single_no_evidence (already completed)
+2026-03-23 23:55:58,036 ablation INFO Condition 8/9: single_bge-m3_evidence
+2026-03-23 23:55:58,036 ablation INFO ============================================================
+2026-03-23 23:55:58,036 ablation INFO Running condition: single_bge-m3_evidence
+2026-03-23 23:55:58,036 ablation INFO   mode=single evidence=True retriever=bge-m3 somatization=True contrastive=False
+2026-03-23 23:55:58,036 ablation INFO ============================================================
+2026-03-23 23:55:58,253 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-23 23:55:58,476 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:55:58,488 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-23 23:55:58,693 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-23 23:55:58,700 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 302102824
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]2026-03-23 23:55:59,983 sentence_transformers.SentenceTransformer INFO Load pretrained SentenceTransformer: BAAI/bge-m3
+2026-03-23 23:56:00,221 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:56:00,233 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/modules.json "HTTP/1.1 200 OK"
+Batches: 100%|██████████| 1/1 [00:04<00:00,  4.79s/it]Batches: 100%|██████████| 1/1 [00:04<00:00,  4.79s/it]
+2026-03-23 23:56:00,442 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:56:00,443 culturedx.evidence.pipeline INFO Evidence timing for 302102824: extract=0.0s somat=0.0s match=9.8s assemble=0.0s total=9.8s
+2026-03-23 23:56:00,443 ablation INFO [single_bge-m3_evidence] 1/200 evidence extracted for 302102824 (15 spans)
+2026-03-23 23:56:00,445 ablation INFO [single_bge-m3_evidence] 1/200 case=302102824 pred=F32 gold=['F32'] conf=0.850 (9.8s)
+2026-03-23 23:56:00,446 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 374594711
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]2026-03-23 23:56:00,454 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-23 23:56:00,664 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:56:00,678 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-23 23:56:00,887 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:56:00,900 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/README.md "HTTP/1.1 200 OK"
+2026-03-23 23:56:01,114 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:56:01,129 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/modules.json "HTTP/1.1 200 OK"
+2026-03-23 23:56:01,339 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:56:01,351 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-23 23:56:01,560 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-23 23:56:01,765 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:56:01,779 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config.json "HTTP/1.1 200 OK"
+2026-03-23 23:56:02,044 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 45891.34it/s]
+2026-03-23 23:56:02,250 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-23 23:56:02,376 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:56:02,391 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config.json "HTTP/1.1 200 OK"
+2026-03-23 23:56:02,513 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/commits/main "HTTP/1.1 200 OK"
+2026-03-23 23:56:02,609 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:56:02,620 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-23 23:56:02,738 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/discussions?p=0 "HTTP/1.1 200 OK"
+2026-03-23 23:56:02,861 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-23 23:56:03,013 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/commits/refs%2Fpr%2F130 "HTTP/1.1 200 OK"
+2026-03-23 23:56:03,084 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-23 23:56:24,000 ablation INFO Resuming sweep from outputs/sweeps/final_lingxidiag_20260323_131847 (7 conditions done)
+2026-03-23 23:56:24,005 ablation INFO Loading dataset 'lingxidiag16k' from data/raw/lingxidiag16k ...
+2026-03-23 23:56:25,409 ablation INFO Loaded 14000 cases total
+2026-03-23 23:56:25,415 ablation INFO Sampled 200 cases: {'F32': 74, 'F41': 71, 'Others': 17, 'F39': 12, 'F51': 7, 'F98': 6, 'F31': 2, 'F43': 2, 'Z71': 2, 'F45': 2, 'F42': 5}
+2026-03-23 23:56:25,454 ablation INFO Skipping 1/9: hied_no_evidence (already completed)
+2026-03-23 23:56:25,454 ablation INFO Skipping 2/9: hied_bge-m3_evidence (already completed)
+2026-03-23 23:56:25,454 ablation INFO Skipping 3/9: hied_bge-m3_no_somatization (already completed)
+2026-03-23 23:56:25,454 ablation INFO Skipping 4/9: psycot_no_evidence (already completed)
+2026-03-23 23:56:25,454 ablation INFO Skipping 5/9: psycot_bge-m3_evidence (already completed)
+2026-03-23 23:56:25,454 ablation INFO Skipping 6/9: psycot_bge-m3_no_somatization (already completed)
+2026-03-23 23:56:25,454 ablation INFO Skipping 7/9: single_no_evidence (already completed)
+2026-03-23 23:56:25,454 ablation INFO Condition 8/9: single_bge-m3_evidence
+2026-03-23 23:56:25,454 ablation INFO ============================================================
+2026-03-23 23:56:25,454 ablation INFO Running condition: single_bge-m3_evidence
+2026-03-23 23:56:25,454 ablation INFO   mode=single evidence=True retriever=bge-m3 somatization=True contrastive=False
+2026-03-23 23:56:25,455 ablation INFO ============================================================
+2026-03-23 23:56:27,253 sentence_transformers.SentenceTransformer INFO Load pretrained SentenceTransformer: BAAI/bge-m3
+2026-03-23 23:56:27,522 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:56:27,534 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/modules.json "HTTP/1.1 200 OK"
+2026-03-23 23:56:27,735 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:56:27,747 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-23 23:56:27,952 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:56:27,964 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-23 23:56:28,172 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:56:28,184 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/README.md "HTTP/1.1 200 OK"
+2026-03-23 23:56:28,392 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:56:28,404 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/modules.json "HTTP/1.1 200 OK"
+2026-03-23 23:56:28,611 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:56:28,625 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-23 23:56:28,832 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-23 23:56:29,040 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:56:29,050 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config.json "HTTP/1.1 200 OK"
+2026-03-23 23:56:29,275 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 120276.70it/s]
+2026-03-23 23:56:29,489 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-23 23:56:29,556 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:56:29,568 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config.json "HTTP/1.1 200 OK"
+2026-03-23 23:56:29,720 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/commits/main "HTTP/1.1 200 OK"
+2026-03-23 23:56:29,777 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:56:29,789 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-23 23:56:29,959 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/discussions?p=0 "HTTP/1.1 200 OK"
+2026-03-23 23:56:30,002 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-23 23:56:30,182 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/commits/refs%2Fpr%2F130 "HTTP/1.1 200 OK"
+2026-03-23 23:56:30,219 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-23 23:56:30,731 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/refs%2Fpr%2F130/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-03-23 23:56:31,214 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/refs%2Fpr%2F130/model.safetensors "HTTP/1.1 302 Found"
+2026-03-23 23:56:31,797 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-23 23:56:32,008 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:56:32,019 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-23 23:56:32,223 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-23 23:56:32,229 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 302102824
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.07s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.27s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.39s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.56s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.56s/it]
+2026-03-23 23:56:40,568 culturedx.evidence.pipeline INFO Evidence timing for 302102824: extract=0.0s somat=0.0s match=8.3s assemble=0.0s total=8.3s
+2026-03-23 23:56:40,568 ablation INFO [single_bge-m3_evidence] 1/200 evidence extracted for 302102824 (15 spans)
+2026-03-23 23:56:40,570 ablation INFO [single_bge-m3_evidence] 1/200 case=302102824 pred=F32 gold=['F32'] conf=0.850 (8.3s)
+2026-03-23 23:56:40,570 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 374594711
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.15s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.23s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.37s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.24s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.24s/it]
+2026-03-23 23:56:48,553 culturedx.evidence.pipeline INFO Evidence timing for 374594711: extract=0.0s somat=0.0s match=8.0s assemble=0.0s total=8.0s
+2026-03-23 23:56:48,553 ablation INFO [single_bge-m3_evidence] 2/200 evidence extracted for 374594711 (15 spans)
+2026-03-23 23:56:48,553 ablation INFO [single_bge-m3_evidence] 2/200 case=374594711 pred=F41.1 gold=['F41'] conf=0.720 (8.0s)
+2026-03-23 23:56:48,554 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 332205630
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.83s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.13s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.24s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.33s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.33s/it]
+2026-03-23 23:56:56,369 culturedx.evidence.pipeline INFO Evidence timing for 332205630: extract=0.0s somat=0.0s match=7.8s assemble=0.0s total=7.8s
+2026-03-23 23:56:56,369 ablation INFO [single_bge-m3_evidence] 3/200 evidence extracted for 332205630 (15 spans)
+2026-03-23 23:56:56,370 ablation INFO [single_bge-m3_evidence] 3/200 case=332205630 pred=F32 gold=['F32'] conf=0.750 (7.8s)
+2026-03-23 23:56:56,370 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 361814874
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.92s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.16s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.27s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.42s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.42s/it]
+2026-03-23 23:57:04,348 culturedx.evidence.pipeline INFO Evidence timing for 361814874: extract=0.0s somat=0.0s match=8.0s assemble=0.0s total=8.0s
+2026-03-23 23:57:04,348 ablation INFO [single_bge-m3_evidence] 4/200 evidence extracted for 361814874 (15 spans)
+2026-03-23 23:57:04,380 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-23 23:57:04,380 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-23 23:57:05,412 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-23 23:57:05,412 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-23 23:57:07,444 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-23 23:57:07,444 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/scripts/ablation_sweep.py", line 557, in <module>
+    main()
+  File "/home/user/YuNing/CultureDx/scripts/ablation_sweep.py", line 504, in main
+    metrics = run_condition(condition, cases, llm, sweep_dir, diff_threshold=args.diff_threshold, contrastive_enabled=args.contrastive)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/scripts/ablation_sweep.py", line 242, in run_condition
+    result = mode.diagnose(case, evidence=evidence)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/single.py", line 136, in diagnose
+    raw = self.llm.generate(prompt, prompt_hash=prompt_hash, language=lang)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-03-23 23:59:51,625 ablation INFO Resuming sweep from outputs/sweeps/final_lingxidiag_20260323_131847 (7 conditions done)
+2026-03-23 23:59:51,630 ablation INFO Loading dataset 'lingxidiag16k' from data/raw/lingxidiag16k ...
+2026-03-23 23:59:53,005 ablation INFO Loaded 14000 cases total
+2026-03-23 23:59:53,010 ablation INFO Sampled 200 cases: {'F32': 74, 'F41': 71, 'Others': 17, 'F39': 12, 'F51': 7, 'F98': 6, 'F31': 2, 'F43': 2, 'Z71': 2, 'F45': 2, 'F42': 5}
+2026-03-23 23:59:53,050 ablation INFO Skipping 1/9: hied_no_evidence (already completed)
+2026-03-23 23:59:53,050 ablation INFO Skipping 2/9: hied_bge-m3_evidence (already completed)
+2026-03-23 23:59:53,050 ablation INFO Skipping 3/9: hied_bge-m3_no_somatization (already completed)
+2026-03-23 23:59:53,050 ablation INFO Skipping 4/9: psycot_no_evidence (already completed)
+2026-03-23 23:59:53,050 ablation INFO Skipping 5/9: psycot_bge-m3_evidence (already completed)
+2026-03-23 23:59:53,050 ablation INFO Skipping 6/9: psycot_bge-m3_no_somatization (already completed)
+2026-03-23 23:59:53,050 ablation INFO Skipping 7/9: single_no_evidence (already completed)
+2026-03-23 23:59:53,050 ablation INFO Condition 8/9: single_bge-m3_evidence
+2026-03-23 23:59:53,050 ablation INFO ============================================================
+2026-03-23 23:59:53,050 ablation INFO Running condition: single_bge-m3_evidence
+2026-03-23 23:59:53,050 ablation INFO   mode=single evidence=True retriever=bge-m3 somatization=True contrastive=False
+2026-03-23 23:59:53,050 ablation INFO ============================================================
+2026-03-23 23:59:54,857 sentence_transformers.SentenceTransformer INFO Load pretrained SentenceTransformer: BAAI/bge-m3
+2026-03-23 23:59:55,097 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:59:55,110 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/modules.json "HTTP/1.1 200 OK"
+2026-03-23 23:59:55,317 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:59:55,329 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-23 23:59:55,535 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:59:55,548 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-23 23:59:55,760 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:59:55,789 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/README.md "HTTP/1.1 200 OK"
+2026-03-23 23:59:55,997 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:59:56,011 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/modules.json "HTTP/1.1 200 OK"
+2026-03-23 23:59:56,220 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:59:56,232 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-23 23:59:56,438 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-23 23:59:56,641 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:59:56,671 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config.json "HTTP/1.1 200 OK"
+2026-03-23 23:59:56,903 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 83091.29it/s]
+2026-03-23 23:59:57,111 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-23 23:59:57,200 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:59:57,212 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config.json "HTTP/1.1 200 OK"
+2026-03-23 23:59:57,347 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/commits/main "HTTP/1.1 200 OK"
+2026-03-23 23:59:57,432 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:59:57,444 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-23 23:59:57,578 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/discussions?p=0 "HTTP/1.1 200 OK"
+2026-03-23 23:59:57,654 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-23 23:59:57,809 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/commits/refs%2Fpr%2F130 "HTTP/1.1 200 OK"
+2026-03-23 23:59:57,871 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-23 23:59:58,058 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/refs%2Fpr%2F130/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-03-23 23:59:58,810 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/refs%2Fpr%2F130/model.safetensors "HTTP/1.1 302 Found"
+2026-03-23 23:59:59,412 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-23 23:59:59,639 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 23:59:59,651 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-23 23:59:59,886 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-23 23:59:59,892 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 302102824
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.24s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.37s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.28s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.28s/it]
+2026-03-24 00:00:07,914 culturedx.evidence.pipeline INFO Evidence timing for 302102824: extract=0.0s somat=0.0s match=8.0s assemble=0.0s total=8.0s
+2026-03-24 00:00:07,914 ablation INFO [single_bge-m3_evidence] 1/200 evidence extracted for 302102824 (15 spans)
+2026-03-24 00:00:07,916 culturedx.modes.single WARNING Single mode: evidence truncated from ~28199 to ~27228 chars for case 302102824
+2026-03-24 00:00:10,867 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:00:10,868 ablation INFO [single_bge-m3_evidence] 1/200 case=302102824 pred=F32 gold=['F32'] conf=0.850 (11.0s)
+2026-03-24 00:00:10,868 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 374594711
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.88s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.08s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.20s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.38s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.38s/it]
+2026-03-24 00:00:18,659 culturedx.evidence.pipeline INFO Evidence timing for 374594711: extract=0.0s somat=0.0s match=7.8s assemble=0.0s total=7.8s
+2026-03-24 00:00:18,659 ablation INFO [single_bge-m3_evidence] 2/200 evidence extracted for 374594711 (15 spans)
+2026-03-24 00:00:18,660 ablation INFO [single_bge-m3_evidence] 2/200 case=374594711 pred=F41.1 gold=['F41'] conf=0.720 (7.8s)
+2026-03-24 00:00:18,660 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 332205630
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.91s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.18s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.29s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.27s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.27s/it]
+2026-03-24 00:00:26,509 culturedx.evidence.pipeline INFO Evidence timing for 332205630: extract=0.0s somat=0.0s match=7.8s assemble=0.0s total=7.8s
+2026-03-24 00:00:26,509 ablation INFO [single_bge-m3_evidence] 3/200 evidence extracted for 332205630 (15 spans)
+2026-03-24 00:00:26,509 ablation INFO [single_bge-m3_evidence] 3/200 case=332205630 pred=F32 gold=['F32'] conf=0.750 (7.8s)
+2026-03-24 00:00:26,510 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 361814874
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.95s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.11s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.24s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.31s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.31s/it]
+2026-03-24 00:00:34,303 culturedx.evidence.pipeline INFO Evidence timing for 361814874: extract=0.0s somat=0.0s match=7.8s assemble=0.0s total=7.8s
+2026-03-24 00:00:34,303 ablation INFO [single_bge-m3_evidence] 4/200 evidence extracted for 361814874 (15 spans)
+2026-03-24 00:00:34,304 culturedx.modes.single WARNING Single mode: evidence truncated from ~37177 to ~26597 chars for case 361814874
+2026-03-24 00:00:44,009 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:00:44,009 ablation INFO [single_bge-m3_evidence] 4/200 case=361814874 pred=F32.3 gold=['Others'] conf=0.850 (17.5s)
+2026-03-24 00:00:44,009 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 391692051
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.92s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.16s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.27s/it]
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.27s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.29s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.44s/it]
+2026-03-24 00:00:53,436 culturedx.evidence.pipeline INFO Evidence timing for 391692051: extract=0.0s somat=0.0s match=9.4s assemble=0.0s total=9.4s
+2026-03-24 00:00:53,437 ablation INFO [single_bge-m3_evidence] 5/200 evidence extracted for 391692051 (15 spans)
+2026-03-24 00:01:01,404 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:01:01,404 ablation INFO [single_bge-m3_evidence] 5/200 case=391692051 pred=F32 gold=['F41'] conf=0.850 (17.4s)
+2026-03-24 00:01:01,405 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 378003230
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.66s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.02s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.12s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.32s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.32s/it]
+2026-03-24 00:01:08,967 culturedx.evidence.pipeline INFO Evidence timing for 378003230: extract=0.0s somat=0.0s match=7.6s assemble=0.0s total=7.6s
+2026-03-24 00:01:08,967 ablation INFO [single_bge-m3_evidence] 6/200 evidence extracted for 378003230 (15 spans)
+2026-03-24 00:01:16,115 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:01:16,116 ablation INFO [single_bge-m3_evidence] 6/200 case=378003230 pred=F32 gold=['F41'] conf=0.820 (14.7s)
+2026-03-24 00:01:16,116 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 310670547
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.03s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  1.93s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.09s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.12s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.12s/it]
+2026-03-24 00:01:23,428 culturedx.evidence.pipeline INFO Evidence timing for 310670547: extract=0.0s somat=0.0s match=7.3s assemble=0.0s total=7.3s
+2026-03-24 00:01:23,428 ablation INFO [single_bge-m3_evidence] 7/200 evidence extracted for 310670547 (15 spans)
+2026-03-24 00:01:30,787 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:01:30,787 ablation INFO [single_bge-m3_evidence] 7/200 case=310670547 pred=F32 gold=['F32'] conf=0.850 (14.7s)
+2026-03-24 00:01:30,787 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 316058356
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.74s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.20s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.32s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.32s/it]
+2026-03-24 00:01:38,502 culturedx.evidence.pipeline INFO Evidence timing for 316058356: extract=0.0s somat=0.0s match=7.7s assemble=0.0s total=7.7s
+2026-03-24 00:01:38,502 ablation INFO [single_bge-m3_evidence] 8/200 evidence extracted for 316058356 (15 spans)
+2026-03-24 00:01:45,487 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:01:45,488 ablation INFO [single_bge-m3_evidence] 8/200 case=316058356 pred=F32 gold=['F41'] conf=0.750 (14.7s)
+2026-03-24 00:01:45,488 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 370091705
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.87s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  1.97s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.11s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.92s/it]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.92s/it]
+2026-03-24 00:01:52,625 culturedx.evidence.pipeline INFO Evidence timing for 370091705: extract=0.0s somat=0.0s match=7.1s assemble=0.0s total=7.1s
+2026-03-24 00:01:52,625 ablation INFO [single_bge-m3_evidence] 9/200 evidence extracted for 370091705 (15 spans)
+2026-03-24 00:01:59,197 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:01:59,197 ablation INFO [single_bge-m3_evidence] 9/200 case=370091705 pred=F32 gold=['F41'] conf=0.850 (13.7s)
+2026-03-24 00:01:59,198 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 390607394
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.83s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.21s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.03s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.03s/it]
+2026-03-24 00:02:06,646 culturedx.evidence.pipeline INFO Evidence timing for 390607394: extract=0.0s somat=0.0s match=7.4s assemble=0.0s total=7.4s
+2026-03-24 00:02:06,646 ablation INFO [single_bge-m3_evidence] 10/200 evidence extracted for 390607394 (15 spans)
+2026-03-24 00:02:13,560 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:02:13,560 ablation INFO [single_bge-m3_evidence] 10/200 case=390607394 pred=F32 gold=['F32'] conf=0.750 (14.4s)
+2026-03-24 00:02:13,560 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 361069597
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.84s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.12s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.23s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.36s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.36s/it]
+2026-03-24 00:02:21,386 culturedx.evidence.pipeline INFO Evidence timing for 361069597: extract=0.0s somat=0.0s match=7.8s assemble=0.0s total=7.8s
+2026-03-24 00:02:21,386 ablation INFO [single_bge-m3_evidence] 11/200 evidence extracted for 361069597 (15 spans)
+2026-03-24 00:02:27,893 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:02:27,893 ablation INFO [single_bge-m3_evidence] 11/200 case=361069597 pred=F32 gold=['F32'] conf=0.850 (14.3s)
+2026-03-24 00:02:27,894 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 319694171
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.94s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.12s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.24s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.11s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.11s/it]
+2026-03-24 00:02:35,496 culturedx.evidence.pipeline INFO Evidence timing for 319694171: extract=0.0s somat=0.0s match=7.6s assemble=0.0s total=7.6s
+2026-03-24 00:02:35,496 ablation INFO [single_bge-m3_evidence] 12/200 evidence extracted for 319694171 (15 spans)
+2026-03-24 00:02:41,841 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:02:41,897 ablation INFO [single_bge-m3_evidence] 12/200 case=319694171 pred=F32 gold=['F32'] conf=0.750 (14.0s)
+2026-03-24 00:02:41,897 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 367540683
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.83s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.12s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.22s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.15s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.15s/it]
+2026-03-24 00:02:49,500 culturedx.evidence.pipeline INFO Evidence timing for 367540683: extract=0.0s somat=0.0s match=7.6s assemble=0.0s total=7.6s
+2026-03-24 00:02:49,501 ablation INFO [single_bge-m3_evidence] 13/200 evidence extracted for 367540683 (15 spans)
+2026-03-24 00:02:56,492 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:02:56,492 ablation INFO [single_bge-m3_evidence] 13/200 case=367540683 pred=F32 gold=['F41'] conf=0.850 (14.6s)
+2026-03-24 00:02:56,492 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 308011698
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.92s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.13s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.25s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.92s/it]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.92s/it]
+2026-03-24 00:03:03,914 culturedx.evidence.pipeline INFO Evidence timing for 308011698: extract=0.0s somat=0.0s match=7.4s assemble=0.0s total=7.4s
+2026-03-24 00:03:03,915 ablation INFO [single_bge-m3_evidence] 14/200 evidence extracted for 308011698 (15 spans)
+2026-03-24 00:03:10,089 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:03:10,090 ablation INFO [single_bge-m3_evidence] 14/200 case=308011698 pred=F32 gold=['F41'] conf=0.750 (13.6s)
+2026-03-24 00:03:10,090 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 354495999
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.92s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.16s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.27s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.25s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.25s/it]
+2026-03-24 00:03:17,883 culturedx.evidence.pipeline INFO Evidence timing for 354495999: extract=0.0s somat=0.0s match=7.8s assemble=0.0s total=7.8s
+2026-03-24 00:03:17,884 ablation INFO [single_bge-m3_evidence] 15/200 evidence extracted for 354495999 (15 spans)
+2026-03-24 00:03:17,884 culturedx.modes.single WARNING Single mode: evidence truncated from ~34887 to ~26641 chars for case 354495999
+2026-03-24 00:03:26,791 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:03:26,791 ablation INFO [single_bge-m3_evidence] 15/200 case=354495999 pred=F32.3 gold=['F39'] conf=0.850 (16.7s)
+2026-03-24 00:03:26,791 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 325948302
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.91s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.14s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.25s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.24s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.24s/it]
+2026-03-24 00:03:34,545 culturedx.evidence.pipeline INFO Evidence timing for 325948302: extract=0.0s somat=0.0s match=7.8s assemble=0.0s total=7.8s
+2026-03-24 00:03:34,545 ablation INFO [single_bge-m3_evidence] 16/200 evidence extracted for 325948302 (15 spans)
+2026-03-24 00:03:41,263 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:03:41,263 ablation INFO [single_bge-m3_evidence] 16/200 case=325948302 pred=F32 gold=['F32'] conf=0.850 (14.5s)
+2026-03-24 00:03:41,264 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 380185730
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.61s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.03s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.12s/it]
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.25s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  1.89s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.09s/it]
+2026-03-24 00:03:49,696 culturedx.evidence.pipeline INFO Evidence timing for 380185730: extract=0.0s somat=0.0s match=8.4s assemble=0.0s total=8.4s
+2026-03-24 00:03:49,696 ablation INFO [single_bge-m3_evidence] 17/200 evidence extracted for 380185730 (15 spans)
+2026-03-24 00:03:56,714 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:03:56,715 ablation INFO [single_bge-m3_evidence] 17/200 case=380185730 pred=F33 gold=['F32'] conf=0.750 (15.5s)
+2026-03-24 00:03:56,715 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 379325163
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.07s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.21s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.34s/it]
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.27s/it]Batches: 100%|██████████| 2/2 [00:03<00:00,  1.59s/it]Batches: 100%|██████████| 2/2 [00:03<00:00,  1.84s/it]
+2026-03-24 00:04:05,087 culturedx.evidence.pipeline INFO Evidence timing for 379325163: extract=0.0s somat=0.0s match=8.4s assemble=0.0s total=8.4s
+2026-03-24 00:04:05,088 ablation INFO [single_bge-m3_evidence] 18/200 evidence extracted for 379325163 (15 spans)
+2026-03-24 00:04:11,870 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:04:11,871 ablation INFO [single_bge-m3_evidence] 18/200 case=379325163 pred=F32 gold=['F41'] conf=0.730 (15.2s)
+2026-03-24 00:04:11,871 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 341010875
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.67s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.04s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.14s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.28s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.28s/it]
+2026-03-24 00:04:19,434 culturedx.evidence.pipeline INFO Evidence timing for 341010875: extract=0.0s somat=0.0s match=7.6s assemble=0.0s total=7.6s
+2026-03-24 00:04:19,434 ablation INFO [single_bge-m3_evidence] 19/200 evidence extracted for 341010875 (15 spans)
+2026-03-24 00:04:26,620 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:04:26,621 ablation INFO [single_bge-m3_evidence] 19/200 case=341010875 pred=F41.1 gold=['F41'] conf=0.750 (14.7s)
+2026-03-24 00:04:26,621 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 386122517
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.98s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.15s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.28s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.45s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.45s/it]
+2026-03-24 00:04:34,627 culturedx.evidence.pipeline INFO Evidence timing for 386122517: extract=0.0s somat=0.0s match=8.0s assemble=0.0s total=8.0s
+2026-03-24 00:04:34,628 ablation INFO [single_bge-m3_evidence] 20/200 evidence extracted for 386122517 (15 spans)
+2026-03-24 00:04:42,299 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:04:42,300 ablation INFO [single_bge-m3_evidence] 20/200 case=386122517 pred=F32 gold=['F41'] conf=0.850 (15.7s)
+2026-03-24 00:04:42,300 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 366964913
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.16s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.23s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.37s/it]
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.26s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.19s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.35s/it]
+2026-03-24 00:04:51,746 culturedx.evidence.pipeline INFO Evidence timing for 366964913: extract=0.0s somat=0.0s match=9.4s assemble=0.0s total=9.4s
+2026-03-24 00:04:51,746 ablation INFO [single_bge-m3_evidence] 21/200 evidence extracted for 366964913 (15 spans)
+2026-03-24 00:04:51,746 culturedx.modes.single WARNING Single mode: evidence truncated from ~27315 to ~26847 chars for case 366964913
+2026-03-24 00:04:59,227 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:04:59,227 ablation INFO [single_bge-m3_evidence] 21/200 case=366964913 pred=F32 gold=['F32'] conf=0.850 (16.9s)
+2026-03-24 00:04:59,228 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 357558979
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.06s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.18s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.31s/it]
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  1.91s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.09s/it]
+2026-03-24 00:05:08,035 culturedx.evidence.pipeline INFO Evidence timing for 357558979: extract=0.0s somat=0.0s match=8.8s assemble=0.0s total=8.8s
+2026-03-24 00:05:08,036 ablation INFO [single_bge-m3_evidence] 22/200 evidence extracted for 357558979 (15 spans)
+2026-03-24 00:05:14,777 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:05:14,777 ablation INFO [single_bge-m3_evidence] 22/200 case=357558979 pred=F32 gold=['F51'] conf=0.750 (15.6s)
+2026-03-24 00:05:14,778 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 377940719
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.05s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.19s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.32s/it]
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.88s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  1.89s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.04s/it]
+2026-03-24 00:05:23,485 culturedx.evidence.pipeline INFO Evidence timing for 377940719: extract=0.0s somat=0.0s match=8.7s assemble=0.0s total=8.7s
+2026-03-24 00:05:23,485 ablation INFO [single_bge-m3_evidence] 23/200 evidence extracted for 377940719 (15 spans)
+2026-03-24 00:05:28,782 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:05:28,782 ablation INFO [single_bge-m3_evidence] 23/200 case=377940719 pred=F32 gold=['F98'] conf=0.750 (14.0s)
+2026-03-24 00:05:28,783 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 328496950
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.99s/it]Batches: 100%|██████████| 2/2 [00:03<00:00,  1.81s/it]Batches: 100%|██████████| 2/2 [00:03<00:00,  1.99s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.18s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.18s/it]
+2026-03-24 00:05:35,937 culturedx.evidence.pipeline INFO Evidence timing for 328496950: extract=0.0s somat=0.0s match=7.2s assemble=0.0s total=7.2s
+2026-03-24 00:05:35,938 ablation INFO [single_bge-m3_evidence] 24/200 evidence extracted for 328496950 (15 spans)
+2026-03-24 00:05:35,938 culturedx.modes.single WARNING Single mode: evidence truncated from ~33553 to ~27059 chars for case 328496950
+2026-03-24 00:05:45,022 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:05:45,023 ablation INFO [single_bge-m3_evidence] 24/200 case=328496950 pred=F32 gold=['Others'] conf=0.750 (16.2s)
+2026-03-24 00:05:45,023 culturedx.evidence.pipeline INFO Extracted 12 symptom spans for case 393419608
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.99s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.21s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.32s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.36s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.36s/it]
+2026-03-24 00:05:53,033 culturedx.evidence.pipeline INFO Evidence timing for 393419608: extract=0.0s somat=0.0s match=8.0s assemble=0.0s total=8.0s
+2026-03-24 00:05:53,034 ablation INFO [single_bge-m3_evidence] 25/200 evidence extracted for 393419608 (12 spans)
+2026-03-24 00:05:59,612 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:05:59,612 ablation INFO [single_bge-m3_evidence] 25/200 case=393419608 pred=F32 gold=['F41', 'F45'] conf=0.750 (14.6s)
+2026-03-24 00:05:59,612 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 395137898
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.98s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.16s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.28s/it]
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.92s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.14s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.25s/it]
+2026-03-24 00:06:08,694 culturedx.evidence.pipeline INFO Evidence timing for 395137898: extract=0.0s somat=0.0s match=9.1s assemble=0.0s total=9.1s
+2026-03-24 00:06:08,694 ablation INFO [single_bge-m3_evidence] 26/200 evidence extracted for 395137898 (15 spans)
+2026-03-24 00:06:15,537 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:06:15,537 ablation INFO [single_bge-m3_evidence] 26/200 case=395137898 pred=F32 gold=['F32'] conf=0.750 (15.9s)
+2026-03-24 00:06:15,537 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 341129032
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.97s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  1.85s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.02s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.91s/it]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.91s/it]
+2026-03-24 00:06:22,493 culturedx.evidence.pipeline INFO Evidence timing for 341129032: extract=0.0s somat=0.0s match=7.0s assemble=0.0s total=7.0s
+2026-03-24 00:06:22,493 ablation INFO [single_bge-m3_evidence] 27/200 evidence extracted for 341129032 (15 spans)
+2026-03-24 00:06:28,651 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:06:28,651 ablation INFO [single_bge-m3_evidence] 27/200 case=341129032 pred=F32 gold=['F41'] conf=0.750 (13.1s)
+2026-03-24 00:06:28,651 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 314457593
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.25s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.38s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.14s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.14s/it]
+2026-03-24 00:06:36,557 culturedx.evidence.pipeline INFO Evidence timing for 314457593: extract=0.0s somat=0.0s match=7.9s assemble=0.0s total=7.9s
+2026-03-24 00:06:36,557 ablation INFO [single_bge-m3_evidence] 28/200 evidence extracted for 314457593 (15 spans)
+2026-03-24 00:06:43,704 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:06:43,704 ablation INFO [single_bge-m3_evidence] 28/200 case=314457593 pred=F32 gold=['F32'] conf=0.850 (15.1s)
+2026-03-24 00:06:43,704 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 306401808
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.90s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  1.92s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.07s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.20s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.20s/it]
+2026-03-24 00:06:51,046 culturedx.evidence.pipeline INFO Evidence timing for 306401808: extract=0.0s somat=0.0s match=7.3s assemble=0.0s total=7.3s
+2026-03-24 00:06:51,047 ablation INFO [single_bge-m3_evidence] 29/200 evidence extracted for 306401808 (15 spans)
+2026-03-24 00:06:51,047 culturedx.modes.single WARNING Single mode: evidence truncated from ~31125 to ~26232 chars for case 306401808
+2026-03-24 00:06:59,748 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:06:59,748 ablation INFO [single_bge-m3_evidence] 29/200 case=306401808 pred=F20.0 gold=['Others'] conf=0.850 (16.0s)
+2026-03-24 00:06:59,749 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 368276980
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.91s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.14s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.25s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.21s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.21s/it]
+2026-03-24 00:07:07,477 culturedx.evidence.pipeline INFO Evidence timing for 368276980: extract=0.0s somat=0.0s match=7.7s assemble=0.0s total=7.7s
+2026-03-24 00:07:07,478 ablation INFO [single_bge-m3_evidence] 30/200 evidence extracted for 368276980 (15 spans)
+2026-03-24 00:07:07,478 culturedx.modes.single WARNING Single mode: evidence truncated from ~29240 to ~27722 chars for case 368276980
+2026-03-24 00:07:15,024 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:07:15,024 ablation INFO [single_bge-m3_evidence] 30/200 case=368276980 pred=F32 gold=['F41'] conf=0.750 (15.3s)
+2026-03-24 00:07:15,025 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 383483096
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.06s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.19s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.33s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.42s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.42s/it]
+2026-03-24 00:07:23,100 culturedx.evidence.pipeline INFO Evidence timing for 383483096: extract=0.0s somat=0.0s match=8.1s assemble=0.0s total=8.1s
+2026-03-24 00:07:23,101 ablation INFO [single_bge-m3_evidence] 31/200 evidence extracted for 383483096 (15 spans)
+2026-03-24 00:07:29,731 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:07:29,731 ablation INFO [single_bge-m3_evidence] 31/200 case=383483096 pred=F32 gold=['F32'] conf=0.850 (14.7s)
+2026-03-24 00:07:29,731 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 307071521
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.73s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.05s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.15s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.81s/it]Batches: 100%|██████████| 1/1 [00:02<00:00,  2.81s/it]
+2026-03-24 00:07:36,849 culturedx.evidence.pipeline INFO Evidence timing for 307071521: extract=0.0s somat=0.0s match=7.1s assemble=0.0s total=7.1s
+2026-03-24 00:07:36,849 ablation INFO [single_bge-m3_evidence] 32/200 evidence extracted for 307071521 (15 spans)
+2026-03-24 00:07:42,529 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:07:42,529 ablation INFO [single_bge-m3_evidence] 32/200 case=307071521 pred=F32 gold=['Others'] conf=0.750 (12.8s)
+2026-03-24 00:07:42,529 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 398059903
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.84s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.11s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.22s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.27s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.27s/it]
+2026-03-24 00:07:50,253 culturedx.evidence.pipeline INFO Evidence timing for 398059903: extract=0.0s somat=0.0s match=7.7s assemble=0.0s total=7.7s
+2026-03-24 00:07:50,253 ablation INFO [single_bge-m3_evidence] 33/200 evidence extracted for 398059903 (15 spans)
+2026-03-24 00:07:56,289 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:07:56,289 ablation INFO [single_bge-m3_evidence] 33/200 case=398059903 pred=F32 gold=['F32', 'F41'] conf=0.750 (13.8s)
+2026-03-24 00:07:56,289 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 375486434
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.97s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.18s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.30s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.03s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.03s/it]
+2026-03-24 00:08:03,931 culturedx.evidence.pipeline INFO Evidence timing for 375486434: extract=0.0s somat=0.0s match=7.6s assemble=0.0s total=7.6s
+2026-03-24 00:08:03,932 ablation INFO [single_bge-m3_evidence] 34/200 evidence extracted for 375486434 (15 spans)
+2026-03-24 00:08:03,932 culturedx.modes.single WARNING Single mode: evidence truncated from ~37303 to ~26405 chars for case 375486434
+2026-03-24 00:08:12,293 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:08:12,293 ablation INFO [single_bge-m3_evidence] 34/200 case=375486434 pred=F32.3 gold=['F31'] conf=0.850 (16.0s)
+2026-03-24 00:08:12,293 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 303823491
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.08s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  1.95s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.12s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.06s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.06s/it]
+2026-03-24 00:08:19,603 culturedx.evidence.pipeline INFO Evidence timing for 303823491: extract=0.0s somat=0.0s match=7.3s assemble=0.0s total=7.3s
+2026-03-24 00:08:19,604 ablation INFO [single_bge-m3_evidence] 35/200 evidence extracted for 303823491 (15 spans)
+2026-03-24 00:08:19,604 culturedx.modes.single WARNING Single mode: evidence truncated from ~32702 to ~26485 chars for case 303823491
+2026-03-24 00:08:27,673 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:08:27,674 ablation INFO [single_bge-m3_evidence] 35/200 case=303823491 pred=F20.0 gold=['Others'] conf=0.850 (15.4s)
+2026-03-24 00:08:27,674 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 332494912
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.95s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.14s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.26s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.23s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.23s/it]
+2026-03-24 00:08:35,441 culturedx.evidence.pipeline INFO Evidence timing for 332494912: extract=0.0s somat=0.0s match=7.8s assemble=0.0s total=7.8s
+2026-03-24 00:08:35,441 ablation INFO [single_bge-m3_evidence] 36/200 evidence extracted for 332494912 (15 spans)
+2026-03-24 00:08:35,441 culturedx.modes.single WARNING Single mode: evidence truncated from ~32627 to ~27265 chars for case 332494912
+2026-03-24 00:08:43,140 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:08:43,140 ablation INFO [single_bge-m3_evidence] 36/200 case=332494912 pred=F41.1 gold=['Others'] conf=0.750 (15.5s)
+2026-03-24 00:08:43,141 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 372816939
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:02<00:02,  2.87s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.11s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.22s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.13s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.13s/it]
+2026-03-24 00:08:50,725 culturedx.evidence.pipeline INFO Evidence timing for 372816939: extract=0.0s somat=0.0s match=7.6s assemble=0.0s total=7.6s
+2026-03-24 00:08:50,726 ablation INFO [single_bge-m3_evidence] 37/200 evidence extracted for 372816939 (15 spans)
+2026-03-24 00:08:50,726 culturedx.modes.single WARNING Single mode: evidence truncated from ~32879 to ~27114 chars for case 372816939
+2026-03-24 00:08:58,940 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:08:58,941 ablation INFO [single_bge-m3_evidence] 37/200 case=372816939 pred=F32 gold=['Others'] conf=0.850 (15.8s)
+2026-03-24 00:08:58,941 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 357977169
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.08s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.21s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.34s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.14s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.14s/it]
+2026-03-24 00:09:06,776 culturedx.evidence.pipeline INFO Evidence timing for 357977169: extract=0.0s somat=0.0s match=7.8s assemble=0.0s total=7.8s
+2026-03-24 00:09:06,777 ablation INFO [single_bge-m3_evidence] 38/200 evidence extracted for 357977169 (15 spans)
+2026-03-24 00:09:14,263 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 00:09:14,263 ablation INFO [single_bge-m3_evidence] 38/200 case=357977169 pred=F32 gold=['F32'] conf=0.750 (15.3s)
+2026-03-24 00:09:14,263 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 301228145
+Batches:   0%|          | 0/2 [00:00<?, ?it/s]Batches:  50%|█████     | 1/2 [00:03<00:03,  3.10s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.24s/it]Batches: 100%|██████████| 2/2 [00:04<00:00,  2.37s/it]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.37s/it]Batches: 100%|██████████| 1/1 [00:03<00:00,  3.37s/it]
+2026-03-24 00:09:22,374 culturedx.evidence.pipeline INFO Evidence timing for 301228145: extract=0.0s somat=0.0s match=8.1s assemble=0.0s total=8.1s
+2026-03-24 00:09:22,375 ablation INFO [single_bge-m3_evidence] 39/200 evidence extracted for 301228145 (15 spans)
+2026-03-24 00:09:22,375 culturedx.modes.single WARNING Single mode: evidence truncated from ~41675 to ~26051 chars for case 301228145
+2026-03-24 00:09:22,403 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-24 00:09:22,404 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 1/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 1s...
+2026-03-24 00:09:23,432 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-24 00:09:23,432 culturedx.llm.vllm_client WARNING vLLM call failed (attempt 2/3): Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400. Retrying in 2s...
+2026-03-24 00:09:25,460 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-24 00:09:25,460 culturedx.llm.vllm_client ERROR vLLM call failed after 3 attempts: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/scripts/ablation_sweep.py", line 557, in <module>
+    main()
+  File "/home/user/YuNing/CultureDx/scripts/ablation_sweep.py", line 504, in main
+    metrics = run_condition(condition, cases, llm, sweep_dir, diff_threshold=args.diff_threshold, contrastive_enabled=args.contrastive)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/scripts/ablation_sweep.py", line 242, in run_condition
+    result = mode.diagnose(case, evidence=evidence)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/modes/single.py", line 136, in diagnose
+    raw = self.llm.generate(prompt, prompt_hash=prompt_hash, language=lang)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/llm/vllm_client.py", line 93, in generate
+    response.raise_for_status()
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'http://localhost:8000/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
