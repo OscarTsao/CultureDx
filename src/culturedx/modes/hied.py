@@ -24,6 +24,7 @@ from culturedx.core.models import (
     EvidenceBrief,
 )
 from culturedx.diagnosis.calibrator import ConfidenceCalibrator
+from culturedx.diagnosis.pairwise_ranker import PairwiseRanker
 from culturedx.diagnosis.comorbidity import ComorbidityResolver
 from culturedx.diagnosis.logic_engine import DiagnosticLogicEngine
 from culturedx.modes.base import BaseModeOrchestrator
@@ -52,6 +53,7 @@ class HiEDMode(BaseModeOrchestrator):
         comorbid_threshold: float = 0.5,
         differential_threshold: float = 0.10,
         contrastive_enabled: bool = False,
+        ranker_weights_path: str | Path | None = None,
     ) -> None:
         self.mode_name = "hied"
         self.llm = llm_client
@@ -86,6 +88,12 @@ class HiEDMode(BaseModeOrchestrator):
 
         # Stage 4b: Comorbidity resolver
         self.comorbidity_resolver = ComorbidityResolver()
+
+        # Stage 4a: Pairwise re-ranking (optional, no LLM)
+        self.pairwise_ranker: PairwiseRanker | None = None
+        if ranker_weights_path is not None:
+            self.pairwise_ranker = PairwiseRanker(ranker_weights_path)
+            logger.info("Pairwise ranker loaded from %s", ranker_weights_path)
 
     def diagnose(
         self, case: ClinicalCase, evidence: EvidenceBrief | None = None
@@ -177,6 +185,27 @@ class HiEDMode(BaseModeOrchestrator):
                 model_name=self.llm.model,
                 language_used=lang,
             )
+
+        # === Stage 4a: Pairwise Re-ranking (optional, no LLM) ===
+        if self.pairwise_ranker is not None:
+            all_cal = [cal_output.primary] + cal_output.comorbid
+            if len(all_cal) >= 2:
+                codes = [c.disorder_code for c in all_cal]
+                reranked_codes = self.pairwise_ranker.rerank(
+                    codes, checker_outputs,
+                )
+                if reranked_codes[0] != codes[0]:
+                    logger.info(
+                        "Pairwise ranker reordered: %s -> %s",
+                        codes, reranked_codes,
+                    )
+                    code_to_cal = {c.disorder_code: c for c in all_cal}
+                    reranked_cal = [code_to_cal[c] for c in reranked_codes]
+                    cal_output = replace(
+                        cal_output,
+                        primary=reranked_cal[0],
+                        comorbid=reranked_cal[1:],
+                    )
 
         # === Stage 4.5: Differential Disambiguation ===
         all_calibrated = [cal_output.primary] + cal_output.comorbid
