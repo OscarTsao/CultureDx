@@ -121,10 +121,10 @@ class SingleModelMode(BaseModeOrchestrator):
         transcript_text = self._build_transcript_text(case, max_chars=max_chars)
 
         # Estimate non-evidence tokens and guard against context overflow
-        # Budget: 14000 input tokens × 3.5 chars/token (Chinese avg) = char budget
+        # Budget: 12000 input tokens × 2.5 chars/token (conservative for Qwen + Chinese)
         base_prompt = template.render(transcript_text=transcript_text, evidence=None)
         base_chars = len(base_prompt)
-        max_evidence_chars = int(14000 * 3.5) - base_chars  # token budget → char budget
+        max_evidence_chars = int(12000 * 2.5) - base_chars  # conservative: 12k tokens × 2.5 chars/token
 
         if evidence and max_evidence_chars > 0:
             evidence = self._truncate_evidence(evidence, max_evidence_chars, case.case_id)
