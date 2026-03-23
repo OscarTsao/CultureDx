@@ -104,7 +104,6 @@ class ConfidenceCalibrator:
             "margin": 0.08,
             "variance": 0.10,
             "info_content": 0.05,
-            "demographic_prior": 0.00,
         }
 
     def calibrate(
@@ -113,7 +112,6 @@ class ConfidenceCalibrator:
         checker_outputs: list[CheckerOutput],
         evidence: EvidenceBrief | None = None,
         confirmation_types: dict[str, str] | None = None,
-        demographics: dict | None = None,
     ) -> CalibrationOutput:
         """Calibrate confidence for confirmed disorders.
         
@@ -137,7 +135,7 @@ class ConfidenceCalibrator:
                 continue
             if self.version >= 2:
                 cal = self._compute_calibrated_v2(
-                    code, co, confirmed_outputs, evidence, demographics,
+                    code, co, confirmed_outputs, evidence,
                 )
             else:
                 cal = self._compute_calibrated(code, co, evidence)
@@ -240,7 +238,6 @@ class ConfidenceCalibrator:
         checker_output: CheckerOutput,
         all_confirmed_outputs: list[CheckerOutput],
         evidence: EvidenceBrief | None,
-        demographics: dict | None = None,
     ) -> CalibratedDiagnosis:
         """V2 calibration with weighted signals for disorder differentiation."""
         # Existing signals
@@ -274,16 +271,6 @@ class ConfidenceCalibrator:
         variance = self._compute_variance_penalty(checker_output)
         info_content = self._compute_info_content(checker_output)
 
-        # Demographic prior (neutral 0.5 when no data)
-        demographic_score = 0.5
-        if demographics is not None:
-            from culturedx.ontology.demographic_priors import compute_demographic_prior
-            demographic_score = compute_demographic_prior(
-                disorder_code,
-                age=demographics.get("age"),
-                gender=demographics.get("gender"),
-            )
-
         # Weighted combination
         w = self.v2_weights
         confidence = (
@@ -295,7 +282,6 @@ class ConfidenceCalibrator:
             + w["margin"] * margin
             + w["variance"] * variance
             + w.get("info_content", 0) * info_content
-            + w.get("demographic_prior", 0) * demographic_score
         )
         confidence = max(0.0, min(1.0, confidence))
 

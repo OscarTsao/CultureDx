@@ -172,20 +172,11 @@ class HiEDMode(BaseModeOrchestrator):
             r.disorder_code: r.confirmation_type
             for r in logic_output.confirmed
         }
-        # Build demographics from case metadata (None-safe)
-        demographics = None
-        if case.metadata:
-            age = case.metadata.get("age")
-            gender = case.metadata.get("gender")
-            if age is not None or gender is not None:
-                demographics = {"age": age, "gender": gender}
-
         cal_output = self.calibrator.calibrate(
             confirmed_disorders=logic_output.confirmed_codes,
             checker_outputs=checker_outputs,
             evidence=evidence,
             confirmation_types=confirmation_types,
-            demographics=demographics,
         )
 
         if cal_output.primary is None:
