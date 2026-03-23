@@ -1,0 +1,173 @@
+2026-03-23 09:11:07,557 edaic_evidence INFO Loading dataset 'edaic' from data/raw/daic_explain/edaic_processed.json ...
+2026-03-23 09:11:07,567 edaic_evidence INFO Loaded 217 cases total
+2026-03-23 09:11:07,567 edaic_evidence INFO Using 217 cases: 63 depressed (F32), 154 healthy
+2026-03-23 09:11:09,043 sentence_transformers.SentenceTransformer INFO Load pretrained SentenceTransformer: BAAI/bge-m3
+2026-03-23 09:11:09,306 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 09:11:09,318 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/modules.json "HTTP/1.1 200 OK"
+2026-03-23 09:11:09,522 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 09:11:09,533 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-23 09:11:09,744 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 09:11:09,755 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-23 09:11:09,958 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 09:11:09,970 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/README.md "HTTP/1.1 200 OK"
+2026-03-23 09:11:10,177 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 09:11:10,189 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/modules.json "HTTP/1.1 200 OK"
+2026-03-23 09:11:10,396 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 09:11:10,408 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-23 09:11:10,614 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-23 09:11:10,826 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 09:11:10,837 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config.json "HTTP/1.1 200 OK"
+2026-03-23 09:11:11,062 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 83387.04it/s]
+2026-03-23 09:11:11,278 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-23 09:11:11,368 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 09:11:11,379 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config.json "HTTP/1.1 200 OK"
+2026-03-23 09:11:11,510 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/commits/main "HTTP/1.1 200 OK"
+2026-03-23 09:11:11,579 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 09:11:11,591 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-23 09:11:11,746 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/discussions?p=0 "HTTP/1.1 200 OK"
+2026-03-23 09:11:11,799 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-23 09:11:11,972 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/commits/refs%2Fpr%2F130 "HTTP/1.1 200 OK"
+2026-03-23 09:11:12,007 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-23 09:11:12,186 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/refs%2Fpr%2F130/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-03-23 09:11:12,858 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/refs%2Fpr%2F130/model.safetensors "HTTP/1.1 302 Found"
+2026-03-23 09:11:13,430 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-23 09:11:13,641 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-23 09:11:13,653 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-23 09:11:13,867 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-03-23 09:11:13,870 edaic_evidence INFO Condition 1/2: hied_no_evidence
+2026-03-23 09:11:13,870 edaic_evidence INFO ============================================================
+2026-03-23 09:11:13,870 culturedx.pipeline.runner INFO Processing case 1/217: 380
+2026-03-23 09:11:13,870 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-23 09:11:13,870 culturedx.modes.hied INFO Case 380: 5 candidate disorders from triage
+2026-03-23 09:11:24,790 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:11:25,184 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:11:25,686 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:11:28,868 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:11:31,182 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:11:31,183 culturedx.pipeline.runner INFO Processing case 2/217: 475
+2026-03-23 09:11:31,184 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-23 09:11:31,184 culturedx.modes.hied INFO Case 475: 5 candidate disorders from triage
+2026-03-23 09:11:35,454 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:11:36,311 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:11:36,642 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:11:39,560 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:11:39,822 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:11:39,832 culturedx.pipeline.runner INFO Processing case 3/217: 336
+2026-03-23 09:11:39,832 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-23 09:11:39,832 culturedx.modes.hied INFO Case 336: 5 candidate disorders from triage
+2026-03-23 09:11:44,829 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:11:44,858 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:11:45,410 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:11:49,942 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:11:50,026 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:11:50,027 culturedx.pipeline.runner INFO Processing case 4/217: 439
+2026-03-23 09:11:50,027 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-23 09:11:50,027 culturedx.modes.hied INFO Case 439: 5 candidate disorders from triage
+2026-03-23 09:11:58,297 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:11:58,329 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:11:59,162 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:02,415 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:03,930 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:03,931 culturedx.pipeline.runner INFO Processing case 5/217: 481
+2026-03-23 09:12:03,931 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-23 09:12:03,932 culturedx.modes.hied INFO Case 481: 5 candidate disorders from triage
+2026-03-23 09:12:10,521 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:10,940 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:11,771 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:14,501 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:16,304 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:16,305 culturedx.pipeline.runner INFO Processing case 6/217: 379
+2026-03-23 09:12:16,305 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-23 09:12:16,305 culturedx.modes.hied INFO Case 379: 5 candidate disorders from triage
+2026-03-23 09:12:23,945 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:24,042 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:26,101 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:28,705 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:30,327 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:30,328 culturedx.pipeline.runner INFO Processing case 7/217: 345
+2026-03-23 09:12:30,328 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-23 09:12:30,328 culturedx.modes.hied INFO Case 345: 5 candidate disorders from triage
+2026-03-23 09:12:36,111 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:37,196 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:37,716 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:40,304 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:41,192 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:41,193 culturedx.pipeline.runner INFO Processing case 8/217: 329
+2026-03-23 09:12:41,193 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-23 09:12:41,193 culturedx.modes.hied INFO Case 329: 5 candidate disorders from triage
+2026-03-23 09:12:45,937 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:46,483 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:46,497 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:49,735 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:50,038 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:50,040 culturedx.pipeline.runner INFO Processing case 9/217: 601
+2026-03-23 09:12:50,040 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-23 09:12:50,040 culturedx.modes.hied INFO Case 601: 5 candidate disorders from triage
+2026-03-23 09:12:53,833 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:53,963 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:54,526 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:57,503 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:57,734 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:12:57,735 culturedx.pipeline.runner INFO Processing case 10/217: 321
+2026-03-23 09:12:57,735 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-23 09:12:57,735 culturedx.modes.hied INFO Case 321: 5 candidate disorders from triage
+2026-03-23 09:13:02,612 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:02,642 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:04,130 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:06,891 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:07,154 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:07,155 culturedx.pipeline.runner INFO Processing case 11/217: 407
+2026-03-23 09:13:07,155 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-23 09:13:07,156 culturedx.modes.hied INFO Case 407: 5 candidate disorders from triage
+2026-03-23 09:13:15,926 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:16,010 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:16,840 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:19,981 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:20,040 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:20,042 culturedx.pipeline.runner INFO Processing case 12/217: 368
+2026-03-23 09:13:20,042 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-23 09:13:20,042 culturedx.modes.hied INFO Case 368: 5 candidate disorders from triage
+2026-03-23 09:13:29,608 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:29,660 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:35,015 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:36,879 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:37,434 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:37,435 culturedx.pipeline.runner INFO Processing case 13/217: 348
+2026-03-23 09:13:37,436 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-23 09:13:37,436 culturedx.modes.hied INFO Case 348: 5 candidate disorders from triage
+2026-03-23 09:13:42,388 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:42,537 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:43,206 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:47,023 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:47,539 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:47,540 culturedx.pipeline.runner INFO Processing case 14/217: 436
+2026-03-23 09:13:47,540 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-23 09:13:47,540 culturedx.modes.hied INFO Case 436: 5 candidate disorders from triage
+2026-03-23 09:13:53,117 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:53,586 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:53,629 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:56,894 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:58,906 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:13:58,907 culturedx.pipeline.runner INFO Processing case 15/217: 387
+2026-03-23 09:13:58,907 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-23 09:13:58,907 culturedx.modes.hied INFO Case 387: 5 candidate disorders from triage
+2026-03-23 09:14:03,246 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:14:03,365 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:14:03,904 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:14:07,096 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:14:07,110 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:14:07,111 culturedx.pipeline.runner INFO Processing case 16/217: 313
+2026-03-23 09:14:07,111 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-23 09:14:07,111 culturedx.modes.hied INFO Case 313: 5 candidate disorders from triage
+2026-03-23 09:14:11,545 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:14:11,621 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:14:12,210 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:14:15,598 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:14:15,625 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:14:15,627 culturedx.pipeline.runner INFO Processing case 17/217: 366
+2026-03-23 09:14:15,627 culturedx.modes.hied INFO Skipping triage, using 5 target disorders
+2026-03-23 09:14:15,627 culturedx.modes.hied INFO Case 366: 5 candidate disorders from triage
+2026-03-23 09:14:23,059 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:14:23,091 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 09:14:24,443 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"

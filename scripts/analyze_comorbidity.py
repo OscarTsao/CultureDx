@@ -1,45 +1,21 @@
 #!/usr/bin/env python3
-"""Retrospective comorbidity evaluation for existing sweep predictions.
+"""Retrospective comorbidity analysis on existing prediction files.
 
-Loads predictions.json + case_list.json from sweep directories, computes:
-1. Comorbidity metrics (7 metrics from compute_comorbidity_metrics)
-2. LingxiDiag 4-class accuracy (Depression/Anxiety/Mixed/Other)
-
-Usage:
-    uv run python scripts/analyze_comorbidity.py \
-        --sweep-dirs outputs/sweeps/v10_lingxidiag_* \
-        --dataset lingxidiag16k
-
-    uv run python scripts/analyze_comorbidity.py \
-        --sweep-dirs outputs/sweeps/contrastive_*_lingxidiag_* \
-        --dataset lingxidiag16k --four-class
+Loads predictions from sweep directories, computes comorbidity metrics
+and optionally 4-class accuracy for LingxiDiag.
 """
-from __future__ import annotations
-
 import argparse
 import json
 import sys
 from pathlib import Path
 
-# Add project root to path for imports
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from culturedx.eval.metrics import compute_comorbidity_metrics
+from culturedx.eval.metrics import compute_comorbidity_metrics, normalize_code_list
 
-
-# ---------------------------------------------------------------------------
-# 4-class mapping (LingxiDiag task)
-# ---------------------------------------------------------------------------
 
 def predict_four_class(primary: str | None, comorbid: list[str]) -> str:
-    """Map prediction to LingxiDiag 4-class label.
-
-    Rules (validated against raw LingxiDiag data):
-      Depression: F32.x or F33.x only
-      Anxiety:    F40.x or F41.x only (NOT F42/F43)
-      Mixed:      Both depression AND anxiety codes present
-      Other:      Everything else (F42, F43, F39, F45, F51, F98, ...)
-    """
+    """Map primary + comorbid codes to LingxiDiag 4-class label."""
     all_codes = [c for c in [primary] + (comorbid or []) if c]
     has_dep = any(c.startswith("F32") or c.startswith("F33") for c in all_codes)
     has_anx = any(c.startswith("F40") or c.startswith("F41") for c in all_codes)
@@ -53,17 +29,9 @@ def predict_four_class(primary: str | None, comorbid: list[str]) -> str:
 
 
 def gold_four_class(diagnoses: list[str]) -> str:
-    """Map gold diagnoses to LingxiDiag 4-class label.
-
-    Gold labels use parent codes (F32, F41, etc.).
-    F41.2 in raw data maps to "Mixed" in the 4-class scheme.
-    """
-    codes = [c.split(".")[0] for c in diagnoses]
-    has_dep = any(c in ("F32", "F33") for c in codes)
-    has_anx = any(c in ("F40", "F41") for c in codes)
-    # F41.2 = mixed anxiety-depressive disorder
-    if any(d.startswith("F41.2") for d in diagnoses):
-        return "Mixed"
+    """Map gold ICD-10 codes to 4-class label."""
+    has_dep = any(c.startswith("F32") or c.startswith("F33") for c in diagnoses)
+    has_anx = any(c.startswith("F40") or c.startswith("F41") for c in diagnoses)
     if has_dep and has_anx:
         return "Mixed"
     if has_dep:
@@ -73,219 +41,162 @@ def gold_four_class(diagnoses: list[str]) -> str:
     return "Other"
 
 
-# ---------------------------------------------------------------------------
-# Loading
-# ---------------------------------------------------------------------------
+def load_predictions(pred_path: Path) -> list[dict]:
+    """Load predictions from JSON file."""
+    with open(pred_path, encoding="utf-8") as f:
+        data = json.load(f)
+    if isinstance(data, dict) and "predictions" in data:
+        return data["predictions"]
+    if isinstance(data, list):
+        return data
+    raise ValueError(f"Unknown predictions format in {pred_path}")
 
-def load_sweep(sweep_dir: Path) -> tuple[list[dict], dict[str, list[str]]]:
-    """Load case_list.json gold labels and find condition dirs.
 
-    Returns:
-        (condition_list, gold_map)
-        condition_list: list of {"name": str, "predictions": list[dict]}
-        gold_map: {case_id: [diagnoses]}
-    """
-    case_list_path = sweep_dir / "case_list.json"
-    if not case_list_path.exists():
-        print(f"  WARNING: {case_list_path} not found, skipping", file=sys.stderr)
-        return [], {}
+def load_gold_labels(dataset: str, data_path: str | None = None) -> dict[str, list[str]]:
+    """Load gold labels keyed by case_id."""
+    from culturedx.data.adapters import get_adapter
+    
+    paths = {
+        "lingxidiag16k": "data/raw/lingxidiag16k",
+        "mdd5k_raw": "data/raw/mdd5k_repo",
+        "mdd5k": "data/raw/mdd5k_repo",
+        "edaic": "data/raw/daic_explain/edaic_processed.json",
+    }
+    effective_path = data_path or paths.get(dataset)
+    if not effective_path:
+        raise ValueError(f"No data path for dataset '{dataset}'. Use --data-path.")
+    
+    adapter = get_adapter(dataset, effective_path)
+    cases = adapter.load()
+    return {c.case_id: c.diagnoses for c in cases}
 
-    with open(case_list_path, encoding="utf-8") as f:
-        case_data = json.load(f)
 
-    gold_map = {c["case_id"]: c["diagnoses"] for c in case_data["cases"]}
-
-    conditions = []
-    for sub in sorted(sweep_dir.iterdir()):
-        pred_path = sub / "predictions.json"
-        if not pred_path.exists():
+def analyze_one(pred_path: Path, gold_map: dict[str, list[str]], dataset: str, four_class: bool, save: bool) -> dict:
+    """Analyze one predictions file."""
+    preds_raw = load_predictions(pred_path)
+    
+    preds = []
+    golds = []
+    four_class_preds = []
+    four_class_golds = []
+    skipped = 0
+    
+    for p in preds_raw:
+        cid = p["case_id"]
+        if cid not in gold_map:
+            skipped += 1
             continue
-        with open(pred_path, encoding="utf-8") as f:
-            pred_data = json.load(f)
-        preds = pred_data.get("predictions", [])
-        conditions.append({"name": sub.name, "predictions": preds})
-
-    return conditions, gold_map
-
-
-# ---------------------------------------------------------------------------
-# Analysis
-# ---------------------------------------------------------------------------
-
-def analyze_condition(
-    name: str,
-    predictions: list[dict],
-    gold_map: dict[str, list[str]],
-    four_class: bool = False,
-) -> dict:
-    """Compute comorbidity + optional 4-class metrics for one condition."""
-    preds_lists = []
-    golds_lists = []
-
-    for p in predictions:
-        case_id = p["case_id"]
-        gold = gold_map.get(case_id)
-        if gold is None:
+        gold_dx = gold_map[cid]
+        if not gold_dx:
+            skipped += 1
             continue
-        pred_dx = [p["primary_diagnosis"]] if p["primary_diagnosis"] else ["unknown"]
+        
+        pred_dx = [p["primary_diagnosis"]] if p.get("primary_diagnosis") else ["unknown"]
         pred_dx += p.get("comorbid_diagnoses", [])
-        preds_lists.append(pred_dx)
-        golds_lists.append(gold)
-
-    result = {"condition": name, "n_cases": len(preds_lists)}
-
+        
+        preds.append(pred_dx)
+        golds.append(gold_dx)
+        
+        if four_class:
+            four_class_preds.append(predict_four_class(p.get("primary_diagnosis"), p.get("comorbid_diagnoses", [])))
+            four_class_golds.append(gold_four_class(gold_dx))
+    
+    if not preds:
+        return {"error": "No valid predictions with gold labels"}
+    
     # Comorbidity metrics
-    comorbid = compute_comorbidity_metrics(preds_lists, golds_lists)
-    result["comorbidity"] = comorbid
+    metrics = compute_comorbidity_metrics(preds, golds, normalize="parent")
+    metrics["n_evaluated"] = len(preds)
+    metrics["n_skipped"] = skipped
+    
+    # 4-class accuracy
+    if four_class and four_class_preds:
+        correct = sum(1 for p, g in zip(four_class_preds, four_class_golds) if p == g)
+        metrics["four_class_accuracy"] = correct / len(four_class_preds)
+        metrics["four_class_n"] = len(four_class_preds)
+        
+        # Per-class breakdown
+        classes = ["Depression", "Anxiety", "Mixed", "Other"]
+        for cls in classes:
+            tp = sum(1 for p, g in zip(four_class_preds, four_class_golds) if p == cls and g == cls)
+            fp = sum(1 for p, g in zip(four_class_preds, four_class_golds) if p == cls and g != cls)
+            fn = sum(1 for p, g in zip(four_class_preds, four_class_golds) if p != cls and g == cls)
+            precision = tp / (tp + fp) if (tp + fp) > 0 else 0
+            recall = tp / (tp + fn) if (tp + fn) > 0 else 0
+            f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0
+            metrics[f"four_class_{cls.lower()}_precision"] = round(precision, 4)
+            metrics[f"four_class_{cls.lower()}_recall"] = round(recall, 4)
+            metrics[f"four_class_{cls.lower()}_f1"] = round(f1, 4)
+    
+    if save:
+        out_path = pred_path.parent / "comorbidity_metrics.json"
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(metrics, f, indent=2, ensure_ascii=False)
+        print(f"  Saved: {out_path}")
+    
+    return metrics
 
-    # 4-class metrics
-    if four_class:
-        pred_classes = []
-        gold_classes = []
-        for p, g in zip(predictions, [gold_map.get(p["case_id"], []) for p in predictions]):
-            if not g:
-                continue
-            pred_classes.append(predict_four_class(
-                p["primary_diagnosis"], p.get("comorbid_diagnoses", []),
-            ))
-            gold_classes.append(gold_four_class(g))
-
-        if pred_classes:
-            from sklearn.metrics import (
-                accuracy_score,
-                classification_report,
-                confusion_matrix,
-            )
-
-            labels = ["Depression", "Anxiety", "Mixed", "Other"]
-            acc = accuracy_score(gold_classes, pred_classes)
-            report = classification_report(
-                gold_classes, pred_classes, labels=labels,
-                output_dict=True, zero_division=0,
-            )
-            cm = confusion_matrix(gold_classes, pred_classes, labels=labels)
-
-            result["four_class"] = {
-                "accuracy": acc,
-                "per_class": {
-                    lab: {
-                        "precision": report[lab]["precision"],
-                        "recall": report[lab]["recall"],
-                        "f1": report[lab]["f1-score"],
-                        "support": report[lab]["support"],
-                    }
-                    for lab in labels
-                },
-                "confusion_matrix": cm.tolist(),
-                "labels": labels,
-                "macro_f1": report["macro avg"]["f1-score"],
-            }
-
-    return result
-
-
-# ---------------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------------
 
 def main():
     parser = argparse.ArgumentParser(description="Retrospective comorbidity analysis")
-    parser.add_argument(
-        "--sweep-dirs", nargs="+", required=True,
-        help="Sweep output directories (supports glob via shell expansion)",
-    )
-    parser.add_argument(
-        "--dataset", default=None,
-        help="Dataset name (for context in output)",
-    )
-    parser.add_argument(
-        "--four-class", action="store_true",
-        help="Compute LingxiDiag 4-class metrics (Depression/Anxiety/Mixed/Other)",
-    )
-    parser.add_argument(
-        "--save", action="store_true",
-        help="Save comorbidity_metrics.json next to each predictions.json",
-    )
+    parser.add_argument("--sweep-dirs", nargs="+", required=True, help="Sweep output directories")
+    parser.add_argument("--dataset", required=True, help="Dataset name for gold labels")
+    parser.add_argument("--data-path", default=None, help="Override dataset path")
+    parser.add_argument("--four-class", action="store_true", help="Compute 4-class accuracy (LingxiDiag)")
+    parser.add_argument("--save", action="store_true", help="Save comorbidity_metrics.json per condition")
     args = parser.parse_args()
-
-    all_results = []
-
-    for sweep_dir_str in args.sweep_dirs:
-        sweep_dir = Path(sweep_dir_str)
-        if not sweep_dir.is_dir():
-            print(f"WARNING: {sweep_dir} not a directory, skipping", file=sys.stderr)
+    
+    # Load gold labels once
+    gold_map = load_gold_labels(args.dataset, args.data_path)
+    print(f"Loaded {len(gold_map)} gold labels for dataset '{args.dataset}'")
+    
+    # Find all prediction files
+    for sweep_dir_pattern in args.sweep_dirs:
+        sweep_dir = Path(sweep_dir_pattern)
+        if not sweep_dir.exists():
+            print(f"WARNING: {sweep_dir} not found, skipping")
             continue
-
-        print(f"\n{'='*70}")
+        
+        # Check for condition subdirectories
+        condition_dirs = [d for d in sweep_dir.iterdir() if d.is_dir() and (d / "predictions.json").exists()]
+        if not condition_dirs:
+            # Maybe predictions.json is at sweep level
+            if (sweep_dir / "predictions.json").exists():
+                condition_dirs = [sweep_dir]
+        
+        if not condition_dirs:
+            print(f"WARNING: No predictions.json found in {sweep_dir}")
+            continue
+        
+        print(f"\n{'='*60}")
         print(f"Sweep: {sweep_dir.name}")
-        print(f"{'='*70}")
-
-        conditions, gold_map = load_sweep(sweep_dir)
-        if not conditions:
-            print("  No conditions found.")
-            continue
-
-        for cond in conditions:
-            result = analyze_condition(
-                name=f"{sweep_dir.name}/{cond['name']}",
-                predictions=cond["predictions"],
-                gold_map=gold_map,
-                four_class=args.four_class,
-            )
-            all_results.append(result)
-
-            # Print summary
-            cm = result["comorbidity"]
-            print(f"\n  {cond['name']} (n={result['n_cases']})")
-            print(f"    hamming_acc={cm['hamming_accuracy']:.3f}  "
-                  f"subset_acc={cm['subset_accuracy']:.3f}  "
-                  f"comorbid_f1={cm['comorbidity_detection_f1']:.3f}")
-            print(f"    label_coverage={cm['label_coverage']:.3f}  "
-                  f"label_precision={cm['label_precision']:.3f}  "
-                  f"avg_pred={cm['avg_predicted_labels']:.2f}  "
-                  f"avg_gold={cm['avg_gold_labels']:.2f}")
-
-            if "four_class" in result:
-                fc = result["four_class"]
-                print(f"    4-class accuracy={fc['accuracy']:.3f}  "
-                      f"macro_f1={fc['macro_f1']:.3f}")
-                for lab in fc["labels"]:
-                    pc = fc["per_class"][lab]
-                    print(f"      {lab:12s}  P={pc['precision']:.3f}  "
-                          f"R={pc['recall']:.3f}  F1={pc['f1']:.3f}  "
-                          f"n={pc['support']}")
-
-            # Save per-condition
-            if args.save:
-                cond_dir = sweep_dir / cond["name"].split("/")[-1]
-                save_path = cond_dir / "comorbidity_metrics.json"
-                with open(save_path, "w", encoding="utf-8") as f:
-                    json.dump(result, f, indent=2, ensure_ascii=False)
-                print(f"    Saved: {save_path}")
-
-    # Summary table
-    if len(all_results) > 1:
-        print(f"\n{'='*70}")
-        print("SUMMARY TABLE")
-        print(f"{'='*70}")
-        header = f"{'Condition':45s} {'hamm':>5s} {'sub':>5s} {'cmF1':>5s} {'cov':>5s} {'prec':>5s}"
-        if args.four_class:
-            header += f" {'4cl':>5s} {'4mF1':>5s}"
-        print(header)
-        print("-" * len(header))
-
-        for r in all_results:
-            cm = r["comorbidity"]
-            row = (f"{r['condition']:45s} "
-                   f"{cm['hamming_accuracy']:5.3f} "
-                   f"{cm['subset_accuracy']:5.3f} "
-                   f"{cm['comorbidity_detection_f1']:5.3f} "
-                   f"{cm['label_coverage']:5.3f} "
-                   f"{cm['label_precision']:5.3f}")
-            if args.four_class and "four_class" in r:
-                fc = r["four_class"]
-                row += f" {fc['accuracy']:5.3f} {fc['macro_f1']:5.3f}"
-            print(row)
+        print(f"{'='*60}")
+        
+        for cond_dir in sorted(condition_dirs):
+            pred_path = cond_dir / "predictions.json"
+            print(f"\n  Condition: {cond_dir.name}")
+            metrics = analyze_one(pred_path, gold_map, args.dataset, args.four_class, args.save)
+            
+            if "error" in metrics:
+                print(f"  ERROR: {metrics['error']}")
+                continue
+            
+            print(f"  N evaluated: {metrics['n_evaluated']}, skipped: {metrics['n_skipped']}")
+            print(f"  Hamming accuracy:     {metrics.get('hamming_accuracy', 0):.4f}")
+            print(f"  Subset accuracy:      {metrics.get('subset_accuracy', 0):.4f}")
+            print(f"  Comorbid detect F1:   {metrics.get('comorbidity_detection_f1', 0):.4f}")
+            print(f"  Label coverage:       {metrics.get('label_coverage', 0):.4f}")
+            print(f"  Label precision:      {metrics.get('label_precision', 0):.4f}")
+            print(f"  Avg predicted labels: {metrics.get('avg_predicted_labels', 0):.2f}")
+            print(f"  Avg gold labels:      {metrics.get('avg_gold_labels', 0):.2f}")
+            
+            if "four_class_accuracy" in metrics:
+                print(f"\n  4-class accuracy:  {metrics['four_class_accuracy']:.4f} (baseline: 0.430)")
+                for cls in ["depression", "anxiety", "mixed", "other"]:
+                    p = metrics.get(f"four_class_{cls}_precision", 0)
+                    r = metrics.get(f"four_class_{cls}_recall", 0)
+                    f1 = metrics.get(f"four_class_{cls}_f1", 0)
+                    print(f"    {cls:12s}  P={p:.3f}  R={r:.3f}  F1={f1:.3f}")
 
 
 if __name__ == "__main__":
