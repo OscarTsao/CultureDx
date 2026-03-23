@@ -67,6 +67,11 @@ class SpecialistMode(BaseModeOrchestrator):
                 transcript_text=transcript_text,
                 evidence={"evidence_summary": self._build_global_evidence_summary(evidence)} if evidence else None,
                 language=lang,
+                extra={
+                    "chief_complaint": (case.metadata or {}).get("chief_complaint"),
+                    "age": (case.metadata or {}).get("age"),
+                    "gender": (case.metadata or {}).get("gender"),
+                },
             )
             triage_output = self.triage.run(triage_input)
             if triage_output.parsed and "disorder_codes" in triage_output.parsed:

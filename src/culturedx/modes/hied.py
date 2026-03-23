@@ -117,6 +117,11 @@ class HiEDMode(BaseModeOrchestrator):
                 transcript_text=transcript_text,
                 evidence={"evidence_summary": self._build_global_evidence_summary(evidence)} if evidence else None,
                 language=lang,
+                extra={
+                    "chief_complaint": (case.metadata or {}).get("chief_complaint"),
+                    "age": (case.metadata or {}).get("age"),
+                    "gender": (case.metadata or {}).get("gender"),
+                },
             )
             triage_output = self.triage.run(triage_input)
             if triage_output.parsed and "disorder_codes" in triage_output.parsed:
@@ -167,11 +172,20 @@ class HiEDMode(BaseModeOrchestrator):
             r.disorder_code: r.confirmation_type
             for r in logic_output.confirmed
         }
+        # Build demographics from case metadata (None-safe)
+        demographics = None
+        if case.metadata:
+            age = case.metadata.get("age")
+            gender = case.metadata.get("gender")
+            if age is not None or gender is not None:
+                demographics = {"age": age, "gender": gender}
+
         cal_output = self.calibrator.calibrate(
             confirmed_disorders=logic_output.confirmed_codes,
             checker_outputs=checker_outputs,
             evidence=evidence,
             confirmation_types=confirmation_types,
+            demographics=demographics,
         )
 
         if cal_output.primary is None:

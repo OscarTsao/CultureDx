@@ -54,6 +54,23 @@ When evaluating these overlapping criteria:
 1. If the patient's **primary complaint** is excessive worry, restlessness, or uncontrollable anxiety, these shared symptoms are more likely secondary to anxiety — mark as `insufficient_evidence` rather than `met`
 2. Only mark these criteria as `met` when they are **clearly linked to persistent low mood**
 3. If the evidence could equally explain anxiety or depression, use `insufficient_evidence`
+
+### C3 (Suicidal Ideation) — Indirect Expression Recognition
+
+Patients may not use the word "suicide" directly. The following should be treated as passive suicidal ideation and marked `met`:
+- "I don't care if I wake up" / "I'd be better off dead" → passive death wish
+- "My family would be better off without me" → indirect suicidal ideation
+- "I'm not afraid of dying" / "What's the point of living" → death indifference
+
+A specific plan or method is NOT required. Passive death wishes are sufficient for C3.
+
+### C2 (Guilt/Worthlessness)
+
+- "I'm a burden to everyone" / "I'm dragging my family down" → guilt through perceived burden
+- "I'm useless" / "I can't do anything right" → worthlessness
+- "It's all my fault" → direct self-blame
+
+These expressions meet the C2 criterion for guilt or worthlessness.
 {% endif %}
 {% if disorder_code == "F41.1" %}
 
@@ -68,6 +85,8 @@ Patients rarely state explicit durations like "I've been anxious for 6 months." 
 - Any temporal anchor suggesting symptoms predate 6 months from the clinical interview
 
 If any indirect evidence suggests anxiety symptoms have persisted for approximately 6 months or longer, mark as `met` with appropriate confidence. Do not require the patient to state an exact number of months.
+
+**Important:** If the transcript contains no timeline information at all, use `insufficient_evidence` (not `not_met`). Only use `not_met` when the patient explicitly states recent onset (e.g., "just started this week", "only the past few days").
 
 ### Criterion B1 (Motor tension: fidgeting, tension headaches, trembling, inability to relax)
 

@@ -9,6 +9,20 @@ You are a psychiatric triage specialist. Based on the clinical transcript and sy
 - psychotic: Psychotic disorders (F20-F29) — schizophrenia, persistent delusions
 - sleep: Sleep disorders (F51) — insomnia, hypersomnia
 
+{% if chief_complaint or age or gender %}
+## Patient Information
+{% if age and gender %}
+- Demographics: {{ gender }}, {{ age }} years old
+{% elif age %}
+- Age: {{ age }}
+{% elif gender %}
+- Gender: {{ gender }}
+{% endif %}
+{% if chief_complaint %}
+- Chief complaint: {{ chief_complaint }}
+{% endif %}
+{% endif %}
+
 ## Clinical Transcript
 
 {{ transcript_text }}

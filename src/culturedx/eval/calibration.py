@@ -1,14 +1,18 @@
-"""Confidence calibration analysis — reliability diagrams and ECE.
+"""Confidence calibration analysis — reliability diagrams, ECE, Platt scaling.
 
 Computes Expected Calibration Error (ECE) and generates data for
 reliability diagrams (calibration curves) across diagnostic modes.
+Includes PlattCalibrator for post-hoc calibration and risk-coverage curves.
 """
 from __future__ import annotations
 
 import json
 import logging
+import math
 from dataclasses import dataclass, field
 from pathlib import Path
+
+import numpy as np
 
 logger = logging.getLogger(__name__)
 
@@ -201,3 +205,130 @@ def calibration_from_predictions(
         correct = correct[:min_len]
 
     return compute_calibration(confidences, correct, n_bins=n_bins, mode=mode)
+
+
+class PlattCalibrator:
+    """Post-hoc Platt scaling: logistic regression on raw confidence -> P(correct)."""
+
+    def __init__(self) -> None:
+        self.a: float = 0.0
+        self.b: float = 0.0
+        self.optimal_threshold: float = 0.3
+        self.fitted: bool = False
+
+    def fit(self, confidences: list[float], correct: list[bool]) -> None:
+        """Fit Platt scaling on validation data.
+
+        Uses sklearn LogisticRegression with C=1.0 to learn P(correct | confidence).
+        Also finds the optimal abstain threshold that maximizes F1.
+        """
+        from sklearn.linear_model import LogisticRegression
+
+        X = np.array(confidences).reshape(-1, 1)
+        y = np.array(correct, dtype=int)
+
+        model = LogisticRegression(C=1.0, random_state=42, max_iter=1000)
+        model.fit(X, y)
+
+        self.a = float(model.coef_[0, 0])
+        self.b = float(model.intercept_[0])
+        self.fitted = True
+
+        # Find optimal threshold maximizing F1 on the fitting data
+        self.optimal_threshold = self._find_optimal_threshold(confidences, correct)
+
+    def transform(self, confidence: float) -> float:
+        """Transform a single raw confidence to calibrated probability."""
+        z = self.a * confidence + self.b
+        return 1.0 / (1.0 + math.exp(-z))
+
+    def transform_batch(self, confidences: list[float]) -> list[float]:
+        """Transform a list of raw confidences."""
+        return [self.transform(c) for c in confidences]
+
+    def _find_optimal_threshold(
+        self, confidences: list[float], correct: list[bool],
+    ) -> float:
+        """Find calibrated threshold maximizing F1 (predict correct if above)."""
+        calibrated = self.transform_batch(confidences)
+        best_f1 = 0.0
+        best_thresh = 0.5
+
+        for thresh in np.arange(0.1, 0.9, 0.01):
+            tp = sum(1 for c, cor in zip(calibrated, correct) if c >= thresh and cor)
+            fp = sum(1 for c, cor in zip(calibrated, correct) if c >= thresh and not cor)
+            fn = sum(1 for c, cor in zip(calibrated, correct) if c < thresh and cor)
+            precision = tp / (tp + fp) if (tp + fp) > 0 else 0
+            recall = tp / (tp + fn) if (tp + fn) > 0 else 0
+            f1 = (
+                2 * precision * recall / (precision + recall)
+                if (precision + recall) > 0 else 0
+            )
+            if f1 > best_f1:
+                best_f1 = f1
+                best_thresh = float(thresh)
+
+        return best_thresh
+
+    def save(self, path: str | Path) -> None:
+        """Save fitted parameters to JSON."""
+        data = {
+            "a": self.a,
+            "b": self.b,
+            "optimal_threshold": self.optimal_threshold,
+            "fitted": self.fitted,
+        }
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2)
+
+    @classmethod
+    def load(cls, path: str | Path) -> "PlattCalibrator":
+        """Load fitted parameters from JSON."""
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+        cal = cls()
+        cal.a = data["a"]
+        cal.b = data["b"]
+        cal.optimal_threshold = data.get("optimal_threshold", 0.3)
+        cal.fitted = data.get("fitted", True)
+        return cal
+
+
+def compute_risk_coverage_curve(
+    confidences: list[float],
+    correct: list[bool],
+    n_points: int = 20,
+) -> list[dict]:
+    """Compute risk-coverage curve data points.
+
+    Sorts predictions by confidence descending, then at each coverage level
+    computes accuracy on the top-N% most confident predictions.
+
+    Returns:
+        List of dicts with keys: coverage, accuracy, risk, threshold, n_selected.
+    """
+    if not confidences:
+        return []
+
+    n = len(confidences)
+    indices = np.argsort(confidences)[::-1]
+    sorted_conf = np.array(confidences)[indices]
+    sorted_correct = np.array(correct, dtype=float)[indices]
+
+    points = []
+    for i in range(1, n_points + 1):
+        coverage = i / n_points
+        n_select = max(1, int(n * coverage))
+        selected = sorted_correct[:n_select]
+        accuracy = float(selected.mean())
+
+        threshold = float(sorted_conf[min(n_select - 1, n - 1)])
+        points.append({
+            "coverage": round(coverage, 3),
+            "accuracy": round(accuracy, 4),
+            "risk": round(1 - accuracy, 4),
+            "threshold": round(threshold, 4),
+            "n_selected": n_select,
+        })
+
+    return points

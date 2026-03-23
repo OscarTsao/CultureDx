@@ -60,9 +60,14 @@ class TriageAgent(BaseAgent):
         # Render prompt
         template_name = f"triage_{input.language}.jinja"
         template = self._env.get_template(template_name)
+        # Pass demographic/chief complaint info if available in extra
+        extra = input.extra or {}
         prompt = template.render(
             transcript_text=input.transcript_text,
             evidence_summary=evidence_summary,
+            chief_complaint=extra.get("chief_complaint"),
+            age=extra.get("age"),
+            gender=extra.get("gender"),
         )
 
         source, _, _ = self._env.loader.get_source(self._env, template_name)

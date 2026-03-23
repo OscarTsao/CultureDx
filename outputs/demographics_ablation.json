@@ -1,0 +1,58 @@
+[
+  {
+    "dataset": "v10_lingxidiag",
+    "weight_results": {
+      "0.0": {
+        "accuracy": 0.395,
+        "correct": 79,
+        "total": 200
+      },
+      "0.05": {
+        "accuracy": 0.395,
+        "correct": 79,
+        "total": 200
+      },
+      "0.1": {
+        "accuracy": 0.395,
+        "correct": 79,
+        "total": 200
+      },
+      "0.15": {
+        "accuracy": 0.4,
+        "correct": 80,
+        "total": 200
+      }
+    },
+    "baseline": 0.395,
+    "best_weight": 0.15,
+    "best_accuracy": 0.4
+  },
+  {
+    "dataset": "lingxidiag_crossval",
+    "weight_results": {
+      "0.0": {
+        "accuracy": 0.4,
+        "correct": 80,
+        "total": 200
+      },
+      "0.05": {
+        "accuracy": 0.395,
+        "correct": 79,
+        "total": 200
+      },
+      "0.1": {
+        "accuracy": 0.395,
+        "correct": 79,
+        "total": 200
+      },
+      "0.15": {
+        "accuracy": 0.395,
+        "correct": 79,
+        "total": 200
+      }
+    },
+    "baseline": 0.4,
+    "best_weight": 0.05,
+    "best_accuracy": 0.395
+  }
+]

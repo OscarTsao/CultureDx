@@ -1,0 +1,1349 @@
+[
+  {
+    "dataset": "v10_lingxidiag",
+    "n": 200,
+    "old_accuracy": 0.38,
+    "new_accuracy": 0.395,
+    "delta": 0.015,
+    "delta_pp": 1.5,
+    "flips_good": 6,
+    "flips_bad": 3,
+    "flips_neutral": 7,
+    "flip_details": [
+      {
+        "case_id": "325948302",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "366964913",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "374156384",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "394865146",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "315178698",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32",
+          "F51"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "395109689",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "367540683",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "308011698",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "397366139",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "368276980",
+        "old": "F43.1",
+        "new": "F42",
+        "gold": [
+          "F41"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "328837800",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F39"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "317916868",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F39"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "391869945",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "318437218",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "376252095",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F41",
+          "F51"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "333527373",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "neutral"
+      }
+    ]
+  },
+  {
+    "dataset": "v10_mdd5k",
+    "n": 200,
+    "old_accuracy": 0.435,
+    "new_accuracy": 0.495,
+    "delta": 0.06,
+    "delta_pp": 6.0,
+    "flips_good": 15,
+    "flips_bad": 3,
+    "flips_neutral": 13,
+    "flip_details": [
+      {
+        "case_id": "patient_1026",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_146",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_891",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_89",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_762",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_365",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_965",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_869",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_847",
+        "old": "F33",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_269",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_780",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_9",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_923",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F28",
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_914",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_1029",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_931",
+        "old": "F41.1",
+        "new": "F33",
+        "gold": [
+          "F41"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "patient_698",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "patient_1018",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F41",
+          "F64"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "patient_948",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F90",
+          "F98"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_895",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F39"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_742",
+        "old": "F41.1",
+        "new": "F33",
+        "gold": [
+          "F32"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_952",
+        "old": "F41.1",
+        "new": "F33",
+        "gold": [
+          "F32"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_139",
+        "old": "F41.1",
+        "new": "F33",
+        "gold": [
+          "F32"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_366",
+        "old": "F42",
+        "new": "F41.1",
+        "gold": [
+          "F39"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_897",
+        "old": "F41.1",
+        "new": "F33",
+        "gold": [
+          "F32"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_537",
+        "old": "F41.1",
+        "new": "F33",
+        "gold": [
+          "F32"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_949",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F43"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_974",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F39"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_643",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F43"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_1027",
+        "old": "F41.1",
+        "new": "F33",
+        "gold": [
+          "F32"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_54",
+        "old": "F41.1",
+        "new": "F33",
+        "gold": [
+          "F32"
+        ],
+        "type": "neutral"
+      }
+    ]
+  },
+  {
+    "dataset": "n200_3mode",
+    "n": 200,
+    "old_accuracy": 0.51,
+    "new_accuracy": 0.525,
+    "delta": 0.015,
+    "delta_pp": 1.5,
+    "flips_good": 8,
+    "flips_bad": 5,
+    "flips_neutral": 4,
+    "flip_details": [
+      {
+        "case_id": "patient_675",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F22",
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_352",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_762",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_859",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_294",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_454",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_54",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_488",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_931",
+        "old": "F41.1",
+        "new": "F33",
+        "gold": [
+          "F41"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "patient_735",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "patient_462",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "patient_64",
+        "old": "F41.1",
+        "new": "F42",
+        "gold": [
+          "F41"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "patient_459",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "patient_763",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32",
+          "F41"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_322",
+        "old": "F43.1",
+        "new": "F32",
+        "gold": [
+          "F39"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_747",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F45"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_673",
+        "old": "F43.1",
+        "new": "F32",
+        "gold": [
+          "F98"
+        ],
+        "type": "neutral"
+      }
+    ]
+  },
+  {
+    "dataset": "lingxidiag_crossval",
+    "n": 200,
+    "old_accuracy": 0.375,
+    "new_accuracy": 0.4,
+    "delta": 0.025,
+    "delta_pp": 2.5,
+    "flips_good": 9,
+    "flips_bad": 4,
+    "flips_neutral": 12,
+    "flip_details": [
+      {
+        "case_id": "325948302",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "366964913",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "357977169",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "337550615",
+        "old": "F43.1",
+        "new": "F32",
+        "gold": [
+          "F32",
+          "F41"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "349844524",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "376253906",
+        "old": "F42",
+        "new": "F41.1",
+        "gold": [
+          "F41"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "320646856",
+        "old": "F43.1",
+        "new": "F32",
+        "gold": [
+          "F32",
+          "F41"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "315178698",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32",
+          "F51"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "395109689",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "316058356",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "308011698",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "376252095",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F41",
+          "F51"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "344461655",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "370091705",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "354495999",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F39"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "368276980",
+        "old": "F43.1",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "317916868",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F39"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "354444532",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F41",
+          "F51"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "391869945",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "364626010",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F39"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "395537754",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F31"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "316358318",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "386640839",
+        "old": "F43.1",
+        "new": "F32",
+        "gold": [
+          "F42"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "323621627",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F42"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "333527373",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "neutral"
+      }
+    ]
+  },
+  {
+    "dataset": "evidence_lingxidiag",
+    "n": 200,
+    "old_accuracy": 0.38,
+    "new_accuracy": 0.39,
+    "delta": 0.01,
+    "delta_pp": 1.0,
+    "flips_good": 7,
+    "flips_bad": 5,
+    "flips_neutral": 10,
+    "flip_details": [
+      {
+        "case_id": "325948302",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "366964913",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "384411817",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "374156384",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "394865146",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "315178698",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32",
+          "F51"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "395109689",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "308011698",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "341129032",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "332904930",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "344461655",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "355957248",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "361814874",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "Others"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "354495999",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F39"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "368276980",
+        "old": "F43.1",
+        "new": "F42",
+        "gold": [
+          "F41"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "328837800",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F39"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "378320102",
+        "old": "F42",
+        "new": "F41.1",
+        "gold": [
+          "F39",
+          "Z71"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "317916868",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F39"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "391869945",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "318437218",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "349934657",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F39"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "333527373",
+        "old": "F42",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "neutral"
+      }
+    ]
+  },
+  {
+    "dataset": "evidence_mdd5k",
+    "n": 200,
+    "old_accuracy": 0.47,
+    "new_accuracy": 0.51,
+    "delta": 0.04,
+    "delta_pp": 4.0,
+    "flips_good": 12,
+    "flips_bad": 4,
+    "flips_neutral": 12,
+    "flip_details": [
+      {
+        "case_id": "patient_1026",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_146",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_762",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_365",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_869",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_9",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_15",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_950",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_923",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F28",
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_914",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_54",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_182",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32"
+        ],
+        "type": "good"
+      },
+      {
+        "case_id": "patient_931",
+        "old": "F41.1",
+        "new": "F33",
+        "gold": [
+          "F41"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "patient_987",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F41",
+          "G47"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "patient_401",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "patient_253",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F41"
+        ],
+        "type": "bad"
+      },
+      {
+        "case_id": "patient_948",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F90",
+          "F98"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_895",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F39"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_952",
+        "old": "F41.1",
+        "new": "F33",
+        "gold": [
+          "F32"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_139",
+        "old": "F41.1",
+        "new": "F33",
+        "gold": [
+          "F32"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_366",
+        "old": "F42",
+        "new": "F41.1",
+        "gold": [
+          "F39"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_897",
+        "old": "F41.1",
+        "new": "F33",
+        "gold": [
+          "F32"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_537",
+        "old": "F41.1",
+        "new": "F33",
+        "gold": [
+          "F32"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_222",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F32",
+          "F41"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_1027",
+        "old": "F41.1",
+        "new": "F33",
+        "gold": [
+          "F32"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_107",
+        "old": "F43.1",
+        "new": "F32",
+        "gold": [
+          "F39"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_164",
+        "old": "F41.1",
+        "new": "F32",
+        "gold": [
+          "F39"
+        ],
+        "type": "neutral"
+      },
+      {
+        "case_id": "patient_673",
+        "old": "F43.1",
+        "new": "F32",
+        "gold": [
+          "F98"
+        ],
+        "type": "neutral"
+      }
+    ]
+  }
+]

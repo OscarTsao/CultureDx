@@ -83,21 +83,28 @@ class ConfidenceCalibrator:
         self.evidence_weight = evidence_weight
         self.criterion_weight = criterion_weight
         self.threshold_weight = threshold_weight
-        # V2 weights — optimal values from grid search (sum = 1.00)
-        # uniqueness=0: character-set overlap cannot detect semantic overlap in
-        #   Chinese paraphrased evidence, so the signal is unreliable.
-        # info_content=0: structurally favors disorders with more ICD-10 criteria
-        #   (F32 always wins), producing systematic bias against shorter checklists.
-        # The feature computation code is kept below for future analysis.
+        # V2 weights — tuned via LOO cross-validation (scripts/tune_calibrator_weights.py)
+        # Changes from initial weights:
+        #   core_score 0.30->0.05: was inflating short-checklist disorders (F41.1=5
+        #     criteria) because type-weighted average favors checklists where every
+        #     met criterion is "core" type. Caused F41.1 to outrank F32 (11 criteria).
+        #   threshold_ratio 0.207->0.35: strongest single predictor of correct ranking.
+        #   variance 0.00->0.10: penalizes disorders with inconsistent criterion
+        #     confidence (e.g., one criterion at 0.9, rest at 0.3).
+        #   info_content 0.00->0.05: mild tiebreaker; slightly biased toward longer
+        #     checklists but useful when threshold_ratio is tied.
+        #   uniqueness=0: character-set overlap unreliable for Chinese paraphrased
+        #     evidence; kept zeroed until semantic similarity replaces char overlap.
         self.v2_weights = {
-            "core_score": 0.30,
+            "core_score": 0.05,
             "avg_confidence": 0.207,
-            "threshold_ratio": 0.207,
+            "threshold_ratio": 0.35,
             "evidence_coverage": 0.207,
             "uniqueness": 0.00,
             "margin": 0.08,
-            "variance": 0.00,
-            "info_content": 0.00,
+            "variance": 0.10,
+            "info_content": 0.05,
+            "demographic_prior": 0.00,
         }
 
     def calibrate(
@@ -106,6 +113,7 @@ class ConfidenceCalibrator:
         checker_outputs: list[CheckerOutput],
         evidence: EvidenceBrief | None = None,
         confirmation_types: dict[str, str] | None = None,
+        demographics: dict | None = None,
     ) -> CalibrationOutput:
         """Calibrate confidence for confirmed disorders.
         
@@ -129,7 +137,7 @@ class ConfidenceCalibrator:
                 continue
             if self.version >= 2:
                 cal = self._compute_calibrated_v2(
-                    code, co, confirmed_outputs, evidence,
+                    code, co, confirmed_outputs, evidence, demographics,
                 )
             else:
                 cal = self._compute_calibrated(code, co, evidence)
@@ -232,8 +240,9 @@ class ConfidenceCalibrator:
         checker_output: CheckerOutput,
         all_confirmed_outputs: list[CheckerOutput],
         evidence: EvidenceBrief | None,
+        demographics: dict | None = None,
     ) -> CalibratedDiagnosis:
-        """V2 calibration with 6 signals for better disorder differentiation."""
+        """V2 calibration with weighted signals for disorder differentiation."""
         # Existing signals
         met_criteria = [cr for cr in checker_output.criteria if cr.status == "met"]
         avg_conf = (
@@ -265,6 +274,16 @@ class ConfidenceCalibrator:
         variance = self._compute_variance_penalty(checker_output)
         info_content = self._compute_info_content(checker_output)
 
+        # Demographic prior (neutral 0.5 when no data)
+        demographic_score = 0.5
+        if demographics is not None:
+            from culturedx.ontology.demographic_priors import compute_demographic_prior
+            demographic_score = compute_demographic_prior(
+                disorder_code,
+                age=demographics.get("age"),
+                gender=demographics.get("gender"),
+            )
+
         # Weighted combination
         w = self.v2_weights
         confidence = (
@@ -276,6 +295,7 @@ class ConfidenceCalibrator:
             + w["margin"] * margin
             + w["variance"] * variance
             + w.get("info_content", 0) * info_content
+            + w.get("demographic_prior", 0) * demographic_score
         )
         confidence = max(0.0, min(1.0, confidence))
 

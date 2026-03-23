@@ -603,10 +603,10 @@ class TestHiEDE2E:
     # ------------------------------------------------------------------
 
     def test_contrastive_disabled_preserves_v10_behavior(self):
-        """With contrastive_enabled=False, same case uses original V10
-        calibrator ranking. F41.1 wins on margin (1.0 vs F32's 0.53)
-        because the gap exceeds differential_threshold so differential
-        does not fire.
+        """With contrastive_enabled=False, same case uses V2 calibrator
+        ranking. After weight tuning (core_score 0.30->0.05, threshold_ratio
+        0.207->0.35), F32 wins because its threshold_ratio is higher than
+        F41.1's (more criteria total = more discriminative signal).
         """
         f32_resp = _f32_checker_response()
         f41_resp = _f41_1_all_met_response()
@@ -619,9 +619,9 @@ class TestHiEDE2E:
         )
         result = mode.diagnose(_make_case())
         assert result.decision == "diagnosis"
-        # V10 calibrator: F41.1 margin=1.0 > F32 margin=0.53 -> F41.1 primary
-        assert result.primary_diagnosis == "F41.1"
-        assert "F32" in result.comorbid_diagnoses
+        # V2 tuned weights: threshold_ratio dominant -> F32 primary
+        assert result.primary_diagnosis == "F32"
+        assert "F41.1" in result.comorbid_diagnoses
 
     # ------------------------------------------------------------------
     # Case 9: Contrastive skipped — only one disorder confirmed
@@ -676,6 +676,7 @@ class TestHiEDE2E:
         )
         result = mode.diagnose(_make_case())
         assert result.decision == "diagnosis"
-        # "both" means no downgrade -> same as V10 -> F41.1 primary (margin advantage)
-        assert result.primary_diagnosis == "F41.1"
-        assert "F32" in result.comorbid_diagnoses
+        # "both" means no downgrade -> same ranking as non-contrastive
+        # V2 tuned weights: threshold_ratio dominant -> F32 primary
+        assert result.primary_diagnosis == "F32"
+        assert "F41.1" in result.comorbid_diagnoses

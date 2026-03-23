@@ -9,6 +9,20 @@
 - psychotic: 精神病性障碍 (F20-F29) — 精神分裂症、持续妄想
 - sleep: 睡眠障碍 (F51) — 失眠、嗜睡
 
+{% if chief_complaint or age or gender %}
+## 患者基本信息
+{% if age and gender %}
+- 人口学：{{ gender }}，{{ age }}岁
+{% elif age %}
+- 年龄：{{ age }}岁
+{% elif gender %}
+- 性别：{{ gender }}
+{% endif %}
+{% if chief_complaint %}
+- 主诉：{{ chief_complaint }}
+{% endif %}
+{% endif %}
+
 ## 临床对话
 
 {{ transcript_text }}

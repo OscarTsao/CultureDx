@@ -59,7 +59,7 @@ class TestConfidenceCalibrator:
         # Might abstain due to low confidence + low threshold ratio
         # The exact result depends on weights, but confidence should be low
         if result.primary:
-            assert result.primary.confidence < 0.5
+            assert result.primary.confidence < 0.6
 
     def test_comorbid(self, calibrator):
         co1 = _make_checker("F32", [("B1", 0.9), ("B2", 0.85), ("C1", 0.8), ("C2", 0.8)], [], 4)
