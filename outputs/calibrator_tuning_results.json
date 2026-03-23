@@ -1,0 +1,73 @@
+{
+  "baseline_weights": {
+    "core_score": 0.3,
+    "avg_confidence": 0.207,
+    "threshold_ratio": 0.207,
+    "evidence_coverage": 0.207,
+    "uniqueness": 0.0,
+    "margin": 0.08,
+    "variance": 0.0,
+    "info_content": 0.0
+  },
+  "baseline_total_accuracy": 0.4461942257217848,
+  "per_dataset_baseline": {
+    "mdd5k": 0.4484536082474227,
+    "lingxidiag": 0.44385026737967914
+  },
+  "optimization_results": {
+    "loo_mdd5k": {
+      "weights": {
+        "core_score": 0.06947758130741588,
+        "avg_confidence": 0.010310308604113742,
+        "threshold_ratio": 0.33755129898241554,
+        "evidence_coverage": 0.09899111757440635,
+        "uniqueness": 0.11862856579680872,
+        "margin": 0.006461141103424293,
+        "variance": 0.2564810213905757,
+        "info_content": 0.1020989652408398
+      },
+      "train_accuracy": 0.46524064171123,
+      "test_accuracy": 0.4793814432989691,
+      "converged": true
+    },
+    "loo_lingxidiag": {
+      "weights": {
+        "core_score": 0.00020121258631743884,
+        "avg_confidence": 0.4141579603687876,
+        "threshold_ratio": 0.13029911529007163,
+        "evidence_coverage": 0.0422896650245835,
+        "uniqueness": 0.04107756367522576,
+        "margin": 0.005598583923532861,
+        "variance": 0.27181230461560807,
+        "info_content": 0.09456359451587307
+      },
+      "train_accuracy": 0.5824742268041238,
+      "test_accuracy": 0.43315508021390375,
+      "converged": true
+    },
+    "pooled": {
+      "weights": {
+        "core_score": 0.003385806801794957,
+        "avg_confidence": 0.28123242317863406,
+        "threshold_ratio": 0.23556797866710635,
+        "evidence_coverage": 0.2684967148581351,
+        "uniqueness": 0.02327074269255156,
+        "margin": 0.003995011087579922,
+        "variance": 0.11734522636304769,
+        "info_content": 0.0667060963511505
+      },
+      "train_accuracy": 0.5144356955380578,
+      "converged": true
+    }
+  },
+  "feature_names": [
+    "core_score",
+    "avg_confidence",
+    "threshold_ratio",
+    "evidence_coverage",
+    "uniqueness",
+    "margin",
+    "variance",
+    "info_content"
+  ]
+}
