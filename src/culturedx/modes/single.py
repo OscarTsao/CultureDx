@@ -2,13 +2,22 @@
 """Single-model baseline mode."""
 from __future__ import annotations
 
+import logging
 from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader
 
-from culturedx.core.models import ClinicalCase, DiagnosisResult, EvidenceBrief
+from culturedx.core.models import (
+    ClinicalCase,
+    CriterionEvidence,
+    DiagnosisResult,
+    DisorderEvidence,
+    EvidenceBrief,
+)
 from culturedx.llm.json_utils import extract_json_from_response
 from culturedx.modes.base import BaseModeOrchestrator
+
+logger = logging.getLogger(__name__)
 
 
 class SingleModelMode(BaseModeOrchestrator):
@@ -25,6 +34,66 @@ class SingleModelMode(BaseModeOrchestrator):
         self._env = Environment(
             loader=FileSystemLoader(str(self.prompts_dir)),
             keep_trailing_newline=True,
+        )
+
+    def _truncate_evidence(
+        self, evidence: EvidenceBrief, max_chars: int, case_id: str
+    ) -> EvidenceBrief:
+        """Truncate evidence to fit within character budget."""
+        # Estimate original size
+        original_chars = sum(
+            len(span.text) + 50  # overhead per span (turn id, formatting)
+            for de in evidence.disorder_evidence
+            for ce in de.criteria_evidence
+            for span in ce.spans
+        )
+        if original_chars <= max_chars:
+            return evidence
+
+        # Build truncated copy
+        budget = max_chars
+        new_disorders = []
+        for de in evidence.disorder_evidence:
+            new_criteria = []
+            for ce in de.criteria_evidence:
+                new_spans = []
+                for span in ce.spans:
+                    cost = len(span.text) + 50
+                    if budget < cost:
+                        break
+                    new_spans.append(span)
+                    budget -= cost
+                if new_spans:
+                    new_criteria.append(
+                        CriterionEvidence(
+                            criterion_id=ce.criterion_id,
+                            spans=new_spans,
+                            confidence=ce.confidence,
+                        )
+                    )
+                if budget <= 0:
+                    break
+            if new_criteria:
+                new_disorders.append(
+                    DisorderEvidence(
+                        disorder_code=de.disorder_code,
+                        disorder_name=de.disorder_name,
+                        criteria_evidence=new_criteria,
+                    )
+                )
+            if budget <= 0:
+                break
+
+        logger.warning(
+            "Single mode: evidence truncated from ~%d to ~%d chars for case %s",
+            original_chars,
+            max_chars - budget,
+            case_id,
+        )
+        return EvidenceBrief(
+            case_id=evidence.case_id,
+            language=evidence.language,
+            disorder_evidence=new_disorders,
         )
 
     def diagnose(
@@ -51,10 +120,16 @@ class SingleModelMode(BaseModeOrchestrator):
         max_chars = 8000 if evidence else 20000
         transcript_text = self._build_transcript_text(case, max_chars=max_chars)
 
-        prompt = template.render(
-            transcript_text=transcript_text,
-            evidence=evidence,
-        )
+        # Estimate non-evidence tokens and guard against context overflow
+        # Budget: 14000 input tokens × 3.5 chars/token (Chinese avg) = char budget
+        base_prompt = template.render(transcript_text=transcript_text, evidence=None)
+        base_chars = len(base_prompt)
+        max_evidence_chars = int(14000 * 3.5) - base_chars  # token budget → char budget
+
+        if evidence and max_evidence_chars > 0:
+            evidence = self._truncate_evidence(evidence, max_evidence_chars, case.case_id)
+
+        prompt = template.render(transcript_text=transcript_text, evidence=evidence)
         source, _, _ = self._env.loader.get_source(self._env, template_name)
         prompt_hash = self.llm.compute_prompt_hash(source)
 
