@@ -48,9 +48,11 @@ class ComorbidityResolver:
         self,
         max_comorbid: int = 3,
         exclusion_rules: list[tuple[str, str]] | None = None,
+        comorbid_min_ratio: float = 0.0,
     ) -> None:
         self.max_comorbid = max_comorbid
         self.rules = exclusion_rules if exclusion_rules is not None else EXCLUSION_RULES
+        self.comorbid_min_ratio = comorbid_min_ratio
 
     def resolve(
         self,
@@ -102,6 +104,15 @@ class ComorbidityResolver:
         # Primary is highest-confidence remaining
         primary = active[0]
         comorbid = active[1:self.max_comorbid + 1]
+
+        # Apply confidence ratio threshold
+        if self.comorbid_min_ratio > 0 and confs:
+            primary_conf = confs.get(primary, 0.0)
+            if primary_conf > 0:
+                comorbid = [
+                    c for c in comorbid
+                    if confs.get(c, 0.0) >= self.comorbid_min_ratio * primary_conf
+                ]
 
         return ComorbidityResult(
             primary=primary,

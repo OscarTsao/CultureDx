@@ -94,3 +94,53 @@ class TestComorbidityResolver:
         assert result.primary == "F40"
         assert "F51" in result.comorbid
         assert len(result.excluded) == 0
+
+    def test_default_ratio_no_filtering(self):
+        """ratio=0.0 (default) keeps all comorbid — backward compatible."""
+        resolver = ComorbidityResolver(comorbid_min_ratio=0.0)
+        result = resolver.resolve(
+            ["F32", "F41.1", "F42"],
+            confidences={"F32": 0.8, "F41.1": 0.5, "F42": 0.3},
+        )
+        assert result.primary == "F32"
+        assert "F41.1" in result.comorbid
+        assert "F42" in result.comorbid
+
+    def test_ratio_excludes_low_confidence(self):
+        """ratio=0.7: F41.1 (0.5) < 0.7 * 0.8 = 0.56 → excluded."""
+        resolver = ComorbidityResolver(comorbid_min_ratio=0.7)
+        result = resolver.resolve(
+            ["F32", "F41.1"],
+            confidences={"F32": 0.8, "F41.1": 0.5},
+        )
+        assert result.primary == "F32"
+        assert "F41.1" not in result.comorbid
+
+    def test_ratio_keeps_sufficient_confidence(self):
+        """ratio=0.5: F41.1 (0.5) >= 0.5 * 0.8 = 0.40 → kept."""
+        resolver = ComorbidityResolver(comorbid_min_ratio=0.5)
+        result = resolver.resolve(
+            ["F32", "F41.1"],
+            confidences={"F32": 0.8, "F41.1": 0.5},
+        )
+        assert result.primary == "F32"
+        assert "F41.1" in result.comorbid
+
+    def test_exclusion_rules_still_work(self):
+        """F33+F32 → F32 excluded by ICD-10 rule regardless of ratio."""
+        resolver = ComorbidityResolver(comorbid_min_ratio=0.0)
+        result = resolver.resolve(
+            ["F33", "F32"],
+            confidences={"F33": 0.9, "F32": 0.85},
+        )
+        assert result.primary == "F33"
+        assert "F32" in result.excluded
+        assert "F32" not in result.comorbid
+
+    def test_empty_input(self):
+        """No confirmed disorders → empty result."""
+        resolver = ComorbidityResolver(comorbid_min_ratio=0.5)
+        result = resolver.resolve([])
+        assert result.primary == ""
+        assert result.comorbid == []
+        assert result.excluded == []

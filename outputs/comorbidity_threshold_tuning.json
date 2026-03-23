@@ -1,0 +1,465 @@
+{
+  "strategy_a_absolute": {
+    "0.0": {
+      "all": {
+        "hamming": 0.402936,
+        "subset": 0.160445,
+        "label_cov": 0.669286,
+        "label_prec": 0.417758,
+        "avg_pred": 1.881467,
+        "comorbid_f1": 0.172555
+      },
+      "lingxidiag": {
+        "hamming": 0.40418,
+        "subset": 0.177778,
+        "label_cov": 0.642328,
+        "label_prec": 0.419665,
+        "avg_pred": 1.782011,
+        "comorbid_f1": 0.162857,
+        "4class_acc": 0.224339,
+        "4cls_Depression_prec": 0.476987,
+        "4cls_Depression_rec": 0.364217,
+        "4cls_Anxiety_prec": 0.461538,
+        "4cls_Anxiety_rec": 0.199446,
+        "4cls_Mixed_prec": 0.031895,
+        "4cls_Mixed_rec": 0.472222,
+        "4cls_Other_prec": 0.529412,
+        "4cls_Other_rec": 0.038298
+      }
+    },
+    "0.1": {
+      "all": {
+        "hamming": 0.402936,
+        "subset": 0.160445,
+        "label_cov": 0.669286,
+        "label_prec": 0.417758,
+        "avg_pred": 1.881467,
+        "comorbid_f1": 0.172555
+      },
+      "lingxidiag": {
+        "hamming": 0.40418,
+        "subset": 0.177778,
+        "label_cov": 0.642328,
+        "label_prec": 0.419665,
+        "avg_pred": 1.782011,
+        "comorbid_f1": 0.162857,
+        "4class_acc": 0.224339,
+        "4cls_Depression_prec": 0.476987,
+        "4cls_Depression_rec": 0.364217,
+        "4cls_Anxiety_prec": 0.461538,
+        "4cls_Anxiety_rec": 0.199446,
+        "4cls_Mixed_prec": 0.031895,
+        "4cls_Mixed_rec": 0.472222,
+        "4cls_Other_prec": 0.529412,
+        "4cls_Other_rec": 0.038298
+      }
+    },
+    "0.2": {
+      "all": {
+        "hamming": 0.402936,
+        "subset": 0.160445,
+        "label_cov": 0.669286,
+        "label_prec": 0.417758,
+        "avg_pred": 1.881467,
+        "comorbid_f1": 0.172555
+      },
+      "lingxidiag": {
+        "hamming": 0.40418,
+        "subset": 0.177778,
+        "label_cov": 0.642328,
+        "label_prec": 0.419665,
+        "avg_pred": 1.782011,
+        "comorbid_f1": 0.162857,
+        "4class_acc": 0.224339,
+        "4cls_Depression_prec": 0.476987,
+        "4cls_Depression_rec": 0.364217,
+        "4cls_Anxiety_prec": 0.461538,
+        "4cls_Anxiety_rec": 0.199446,
+        "4cls_Mixed_prec": 0.031895,
+        "4cls_Mixed_rec": 0.472222,
+        "4cls_Other_prec": 0.529412,
+        "4cls_Other_rec": 0.038298
+      }
+    },
+    "0.3": {
+      "all": {
+        "hamming": 0.402936,
+        "subset": 0.160445,
+        "label_cov": 0.669286,
+        "label_prec": 0.417758,
+        "avg_pred": 1.881467,
+        "comorbid_f1": 0.172555
+      },
+      "lingxidiag": {
+        "hamming": 0.40418,
+        "subset": 0.177778,
+        "label_cov": 0.642328,
+        "label_prec": 0.419665,
+        "avg_pred": 1.782011,
+        "comorbid_f1": 0.162857,
+        "4class_acc": 0.224339,
+        "4cls_Depression_prec": 0.476987,
+        "4cls_Depression_rec": 0.364217,
+        "4cls_Anxiety_prec": 0.461538,
+        "4cls_Anxiety_rec": 0.199446,
+        "4cls_Mixed_prec": 0.031895,
+        "4cls_Mixed_rec": 0.472222,
+        "4cls_Other_prec": 0.529412,
+        "4cls_Other_rec": 0.038298
+      }
+    },
+    "0.4": {
+      "all": {
+        "hamming": 0.402936,
+        "subset": 0.160445,
+        "label_cov": 0.669286,
+        "label_prec": 0.417758,
+        "avg_pred": 1.881467,
+        "comorbid_f1": 0.172555
+      },
+      "lingxidiag": {
+        "hamming": 0.40418,
+        "subset": 0.177778,
+        "label_cov": 0.642328,
+        "label_prec": 0.419665,
+        "avg_pred": 1.782011,
+        "comorbid_f1": 0.162857,
+        "4class_acc": 0.224339,
+        "4cls_Depression_prec": 0.476987,
+        "4cls_Depression_rec": 0.364217,
+        "4cls_Anxiety_prec": 0.461538,
+        "4cls_Anxiety_rec": 0.199446,
+        "4cls_Mixed_prec": 0.031895,
+        "4cls_Mixed_rec": 0.472222,
+        "4cls_Other_prec": 0.529412,
+        "4cls_Other_rec": 0.038298
+      }
+    },
+    "0.5": {
+      "all": {
+        "hamming": 0.402936,
+        "subset": 0.160445,
+        "label_cov": 0.669286,
+        "label_prec": 0.417758,
+        "avg_pred": 1.881467,
+        "comorbid_f1": 0.172555
+      },
+      "lingxidiag": {
+        "hamming": 0.40418,
+        "subset": 0.177778,
+        "label_cov": 0.642328,
+        "label_prec": 0.419665,
+        "avg_pred": 1.782011,
+        "comorbid_f1": 0.162857,
+        "4class_acc": 0.224339,
+        "4cls_Depression_prec": 0.476987,
+        "4cls_Depression_rec": 0.364217,
+        "4cls_Anxiety_prec": 0.461538,
+        "4cls_Anxiety_rec": 0.199446,
+        "4cls_Mixed_prec": 0.031895,
+        "4cls_Mixed_rec": 0.472222,
+        "4cls_Other_prec": 0.529412,
+        "4cls_Other_rec": 0.038298
+      }
+    },
+    "0.6": {
+      "all": {
+        "hamming": 0.402936,
+        "subset": 0.160445,
+        "label_cov": 0.669286,
+        "label_prec": 0.417758,
+        "avg_pred": 1.881467,
+        "comorbid_f1": 0.172555
+      },
+      "lingxidiag": {
+        "hamming": 0.40418,
+        "subset": 0.177778,
+        "label_cov": 0.642328,
+        "label_prec": 0.419665,
+        "avg_pred": 1.782011,
+        "comorbid_f1": 0.162857,
+        "4class_acc": 0.224339,
+        "4cls_Depression_prec": 0.476987,
+        "4cls_Depression_rec": 0.364217,
+        "4cls_Anxiety_prec": 0.461538,
+        "4cls_Anxiety_rec": 0.199446,
+        "4cls_Mixed_prec": 0.031895,
+        "4cls_Mixed_rec": 0.472222,
+        "4cls_Other_prec": 0.529412,
+        "4cls_Other_rec": 0.038298
+      }
+    },
+    "0.7": {
+      "all": {
+        "hamming": 0.408775,
+        "subset": 0.224623,
+        "label_cov": 0.604126,
+        "label_prec": 0.426654,
+        "avg_pred": 1.662737,
+        "comorbid_f1": 0.176842
+      },
+      "lingxidiag": {
+        "hamming": 0.402152,
+        "subset": 0.259259,
+        "label_cov": 0.54127,
+        "label_prec": 0.421429,
+        "avg_pred": 1.486772,
+        "comorbid_f1": 0.177966,
+        "4class_acc": 0.311111,
+        "4cls_Depression_prec": 0.430642,
+        "4cls_Depression_rec": 0.664537,
+        "4cls_Anxiety_prec": 0.457746,
+        "4cls_Anxiety_rec": 0.180055,
+        "4cls_Mixed_prec": 0.024221,
+        "4cls_Mixed_rec": 0.194444,
+        "4cls_Other_prec": 0.451613,
+        "4cls_Other_rec": 0.059574
+      }
+    }
+  },
+  "strategy_b_ratio": {
+    "0.0": {
+      "all": {
+        "hamming": 0.402936,
+        "subset": 0.160445,
+        "label_cov": 0.669286,
+        "label_prec": 0.417758,
+        "avg_pred": 1.881467,
+        "comorbid_f1": 0.172555
+      },
+      "lingxidiag": {
+        "hamming": 0.40418,
+        "subset": 0.177778,
+        "label_cov": 0.642328,
+        "label_prec": 0.419665,
+        "avg_pred": 1.782011,
+        "comorbid_f1": 0.162857,
+        "4class_acc": 0.224339,
+        "4cls_Depression_prec": 0.476987,
+        "4cls_Depression_rec": 0.364217,
+        "4cls_Anxiety_prec": 0.461538,
+        "4cls_Anxiety_rec": 0.199446,
+        "4cls_Mixed_prec": 0.031895,
+        "4cls_Mixed_rec": 0.472222,
+        "4cls_Other_prec": 0.529412,
+        "4cls_Other_rec": 0.038298
+      }
+    },
+    "0.3": {
+      "all": {
+        "hamming": 0.39726,
+        "subset": 0.160445,
+        "label_cov": 0.651604,
+        "label_prec": 0.412083,
+        "avg_pred": 1.856582,
+        "comorbid_f1": 0.173267
+      },
+      "lingxidiag": {
+        "hamming": 0.40418,
+        "subset": 0.177778,
+        "label_cov": 0.642328,
+        "label_prec": 0.419665,
+        "avg_pred": 1.77672,
+        "comorbid_f1": 0.162857,
+        "4class_acc": 0.224339,
+        "4cls_Depression_prec": 0.476987,
+        "4cls_Depression_rec": 0.364217,
+        "4cls_Anxiety_prec": 0.461538,
+        "4cls_Anxiety_rec": 0.199446,
+        "4cls_Mixed_prec": 0.031895,
+        "4cls_Mixed_rec": 0.472222,
+        "4cls_Other_prec": 0.529412,
+        "4cls_Other_rec": 0.038298
+      }
+    },
+    "0.4": {
+      "all": {
+        "hamming": 0.39726,
+        "subset": 0.160445,
+        "label_cov": 0.651604,
+        "label_prec": 0.412083,
+        "avg_pred": 1.856582,
+        "comorbid_f1": 0.173267
+      },
+      "lingxidiag": {
+        "hamming": 0.40418,
+        "subset": 0.177778,
+        "label_cov": 0.642328,
+        "label_prec": 0.419665,
+        "avg_pred": 1.77672,
+        "comorbid_f1": 0.162857,
+        "4class_acc": 0.224339,
+        "4cls_Depression_prec": 0.476987,
+        "4cls_Depression_rec": 0.364217,
+        "4cls_Anxiety_prec": 0.461538,
+        "4cls_Anxiety_rec": 0.199446,
+        "4cls_Mixed_prec": 0.031895,
+        "4cls_Mixed_rec": 0.472222,
+        "4cls_Other_prec": 0.529412,
+        "4cls_Other_rec": 0.038298
+      }
+    },
+    "0.5": {
+      "all": {
+        "hamming": 0.39726,
+        "subset": 0.160445,
+        "label_cov": 0.651604,
+        "label_prec": 0.412083,
+        "avg_pred": 1.856582,
+        "comorbid_f1": 0.173267
+      },
+      "lingxidiag": {
+        "hamming": 0.40418,
+        "subset": 0.177778,
+        "label_cov": 0.642328,
+        "label_prec": 0.419665,
+        "avg_pred": 1.77672,
+        "comorbid_f1": 0.162857,
+        "4class_acc": 0.224339,
+        "4cls_Depression_prec": 0.476987,
+        "4cls_Depression_rec": 0.364217,
+        "4cls_Anxiety_prec": 0.461538,
+        "4cls_Anxiety_rec": 0.199446,
+        "4cls_Mixed_prec": 0.031895,
+        "4cls_Mixed_rec": 0.472222,
+        "4cls_Other_prec": 0.529412,
+        "4cls_Other_rec": 0.038298
+      }
+    },
+    "0.6": {
+      "all": {
+        "hamming": 0.39726,
+        "subset": 0.160445,
+        "label_cov": 0.651604,
+        "label_prec": 0.412083,
+        "avg_pred": 1.856582,
+        "comorbid_f1": 0.173267
+      },
+      "lingxidiag": {
+        "hamming": 0.40418,
+        "subset": 0.177778,
+        "label_cov": 0.642328,
+        "label_prec": 0.419665,
+        "avg_pred": 1.77672,
+        "comorbid_f1": 0.162857,
+        "4class_acc": 0.224339,
+        "4cls_Depression_prec": 0.476987,
+        "4cls_Depression_rec": 0.364217,
+        "4cls_Anxiety_prec": 0.461538,
+        "4cls_Anxiety_rec": 0.199446,
+        "4cls_Mixed_prec": 0.031895,
+        "4cls_Mixed_rec": 0.472222,
+        "4cls_Other_prec": 0.529412,
+        "4cls_Other_rec": 0.038298
+      }
+    },
+    "0.7": {
+      "all": {
+        "hamming": 0.405392,
+        "subset": 0.185331,
+        "label_cov": 0.637852,
+        "label_prec": 0.421742,
+        "avg_pred": 1.78389,
+        "comorbid_f1": 0.16726
+      },
+      "lingxidiag": {
+        "hamming": 0.409471,
+        "subset": 0.203175,
+        "label_cov": 0.622222,
+        "label_prec": 0.42672,
+        "avg_pred": 1.697354,
+        "comorbid_f1": 0.159624,
+        "4class_acc": 0.253968,
+        "4cls_Depression_prec": 0.472313,
+        "4cls_Depression_rec": 0.463259,
+        "4cls_Anxiety_prec": 0.464516,
+        "4cls_Anxiety_rec": 0.199446,
+        "4cls_Mixed_prec": 0.027957,
+        "4cls_Mixed_rec": 0.361111,
+        "4cls_Other_prec": 0.555556,
+        "4cls_Other_rec": 0.042553
+      }
+    },
+    "0.8": {
+      "all": {
+        "hamming": 0.404519,
+        "subset": 0.224623,
+        "label_cov": 0.587754,
+        "label_prec": 0.422397,
+        "avg_pred": 1.631958,
+        "comorbid_f1": 0.182011
+      },
+      "lingxidiag": {
+        "hamming": 0.40321,
+        "subset": 0.259259,
+        "label_cov": 0.543386,
+        "label_prec": 0.422487,
+        "avg_pred": 1.483598,
+        "comorbid_f1": 0.185263,
+        "4class_acc": 0.311111,
+        "4cls_Depression_prec": 0.430642,
+        "4cls_Depression_rec": 0.664537,
+        "4cls_Anxiety_prec": 0.452703,
+        "4cls_Anxiety_rec": 0.185596,
+        "4cls_Mixed_prec": 0.024221,
+        "4cls_Mixed_rec": 0.194444,
+        "4cls_Other_prec": 0.48,
+        "4cls_Other_rec": 0.051064
+      }
+    },
+    "0.9": {
+      "all": {
+        "hamming": 0.413283,
+        "subset": 0.237721,
+        "label_cov": 0.585243,
+        "label_prec": 0.431947,
+        "avg_pred": 1.56909,
+        "comorbid_f1": 0.178571
+      },
+      "lingxidiag": {
+        "hamming": 0.409259,
+        "subset": 0.270899,
+        "label_cov": 0.539683,
+        "label_prec": 0.428924,
+        "avg_pred": 1.437037,
+        "comorbid_f1": 0.176991,
+        "4class_acc": 0.320635,
+        "4cls_Depression_prec": 0.43,
+        "4cls_Depression_rec": 0.686901,
+        "4cls_Anxiety_prec": 0.452703,
+        "4cls_Anxiety_rec": 0.185596,
+        "4cls_Mixed_prec": 0.022305,
+        "4cls_Mixed_rec": 0.166667,
+        "4cls_Other_prec": 0.535714,
+        "4cls_Other_rec": 0.06383
+      }
+    },
+    "1.0": {
+      "all": {
+        "hamming": 0.42971,
+        "subset": 0.395547,
+        "label_cov": 0.436477,
+        "label_prec": 0.45776,
+        "avg_pred": 1.018337,
+        "comorbid_f1": 0.021739
+      },
+      "lingxidiag": {
+        "hamming": 0.403704,
+        "subset": 0.379894,
+        "label_cov": 0.403704,
+        "label_prec": 0.427513,
+        "avg_pred": 1.0,
+        "comorbid_f1": 0.0,
+        "4class_acc": 0.408466,
+        "4cls_Depression_prec": 0.405605,
+        "4cls_Depression_rec": 0.878594,
+        "4cls_Anxiety_prec": 0.451777,
+        "4cls_Anxiety_rec": 0.246537,
+        "4cls_Mixed_prec": 0.0,
+        "4cls_Mixed_rec": 0.0,
+        "4cls_Other_prec": 0.314286,
+        "4cls_Other_rec": 0.093617
+      }
+    }
+  }
+}
