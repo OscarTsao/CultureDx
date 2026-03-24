@@ -1,0 +1,16 @@
+{
+  "condition": "psycot_bge-m3_evidence",
+  "n_cases": 200,
+  "metrics_parent_normalized": {
+    "top1_accuracy": 0.45,
+    "top3_accuracy": 0.6,
+    "macro_f1": 0.05762843065322505
+  },
+  "metrics_exact": {
+    "top1_accuracy": 0.235,
+    "top3_accuracy": 0.28,
+    "macro_f1": 0.03466521502449646
+  },
+  "total_seconds": 4798.5,
+  "avg_seconds_per_case": 24.0
+}
