@@ -1,0 +1,2816 @@
+{
+  "condition": "single_bge-m3_evidence",
+  "mode": "single",
+  "with_evidence": true,
+  "retriever": "bge-m3",
+  "with_somatization": true,
+  "n_cases": 200,
+  "total_seconds": 2867.5,
+  "avg_seconds_per_case": 14.3,
+  "predictions": [
+    {
+      "case_id": "302102824",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "374594711",
+      "primary_diagnosis": "F41.1",
+      "comorbid_diagnoses": [
+        "F32"
+      ],
+      "confidence": 0.72,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "332205630",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "361814874",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "391692051",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "378003230",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.78,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "310670547",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "316058356",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "370091705",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F42"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "390607394",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "361069597",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "319694171",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "367540683",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "308011698",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "354495999",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F40.21"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "325948302",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "380185730",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "379325163",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.73,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "341010875",
+      "primary_diagnosis": "F41.1",
+      "comorbid_diagnoses": [
+        "F33"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "386122517",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "366964913",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "357558979",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "377940719",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "328496950",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [],
+      "confidence": 0.72,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "393419608",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "395137898",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "341129032",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "314457593",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "306401808",
+      "primary_diagnosis": "F20.0",
+      "comorbid_diagnoses": [
+        "F32.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "368276980",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "383483096",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "307071521",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "398059903",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "375486434",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.21"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "303823491",
+      "primary_diagnosis": "F20.9",
+      "comorbid_diagnoses": [
+        "F32.9"
+      ],
+      "confidence": 0.82,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "332494912",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "372816939",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "357977169",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "301228145",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F43.01"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "388582714",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "384411817",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.82,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "302333546",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "377976745",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "377025798",
+      "primary_diagnosis": "F41.1",
+      "comorbid_diagnoses": [
+        "F32"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "372723926",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "337550615",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.1"
+      ],
+      "confidence": 0.82,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "344756218",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "344600167",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F42.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "321580243",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "328837800",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "334780882",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "370555774",
+      "primary_diagnosis": "F42",
+      "comorbid_diagnoses": [
+        "F32",
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "336975270",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "361567193",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "378320102",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.9",
+        "F50.9"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "355062211",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "397563010",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "364898800",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "317927300",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "332904930",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "321168499",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.78,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "317916868",
+      "primary_diagnosis": "F33",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "349844524",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "354444532",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "373050564",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "342783614",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "374156384",
+      "primary_diagnosis": "F33",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "355749412",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "300489834",
+      "primary_diagnosis": "F41.1",
+      "comorbid_diagnoses": [
+        "F32"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "372688798",
+      "primary_diagnosis": "F41.1",
+      "comorbid_diagnoses": [
+        "F32"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "345041803",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "399403078",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "360035057",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "309323646",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "361496798",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "391869945",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F42"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "391705886",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "363133453",
+      "primary_diagnosis": "F33",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.72,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "394321045",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "325175069",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "336543853",
+      "primary_diagnosis": "F33",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "339584846",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.82,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "377075043",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "318437218",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "339926146",
+      "primary_diagnosis": "F33",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "326673459",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "323239137",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "372527362",
+      "primary_diagnosis": "F42",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "394865146",
+      "primary_diagnosis": "F33",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "307309481",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "305844910",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "366129631",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "308750197",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "364626010",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F33"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "378153711",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "390272745",
+      "primary_diagnosis": "F41.1",
+      "comorbid_diagnoses": [
+        "F33"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "395537754",
+      "primary_diagnosis": "F33",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "349883107",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "397418990",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "396451360",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "352312627",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "390898865",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "371610869",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "343822874",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "375437641",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "394810479",
+      "primary_diagnosis": "F64.1",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "378910946",
+      "primary_diagnosis": "F20.9",
+      "comorbid_diagnoses": [
+        "F32.1",
+        "F41.1"
+      ],
+      "confidence": 0.78,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "374444739",
+      "primary_diagnosis": "F41.1",
+      "comorbid_diagnoses": [
+        "F32"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "370977041",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "333092870",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "338534045",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "372812649",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "316358318",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "367032609",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "354568583",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "349934657",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.21"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "313177467",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "355187653",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.76,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "355155561",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "345878624",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.72,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "311492359",
+      "primary_diagnosis": "F33",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "376583903",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "375501498",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "331984735",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.73,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "376252095",
+      "primary_diagnosis": "F41.1",
+      "comorbid_diagnoses": [
+        "F33"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "341022175",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "360324562",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "391647327",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "341299236",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "318198668",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "358904497",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "337199218",
+      "primary_diagnosis": "F33",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "347019926",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "397366139",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "387909562",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "365513549",
+      "primary_diagnosis": "F41.1",
+      "comorbid_diagnoses": [
+        "F32"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "376253906",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "341480811",
+      "primary_diagnosis": "F41.1",
+      "comorbid_diagnoses": [
+        "F32"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "363757407",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "353799698",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "398710785",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "381660279",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "366662462",
+      "primary_diagnosis": "F32.9",
+      "comorbid_diagnoses": [
+        "F40.0"
+      ],
+      "confidence": 0.63,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "346650025",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.72,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "393073156",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.78,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "386640839",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "364614520",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "353040830",
+      "primary_diagnosis": "F32.1",
+      "comorbid_diagnoses": [
+        "F40.2"
+      ],
+      "confidence": 0.78,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "314723264",
+      "primary_diagnosis": "F33",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "344461655",
+      "primary_diagnosis": "F41.1",
+      "comorbid_diagnoses": [
+        "F33"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "398663351",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "370801947",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "317744207",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "323621627",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "333990954",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "349644561",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F33.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "396295298",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "378626260",
+      "primary_diagnosis": "F41.1",
+      "comorbid_diagnoses": [
+        "F33"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "366816712",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "332655191",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "328280086",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "335761044",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "316714451",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "385781395",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "322632615",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "320172231",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "320646856",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "339519683",
+      "primary_diagnosis": "F33",
+      "comorbid_diagnoses": [],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "351654588",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F43.22"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "395673178",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "355194606",
+      "primary_diagnosis": "F33",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.82,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "353463822",
+      "primary_diagnosis": "F41.1",
+      "comorbid_diagnoses": [
+        "F32"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "367338688",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "359530873",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "333527373",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "388893431",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.9",
+        "F33.9"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "335958565",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "323134405",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.78,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "366673333",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "314922549",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "326255124",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "315178698",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "355957248",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "340609800",
+      "primary_diagnosis": "F33",
+      "comorbid_diagnoses": [
+        "F10.10",
+        "F42.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "391899793",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "307975249",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "309951732",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "370640122",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "334217522",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "391244639",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "360965312",
+      "primary_diagnosis": "F33",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "315796323",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "343484857",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "388568155",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "330990298",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "355050274",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "386432506",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "304492604",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "308173154",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "395109689",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    }
+  ]
+}
