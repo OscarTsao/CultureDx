@@ -1,0 +1,2890 @@
+{
+  "condition": "single_bge-m3_no_somatization",
+  "mode": "single",
+  "with_evidence": true,
+  "retriever": "bge-m3",
+  "with_somatization": false,
+  "n_cases": 200,
+  "total_seconds": 5408.4,
+  "avg_seconds_per_case": 27.0,
+  "predictions": [
+    {
+      "case_id": "patient_675",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F60.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_180",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.21",
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_776",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.10"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_463",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F43.22 (急性应激障碍，可能与继母关系引发的持续性情绪困扰有关)"
+      ],
+      "confidence": 0.72,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_990",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_1026",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.21",
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_931",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F50.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_492",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.68,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_277",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F42.0",
+        "F60.31",
+        "F48.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_184",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_948",
+      "primary_diagnosis": "F32.3 抑郁发作伴精神病性症状",
+      "comorbid_diagnoses": [
+        "F50.2 暴食障碍",
+        "F43.1 创伤后应激障碍",
+        "F90.9 注意缺陷与多动障碍（未特定）"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_402",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F48.01"
+      ],
+      "confidence": 0.63,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_697",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.65,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_895",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F31.1",
+        "F40.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_742",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F33"
+      ],
+      "confidence": 0.65,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_728",
+      "primary_diagnosis": "F32.1",
+      "comorbid_diagnoses": [
+        "F40.0"
+      ],
+      "confidence": 0.64,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_972",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F42.81"
+      ],
+      "confidence": 0.82,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_452",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_369",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_655",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0",
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_220",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.63,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_309",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_192",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.63,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_174",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.1"
+      ],
+      "confidence": 0.65,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_797",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_952",
+      "primary_diagnosis": "F32.3 抑郁发作（中度至重度，伴自杀意念）",
+      "comorbid_diagnoses": [
+        "F41.1 广泛性焦虑障碍",
+        "F50.9 饮食障碍（未具体说明）"
+      ],
+      "confidence": 0.87,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_947",
+      "primary_diagnosis": "F32.3 抑郁发作（中度）",
+      "comorbid_diagnoses": [
+        "F50.0 暴食障碍",
+        "F50.81 其他进食障碍（催吐行为）"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_430",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.65,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_735",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.2"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_303",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.21"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_555",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F50.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_926",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [],
+      "confidence": 0.63,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_167",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_588",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_334",
+      "primary_diagnosis": "F32.3 抑郁发作伴焦虑症状",
+      "comorbid_diagnoses": [
+        "F40.9 焦虑障碍（未特指）"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_848",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0"
+      ],
+      "confidence": 0.65,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_146",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F43.24"
+      ],
+      "confidence": 0.63,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_891",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F43.21"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_306",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.89"
+      ],
+      "confidence": 0.63,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_139",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F50.0",
+        "F31.81"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_89",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.72,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_228",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_273",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F43.9 (未特指的应激相关障碍)"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_344",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F40.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_352",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F20.9",
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_111",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0",
+        "F50.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_762",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.9"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_242",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F43.1",
+        "F60.1"
+      ],
+      "confidence": 0.82,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_370",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F43.22",
+        "F60.19"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_582",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F48.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_217",
+      "primary_diagnosis": "F32.3 抑郁发作伴精神病性症状",
+      "comorbid_diagnoses": [
+        "F43.22 由心理社会因素引起的抑郁发作"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_365",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [],
+      "confidence": 0.65,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_615",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.9 (焦虑障碍，未具体说明)"
+      ],
+      "confidence": 0.65,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_140",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F50.9"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_231",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.63,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_44",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.21"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_366",
+      "primary_diagnosis": "F32.3 抑郁发作（中度）",
+      "comorbid_diagnoses": [
+        "F40.20 焦虑障碍（未特定型）"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_329",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F40.2"
+      ],
+      "confidence": 0.64,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_36",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.21"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_335",
+      "primary_diagnosis": "F32.3 抑郁发作（中度）",
+      "comorbid_diagnoses": [
+        "F40.1 广泛性焦虑障碍"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_381",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_929",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_965",
+      "primary_diagnosis": "F32.3 抑郁发作伴精神病性症状",
+      "comorbid_diagnoses": [
+        "F40.20 社交焦虑障碍",
+        "F48.01 创伤后应激障碍"
+      ],
+      "confidence": 0.87,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_958",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F48.9"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_103",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_763",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.21"
+      ],
+      "confidence": 0.65,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_869",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F43.23"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_888",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.62,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_55",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_897",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F33.2"
+      ],
+      "confidence": 0.82,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_804",
+      "primary_diagnosis": "F32.1",
+      "comorbid_diagnoses": [
+        "F40.89"
+      ],
+      "confidence": 0.62,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_698",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F34.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_114",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_29",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.63,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_481",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.9",
+        "F99.8"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_590",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_966",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F43.22"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_1004",
+      "primary_diagnosis": "F42.0",
+      "comorbid_diagnoses": [
+        "F32.1"
+      ],
+      "confidence": 0.82,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_656",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F31.9",
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_433",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_297",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [],
+      "confidence": 0.66,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_172",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_987",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F40.21"
+      ],
+      "confidence": 0.65,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_350",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F40.0"
+      ],
+      "confidence": 0.82,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_537",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_988",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0"
+      ],
+      "confidence": 0.65,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_801",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0",
+        "F50.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_949",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F50.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_1018",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F64.19"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_859",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F60.9"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_138",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F48.9"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_587",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.1",
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_313",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0",
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_847",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0",
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_269",
+      "primary_diagnosis": "F32.3 抑郁发作（中度至重度，伴自杀意念）",
+      "comorbid_diagnoses": [
+        "F43.1 创伤后应激障碍（置信度较低，需进一步评估）"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_780",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F48.9"
+      ],
+      "confidence": 0.63,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_88",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.21"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_300",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F60.71",
+        "F41.1"
+      ],
+      "confidence": 0.65,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_187",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.1",
+        "F50.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_908",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_169",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.2"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_974",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F43.10",
+        "F60.31",
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_38",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F48.0"
+      ],
+      "confidence": 0.64,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_60",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_9",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F42.81"
+      ],
+      "confidence": 0.82,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_209",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.2",
+        "F99.8"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_1031",
+      "primary_diagnosis": "F32.3 抑郁发作（中度至重度，伴精神病性症状）",
+      "comorbid_diagnoses": [
+        "F43.1 创伤后应激障碍"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_882",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.10"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_322",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.2",
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_739",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F50.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_118",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0",
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_509",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F65.29"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_643",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F42.81"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_477",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.21"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_85",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0"
+      ],
+      "confidence": 0.64,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_426",
+      "primary_diagnosis": "F41.1",
+      "comorbid_diagnoses": [
+        "F32.9"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_781",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.72,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_669",
+      "primary_diagnosis": "F32.0",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_222",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F43.24"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_208",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F50.1"
+      ],
+      "confidence": 0.63,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_177",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0",
+        "F48.0"
+      ],
+      "confidence": 0.82,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_506",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F50.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_769",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.2"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_870",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.64,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_658",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0",
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_808",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_401",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.1",
+        "F60.71"
+      ],
+      "confidence": 0.62,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_462",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_50",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F50.9"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_416",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_518",
+      "primary_diagnosis": "F42.0 强迫障碍",
+      "comorbid_diagnoses": [
+        "F32.1 抑郁发作（轻度）"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_163",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_719",
+      "primary_diagnosis": "F42.0 强迫障碍",
+      "comorbid_diagnoses": [
+        "F32.1 抑郁发作（轻度）"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_791",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.2"
+      ],
+      "confidence": 0.72,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_294",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F43.22"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_784",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F42.0",
+        "F50.1"
+      ],
+      "confidence": 0.78,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_1027",
+      "primary_diagnosis": "F32.3 抑郁发作（伴有精神病性症状）",
+      "comorbid_diagnoses": [
+        "F43.22 由心理因素引起的躯体症状障碍",
+        "F63.0 自伤行为"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_918",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_601",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_701",
+      "primary_diagnosis": "F32.3 抑郁发作（中度）",
+      "comorbid_diagnoses": [
+        "F40.0 广泛性焦虑障碍"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_107",
+      "primary_diagnosis": "F32.3 抑郁发作伴精神病性症状",
+      "comorbid_diagnoses": [
+        "F40.21 广泛性焦虑障碍",
+        "F31.8 双相情感障碍，未特定型"
+      ],
+      "confidence": 0.82,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_62",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.63,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_486",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_296",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.2",
+        "F50.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_336",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.65,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_64",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.9"
+      ],
+      "confidence": 0.64,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_467",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F60.31",
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_491",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F50.81"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_927",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F34.0"
+      ],
+      "confidence": 0.82,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_1005",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_968",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.21"
+      ],
+      "confidence": 0.63,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_264",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F40.21"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_907",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F34.0"
+      ],
+      "confidence": 0.65,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_441",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0",
+        "F50.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_725",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F48.9"
+      ],
+      "confidence": 0.72,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_833",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F50.0",
+        "F60.1",
+        "F41.1",
+        "F42.81"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_302",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_938",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F38.81"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_747",
+      "primary_diagnosis": "F32.3 抑郁发作伴精神病性症状",
+      "comorbid_diagnoses": [
+        "F43.10 创伤后应激障碍",
+        "F40.0 焦虑性神经症"
+      ],
+      "confidence": 0.82,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_280",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_15",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F31.9",
+        "F42.0",
+        "F50.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_304",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_694",
+      "primary_diagnosis": "F32.3 抑郁发作（中度至重度，伴精神病性症状）",
+      "comorbid_diagnoses": [
+        "F41.1 广泛性焦虑障碍",
+        "F50.1 情绪性进食障碍"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_487",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F48.0"
+      ],
+      "confidence": 0.63,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_664",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_459",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F40.21"
+      ],
+      "confidence": 0.65,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_164",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F50.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_715",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F50.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_454",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F50.9"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_842",
+      "primary_diagnosis": "F32.0",
+      "comorbid_diagnoses": [
+        "F40.21"
+      ],
+      "confidence": 0.63,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_673",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F42"
+      ],
+      "confidence": 0.72,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_461",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.21"
+      ],
+      "confidence": 0.64,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_838",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.2"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_843",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_1010",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_741",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0",
+        "F48.0"
+      ],
+      "confidence": 0.64,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_887",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.21",
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_688",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_262",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.2",
+        "F41.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_97",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.8",
+        "F99.8"
+      ],
+      "confidence": 0.63,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_950",
+      "primary_diagnosis": "F32.3 抑郁发作（中度至重度，伴自杀意念）",
+      "comorbid_diagnoses": [
+        "F43.1 创伤后应激障碍（疑似）"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_799",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1"
+      ],
+      "confidence": 0.65,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_666",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F44.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_923",
+      "primary_diagnosis": "F32.3 抑郁发作伴精神病性症状",
+      "comorbid_diagnoses": [
+        "F20.9 精神分裂症，未特定型",
+        "F40.0 广泛性焦虑障碍"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_766",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F48.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_914",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0",
+        "F41.1",
+        "F60.31"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_1029",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F43.23",
+        "F50.9"
+      ],
+      "confidence": 0.82,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_984",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F20.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_54",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F50.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_425",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F33"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_69",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F50.9"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_161",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.21",
+        "F50.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_182",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F20.9",
+        "F40.0"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_488",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F41.1",
+        "F50.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_76",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F34.0",
+        "F60.9"
+      ],
+      "confidence": 0.75,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_706",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F43.22"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_263",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.0"
+      ],
+      "confidence": 0.63,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_253",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.9",
+        "F50.9"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_325",
+      "primary_diagnosis": "F32",
+      "comorbid_diagnoses": [
+        "F43.1"
+      ],
+      "confidence": 0.85,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    },
+    {
+      "case_id": "patient_687",
+      "primary_diagnosis": "F32.3",
+      "comorbid_diagnoses": [
+        "F40.21",
+        "F33.2"
+      ],
+      "confidence": 0.78,
+      "decision": "diagnosis",
+      "criteria_results": [],
+      "mode": "single",
+      "model_name": "Qwen/Qwen3-32B-AWQ",
+      "prompt_hash": "60f3baee9037bcb2",
+      "language_used": "zh"
+    }
+  ]
+}

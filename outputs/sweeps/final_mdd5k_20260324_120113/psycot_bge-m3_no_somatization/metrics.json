@@ -1,0 +1,16 @@
+{
+  "condition": "psycot_bge-m3_no_somatization",
+  "n_cases": 200,
+  "metrics_parent_normalized": {
+    "top1_accuracy": 0.475,
+    "top3_accuracy": 0.605,
+    "macro_f1": 0.06547465912014407
+  },
+  "metrics_exact": {
+    "top1_accuracy": 0.25,
+    "top3_accuracy": 0.275,
+    "macro_f1": 0.04082840236686391
+  },
+  "total_seconds": 4838.6,
+  "avg_seconds_per_case": 24.2
+}
