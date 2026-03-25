@@ -1,8 +1,8 @@
 # CultureDx Paper Narrative v2
 ## "Detection ≠ Ranking: Decomposing the Optimization Paradox in Culture-Adaptive Psychiatric Multi-Agent Diagnosis"
 
-**Last updated:** 2026-03-21
-**Status:** V10 final — C4 exceeds SOTA, criterion-level analysis confirms somatization thesis (C8-C12)
+**Last updated:** 2026-03-25
+**Status:** Final 18-condition sweep complete. HiED+evidence = 45.0% LingxiDiag Top-1 (SOTA +4.1pp). Evidence effect is dataset-dependent (key finding).
 
 ---
 
@@ -72,16 +72,18 @@ Stage 6: Comorbidity (DETERMINISTIC) → ICD-10 exclusion rules
 **Interpretation:** When we oracle-fix calibrator ranking (give credit if correct disorder was detected), accuracy jumps from 51.5% → 71.0%. When we also fix checker false negatives, accuracy reaches 82%. The remaining 18% are ontology gaps (disorders not in our ICD-10 rule set) and triage cascade errors.
 
 ### C2: Optimization Paradox Confirmed in Psychiatry
-**Claim:** HiED MAS ≈ Single LLM across both datasets, consistent with the Optimization Paradox.
+**Claim:** Without evidence, HiED MAS ≈ Single LLM across both datasets, consistent with the Optimization Paradox. With evidence, MAS pulls ahead on LingxiDiag only.
 
-**Evidence:**
+**Evidence (Final 18-condition sweep, N=200):**
 
-| Dataset | HiED | Single | PsyCoT | p (McNemar) |
+| Dataset | Condition | HiED | Single | PsyCoT |
 |---|---|---|---|---|
-| MDD-5k (N=200) | 51.5% | 52.5% | 51.0% | ns (p=0.89) |
-| LingxiDiag (N=200, baseline) | 36.0% | 40.5% | TBD | TBD |
+| LingxiDiag | No evidence | 41.0% | 40.5% | 41.5% |
+| LingxiDiag | + BGE-M3 evidence | **45.0%** | 40.5% | 41.5% |
+| MDD-5k | No evidence | 52.0% | **52.5%** | 51.0% |
+| MDD-5k | + BGE-M3 evidence | 46.0% | 47.0% | 45.0% |
 
-**Interpretation:** Despite fundamentally different architectures (4-stage pipeline vs single call), accuracy converges. This is exactly the Optimization Paradox: MAS error compounding neutralizes the benefit of structured diagnosis. The deterministic logic engine prevents accuracy from being *worse* than single (which Bedi et al. observed), but doesn't create a positive gap.
+**Key insight:** No-evidence conditions converge within 1.5pp across all modes on both datasets. Evidence is the differentiator: it boosts HiED by +4.0pp on LingxiDiag (culturally-embedded presentations) but *hurts* all modes by 5-6pp on MDD-5k (explicitly-described presentations). MAS architecture alone does not escape the paradox — evidence grounding on culturally-embedded data does.
 
 ### C3: Deterministic Logic Engine as Paradox Mitigation
 **Claim:** The logic engine prevents MAS from being worse than single (partial mitigation) while providing interpretability benefits that single models cannot.
@@ -102,19 +104,25 @@ Stage 6: Comorbidity (DETERMINISTIC) → ICD-10 exclusion rules
 | MDAgents (NeurIPS 2024) | LLM aggregation | High |
 | **CultureDx (ours)** | **Deterministic ICD-10 rules** | **Low (stages 3,4,6)** |
 
-### C4: Cross-Dataset Performance [V10 VALIDATED]
-**Claim:** V10 HiED on LingxiDiag exceeds SOTA baselines while providing criterion-level interpretability.
+### C4: Cross-Dataset Performance [FINAL SWEEP — 18 CONDITIONS]
+**Claim:** HiED + evidence on LingxiDiag exceeds SOTA by +4.1pp while providing criterion-level interpretability.
 
-**Results:**
-- V10 HiED: 41.5% Top-1 (+5.5pp vs baseline 36.0%)
-- V10 HiED Top-3: 60.5% (+14.5pp vs baseline 46.0%)
-- V10 HiED macro F1: 0.091 (+0.009)
-- Baseline comparison: Single 40.5%, PsyCoT 41.0%
-- LingxiDiag SOTA (GPT-5-Mini): 40.9%
-- **V10 HiED exceeds GPT-5-Mini SOTA by +0.6pp** (41.5% vs 40.9%) using open-source Qwen3-32B-AWQ
-- V10 PsyCoT: 38.5% Top-1 (-2.5pp), 60.5% Top-3 (+9.5pp) — hurt by V10 changes at ranking level
+**Results (Final sweep, N=200):**
+- HiED + BGE-M3 evidence: **45.0% Top-1** (+4.1pp vs GPT-5-Mini SOTA 40.9%)
+- HiED + BGE-M3 evidence: **74.0% Top-3** (+22.0pp vs baseline 52.0%)
+- HiED no evidence: 41.0% Top-1 (+0.1pp vs SOTA — at parity without evidence)
+- Single no evidence: 40.5% Top-1 (baseline)
+- **Evidence pipeline is the key differentiator**, not MAS architecture alone
 
-**Note:** V10 HiED exceeds the frontier-model baseline while providing full criterion-level interpretability (per-criterion decisions, evidence citations, ICD-10 rule explanations).
+**MDD-5k results (different story):**
+- Single no evidence: **52.5% Top-1** (best overall)
+- HiED no evidence: 52.0% (at parity)
+- Evidence *hurts* all modes by 5-6pp (somatization over-triggers on explicit presentations)
+
+**Dataset-dependent evidence effect (NEW major finding):**
+Evidence pipeline helps culturally-embedded presentations (LingxiDiag) but hurts explicitly-described ones (MDD-5k). This directly supports the culture-adaptive hypothesis: somatization mapping is load-bearing when clinical text uses Chinese illness idioms, but over-triggers when symptoms are explicitly stated.
+
+**Note:** HiED + evidence exceeds the frontier-model baseline (GPT-5-Mini) using open-source Qwen3-32B-AWQ while providing full criterion-level interpretability.
 
 ### C5: Chinese Somatization Mapping (Unique Contribution)
 **Claim:** No prior psychiatric MAS has culture-specific symptom interpretation. CultureDx's somatization mapper converts Chinese somatic expressions to ICD-10 criteria.
@@ -322,6 +330,20 @@ Pairwise agreement matrix + oracle ensemble analysis
 - N=200 per condition limits statistical power for rare disorders
 - LLM-based criterion checking is the bottleneck — future work on fine-tuned checkers
 - ICD-10 criterion overlap is a domain constraint, not a system limitation
+
+### Future Work
+
+1. **Criterion-level fine-tuning.** The criterion checker is the pipeline bottleneck (C1: 82% detection ceiling). Fine-tuning a smaller model on our accumulated checker outputs (~120k criterion decisions) could improve both accuracy and latency. The checker prompt + output format is already structured for distillation.
+
+2. **Temporal reasoning for Criterion A.** F41.1 Criterion A (sustained worry ≥6 months) remains at 31% detection on LingxiDiag (C8), the lowest of any criterion. Chinese clinical narratives rarely include explicit temporal markers. A dedicated temporal inference module — trained on duration expressions in clinical text — could address this bottleneck without modifying the pipeline architecture.
+
+3. **Evidence-aware calibrator ranking.** The F41/F32 ranking tradeoff is zero-sum at the calibrator level (C10). A learned ranker that incorporates evidence patterns (e.g., somatic-dominant → favor F41) could break this ceiling. Our evidence brief structure already provides the features needed for a pairwise ranking model.
+
+4. **Scale score integration.** When standardized instruments are available (e.g., PHQ-9, GAD-7), scale scores can be integrated as an auxiliary calibration signal — the pipeline supports this via optional `scale_scores` input but evaluation is deferred to datasets with both diagnostic labels and instrument scores.
+
+5. **Cross-lingual evidence gap quantification.** Our findings show evidence helps LingxiDiag (+4.0pp HiED Top-1) but hurts MDD-5k (-6.0pp), driven by somatization over-triggering on explicitly-described presentations. A systematic study across more datasets could establish when evidence grounding helps vs hurts as a function of cultural embedding in clinical text.
+
+6. **Comorbidity detection.** Current subset accuracy is 20.9% (with ratio=0.9 filtering). The structural challenge is that ICD-10 criterion overlap makes true comorbidity indistinguishable from shared-symptom false positives at the criterion level. Longitudinal or multi-visit data could help disambiguate.
 
 ---
 
