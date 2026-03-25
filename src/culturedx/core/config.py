@@ -32,6 +32,7 @@ class ModeConfig(BaseModel):
     variants: list[str] | None = None
     target_disorders: list[str] | None = None
     contrastive_enabled: bool = False
+    comorbid_min_ratio: float = 0.9
 
 
 class DatasetConfig(BaseModel):

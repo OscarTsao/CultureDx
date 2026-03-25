@@ -54,6 +54,7 @@ class HiEDMode(BaseModeOrchestrator):
         differential_threshold: float = 0.10,
         contrastive_enabled: bool = False,
         ranker_weights_path: str | Path | None = None,
+        comorbid_min_ratio: float = 0.9,
     ) -> None:
         self.mode_name = "hied"
         self.llm = llm_client
@@ -87,7 +88,9 @@ class HiEDMode(BaseModeOrchestrator):
         self.differential_threshold = differential_threshold
 
         # Stage 4b: Comorbidity resolver
-        self.comorbidity_resolver = ComorbidityResolver()
+        self.comorbidity_resolver = ComorbidityResolver(
+            comorbid_min_ratio=comorbid_min_ratio,
+        )
 
         # Stage 4a: Pairwise re-ranking (optional, no LLM)
         self.pairwise_ranker: PairwiseRanker | None = None

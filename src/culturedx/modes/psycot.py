@@ -40,6 +40,7 @@ class PsyCoTMode(BaseModeOrchestrator):
         target_disorders: list[str] | None = None,
         abstain_threshold: float = 0.3,
         comorbid_threshold: float = 0.5,
+        comorbid_min_ratio: float = 0.9,
     ) -> None:
         self.mode_name = "psycot"
         self.llm = llm_client
@@ -59,7 +60,9 @@ class PsyCoTMode(BaseModeOrchestrator):
         )
 
         # Comorbidity resolver
-        self.comorbidity_resolver = ComorbidityResolver()
+        self.comorbidity_resolver = ComorbidityResolver(
+            comorbid_min_ratio=comorbid_min_ratio,
+        )
 
     def diagnose(
         self, case: ClinicalCase, evidence: EvidenceBrief | None = None

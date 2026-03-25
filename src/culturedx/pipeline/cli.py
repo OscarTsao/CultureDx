@@ -103,12 +103,14 @@ def run(
             llm_client=llm,
             target_disorders=cfg.mode.target_disorders,
             contrastive_enabled=cfg.mode.contrastive_enabled,
+            comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
         )
     elif mode_type == "psycot":
         from culturedx.modes.psycot import PsyCoTMode
         mode = PsyCoTMode(
             llm_client=llm,
             target_disorders=cfg.mode.target_disorders,
+            comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
         )
     elif mode_type == "mas":
         from culturedx.modes.mas import MASMode
@@ -267,10 +269,10 @@ def sweep(
         mode_type = condition.mode_type
         if mode_type == "hied":
             from culturedx.modes.hied import HiEDMode
-            mode = HiEDMode(llm_client=llm, target_disorders=condition.target_disorders, contrastive_enabled=cfg.mode.contrastive_enabled)
+            mode = HiEDMode(llm_client=llm, target_disorders=condition.target_disorders, contrastive_enabled=cfg.mode.contrastive_enabled, comorbid_min_ratio=cfg.mode.comorbid_min_ratio)
         elif mode_type == "psycot":
             from culturedx.modes.psycot import PsyCoTMode
-            mode = PsyCoTMode(llm_client=llm, target_disorders=condition.target_disorders)
+            mode = PsyCoTMode(llm_client=llm, target_disorders=condition.target_disorders, comorbid_min_ratio=cfg.mode.comorbid_min_ratio)
         elif mode_type == "mas":
             from culturedx.modes.mas import MASMode
             mode = MASMode(llm_client=llm, target_disorders=condition.target_disorders)
