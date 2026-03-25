@@ -1,0 +1,16 @@
+{
+  "condition": "hied_bge-m3_no_somatization",
+  "n_cases": 200,
+  "metrics_parent_normalized": {
+    "top1_accuracy": 0.42,
+    "top3_accuracy": 0.695,
+    "macro_f1": 0.08782485214269321
+  },
+  "metrics_exact": {
+    "top1_accuracy": 0.32,
+    "top3_accuracy": 0.39,
+    "macro_f1": 0.05687632374289046
+  },
+  "total_seconds": 3725.2,
+  "avg_seconds_per_case": 18.6
+}

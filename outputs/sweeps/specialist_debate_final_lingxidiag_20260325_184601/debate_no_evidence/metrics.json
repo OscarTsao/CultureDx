@@ -1,0 +1,16 @@
+{
+  "condition": "debate_no_evidence",
+  "n_cases": 200,
+  "metrics_parent_normalized": {
+    "top1_accuracy": 0.43,
+    "top3_accuracy": 0.52,
+    "macro_f1": 0.0988863287250384
+  },
+  "metrics_exact": {
+    "top1_accuracy": 0.01,
+    "top3_accuracy": 0.01,
+    "macro_f1": 0.023809523809523808
+  },
+  "total_seconds": 2899.6,
+  "avg_seconds_per_case": 14.5
+}
