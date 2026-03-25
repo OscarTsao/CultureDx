@@ -180,6 +180,7 @@ class HiEDMode(BaseModeOrchestrator):
             checker_outputs=checker_outputs,
             evidence=evidence,
             confirmation_types=confirmation_types,
+            scale_scores=case.scale_scores,
         )
 
         if cal_output.primary is None:

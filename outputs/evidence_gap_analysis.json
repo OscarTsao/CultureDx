@@ -1,0 +1,3260 @@
+{
+  "evidence_deltas": {
+    "LingxiDiag": {
+      "hied": {
+        "evidence": {
+          "top1_accuracy": 0.45,
+          "top3_accuracy": 0.74,
+          "macro_f1": 0.1033173729508808
+        },
+        "no_evidence": {
+          "top1_accuracy": 0.41,
+          "top3_accuracy": 0.63,
+          "macro_f1": 0.09314916008905079
+        },
+        "no_somatization": {
+          "top1_accuracy": 0.415,
+          "top3_accuracy": 0.74,
+          "macro_f1": 0.08588734205892899
+        },
+        "delta_evidence_vs_no_evidence": {
+          "top1_accuracy": 0.04,
+          "top3_accuracy": 0.11,
+          "macro_f1": 0.0102
+        },
+        "delta_evidence_vs_no_somatization": {
+          "top1_accuracy": 0.035,
+          "top3_accuracy": 0.0,
+          "macro_f1": 0.0174
+        }
+      },
+      "psycot": {
+        "evidence": {
+          "top1_accuracy": 0.415,
+          "top3_accuracy": 0.74,
+          "macro_f1": 0.08403263403263403
+        },
+        "no_evidence": {
+          "top1_accuracy": 0.415,
+          "top3_accuracy": 0.625,
+          "macro_f1": 0.09643293539930127
+        },
+        "no_somatization": {
+          "top1_accuracy": 0.41,
+          "top3_accuracy": 0.74,
+          "macro_f1": 0.08263254945705376
+        },
+        "delta_evidence_vs_no_evidence": {
+          "top1_accuracy": 0.0,
+          "top3_accuracy": 0.115,
+          "macro_f1": -0.0124
+        },
+        "delta_evidence_vs_no_somatization": {
+          "top1_accuracy": 0.005,
+          "top3_accuracy": 0.0,
+          "macro_f1": 0.0014
+        }
+      },
+      "single": {
+        "evidence": {
+          "top1_accuracy": 0.405,
+          "top3_accuracy": 0.73,
+          "macro_f1": 0.07780082987551869
+        },
+        "no_evidence": {
+          "top1_accuracy": 0.405,
+          "top3_accuracy": 0.525,
+          "macro_f1": 0.07792258189696989
+        },
+        "no_somatization": {
+          "top1_accuracy": 0.395,
+          "top3_accuracy": 0.725,
+          "macro_f1": 0.07619433315494872
+        },
+        "delta_evidence_vs_no_evidence": {
+          "top1_accuracy": 0.0,
+          "top3_accuracy": 0.205,
+          "macro_f1": -0.0001
+        },
+        "delta_evidence_vs_no_somatization": {
+          "top1_accuracy": 0.01,
+          "top3_accuracy": 0.005,
+          "macro_f1": 0.0016
+        }
+      }
+    },
+    "MDD-5k": {
+      "hied": {
+        "evidence": {
+          "top1_accuracy": 0.46,
+          "top3_accuracy": 0.615,
+          "macro_f1": 0.05400639437093959
+        },
+        "no_evidence": {
+          "top1_accuracy": 0.52,
+          "top3_accuracy": 0.715,
+          "macro_f1": 0.06371988931826551
+        },
+        "no_somatization": {
+          "top1_accuracy": 0.45,
+          "top3_accuracy": 0.62,
+          "macro_f1": 0.052701691173672
+        },
+        "delta_evidence_vs_no_evidence": {
+          "top1_accuracy": -0.06,
+          "top3_accuracy": -0.1,
+          "macro_f1": -0.0097
+        },
+        "delta_evidence_vs_no_somatization": {
+          "top1_accuracy": 0.01,
+          "top3_accuracy": -0.005,
+          "macro_f1": 0.0013
+        }
+      },
+      "psycot": {
+        "evidence": {
+          "top1_accuracy": 0.45,
+          "top3_accuracy": 0.6,
+          "macro_f1": 0.05762843065322505
+        },
+        "no_evidence": {
+          "top1_accuracy": 0.51,
+          "top3_accuracy": 0.67,
+          "macro_f1": 0.07457781200876257
+        },
+        "no_somatization": {
+          "top1_accuracy": 0.475,
+          "top3_accuracy": 0.605,
+          "macro_f1": 0.06547465912014407
+        },
+        "delta_evidence_vs_no_evidence": {
+          "top1_accuracy": -0.06,
+          "top3_accuracy": -0.07,
+          "macro_f1": -0.0169
+        },
+        "delta_evidence_vs_no_somatization": {
+          "top1_accuracy": -0.025,
+          "top3_accuracy": -0.005,
+          "macro_f1": -0.0078
+        }
+      },
+      "single": {
+        "evidence": {
+          "top1_accuracy": 0.47,
+          "top3_accuracy": 0.625,
+          "macro_f1": 0.06265698767770018
+        },
+        "no_evidence": {
+          "top1_accuracy": 0.525,
+          "top3_accuracy": 0.765,
+          "macro_f1": 0.13032950836930202
+        },
+        "no_somatization": {
+          "top1_accuracy": 0.47,
+          "top3_accuracy": 0.625,
+          "macro_f1": 0.06265698767770018
+        },
+        "delta_evidence_vs_no_evidence": {
+          "top1_accuracy": -0.055,
+          "top3_accuracy": -0.14,
+          "macro_f1": -0.0677
+        },
+        "delta_evidence_vs_no_somatization": {
+          "top1_accuracy": 0.0,
+          "top3_accuracy": 0.0,
+          "macro_f1": 0.0
+        }
+      }
+    }
+  },
+  "per_disorder_accuracy": {
+    "LingxiDiag": {
+      "hied": {
+        "no_evidence": {
+          "F31": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F32": {
+            "correct": 57,
+            "total": 74,
+            "accuracy": 0.7703
+          },
+          "F39": {
+            "correct": 0,
+            "total": 12,
+            "accuracy": 0.0
+          },
+          "F41": {
+            "correct": 23,
+            "total": 71,
+            "accuracy": 0.3239
+          },
+          "F42": {
+            "correct": 2,
+            "total": 5,
+            "accuracy": 0.4
+          },
+          "F43": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F45": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F51": {
+            "correct": 0,
+            "total": 7,
+            "accuracy": 0.0
+          },
+          "F98": {
+            "correct": 0,
+            "total": 6,
+            "accuracy": 0.0
+          },
+          "Others": {
+            "correct": 0,
+            "total": 17,
+            "accuracy": 0.0
+          },
+          "Z71": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          }
+        },
+        "bge-m3_evidence": {
+          "F31": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F32": {
+            "correct": 59,
+            "total": 74,
+            "accuracy": 0.7973
+          },
+          "F39": {
+            "correct": 0,
+            "total": 12,
+            "accuracy": 0.0
+          },
+          "F41": {
+            "correct": 28,
+            "total": 71,
+            "accuracy": 0.3944
+          },
+          "F42": {
+            "correct": 3,
+            "total": 5,
+            "accuracy": 0.6
+          },
+          "F43": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F45": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F51": {
+            "correct": 0,
+            "total": 7,
+            "accuracy": 0.0
+          },
+          "F98": {
+            "correct": 0,
+            "total": 6,
+            "accuracy": 0.0
+          },
+          "Others": {
+            "correct": 0,
+            "total": 17,
+            "accuracy": 0.0
+          },
+          "Z71": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          }
+        },
+        "bge-m3_no_somatization": {
+          "F31": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F32": {
+            "correct": 62,
+            "total": 74,
+            "accuracy": 0.8378
+          },
+          "F39": {
+            "correct": 0,
+            "total": 12,
+            "accuracy": 0.0
+          },
+          "F41": {
+            "correct": 18,
+            "total": 71,
+            "accuracy": 0.2535
+          },
+          "F42": {
+            "correct": 3,
+            "total": 5,
+            "accuracy": 0.6
+          },
+          "F43": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F45": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F51": {
+            "correct": 0,
+            "total": 7,
+            "accuracy": 0.0
+          },
+          "F98": {
+            "correct": 0,
+            "total": 6,
+            "accuracy": 0.0
+          },
+          "Others": {
+            "correct": 0,
+            "total": 17,
+            "accuracy": 0.0
+          },
+          "Z71": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          }
+        }
+      },
+      "psycot": {
+        "no_evidence": {
+          "F31": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F32": {
+            "correct": 64,
+            "total": 74,
+            "accuracy": 0.8649
+          },
+          "F39": {
+            "correct": 0,
+            "total": 12,
+            "accuracy": 0.0
+          },
+          "F41": {
+            "correct": 17,
+            "total": 71,
+            "accuracy": 0.2394
+          },
+          "F42": {
+            "correct": 2,
+            "total": 5,
+            "accuracy": 0.4
+          },
+          "F43": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F45": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F51": {
+            "correct": 0,
+            "total": 7,
+            "accuracy": 0.0
+          },
+          "F98": {
+            "correct": 0,
+            "total": 6,
+            "accuracy": 0.0
+          },
+          "Others": {
+            "correct": 0,
+            "total": 17,
+            "accuracy": 0.0
+          },
+          "Z71": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          }
+        },
+        "bge-m3_evidence": {
+          "F31": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F32": {
+            "correct": 63,
+            "total": 74,
+            "accuracy": 0.8514
+          },
+          "F39": {
+            "correct": 1,
+            "total": 12,
+            "accuracy": 0.0833
+          },
+          "F41": {
+            "correct": 17,
+            "total": 71,
+            "accuracy": 0.2394
+          },
+          "F42": {
+            "correct": 2,
+            "total": 5,
+            "accuracy": 0.4
+          },
+          "F43": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F45": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F51": {
+            "correct": 0,
+            "total": 7,
+            "accuracy": 0.0
+          },
+          "F98": {
+            "correct": 0,
+            "total": 6,
+            "accuracy": 0.0
+          },
+          "Others": {
+            "correct": 0,
+            "total": 17,
+            "accuracy": 0.0
+          },
+          "Z71": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          }
+        },
+        "bge-m3_no_somatization": {
+          "F31": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F32": {
+            "correct": 63,
+            "total": 74,
+            "accuracy": 0.8514
+          },
+          "F39": {
+            "correct": 1,
+            "total": 12,
+            "accuracy": 0.0833
+          },
+          "F41": {
+            "correct": 16,
+            "total": 71,
+            "accuracy": 0.2254
+          },
+          "F42": {
+            "correct": 2,
+            "total": 5,
+            "accuracy": 0.4
+          },
+          "F43": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F45": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F51": {
+            "correct": 0,
+            "total": 7,
+            "accuracy": 0.0
+          },
+          "F98": {
+            "correct": 0,
+            "total": 6,
+            "accuracy": 0.0
+          },
+          "Others": {
+            "correct": 0,
+            "total": 17,
+            "accuracy": 0.0
+          },
+          "Z71": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          }
+        }
+      },
+      "single": {
+        "no_evidence": {
+          "F31": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F32": {
+            "correct": 61,
+            "total": 74,
+            "accuracy": 0.8243
+          },
+          "F39": {
+            "correct": 0,
+            "total": 12,
+            "accuracy": 0.0
+          },
+          "F41": {
+            "correct": 18,
+            "total": 71,
+            "accuracy": 0.2535
+          },
+          "F42": {
+            "correct": 2,
+            "total": 5,
+            "accuracy": 0.4
+          },
+          "F43": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F45": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F51": {
+            "correct": 0,
+            "total": 7,
+            "accuracy": 0.0
+          },
+          "F98": {
+            "correct": 0,
+            "total": 6,
+            "accuracy": 0.0
+          },
+          "Others": {
+            "correct": 0,
+            "total": 17,
+            "accuracy": 0.0
+          },
+          "Z71": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          }
+        },
+        "bge-m3_evidence": {
+          "F31": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F32": {
+            "correct": 71,
+            "total": 74,
+            "accuracy": 0.9595
+          },
+          "F39": {
+            "correct": 0,
+            "total": 12,
+            "accuracy": 0.0
+          },
+          "F41": {
+            "correct": 9,
+            "total": 71,
+            "accuracy": 0.1268
+          },
+          "F42": {
+            "correct": 1,
+            "total": 5,
+            "accuracy": 0.2
+          },
+          "F43": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F45": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F51": {
+            "correct": 0,
+            "total": 7,
+            "accuracy": 0.0
+          },
+          "F98": {
+            "correct": 0,
+            "total": 6,
+            "accuracy": 0.0
+          },
+          "Others": {
+            "correct": 0,
+            "total": 17,
+            "accuracy": 0.0
+          },
+          "Z71": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          }
+        },
+        "bge-m3_no_somatization": {
+          "F31": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F32": {
+            "correct": 70,
+            "total": 74,
+            "accuracy": 0.9459
+          },
+          "F39": {
+            "correct": 0,
+            "total": 12,
+            "accuracy": 0.0
+          },
+          "F41": {
+            "correct": 8,
+            "total": 71,
+            "accuracy": 0.1127
+          },
+          "F42": {
+            "correct": 1,
+            "total": 5,
+            "accuracy": 0.2
+          },
+          "F43": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F45": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F51": {
+            "correct": 0,
+            "total": 7,
+            "accuracy": 0.0
+          },
+          "F98": {
+            "correct": 0,
+            "total": 6,
+            "accuracy": 0.0
+          },
+          "Others": {
+            "correct": 0,
+            "total": 17,
+            "accuracy": 0.0
+          },
+          "Z71": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          }
+        }
+      }
+    },
+    "MDD-5k": {
+      "hied": {
+        "no_evidence": {
+          "F20": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F22": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F23": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F28": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F30": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F31": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F32": {
+            "correct": 77,
+            "total": 88,
+            "accuracy": 0.875
+          },
+          "F34": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F39": {
+            "correct": 0,
+            "total": 14,
+            "accuracy": 0.0
+          },
+          "F41": {
+            "correct": 23,
+            "total": 67,
+            "accuracy": 0.3433
+          },
+          "F42": {
+            "correct": 2,
+            "total": 3,
+            "accuracy": 0.6667
+          },
+          "F43": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F45": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F48": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F50": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F51": {
+            "correct": 0,
+            "total": 4,
+            "accuracy": 0.0
+          },
+          "F90": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F93": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F98": {
+            "correct": 0,
+            "total": 4,
+            "accuracy": 0.0
+          },
+          "G47": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "Z71": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          }
+        },
+        "bge-m3_evidence": {
+          "F20": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F22": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F23": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F28": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F30": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F31": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F32": {
+            "correct": 55,
+            "total": 88,
+            "accuracy": 0.625
+          },
+          "F34": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F39": {
+            "correct": 0,
+            "total": 14,
+            "accuracy": 0.0
+          },
+          "F41": {
+            "correct": 32,
+            "total": 67,
+            "accuracy": 0.4776
+          },
+          "F42": {
+            "correct": 2,
+            "total": 3,
+            "accuracy": 0.6667
+          },
+          "F43": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F45": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F48": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F50": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F51": {
+            "correct": 0,
+            "total": 4,
+            "accuracy": 0.0
+          },
+          "F90": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F93": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F98": {
+            "correct": 0,
+            "total": 4,
+            "accuracy": 0.0
+          },
+          "G47": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "Z71": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          }
+        },
+        "bge-m3_no_somatization": {
+          "F20": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F22": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F23": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F28": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F30": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F31": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F32": {
+            "correct": 52,
+            "total": 88,
+            "accuracy": 0.5909
+          },
+          "F34": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F39": {
+            "correct": 0,
+            "total": 14,
+            "accuracy": 0.0
+          },
+          "F41": {
+            "correct": 32,
+            "total": 67,
+            "accuracy": 0.4776
+          },
+          "F42": {
+            "correct": 2,
+            "total": 3,
+            "accuracy": 0.6667
+          },
+          "F43": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F45": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F48": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F50": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F51": {
+            "correct": 0,
+            "total": 4,
+            "accuracy": 0.0
+          },
+          "F90": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F93": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F98": {
+            "correct": 0,
+            "total": 4,
+            "accuracy": 0.0
+          },
+          "G47": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "Z71": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          }
+        }
+      },
+      "psycot": {
+        "no_evidence": {
+          "F20": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F22": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F23": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F28": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F30": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F31": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F32": {
+            "correct": 60,
+            "total": 88,
+            "accuracy": 0.6818
+          },
+          "F34": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F39": {
+            "correct": 0,
+            "total": 14,
+            "accuracy": 0.0
+          },
+          "F41": {
+            "correct": 36,
+            "total": 67,
+            "accuracy": 0.5373
+          },
+          "F42": {
+            "correct": 3,
+            "total": 3,
+            "accuracy": 1.0
+          },
+          "F43": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F45": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F48": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F50": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F51": {
+            "correct": 0,
+            "total": 4,
+            "accuracy": 0.0
+          },
+          "F90": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F93": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F98": {
+            "correct": 0,
+            "total": 4,
+            "accuracy": 0.0
+          },
+          "G47": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "Z71": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          }
+        },
+        "bge-m3_evidence": {
+          "F20": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F22": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F23": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F28": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F30": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F31": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F32": {
+            "correct": 46,
+            "total": 88,
+            "accuracy": 0.5227
+          },
+          "F34": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F39": {
+            "correct": 0,
+            "total": 14,
+            "accuracy": 0.0
+          },
+          "F41": {
+            "correct": 39,
+            "total": 67,
+            "accuracy": 0.5821
+          },
+          "F42": {
+            "correct": 2,
+            "total": 3,
+            "accuracy": 0.6667
+          },
+          "F43": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F45": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F48": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F50": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F51": {
+            "correct": 0,
+            "total": 4,
+            "accuracy": 0.0
+          },
+          "F90": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F93": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F98": {
+            "correct": 0,
+            "total": 4,
+            "accuracy": 0.0
+          },
+          "G47": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "Z71": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          }
+        },
+        "bge-m3_no_somatization": {
+          "F20": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F22": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F23": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F28": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F30": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F31": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F32": {
+            "correct": 48,
+            "total": 88,
+            "accuracy": 0.5455
+          },
+          "F34": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F39": {
+            "correct": 0,
+            "total": 14,
+            "accuracy": 0.0
+          },
+          "F41": {
+            "correct": 41,
+            "total": 67,
+            "accuracy": 0.6119
+          },
+          "F42": {
+            "correct": 3,
+            "total": 3,
+            "accuracy": 1.0
+          },
+          "F43": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F45": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F48": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F50": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F51": {
+            "correct": 0,
+            "total": 4,
+            "accuracy": 0.0
+          },
+          "F90": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F93": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F98": {
+            "correct": 0,
+            "total": 4,
+            "accuracy": 0.0
+          },
+          "G47": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "Z71": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          }
+        }
+      },
+      "single": {
+        "no_evidence": {
+          "F20": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F22": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F23": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F28": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F30": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F31": {
+            "correct": 1,
+            "total": 2,
+            "accuracy": 0.5
+          },
+          "F32": {
+            "correct": 84,
+            "total": 88,
+            "accuracy": 0.9545
+          },
+          "F34": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F39": {
+            "correct": 0,
+            "total": 14,
+            "accuracy": 0.0
+          },
+          "F41": {
+            "correct": 14,
+            "total": 67,
+            "accuracy": 0.209
+          },
+          "F42": {
+            "correct": 2,
+            "total": 3,
+            "accuracy": 0.6667
+          },
+          "F43": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F45": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F48": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F50": {
+            "correct": 2,
+            "total": 2,
+            "accuracy": 1.0
+          },
+          "F51": {
+            "correct": 0,
+            "total": 4,
+            "accuracy": 0.0
+          },
+          "F90": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F93": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F98": {
+            "correct": 0,
+            "total": 4,
+            "accuracy": 0.0
+          },
+          "G47": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "Z71": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          }
+        },
+        "bge-m3_evidence": {
+          "F20": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F22": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F23": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F28": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F30": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F31": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F32": {
+            "correct": 88,
+            "total": 88,
+            "accuracy": 1.0
+          },
+          "F34": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F39": {
+            "correct": 0,
+            "total": 14,
+            "accuracy": 0.0
+          },
+          "F41": {
+            "correct": 1,
+            "total": 67,
+            "accuracy": 0.0149
+          },
+          "F42": {
+            "correct": 2,
+            "total": 3,
+            "accuracy": 0.6667
+          },
+          "F43": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F45": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F48": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F50": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F51": {
+            "correct": 0,
+            "total": 4,
+            "accuracy": 0.0
+          },
+          "F90": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F93": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F98": {
+            "correct": 0,
+            "total": 4,
+            "accuracy": 0.0
+          },
+          "G47": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "Z71": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          }
+        },
+        "bge-m3_no_somatization": {
+          "F20": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F22": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F23": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F28": {
+            "correct": 1,
+            "total": 1,
+            "accuracy": 1.0
+          },
+          "F30": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F31": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F32": {
+            "correct": 88,
+            "total": 88,
+            "accuracy": 1.0
+          },
+          "F34": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F39": {
+            "correct": 0,
+            "total": 14,
+            "accuracy": 0.0
+          },
+          "F41": {
+            "correct": 1,
+            "total": 67,
+            "accuracy": 0.0149
+          },
+          "F42": {
+            "correct": 2,
+            "total": 3,
+            "accuracy": 0.6667
+          },
+          "F43": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F45": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F48": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F50": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          },
+          "F51": {
+            "correct": 0,
+            "total": 4,
+            "accuracy": 0.0
+          },
+          "F90": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F93": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "F98": {
+            "correct": 0,
+            "total": 4,
+            "accuracy": 0.0
+          },
+          "G47": {
+            "correct": 0,
+            "total": 1,
+            "accuracy": 0.0
+          },
+          "Z71": {
+            "correct": 0,
+            "total": 2,
+            "accuracy": 0.0
+          }
+        }
+      }
+    }
+  },
+  "flip_analysis": {
+    "LingxiDiag": {
+      "hied": {
+        "summary": {
+          "total_cases": 200,
+          "good_flips": 21,
+          "bad_flips": 13,
+          "stable_correct": 69,
+          "stable_wrong": 97,
+          "net_flip": 8
+        },
+        "by_disorder": {
+          "F31": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          },
+          "F32": {
+            "total": 74,
+            "good_flips_wrong_to_right": 9,
+            "bad_flips_right_to_wrong": 7,
+            "stable_correct": 50,
+            "stable_wrong": 8
+          },
+          "F39": {
+            "total": 12,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 12
+          },
+          "F41": {
+            "total": 71,
+            "good_flips_wrong_to_right": 11,
+            "bad_flips_right_to_wrong": 6,
+            "stable_correct": 17,
+            "stable_wrong": 37
+          },
+          "F42": {
+            "total": 5,
+            "good_flips_wrong_to_right": 1,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 2,
+            "stable_wrong": 2
+          },
+          "F43": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          },
+          "F45": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          },
+          "F51": {
+            "total": 7,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 7
+          },
+          "F98": {
+            "total": 6,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 6
+          },
+          "Others": {
+            "total": 17,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 17
+          },
+          "Z71": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          }
+        }
+      },
+      "psycot": {
+        "summary": {
+          "total_cases": 200,
+          "good_flips": 14,
+          "bad_flips": 14,
+          "stable_correct": 69,
+          "stable_wrong": 103,
+          "net_flip": 0
+        },
+        "by_disorder": {
+          "F31": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          },
+          "F32": {
+            "total": 74,
+            "good_flips_wrong_to_right": 7,
+            "bad_flips_right_to_wrong": 8,
+            "stable_correct": 56,
+            "stable_wrong": 3
+          },
+          "F39": {
+            "total": 12,
+            "good_flips_wrong_to_right": 1,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 11
+          },
+          "F41": {
+            "total": 71,
+            "good_flips_wrong_to_right": 6,
+            "bad_flips_right_to_wrong": 6,
+            "stable_correct": 11,
+            "stable_wrong": 48
+          },
+          "F42": {
+            "total": 5,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 2,
+            "stable_wrong": 3
+          },
+          "F43": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          },
+          "F45": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          },
+          "F51": {
+            "total": 7,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 7
+          },
+          "F98": {
+            "total": 6,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 6
+          },
+          "Others": {
+            "total": 17,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 17
+          },
+          "Z71": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          }
+        }
+      },
+      "single": {
+        "summary": {
+          "total_cases": 200,
+          "good_flips": 15,
+          "bad_flips": 15,
+          "stable_correct": 66,
+          "stable_wrong": 104,
+          "net_flip": 0
+        },
+        "by_disorder": {
+          "F31": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          },
+          "F32": {
+            "total": 74,
+            "good_flips_wrong_to_right": 11,
+            "bad_flips_right_to_wrong": 1,
+            "stable_correct": 60,
+            "stable_wrong": 2
+          },
+          "F39": {
+            "total": 12,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 12
+          },
+          "F41": {
+            "total": 71,
+            "good_flips_wrong_to_right": 4,
+            "bad_flips_right_to_wrong": 13,
+            "stable_correct": 5,
+            "stable_wrong": 49
+          },
+          "F42": {
+            "total": 5,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 1,
+            "stable_correct": 1,
+            "stable_wrong": 3
+          },
+          "F43": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          },
+          "F45": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          },
+          "F51": {
+            "total": 7,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 7
+          },
+          "F98": {
+            "total": 6,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 6
+          },
+          "Others": {
+            "total": 17,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 17
+          },
+          "Z71": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          }
+        }
+      }
+    },
+    "MDD-5k": {
+      "hied": {
+        "summary": {
+          "total_cases": 200,
+          "good_flips": 25,
+          "bad_flips": 37,
+          "stable_correct": 67,
+          "stable_wrong": 71,
+          "net_flip": -12
+        },
+        "by_disorder": {
+          "F20": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 1,
+            "stable_wrong": 0
+          },
+          "F22": {
+            "total": 1,
+            "good_flips_wrong_to_right": 1,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 0
+          },
+          "F23": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 1
+          },
+          "F28": {
+            "total": 1,
+            "good_flips_wrong_to_right": 1,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 0
+          },
+          "F30": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 1
+          },
+          "F31": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          },
+          "F32": {
+            "total": 88,
+            "good_flips_wrong_to_right": 5,
+            "bad_flips_right_to_wrong": 27,
+            "stable_correct": 50,
+            "stable_wrong": 6
+          },
+          "F34": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 1,
+            "stable_correct": 0,
+            "stable_wrong": 0
+          },
+          "F39": {
+            "total": 14,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 14
+          },
+          "F41": {
+            "total": 67,
+            "good_flips_wrong_to_right": 18,
+            "bad_flips_right_to_wrong": 9,
+            "stable_correct": 14,
+            "stable_wrong": 26
+          },
+          "F42": {
+            "total": 3,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 2,
+            "stable_wrong": 1
+          },
+          "F43": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          },
+          "F45": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          },
+          "F48": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 1
+          },
+          "F50": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          },
+          "F51": {
+            "total": 4,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 4
+          },
+          "F90": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 1
+          },
+          "F93": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 1
+          },
+          "F98": {
+            "total": 4,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 4
+          },
+          "G47": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 1
+          },
+          "Z71": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          }
+        }
+      },
+      "psycot": {
+        "summary": {
+          "total_cases": 200,
+          "good_flips": 24,
+          "bad_flips": 36,
+          "stable_correct": 66,
+          "stable_wrong": 74,
+          "net_flip": -12
+        },
+        "by_disorder": {
+          "F20": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 1,
+            "stable_wrong": 0
+          },
+          "F22": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 1,
+            "stable_wrong": 0
+          },
+          "F23": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 1
+          },
+          "F28": {
+            "total": 1,
+            "good_flips_wrong_to_right": 1,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 0
+          },
+          "F30": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 1
+          },
+          "F31": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          },
+          "F32": {
+            "total": 88,
+            "good_flips_wrong_to_right": 8,
+            "bad_flips_right_to_wrong": 22,
+            "stable_correct": 38,
+            "stable_wrong": 20
+          },
+          "F34": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 1,
+            "stable_correct": 0,
+            "stable_wrong": 0
+          },
+          "F39": {
+            "total": 14,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 14
+          },
+          "F41": {
+            "total": 67,
+            "good_flips_wrong_to_right": 15,
+            "bad_flips_right_to_wrong": 12,
+            "stable_correct": 24,
+            "stable_wrong": 16
+          },
+          "F42": {
+            "total": 3,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 1,
+            "stable_correct": 2,
+            "stable_wrong": 0
+          },
+          "F43": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          },
+          "F45": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          },
+          "F48": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 1
+          },
+          "F50": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          },
+          "F51": {
+            "total": 4,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 4
+          },
+          "F90": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 1
+          },
+          "F93": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 1
+          },
+          "F98": {
+            "total": 4,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 4
+          },
+          "G47": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 1
+          },
+          "Z71": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          }
+        }
+      },
+      "single": {
+        "summary": {
+          "total_cases": 200,
+          "good_flips": 5,
+          "bad_flips": 16,
+          "stable_correct": 89,
+          "stable_wrong": 90,
+          "net_flip": -11
+        },
+        "by_disorder": {
+          "F20": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 1,
+            "stable_wrong": 0
+          },
+          "F22": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 1,
+            "stable_wrong": 0
+          },
+          "F23": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 1
+          },
+          "F28": {
+            "total": 1,
+            "good_flips_wrong_to_right": 1,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 0
+          },
+          "F30": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 1
+          },
+          "F31": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 1,
+            "stable_correct": 0,
+            "stable_wrong": 1
+          },
+          "F32": {
+            "total": 88,
+            "good_flips_wrong_to_right": 4,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 84,
+            "stable_wrong": 0
+          },
+          "F34": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 1
+          },
+          "F39": {
+            "total": 14,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 14
+          },
+          "F41": {
+            "total": 67,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 13,
+            "stable_correct": 1,
+            "stable_wrong": 53
+          },
+          "F42": {
+            "total": 3,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 2,
+            "stable_wrong": 1
+          },
+          "F43": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          },
+          "F45": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          },
+          "F48": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 1
+          },
+          "F50": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 2,
+            "stable_correct": 0,
+            "stable_wrong": 0
+          },
+          "F51": {
+            "total": 4,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 4
+          },
+          "F90": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 1
+          },
+          "F93": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 1
+          },
+          "F98": {
+            "total": 4,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 4
+          },
+          "G47": {
+            "total": 1,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 1
+          },
+          "Z71": {
+            "total": 2,
+            "good_flips_wrong_to_right": 0,
+            "bad_flips_right_to_wrong": 0,
+            "stable_correct": 0,
+            "stable_wrong": 2
+          }
+        }
+      }
+    }
+  },
+  "somatization_contribution": {
+    "LingxiDiag": {
+      "hied": {
+        "summary": {
+          "total_cases": 200,
+          "evidence_top1": 0.45,
+          "no_somatization_top1": 0.415,
+          "somatization_delta_pp": 3.5,
+          "total_good_flips": 14,
+          "total_bad_flips": 7
+        },
+        "by_disorder": {
+          "F31": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F32": {
+            "total": 74,
+            "evidence_accuracy": 0.7973,
+            "no_somatization_accuracy": 0.8378,
+            "somatization_delta_pp": -4.05,
+            "good_flips": 1,
+            "bad_flips": 4
+          },
+          "F39": {
+            "total": 12,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F41": {
+            "total": 71,
+            "evidence_accuracy": 0.3944,
+            "no_somatization_accuracy": 0.2535,
+            "somatization_delta_pp": 14.08,
+            "good_flips": 13,
+            "bad_flips": 3
+          },
+          "F42": {
+            "total": 5,
+            "evidence_accuracy": 0.6,
+            "no_somatization_accuracy": 0.6,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F43": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F45": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F51": {
+            "total": 7,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F98": {
+            "total": 6,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "Others": {
+            "total": 17,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "Z71": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          }
+        }
+      },
+      "psycot": {
+        "summary": {
+          "total_cases": 200,
+          "evidence_top1": 0.415,
+          "no_somatization_top1": 0.41,
+          "somatization_delta_pp": 0.5,
+          "total_good_flips": 2,
+          "total_bad_flips": 1
+        },
+        "by_disorder": {
+          "F31": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F32": {
+            "total": 74,
+            "evidence_accuracy": 0.8514,
+            "no_somatization_accuracy": 0.8514,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F39": {
+            "total": 12,
+            "evidence_accuracy": 0.0833,
+            "no_somatization_accuracy": 0.0833,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F41": {
+            "total": 71,
+            "evidence_accuracy": 0.2394,
+            "no_somatization_accuracy": 0.2254,
+            "somatization_delta_pp": 1.41,
+            "good_flips": 2,
+            "bad_flips": 1
+          },
+          "F42": {
+            "total": 5,
+            "evidence_accuracy": 0.4,
+            "no_somatization_accuracy": 0.4,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F43": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F45": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F51": {
+            "total": 7,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F98": {
+            "total": 6,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "Others": {
+            "total": 17,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "Z71": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          }
+        }
+      },
+      "single": {
+        "summary": {
+          "total_cases": 200,
+          "evidence_top1": 0.405,
+          "no_somatization_top1": 0.395,
+          "somatization_delta_pp": 1.0,
+          "total_good_flips": 2,
+          "total_bad_flips": 0
+        },
+        "by_disorder": {
+          "F31": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F32": {
+            "total": 74,
+            "evidence_accuracy": 0.9595,
+            "no_somatization_accuracy": 0.9459,
+            "somatization_delta_pp": 1.35,
+            "good_flips": 1,
+            "bad_flips": 0
+          },
+          "F39": {
+            "total": 12,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F41": {
+            "total": 71,
+            "evidence_accuracy": 0.1268,
+            "no_somatization_accuracy": 0.1127,
+            "somatization_delta_pp": 1.41,
+            "good_flips": 1,
+            "bad_flips": 0
+          },
+          "F42": {
+            "total": 5,
+            "evidence_accuracy": 0.2,
+            "no_somatization_accuracy": 0.2,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F43": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F45": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F51": {
+            "total": 7,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F98": {
+            "total": 6,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "Others": {
+            "total": 17,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "Z71": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          }
+        }
+      }
+    },
+    "MDD-5k": {
+      "hied": {
+        "summary": {
+          "total_cases": 200,
+          "evidence_top1": 0.46,
+          "no_somatization_top1": 0.45,
+          "somatization_delta_pp": 1.0,
+          "total_good_flips": 7,
+          "total_bad_flips": 5
+        },
+        "by_disorder": {
+          "F20": {
+            "total": 1,
+            "evidence_accuracy": 1.0,
+            "no_somatization_accuracy": 1.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F22": {
+            "total": 1,
+            "evidence_accuracy": 1.0,
+            "no_somatization_accuracy": 1.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F23": {
+            "total": 1,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F28": {
+            "total": 1,
+            "evidence_accuracy": 1.0,
+            "no_somatization_accuracy": 1.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F30": {
+            "total": 1,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F31": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F32": {
+            "total": 88,
+            "evidence_accuracy": 0.625,
+            "no_somatization_accuracy": 0.5909,
+            "somatization_delta_pp": 3.41,
+            "good_flips": 3,
+            "bad_flips": 0
+          },
+          "F34": {
+            "total": 1,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 1.0,
+            "somatization_delta_pp": -100.0,
+            "good_flips": 0,
+            "bad_flips": 1
+          },
+          "F39": {
+            "total": 14,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F41": {
+            "total": 67,
+            "evidence_accuracy": 0.4776,
+            "no_somatization_accuracy": 0.4776,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 4,
+            "bad_flips": 4
+          },
+          "F42": {
+            "total": 3,
+            "evidence_accuracy": 0.6667,
+            "no_somatization_accuracy": 0.6667,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F43": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F45": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F48": {
+            "total": 1,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F50": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F51": {
+            "total": 4,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F90": {
+            "total": 1,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F93": {
+            "total": 1,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F98": {
+            "total": 4,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "G47": {
+            "total": 1,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "Z71": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          }
+        }
+      },
+      "psycot": {
+        "summary": {
+          "total_cases": 200,
+          "evidence_top1": 0.45,
+          "no_somatization_top1": 0.475,
+          "somatization_delta_pp": -2.5,
+          "total_good_flips": 2,
+          "total_bad_flips": 7
+        },
+        "by_disorder": {
+          "F20": {
+            "total": 1,
+            "evidence_accuracy": 1.0,
+            "no_somatization_accuracy": 1.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F22": {
+            "total": 1,
+            "evidence_accuracy": 1.0,
+            "no_somatization_accuracy": 1.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F23": {
+            "total": 1,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F28": {
+            "total": 1,
+            "evidence_accuracy": 1.0,
+            "no_somatization_accuracy": 1.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F30": {
+            "total": 1,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F31": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F32": {
+            "total": 88,
+            "evidence_accuracy": 0.5227,
+            "no_somatization_accuracy": 0.5455,
+            "somatization_delta_pp": -2.27,
+            "good_flips": 1,
+            "bad_flips": 3
+          },
+          "F34": {
+            "total": 1,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F39": {
+            "total": 14,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F41": {
+            "total": 67,
+            "evidence_accuracy": 0.5821,
+            "no_somatization_accuracy": 0.6119,
+            "somatization_delta_pp": -2.99,
+            "good_flips": 1,
+            "bad_flips": 3
+          },
+          "F42": {
+            "total": 3,
+            "evidence_accuracy": 0.6667,
+            "no_somatization_accuracy": 1.0,
+            "somatization_delta_pp": -33.33,
+            "good_flips": 0,
+            "bad_flips": 1
+          },
+          "F43": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F45": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F48": {
+            "total": 1,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F50": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F51": {
+            "total": 4,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F90": {
+            "total": 1,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F93": {
+            "total": 1,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F98": {
+            "total": 4,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "G47": {
+            "total": 1,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "Z71": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          }
+        }
+      },
+      "single": {
+        "summary": {
+          "total_cases": 200,
+          "evidence_top1": 0.47,
+          "no_somatization_top1": 0.47,
+          "somatization_delta_pp": 0.0,
+          "total_good_flips": 0,
+          "total_bad_flips": 0
+        },
+        "by_disorder": {
+          "F20": {
+            "total": 1,
+            "evidence_accuracy": 1.0,
+            "no_somatization_accuracy": 1.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F22": {
+            "total": 1,
+            "evidence_accuracy": 1.0,
+            "no_somatization_accuracy": 1.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F23": {
+            "total": 1,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F28": {
+            "total": 1,
+            "evidence_accuracy": 1.0,
+            "no_somatization_accuracy": 1.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F30": {
+            "total": 1,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F31": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F32": {
+            "total": 88,
+            "evidence_accuracy": 1.0,
+            "no_somatization_accuracy": 1.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F34": {
+            "total": 1,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F39": {
+            "total": 14,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F41": {
+            "total": 67,
+            "evidence_accuracy": 0.0149,
+            "no_somatization_accuracy": 0.0149,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F42": {
+            "total": 3,
+            "evidence_accuracy": 0.6667,
+            "no_somatization_accuracy": 0.6667,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F43": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F45": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F48": {
+            "total": 1,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F50": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F51": {
+            "total": 4,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F90": {
+            "total": 1,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F93": {
+            "total": 1,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "F98": {
+            "total": 4,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "G47": {
+            "total": 1,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          },
+          "Z71": {
+            "total": 2,
+            "evidence_accuracy": 0.0,
+            "no_somatization_accuracy": 0.0,
+            "somatization_delta_pp": 0.0,
+            "good_flips": 0,
+            "bad_flips": 0
+          }
+        }
+      }
+    }
+  }
+}

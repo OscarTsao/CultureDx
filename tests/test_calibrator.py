@@ -9,6 +9,7 @@ from culturedx.core.models import (
     CriterionResult,
     DisorderEvidence,
     EvidenceBrief,
+    ScaleScore,
     SymptomSpan,
 )
 from culturedx.diagnosis.calibrator import CalibrationOutput, ConfidenceCalibrator
@@ -116,3 +117,130 @@ class TestConfidenceCalibrator:
         # With high abstain threshold, medium confidence should abstain
         if result.primary is None:
             assert len(result.abstained) == 1
+
+
+class TestScaleScoreSignal:
+    """Tests for _compute_scale_score_signal static method."""
+
+    def test_no_scale_scores_returns_neutral(self):
+        result = ConfidenceCalibrator._compute_scale_score_signal("F32", None)
+        assert result == 0.5
+
+    def test_empty_scale_scores_returns_neutral(self):
+        result = ConfidenceCalibrator._compute_scale_score_signal("F32", [])
+        assert result == 0.5
+
+    def test_unmatched_disorder_returns_neutral(self):
+        scores = [ScaleScore(name="phq8", total=20)]
+        result = ConfidenceCalibrator._compute_scale_score_signal("F20", scores)
+        assert result == 0.5
+
+    # PHQ-8/9 for depression (F32/F33)
+    def test_phq8_below_threshold(self):
+        scores = [ScaleScore(name="phq8", total=5)]
+        result = ConfidenceCalibrator._compute_scale_score_signal("F32", scores)
+        assert result == 0.0
+
+    def test_phq8_mild(self):
+        scores = [ScaleScore(name="phq8", total=12)]
+        result = ConfidenceCalibrator._compute_scale_score_signal("F32", scores)
+        assert result == 0.3
+
+    def test_phq8_moderate(self):
+        scores = [ScaleScore(name="phq8", total=17)]
+        result = ConfidenceCalibrator._compute_scale_score_signal("F32", scores)
+        assert result == 0.6
+
+    def test_phq8_severe(self):
+        scores = [ScaleScore(name="phq8", total=22)]
+        result = ConfidenceCalibrator._compute_scale_score_signal("F32", scores)
+        assert result == 1.0
+
+    def test_phq9_works_for_f33(self):
+        scores = [ScaleScore(name="phq9", total=20)]
+        result = ConfidenceCalibrator._compute_scale_score_signal("F33", scores)
+        assert result == 1.0
+
+    # HAMD-17 for depression
+    def test_hamd17_below_threshold(self):
+        scores = [ScaleScore(name="hamd17", total=5)]
+        result = ConfidenceCalibrator._compute_scale_score_signal("F32", scores)
+        assert result == 0.0
+
+    def test_hamd17_mild(self):
+        scores = [ScaleScore(name="hamd17", total=12)]
+        result = ConfidenceCalibrator._compute_scale_score_signal("F32", scores)
+        assert result == 0.4
+
+    def test_hamd17_moderate(self):
+        scores = [ScaleScore(name="hamd17", total=20)]
+        result = ConfidenceCalibrator._compute_scale_score_signal("F32", scores)
+        assert result == 0.7
+
+    def test_hamd17_severe(self):
+        scores = [ScaleScore(name="hamd17", total=28)]
+        result = ConfidenceCalibrator._compute_scale_score_signal("F32", scores)
+        assert result == 1.0
+
+    # PHQ takes precedence over HAMD when both present
+    def test_phq_preferred_over_hamd(self):
+        scores = [
+            ScaleScore(name="phq8", total=5),   # -> 0.0
+            ScaleScore(name="hamd17", total=28),  # -> 1.0 (not reached)
+        ]
+        result = ConfidenceCalibrator._compute_scale_score_signal("F32", scores)
+        assert result == 0.0
+
+    # GAD-7 for anxiety (F41/F41.1)
+    def test_gad7_below_threshold(self):
+        scores = [ScaleScore(name="gad7", total=7)]
+        result = ConfidenceCalibrator._compute_scale_score_signal("F41.1", scores)
+        assert result == 0.0
+
+    def test_gad7_mild(self):
+        scores = [ScaleScore(name="gad7", total=12)]
+        result = ConfidenceCalibrator._compute_scale_score_signal("F41.1", scores)
+        assert result == 0.3
+
+    def test_gad7_severe(self):
+        scores = [ScaleScore(name="gad7", total=18)]
+        result = ConfidenceCalibrator._compute_scale_score_signal("F41.1", scores)
+        assert result == 0.7
+
+    def test_gad7_works_for_f41(self):
+        scores = [ScaleScore(name="gad7", total=15)]
+        result = ConfidenceCalibrator._compute_scale_score_signal("F41", scores)
+        assert result == 0.7
+
+    # Integration: scale_scores flows through calibrate()
+    def test_calibrate_with_scale_scores(self, calibrator):
+        co = _make_checker(
+            "F32", [("B1", 0.9), ("B2", 0.85), ("C1", 0.8), ("C2", 0.75)], ["B3"], 4,
+        )
+        scores = [ScaleScore(name="phq8", total=22)]
+        result_with = calibrator.calibrate(["F32"], [co], scale_scores=scores)
+        result_without = calibrator.calibrate(["F32"], [co], scale_scores=None)
+        # With high PHQ-8 (signal=1.0) should yield higher confidence than neutral (0.5)
+        assert result_with.primary is not None
+        assert result_without.primary is not None
+        assert result_with.primary.confidence >= result_without.primary.confidence
+
+    def test_calibrate_low_scale_reduces_confidence(self, calibrator):
+        co = _make_checker(
+            "F32", [("B1", 0.9), ("B2", 0.85), ("C1", 0.8), ("C2", 0.75)], ["B3"], 4,
+        )
+        scores = [ScaleScore(name="phq8", total=3)]  # signal=0.0
+        result_low = calibrator.calibrate(["F32"], [co], scale_scores=scores)
+        result_neutral = calibrator.calibrate(["F32"], [co], scale_scores=None)  # signal=0.5
+        assert result_low.primary is not None
+        assert result_neutral.primary is not None
+        assert result_low.primary.confidence <= result_neutral.primary.confidence
+
+    def test_scale_score_signal_stored_in_result(self, calibrator):
+        co = _make_checker(
+            "F32", [("B1", 0.9), ("B2", 0.85), ("C1", 0.8), ("C2", 0.75)], ["B3"], 4,
+        )
+        scores = [ScaleScore(name="phq8", total=22)]
+        result = calibrator.calibrate(["F32"], [co], scale_scores=scores)
+        assert result.primary is not None
+        assert result.primary.scale_score_signal == 1.0

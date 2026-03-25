@@ -11,6 +11,7 @@ from culturedx.evidence.criteria_matcher import CriteriaMatcher
 from culturedx.evidence.extractor import SymptomExtractor
 from culturedx.evidence.retriever import BaseRetriever
 from culturedx.evidence.somatization import SomatizationMapper
+from culturedx.evidence.temporal import TemporalFeatures, extract_temporal_features
 
 logger = logging.getLogger(__name__)
 
@@ -26,6 +27,7 @@ class EvidencePipeline:
         extractor_enabled: bool = True,
         somatization_enabled: bool = True,
         somatization_llm_fallback: bool = True,
+        temporal_enabled: bool = True,
         top_k: int = 10,
         min_confidence: float = 0.1,
         prompts_dir: str | Path = "prompts/evidence",
@@ -35,6 +37,7 @@ class EvidencePipeline:
         self.target_disorders = target_disorders or ["F32", "F41.1"]
         self.extractor_enabled = extractor_enabled
         self.somatization_enabled = somatization_enabled
+        self.temporal_enabled = temporal_enabled
         self.top_k = top_k
         self.min_confidence = min_confidence
 
@@ -96,6 +99,22 @@ class EvidencePipeline:
             )
         t_somat = time.monotonic() - t1
 
+        # 3b. Temporal feature extraction (Chinese only, for F41.1 Criterion A)
+        t_temporal_start = time.monotonic()
+        self._temporal_features: TemporalFeatures | None = None
+        if self.temporal_enabled and case.language == "zh":
+            if any(d.startswith("F41") for d in self.target_disorders):
+                self._temporal_features = extract_temporal_features(
+                    case.transcript
+                )
+                logger.info(
+                    "Temporal extraction for %s: confidence=%.2f, months=%s",
+                    case.case_id,
+                    self._temporal_features.duration_confidence,
+                    self._temporal_features.estimated_months,
+                )
+        t_temporal = time.monotonic() - t_temporal_start
+
         # 4. Batch criteria matching across all disorders (encode sentences once)
         t2 = time.monotonic()
         criteria_results = self._matcher.match_all_disorders(
@@ -122,14 +141,16 @@ class EvidencePipeline:
 
         logger.info(
             "Evidence timing for %s: extract=%.1fs somat=%.1fs"
-            " match=%.1fs assemble=%.1fs total=%.1fs",
+            " temporal=%.1fs match=%.1fs assemble=%.1fs total=%.1fs",
             case.case_id,
             t_extract,
             t_somat,
+            t_temporal,
             t_match,
             t_assemble,
             time.monotonic() - t0,
         )
+        result.temporal_features = self._temporal_features
         return result
 
     @staticmethod

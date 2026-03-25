@@ -3,7 +3,16 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Literal
+from typing import Any, Literal
+
+
+@dataclass
+class ScaleScore:
+    """A standardized clinical scale score (e.g., PHQ-8, HAMD-17)."""
+
+    name: str  # "phq8", "phq9", "gad7", "hamd17"
+    total: int
+    items: list[int] | None = None
 
 
 @dataclass
@@ -36,6 +45,7 @@ class ClinicalCase:
     comorbid: bool = False
     suicide_risk: int | None = None
     metadata: dict | None = None
+    scale_scores: list[ScaleScore] | None = None
 
     def patient_turns(self) -> list[Turn]:
         """Return only patient/participant turns."""
@@ -81,6 +91,7 @@ class EvidenceBrief:
     symptom_spans: list[SymptomSpan] = field(default_factory=list)
     disorder_evidence: list[DisorderEvidence] = field(default_factory=list)
     criteria_evidence: list[CriterionEvidence] = field(default_factory=list)
+    temporal_features: Any = None  # TemporalFeatures, optional
 
 
 @dataclass

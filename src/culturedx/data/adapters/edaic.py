@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from culturedx.core.models import ClinicalCase, Turn
+from culturedx.core.models import ClinicalCase, ScaleScore, Turn
 from culturedx.data.adapters.base import BaseDatasetAdapter
 
 
@@ -28,6 +28,7 @@ class EDAICAdapter(BaseDatasetAdapter):
             ]
             total = item["phq8_total"]
             binary = 1 if total >= self.binary_threshold else 0
+            phq8_items = item["phq8"] if isinstance(item["phq8"], list) else None
             cases.append(
                 ClinicalCase(
                     case_id=item["case_id"],
@@ -39,6 +40,7 @@ class EDAICAdapter(BaseDatasetAdapter):
                     diagnoses=["F32"] if binary else [],
                     severity={"phq8": item["phq8"], "phq8_total": total},
                     metadata={"binary": binary},
+                    scale_scores=[ScaleScore(name="phq8", total=total, items=phq8_items)],
                 )
             )
         return cases

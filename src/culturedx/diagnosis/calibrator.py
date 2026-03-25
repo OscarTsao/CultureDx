@@ -11,7 +11,7 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass, field
 
-from culturedx.core.models import CheckerOutput, CriterionResult, EvidenceBrief
+from culturedx.core.models import CheckerOutput, CriterionResult, EvidenceBrief, ScaleScore
 
 logger = logging.getLogger(__name__)
 
@@ -51,6 +51,7 @@ class CalibratedDiagnosis:
     margin_score: float = 0.0
     variance_penalty: float = 0.0
     info_content_score: float = 0.0
+    scale_score_signal: float = 0.0
 
 
 @dataclass
@@ -104,6 +105,7 @@ class ConfidenceCalibrator:
             "margin": 0.08,
             "variance": 0.10,
             "info_content": 0.05,
+            "scale_score": 0.05,
         }
 
     def calibrate(
@@ -112,6 +114,7 @@ class ConfidenceCalibrator:
         checker_outputs: list[CheckerOutput],
         evidence: EvidenceBrief | None = None,
         confirmation_types: dict[str, str] | None = None,
+        scale_scores: list[ScaleScore] | None = None,
     ) -> CalibrationOutput:
         """Calibrate confidence for confirmed disorders.
         
@@ -135,7 +138,7 @@ class ConfidenceCalibrator:
                 continue
             if self.version >= 2:
                 cal = self._compute_calibrated_v2(
-                    code, co, confirmed_outputs, evidence,
+                    code, co, confirmed_outputs, evidence, scale_scores,
                 )
             else:
                 cal = self._compute_calibrated(code, co, evidence)
@@ -238,6 +241,7 @@ class ConfidenceCalibrator:
         checker_output: CheckerOutput,
         all_confirmed_outputs: list[CheckerOutput],
         evidence: EvidenceBrief | None,
+        scale_scores: list[ScaleScore] | None = None,
     ) -> CalibratedDiagnosis:
         """V2 calibration with weighted signals for disorder differentiation."""
         # Existing signals
@@ -270,6 +274,7 @@ class ConfidenceCalibrator:
         margin = self._compute_margin_score(checker_output, disorder_code, required)
         variance = self._compute_variance_penalty(checker_output)
         info_content = self._compute_info_content(checker_output)
+        scale_score_sig = self._compute_scale_score_signal(disorder_code, scale_scores)
 
         # Weighted combination
         w = self.v2_weights
@@ -282,6 +287,7 @@ class ConfidenceCalibrator:
             + w["margin"] * margin
             + w["variance"] * variance
             + w.get("info_content", 0) * info_content
+            + w.get("scale_score", 0) * scale_score_sig
         )
         confidence = max(0.0, min(1.0, confidence))
 
@@ -302,7 +308,64 @@ class ConfidenceCalibrator:
             margin_score=margin,
             variance_penalty=variance,
             info_content_score=info_content,
+            scale_score_signal=scale_score_sig,
         )
+
+    @staticmethod
+    def _compute_scale_score_signal(
+        disorder_code: str,
+        scale_scores: list[ScaleScore] | None,
+    ) -> float:
+        """Map scale scores to a confidence signal [0, 1] for the given disorder.
+
+        Returns 0.5 (neutral) if no matching scale is available, so the signal
+        neither helps nor hurts when scale data is absent.
+
+        Thresholds follow standard clinical cut-offs:
+        - PHQ-8/9 for F32/F33: <10->0.0, 10-14->0.3, 15-19->0.6, >=20->1.0
+        - HAMD-17 for F32/F33: <8->0.0, 8-16->0.4, 17-24->0.7, >=25->1.0
+        - GAD-7 for F41/F41.1: <10->0.0, 10-14->0.3, 15-21->0.7
+        """
+        if not scale_scores:
+            return 0.5
+
+        # Build name -> total lookup
+        scores = {s.name.lower(): s.total for s in scale_scores}
+
+        # Depression disorders: F32.x, F33.x
+        if disorder_code.startswith(("F32", "F33")):
+            # Check PHQ-8/9 first, then HAMD-17
+            for name in ("phq8", "phq9"):
+                if name in scores:
+                    total = scores[name]
+                    if total < 10:
+                        return 0.0
+                    if total < 15:
+                        return 0.3
+                    if total < 20:
+                        return 0.6
+                    return 1.0
+            if "hamd17" in scores:
+                total = scores["hamd17"]
+                if total < 8:
+                    return 0.0
+                if total < 17:
+                    return 0.4
+                if total < 25:
+                    return 0.7
+                return 1.0
+
+        # Anxiety disorders: F41, F41.1
+        if disorder_code.startswith("F41"):
+            if "gad7" in scores:
+                total = scores["gad7"]
+                if total < 10:
+                    return 0.0
+                if total < 15:
+                    return 0.3
+                return 0.7
+
+        return 0.5
 
     @staticmethod
     def _compute_core_score(checker_output: CheckerOutput, disorder_code: str) -> float:

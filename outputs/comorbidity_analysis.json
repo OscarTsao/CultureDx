@@ -1,0 +1,659 @@
+{
+  "rates": {
+    "n_total": 3200,
+    "gold_comorbid_count": 328,
+    "gold_comorbid_rate": 0.1025,
+    "pred_comorbid_count": 2145,
+    "pred_comorbid_rate": 0.6703125,
+    "gold_avg_labels": 1.105,
+    "pred_avg_labels": 1.8096875
+  },
+  "pair_frequencies": {
+    "gold_top_pairs": [
+      {
+        "pair": [
+          "F32",
+          "F41"
+        ],
+        "count": 136
+      },
+      {
+        "pair": [
+          "F41",
+          "F51"
+        ],
+        "count": 40
+      },
+      {
+        "pair": [
+          "F41",
+          "F42"
+        ],
+        "count": 24
+      },
+      {
+        "pair": [
+          "F32",
+          "F98"
+        ],
+        "count": 16
+      },
+      {
+        "pair": [
+          "F39",
+          "F41"
+        ],
+        "count": 16
+      },
+      {
+        "pair": [
+          "F32",
+          "F51"
+        ],
+        "count": 16
+      },
+      {
+        "pair": [
+          "F41",
+          "F45"
+        ],
+        "count": 8
+      },
+      {
+        "pair": [
+          "F39",
+          "Z71"
+        ],
+        "count": 8
+      },
+      {
+        "pair": [
+          "F22",
+          "F32"
+        ],
+        "count": 8
+      },
+      {
+        "pair": [
+          "F90",
+          "F98"
+        ],
+        "count": 8
+      },
+      {
+        "pair": [
+          "F32",
+          "K05"
+        ],
+        "count": 8
+      },
+      {
+        "pair": [
+          "F20",
+          "F42"
+        ],
+        "count": 8
+      },
+      {
+        "pair": [
+          "F41",
+          "G47"
+        ],
+        "count": 8
+      },
+      {
+        "pair": [
+          "F41",
+          "F64"
+        ],
+        "count": 8
+      },
+      {
+        "pair": [
+          "F34",
+          "F41"
+        ],
+        "count": 8
+      }
+    ],
+    "pred_top_pairs": [
+      {
+        "pair": [
+          "F32",
+          "F41"
+        ],
+        "count": 1910
+      },
+      {
+        "pair": [
+          "F41",
+          "F42"
+        ],
+        "count": 421
+      },
+      {
+        "pair": [
+          "F32",
+          "F42"
+        ],
+        "count": 352
+      },
+      {
+        "pair": [
+          "F41",
+          "F43"
+        ],
+        "count": 223
+      },
+      {
+        "pair": [
+          "F32",
+          "F43"
+        ],
+        "count": 184
+      },
+      {
+        "pair": [
+          "F32",
+          "F33"
+        ],
+        "count": 79
+      },
+      {
+        "pair": [
+          "F33",
+          "F41"
+        ],
+        "count": 70
+      },
+      {
+        "pair": [
+          "F42",
+          "F43"
+        ],
+        "count": 43
+      },
+      {
+        "pair": [
+          "F33",
+          "F43"
+        ],
+        "count": 6
+      },
+      {
+        "pair": [
+          "F33",
+          "F42"
+        ],
+        "count": 2
+      }
+    ]
+  },
+  "pair_precision_recall": {
+    "pair_metrics": [
+      {
+        "pair": [
+          "F32",
+          "F41"
+        ],
+        "tp": 73,
+        "fp": 1837,
+        "fn": 63,
+        "precision": 0.0382,
+        "recall": 0.5368,
+        "f1": 0.0714
+      },
+      {
+        "pair": [
+          "F41",
+          "F51"
+        ],
+        "tp": 0,
+        "fp": 0,
+        "fn": 40,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F41",
+          "F42"
+        ],
+        "tp": 8,
+        "fp": 413,
+        "fn": 16,
+        "precision": 0.019,
+        "recall": 0.3333,
+        "f1": 0.036
+      },
+      {
+        "pair": [
+          "F32",
+          "F51"
+        ],
+        "tp": 0,
+        "fp": 0,
+        "fn": 16,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F32",
+          "F98"
+        ],
+        "tp": 0,
+        "fp": 0,
+        "fn": 16,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F39",
+          "F41"
+        ],
+        "tp": 0,
+        "fp": 0,
+        "fn": 16,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F20",
+          "F42"
+        ],
+        "tp": 0,
+        "fp": 0,
+        "fn": 8,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F22",
+          "F32"
+        ],
+        "tp": 0,
+        "fp": 0,
+        "fn": 8,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F28",
+          "F32"
+        ],
+        "tp": 0,
+        "fp": 0,
+        "fn": 8,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F32",
+          "F34"
+        ],
+        "tp": 0,
+        "fp": 0,
+        "fn": 8,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F32",
+          "K05"
+        ],
+        "tp": 0,
+        "fp": 0,
+        "fn": 8,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F34",
+          "F41"
+        ],
+        "tp": 0,
+        "fp": 0,
+        "fn": 8,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F34",
+          "F42"
+        ],
+        "tp": 0,
+        "fp": 0,
+        "fn": 8,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F39",
+          "Z71"
+        ],
+        "tp": 0,
+        "fp": 0,
+        "fn": 8,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F41",
+          "F45"
+        ],
+        "tp": 0,
+        "fp": 0,
+        "fn": 8,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F41",
+          "F64"
+        ],
+        "tp": 0,
+        "fp": 0,
+        "fn": 8,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F41",
+          "G47"
+        ],
+        "tp": 0,
+        "fp": 0,
+        "fn": 8,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F90",
+          "F98"
+        ],
+        "tp": 0,
+        "fp": 0,
+        "fn": 8,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F32",
+          "F33"
+        ],
+        "tp": 0,
+        "fp": 79,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F32",
+          "F42"
+        ],
+        "tp": 0,
+        "fp": 352,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F32",
+          "F43"
+        ],
+        "tp": 0,
+        "fp": 184,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F33",
+          "F41"
+        ],
+        "tp": 0,
+        "fp": 70,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F33",
+          "F42"
+        ],
+        "tp": 0,
+        "fp": 2,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F33",
+          "F43"
+        ],
+        "tp": 0,
+        "fp": 6,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F41",
+          "F43"
+        ],
+        "tp": 0,
+        "fp": 223,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "pair": [
+          "F42",
+          "F43"
+        ],
+        "tp": 0,
+        "fp": 43,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0,
+        "f1": 0
+      }
+    ]
+  },
+  "criterion_overlap": {
+    "f32_f41_gold_cases": 136,
+    "mean_shared_evidence_rate": 0.327,
+    "std_shared_evidence_rate": 0.3249,
+    "mean_f32_met_count": 6.84,
+    "mean_f41_met_count": 3.18,
+    "mean_f32_unique_criteria": 6.84,
+    "mean_f41_unique_criteria": 3.18
+  },
+  "discriminative_features": {
+    "true_comorbid": {
+      "n": 222,
+      "primary_conf_mean": 0.969,
+      "primary_conf_std": 0.0449,
+      "secondary_conf_mean": 0.9008,
+      "secondary_conf_std": 0.1014,
+      "ratio_mean": 0.9293,
+      "ratio_std": 0.0917,
+      "conf_gap_mean": 0.0681,
+      "conf_gap_std": 0.0882,
+      "primary_met_count_mean": 6.482,
+      "primary_met_count_std": 2.3514,
+      "secondary_met_count_mean": 4.3649,
+      "secondary_met_count_std": 1.2365,
+      "primary_avg_conf_mean": 0.8115,
+      "primary_avg_conf_std": 0.0978,
+      "secondary_avg_conf_mean": 0.78,
+      "secondary_avg_conf_std": 0.1079,
+      "evidence_overlap_mean": 0.2437,
+      "evidence_overlap_std": 0.2956,
+      "conf_variance_mean": 0.0032,
+      "conf_variance_std": 0.0024,
+      "n_confirmed_mean": 2.3198,
+      "n_confirmed_std": 0.4945,
+      "n_total_criteria_met_mean": 21.0766,
+      "n_total_criteria_met_std": 5.1051,
+      "n_somatic_met_mean": 0.0,
+      "n_somatic_met_std": 0.0,
+      "same_family_mean": 0.0,
+      "same_family_std": 0.0,
+      "cross_domain_mean": 0.6802,
+      "cross_domain_std": 0.4664,
+      "has_secondary_pred_mean": 1.0,
+      "has_secondary_pred_std": 0.0
+    },
+    "false_positive": {
+      "n": 1923,
+      "primary_conf_mean": 0.9696,
+      "primary_conf_std": 0.0372,
+      "secondary_conf_mean": 0.8888,
+      "secondary_conf_std": 0.1037,
+      "ratio_mean": 0.9163,
+      "ratio_std": 0.0969,
+      "conf_gap_mean": 0.0807,
+      "conf_gap_std": 0.0933,
+      "primary_met_count_mean": 6.5029,
+      "primary_met_count_std": 2.1003,
+      "secondary_met_count_mean": 4.4514,
+      "secondary_met_count_std": 1.5189,
+      "primary_avg_conf_mean": 0.8102,
+      "primary_avg_conf_std": 0.098,
+      "secondary_avg_conf_mean": 0.7855,
+      "secondary_avg_conf_std": 0.1045,
+      "evidence_overlap_mean": 0.2615,
+      "evidence_overlap_std": 0.2782,
+      "conf_variance_mean": 0.0033,
+      "conf_variance_std": 0.0026,
+      "n_confirmed_mean": 2.2533,
+      "n_confirmed_std": 0.4649,
+      "n_total_criteria_met_mean": 20.6968,
+      "n_total_criteria_met_std": 4.5738,
+      "n_somatic_met_mean": 0.0,
+      "n_somatic_met_std": 0.0,
+      "same_family_mean": 0.0317,
+      "same_family_std": 0.1753,
+      "cross_domain_mean": 0.7816,
+      "cross_domain_std": 0.4132,
+      "has_secondary_pred_mean": 1.0,
+      "has_secondary_pred_std": 0.0
+    },
+    "false_negative": {
+      "n": 93,
+      "primary_conf_mean": 0.9341,
+      "primary_conf_std": 0.0737,
+      "secondary_conf_mean": 0.0,
+      "secondary_conf_std": 0.0,
+      "ratio_mean": 0.0,
+      "ratio_std": 0.0,
+      "conf_gap_mean": 0.9341,
+      "conf_gap_std": 0.0737,
+      "primary_met_count_mean": 5.6559,
+      "primary_met_count_std": 1.9092,
+      "secondary_met_count_mean": 0.0,
+      "secondary_met_count_std": 0.0,
+      "primary_avg_conf_mean": 0.8069,
+      "primary_avg_conf_std": 0.0936,
+      "secondary_avg_conf_mean": 0.0,
+      "secondary_avg_conf_std": 0.0,
+      "evidence_overlap_mean": 0.0,
+      "evidence_overlap_std": 0.0,
+      "conf_variance_mean": 0.0019,
+      "conf_variance_std": 0.0015,
+      "n_confirmed_mean": 1.0,
+      "n_confirmed_std": 0.0,
+      "n_total_criteria_met_mean": 14.1398,
+      "n_total_criteria_met_std": 3.9092,
+      "n_somatic_met_mean": 0.0,
+      "n_somatic_met_std": 0.0,
+      "same_family_mean": 0.0,
+      "same_family_std": 0.0,
+      "cross_domain_mean": 0.0,
+      "cross_domain_std": 0.0,
+      "has_secondary_pred_mean": 0.0,
+      "has_secondary_pred_std": 0.0
+    },
+    "true_single": {
+      "n": 850,
+      "primary_conf_mean": 0.9229,
+      "primary_conf_std": 0.096,
+      "secondary_conf_mean": 0.0,
+      "secondary_conf_std": 0.0,
+      "ratio_mean": 0.0,
+      "ratio_std": 0.0,
+      "conf_gap_mean": 0.9229,
+      "conf_gap_std": 0.096,
+      "primary_met_count_mean": 5.2447,
+      "primary_met_count_std": 1.7634,
+      "secondary_met_count_mean": 0.0,
+      "secondary_met_count_std": 0.0,
+      "primary_avg_conf_mean": 0.8,
+      "primary_avg_conf_std": 0.095,
+      "secondary_avg_conf_mean": 0.0,
+      "secondary_avg_conf_std": 0.0,
+      "evidence_overlap_mean": 0.0,
+      "evidence_overlap_std": 0.0,
+      "conf_variance_mean": 0.0022,
+      "conf_variance_std": 0.002,
+      "n_confirmed_mean": 1.0,
+      "n_confirmed_std": 0.0,
+      "n_total_criteria_met_mean": 13.8376,
+      "n_total_criteria_met_std": 4.9896,
+      "n_somatic_met_mean": 0.0,
+      "n_somatic_met_std": 0.0,
+      "same_family_mean": 0.0,
+      "same_family_std": 0.0,
+      "cross_domain_mean": 0.0,
+      "cross_domain_std": 0.0,
+      "has_secondary_pred_mean": 0.0,
+      "has_secondary_pred_std": 0.0
+    }
+  }
+}

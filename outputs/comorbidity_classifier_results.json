@@ -1,0 +1,101 @@
+{
+  "n_cases": 3088,
+  "n_features": 36,
+  "label_distribution": {
+    "0": 2773,
+    "1": 315
+  },
+  "positive_rate": 0.10200777202072539,
+  "ratio_baselines": {
+    "0.0": {
+      "accuracy": 0.35038860103626945,
+      "precision": 0.10398126463700234,
+      "recall": 0.7047619047619048,
+      "f1": 0.18122448979591838,
+      "subset_accuracy": 0.1557642487046632
+    },
+    "0.7": {
+      "accuracy": 0.3649611398963731,
+      "precision": 0.10164569215876089,
+      "recall": 0.6666666666666666,
+      "f1": 0.17639647207055859,
+      "subset_accuracy": 0.16321243523316062
+    },
+    "0.8": {
+      "accuracy": 0.4540155440414508,
+      "precision": 0.1094017094017094,
+      "recall": 0.6095238095238096,
+      "f1": 0.1855072463768116,
+      "subset_accuracy": 0.20012953367875647
+    },
+    "0.9": {
+      "accuracy": 0.4799222797927461,
+      "precision": 0.10807528840315725,
+      "recall": 0.5650793650793651,
+      "f1": 0.18144750254842,
+      "subset_accuracy": 0.21696891191709844
+    },
+    "0.95": {
+      "accuracy": 0.6360103626943006,
+      "precision": 0.1271889400921659,
+      "recall": 0.4380952380952381,
+      "f1": 0.19714285714285715,
+      "subset_accuracy": 0.28950777202072536
+    },
+    "1.0": {
+      "accuracy": 0.8338730569948186,
+      "precision": 0.11923076923076924,
+      "recall": 0.09841269841269841,
+      "f1": 0.10782608695652174,
+      "subset_accuracy": 0.37726683937823835
+    }
+  },
+  "classifier_cv": {
+    "mean": {
+      "accuracy": 0.8979921637739767,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "auc": 0.6061115163642239
+    },
+    "std": {
+      "accuracy": 8.09417390733036e-05,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "auc": 0.051175586442120384
+    }
+  },
+  "oof_metrics": {
+    "accuracy": 0.8979922279792746,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "subset_accuracy": 0.40803108808290156,
+    "hamming_accuracy": 0.43879533678756477
+  },
+  "best_threshold": 0.2,
+  "best_subset_accuracy": 0.40803108808290156,
+  "feature_importance": {
+    "avg_evidence_length_primary": 316.78,
+    "secondary_avg_criterion_conf": 145.97,
+    "primary_unique_evidence_count": 141.66,
+    "secondary_confidence": 104.99,
+    "primary_confidence": 102.95,
+    "primary_conf_variance": 83.04,
+    "total_criteria_met_all": 61.85,
+    "conf_range_across_disorders": 54.76,
+    "avg_evidence_length_secondary": 53.67,
+    "primary_total_criteria": 53.15,
+    "secondary_unique_evidence_count": 52.85,
+    "has_mood_confirmed": 46.96,
+    "confidence_ratio": 40.14,
+    "met_count_ratio": 38.56,
+    "primary_met_count": 36.15,
+    "primary_core_met": 31.08,
+    "confidence_gap": 27.55,
+    "evidence_overlap_rate": 18.25,
+    "secondary_conf_variance": 17.18,
+    "conf_std_across_disorders": 15.09
+  }
+}

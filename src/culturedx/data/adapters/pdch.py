@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from culturedx.core.models import ClinicalCase, Turn
+from culturedx.core.models import ClinicalCase, ScaleScore, Turn
 from culturedx.data.adapters.base import BaseDatasetAdapter
 
 
@@ -28,6 +28,7 @@ class PDCHAdapter(BaseDatasetAdapter):
             ]
             total = item["hamd17_total"]
             binary = 1 if total >= self.binary_threshold else 0
+            hamd17_items = item["hamd17"] if isinstance(item["hamd17"], list) else None
             cases.append(
                 ClinicalCase(
                     case_id=item["case_id"],
@@ -39,6 +40,7 @@ class PDCHAdapter(BaseDatasetAdapter):
                     diagnoses=[],
                     severity={"hamd17": item["hamd17"], "hamd17_total": total},
                     metadata={"binary": binary},
+                    scale_scores=[ScaleScore(name="hamd17", total=total, items=hamd17_items)],
                 )
             )
         return cases
