@@ -1,0 +1,10 @@
+# vLLM with AWQ quantization
+llm:
+  provider: vllm
+  model_id: "Qwen/Qwen3-32B-AWQ"
+  base_url: http://localhost:8000
+  temperature: 0.0
+  top_k: 1
+  max_retries: 3
+  disable_thinking: true
+  max_concurrent: 4

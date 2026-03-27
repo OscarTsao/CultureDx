@@ -1,0 +1,42 @@
+{
+  "old_sweep": "outputs/sweeps/evidence_edaic_20260323_011113",
+  "new_sweep": "outputs/sweeps/scale_score_edaic_20260327_031719",
+  "comparison": [
+    {
+      "condition": "hied_no_evidence",
+      "old_top1": 12.698412698412698,
+      "new_top1": 28.57142857142857,
+      "delta_top1": 15.873015873015872,
+      "old_top3": 15.873015873015872,
+      "new_top3": 30.158730158730158,
+      "delta_top3": 14.285714285714286,
+      "old_f1": 4.507042253521127,
+      "new_f1": 8.888888888888888,
+      "delta_f1": 4.3818466353677605
+    },
+    {
+      "condition": "hied_bge-m3_evidence",
+      "old_top1": 20.634920634920633,
+      "new_top1": 38.095238095238095,
+      "delta_top1": 17.460317460317462,
+      "old_top3": 26.984126984126984,
+      "new_top3": 39.682539682539684,
+      "delta_top3": 12.6984126984127,
+      "old_f1": 6.842105263157896,
+      "new_f1": 11.03448275862069,
+      "delta_f1": 4.192377495462795
+    },
+    {
+      "condition": "hied_bge-m3_no_somatization",
+      "old_top1": 0,
+      "new_top1": 38.095238095238095,
+      "delta_top1": 38.095238095238095,
+      "old_top3": 0,
+      "new_top3": 39.682539682539684,
+      "delta_top3": 39.682539682539684,
+      "old_f1": 0,
+      "new_f1": 11.03448275862069,
+      "delta_f1": 11.03448275862069
+    }
+  ]
+}
