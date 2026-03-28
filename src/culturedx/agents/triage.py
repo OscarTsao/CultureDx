@@ -8,20 +8,14 @@ from jinja2 import Environment, FileSystemLoader
 
 from culturedx.agents.base import AgentInput, AgentOutput, BaseAgent
 from culturedx.llm.json_utils import extract_json_from_response
+from culturedx.agents.triage_routing import (
+    CATEGORY_DISORDERS,
+    load_calibration_artifact,
+    normalize_triage_categories,
+    route_triage_categories,
+)
 
 logger = logging.getLogger(__name__)
-
-# Category -> disorder code mapping
-CATEGORY_DISORDERS: dict[str, list[str]] = {
-    "mood": ["F31", "F32", "F33"],
-    "anxiety": ["F40", "F41.0", "F41.1", "F42"],
-    "stress": ["F43.1", "F43.2"],
-    "somatoform": ["F45"],
-    "psychotic": ["F20", "F22"],
-    "sleep": ["F51"],
-}
-
-VALID_CATEGORIES = set(CATEGORY_DISORDERS.keys())
 
 
 class TriageAgent(BaseAgent):
@@ -34,6 +28,7 @@ class TriageAgent(BaseAgent):
         confidence_threshold: float = 0.7,
         max_categories: int = 3,
         activation_threshold: float = 0.2,
+        calibration_artifact_path: str | Path | None = None,
     ) -> None:
         self.llm = llm_client
         self.prompts_dir = Path(prompts_dir)
@@ -44,13 +39,33 @@ class TriageAgent(BaseAgent):
         self.confidence_threshold = confidence_threshold
         self.max_categories = max_categories
         self.activation_threshold = activation_threshold
+        self.calibration_artifact_path = (
+            Path(calibration_artifact_path)
+            if calibration_artifact_path is not None
+            else None
+        )
+        self._calibration_artifact, self._calibration_fallback_reason = load_calibration_artifact(
+            self.calibration_artifact_path
+        )
+        if self._calibration_artifact is not None:
+            logger.info(
+                "Loaded triage calibration artifact from %s (temperature=%.3f)",
+                self.calibration_artifact_path,
+                self._calibration_artifact.temperature,
+            )
+        elif self.calibration_artifact_path is not None:
+            logger.warning(
+                "Triage calibration artifact unavailable at %s: %s",
+                self.calibration_artifact_path,
+                self._calibration_fallback_reason,
+            )
 
     def run(self, input: AgentInput) -> AgentOutput:
         """Classify case into broad categories.
 
         Returns AgentOutput with parsed containing:
-            - categories: list of {category, confidence}
-            - disorder_codes: list of specific ICD-10 codes to check
+            - categories: list of routing objects with raw/calibrated scores
+            - disorder_codes: list of selected specific ICD-10 codes to check
         """
         # Build evidence summary
         evidence_summary = None
@@ -88,42 +103,60 @@ class TriageAgent(BaseAgent):
         )
 
     def _parse_triage(self, parsed: dict | list | None) -> dict:
-        """Parse triage response and expand categories to disorder codes."""
-        categories = []
-        if parsed and isinstance(parsed, dict) and "categories" in parsed:
-            for item in parsed["categories"]:
-                cat = item.get("category", "")
-                conf = max(0.0, min(1.0, float(item.get("confidence", 0.0))))
-                if cat in VALID_CATEGORIES:
-                    categories.append({"category": cat, "confidence": conf})
-
-        if not categories:
-            # Fallback: activate all categories
+        """Parse triage response and expand categories to a routing payload."""
+        category_inputs, fallback_reason = normalize_triage_categories(parsed)
+        routing = route_triage_categories(
+            category_inputs,
+            calibration_artifact=self._calibration_artifact,
+            calibration_artifact_path=self.calibration_artifact_path,
+            confidence_threshold=self.confidence_threshold,
+            activation_threshold=self.activation_threshold,
+            max_categories=self.max_categories,
+        )
+        if fallback_reason is not None:
             logger.warning("Triage produced no valid categories, activating all")
-            categories = [{"category": c, "confidence": 0.5} for c in VALID_CATEGORIES]
 
-        # Sort by confidence descending
-        categories.sort(key=lambda x: x["confidence"], reverse=True)
-
-        # Apply activation logic (spec §3 Stage 1):
-        # Activate all with confidence >= activation_threshold OR top-max_categories
-        top_conf = categories[0]["confidence"]
-        if top_conf >= self.confidence_threshold:
-            # High confidence in top-1: activate those >= activation_threshold
-            active = [c for c in categories if c["confidence"] >= self.activation_threshold]
-        else:
-            # Low confidence: take top-max_categories
-            active = categories[: self.max_categories]
-
-        # Expand to disorder codes
-        disorder_codes = []
-        for cat in active:
-            codes = CATEGORY_DISORDERS.get(cat["category"], [])
-            for code in codes:
-                if code not in disorder_codes:
-                    disorder_codes.append(code)
-
-        return {
-            "categories": active,
-            "disorder_codes": disorder_codes,
-        }
+        payload = routing.to_dict()
+        payload["fallback_reason"] = fallback_reason or payload.get("fallback_reason")
+        payload["categories"] = [
+            {
+                "category": category.category,
+                "confidence": category.calibrated_score,
+                "raw_score": category.raw_score,
+                "calibrated_score": category.calibrated_score,
+                "selected": category.selected,
+                "disorder_codes": category.disorder_codes,
+            }
+            for category in routing.categories
+        ]
+        payload["raw_categories"] = [
+            {
+                "category": item.category,
+                "raw_score": item.raw_score,
+            }
+            for item in category_inputs
+        ]
+        payload["routing_mode"] = (
+            "calibrated"
+            if self._calibration_artifact is not None
+            else "heuristic_fallback"
+        )
+        payload["calibration_status"] = (
+            "loaded" if self._calibration_artifact is not None else "fallback"
+        )
+        payload["calibration_artifact_path"] = (
+            str(self.calibration_artifact_path) if self.calibration_artifact_path else None
+        )
+        payload["calibration_method"] = (
+            self._calibration_artifact.method
+            if self._calibration_artifact is not None
+            else "identity"
+        )
+        payload["calibration_temperature"] = (
+            self._calibration_artifact.temperature
+            if self._calibration_artifact is not None
+            else 1.0
+        )
+        payload["selected_categories"] = routing.selected_categories
+        payload["candidate_disorder_codes"] = routing.candidate_disorder_codes
+        return payload
