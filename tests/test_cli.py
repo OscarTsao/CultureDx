@@ -57,3 +57,4 @@ class TestCLI:
 
         assert result.exit_code == 0, result.output
         assert "Evidence extraction: ENABLED" in result.output
+        assert "Evidence scope policy:" in result.output

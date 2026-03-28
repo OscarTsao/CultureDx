@@ -12,6 +12,7 @@ from culturedx.core.models import (
     ClinicalCase,
     DiagnosisResult,
     EvidenceBrief,
+    FailureInfo,
 )
 
 
@@ -100,8 +101,18 @@ class BaseModeOrchestrator(ABC):
         case: ClinicalCase,
         lang: str,
         criteria_results: list[CheckerOutput] | None = None,
+        failure: FailureInfo | None = None,
+        candidate_disorders: list[str] | None = None,
+        routing_mode: str = "auto",
+        scope_policy: str = "auto",
+        decision_trace: dict | None = None,
+        failures: list[FailureInfo] | None = None,
+        stage_timings: dict[str, float] | None = None,
     ) -> DiagnosisResult:
         """Return an abstention DiagnosisResult."""
+        failure_list = list(failures or [])
+        if failure is not None:
+            failure_list.append(failure)
         return DiagnosisResult(
             case_id=case.case_id,
             primary_diagnosis=None,
@@ -111,6 +122,13 @@ class BaseModeOrchestrator(ABC):
             mode=self.mode_name,
             model_name=self.llm.model if self.llm else "",
             language_used=lang,
+            candidate_disorders=candidate_disorders or [],
+            routing_mode=routing_mode,
+            scope_policy=scope_policy,
+            decision_trace=decision_trace,
+            stage_timings=stage_timings or {},
+            failure=failure,
+            failures=failure_list,
         )
 
     def _parallel_check_criteria(

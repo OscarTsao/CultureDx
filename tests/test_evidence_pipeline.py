@@ -76,6 +76,13 @@ class TestEvidencePipeline:
         assert len(brief.disorder_evidence) == 1
         assert brief.disorder_evidence[0].disorder_code == "F32"
 
+        somatic_span = next(span for span in brief.symptom_spans if span.text == "头疼")
+        assert somatic_span.expression_type == "somatized_expression"
+        assert somatic_span.normalized_concept == "头疼"
+        assert "F32.C6" in somatic_span.candidate_criteria
+        assert somatic_span.mapping_confidence > 0.0
+        assert somatic_span.cache_metadata["candidate_count"] >= 1
+
     def test_pipeline_en_no_somatization(self, tmp_path):
         prompts_dir = tmp_path / "prompts"
         prompts_dir.mkdir()
@@ -141,3 +148,61 @@ class TestEvidencePipeline:
         assert brief.case_id == "pipeline_zh_001"
         assert len(brief.symptom_spans) == 0  # No extraction
         assert len(brief.disorder_evidence) == 1  # Still matches criteria
+
+    def test_auto_scope_without_targets_uses_all_supported(self):
+        pipeline = EvidencePipeline(
+            llm_client=MagicMock(),
+            retriever=MockRetriever(),
+            extractor_enabled=False,
+            somatization_enabled=False,
+            min_confidence=0.0,
+        )
+        brief = pipeline.extract(_make_en_case())
+        assert brief.scope_policy == "all_supported"
+        assert "F32" in brief.target_disorders
+        assert "F41.1" in brief.target_disorders
+        assert len(brief.disorder_evidence) == len(brief.target_disorders)
+
+    def test_manual_scope_requires_explicit_targets(self):
+        pipeline = EvidencePipeline(
+            llm_client=MagicMock(),
+            retriever=MockRetriever(),
+            scope_policy="manual",
+            extractor_enabled=False,
+            somatization_enabled=False,
+            min_confidence=0.0,
+        )
+        brief = pipeline.extract(_make_en_case())
+        assert brief.disorder_evidence == []
+        assert len(brief.failures) == 1
+        assert brief.failures[0].code == "scope_resolution_failed"
+
+    def test_triage_scope_accepts_runtime_candidates(self):
+        pipeline = EvidencePipeline(
+            llm_client=MagicMock(),
+            retriever=MockRetriever(),
+            scope_policy="triage",
+            extractor_enabled=False,
+            somatization_enabled=False,
+            min_confidence=0.0,
+        )
+        brief = pipeline.extract(_make_en_case(), target_disorders=["F32", "F41.1"])
+        assert brief.scope_policy == "triage"
+        assert brief.target_disorders == ["F32", "F41.1"]
+        assert len(brief.disorder_evidence) == 2
+
+    def test_pipeline_with_reranking_enabled(self):
+        pipeline = EvidencePipeline(
+            llm_client=MagicMock(),
+            retriever=MockRetriever(),
+            scope_policy="manual",
+            target_disorders=["F32"],
+            rerank_enabled=True,
+            extractor_enabled=False,
+            somatization_enabled=False,
+            min_confidence=0.0,
+        )
+        brief = pipeline.extract(_make_en_case())
+        assert brief.disorder_evidence
+        criterion_evidence = brief.disorder_evidence[0].criteria_evidence[0]
+        assert getattr(criterion_evidence, "evidence_signals")["reranked"] is True

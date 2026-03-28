@@ -83,10 +83,17 @@ def run(
 
         retriever = create_retriever(cfg.evidence.retriever)
         click.echo(f"Retriever: {cfg.evidence.retriever.name}")
+        evidence_scope_policy = cfg.evidence.scope_policy
+        if evidence_scope_policy == "auto":
+            evidence_scope_policy = (
+                "manual" if cfg.mode.target_disorders else "all_supported"
+            )
+        click.echo(f"Evidence scope policy: {evidence_scope_policy}")
         evidence_pipeline = EvidencePipeline(
             llm_client=llm,
             retriever=retriever,
-            target_disorders=cfg.mode.target_disorders or ["F32", "F41.1"],
+            target_disorders=cfg.mode.target_disorders,
+            scope_policy=evidence_scope_policy,
             somatization_enabled=cfg.evidence.somatization.enabled,
             somatization_llm_fallback=cfg.evidence.somatization.llm_fallback,
             top_k=cfg.evidence.top_k_final,
@@ -102,6 +109,8 @@ def run(
         mode = HiEDMode(
             llm_client=llm,
             target_disorders=cfg.mode.target_disorders,
+            scope_policy=cfg.mode.scope_policy,
+            execution_mode=cfg.mode.execution_mode,
             contrastive_enabled=cfg.mode.contrastive_enabled,
             comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
         )
@@ -135,6 +144,9 @@ def run(
 
     if cfg.mode.target_disorders:
         click.echo(f"Target disorders: {', '.join(cfg.mode.target_disorders)}")
+    if mode_type == "hied":
+        click.echo(f"HiED scope policy: {cfg.mode.scope_policy}")
+        click.echo(f"HiED execution mode: {cfg.mode.execution_mode}")
 
     # 6. Run experiment
     base_output = output_dir or cfg.output_dir
@@ -269,7 +281,14 @@ def sweep(
         mode_type = condition.mode_type
         if mode_type == "hied":
             from culturedx.modes.hied import HiEDMode
-            mode = HiEDMode(llm_client=llm, target_disorders=condition.target_disorders, contrastive_enabled=cfg.mode.contrastive_enabled, comorbid_min_ratio=cfg.mode.comorbid_min_ratio)
+            mode = HiEDMode(
+                llm_client=llm,
+                target_disorders=condition.target_disorders,
+                scope_policy=cfg.mode.scope_policy,
+                execution_mode=cfg.mode.execution_mode,
+                contrastive_enabled=cfg.mode.contrastive_enabled,
+                comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
+            )
         elif mode_type == "psycot":
             from culturedx.modes.psycot import PsyCoTMode
             mode = PsyCoTMode(llm_client=llm, target_disorders=condition.target_disorders, comorbid_min_ratio=cfg.mode.comorbid_min_ratio)
@@ -293,10 +312,18 @@ def sweep(
             from culturedx.evidence.retriever_factory import create_retriever
 
             retriever = create_retriever(cfg.evidence.retriever)
+            evidence_scope_policy = cfg.evidence.scope_policy
+            if evidence_scope_policy == "auto":
+                evidence_scope_policy = (
+                    "manual"
+                    if (condition.target_disorders or cfg.mode.target_disorders)
+                    else "all_supported"
+                )
             evidence_pipeline = EvidencePipeline(
                 llm_client=llm,
                 retriever=retriever,
-                target_disorders=condition.target_disorders or cfg.mode.target_disorders or ["F32", "F41.1"],
+                target_disorders=condition.target_disorders or cfg.mode.target_disorders,
+                scope_policy=evidence_scope_policy,
                 somatization_enabled=condition.with_somatization,
                 somatization_llm_fallback=cfg.evidence.somatization.llm_fallback,
                 top_k=cfg.evidence.top_k_final,

@@ -2,6 +2,8 @@
 mode:
   name: hied
   type: hied
+  scope_policy: manual
+  execution_mode: benchmark_manual_scope
   target_disorders:
     - F32
     - F41.1
@@ -9,6 +11,9 @@ mode:
     - F43.1
     - F45
     - F51
+
+evidence:
+  scope_policy: manual
 
 llm:
   provider: ollama

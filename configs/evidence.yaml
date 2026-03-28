@@ -1,6 +1,13 @@
 evidence:
   enabled: true
+  # Scope policy:
+  # - auto: manual when target_disorders are set, otherwise all_supported
+  # - manual: explicit benchmark/manual disorder list
+  # - triage: production/open-set routing derived from upstream triage
+  # - all_supported: exhaustive sweep across supported disorders
+  scope_policy: auto
   retriever:
+    # Available names: mock, lexical, bge-m3, hybrid
     name: bge-m3
     model_id: BAAI/bge-m3
     embedding_dim: 1024

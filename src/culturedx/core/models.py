@@ -6,6 +6,31 @@ from dataclasses import dataclass, field
 from typing import Any, Literal
 
 
+ScopePolicy = Literal["auto", "manual", "triage", "all_supported"]
+ExecutionMode = Literal["auto", "benchmark_manual_scope", "production_open_set"]
+FailureCode = Literal[
+    "checker_failed",
+    "evidence_extraction_failed",
+    "evidence_unavailable",
+    "llm_parse_failed",
+    "rule_abstain",
+    "scope_resolution_failed",
+    "triage_failed",
+    "unsupported_language",
+]
+
+
+@dataclass
+class FailureInfo:
+    """Machine-readable failure or degradation event."""
+
+    code: FailureCode | str
+    stage: str
+    message: str = ""
+    recoverable: bool = False
+    details: dict[str, Any] = field(default_factory=dict)
+
+
 @dataclass
 class ScaleScore:
     """A standardized clinical scale score (e.g., PHQ-8, HAMD-17)."""
@@ -61,6 +86,14 @@ class SymptomSpan:
     symptom_type: str  # "somatic", "emotional", "behavioral", "cognitive"
     mapped_criterion: str | None = None
     is_somatic: bool = False
+    expression_type: str | None = None
+    normalized_concept: str | None = None
+    candidate_criteria: list[str] = field(default_factory=list)
+    mapping_confidence: float = 0.0
+    mapping_rationale: str | None = None
+    mapping_source: str | None = None
+    ambiguity_flags: list[str] = field(default_factory=list)
+    cache_metadata: dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass
@@ -92,6 +125,10 @@ class EvidenceBrief:
     disorder_evidence: list[DisorderEvidence] = field(default_factory=list)
     criteria_evidence: list[CriterionEvidence] = field(default_factory=list)
     temporal_features: Any = None  # TemporalFeatures, optional
+    scope_policy: ScopePolicy | str = "auto"
+    target_disorders: list[str] = field(default_factory=list)
+    failures: list[FailureInfo] = field(default_factory=list)
+    stage_timings: dict[str, float] = field(default_factory=dict)
 
 
 @dataclass
@@ -128,3 +165,10 @@ class DiagnosisResult:
     model_name: str = ""
     prompt_hash: str = ""
     language_used: str = ""  # "zh" or "en"
+    routing_mode: ExecutionMode | str = "auto"
+    scope_policy: ScopePolicy | str = "auto"
+    candidate_disorders: list[str] = field(default_factory=list)
+    decision_trace: dict[str, Any] | None = None
+    stage_timings: dict[str, float] = field(default_factory=dict)
+    failure: FailureInfo | None = None
+    failures: list[FailureInfo] = field(default_factory=list)

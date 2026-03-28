@@ -31,6 +31,8 @@ class ModeConfig(BaseModel):
     type: str = "single"
     variants: list[str] | None = None
     target_disorders: list[str] | None = None
+    scope_policy: str = "auto"
+    execution_mode: str = "auto"
     contrastive_enabled: bool = False
     comorbid_min_ratio: float = 0.9
 
@@ -68,6 +70,7 @@ class SomatizationConfig(BaseModel):
 
 class EvidenceConfig(BaseModel):
     enabled: bool = True
+    scope_policy: str = "auto"
     retriever: RetrieverConfig = RetrieverConfig()
     somatization: SomatizationConfig = SomatizationConfig()
     top_k_retrieval: int = 20

@@ -10,6 +10,7 @@
 from __future__ import annotations
 
 import logging
+import time
 from dataclasses import replace
 from pathlib import Path
 
@@ -22,6 +23,7 @@ from culturedx.core.models import (
     ClinicalCase,
     DiagnosisResult,
     EvidenceBrief,
+    FailureInfo,
 )
 from culturedx.diagnosis.calibrator import ConfidenceCalibrator
 from culturedx.diagnosis.pairwise_ranker import PairwiseRanker
@@ -31,6 +33,9 @@ from culturedx.modes.base import BaseModeOrchestrator
 from culturedx.ontology.icd10 import get_disorder_name
 
 logger = logging.getLogger(__name__)
+
+SUPPORTED_SCOPE_POLICIES = frozenset({"auto", "manual", "triage", "all_supported"})
+SUPPORTED_EXECUTION_MODES = frozenset({"auto", "benchmark_manual_scope", "production_open_set"})
 
 
 class HiEDMode(BaseModeOrchestrator):
@@ -49,6 +54,8 @@ class HiEDMode(BaseModeOrchestrator):
         llm_client,
         prompts_dir: str | Path = "prompts/agents",
         target_disorders: list[str] | None = None,
+        scope_policy: str = "auto",
+        execution_mode: str = "auto",
         abstain_threshold: float = 0.3,
         comorbid_threshold: float = 0.5,
         differential_threshold: float = 0.10,
@@ -60,6 +67,18 @@ class HiEDMode(BaseModeOrchestrator):
         self.llm = llm_client
         self.prompts_dir = Path(prompts_dir)
         self.target_disorders = target_disorders
+        if scope_policy not in SUPPORTED_SCOPE_POLICIES:
+            raise ValueError(
+                f"Unsupported HiED scope_policy {scope_policy!r}; "
+                f"expected one of {sorted(SUPPORTED_SCOPE_POLICIES)}"
+            )
+        if execution_mode not in SUPPORTED_EXECUTION_MODES:
+            raise ValueError(
+                f"Unsupported HiED execution_mode {execution_mode!r}; "
+                f"expected one of {sorted(SUPPORTED_EXECUTION_MODES)}"
+            )
+        self.scope_policy = scope_policy
+        self.execution_mode = execution_mode
 
         # Stage 1: Triage
         self.triage = TriageAgent(llm_client, prompts_dir)
@@ -101,21 +120,76 @@ class HiEDMode(BaseModeOrchestrator):
     def diagnose(
         self, case: ClinicalCase, evidence: EvidenceBrief | None = None
     ) -> DiagnosisResult:
+        case_start = time.monotonic()
+        stage_timings: dict[str, float] = {}
+        try:
+            routing_mode, scope_policy = self._resolve_mode_semantics()
+        except ValueError as exc:
+            failure = FailureInfo(
+                code="scope_resolution_failed",
+                stage="mode_semantics",
+                message=str(exc),
+            )
+            return self._abstain(
+                case,
+                case.language,
+                failure=failure,
+                routing_mode=self.execution_mode,
+                scope_policy=self.scope_policy,
+                stage_timings={"total": time.monotonic() - case_start},
+            )
+
         lang = case.language
+        failures = list(evidence.failures) if evidence and evidence.failures else []
         if lang not in ("zh", "en"):
-            return self._abstain(case, lang)
+            failure = FailureInfo(
+                code="unsupported_language",
+                stage="mode_entry",
+                message=f"Language {lang!r} is not supported.",
+            )
+            return self._abstain(
+                case,
+                lang,
+                failure=failure,
+                routing_mode=routing_mode,
+                scope_policy=scope_policy,
+                failures=failures,
+                stage_timings={"total": time.monotonic() - case_start},
+            )
 
         # When evidence is provided, transcript is supplementary — reduce budget
         max_chars = 8000 if evidence else 20000
         transcript_text = self._build_transcript_text(case, max_chars=max_chars)
         evidence_map = self._build_evidence_map(evidence) if evidence else {}
+        decision_trace: dict[str, object] = {
+            "routing_mode": routing_mode,
+            "scope_policy": scope_policy,
+            "evidence_failures": [f.code for f in failures],
+        }
 
         # === Stage 1: Triage ===
-        if self.target_disorders is not None:
-            # Skip triage when target disorders are explicitly set
-            candidate_codes = list(self.target_disorders)
-            logger.info("Skipping triage, using %d target disorders", len(candidate_codes))
+        if scope_policy == "manual":
+            candidate_codes = list(self.target_disorders or [])
+            decision_trace["triage"] = {
+                "used": False,
+                "reason": "manual_scope",
+            }
+            logger.info(
+                "HiED manual scope mode: using %d target disorders", len(candidate_codes)
+            )
+        elif scope_policy == "all_supported":
+            from culturedx.ontology.icd10 import list_disorders
+
+            candidate_codes = list_disorders()
+            decision_trace["triage"] = {
+                "used": False,
+                "reason": "all_supported_scope",
+            }
+            logger.info(
+                "HiED all-supported scope mode: using %d disorders", len(candidate_codes)
+            )
         else:
+            triage_start = time.monotonic()
             triage_input = AgentInput(
                 transcript_text=transcript_text,
                 evidence={"evidence_summary": self._build_global_evidence_summary(evidence)} if evidence else None,
@@ -127,37 +201,99 @@ class HiEDMode(BaseModeOrchestrator):
                 },
             )
             triage_output = self.triage.run(triage_input)
+            stage_timings["triage"] = time.monotonic() - triage_start
             if triage_output.parsed and "disorder_codes" in triage_output.parsed:
                 candidate_codes = triage_output.parsed["disorder_codes"]
+                decision_trace["triage"] = {
+                    "used": True,
+                    "categories": triage_output.parsed.get("categories", []),
+                }
             else:
                 logger.warning("Triage failed for case %s, using all disorders", case.case_id)
                 from culturedx.ontology.icd10 import list_disorders
+
                 candidate_codes = list_disorders()
+                triage_failure = FailureInfo(
+                    code="triage_failed",
+                    stage="triage",
+                    message="Triage response was missing disorder_codes; fell back to all supported disorders.",
+                    recoverable=True,
+                )
+                failures.append(triage_failure)
+                decision_trace["triage"] = {
+                    "used": True,
+                    "fallback": "all_supported",
+                    "failure_code": triage_failure.code,
+                }
 
         if not candidate_codes:
-            return self._abstain(case, lang)
+            failure = FailureInfo(
+                code="scope_resolution_failed",
+                stage="triage",
+                message="No candidate disorders resolved for HiED.",
+                details={"scope_policy": scope_policy},
+            )
+            return self._abstain(
+                case,
+                lang,
+                failure=failure,
+                routing_mode=routing_mode,
+                scope_policy=scope_policy,
+                decision_trace=decision_trace,
+                failures=failures,
+                stage_timings={**stage_timings, "total": time.monotonic() - case_start},
+            )
 
         logger.info("Case %s: %d candidate disorders from triage", case.case_id, len(candidate_codes))
+        decision_trace["candidate_disorders"] = candidate_codes
 
         # === Stage 2: Criterion Checkers (parallel) ===
+        checker_start = time.monotonic()
         checker_outputs = self._parallel_check_criteria(
             self.checker, candidate_codes, transcript_text, evidence_map, lang,
         )
+        stage_timings["checker_fanout"] = time.monotonic() - checker_start
 
         if not checker_outputs:
-            return self._abstain(case, lang, criteria_results=[])
+            failure = FailureInfo(
+                code="checker_failed",
+                stage="criterion_checkers",
+                message="No checker outputs were produced for the candidate disorders.",
+            )
+            return self._abstain(
+                case,
+                lang,
+                criteria_results=[],
+                failure=failure,
+                candidate_disorders=candidate_codes,
+                routing_mode=routing_mode,
+                scope_policy=scope_policy,
+                decision_trace=decision_trace,
+                failures=failures,
+                stage_timings={**stage_timings, "total": time.monotonic() - case_start},
+            )
 
         # === Stage 2.5: Contrastive Disambiguation ===
         if self.contrastive_enabled and self.contrastive is not None:
+            contrastive_start = time.monotonic()
             checker_outputs = self._run_contrastive(
                 checker_outputs, transcript_text, lang,
             )
+            stage_timings["contrastive"] = time.monotonic() - contrastive_start
 
         # === Stage 3: Logic Engine (deterministic) ===
+        logic_start = time.monotonic()
         logic_output = self.logic_engine.evaluate(checker_outputs)
+        stage_timings["logic_engine"] = time.monotonic() - logic_start
 
         if not logic_output.confirmed:
             # No disorders meet thresholds
+            failure = FailureInfo(
+                code="rule_abstain",
+                stage="logic_engine",
+                message="No disorders satisfied ICD-10 threshold rules.",
+                details={"confirmed_codes": logic_output.confirmed_codes},
+            )
             return DiagnosisResult(
                 case_id=case.case_id,
                 primary_diagnosis=None,
@@ -167,6 +303,16 @@ class HiEDMode(BaseModeOrchestrator):
                 mode=self.mode_name,
                 model_name=self.llm.model,
                 language_used=lang,
+                candidate_disorders=candidate_codes,
+                routing_mode=routing_mode,
+                scope_policy=scope_policy,
+                decision_trace={
+                    **decision_trace,
+                    "logic_engine_confirmed_codes": logic_output.confirmed_codes,
+                },
+                stage_timings={**stage_timings, "total": time.monotonic() - case_start},
+                failure=failure,
+                failures=failures + [failure],
             )
 
         # === Stage 4: Calibrator (statistical) ===
@@ -175,6 +321,7 @@ class HiEDMode(BaseModeOrchestrator):
             r.disorder_code: r.confirmation_type
             for r in logic_output.confirmed
         }
+        calibrator_start = time.monotonic()
         cal_output = self.calibrator.calibrate(
             confirmed_disorders=logic_output.confirmed_codes,
             checker_outputs=checker_outputs,
@@ -182,8 +329,14 @@ class HiEDMode(BaseModeOrchestrator):
             confirmation_types=confirmation_types,
             scale_scores=case.scale_scores,
         )
+        stage_timings["calibrator"] = time.monotonic() - calibrator_start
 
         if cal_output.primary is None:
+            failure = FailureInfo(
+                code="rule_abstain",
+                stage="calibrator",
+                message="Calibrator abstained from selecting a primary diagnosis.",
+            )
             return DiagnosisResult(
                 case_id=case.case_id,
                 primary_diagnosis=None,
@@ -193,16 +346,25 @@ class HiEDMode(BaseModeOrchestrator):
                 mode=self.mode_name,
                 model_name=self.llm.model,
                 language_used=lang,
+                candidate_disorders=candidate_codes,
+                routing_mode=routing_mode,
+                scope_policy=scope_policy,
+                decision_trace=decision_trace,
+                stage_timings={**stage_timings, "total": time.monotonic() - case_start},
+                failure=failure,
+                failures=failures + [failure],
             )
 
         # === Stage 4a: Pairwise Re-ranking (optional, no LLM) ===
         if self.pairwise_ranker is not None:
             all_cal = [cal_output.primary] + cal_output.comorbid
             if len(all_cal) >= 2:
+                ranker_start = time.monotonic()
                 codes = [c.disorder_code for c in all_cal]
                 reranked_codes = self.pairwise_ranker.rerank(
                     codes, checker_outputs,
                 )
+                stage_timings["pairwise_ranker"] = time.monotonic() - ranker_start
                 if reranked_codes[0] != codes[0]:
                     logger.info(
                         "Pairwise ranker reordered: %s -> %s",
@@ -221,6 +383,7 @@ class HiEDMode(BaseModeOrchestrator):
         if len(all_calibrated) >= 2:
             gap = all_calibrated[0].confidence - all_calibrated[1].confidence
             if gap < self.differential_threshold:
+                differential_start = time.monotonic()
                 logger.info(
                     "Case %s: confidence gap %.4f < %.2f, running differential",
                     case.case_id, gap, self.differential_threshold,
@@ -228,7 +391,21 @@ class HiEDMode(BaseModeOrchestrator):
                 diff_result = self._run_differential(
                     case, checker_outputs, logic_output, lang, transcript_text,
                 )
+                stage_timings["differential"] = time.monotonic() - differential_start
                 if diff_result is not None:
+                    diff_result.candidate_disorders = candidate_codes
+                    diff_result.routing_mode = routing_mode
+                    diff_result.scope_policy = scope_policy
+                    diff_result.decision_trace = {
+                        **decision_trace,
+                        **(diff_result.decision_trace or {}),
+                    }
+                    diff_result.stage_timings = {
+                        **stage_timings,
+                        **(diff_result.stage_timings or {}),
+                        "total": time.monotonic() - case_start,
+                    }
+                    diff_result.failures = failures + list(diff_result.failures)
                     return diff_result
                 logger.info("Differential inconclusive, falling back to calibrator")
 
@@ -237,10 +414,12 @@ class HiEDMode(BaseModeOrchestrator):
         confidences = {c.disorder_code: c.confidence for c in all_calibrated}
         confirmed_codes = [c.disorder_code for c in all_calibrated]
 
+        comorbidity_start = time.monotonic()
         comorbidity_result = self.comorbidity_resolver.resolve(
             confirmed=confirmed_codes,
             confidences=confidences,
         )
+        stage_timings["comorbidity"] = time.monotonic() - comorbidity_start
 
         # Find the calibrated diagnosis for the resolved primary
         primary_cal = next(
@@ -248,17 +427,67 @@ class HiEDMode(BaseModeOrchestrator):
             cal_output.primary,
         )
 
+        stage_timings["total"] = time.monotonic() - case_start
+
         return DiagnosisResult(
             case_id=case.case_id,
             primary_diagnosis=comorbidity_result.primary,
             comorbid_diagnoses=comorbidity_result.comorbid,
             confidence=primary_cal.confidence,
-            decision=primary_cal.decision,
+            decision="diagnosis",
             criteria_results=checker_outputs,
             mode=self.mode_name,
             model_name=self.llm.model,
             language_used=lang,
+            candidate_disorders=candidate_codes,
+            routing_mode=routing_mode,
+            scope_policy=scope_policy,
+            decision_trace={
+                **decision_trace,
+                "logic_engine_confirmed_codes": logic_output.confirmed_codes,
+                "calibration": {
+                    "primary": primary_cal.disorder_code,
+                    "primary_reason": primary_cal.decision_reason,
+                    "comorbid": [c.disorder_code for c in cal_output.comorbid],
+                    "abstained": [c.disorder_code for c in cal_output.abstained],
+                    "rejected": [c.disorder_code for c in cal_output.rejected],
+                },
+                "comorbidity": {
+                    "excluded": comorbidity_result.excluded,
+                    "rejected": comorbidity_result.rejected,
+                },
+            },
+            stage_timings=stage_timings,
+            failures=failures,
         )
+
+    def _resolve_mode_semantics(self) -> tuple[str, str]:
+        """Resolve explicit benchmark/manual vs production/open-set semantics."""
+        scope_policy = self.scope_policy
+        if scope_policy == "auto":
+            scope_policy = "manual" if self.target_disorders is not None else "triage"
+
+        if scope_policy == "manual" and not self.target_disorders:
+            raise ValueError("manual scope requires explicit target_disorders")
+        if self.target_disorders is not None and scope_policy != "manual":
+            raise ValueError(
+                "target_disorders implies benchmark/manual scope; set scope_policy='manual' or omit target_disorders"
+            )
+
+        execution_mode = self.execution_mode
+        if execution_mode == "auto":
+            execution_mode = (
+                "benchmark_manual_scope"
+                if scope_policy == "manual"
+                else "production_open_set"
+            )
+
+        if execution_mode == "production_open_set" and scope_policy == "manual":
+            raise ValueError(
+                "production_open_set mode cannot run with manual target_disorders"
+            )
+
+        return execution_mode, scope_policy
 
     def _run_contrastive(
         self,
