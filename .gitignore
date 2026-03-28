@@ -8,3 +8,14 @@ data/cache/
 *.db
 *.sqlite
 .env
+
+# Large model artifacts (adapter weights, tokenizer, checkpoints)
+outputs/finetune/criterion_checker_lora/*.safetensors
+outputs/finetune/criterion_checker_lora/tokenizer.json
+outputs/finetune/criterion_checker_lora/vocab.json
+outputs/finetune/criterion_checker_lora/merges.txt
+outputs/finetune/criterion_checker_lora/checkpoint-*/
+outputs/finetune/criterion_checker_lora/chat_template.jinja
+
+# Temp PID files
+outputs/*_pid.txt

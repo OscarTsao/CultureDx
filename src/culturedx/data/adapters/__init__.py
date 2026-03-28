@@ -13,7 +13,7 @@ _REGISTRY: dict[str, type[BaseDatasetAdapter]] = {
     "lingxidiag16k": LingxiDiag16kAdapter,
     "mdd5k": MDD5kAdapter,
     "mdd5k_raw": MDD5kRawAdapter,
-    "pdch": PDCHAdapter,
+    "pdch": PDCHAdapter,  # NOT USED: dialogue data unavailable (restricted access)
     "edaic": EDAICAdapter,
 }
 

@@ -41,7 +41,7 @@ uv run culturedx sweep --config configs/base.yaml -d mdd5k --modes hied,single -
 |--------|---------|
 | core/config.py | Pydantic config models (all YAML fields) |
 | core/models.py | Data structures (ClinicalCase, EvidenceBrief, DiagnosisResult) |
-| data/adapters/ | Dataset adapters (MDD-5k, PDCH, E-DAIC) → ClinicalCase |
+| data/adapters/ | Dataset adapters (LingxiDiag16k, MDD-5k, E-DAIC) → ClinicalCase; PDCH adapter retained but unused (restricted data) |
 | llm/client.py | OllamaClient (temperature=0, top_k=1 = greedy) |
 | llm/cache.py | SQLite-backed LLM response cache |
 | llm/json_utils.py | JSON extraction from LLM responses |

@@ -1,5 +1,11 @@
 # src/culturedx/data/adapters/pdch.py
-"""PDCH dataset adapter."""
+"""PDCH dataset adapter.
+
+NOTE: NOT USED in the current study. The PDCH dialogue transcripts are hosted
+on Science Data Bank (DOI: 10.57760/sciencedb.27818) with RESTRICTED access and
+were not obtained for this project. Only HAMD-17 metadata is publicly available.
+This adapter is retained for potential future work if access is granted.
+"""
 from __future__ import annotations
 
 import json
@@ -10,7 +16,11 @@ from culturedx.data.adapters.base import BaseDatasetAdapter
 
 
 class PDCHAdapter(BaseDatasetAdapter):
-    """Adapter for PDCH: Chinese depression consultations with HAMD-17."""
+    """Adapter for PDCH: Chinese depression consultations with HAMD-17.
+
+    Status: NOT USED — dialogue data unavailable (restricted access).
+    Retained for future work.
+    """
 
     def __init__(self, data_path: str | Path, binary_threshold: int = 8, **kwargs) -> None:
         super().__init__(data_path, **kwargs)
