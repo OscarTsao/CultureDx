@@ -12,7 +12,6 @@ import json
 import logging
 import time
 from collections import Counter, defaultdict
-from dataclasses import asdict
 from pathlib import Path
 
 logging.basicConfig(
@@ -66,39 +65,27 @@ def run_experiment(
     cases,
     mode,
     mode_name: str,
-    output_path: Path,
+    output_dir: Path,
 ):
-    """Run a mode on cases and return results + timing."""
-    results = []
-    start = time.time()
-    for i, case in enumerate(cases):
-        t0 = time.time()
-        result = mode.diagnose(case, evidence=None)
-        elapsed = time.time() - t0
-        results.append(result)
-        logger.info(
-            "[%s] %d/%d case=%s pred=%s gold=%s (%.1fs)",
-            mode_name, i + 1, len(cases), case.case_id,
-            result.primary_diagnosis, case.diagnoses, elapsed,
-        )
-    total_time = time.time() - start
+    """Run a mode via ExperimentRunner and return results + timing."""
+    from culturedx.pipeline.runner import ExperimentRunner
 
-    # Save predictions
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(
-            {
-                "mode": mode_name,
-                "n_cases": len(cases),
-                "total_seconds": round(total_time, 1),
-                "avg_seconds_per_case": round(total_time / len(cases), 1),
-                "predictions": [asdict(r) for r in results],
-            },
-            f,
-            indent=2,
-            ensure_ascii=False,
-        )
-    return results, total_time
+    mode_dir = output_dir / mode_name
+    runner = ExperimentRunner(mode=mode, output_dir=mode_dir)
+    runner.save_run_info(
+        config_dict={"mode": mode_name},
+        dataset_name=cases[0].dataset if cases else "",
+        num_cases=len(cases),
+        mode_type=mode_name,
+    )
+
+    start = time.time()
+    results = runner.run(cases)
+    total_time = time.time() - start
+    if any(c.diagnoses for c in cases):
+        runner.evaluate(results, cases)
+
+    return results, total_time, mode_dir
 
 
 def evaluate(results, cases, mode_name: str) -> dict:
@@ -222,11 +209,11 @@ def main():
             logger.error("Unknown mode: %s", mode_name)
             continue
 
-        pred_path = output_dir / f"{mode_name}_predictions.json"
-        results, total_time = run_experiment(cases, mode, mode_name, pred_path)
+        results, total_time, mode_dir = run_experiment(cases, mode, mode_name, output_dir)
 
         eval_result = evaluate(results, cases, mode_name)
         eval_result["total_seconds"] = round(total_time, 1)
+        eval_result["artifact_dir"] = str(mode_dir)
         all_eval[mode_name] = eval_result
 
         logger.info(

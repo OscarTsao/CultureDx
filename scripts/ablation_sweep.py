@@ -33,7 +33,7 @@ import json
 import logging
 import time
 from collections import Counter, defaultdict
-from dataclasses import asdict, dataclass, field
+from dataclasses import dataclass, field
 from pathlib import Path
 
 logging.basicConfig(
@@ -204,6 +204,8 @@ def run_condition(
     contrastive_enabled: bool = False,
 ) -> dict:
     """Run a single ablation condition on all cases."""
+    from culturedx.pipeline.runner import ExperimentRunner
+
     logger.info("=" * 60)
     logger.info("Running condition: %s", condition.name)
     logger.info(
@@ -216,72 +218,40 @@ def run_condition(
     mode = create_mode(condition.mode_type, llm_client, condition.target_disorders, diff_threshold=diff_threshold, contrastive_enabled=contrastive_enabled)
     evidence_pipeline = create_evidence_pipeline(llm_client, condition)
 
-    results = []
-    start = time.time()
-
-    for i, case in enumerate(cases):
-        t0 = time.time()
-
-        # Extract evidence if enabled
-        evidence = None
-        if evidence_pipeline is not None:
-            try:
-                evidence = evidence_pipeline.extract(case)
-                logger.info(
-                    "[%s] %d/%d evidence extracted for %s (%d spans)",
-                    condition.name, i + 1, len(cases), case.case_id,
-                    len(evidence.symptom_spans) if evidence.symptom_spans else 0,
-                )
-            except Exception as e:
-                logger.warning(
-                    "[%s] Evidence extraction failed for %s: %s",
-                    condition.name, case.case_id, str(e),
-                )
-
-        # Run diagnosis
-        result = mode.diagnose(case, evidence=evidence)
-        elapsed = time.time() - t0
-        results.append(result)
-
-        logger.info(
-            "[%s] %d/%d case=%s pred=%s gold=%s conf=%.3f (%.1fs)",
-            condition.name, i + 1, len(cases), case.case_id,
-            result.primary_diagnosis, case.diagnoses,
-            result.confidence, elapsed,
-        )
-
-    total_time = time.time() - start
-
     # Save predictions
     cond_dir = output_dir / condition.name
     cond_dir.mkdir(parents=True, exist_ok=True)
+    runner = ExperimentRunner(
+        mode=mode,
+        output_dir=cond_dir,
+        evidence_pipeline=evidence_pipeline,
+    )
+    runner.save_run_info(
+        config_dict={
+            "condition": condition.name,
+            "mode": condition.mode_type,
+            "with_evidence": condition.with_evidence,
+            "retriever": condition.retriever,
+            "with_somatization": condition.with_somatization,
+            "target_disorders": condition.target_disorders,
+        },
+        dataset_name=cases[0].dataset if cases else "",
+        num_cases=len(cases),
+        mode_type=condition.mode_type,
+    )
 
-    pred_path = cond_dir / "predictions.json"
-    with open(pred_path, "w", encoding="utf-8") as f:
-        json.dump(
-            {
-                "condition": condition.name,
-                "mode": condition.mode_type,
-                "with_evidence": condition.with_evidence,
-                "retriever": condition.retriever,
-                "with_somatization": condition.with_somatization,
-                "n_cases": len(cases),
-                "total_seconds": round(total_time, 1),
-                "avg_seconds_per_case": round(total_time / len(cases), 1),
-                "predictions": [asdict(r) for r in results],
-            },
-            f,
-            indent=2,
-            ensure_ascii=False,
-        )
+    start = time.time()
+    results = runner.run(cases)
+    total_time = time.time() - start
+    runner.evaluate(results, cases)
 
     # Evaluate
     metrics = evaluate(results, cases, condition.name)
     metrics["total_seconds"] = round(total_time, 1)
     metrics["avg_seconds_per_case"] = round(total_time / len(cases), 1)
 
-    # Save metrics
-    with open(cond_dir / "metrics.json", "w", encoding="utf-8") as f:
+    # Save condition-level report alongside canonical runner artifacts.
+    with open(cond_dir / "condition_report.json", "w", encoding="utf-8") as f:
         json.dump(metrics, f, indent=2, ensure_ascii=False)
 
     return metrics
