@@ -1,0 +1,16 @@
+{
+  "diagnosis": {
+    "top1_accuracy": 0.36507936507936506,
+    "top3_accuracy": 0.3968253968253968,
+    "macro_f1": 0.1069767441860465
+  },
+  "comorbidity": {
+    "hamming_accuracy": 0.373015873015873,
+    "subset_accuracy": 0.3492063492063492,
+    "comorbidity_detection_f1": 0.0,
+    "label_coverage": 0.3968253968253968,
+    "label_precision": 0.373015873015873,
+    "avg_predicted_labels": 1.0476190476190477,
+    "avg_gold_labels": 1.0
+  }
+}
