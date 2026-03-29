@@ -1,0 +1,10 @@
+# Canonical target disorder set for benchmark evaluation.
+# All configs and scripts should reference this file as the single source of truth.
+# The ontology supports 13 disorders total (see ontology/data/icd10_criteria.json);
+# this subset covers the core differential diagnosis scope for Chinese psychiatric evaluation.
+target_disorders:
+  - F32    # Depressive episode
+  - F33    # Recurrent depressive disorder
+  - F41.1  # Generalised anxiety disorder
+  - F42    # Obsessive-compulsive disorder
+  - F43.1  # Post-traumatic stress disorder

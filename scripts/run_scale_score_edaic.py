@@ -11,6 +11,8 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
+from culturedx.core.target_disorders import load_final_target_disorders
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(name)s %(levelname)s %(message)s",
@@ -20,7 +22,7 @@ logger = logging.getLogger("scale_score_edaic")
 SEED = 42
 OUTPUT_BASE = Path("outputs/sweeps")
 DATA_PATH = "data/raw/daic_explain/edaic_processed.json"
-TARGET_DISORDERS = ["F32", "F33", "F41.1", "F42", "F43.1"]
+TARGET_DISORDERS = load_final_target_disorders()
 
 
 def main():

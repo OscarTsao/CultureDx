@@ -8,6 +8,7 @@ mode:
     - F33
     - F41.1
     - F42
+    - F43.1
 
 llm:
   provider: ollama

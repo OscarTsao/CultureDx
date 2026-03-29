@@ -6,11 +6,10 @@ mode:
   execution_mode: benchmark_manual_scope
   target_disorders:
     - F32
+    - F33
     - F41.1
     - F42
     - F43.1
-    - F45
-    - F51
 
 evidence:
   scope_policy: manual

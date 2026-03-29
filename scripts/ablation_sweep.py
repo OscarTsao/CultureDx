@@ -36,11 +36,14 @@ from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from culturedx.core.target_disorders import load_final_target_disorders
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(name)s %(levelname)s %(message)s",
 )
 logger = logging.getLogger("ablation")
+DEFAULT_TARGET_DISORDERS = load_final_target_disorders()
 
 
 @dataclass
@@ -51,9 +54,9 @@ class AblationCondition:
     with_evidence: bool = False
     retriever: str = "none"  # "none", "mock", "bge-m3"
     with_somatization: bool = False
-    target_disorders: list[str] = field(default_factory=lambda: [
-        "F32", "F33", "F41.1", "F42", "F43.1",
-    ])
+    target_disorders: list[str] = field(
+        default_factory=lambda: list(DEFAULT_TARGET_DISORDERS)
+    )
 
 
 def build_conditions(
@@ -71,7 +74,7 @@ def build_conditions(
     --somatization-ablation: adds with/without somatization per mode (requires evidence).
     --full: all combinations.
     """
-    td = target_disorders or ["F32", "F33", "F41.1", "F42", "F43.1"]
+    td = target_disorders or list(DEFAULT_TARGET_DISORDERS)
     conditions = []
 
     for mode in modes:
@@ -314,7 +317,7 @@ def main():
     parser.add_argument("--base-url", type=str, default=None,
                         help="LLM API base URL (auto-detected from provider)")
     parser.add_argument("--target-disorders", type=str,
-                        default="F32,F33,F41.1,F42,F43.1")
+                        default=",".join(DEFAULT_TARGET_DISORDERS))
     parser.add_argument("--output-dir", type=str, default="outputs/sweeps")
     parser.add_argument("--cache-dir", type=str, default="data/cache")
     parser.add_argument("--sweep-name", type=str, default="ablation")

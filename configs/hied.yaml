@@ -10,6 +10,7 @@ mode:
     - F33
     - F41.1
     - F42
+    - F43.1
 
 evidence:
   scope_policy: manual
