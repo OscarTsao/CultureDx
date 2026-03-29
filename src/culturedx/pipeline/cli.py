@@ -10,6 +10,23 @@ import click
 from culturedx.core.config import load_config
 
 
+def _create_configured_llm(cfg, llm_cfg):
+    """Build an LLM client from a config section without changing defaults."""
+    from culturedx.llm import create_llm_client
+
+    return create_llm_client(
+        provider=llm_cfg.provider,
+        base_url=llm_cfg.base_url,
+        model=llm_cfg.model_id,
+        temperature=llm_cfg.temperature,
+        top_k=llm_cfg.top_k,
+        timeout=cfg.request_timeout_sec,
+        cache_path=Path(cfg.cache_dir) / "llm_cache.db",
+        disable_thinking=getattr(llm_cfg, "disable_thinking", True),
+        max_concurrent=getattr(llm_cfg, "max_concurrent", 4),
+    )
+
+
 @click.group()
 @click.option("--verbose", "-v", is_flag=True, help="Enable debug logging")
 def cli(verbose: bool) -> None:
@@ -59,20 +76,9 @@ def run(
         cases = cases[:limit]
     click.echo(f"Loaded {len(cases)} cases.")
 
-    # 3. Create LLM client
-    from culturedx.llm import create_llm_client
-
-    llm = create_llm_client(
-        provider=cfg.llm.provider,
-        base_url=cfg.llm.base_url,
-        model=cfg.llm.model_id,
-        temperature=cfg.llm.temperature,
-        top_k=cfg.llm.top_k,
-        timeout=cfg.request_timeout_sec,
-        cache_path=Path(cfg.cache_dir) / "llm_cache.db",
-        disable_thinking=getattr(cfg.llm, 'disable_thinking', True),
-        max_concurrent=getattr(cfg.llm, 'max_concurrent', 4),
-    )
+    # 3. Create LLM clients
+    llm = _create_configured_llm(cfg, cfg.llm)
+    checker_llm = _create_configured_llm(cfg, cfg.checker_llm) if cfg.checker_llm else None
 
     # 4. Create evidence pipeline (optional)
     evidence_pipeline = None
@@ -106,7 +112,7 @@ def run(
 
     if mode_type == "hied":
         from culturedx.modes.hied import HiEDMode
-        mode = HiEDMode(
+        mode_kwargs = dict(
             llm_client=llm,
             target_disorders=cfg.mode.target_disorders,
             scope_policy=cfg.mode.scope_policy,
@@ -114,13 +120,19 @@ def run(
             contrastive_enabled=cfg.mode.contrastive_enabled,
             comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
         )
+        if checker_llm is not None:
+            mode_kwargs["checker_llm_client"] = checker_llm
+        mode = HiEDMode(**mode_kwargs)
     elif mode_type == "psycot":
         from culturedx.modes.psycot import PsyCoTMode
-        mode = PsyCoTMode(
+        mode_kwargs = dict(
             llm_client=llm,
             target_disorders=cfg.mode.target_disorders,
             comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
         )
+        if checker_llm is not None:
+            mode_kwargs["checker_llm_client"] = checker_llm
+        mode = PsyCoTMode(**mode_kwargs)
     elif mode_type == "mas":
         from culturedx.modes.mas import MASMode
         mode = MASMode(
@@ -258,20 +270,9 @@ def sweep(
         cases = cases[:limit]
     click.echo(f"Loaded {len(cases)} cases.")
 
-    # Create LLM client
-    from culturedx.llm import create_llm_client
-
-    llm = create_llm_client(
-        provider=cfg.llm.provider,
-        base_url=cfg.llm.base_url,
-        model=cfg.llm.model_id,
-        temperature=cfg.llm.temperature,
-        top_k=cfg.llm.top_k,
-        timeout=cfg.request_timeout_sec,
-        cache_path=Path(cfg.cache_dir) / "llm_cache.db",
-        disable_thinking=getattr(cfg.llm, 'disable_thinking', True),
-        max_concurrent=getattr(cfg.llm, 'max_concurrent', 4),
-    )
+    # Create LLM clients
+    llm = _create_configured_llm(cfg, cfg.llm)
+    checker_llm = _create_configured_llm(cfg, cfg.checker_llm) if cfg.checker_llm else None
 
     def run_fn(condition: SweepCondition, cases_list: list) -> tuple:
         """Execute a single sweep condition and return (results, metrics)."""
@@ -281,7 +282,7 @@ def sweep(
         mode_type = condition.mode_type
         if mode_type == "hied":
             from culturedx.modes.hied import HiEDMode
-            mode = HiEDMode(
+            mode_kwargs = dict(
                 llm_client=llm,
                 target_disorders=condition.target_disorders,
                 scope_policy=cfg.mode.scope_policy,
@@ -289,9 +290,19 @@ def sweep(
                 contrastive_enabled=cfg.mode.contrastive_enabled,
                 comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
             )
+            if checker_llm is not None:
+                mode_kwargs["checker_llm_client"] = checker_llm
+            mode = HiEDMode(**mode_kwargs)
         elif mode_type == "psycot":
             from culturedx.modes.psycot import PsyCoTMode
-            mode = PsyCoTMode(llm_client=llm, target_disorders=condition.target_disorders, comorbid_min_ratio=cfg.mode.comorbid_min_ratio)
+            mode_kwargs = dict(
+                llm_client=llm,
+                target_disorders=condition.target_disorders,
+                comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
+            )
+            if checker_llm is not None:
+                mode_kwargs["checker_llm_client"] = checker_llm
+            mode = PsyCoTMode(**mode_kwargs)
         elif mode_type == "mas":
             from culturedx.modes.mas import MASMode
             mode = MASMode(llm_client=llm, target_disorders=condition.target_disorders)

@@ -88,6 +88,7 @@ class CultureDxConfig(BaseModel):
     request_timeout_sec: int = 300
     mode: ModeConfig = ModeConfig()
     llm: LLMConfig = LLMConfig()
+    checker_llm: LLMConfig | None = None
     eval: EvalConfig = EvalConfig()
     dataset: DatasetConfig = DatasetConfig()
     evidence: EvidenceConfig = EvidenceConfig()

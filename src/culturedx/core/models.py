@@ -163,6 +163,7 @@ class DiagnosisResult:
     criteria_results: list[CheckerOutput] = field(default_factory=list)
     mode: str = ""
     model_name: str = ""
+    checker_model_name: str | None = None
     prompt_hash: str = ""
     language_used: str = ""  # "zh" or "en"
     routing_mode: ExecutionMode | str = "auto"

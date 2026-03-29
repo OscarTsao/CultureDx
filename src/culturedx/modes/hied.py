@@ -53,6 +53,7 @@ class HiEDMode(BaseModeOrchestrator):
         self,
         llm_client,
         prompts_dir: str | Path = "prompts/agents",
+        checker_llm_client=None,
         target_disorders: list[str] | None = None,
         scope_policy: str = "auto",
         execution_mode: str = "auto",
@@ -65,6 +66,12 @@ class HiEDMode(BaseModeOrchestrator):
     ) -> None:
         self.mode_name = "hied"
         self.llm = llm_client
+        self.checker_llm = checker_llm_client or llm_client
+        self.checker_model_name = (
+            getattr(checker_llm_client, "model", None)
+            if checker_llm_client is not None
+            else None
+        )
         self.prompts_dir = Path(prompts_dir)
         self.target_disorders = target_disorders
         if scope_policy not in SUPPORTED_SCOPE_POLICIES:
@@ -84,7 +91,7 @@ class HiEDMode(BaseModeOrchestrator):
         self.triage = TriageAgent(llm_client, prompts_dir)
 
         # Stage 2: Criterion Checkers (one per disorder, reuse single agent)
-        self.checker = CriterionCheckerAgent(llm_client, prompts_dir)
+        self.checker = CriterionCheckerAgent(self.checker_llm, prompts_dir)
 
         # Stage 2.5: Contrastive disambiguation (optional)
         self.contrastive_enabled = contrastive_enabled
@@ -116,6 +123,27 @@ class HiEDMode(BaseModeOrchestrator):
         if ranker_weights_path is not None:
             self.pairwise_ranker = PairwiseRanker(ranker_weights_path)
             logger.info("Pairwise ranker loaded from %s", ranker_weights_path)
+
+    @staticmethod
+    def _build_evidence_map(evidence: EvidenceBrief) -> dict[str, str | dict[str, str]]:
+        """Build checker payloads with per-disorder evidence and temporal wiring."""
+        result: dict[str, str | dict[str, str]] = BaseModeOrchestrator._build_evidence_map(evidence)
+
+        temporal_features = evidence.temporal_features
+        if temporal_features is not None and hasattr(temporal_features, "summary_zh"):
+            temporal_summary = temporal_features.summary_zh()
+            if temporal_summary:
+                existing = result.get("F41.1")
+                if isinstance(existing, dict):
+                    existing["temporal_summary"] = temporal_summary
+                elif isinstance(existing, str):
+                    result["F41.1"] = {
+                        "evidence_summary": existing,
+                        "temporal_summary": temporal_summary,
+                    }
+                else:
+                    result["F41.1"] = {"temporal_summary": temporal_summary}
+        return result
 
     def diagnose(
         self, case: ClinicalCase, evidence: EvidenceBrief | None = None
@@ -250,7 +278,12 @@ class HiEDMode(BaseModeOrchestrator):
         # === Stage 2: Criterion Checkers (parallel) ===
         checker_start = time.monotonic()
         checker_outputs = self._parallel_check_criteria(
-            self.checker, candidate_codes, transcript_text, evidence_map, lang,
+            self.checker,
+            candidate_codes,
+            transcript_text,
+            evidence_map,
+            lang,
+            checker_llm_client=self.checker_llm,
         )
         stage_timings["checker_fanout"] = time.monotonic() - checker_start
 
@@ -302,6 +335,7 @@ class HiEDMode(BaseModeOrchestrator):
                 criteria_results=checker_outputs,
                 mode=self.mode_name,
                 model_name=self.llm.model,
+                checker_model_name=self.checker_model_name,
                 language_used=lang,
                 candidate_disorders=candidate_codes,
                 routing_mode=routing_mode,
@@ -345,6 +379,7 @@ class HiEDMode(BaseModeOrchestrator):
                 criteria_results=checker_outputs,
                 mode=self.mode_name,
                 model_name=self.llm.model,
+                checker_model_name=self.checker_model_name,
                 language_used=lang,
                 candidate_disorders=candidate_codes,
                 routing_mode=routing_mode,
@@ -438,6 +473,7 @@ class HiEDMode(BaseModeOrchestrator):
             criteria_results=checker_outputs,
             mode=self.mode_name,
             model_name=self.llm.model,
+            checker_model_name=self.checker_model_name,
             language_used=lang,
             candidate_disorders=candidate_codes,
             routing_mode=routing_mode,
@@ -655,5 +691,6 @@ class HiEDMode(BaseModeOrchestrator):
             criteria_results=checker_outputs,
             mode=self.mode_name,
             model_name=self.llm.model,
+            checker_model_name=self.checker_model_name,
             language_used=lang,
         )
