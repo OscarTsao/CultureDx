@@ -1,0 +1,1116 @@
+(APIServer pid=811887) INFO 03-30 10:49:51 [utils.py:302] 
+(APIServer pid=811887) INFO 03-30 10:49:51 [utils.py:302]        █     █     █▄   ▄█
+(APIServer pid=811887) INFO 03-30 10:49:51 [utils.py:302]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.17.1
+(APIServer pid=811887) INFO 03-30 10:49:51 [utils.py:302]   █▄█▀ █     █     █     █  model   outputs/finetune/criterion_checker_merged
+(APIServer pid=811887) INFO 03-30 10:49:51 [utils.py:302]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=811887) INFO 03-30 10:49:51 [utils.py:302] 
+(APIServer pid=811887) INFO 03-30 10:49:51 [utils.py:238] non-default args: {'model_tag': 'outputs/finetune/criterion_checker_merged', 'host': '127.0.0.1', 'port': 8079, 'model': 'outputs/finetune/criterion_checker_merged', 'dtype': 'bfloat16', 'max_model_len': 4096, 'served_model_name': ['criterion-checker-ft'], 'gpu_memory_utilization': 0.85}
+(APIServer pid=811887) INFO 03-30 10:49:54 [model.py:531] Resolved architecture: Qwen2ForCausalLM
+(APIServer pid=811887) INFO 03-30 10:49:54 [model.py:1554] Using max model len 4096
+(APIServer pid=811887) INFO 03-30 10:49:55 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=2048.
+(APIServer pid=811887) INFO 03-30 10:49:55 [vllm.py:747] Asynchronous scheduling is enabled.
+(EngineCore_DP0 pid=812170) INFO 03-30 10:49:58 [core.py:101] Initializing a V1 LLM engine (v0.17.1) with config: model='outputs/finetune/criterion_checker_merged', speculative_config=None, tokenizer='outputs/finetune/criterion_checker_merged', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=criterion-checker-ft, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'level': None, 'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'splitting_ops': ['vllm::unified_attention', 'vllm::unified_attention_with_output', 'vllm::unified_mla_attention', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::plamo2_mamba_mixer', 'vllm::gdn_attention_core', 'vllm::kda_attention', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update'], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_split_points': [2048], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}
+(EngineCore_DP0 pid=812170) INFO 03-30 10:49:58 [parallel_state.py:1393] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://140.123.102.157:43915 backend=nccl
+(EngineCore_DP0 pid=812170) INFO 03-30 10:49:59 [parallel_state.py:1715] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+(EngineCore_DP0 pid=812170) INFO 03-30 10:49:59 [base.py:106] Offloader set to NoopOffloader
+(EngineCore_DP0 pid=812170) INFO 03-30 10:49:59 [gpu_model_runner.py:4281] Starting to load model outputs/finetune/criterion_checker_merged...
+(EngineCore_DP0 pid=812170) INFO 03-30 10:49:59 [cuda.py:405] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].
+(EngineCore_DP0 pid=812170) INFO 03-30 10:49:59 [flash_attn.py:587] Using FlashAttention version 2
+(EngineCore_DP0 pid=812170) INFO 03-30 10:50:01 [default_loader.py:293] Loading weights took 1.70 seconds
+(EngineCore_DP0 pid=812170) INFO 03-30 10:50:01 [gpu_model_runner.py:4364] Model loading took 14.25 GiB memory and 2.014524 seconds
+(EngineCore_DP0 pid=812170) INFO 03-30 10:50:04 [backends.py:916] Using cache directory: /home/user/.cache/vllm/torch_compile_cache/cdf840955c/rank_0_0/backbone for vLLM's torch.compile
+(EngineCore_DP0 pid=812170) INFO 03-30 10:50:04 [backends.py:976] Dynamo bytecode transform time: 2.20 s
+(EngineCore_DP0 pid=812170) INFO 03-30 10:50:06 [backends.py:350] Cache the graph of compile range (1, 2048) for later use
+(EngineCore_DP0 pid=812170) INFO 03-30 10:50:08 [backends.py:366] Compiling a graph for compile range (1, 2048) takes 3.72 s
+(EngineCore_DP0 pid=812170) INFO 03-30 10:50:08 [monitor.py:35] torch.compile takes 6.52 s in total
+(EngineCore_DP0 pid=812170) INFO 03-30 10:50:08 [decorators.py:580] saving AOT compiled function to /home/user/.cache/vllm/torch_compile_cache/torch_aot_compile/f43fd76c4bbacc2952e0465c79bb8c24c3aebc675e36e6cf34c942e38d000100/rank_0_0/model
+(EngineCore_DP0 pid=812170) INFO 03-30 10:50:08 [decorators.py:588] saved AOT compiled function to /home/user/.cache/vllm/torch_compile_cache/torch_aot_compile/f43fd76c4bbacc2952e0465c79bb8c24c3aebc675e36e6cf34c942e38d000100/rank_0_0/model
+(EngineCore_DP0 pid=812170) INFO 03-30 10:50:12 [gpu_worker.py:424] Available KV cache memory: 11.25 GiB
+(EngineCore_DP0 pid=812170) INFO 03-30 10:50:12 [kv_cache_utils.py:1314] GPU KV cache size: 210,736 tokens
+(EngineCore_DP0 pid=812170) INFO 03-30 10:50:12 [kv_cache_utils.py:1319] Maximum concurrency for 4,096 tokens per request: 51.45x
+(EngineCore_DP0 pid=812170) INFO 03-30 10:50:47 [gpu_model_runner.py:5386] Graph capturing finished in 35 secs, took 0.37 GiB
+(EngineCore_DP0 pid=812170) INFO 03-30 10:50:47 [core.py:282] init engine (profile, create kv cache, warmup model) took 46.06 seconds
+(EngineCore_DP0 pid=812170) INFO 03-30 10:50:48 [vllm.py:747] Asynchronous scheduling is enabled.
+(APIServer pid=811887) INFO 03-30 10:50:48 [api_server.py:495] Supported tasks: ['generate']
+(APIServer pid=811887) WARNING 03-30 10:50:48 [model.py:1355] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'repetition_penalty': 1.05, 'temperature': 0.7, 'top_k': 20, 'top_p': 0.8}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`.
+(APIServer pid=811887) INFO 03-30 10:50:48 [serving.py:185] Warming up chat template processing...
+(APIServer pid=811887) INFO 03-30 10:50:48 [hf.py:318] Detected the chat template content format to be 'string'. You can set `--chat-template-content-format` to override this.
+(APIServer pid=811887) INFO 03-30 10:50:48 [serving.py:210] Chat template warmup completed in 219.5ms
+(APIServer pid=811887) INFO 03-30 10:50:48 [api_server.py:500] Starting vLLM API server 0 on http://127.0.0.1:8079
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:38] Available routes are:
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /openapi.json, Methods: GET, HEAD
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /docs, Methods: GET, HEAD
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /docs/oauth2-redirect, Methods: GET, HEAD
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /redoc, Methods: GET, HEAD
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /tokenize, Methods: POST
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /detokenize, Methods: POST
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /load, Methods: GET
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /version, Methods: GET
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /health, Methods: GET
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /metrics, Methods: GET
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /v1/models, Methods: GET
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /ping, Methods: GET
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /ping, Methods: POST
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /invocations, Methods: POST
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /v1/chat/completions, Methods: POST
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /v1/chat/completions/render, Methods: POST
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /v1/responses, Methods: POST
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /v1/responses/{response_id}, Methods: GET
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /v1/responses/{response_id}/cancel, Methods: POST
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /v1/completions, Methods: POST
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /v1/completions/render, Methods: POST
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /v1/messages, Methods: POST
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /v1/messages/count_tokens, Methods: POST
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /inference/v1/generate, Methods: POST
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /scale_elastic_ep, Methods: POST
+(APIServer pid=811887) INFO 03-30 10:50:48 [launcher.py:47] Route: /is_scaling_elastic_ep, Methods: POST
+(APIServer pid=811887) INFO:     127.0.0.1:53302 - "GET /v1/models HTTP/1.1" 200 OK
+(APIServer pid=811887) INFO:     127.0.0.1:38628 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=811887) INFO 03-30 10:52:28 [loggers.py:259] Engine 000: Avg prompt throughput: 195.2 tokens/s, Avg generation throughput: 20.3 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%
+(APIServer pid=811887) INFO 03-30 10:52:38 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%
+(APIServer pid=811887) INFO 03-30 10:53:18 [loggers.py:259] Engine 000: Avg prompt throughput: 1.6 tokens/s, Avg generation throughput: 3.9 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.9%, Prefix cache hit rate: 49.6%
+(APIServer pid=811887) INFO:     127.0.0.1:32874 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=811887) INFO 03-30 10:53:28 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 16.4 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 49.6%
+(APIServer pid=811887) INFO:     127.0.0.1:40000 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:53:36 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 2049 input tokens and requested 2048 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 2048 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=2049)
+(APIServer pid=811887) INFO:     127.0.0.1:40000 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) INFO 03-30 10:53:38 [loggers.py:259] Engine 000: Avg prompt throughput: 1.6 tokens/s, Avg generation throughput: 20.3 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 66.1%
+(APIServer pid=811887) INFO 03-30 10:53:48 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 66.1%
+(APIServer pid=811887) INFO:     127.0.0.1:53370 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 2049 input tokens and requested 2048 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 2048 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=2049)
+(APIServer pid=811887) INFO:     127.0.0.1:53370 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 2049 input tokens and requested 2048 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 2048 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=2049)
+(APIServer pid=811887) INFO:     127.0.0.1:53370 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 2049 input tokens and requested 2048 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 2048 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=2049)
+(APIServer pid=811887) INFO:     127.0.0.1:53370 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 2049 input tokens and requested 2048 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 2048 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=2049)
+(APIServer pid=811887) INFO:     127.0.0.1:53370 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 2049 input tokens and requested 2048 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 2048 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=2049)
+(APIServer pid=811887) INFO:     127.0.0.1:53370 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 2049 input tokens and requested 2048 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 2048 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=2049)
+(APIServer pid=811887) INFO:     127.0.0.1:53370 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 2049 input tokens and requested 2048 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 2048 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=2049)
+(APIServer pid=811887) INFO:     127.0.0.1:53370 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 2049 input tokens and requested 2048 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 2048 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=2049)
+(APIServer pid=811887) INFO:     127.0.0.1:53370 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 2049 input tokens and requested 2048 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 2048 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=2049)
+(APIServer pid=811887) INFO:     127.0.0.1:53370 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 2049 input tokens and requested 2048 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 2048 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=2049)
+(APIServer pid=811887) INFO:     127.0.0.1:53370 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 2049 input tokens and requested 2048 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 2048 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=2049)
+(APIServer pid=811887) INFO:     127.0.0.1:53370 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 2049 input tokens and requested 2048 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 2048 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=2049)
+(APIServer pid=811887) INFO:     127.0.0.1:53370 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 2049 input tokens and requested 2048 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 2048 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=2049)
+(APIServer pid=811887) INFO:     127.0.0.1:53370 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 2049 input tokens and requested 2048 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 2048 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=2049)
+(APIServer pid=811887) INFO:     127.0.0.1:53370 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:54:26 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 2049 input tokens and requested 2048 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 2048 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=2049)
+(APIServer pid=811887) INFO:     127.0.0.1:53370 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 2049 input tokens and requested 2048 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 2048 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=2049)
+(APIServer pid=811887) INFO:     127.0.0.1:53370 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:54:27 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 2049 input tokens and requested 2048 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 2048 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=2049)
+(APIServer pid=811887) INFO:     127.0.0.1:53370 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) INFO 03-30 10:54:28 [loggers.py:259] Engine 000: Avg prompt throughput: 195.7 tokens/s, Avg generation throughput: 35.4 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.0%, Prefix cache hit rate: 59.8%
+(APIServer pid=811887) INFO:     127.0.0.1:53370 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:54:33 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 2049 input tokens and requested 2048 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 2048 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=2049)
+(APIServer pid=811887) INFO:     127.0.0.1:53370 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) INFO 03-30 10:54:38 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 42.4 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 59.8%
+(APIServer pid=811887) INFO 03-30 10:54:48 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 59.8%
+(APIServer pid=811887) INFO:     127.0.0.1:45998 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=811887) INFO 03-30 10:55:08 [loggers.py:259] Engine 000: Avg prompt throughput: 28.4 tokens/s, Avg generation throughput: 34.4 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.2%, Prefix cache hit rate: 59.5%
+(APIServer pid=811887) INFO:     127.0.0.1:46014 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:55:10 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 2049 input tokens and requested 2048 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 2048 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=2049)
+(APIServer pid=811887) INFO:     127.0.0.1:46030 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) INFO 03-30 10:55:18 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 16.8 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 59.5%
+(APIServer pid=811887) INFO:     127.0.0.1:53978 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=811887) INFO 03-30 10:55:28 [loggers.py:259] Engine 000: Avg prompt throughput: 277.1 tokens/s, Avg generation throughput: 45.6 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.5%, Prefix cache hit rate: 53.9%
+(APIServer pid=811887) INFO:     127.0.0.1:53978 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 3073 input tokens and requested 1024 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 3072 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=3073)
+(APIServer pid=811887) INFO:     127.0.0.1:53978 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 3073 input tokens and requested 1024 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 3072 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=3073)
+(APIServer pid=811887) INFO:     127.0.0.1:53978 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 3073 input tokens and requested 1024 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 3072 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=3073)
+(APIServer pid=811887) INFO:     127.0.0.1:53978 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 3073 input tokens and requested 1024 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 3072 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=3073)
+(APIServer pid=811887) INFO:     127.0.0.1:53978 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 3073 input tokens and requested 1024 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 3072 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=3073)
+(APIServer pid=811887) INFO:     127.0.0.1:53978 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 3073 input tokens and requested 1024 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 3072 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=3073)
+(APIServer pid=811887) INFO:     127.0.0.1:53978 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 3073 input tokens and requested 1024 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 3072 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=3073)
+(APIServer pid=811887) INFO:     127.0.0.1:53978 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:55:29 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 3073 input tokens and requested 1024 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 3072 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=3073)
+(APIServer pid=811887) INFO:     127.0.0.1:53978 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) INFO:     127.0.0.1:53978 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 3073 input tokens and requested 1024 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 3072 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=3073)
+(APIServer pid=811887) INFO:     127.0.0.1:53978 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:55:34 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 3073 input tokens and requested 1024 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 3072 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=3073)
+(APIServer pid=811887) INFO:     127.0.0.1:53978 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) INFO 03-30 10:55:38 [loggers.py:259] Engine 000: Avg prompt throughput: 426.2 tokens/s, Avg generation throughput: 91.3 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.3%, Prefix cache hit rate: 43.0%
+(APIServer pid=811887) INFO:     127.0.0.1:53978 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 3073 input tokens and requested 1024 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 3072 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=3073)
+(APIServer pid=811887) INFO:     127.0.0.1:53978 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:55:40 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 3073 input tokens and requested 1024 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 3072 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=3073)
+(APIServer pid=811887) INFO:     127.0.0.1:53978 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) INFO:     127.0.0.1:53978 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:55:46 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 3073 input tokens and requested 1024 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 3072 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=3073)
+(APIServer pid=811887) INFO:     127.0.0.1:53978 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) INFO 03-30 10:55:48 [loggers.py:259] Engine 000: Avg prompt throughput: 222.2 tokens/s, Avg generation throughput: 93.2 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.1%, Prefix cache hit rate: 44.3%
+(APIServer pid=811887) INFO:     127.0.0.1:53978 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311] Error in preprocessing prompt inputs
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311] Traceback (most recent call last):
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 295, in render_chat_request
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]     conversation, engine_prompts = await self._preprocess_chat(
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/entrypoints/openai/engine/serving.py", line 982, in _preprocess_chat
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 759, in render_chat_async
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 448, in tokenize_prompts_async
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]     return await asyncio.gather(
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 441, in tokenize_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/base.py", line 374, in _tokenize_singleton_prompt_async
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]     return params.apply_post_tokenization(self.tokenizer, prompt)  # type: ignore[arg-type]
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 373, in apply_post_tokenization
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]     prompt["prompt_token_ids"] = self._validate_tokens(  # type: ignore[typeddict-unknown-key]
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 357, in _validate_tokens
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]     tokens = validator(tokenizer, tokens)
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]   File "/home/user/miniforge3/lib/python3.12/site-packages/vllm/renderers/params.py", line 337, in _token_len_check
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311]     raise VLLMValidationError(
+(APIServer pid=811887) ERROR 03-30 10:55:52 [serving.py:311] vllm.exceptions.VLLMValidationError: You passed 3073 input tokens and requested 1024 output tokens. However, the model's context length is only 4096 tokens, resulting in a maximum input length of 3072 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=3073)
+(APIServer pid=811887) INFO:     127.0.0.1:53978 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+(APIServer pid=811887) INFO 03-30 10:55:58 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 34.4 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 44.3%
+(APIServer pid=811887) INFO 03-30 10:56:05 [launcher.py:122] Shutting down FastAPI HTTP server.

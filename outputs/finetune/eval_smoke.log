@@ -1,0 +1,20 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+2026-03-30 03:10:57,968 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Evaluating on 20 val examples...
+Loading base model (4-bit)...
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:04,  1.65s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.85s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:05<00:01,  1.91s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:07<00:00,  1.70s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:07<00:00,  1.75s/it]
+2026-03-30 03:11:05,422 INFO Evaluating base on 20 examples...
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+2026-03-30 03:12:54,642 INFO   base: 20/20 done
+2026-03-30 03:12:54,642 INFO base results: json_parse=100.0%, criterion_acc=59.8%, time=109s
+2026-03-30 03:12:54,689 INFO Evaluating lora on 20 examples...
+2026-03-30 03:15:28,369 INFO   lora: 20/20 done
+2026-03-30 03:15:28,369 INFO lora results: json_parse=100.0%, criterion_acc=80.3%, time=154s
+Loading LoRA adapter...
+============================================================
+EVALUATION RESULTS (20 examples)
+============================================================
+Base:  json_parse=100.0%  criterion_acc=59.8%
+LoRA:  json_parse=100.0%  criterion_acc=80.3%
+Delta: json_parse=+0.0pp  criterion_acc=+20.5pp
+Saved to outputs/finetune/eval_results_smoke.json
