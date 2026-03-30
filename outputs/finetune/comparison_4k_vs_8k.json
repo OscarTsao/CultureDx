@@ -1,0 +1,17 @@
+{
+  "base": {
+    "json_parse": "6/20",
+    "criterion_acc": "58.5%",
+    "time": "237s"
+  },
+  "4k_smoke": {
+    "json_parse": "6/20",
+    "criterion_acc": "94.3%",
+    "time": "330s"
+  },
+  "8k": {
+    "json_parse": "6/20",
+    "criterion_acc": "94.3%",
+    "time": "328s"
+  }
+}
