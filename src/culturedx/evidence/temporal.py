@@ -141,18 +141,28 @@ _EXPLICIT_DURATION_PATTERNS = [
     (re.compile(r"好?几个月"), "several_months"),
     # X周 / X个星期
     (re.compile(r"([一二两三四五六七八九十\d]+)\s*(?:周|个?星期)"), "week"),
+    # X天
+    (re.compile(r"([一二两三四五六七八九十百千\d]+)\s*天"), "day"),
     # 几年
     (re.compile(r"好?几年"), "several_years"),
-    # 多年 / 好多年
-    (re.compile(r"好?多年"), "many_years"),
+    # 多年 / 好多年 / 很多年
+    (re.compile(r"(?:好|很)?多年"), "many_years"),
+    # 很久了 / 好久了
+    (re.compile(r"(?:好|很)久(?:了)?"), "long_time"),
+    # 好长时间 / 很长时间
+    (re.compile(r"[好很]长时间"), "long_time"),
 ]
 
 # 2. Relative time: "去年", "前年", "从...开始", "已经...了"
 _RELATIVE_TIME_PATTERNS = [
+    (re.compile(r"去年(?:年底|年初)"), "last_year"),
     (re.compile(r"去年"), "last_year"),
     (re.compile(r"前年"), "year_before_last"),
     (re.compile(r"大前年"), "three_years_ago"),
+    (re.compile(r"上个月"), "last_month"),
+    (re.compile(r"前几个月"), "few_months_ago"),
     (re.compile(r"从.{1,20}(?:开始|以来|起)"), "since_event"),
+    (re.compile(r"已经(?:持续)?(?:很|好)?(?:久|长时间)(?:了)?"), "already_long_time"),
     (re.compile(r"已经.{1,15}了"), "already_duration"),
     (re.compile(r"(?:上|去)个?学期"), "last_semester"),
     (re.compile(r"这学期"), "this_semester"),
@@ -231,6 +241,9 @@ def _estimate_months_from_match(
     if pattern_type == "week":
         n = _zh_num_to_int(text)
         return float(n * 0.25) if n is not None else None
+    if pattern_type == "day":
+        n = _zh_num_to_int(text)
+        return float(n / 30.0) if n is not None else None
     if pattern_type == "half_year":
         return 6.0
     if pattern_type == "several_months":
@@ -239,16 +252,24 @@ def _estimate_months_from_match(
         return 36.0  # conservative: "几年" → ~3 years
     if pattern_type == "many_years":
         return 60.0  # "多年" → ~5 years
+    if pattern_type == "long_time":
+        return 12.0
     if pattern_type == "last_year":
         return 12.0
     if pattern_type == "year_before_last":
         return 24.0
     if pattern_type == "three_years_ago":
         return 36.0
+    if pattern_type == "last_month":
+        return 1.0
+    if pattern_type == "few_months_ago":
+        return 3.0
     if pattern_type == "last_semester":
         return 5.0
     if pattern_type == "this_semester":
         return 3.0
+    if pattern_type == "already_long_time":
+        return 12.0
     return None
 
 
@@ -330,6 +351,8 @@ def _infer_duration(matches: list[TemporalMatch], has_short_markers: bool) -> Te
     - If explicit duration 3-6 months -> medium (0.6)
     - If multiple onset/course markers without explicit duration -> medium (0.5)
     - If only frequency markers -> low (0.3)
+    - If dense persistence/course evidence suggests chronic psychiatric course
+      -> threshold confidence with inferred long duration
     - No temporal info -> neutral (0.0)
     - Short-duration markers reduce confidence
     """
@@ -443,24 +466,71 @@ def _infer_duration(matches: list[TemporalMatch], has_short_markers: bool) -> Te
             f"发现{frequency_count}个频率/持续性表述，提示症状持续但时间不明确。"
         )
 
+    multi_frequency_boost_applied = False
+    if not explicit_months and not relative_months and frequency_count >= 3:
+        if onset_count > 0 or course_count > 0:
+            confidence = max(confidence, 0.55)
+            reasoning_parts.append(
+                "发现多个频率/持续性表述并伴随起病或病程标志，提示症状长期存在。"
+            )
+        else:
+            confidence = max(confidence, 0.45)
+            reasoning_parts.append(
+                "发现多个频率/持续性表述，提示症状可能持续较久。"
+            )
+        multi_frequency_boost_applied = True
+
     # Boost: frequency + course/onset together
-    if frequency_count > 0 and (onset_count > 0 or course_count > 0):
+    if (
+        frequency_count > 0
+        and (onset_count > 0 or course_count > 0)
+        and not multi_frequency_boost_applied
+    ):
         confidence = min(confidence + 0.1, 0.95)
         reasoning_parts.append("频率表述与病程标志并存，置信度上调。")
 
+    # Rule 5: Chronic course heuristic for psychiatric dialogue.
+    # A short explicit duration may describe recent worsening rather than total
+    # illness course, so allow dense persistence/course markers to lift the
+    # inferred duration above the local episode length.
+    persistence_count = frequency_count + course_count
+    recurrence_markers = sum(
+        1
+        for m in matches
+        if m.category == "course_indicator"
+        and any(keyword in m.text for keyword in ("反复", "复发", "以前也"))
+    )
+    if persistence_count >= 4 and not has_short_markers:
+        confidence = max(confidence, 0.55)
+        best_months = max(best_months or 0.0, 8.0)
+        reasoning_parts.append(
+            f"发现{persistence_count}个持续性/病程标志，提示慢性精神科病程。"
+        )
+
+    if recurrence_markers >= 1 and persistence_count >= 2:
+        confidence = max(confidence, 0.55)
+        best_months = max(best_months or 0.0, 12.0)
+        reasoning_parts.append(
+            "发现复发/既往史标志，提示病程超过6个月。"
+        )
+
     # Penalty: short duration markers
+    has_long_duration_evidence = best_months is not None and best_months >= 6.0
     if has_short_markers:
-        confidence = max(confidence - 0.3, 0.0)
-        reasoning_parts.append("发现近期起病表述，置信度下调。")
+        if has_long_duration_evidence:
+            confidence = max(confidence - 0.1, 0.0)
+            reasoning_parts.append(
+                "虽有近期起病表述，但存在明确长病程证据，置信度轻度下调。"
+            )
+        else:
+            confidence = max(confidence - 0.3, 0.0)
+            reasoning_parts.append("发现近期起病表述，置信度下调。")
 
     meets_criterion = (
         confidence >= 0.5
         and (best_months is None or best_months >= 6.0)
-        and not has_short_markers
+        and not (has_short_markers and (best_months is None or best_months < 6.0))
     )
-    # If we have explicit evidence of < 6 months, do not meet criterion
-    if best_months is not None and best_months < 6.0:
-        meets_criterion = False
 
     return TemporalFeatures(
         matches=matches,

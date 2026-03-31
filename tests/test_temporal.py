@@ -115,6 +115,34 @@ class TestExplicitDuration:
         assert len(duration_matches) >= 1
         assert any(m.estimated_months == 0.5 for m in duration_matches)
 
+    def test_days(self):
+        """Test X天 pattern."""
+        matches = _extract_from_text("已经三天了", 0)
+        duration_matches = [m for m in matches if m.category == "explicit_duration"]
+        assert len(duration_matches) >= 1
+        assert any(m.estimated_months == pytest.approx(0.1) for m in duration_matches)
+
+    def test_many_years_with_hen(self):
+        """Test 很多年 pattern."""
+        matches = _extract_from_text("这种担心很多年了", 0)
+        duration_matches = [m for m in matches if m.category == "explicit_duration"]
+        assert len(duration_matches) >= 1
+        assert any(m.estimated_months == 60.0 for m in duration_matches)
+
+    def test_long_time_explicit(self):
+        """Test 好长时间/很长时间 pattern."""
+        matches = _extract_from_text("已经很长时间了", 0)
+        duration_matches = [m for m in matches if m.category == "explicit_duration"]
+        assert len(duration_matches) >= 1
+        assert any(m.estimated_months == 12.0 for m in duration_matches)
+
+    def test_long_time_phrase_counts_as_explicit_duration(self):
+        """很久了/好久了 should count as explicit long duration."""
+        matches = _extract_from_text("这种情况很久了", 0)
+        duration_matches = [m for m in matches if m.category == "explicit_duration"]
+        assert len(duration_matches) >= 1
+        assert any(m.estimated_months == 12.0 for m in duration_matches)
+
 
 # ---------------------------------------------------------------------------
 # Relative time pattern tests
@@ -130,11 +158,29 @@ class TestRelativeTime:
         relative_matches = [m for m in matches if m.category == "relative_time"]
         assert any(m.estimated_months == 12.0 for m in relative_matches)
 
+    def test_last_year_boundary(self):
+        """Test 去年年底/去年年初 pattern."""
+        matches = _extract_from_text("去年年底就开始这样了", 0)
+        relative_matches = [m for m in matches if m.category == "relative_time"]
+        assert any(m.estimated_months == 12.0 for m in relative_matches)
+
     def test_year_before_last(self):
         """Test 前年 pattern."""
         matches = _extract_from_text("前年就有这个问题", 0)
         relative_matches = [m for m in matches if m.category == "relative_time"]
         assert any(m.estimated_months == 24.0 for m in relative_matches)
+
+    def test_last_month(self):
+        """Test 上个月 pattern."""
+        matches = _extract_from_text("上个月开始加重", 0)
+        relative_matches = [m for m in matches if m.category == "relative_time"]
+        assert any(m.estimated_months == 1.0 for m in relative_matches)
+
+    def test_few_months_ago(self):
+        """Test 前几个月 pattern."""
+        matches = _extract_from_text("前几个月就有点不对劲", 0)
+        relative_matches = [m for m in matches if m.category == "relative_time"]
+        assert any(m.estimated_months == 3.0 for m in relative_matches)
 
     def test_since_event(self):
         """Test 从...开始 pattern."""
@@ -148,6 +194,13 @@ class TestRelativeTime:
         matches = _extract_from_text("已经很长时间了", 0)
         relative_matches = [m for m in matches if m.category == "relative_time"]
         assert len(relative_matches) >= 1
+
+    def test_already_long_time(self):
+        """已经持续很久了 should estimate a long relative duration."""
+        matches = _extract_from_text("已经持续很久了", 0)
+        relative_matches = [m for m in matches if m.category == "relative_time"]
+        assert len(relative_matches) >= 1
+        assert any(m.estimated_months == 12.0 for m in relative_matches)
 
     def test_life_event(self):
         """Test life event pattern (毕业以后, 离婚以来, etc.)."""
@@ -370,8 +423,8 @@ class TestDurationInference:
         assert result.duration_confidence == 0.0
         assert result.meets_6month_criterion is False
 
-    def test_short_markers_reduce_confidence(self):
-        """Short-duration markers should reduce confidence by 0.3."""
+    def test_short_markers_do_not_override_explicit_long_duration(self):
+        """Short markers should only mildly reduce confidence when long duration is explicit."""
         matches = [
             TemporalMatch(
                 category="explicit_duration",
@@ -381,8 +434,8 @@ class TestDurationInference:
             )
         ]
         result = _infer_duration(matches, has_short_markers=True)
-        assert result.duration_confidence == 0.6  # 0.9 - 0.3
-        assert result.meets_6month_criterion is False  # short markers block it
+        assert result.duration_confidence == 0.8  # 0.9 - 0.1
+        assert result.meets_6month_criterion is True
 
     def test_relative_time_last_year(self):
         """Relative time 'last year' should give ~12 months estimate."""
@@ -409,6 +462,68 @@ class TestDurationInference:
         # onset_count=0, course_count=1: not enough for rule 3 alone
         # but frequency + course boost applies: 0.0 + 0.1 = 0.1 (then boost)
         assert result.duration_confidence >= 0.1
+
+    def test_three_frequency_markers_raise_confidence(self):
+        """Three frequency markers should raise confidence above the default 0.3."""
+        matches = [
+            TemporalMatch(category="frequency", text="每天", turn_id=0),
+            TemporalMatch(category="frequency", text="经常", turn_id=0),
+            TemporalMatch(category="frequency", text="持续", turn_id=0),
+        ]
+        result = _infer_duration(matches, has_short_markers=False)
+        assert result.duration_confidence == 0.45
+        assert result.meets_6month_criterion is False
+
+    def test_three_frequency_markers_with_course_reach_threshold(self):
+        """Three frequency markers plus course evidence should reach 0.55 confidence."""
+        matches = [
+            TemporalMatch(category="frequency", text="每天", turn_id=0),
+            TemporalMatch(category="frequency", text="经常", turn_id=0),
+            TemporalMatch(category="frequency", text="持续", turn_id=0),
+            TemporalMatch(category="course_indicator", text="加重", turn_id=1),
+        ]
+        result = _infer_duration(matches, has_short_markers=False)
+        assert result.duration_confidence == 0.55
+        assert result.meets_6month_criterion is True
+
+    def test_chronic_course_heuristic_overrides_short_recent_episode(self):
+        """Dense persistence markers should recover chronic course from a short episode mention."""
+        matches = [
+            TemporalMatch(
+                category="explicit_duration",
+                text="两个月",
+                turn_id=0,
+                estimated_months=2.0,
+            ),
+            TemporalMatch(category="frequency", text="总是", turn_id=0),
+            TemporalMatch(category="frequency", text="每天", turn_id=0),
+            TemporalMatch(category="frequency", text="天天", turn_id=0),
+            TemporalMatch(category="frequency", text="经常", turn_id=0),
+            TemporalMatch(category="course_indicator", text="越来越重", turn_id=1),
+            TemporalMatch(category="onset_marker", text="一开始", turn_id=1),
+        ]
+        result = _infer_duration(matches, has_short_markers=False)
+        assert result.duration_confidence == 0.55
+        assert result.estimated_months == 8.0
+        assert result.meets_6month_criterion is True
+
+    def test_recurrence_markers_imply_long_history(self):
+        """Recurrence markers should infer a long course even with a short recent episode."""
+        matches = [
+            TemporalMatch(
+                category="explicit_duration",
+                text="一个月",
+                turn_id=0,
+                estimated_months=1.0,
+            ),
+            TemporalMatch(category="frequency", text="一直", turn_id=0),
+            TemporalMatch(category="frequency", text="每天", turn_id=0),
+            TemporalMatch(category="course_indicator", text="以前也有过", turn_id=1),
+        ]
+        result = _infer_duration(matches, has_short_markers=False)
+        assert result.duration_confidence == 0.55
+        assert result.estimated_months == 12.0
+        assert result.meets_6month_criterion is True
 
 
 # ---------------------------------------------------------------------------
@@ -476,6 +591,17 @@ class TestExtractTemporalFeatures:
         ])
         features = extract_temporal_features(transcript)
         assert features.meets_6month_criterion is False
+
+    def test_explicit_long_duration_survives_recent_onset_marker(self):
+        """Explicit long duration should still satisfy the 6-month criterion."""
+        transcript = self._make_transcript([
+            "我这样已经一年了",
+            "最近才开始这样",
+        ])
+        features = extract_temporal_features(transcript)
+        assert features.estimated_months == 12.0
+        assert features.duration_confidence == 0.8
+        assert features.meets_6month_criterion is True
 
     def test_doctor_turns_ignored(self):
         """Only patient turns should be analyzed."""
