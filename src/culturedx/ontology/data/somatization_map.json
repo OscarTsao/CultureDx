@@ -1,44 +1,1056 @@
 {
-  "version": "1.0",
-  "description": "Chinese somatic symptom to psychiatric criterion mapping (CCMD-3/CMeKG-inspired)",
+  "version": "2.0",
+  "description": "Chinese somatic symptom to psychiatric criterion mapping (CCMD-3/CMeKG-inspired, 150 entries)",
   "mappings": {
-    "头疼": {"criteria": ["F32.C6", "F41.1.B1", "F45.C3"], "category": "pain"},
-    "头痛": {"criteria": ["F32.C6", "F41.1.B1", "F45.C3"], "category": "pain"},
-    "偏头痛": {"criteria": ["F32.C6", "F45.C3"], "category": "pain"},
-    "失眠": {"criteria": ["F32.C6", "F41.1.B4", "F51.A"], "category": "sleep"},
-    "睡不着": {"criteria": ["F32.C6", "F41.1.B4", "F51.A"], "category": "sleep"},
-    "入睡困难": {"criteria": ["F32.C6", "F51.A"], "category": "sleep"},
-    "早醒": {"criteria": ["F32.C6", "F51.A"], "category": "sleep"},
-    "多梦": {"criteria": ["F32.C6", "F51.A"], "category": "sleep"},
-    "噩梦": {"criteria": ["F43.1.B1", "F51.A"], "category": "sleep"},
-    "心慌": {"criteria": ["F41.0.B2", "F41.1.B2", "F45.C2"], "category": "cardiovascular"},
-    "心悸": {"criteria": ["F41.0.B2", "F41.1.B2", "F45.C2"], "category": "cardiovascular"},
-    "胸闷": {"criteria": ["F41.0.B3", "F41.1.B2", "F45.C2"], "category": "cardiovascular"},
-    "胸痛": {"criteria": ["F41.0.B3", "F45.C2"], "category": "cardiovascular"},
-    "气短": {"criteria": ["F41.0.B3", "F41.1.B2"], "category": "respiratory"},
-    "呼吸困难": {"criteria": ["F41.0.B3", "F41.1.B2", "F45.C2"], "category": "respiratory"},
-    "喘不上气": {"criteria": ["F41.0.B3", "F45.C2"], "category": "respiratory"},
-    "没有食欲": {"criteria": ["F32.C7"], "category": "appetite"},
-    "食欲不振": {"criteria": ["F32.C7"], "category": "appetite"},
-    "吃不下饭": {"criteria": ["F32.C7"], "category": "appetite"},
-    "体重下降": {"criteria": ["F32.C7"], "category": "appetite"},
-    "体重增加": {"criteria": ["F32.C7"], "category": "appetite"},
-    "全身无力": {"criteria": ["F32.B3", "F41.1.B1"], "category": "fatigue"},
-    "疲劳": {"criteria": ["F32.B3", "F41.1.B1"], "category": "fatigue"},
-    "疲乏": {"criteria": ["F32.B3"], "category": "fatigue"},
-    "没有精神": {"criteria": ["F32.B3"], "category": "fatigue"},
-    "浑身没劲": {"criteria": ["F32.B3", "F41.1.B1"], "category": "fatigue"},
-    "肚子疼": {"criteria": ["F45.C1"], "category": "gastrointestinal"},
-    "腹痛": {"criteria": ["F45.C1"], "category": "gastrointestinal"},
-    "恶心": {"criteria": ["F41.0.B3", "F45.C1"], "category": "gastrointestinal"},
-    "腹胀": {"criteria": ["F45.C1"], "category": "gastrointestinal"},
-    "口干": {"criteria": ["F41.0.B2", "F41.1.B2"], "category": "autonomic"},
-    "出汗": {"criteria": ["F41.0.B2", "F41.1.B2", "F40.C1"], "category": "autonomic"},
-    "手抖": {"criteria": ["F41.0.B2", "F40.C1"], "category": "autonomic"},
-    "震颤": {"criteria": ["F41.0.B2", "F41.1.B1", "F40.C1"], "category": "autonomic"},
-    "头晕": {"criteria": ["F41.0.B4", "F41.1.B1"], "category": "autonomic"},
-    "眩晕": {"criteria": ["F41.0.B4"], "category": "autonomic"},
-    "背痛": {"criteria": ["F45.C3"], "category": "pain"},
-    "腰痛": {"criteria": ["F45.C3"], "category": "pain"}
+    "头疼": {
+      "criteria": [
+        "F32.C6",
+        "F41.1.B1",
+        "F45.C3"
+      ],
+      "category": "pain"
+    },
+    "头痛": {
+      "criteria": [
+        "F32.C6",
+        "F41.1.B1",
+        "F45.C3"
+      ],
+      "category": "pain"
+    },
+    "偏头痛": {
+      "criteria": [
+        "F32.C6",
+        "F45.C3"
+      ],
+      "category": "pain"
+    },
+    "失眠": {
+      "criteria": [
+        "F32.C6",
+        "F41.1.B4",
+        "F51.A"
+      ],
+      "category": "sleep"
+    },
+    "睡不着": {
+      "criteria": [
+        "F32.C6",
+        "F41.1.B4",
+        "F51.A"
+      ],
+      "category": "sleep"
+    },
+    "入睡困难": {
+      "criteria": [
+        "F32.C6",
+        "F51.A"
+      ],
+      "category": "sleep"
+    },
+    "早醒": {
+      "criteria": [
+        "F32.C6",
+        "F51.A"
+      ],
+      "category": "sleep"
+    },
+    "多梦": {
+      "criteria": [
+        "F32.C6",
+        "F51.A"
+      ],
+      "category": "sleep"
+    },
+    "噩梦": {
+      "criteria": [
+        "F43.1.B1",
+        "F51.A"
+      ],
+      "category": "sleep"
+    },
+    "心慌": {
+      "criteria": [
+        "F41.0.B2",
+        "F41.1.B2",
+        "F45.C2"
+      ],
+      "category": "cardiovascular"
+    },
+    "心悸": {
+      "criteria": [
+        "F41.0.B2",
+        "F41.1.B2",
+        "F45.C2"
+      ],
+      "category": "cardiovascular"
+    },
+    "胸闷": {
+      "criteria": [
+        "F41.0.B3",
+        "F41.1.B2",
+        "F45.C2"
+      ],
+      "category": "cardiovascular"
+    },
+    "胸痛": {
+      "criteria": [
+        "F41.0.B3",
+        "F45.C2"
+      ],
+      "category": "cardiovascular"
+    },
+    "气短": {
+      "criteria": [
+        "F41.0.B3",
+        "F41.1.B2"
+      ],
+      "category": "respiratory"
+    },
+    "呼吸困难": {
+      "criteria": [
+        "F41.0.B3",
+        "F41.1.B2",
+        "F45.C2"
+      ],
+      "category": "respiratory"
+    },
+    "喘不上气": {
+      "criteria": [
+        "F41.0.B3",
+        "F45.C2"
+      ],
+      "category": "respiratory"
+    },
+    "没有食欲": {
+      "criteria": [
+        "F32.C7"
+      ],
+      "category": "appetite"
+    },
+    "食欲不振": {
+      "criteria": [
+        "F32.C7"
+      ],
+      "category": "appetite"
+    },
+    "吃不下饭": {
+      "criteria": [
+        "F32.C7"
+      ],
+      "category": "appetite"
+    },
+    "体重下降": {
+      "criteria": [
+        "F32.C7"
+      ],
+      "category": "appetite"
+    },
+    "体重增加": {
+      "criteria": [
+        "F32.C7"
+      ],
+      "category": "appetite"
+    },
+    "全身无力": {
+      "criteria": [
+        "F32.B3",
+        "F41.1.B1"
+      ],
+      "category": "fatigue"
+    },
+    "疲劳": {
+      "criteria": [
+        "F32.B3",
+        "F41.1.B1"
+      ],
+      "category": "fatigue"
+    },
+    "疲乏": {
+      "criteria": [
+        "F32.B3"
+      ],
+      "category": "fatigue"
+    },
+    "没有精神": {
+      "criteria": [
+        "F32.B3"
+      ],
+      "category": "fatigue"
+    },
+    "浑身没劲": {
+      "criteria": [
+        "F32.B3",
+        "F41.1.B1"
+      ],
+      "category": "fatigue"
+    },
+    "肚子疼": {
+      "criteria": [
+        "F45.C1"
+      ],
+      "category": "gastrointestinal"
+    },
+    "腹痛": {
+      "criteria": [
+        "F45.C1"
+      ],
+      "category": "gastrointestinal"
+    },
+    "恶心": {
+      "criteria": [
+        "F41.0.B3",
+        "F45.C1"
+      ],
+      "category": "gastrointestinal"
+    },
+    "腹胀": {
+      "criteria": [
+        "F45.C1"
+      ],
+      "category": "gastrointestinal"
+    },
+    "口干": {
+      "criteria": [
+        "F41.0.B2",
+        "F41.1.B2"
+      ],
+      "category": "autonomic"
+    },
+    "出汗": {
+      "criteria": [
+        "F41.0.B2",
+        "F41.1.B2",
+        "F40.C1"
+      ],
+      "category": "autonomic"
+    },
+    "手抖": {
+      "criteria": [
+        "F41.0.B2",
+        "F40.C1"
+      ],
+      "category": "autonomic"
+    },
+    "震颤": {
+      "criteria": [
+        "F41.0.B2",
+        "F41.1.B1",
+        "F40.C1"
+      ],
+      "category": "autonomic"
+    },
+    "头晕": {
+      "criteria": [
+        "F41.0.B4",
+        "F41.1.B1"
+      ],
+      "category": "autonomic"
+    },
+    "眩晕": {
+      "criteria": [
+        "F41.0.B4"
+      ],
+      "category": "autonomic"
+    },
+    "背痛": {
+      "criteria": [
+        "F45.C3"
+      ],
+      "category": "pain"
+    },
+    "腰痛": {
+      "criteria": [
+        "F45.C3"
+      ],
+      "category": "pain"
+    },
+    "食欲下降": {
+      "criteria": [
+        "F32.C7",
+        "F33.C7"
+      ],
+      "category": "appetite"
+    },
+    "没胃口": {
+      "criteria": [
+        "F32.C7",
+        "F33.C7"
+      ],
+      "category": "appetite"
+    },
+    "暴饮暴食": {
+      "criteria": [
+        "F32.C7",
+        "F33.C7"
+      ],
+      "category": "appetite"
+    },
+    "吃不下东西": {
+      "criteria": [
+        "F32.C7",
+        "F33.C7"
+      ],
+      "category": "appetite"
+    },
+    "胃口不好": {
+      "criteria": [
+        "F32.C7",
+        "F33.C7"
+      ],
+      "category": "appetite"
+    },
+    "不想吃饭": {
+      "criteria": [
+        "F32.C7",
+        "F33.C7"
+      ],
+      "category": "appetite"
+    },
+    "吃什么都没味道": {
+      "criteria": [
+        "F32.C7",
+        "F33.C7"
+      ],
+      "category": "appetite"
+    },
+    "暴食": {
+      "criteria": [
+        "F32.C7"
+      ],
+      "category": "appetite"
+    },
+    "食量减少": {
+      "criteria": [
+        "F32.C7",
+        "F33.C7"
+      ],
+      "category": "appetite"
+    },
+    "消瘦": {
+      "criteria": [
+        "F32.C7",
+        "F33.C7"
+      ],
+      "category": "appetite"
+    },
+    "发胖": {
+      "criteria": [
+        "F32.C7"
+      ],
+      "category": "appetite"
+    },
+    "浑身酸痛": {
+      "criteria": [
+        "F32.C6",
+        "F45.C3",
+        "F41.1.B1"
+      ],
+      "category": "pain"
+    },
+    "腰酸背痛": {
+      "criteria": [
+        "F45.C3"
+      ],
+      "category": "pain"
+    },
+    "全身疼痛": {
+      "criteria": [
+        "F32.C6",
+        "F45.C3",
+        "F41.1.B1"
+      ],
+      "category": "pain"
+    },
+    "关节疼": {
+      "criteria": [
+        "F45.C3"
+      ],
+      "category": "pain"
+    },
+    "肌肉酸痛": {
+      "criteria": [
+        "F45.C3",
+        "F41.1.B1"
+      ],
+      "category": "pain"
+    },
+    "肩膀疼": {
+      "criteria": [
+        "F45.C3",
+        "F41.1.B1"
+      ],
+      "category": "pain"
+    },
+    "脖子疼": {
+      "criteria": [
+        "F45.C3",
+        "F41.1.B1"
+      ],
+      "category": "pain"
+    },
+    "关节痛": {
+      "criteria": [
+        "F45.C3"
+      ],
+      "category": "pain"
+    },
+    "四肢疼痛": {
+      "criteria": [
+        "F45.C3"
+      ],
+      "category": "pain"
+    },
+    "浑身疼": {
+      "criteria": [
+        "F45.C3",
+        "F41.1.B1"
+      ],
+      "category": "pain"
+    },
+    "腿疼": {
+      "criteria": [
+        "F45.C3"
+      ],
+      "category": "pain"
+    },
+    "手脚发麻": {
+      "criteria": [
+        "F41.0.B2",
+        "F41.1.B1",
+        "F45.C3"
+      ],
+      "category": "neurological"
+    },
+    "耳鸣": {
+      "criteria": [
+        "F41.0.B4",
+        "F45.C3"
+      ],
+      "category": "neurological"
+    },
+    "视力模糊": {
+      "criteria": [
+        "F41.0.B4",
+        "F45.C3"
+      ],
+      "category": "neurological"
+    },
+    "头昏脑涨": {
+      "criteria": [
+        "F41.0.B4",
+        "F41.1.B1"
+      ],
+      "category": "neurological"
+    },
+    "脑袋发蒙": {
+      "criteria": [
+        "F41.0.B4",
+        "F41.1.B1",
+        "F41.1.B3"
+      ],
+      "category": "neurological"
+    },
+    "记忆力下降": {
+      "criteria": [
+        "F32.C4",
+        "F33.C4",
+        "F41.1.B3"
+      ],
+      "category": "neurological"
+    },
+    "头昏": {
+      "criteria": [
+        "F41.0.B4",
+        "F41.1.B1"
+      ],
+      "category": "neurological"
+    },
+    "脑子不清楚": {
+      "criteria": [
+        "F32.C4",
+        "F33.C4",
+        "F41.1.B3"
+      ],
+      "category": "neurological"
+    },
+    "注意力不集中": {
+      "criteria": [
+        "F32.C4",
+        "F33.C4",
+        "F41.1.B3"
+      ],
+      "category": "neurological"
+    },
+    "反应迟钝": {
+      "criteria": [
+        "F32.C4",
+        "F32.C5",
+        "F33.C4",
+        "F33.C5"
+      ],
+      "category": "neurological"
+    },
+    "脑子转不动": {
+      "criteria": [
+        "F32.C4",
+        "F33.C4",
+        "F41.1.B3"
+      ],
+      "category": "neurological"
+    },
+    "发呆": {
+      "criteria": [
+        "F32.C4",
+        "F33.C4"
+      ],
+      "category": "neurological"
+    },
+    "健忘": {
+      "criteria": [
+        "F32.C4",
+        "F33.C4",
+        "F41.1.B3"
+      ],
+      "category": "neurological"
+    },
+    "麻木": {
+      "criteria": [
+        "F41.0.B2",
+        "F45.C3"
+      ],
+      "category": "neurological"
+    },
+    "心跳加速": {
+      "criteria": [
+        "F41.0.B2",
+        "F41.1.B2",
+        "F45.C2"
+      ],
+      "category": "cardiovascular"
+    },
+    "四肢发冷": {
+      "criteria": [
+        "F41.0.B2",
+        "F45.C2"
+      ],
+      "category": "cardiovascular"
+    },
+    "手脚冰凉": {
+      "criteria": [
+        "F41.0.B2",
+        "F45.C2"
+      ],
+      "category": "cardiovascular"
+    },
+    "脸发烫": {
+      "criteria": [
+        "F41.0.B2",
+        "F41.1.B2"
+      ],
+      "category": "cardiovascular"
+    },
+    "出冷汗": {
+      "criteria": [
+        "F41.0.B2",
+        "F41.1.B2",
+        "F40.C1"
+      ],
+      "category": "cardiovascular"
+    },
+    "心跳快": {
+      "criteria": [
+        "F41.0.B2",
+        "F41.1.B2",
+        "F45.C2"
+      ],
+      "category": "cardiovascular"
+    },
+    "心里发慌": {
+      "criteria": [
+        "F41.0.B2",
+        "F41.1.B2"
+      ],
+      "category": "cardiovascular"
+    },
+    "心脏不舒服": {
+      "criteria": [
+        "F41.0.B2",
+        "F45.C2"
+      ],
+      "category": "cardiovascular"
+    },
+    "脸红发热": {
+      "criteria": [
+        "F41.0.B2",
+        "F40.C1"
+      ],
+      "category": "cardiovascular"
+    },
+    "喉咙发紧": {
+      "criteria": [
+        "F41.0.B3",
+        "F45.C2"
+      ],
+      "category": "respiratory"
+    },
+    "胸口发闷": {
+      "criteria": [
+        "F41.0.B3",
+        "F41.1.B2",
+        "F45.C2"
+      ],
+      "category": "respiratory"
+    },
+    "呼吸急促": {
+      "criteria": [
+        "F41.0.B3",
+        "F41.1.B2"
+      ],
+      "category": "respiratory"
+    },
+    "喘不过气": {
+      "criteria": [
+        "F41.0.B3",
+        "F45.C2"
+      ],
+      "category": "respiratory"
+    },
+    "窒息感": {
+      "criteria": [
+        "F41.0.B3"
+      ],
+      "category": "respiratory"
+    },
+    "透不过气": {
+      "criteria": [
+        "F41.0.B3",
+        "F45.C2"
+      ],
+      "category": "respiratory"
+    },
+    "胸口堵": {
+      "criteria": [
+        "F41.0.B3",
+        "F45.C2"
+      ],
+      "category": "respiratory"
+    },
+    "喉咙有异物感": {
+      "criteria": [
+        "F41.0.B3",
+        "F45.C2"
+      ],
+      "category": "respiratory"
+    },
+    "憋气": {
+      "criteria": [
+        "F41.0.B3"
+      ],
+      "category": "respiratory"
+    },
+    "上不来气": {
+      "criteria": [
+        "F41.0.B3",
+        "F45.C2"
+      ],
+      "category": "respiratory"
+    },
+    "便秘": {
+      "criteria": [
+        "F45.C1"
+      ],
+      "category": "gastrointestinal"
+    },
+    "腹泻": {
+      "criteria": [
+        "F45.C1"
+      ],
+      "category": "gastrointestinal"
+    },
+    "呕吐": {
+      "criteria": [
+        "F45.C1"
+      ],
+      "category": "gastrointestinal"
+    },
+    "胃痛": {
+      "criteria": [
+        "F41.0.B3",
+        "F45.C1"
+      ],
+      "category": "gastrointestinal"
+    },
+    "消化不良": {
+      "criteria": [
+        "F45.C1"
+      ],
+      "category": "gastrointestinal"
+    },
+    "反酸": {
+      "criteria": [
+        "F45.C1"
+      ],
+      "category": "gastrointestinal"
+    },
+    "胃不舒服": {
+      "criteria": [
+        "F41.0.B3",
+        "F45.C1"
+      ],
+      "category": "gastrointestinal"
+    },
+    "拉肚子": {
+      "criteria": [
+        "F45.C1"
+      ],
+      "category": "gastrointestinal"
+    },
+    "干呕": {
+      "criteria": [
+        "F45.C1"
+      ],
+      "category": "gastrointestinal"
+    },
+    "肠胃不好": {
+      "criteria": [
+        "F45.C1"
+      ],
+      "category": "gastrointestinal"
+    },
+    "胃胀": {
+      "criteria": [
+        "F45.C1"
+      ],
+      "category": "gastrointestinal"
+    },
+    "吃了就吐": {
+      "criteria": [
+        "F45.C1"
+      ],
+      "category": "gastrointestinal"
+    },
+    "上腹不适": {
+      "criteria": [
+        "F41.1.B2",
+        "F45.C1"
+      ],
+      "category": "gastrointestinal"
+    },
+    "浑身发软": {
+      "criteria": [
+        "F32.B3",
+        "F41.1.B1"
+      ],
+      "category": "musculoskeletal"
+    },
+    "腿脚无力": {
+      "criteria": [
+        "F32.B3",
+        "F41.1.B1"
+      ],
+      "category": "musculoskeletal"
+    },
+    "四肢乏力": {
+      "criteria": [
+        "F32.B3",
+        "F33.B3",
+        "F41.1.B1"
+      ],
+      "category": "musculoskeletal"
+    },
+    "身体僵硬": {
+      "criteria": [
+        "F41.1.B1",
+        "F45.C3"
+      ],
+      "category": "musculoskeletal"
+    },
+    "肌肉紧张": {
+      "criteria": [
+        "F41.1.B1",
+        "F45.C3"
+      ],
+      "category": "musculoskeletal"
+    },
+    "站不稳": {
+      "criteria": [
+        "F41.0.B4",
+        "F41.1.B1"
+      ],
+      "category": "musculoskeletal"
+    },
+    "腿软": {
+      "criteria": [
+        "F32.B3",
+        "F41.1.B1"
+      ],
+      "category": "musculoskeletal"
+    },
+    "使不上劲": {
+      "criteria": [
+        "F32.B3",
+        "F33.B3"
+      ],
+      "category": "musculoskeletal"
+    },
+    "不能放松": {
+      "criteria": [
+        "F41.1.B1"
+      ],
+      "category": "musculoskeletal"
+    },
+    "皮肤瘙痒": {
+      "criteria": [
+        "F45.C3"
+      ],
+      "category": "dermatological"
+    },
+    "起疹子": {
+      "criteria": [
+        "F45.C3"
+      ],
+      "category": "dermatological"
+    },
+    "出汗多": {
+      "criteria": [
+        "F41.0.B2",
+        "F41.1.B2"
+      ],
+      "category": "dermatological"
+    },
+    "盗汗": {
+      "criteria": [
+        "F41.0.B2",
+        "F41.1.B2",
+        "F32.C6"
+      ],
+      "category": "dermatological"
+    },
+    "手心出汗": {
+      "criteria": [
+        "F41.0.B2",
+        "F40.C1"
+      ],
+      "category": "dermatological"
+    },
+    "冒虚汗": {
+      "criteria": [
+        "F41.0.B2",
+        "F41.1.B2"
+      ],
+      "category": "dermatological"
+    },
+    "做噩梦": {
+      "criteria": [
+        "F43.1.B1",
+        "F51.A"
+      ],
+      "category": "sleep"
+    },
+    "嗜睡": {
+      "criteria": [
+        "F32.C6",
+        "F33.C6",
+        "F51.A"
+      ],
+      "category": "sleep"
+    },
+    "睡眠浅": {
+      "criteria": [
+        "F32.C6",
+        "F51.A"
+      ],
+      "category": "sleep"
+    },
+    "半夜醒": {
+      "criteria": [
+        "F32.C6",
+        "F51.A"
+      ],
+      "category": "sleep"
+    },
+    "睡不好": {
+      "criteria": [
+        "F32.C6",
+        "F33.C6",
+        "F41.1.B4",
+        "F51.A"
+      ],
+      "category": "sleep"
+    },
+    "整夜睡不着": {
+      "criteria": [
+        "F32.C6",
+        "F33.C6",
+        "F51.A"
+      ],
+      "category": "sleep"
+    },
+    "睡觉不踏实": {
+      "criteria": [
+        "F32.C6",
+        "F41.1.B4",
+        "F51.A"
+      ],
+      "category": "sleep"
+    },
+    "总是犯困": {
+      "criteria": [
+        "F32.C6",
+        "F33.C6",
+        "F51.A"
+      ],
+      "category": "sleep"
+    },
+    "醒得早": {
+      "criteria": [
+        "F32.C6",
+        "F33.C6",
+        "F51.A"
+      ],
+      "category": "sleep"
+    },
+    "白天犯困": {
+      "criteria": [
+        "F32.B3",
+        "F51.A"
+      ],
+      "category": "sleep"
+    },
+    "尿频": {
+      "criteria": [
+        "F45.C1"
+      ],
+      "category": "urogenital"
+    },
+    "性欲下降": {
+      "criteria": [
+        "F32.C7",
+        "F33.C7"
+      ],
+      "category": "urogenital"
+    },
+    "月经不调": {
+      "criteria": [
+        "F45.C1"
+      ],
+      "category": "urogenital"
+    },
+    "性欲减退": {
+      "criteria": [
+        "F32.C7",
+        "F33.C7"
+      ],
+      "category": "urogenital"
+    },
+    "乏力": {
+      "criteria": [
+        "F32.B3",
+        "F33.B3",
+        "F41.1.B1"
+      ],
+      "category": "fatigue"
+    },
+    "没精神": {
+      "criteria": [
+        "F32.B3",
+        "F33.B3"
+      ],
+      "category": "fatigue"
+    },
+    "浑身不舒服": {
+      "criteria": [
+        "F32.B3",
+        "F45.C3"
+      ],
+      "category": "general"
+    },
+    "身体发虚": {
+      "criteria": [
+        "F32.B3",
+        "F33.B3"
+      ],
+      "category": "general"
+    },
+    "容易疲劳": {
+      "criteria": [
+        "F32.B3",
+        "F33.B3",
+        "F41.1.B1"
+      ],
+      "category": "fatigue"
+    },
+    "提不起劲": {
+      "criteria": [
+        "F32.B3",
+        "F33.B3"
+      ],
+      "category": "fatigue"
+    },
+    "身体不舒服": {
+      "criteria": [
+        "F45.C3"
+      ],
+      "category": "general"
+    },
+    "虚弱": {
+      "criteria": [
+        "F32.B3",
+        "F33.B3"
+      ],
+      "category": "fatigue"
+    },
+    "没有力气": {
+      "criteria": [
+        "F32.B3",
+        "F33.B3",
+        "F41.1.B1"
+      ],
+      "category": "fatigue"
+    },
+    "发抖": {
+      "criteria": [
+        "F41.0.B2",
+        "F40.C1"
+      ],
+      "category": "autonomic"
+    },
+    "打颤": {
+      "criteria": [
+        "F41.0.B2",
+        "F40.C1"
+      ],
+      "category": "autonomic"
+    },
+    "嘴巴发干": {
+      "criteria": [
+        "F41.0.B2",
+        "F41.1.B2"
+      ],
+      "category": "autonomic"
+    },
+    "冒汗": {
+      "criteria": [
+        "F41.0.B2",
+        "F41.1.B2",
+        "F40.C1"
+      ],
+      "category": "autonomic"
+    },
+    "忽冷忽热": {
+      "criteria": [
+        "F41.0.B2",
+        "F41.1.B2"
+      ],
+      "category": "autonomic"
+    },
+    "潮热": {
+      "criteria": [
+        "F41.0.B2",
+        "F41.1.B2"
+      ],
+      "category": "autonomic"
+    }
   }
 }

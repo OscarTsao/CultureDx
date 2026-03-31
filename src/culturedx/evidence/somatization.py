@@ -24,16 +24,51 @@ from culturedx.ontology.symptom_map import lookup_symptom
 logger = logging.getLogger(__name__)
 
 _COMMON_SYNONYMS: dict[str, str] = {
+    # Pain synonyms
     "头痛": "头疼",
     "脑袋疼": "头疼",
+    "身上疼": "浑身疼",
+    "全身酸痛": "浑身酸痛",
+    # Sleep synonyms
     "睡不着觉": "失眠",
     "睡眠不好": "失眠",
+    "睡不好觉": "睡不好",
+    "夜里醒": "半夜醒",
+    "凌晨醒": "早醒",
+    # Appetite synonyms
     "胃口不好": "食欲下降",
     "吃不下": "食欲下降",
+    "没食欲": "没胃口",
+    "吃不进去": "吃不下东西",
+    # Cardiovascular synonyms
     "心里发慌": "心慌",
+    "心跳很快": "心跳加速",
+    "心脏砰砰跳": "心跳加速",
+    # Respiratory synonyms
     "胸口发闷": "胸闷",
+    "胸口闷": "胸闷",
+    "喘不了气": "喘不过气",
+    "上气不接下气": "喘不过气",
+    # Neurological synonyms
+    "脑袋晕": "头晕",
+    "天旋地转": "眩晕",
+    "头脑发昏": "头昏脑涨",
+    "脑子糊涂": "脑子不清楚",
+    "记性不好": "记忆力下降",
+    # Fatigue synonyms
     "心情很差": "情绪低落",
     "不想做事": "兴趣减退",
+    "浑身没力气": "浑身没劲",
+    "累得慌": "容易疲劳",
+    "整个人没劲": "没有力气",
+    # Autonomic synonyms
+    "全身发抖": "发抖",
+    "手脚发抖": "手抖",
+    "一身汗": "冒汗",
+    # GI synonyms
+    "胃疼": "胃痛",
+    "闹肚子": "拉肚子",
+    "想吐": "恶心",
 }
 
 

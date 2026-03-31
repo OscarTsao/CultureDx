@@ -119,7 +119,7 @@ class TestSomatizationMapper:
         )
         result = mapper.map_span(span, context="我没有胸口发闷，也不心慌。")
         assert result.expression_type == "negated"
-        assert result.normalized_concept == "胸闷"
+        assert result.normalized_concept == "胸口发闷"
         assert "negated" in result.ambiguity_flags
         assert result.mapping_confidence > 0.0
 

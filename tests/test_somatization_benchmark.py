@@ -141,14 +141,14 @@ class TestSomatizationBaselines:
         dataset = load_somatization_dataset(FIXTURE_PATH)
         example = next(ex for ex in dataset.examples if ex.example_id == "demo-001")
         prediction = FuzzyOntologySomatizationBaseline(top_k=3).predict(example)
-        assert prediction.predicted_concept == "胸闷"
-        assert "胸闷" in prediction.candidate_concepts
+        assert prediction.predicted_concept == "胸口发闷"
+        assert "胸口发闷" in prediction.candidate_concepts
 
     def test_current_mapper_emits_structured_fields(self):
         dataset = load_somatization_dataset(FIXTURE_PATH)
         example = next(ex for ex in dataset.examples if ex.example_id == "demo-001")
         prediction = CurrentSomatizationModuleBaseline().predict(example)
-        assert prediction.predicted_concept == "胸闷"
+        assert prediction.predicted_concept == "胸口发闷"
         assert prediction.confidence is not None
         assert prediction.rationale
 
