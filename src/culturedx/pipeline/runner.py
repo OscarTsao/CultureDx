@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import Any
 
 from culturedx.core.models import ClinicalCase, DiagnosisResult
+from culturedx.eval.code_mapping import map_code_list
 from culturedx.eval.metrics import compute_comorbidity_metrics, compute_diagnosis_metrics
 from culturedx.evidence.pipeline import EvidencePipeline
 from culturedx.modes.base import BaseModeOrchestrator
@@ -164,10 +165,14 @@ class ExperimentRunner:
                 if c.diagnoses:
                     pred_dx = [r.primary_diagnosis] if r.primary_diagnosis else ["unknown"]
                     pred_dx += r.comorbid_diagnoses
-                    preds.append(pred_dx)
-                    golds.append(c.diagnoses)
-            metrics["diagnosis"] = compute_diagnosis_metrics(preds, golds)
-            metrics["comorbidity"] = compute_comorbidity_metrics(preds, golds)
+                    mapped_gold = map_code_list(c.diagnoses)
+                    if not mapped_gold:
+                        continue
+                    preds.append(map_code_list(pred_dx))
+                    golds.append(mapped_gold)
+            if preds:
+                metrics["diagnosis"] = compute_diagnosis_metrics(preds, golds)
+                metrics["comorbidity"] = compute_comorbidity_metrics(preds, golds)
 
         slice_metrics = self._compute_slice_metrics(results, cases)
         summary = MetricsSummary(
@@ -306,9 +311,13 @@ class ExperimentRunner:
                 for result, case in pairs:
                     pred_dx = [result.primary_diagnosis] if result.primary_diagnosis else ["unknown"]
                     pred_dx += result.comorbid_diagnoses
-                    preds.append(pred_dx)
-                    golds.append(case.diagnoses)
-                item["top1_accuracy"] = compute_diagnosis_metrics(preds, golds)["top1_accuracy"]
+                    mapped_gold = map_code_list(case.diagnoses)
+                    if not mapped_gold:
+                        continue
+                    preds.append(map_code_list(pred_dx))
+                    golds.append(mapped_gold)
+                if preds:
+                    item["top1_accuracy"] = compute_diagnosis_metrics(preds, golds)["top1_accuracy"]
 
             slice_metrics.append(item)
 

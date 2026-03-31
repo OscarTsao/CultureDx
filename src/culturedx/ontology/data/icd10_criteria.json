@@ -83,6 +83,20 @@
       },
       "threshold": {"min_core": 2, "min_total": 4, "recurrence_required": true}
     },
+    "F39": {
+      "name": "Unspecified mood disorder",
+      "name_zh": "未特指的心境障碍",
+      "category": "mood",
+      "criteria": {
+        "A1": {"text": "Persistent depressed mood or pervasive sadness", "text_zh": "持续的情绪低落或普遍性悲伤", "type": "core"},
+        "A2": {"text": "Marked loss of interest or reduced pleasure in usual activities", "text_zh": "对日常活动明显失去兴趣或愉悦感减少", "type": "core"},
+        "A3": {"text": "Mood instability with notable swings, irritability, or affective lability", "text_zh": "情绪不稳定，伴明显波动、易激惹或情感不稳", "type": "core"},
+        "A4": {"text": "Reduced energy, fatigue, or decline in usual activity level", "text_zh": "精力下降、疲乏或日常活动水平下降", "type": "core"},
+        "A5": {"text": "Sleep disturbance such as insomnia, hypersomnia, or fragmented sleep", "text_zh": "睡眠障碍，如失眠、嗜睡或睡眠片段化", "type": "additional"},
+        "A6": {"text": "Symptoms cause noticeable impairment in social, school, or occupational functioning", "text_zh": "症状导致社交、学习或职业功能明显受损", "type": "functional"}
+      },
+      "threshold": {"min_total": 3}
+    },
     "F40": {
       "name": "Phobic anxiety disorders",
       "name_zh": "恐惧性焦虑障碍",
@@ -183,6 +197,20 @@
         "D": {"text": "Unsatisfactory sleep causes marked distress or interferes with functioning", "text_zh": "不满意的睡眠引起显著的痛苦或干扰日常功能", "type": "distress"}
       },
       "threshold": {"frequency_per_week": 3, "duration_months": 1}
+    },
+    "F98": {
+      "name": "Other behavioral and emotional disorders",
+      "name_zh": "其他行为和情绪障碍",
+      "category": "behavioral",
+      "criteria": {
+        "A1": {"text": "Emotional dysregulation with frequent intense reactions or poor self-soothing", "text_zh": "情绪调节困难，常出现强烈反应或难以自我安抚", "type": "core"},
+        "A2": {"text": "Behavioral problems such as impulsivity, oppositionality, or disruptive conduct", "text_zh": "存在行为问题，如冲动、对立违抗或扰乱性行为", "type": "core"},
+        "A3": {"text": "School, work, or daily-role dysfunction related to emotional or behavioral symptoms", "text_zh": "因情绪或行为症状导致学习、工作或日常角色功能受损", "type": "functional"},
+        "A4": {"text": "Social difficulties including peer conflict, withdrawal, or poor age-appropriate interaction", "text_zh": "存在社交困难，包括同伴冲突、退缩或缺乏符合年龄的互动", "type": "social"},
+        "A5": {"text": "Reactions are developmentally inappropriate for the person's age or context", "text_zh": "其反应与年龄或所处情境相比显得发育上不相称", "type": "developmental"},
+        "A6": {"text": "Mixed emotional symptoms such as concurrent anxiety, low mood, or irritability", "text_zh": "伴混合性情绪症状，如焦虑、情绪低落或易激惹同时存在", "type": "additional"}
+      },
+      "threshold": {"min_total": 3}
     }
   }
 }
