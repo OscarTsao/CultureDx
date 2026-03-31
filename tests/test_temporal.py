@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import pytest
 
+import culturedx.evidence.temporal as temporal
 from culturedx.core.models import Turn
 from culturedx.evidence.temporal import (
     TemporalFeatures,
@@ -649,3 +650,127 @@ class TestExtractTemporalFeatures:
         features = extract_temporal_features(transcript)
         assert features.estimated_months == 6.0
         assert features.meets_6month_criterion is True
+
+    def test_ctnlp_extract_months_from_timedelta(self, monkeypatch: pytest.MonkeyPatch):
+        """ChineseTimeNLP helper should normalize timedelta output to months."""
+
+        class FakeTimeNormalizer:
+            def parse(self, target: str):
+                return {
+                    "type": "timedelta",
+                    "timedelta": {"year": 1, "month": 2, "day": 15},
+                }
+
+        monkeypatch.setattr(temporal, "_get_chinese_time_nlp", lambda: FakeTimeNormalizer())
+        assert temporal._ctnlp_extract_months("一年两个月半") == pytest.approx(14.5)
+
+    def test_stanza_extract_temporal_builds_relative_time_match(
+        self, monkeypatch: pytest.MonkeyPatch
+    ):
+        """stanza DATE entities should become relative-time evidence when estimable."""
+
+        class FakeEntity:
+            def __init__(self, text: str, entity_type: str):
+                self.text = text
+                self.type = entity_type
+
+        class FakeSentence:
+            def __init__(self, entities):
+                self.entities = entities
+
+        class FakeDoc:
+            def __init__(self, entities):
+                self.sentences = [FakeSentence(entities)]
+
+        monkeypatch.setattr(temporal, "_get_chinese_time_nlp", lambda: None)
+        monkeypatch.setattr(
+            temporal,
+            "_get_stanza_nlp",
+            lambda: (lambda text: FakeDoc([FakeEntity("去年", "DATE")])),
+        )
+
+        matches = temporal._stanza_extract_temporal("去年开始这样", turn_id=1)
+        assert len(matches) == 1
+        assert matches[0].category == "relative_time"
+        assert matches[0].estimated_months == 12.0
+
+    def test_ctnlp_boosts_longer_duration_than_regex(
+        self, monkeypatch: pytest.MonkeyPatch
+    ):
+        """ChineseTimeNLP should be able to lift a borderline regex estimate."""
+
+        class FakeTimeNormalizer:
+            def parse(self, target: str):
+                return {"type": "timedelta", "timedelta": {"month": 8}}
+
+        monkeypatch.setattr(temporal, "_get_chinese_time_nlp", lambda: FakeTimeNormalizer())
+        monkeypatch.setattr(temporal, "_get_stanza_nlp", lambda: None)
+
+        transcript = self._make_transcript(["我焦虑大概有五个月了"])
+        features = extract_temporal_features(transcript)
+
+        assert features.estimated_months == 8.0
+        assert features.duration_confidence == 0.7
+        assert features.meets_6month_criterion is True
+        assert "ChineseTimeNLP" in features.reasoning
+
+    def test_stanza_fallback_adds_temporal_match_when_regex_is_sparse(
+        self, monkeypatch: pytest.MonkeyPatch
+    ):
+        """stanza fallback should add useful temporal evidence on regex-light cases."""
+
+        class FakeEntity:
+            def __init__(self, text: str, entity_type: str):
+                self.text = text
+                self.type = entity_type
+
+        class FakeSentence:
+            def __init__(self, entities):
+                self.entities = entities
+
+        class FakeDoc:
+            def __init__(self, entities):
+                self.sentences = [FakeSentence(entities)]
+
+        monkeypatch.setattr(temporal, "_get_chinese_time_nlp", lambda: None)
+        monkeypatch.setattr(
+            temporal,
+            "_get_stanza_nlp",
+            lambda: (
+                lambda text: FakeDoc([FakeEntity("大三", "DATE")])
+                if "大三" in text
+                else FakeDoc([])
+            ),
+        )
+
+        transcript = self._make_transcript([
+            "从高中开始就这样",
+            "到现在大三还是一直紧张",
+        ])
+        features = extract_temporal_features(transcript)
+
+        assert any(match.text == "大三" for match in features.matches)
+        assert features.estimated_months == 60.0
+        assert features.meets_6month_criterion is True
+
+    def test_stanza_skipped_when_regex_finds_two_explicit_durations(
+        self, monkeypatch: pytest.MonkeyPatch
+    ):
+        """stanza should not run on already-easy cases with multiple explicit durations."""
+        stanza_calls = {"count": 0}
+
+        def _fake_get_stanza():
+            stanza_calls["count"] += 1
+            return None
+
+        monkeypatch.setattr(temporal, "_get_chinese_time_nlp", lambda: None)
+        monkeypatch.setattr(temporal, "_get_stanza_nlp", _fake_get_stanza)
+
+        transcript = self._make_transcript([
+            "我这样已经八个月了",
+            "之前也有一年多了",
+        ])
+        features = extract_temporal_features(transcript)
+
+        assert stanza_calls["count"] == 0
+        assert len([m for m in features.matches if m.category == "explicit_duration"]) >= 2
