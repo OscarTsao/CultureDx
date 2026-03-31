@@ -61,6 +61,7 @@ class RetrieverConfig(BaseModel):
     batch_size: int = 32
     cache_dir: str = "data/cache/retriever"
     device: str = "auto"
+    mode_weights: tuple[float, float, float] = (0.4, 0.2, 0.4)  # (dense, sparse, colbert)
 
 
 class SomatizationConfig(BaseModel):

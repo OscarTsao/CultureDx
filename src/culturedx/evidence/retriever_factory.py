@@ -5,11 +5,15 @@ from culturedx.core.config import RetrieverConfig
 from culturedx.evidence.retriever import BaseRetriever, HybridRetriever, LexicalRetriever, MockRetriever
 
 
-def create_retriever(config: RetrieverConfig) -> BaseRetriever:
+def create_retriever(
+    config: RetrieverConfig,
+    embedding_cache: "EmbeddingCache | None" = None,
+) -> BaseRetriever:
     """Create a retriever instance from config.
 
     Args:
         config: RetrieverConfig with name and parameters.
+        embedding_cache: Optional shared embedding cache for sweep acceleration.
 
     Returns:
         Configured retriever instance.
@@ -28,6 +32,8 @@ def create_retriever(config: RetrieverConfig) -> BaseRetriever:
             model_id=config.model_id or "BAAI/bge-m3",
             device=config.device,
             cache_dir=config.cache_dir or None,
+            embedding_cache=embedding_cache,
+            mode_weights=config.mode_weights,
         )
     if config.name == "hybrid":
         dense_retriever: BaseRetriever
@@ -39,6 +45,8 @@ def create_retriever(config: RetrieverConfig) -> BaseRetriever:
                     model_id=config.model_id,
                     device=config.device,
                     cache_dir=config.cache_dir or None,
+                    embedding_cache=embedding_cache,
+                    mode_weights=config.mode_weights,
                 )
             except ImportError:
                 dense_retriever = MockRetriever()
