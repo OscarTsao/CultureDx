@@ -36,6 +36,7 @@ class EvidencePipeline:
         top_k: int = 10,
         min_confidence: float = 0.1,
         prompts_dir: str | Path = "prompts/evidence",
+        brief_cache: "EvidenceBriefCache | None" = None,
     ) -> None:
         self.llm = llm_client
         self.retriever = retriever
@@ -80,6 +81,16 @@ class EvidencePipeline:
         self._assembler = EvidenceBriefAssembler(
             min_confidence=min_confidence
         )
+        self._brief_cache = brief_cache
+        self._brief_cache_cfg_hash = ""
+        if brief_cache is not None:
+            from culturedx.evidence.brief_cache import EvidenceBriefCache
+            self._brief_cache_cfg_hash = EvidenceBriefCache.config_hash(
+                target_disorders=self.target_disorders,
+                somatization_enabled=somatization_enabled,
+                scope_policy=scope_policy,
+                retriever_type=type(retriever).__name__,
+            )
 
     def extract(
         self,
@@ -87,6 +98,13 @@ class EvidencePipeline:
         target_disorders: list[str] | None = None,
     ) -> EvidenceBrief:
         """Run the full evidence extraction pipeline for a case."""
+        # Check brief cache first (sweep acceleration)
+        if self._brief_cache is not None and target_disorders is None:
+            cached = self._brief_cache.get(case.case_id, self._brief_cache_cfg_hash)
+            if cached is not None:
+                logger.debug("Brief cache hit for case %s", case.case_id)
+                return cached
+
         t0 = time.monotonic()
         failures: list[FailureInfo] = []
         stage_timings: dict[str, float] = {}
@@ -276,6 +294,11 @@ class EvidencePipeline:
         result.target_disorders = disorder_codes
         result.failures = failures
         result.stage_timings = stage_timings
+
+        # Populate brief cache for sweep reuse
+        if self._brief_cache is not None:
+            self._brief_cache.put(case.case_id, self._brief_cache_cfg_hash, result)
+
         return result
 
     def _resolve_target_disorders(

@@ -274,6 +274,38 @@ def sweep(
     llm = _create_configured_llm(cfg, cfg.llm)
     checker_llm = _create_configured_llm(cfg, cfg.checker_llm) if cfg.checker_llm else None
 
+    # --- Sweep acceleration: shared caches across conditions ---
+    # 1. Create shared retriever (avoid reloading BGE-M3 per condition)
+    shared_retriever = None
+    embedding_cache = None
+    brief_cache = None
+    any_evidence = any(c.with_evidence for c in conditions)
+    if any_evidence:
+        from culturedx.evidence.embedding_cache import EmbeddingCache
+        from culturedx.evidence.brief_cache import EvidenceBriefCache
+        from culturedx.evidence.retriever_factory import create_retriever
+
+        embedding_cache = EmbeddingCache()
+        brief_cache = EvidenceBriefCache()
+        shared_retriever = create_retriever(
+            cfg.evidence.retriever, embedding_cache=embedding_cache
+        )
+        click.echo("Sweep acceleration: shared retriever + embedding cache + brief cache")
+
+    # 2. Smart condition ordering: no-evidence first (primes LLM cache)
+    def _condition_sort_key(c: SweepCondition) -> tuple:
+        # no_evidence < evidence, hied first (most cache-generative)
+        mode_order = {"hied": 0, "psycot": 1, "specialist": 2, "debate": 3, "single": 4}
+        return (
+            0 if not c.with_evidence else 1,
+            mode_order.get(c.mode_type, 9),
+            0 if not c.with_somatization else 1,
+        )
+    conditions = sorted(conditions, key=_condition_sort_key)
+    click.echo("Condition execution order (optimized for LLM cache):")
+    for i, c in enumerate(conditions):
+        click.echo(f"  {i+1}. {c.name}")
+
     def run_fn(condition: SweepCondition, cases_list: list) -> tuple:
         """Execute a single sweep condition and return (results, metrics)."""
         from culturedx.pipeline.runner import ExperimentRunner
@@ -316,13 +348,11 @@ def sweep(
             from culturedx.modes.single import SingleModelMode
             mode = SingleModelMode(llm_client=llm)
 
-        # Create evidence pipeline if condition requests it
+        # Create evidence pipeline using shared retriever + caches
         evidence_pipeline = None
-        if condition.with_evidence:
+        if condition.with_evidence and shared_retriever is not None:
             from culturedx.evidence.pipeline import EvidencePipeline
-            from culturedx.evidence.retriever_factory import create_retriever
 
-            retriever = create_retriever(cfg.evidence.retriever)
             evidence_scope_policy = cfg.evidence.scope_policy
             if evidence_scope_policy == "auto":
                 evidence_scope_policy = (
@@ -332,13 +362,14 @@ def sweep(
                 )
             evidence_pipeline = EvidencePipeline(
                 llm_client=llm,
-                retriever=retriever,
+                retriever=shared_retriever,
                 target_disorders=condition.target_disorders or cfg.mode.target_disorders,
                 scope_policy=evidence_scope_policy,
                 somatization_enabled=condition.with_somatization,
                 somatization_llm_fallback=cfg.evidence.somatization.llm_fallback,
                 top_k=cfg.evidence.top_k_final,
                 min_confidence=cfg.evidence.min_confidence,
+                brief_cache=brief_cache,
             )
 
         # Run through ExperimentRunner
