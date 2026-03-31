@@ -12,6 +12,7 @@ import json
 import logging
 import math
 import os
+import re
 import shutil
 import sys
 import time
@@ -177,7 +178,14 @@ def parse_args() -> argparse.Namespace:
         default="hied,single",
         help="Comma-separated modes: hied,single,psycot,mas,specialist,debate",
     )
-    parser.add_argument("--model-name", default=None, help="Override cfg.llm.model_id")
+    parser.add_argument(
+        "--model-name",
+        default=None,
+        help=(
+            "Override cfg.llm.model_id. Accepts one model ID or a comma-separated "
+            "list to run sequentially with separate output directories."
+        ),
+    )
     parser.add_argument(
         "--adapter-path",
         default=None,
@@ -215,6 +223,33 @@ def load_culturedx_config(config_paths: list[str]) -> CultureDxConfig:
 
 def normalize_name_list(raw_value: str) -> list[str]:
     return [item.strip() for item in raw_value.split(",") if item.strip()]
+
+
+def normalize_model_name_list(raw_value: str | None, default_model: str) -> list[str]:
+    raw_models = normalize_name_list(raw_value) if raw_value else [default_model]
+    deduped_models: list[str] = []
+    seen: set[str] = set()
+    for model_name in raw_models:
+        if model_name in seen:
+            continue
+        seen.add(model_name)
+        deduped_models.append(model_name)
+    return deduped_models or [default_model]
+
+
+def sanitize_model_name_for_path(model_name: str) -> str:
+    slug = re.sub(r"[^a-z0-9]+", "-", model_name.strip().lower()).strip("-")
+    return slug or "model"
+
+
+def resolve_model_output_dir(
+    base_output_dir: Path,
+    model_names: list[str],
+    model_name: str,
+) -> Path:
+    if len(model_names) == 1:
+        return base_output_dir
+    return base_output_dir / sanitize_model_name_for_path(model_name)
 
 
 def sanitize_for_json(value: Any) -> Any:
@@ -496,6 +531,7 @@ def build_eval_plan_payload(
     cfg: CultureDxConfig,
     dataset_specs: list[dict[str, Any]],
     dataset_loads: dict[str, dict[str, Any]],
+    model_name: str,
 ) -> dict[str, Any]:
     return {
         "config_paths": list(args.config),
@@ -509,7 +545,7 @@ def build_eval_plan_payload(
             for spec in dataset_specs
         ],
         "modes": normalize_name_list(args.modes),
-        "model_name": args.model_name or cfg.llm.model_id,
+        "model_name": model_name,
         "adapter_path": args.adapter_path,
         "with_evidence": args.with_evidence,
         "with_somatization": args.with_somatization and args.with_evidence,
@@ -1168,29 +1204,30 @@ def run_mode_dataset(
     return timing
 
 
-def main() -> int:
-    args = parse_args()
-    cfg = load_culturedx_config(args.config)
-
-    dataset_specs = [resolve_dataset_spec(name, cfg) for name in normalize_name_list(args.datasets)]
-    mode_names = normalize_name_list(args.modes)
-    output_dir = Path(args.output_dir)
+def run_eval_for_model(
+    *,
+    args: argparse.Namespace,
+    cfg: CultureDxConfig,
+    dataset_specs: list[dict[str, Any]],
+    dataset_loads: dict[str, dict[str, Any]],
+    mode_names: list[str],
+    model_name: str,
+    output_dir: Path,
+) -> int:
+    output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     if not args.resume:
         cleanup_output_dir(output_dir, [spec["output_name"] for spec in dataset_specs])
+    logger.info("Preparing evaluation for model=%s output_dir=%s", model_name, output_dir)
 
-    dataset_loads: dict[str, dict[str, Any]] = {}
-    for spec in dataset_specs:
-        logger.info(
-            "Loading dataset %s via adapter=%s from %s",
-            spec["output_name"],
-            spec["adapter_name"],
-            spec["data_path"],
-        )
-        dataset_loads[spec["output_name"]] = load_filtered_cases(spec, args.max_cases)
-
-    plan_payload = build_eval_plan_payload(args, cfg, dataset_specs, dataset_loads)
+    plan_payload = build_eval_plan_payload(
+        args,
+        cfg,
+        dataset_specs,
+        dataset_loads,
+        model_name=model_name,
+    )
     config_hash = compute_config_hash(plan_payload)
     config_json_path = output_dir / "config.json"
     write_json(
@@ -1220,7 +1257,7 @@ def main() -> int:
         heuristic_sec_per_case = estimate_sec_per_case(cfg, output_dir)
         total_cases = sum(len(dataset_loads[spec["output_name"]]["eval_cases"]) for spec in dataset_specs)
         total_pairs = len(dataset_specs) * len(mode_names)
-        logger.info("Dry run summary:")
+        logger.info("Dry run summary for model=%s:", model_name)
         for spec in dataset_specs:
             load_info = dataset_loads[spec["output_name"]]
             eval_count = len(load_info["eval_cases"])
@@ -1239,6 +1276,7 @@ def main() -> int:
             args.batch_size,
             args.max_cases or "all",
         )
+        logger.info("  output_dir=%s", output_dir)
         if heuristic_sec_per_case is not None:
             est_total_sec = total_cases * len(mode_names) * heuristic_sec_per_case
             logger.info(
@@ -1280,7 +1318,7 @@ def main() -> int:
                 dataset_spec=spec,
                 cases=cases,
                 mode_name=mode_name,
-                model_name=args.model_name,
+                model_name=model_name,
                 with_evidence=args.with_evidence,
                 with_somatization=args.with_somatization,
                 adapter_path=args.adapter_path,
@@ -1343,6 +1381,41 @@ def main() -> int:
 
     logger.info("Full evaluation complete.")
     logger.info("Results written to %s", output_dir)
+    return 0
+
+
+def main() -> int:
+    args = parse_args()
+    cfg = load_culturedx_config(args.config)
+
+    dataset_specs = [resolve_dataset_spec(name, cfg) for name in normalize_name_list(args.datasets)]
+    mode_names = normalize_name_list(args.modes)
+    model_names = normalize_model_name_list(args.model_name, cfg.llm.model_id)
+    base_output_dir = Path(args.output_dir)
+    base_output_dir.mkdir(parents=True, exist_ok=True)
+
+    dataset_loads: dict[str, dict[str, Any]] = {}
+    for spec in dataset_specs:
+        logger.info(
+            "Loading dataset %s via adapter=%s from %s",
+            spec["output_name"],
+            spec["adapter_name"],
+            spec["data_path"],
+        )
+        dataset_loads[spec["output_name"]] = load_filtered_cases(spec, args.max_cases)
+
+    for model_name in model_names:
+        run_output_dir = resolve_model_output_dir(base_output_dir, model_names, model_name)
+        run_eval_for_model(
+            args=args,
+            cfg=cfg,
+            dataset_specs=dataset_specs,
+            dataset_loads=dataset_loads,
+            mode_names=mode_names,
+            model_name=model_name,
+            output_dir=run_output_dir,
+        )
+
     return 0
 
 

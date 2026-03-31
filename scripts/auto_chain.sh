@@ -8,6 +8,12 @@
 # - `run_full_eval.py` does not load LoRA adapters itself. `--adapter-path` is
 #   provenance-only, so this script can optionally start an eval server via
 #   `EVAL_SERVER_CMD`.
+# - Example manual vLLM launch:
+#     vllm serve Qwen/Qwen3-32B-AWQ --max-model-len 16384 --gpu-memory-utilization 0.85 --port 8000
+# - Current vLLM docs support both AWQ quantization and Qwen3 MoE serving, but
+#   the QuantTrio Qwen3.5 AWQ model card recommends a current/nightly vLLM build.
+# - For Qwen3.5-35B-A3B-AWQ (MoE, ~20GB VRAM):
+#     vllm serve QuantTrio/Qwen3.5-35B-A3B-AWQ --max-model-len 16384 --gpu-memory-utilization 0.85 --port 8000
 # - `EVAL_SERVER_CMD` runs under `bash -lc` with these exported variables:
 #     BEST_CHECKPOINT
 #     BEST_ADAPTER_DIR
@@ -63,12 +69,19 @@ EVAL_WITH_SOMATIZATION=${EVAL_WITH_SOMATIZATION:-1}
 EVAL_BATCH_SIZE=${EVAL_BATCH_SIZE:-50}
 EVAL_OUTPUT_DIR=${EVAL_OUTPUT_DIR:-"outputs/eval/full_qwen3_8b_v1"}
 EVAL_LOG=${EVAL_LOG:-"outputs/eval/full_eval.log"}
+EVAL_MODELS=${EVAL_MODELS:-"Qwen/Qwen3-32B-AWQ QuantTrio/Qwen3.5-35B-A3B-AWQ"}
 EVAL_MODEL_NAME=${EVAL_MODEL_NAME:-"$MODEL_NAME"}
 EVAL_ADAPTER_PATH=${EVAL_ADAPTER_PATH:-""}
 EVAL_SERVER_CMD=${EVAL_SERVER_CMD:-""}
 EVAL_SERVER_LOG=${EVAL_SERVER_LOG:-"outputs/eval/eval_model_server.log"}
 EVAL_SERVER_READY_TIMEOUT=${EVAL_SERVER_READY_TIMEOUT:-600}
 FORCE_RESTART_EVAL_SERVER=${FORCE_RESTART_EVAL_SERVER:-0}
+
+ACTIVE_EVAL_MODEL_NAME=""
+ACTIVE_EVAL_ADAPTER_PATH=""
+CURRENT_EVAL_OUTPUT_DIR="$EVAL_OUTPUT_DIR"
+CURRENT_EVAL_LOG="$EVAL_LOG"
+CURRENT_EVAL_SERVER_LOG="$EVAL_SERVER_LOG"
 
 
 log() {
@@ -79,6 +92,57 @@ log() {
 die() {
     log "ERROR: $*"
     exit 1
+}
+
+
+model_slug() {
+    local value="$1"
+    value="$(printf '%s' "$value" | tr '[:upper:]' '[:lower:]')"
+    value="$(printf '%s' "$value" | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//; s/-+/-/g')"
+    printf '%s\n' "${value:-model}"
+}
+
+
+eval_run_slug() {
+    local model_name="$1"
+    local adapter_path="${2:-}"
+    local slug
+    slug="$(model_slug "$model_name")"
+    if [[ -n "$adapter_path" ]]; then
+        slug="${slug}-adapter"
+    fi
+    printf '%s\n' "$slug"
+}
+
+
+path_with_suffix() {
+    local path="$1"
+    local suffix="$2"
+    local dir
+    local file
+    local stem
+    local ext=""
+
+    dir="$(dirname "$path")"
+    file="$(basename "$path")"
+    if [[ "$file" == *.* && "$file" != .* ]]; then
+        stem="${file%.*}"
+        ext=".${file##*.}"
+    else
+        stem="$file"
+    fi
+    printf '%s/%s_%s%s\n' "$dir" "$stem" "$suffix" "$ext"
+}
+
+
+configure_eval_paths() {
+    local model_name="$1"
+    local adapter_path="${2:-}"
+    local run_slug
+    run_slug="$(eval_run_slug "$model_name" "$adapter_path")"
+    CURRENT_EVAL_OUTPUT_DIR="${EVAL_OUTPUT_DIR}/${run_slug}"
+    CURRENT_EVAL_LOG="$(path_with_suffix "$EVAL_LOG" "$run_slug")"
+    CURRENT_EVAL_SERVER_LOG="$(path_with_suffix "$EVAL_SERVER_LOG" "$run_slug")"
 }
 
 
@@ -138,7 +202,7 @@ verify_teacher_output() {
 
 
 stop_vllm() {
-    log "Stopping vLLM to free GPU for finetuning..."
+    log "Stopping vLLM..."
 
     local pids=()
     mapfile -t pids < <(collect_vllm_pids)
@@ -237,6 +301,7 @@ PY
 
 wait_for_eval_server() {
     local launcher_pid="$1"
+    local server_log="${CURRENT_EVAL_SERVER_LOG:-$EVAL_SERVER_LOG}"
     local start_ts
     start_ts="$(date +%s)"
 
@@ -246,10 +311,10 @@ wait_for_eval_server() {
             return 0
         fi
         if ! kill -0 "$launcher_pid" 2>/dev/null; then
-            die "Eval server launcher exited before health check passed. See $EVAL_SERVER_LOG"
+            die "Eval server launcher exited before health check passed. See $server_log"
         fi
         if (( $(date +%s) - start_ts >= EVAL_SERVER_READY_TIMEOUT )); then
-            die "Eval server did not become healthy within ${EVAL_SERVER_READY_TIMEOUT}s. See $EVAL_SERVER_LOG"
+            die "Eval server did not become healthy within ${EVAL_SERVER_READY_TIMEOUT}s. See $server_log"
         fi
         sleep 5
     done
@@ -270,7 +335,8 @@ ensure_eval_server() {
         die "No eval server is running and EVAL_SERVER_CMD is empty. run_full_eval.py cannot load the LoRA adapter itself."
     fi
 
-    mkdir -p "$(dirname "$EVAL_SERVER_LOG")"
+    local server_log="${CURRENT_EVAL_SERVER_LOG:-$EVAL_SERVER_LOG}"
+    mkdir -p "$(dirname "$server_log")"
     log "Starting eval server with EVAL_SERVER_CMD..."
     log "$EVAL_SERVER_CMD"
 
@@ -280,7 +346,7 @@ ensure_eval_server() {
     MODEL_NAME="$MODEL_NAME" \
     EVAL_MODEL_NAME="$EVAL_MODEL_NAME" \
     VLLM_PORT="$VLLM_PORT" \
-    bash -lc "$EVAL_SERVER_CMD" >"$EVAL_SERVER_LOG" 2>&1 &
+    bash -lc "$EVAL_SERVER_CMD" >"$server_log" 2>&1 &
 
     local launcher_pid=$!
     log "Eval server launcher PID: $launcher_pid"
@@ -288,9 +354,41 @@ ensure_eval_server() {
 }
 
 
+prepare_eval_server_for_target() {
+    local target_model="$1"
+    local target_adapter="${2:-}"
+
+    EVAL_MODEL_NAME="$target_model"
+    EVAL_ADAPTER_PATH="$target_adapter"
+
+    if [[ "$FORCE_RESTART_EVAL_SERVER" == "1" ]]; then
+        ACTIVE_EVAL_MODEL_NAME=""
+        ACTIVE_EVAL_ADAPTER_PATH=""
+    fi
+
+    if [[ -n "$EVAL_SERVER_CMD" ]]; then
+        if [[ "$ACTIVE_EVAL_MODEL_NAME" != "$target_model" || "$ACTIVE_EVAL_ADAPTER_PATH" != "$target_adapter" ]]; then
+            if curl -fsS "$VLLM_HEALTH_URL" >/dev/null 2>&1; then
+                log "Restarting eval server for model: $target_model"
+                stop_vllm
+            fi
+        fi
+    elif [[ -n "$ACTIVE_EVAL_MODEL_NAME" && "$ACTIVE_EVAL_MODEL_NAME" != "$target_model" ]] \
+        || [[ -n "$ACTIVE_EVAL_MODEL_NAME" && "$ACTIVE_EVAL_ADAPTER_PATH" != "$target_adapter" ]]; then
+        log "Eval target changed to $target_model, but EVAL_SERVER_CMD is empty. Ensure the server at $VLLM_HEALTH_URL is serving the requested model."
+    fi
+
+    ensure_eval_server
+    ACTIVE_EVAL_MODEL_NAME="$target_model"
+    ACTIVE_EVAL_ADAPTER_PATH="$target_adapter"
+}
+
+
 run_full_eval() {
     require_file "$RUN_FULL_EVAL_SCRIPT"
-    mkdir -p "$(dirname "$EVAL_LOG")" "$EVAL_OUTPUT_DIR"
+    local output_dir="${CURRENT_EVAL_OUTPUT_DIR:-$EVAL_OUTPUT_DIR}"
+    local eval_log="${CURRENT_EVAL_LOG:-$EVAL_LOG}"
+    mkdir -p "$(dirname "$eval_log")" "$output_dir"
 
     local -a eval_config_args=()
     local -a eval_configs=()
@@ -311,10 +409,12 @@ run_full_eval() {
         --datasets "$EVAL_DATASETS"
         --modes "$EVAL_MODES"
         --model-name "$EVAL_MODEL_NAME"
-        --adapter-path "$EVAL_ADAPTER_PATH"
         --batch-size "$EVAL_BATCH_SIZE"
-        --output-dir "$EVAL_OUTPUT_DIR"
+        --output-dir "$output_dir"
     )
+    if [[ -n "$EVAL_ADAPTER_PATH" ]]; then
+        cmd+=(--adapter-path "$EVAL_ADAPTER_PATH")
+    fi
 
     if [[ "$EVAL_WITH_EVIDENCE" == "1" ]]; then
         cmd+=(--with-evidence)
@@ -327,7 +427,33 @@ run_full_eval() {
     printf -v cmd_str '%q ' "${cmd[@]}"
     log "Starting full eval:"
     log "$cmd_str"
-    "${cmd[@]}" 2>&1 | tee "$EVAL_LOG"
+    "${cmd[@]}" 2>&1 | tee "$eval_log"
+}
+
+
+run_eval_for_target() {
+    local target_model="$1"
+    local target_adapter="${2:-}"
+    local label="$3"
+
+    configure_eval_paths "$target_model" "$target_adapter"
+    log "${label}: model=${target_model} adapter=${target_adapter:-none}"
+    log "Eval output dir: $CURRENT_EVAL_OUTPUT_DIR"
+    prepare_eval_server_for_target "$target_model" "$target_adapter"
+    run_full_eval
+}
+
+
+run_reference_model_evals() {
+    local eval_model
+    for eval_model in $EVAL_MODELS; do
+        run_eval_for_target "$eval_model" "" "Reference eval"
+    done
+}
+
+
+run_finetuned_model_eval() {
+    run_eval_for_target "$EVAL_MODEL_NAME" "$EVAL_ADAPTER_PATH" "Finetuned eval"
 }
 
 
@@ -359,8 +485,8 @@ main() {
     export BEST_ADAPTER_DIR
     export EVAL_ADAPTER_PATH
 
-    ensure_eval_server
-    run_full_eval
+    run_reference_model_evals
+    run_finetuned_model_eval
 
     echo "=========================================="
     echo "AUTO-CHAIN COMPLETE"
