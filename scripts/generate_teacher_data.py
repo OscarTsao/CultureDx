@@ -181,6 +181,27 @@ async def generate_one(
             return None
 
 
+def _load_completed_keys(incremental_path: Path) -> set[str]:
+    """Load already-completed (case_id, disorder_code) keys from incremental file."""
+    done: set[str] = set()
+    if not incremental_path.exists():
+        return done
+    with open(incremental_path, encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                ex = json.loads(line)
+                meta = ex.get("metadata", {})
+                key = f"{meta['case_id']}::{meta['disorder_code']}"
+                done.add(key)
+            except (json.JSONDecodeError, KeyError):
+                pass
+    logger.info("Resume: loaded %d completed examples from %s", len(done), incremental_path)
+    return done
+
+
 async def run_teacher_generation(
     cases: list[dict],
     disorders: list[str],
@@ -188,14 +209,28 @@ async def run_teacher_generation(
     base_url: str,
     model: str,
     concurrency: int,
+    incremental_path: Path | None = None,
 ) -> list[dict]:
-    """Run teacher generation for all case × disorder pairs."""
+    """Run teacher generation for all case x disorder pairs.
+
+    Writes each batch incrementally to incremental_path so progress survives crashes.
+    """
     import httpx
+
+    # Load completed keys for resume
+    done_keys: set[str] = set()
+    if incremental_path:
+        done_keys = _load_completed_keys(incremental_path)
 
     # Build all prompts
     tasks = []
+    skipped = 0
     for case in cases:
         for disorder in disorders:
+            key = f"{case['case_id']}::{disorder}"
+            if key in done_keys:
+                skipped += 1
+                continue
             evidence_summary = scan_somatic_hints(case["transcript_text"], disorder)
             try:
                 prompt = render_checker_prompt(
@@ -211,7 +246,9 @@ async def run_teacher_generation(
                 "prompt": prompt,
             })
 
-    logger.info("Total prompts to generate: %d", len(tasks))
+    logger.info(
+        "Total prompts: %d remaining (%d skipped via resume)", len(tasks), skipped
+    )
 
     semaphore = asyncio.Semaphore(concurrency)
     examples = []
@@ -235,6 +272,7 @@ async def run_teacher_generation(
             ]
             responses = await asyncio.gather(*coros)
 
+            batch_examples = []
             for task_info, response in zip(batch, responses):
                 if response is None:
                     continue
@@ -247,7 +285,7 @@ async def run_teacher_generation(
                 except json.JSONDecodeError:
                     continue
 
-                examples.append({
+                ex = {
                     "messages": [
                         {"role": "user", "content": task_info["prompt"]},
                         {"role": "assistant", "content": response},
@@ -263,14 +301,44 @@ async def run_teacher_generation(
                             1 for c in parsed["criteria"] if c["status"] == "met"
                         ),
                         "n_not_met": sum(
-                            1 for c in parsed["criteria"] if c["status"] == "not_met"
+                            1 for c in parsed["criteria"]
+                            if c["status"] == "not_met"
                         ),
                         "n_insufficient": sum(
                             1 for c in parsed["criteria"]
                             if c["status"] == "insufficient_evidence"
                         ),
                     },
-                })
+                }
+                batch_examples.append(ex)
+
+            examples.extend(batch_examples)
+
+            # Incremental write after each batch
+            if incremental_path and batch_examples:
+                incremental_path.parent.mkdir(parents=True, exist_ok=True)
+                with open(incremental_path, "a", encoding="utf-8") as f:
+                    for ex in batch_examples:
+                        f.write(json.dumps(ex, ensure_ascii=False) + "\n")
+                logger.info(
+                    "  Incremental save: %d batch / %d total (+ %d resumed)",
+                    len(batch_examples), len(examples), skipped,
+                )
+
+    # Also return previously completed examples for final stats
+    if incremental_path and done_keys:
+        prev_examples = []
+        with open(incremental_path, encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    prev_examples.append(json.loads(line))
+                except json.JSONDecodeError:
+                    pass
+        # Return ALL examples (resumed + new) -- the file already has everything
+        return prev_examples
 
     return examples
 
@@ -366,12 +434,14 @@ def main() -> None:
         logger.error("No cases loaded. Check data paths.")
         sys.exit(1)
 
-    # Run teacher generation
+    # Run teacher generation (with incremental saves for crash resilience)
+    incremental_path = args.output_dir / "criterion_checker_incremental.jsonl"
     t0 = time.time()
     examples = asyncio.run(
         run_teacher_generation(
             all_cases, TARGET_DISORDERS, jinja_env,
             args.base_url, args.model, args.concurrency,
+            incremental_path=incremental_path,
         )
     )
     elapsed = time.time() - t0

@@ -15,10 +15,45 @@ from culturedx.evidence.normalization import (
 )
 from culturedx.evidence.retriever import BaseRetriever, RetrievalResult
 from culturedx.evidence.somatization import resolve_symptom_concept
+from culturedx.evidence.negation import NegationDetector
 from culturedx.ontology.icd10 import get_disorder_criteria, get_criterion_text
 
 _SOMATIZATION_BOOST = 0.15
 _CONTRADICTION_NEGATION_PENALTY = 0.20
+
+_NEGATION_DETECTOR: NegationDetector | None = None
+
+
+def _get_negation_detector() -> NegationDetector:
+    """Lazy singleton for negation detector (avoid loading stanza until needed)."""
+    global _NEGATION_DETECTOR
+    if _NEGATION_DETECTOR is None:
+        _NEGATION_DETECTOR = NegationDetector(use_dep_parsing=False)
+    return _NEGATION_DETECTOR
+
+
+def is_evidence_negated(evidence_text: str, criterion_text: str) -> bool:
+    """Check if evidence text negates the criterion concept using scope-aware detection.
+
+    Returns True only if the negation detector finds a genuine negation.
+    Handles positive-negation idioms (睡不着, 吃不下) and clause boundaries.
+    """
+    detector = _get_negation_detector()
+    # Try with key symptom terms from the criterion
+    sig = concept_signature(criterion_text)
+    for term in sig:
+        if len(term) < 2:
+            continue
+        if term in evidence_text:
+            result = detector.detect(evidence_text, term)
+            if result.is_negated and result.confidence >= 0.7:
+                return True
+    # Fallback: check the full criterion text if it appears
+    if criterion_text in evidence_text:
+        result = detector.detect(evidence_text, criterion_text)
+        if result.is_negated and result.confidence >= 0.7:
+            return True
+    return False
 
 
 class EvidenceReranker(Protocol):
@@ -52,7 +87,7 @@ class ConceptOverlapReranker:
         reranked: list[RetrievalResult] = []
         for result in results:
             concept_score = jaccard_similarity(criterion_text, result.text)
-            negation_penalty = _CONTRADICTION_NEGATION_PENALTY if contains_negation(result.text) else 0.0
+            negation_penalty = _CONTRADICTION_NEGATION_PENALTY if is_evidence_negated(result.text, criterion_text) else 0.0
             fused = (
                 self.score_weight * result.score
                 + self.concept_weight * concept_score
@@ -268,7 +303,7 @@ class CriteriaMatcher:
             signal_tags.append("insufficient_evidence")
         else:
             top = filtered_results[0]
-            if contains_negation(top.text) and jaccard_similarity(criterion_text, top.text) > 0.20:
+            if is_evidence_negated(top.text, criterion_text) and jaccard_similarity(criterion_text, top.text) > 0.20:
                 signal_tags.append("contradiction")
 
         criterion_type = criterion_meta.get("type", "")
