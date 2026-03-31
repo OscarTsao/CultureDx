@@ -10,6 +10,7 @@ import sys
 import time
 import traceback
 from dataclasses import asdict, dataclass, field
+from datetime import datetime
 from pathlib import Path
 
 # Add project to path
@@ -182,17 +183,153 @@ class ToolResult:
     latency_ms: float = 0.0
 
 
+def _dedupe_ordered(items: list[str]) -> list[str]:
+    seen = set()
+    deduped = []
+    for item in items:
+        if item in seen:
+            continue
+        seen.add(item)
+        deduped.append(item)
+    return deduped
+
+
+def _months_from_timedelta(delta: dict | None) -> float | None:
+    if not isinstance(delta, dict):
+        return None
+    years = float(delta.get("year", 0) or 0)
+    months = float(delta.get("month", 0) or 0)
+    days = float(delta.get("day", 0) or 0)
+    total_months = years * 12 + months + days / 30.0
+    return round(total_months, 2) if total_months > 0 else None
+
+
+def _parse_datetime(value) -> datetime | None:
+    if isinstance(value, datetime):
+        return value
+    if not isinstance(value, str) or not value.strip():
+        return None
+    try:
+        return datetime.fromisoformat(value.strip())
+    except ValueError:
+        return None
+
+
+def _months_since(dt: datetime | None, now: datetime | None = None) -> float | None:
+    if dt is None:
+        return None
+    reference = now or datetime.now()
+    delta_days = (reference - dt).total_seconds() / 86400.0
+    if delta_days < 0:
+        return None
+    return round(delta_days / 30.0, 2)
+
+
+def _estimate_months_from_temporal_text(text: str) -> float | None:
+    from culturedx.evidence.temporal import (
+        _EXPLICIT_DURATION_PATTERNS,
+        _RELATIVE_TIME_PATTERNS,
+        _estimate_months_from_match,
+    )
+
+    stripped = text.strip()
+    if not stripped:
+        return None
+
+    # Common colloquial variants that the production regex currently
+    # underestimates or does not cover directly.
+    if "半年多" in stripped:
+        return 7.0
+    if "大半年" in stripped:
+        return 8.0
+
+    # "从上高中...现在大三" style expressions imply a multi-year span even
+    # when the external parser collapses them to "now".
+    if "高中" in stripped:
+        school_stage_months = {
+            "大一": 36.0,
+            "大二": 48.0,
+            "大三": 60.0,
+            "大四": 72.0,
+        }
+        for marker, months in school_stage_months.items():
+            if marker in stripped:
+                return months
+
+    for regex, kind in _EXPLICIT_DURATION_PATTERNS:
+        match = regex.search(stripped)
+        if match is None:
+            continue
+        group1 = match.group(1) if match.lastindex and match.lastindex >= 1 else ""
+        estimated = _estimate_months_from_match(group1, kind, kind)
+        if estimated is not None:
+            return estimated
+
+    for regex, kind in _RELATIVE_TIME_PATTERNS:
+        if regex.search(stripped):
+            estimated = _estimate_months_from_match("", kind, kind)
+            if estimated is not None:
+                return estimated
+
+    if any(marker in stripped for marker in ("这几天", "几天", "三四天")):
+        return 0.1
+    if any(marker in stripped for marker in ("上周", "这周", "这个星期", "这星期")):
+        return 0.25
+    if "最近" in stripped:
+        return 0.1
+    return None
+
+
+def _is_duration_like_text(text: str) -> bool:
+    from culturedx.evidence.temporal import _EXPLICIT_DURATION_PATTERNS
+
+    stripped = text.strip()
+    if not stripped:
+        return False
+    for regex, _ in _EXPLICIT_DURATION_PATTERNS:
+        if regex.fullmatch(stripped):
+            return True
+    return stripped in {"年", "月", "日", "天", "周", "星期"}
+
+
 def eval_jionlp(text: str) -> tuple[list[str], float | None, str]:
     """Evaluate jionlp parse_time."""
     import jionlp as jio
     results = []
     raw_parts = []
+    estimated_months = None
+    hinted_months = _estimate_months_from_temporal_text(text)
     try:
-        parsed = jio.parse_time(text, time_base=None)
+        parsed = jio.parse_time(text, time_base=time.time())
         if parsed:
-            raw_parts.append(str(parsed))
+            raw_parts.append(f"parse_time: {parsed}")
             if isinstance(parsed, dict):
-                results.append(str(parsed.get("time", [parsed])))
+                results.append(str(parsed))
+                parsed_type = parsed.get("type")
+                parsed_time = parsed.get("time")
+                if parsed_type == "time_delta":
+                    estimated_months = _months_from_timedelta(parsed_time)
+                elif parsed_type == "time_period" and isinstance(parsed_time, dict):
+                    estimated_months = _months_from_timedelta(parsed_time.get("delta"))
+                    if (
+                        estimated_months is not None
+                        and estimated_months <= 0.1
+                        and hinted_months is not None
+                        and hinted_months >= 1.0
+                    ):
+                        estimated_months = None
+                elif parsed_type in {"time_span", "time_point"}:
+                    if isinstance(parsed_time, list) and parsed_time:
+                        estimated_months = _months_since(_parse_datetime(parsed_time[0]))
+                    else:
+                        estimated_months = _months_since(_parse_datetime(parsed_time))
+                    if (
+                        estimated_months is not None
+                        and estimated_months <= 0.05
+                        and hinted_months is not None
+                        and hinted_months >= 1.0
+                    ):
+                        estimated_months = None
             elif isinstance(parsed, list):
                 for p in parsed:
                     results.append(str(p))
@@ -202,36 +339,77 @@ def eval_jionlp(text: str) -> tuple[list[str], float | None, str]:
         raw_parts.append(f"parse_time error: {e}")
 
     # Also try time_extractor
-    try:
-        extracted = jio.TimeExtractor()
-        te_result = extracted(text)
-        if te_result:
-            raw_parts.append(f"TimeExtractor: {te_result}")
-            for item in te_result:
-                if isinstance(item, dict):
-                    results.append(item.get("time_candidate", str(item)))
-                else:
-                    results.append(str(item))
-    except Exception as e:
-        raw_parts.append(f"TimeExtractor error: {e}")
+    extractor_cls = getattr(jio, "TimeExtractor", None)
+    if extractor_cls is None:
+        raw_parts.append("TimeExtractor unavailable")
+    else:
+        try:
+            extracted = extractor_cls()
+            te_result = extracted(text)
+            if te_result:
+                raw_parts.append(f"TimeExtractor: {te_result}")
+                for item in te_result:
+                    if isinstance(item, dict):
+                        results.append(item.get("time_candidate", str(item)))
+                    else:
+                        results.append(str(item))
+        except Exception as e:
+            raw_parts.append(f"TimeExtractor error: {e}")
 
-    return results, None, "\n".join(raw_parts)
+    return _dedupe_ordered(results), estimated_months, "\n".join(raw_parts)
 
 
 def eval_dateparser(text: str) -> tuple[list[str], float | None, str]:
     """Evaluate dateparser search_dates."""
+    import dateparser
     import dateparser.search as ds
     results = []
-    raw = ""
+    raw_parts = []
+    estimated_month_candidates: list[float] = []
+    now = datetime.now()
     try:
-        found = ds.search_dates(text, languages=["zh"])
-        raw = str(found)
+        found = ds.search_dates(
+            text,
+            languages=["zh"],
+            settings={"PREFER_DATES_FROM": "past"},
+        )
+        raw_parts.append(f"search_dates: {found}")
         if found:
             for text_match, dt in found:
                 results.append(f"{text_match} -> {dt}")
+                if _is_duration_like_text(text_match) or text_match.strip() == "现在":
+                    continue
+                months = _months_since(dt, now=now)
+                if months is not None:
+                    estimated_month_candidates.append(months)
     except Exception as e:
-        raw = f"Error: {e}"
-    return results, None, raw
+        raw_parts.append(f"search_dates error: {e}")
+
+    try:
+        from culturedx.evidence.temporal import _extract_from_text
+
+        for match in _extract_from_text(text, turn_id=0):
+            if match.category != "relative_time":
+                continue
+            parsed = dateparser.parse(
+                match.text,
+                languages=["zh"],
+                settings={"PREFER_DATES_FROM": "past"},
+            )
+            raw_parts.append(f"parse({match.text!r})={parsed}")
+            if parsed is None:
+                continue
+            results.append(f"{match.text} -> {parsed}")
+            months = _months_since(parsed, now=now)
+            if months is not None:
+                estimated_month_candidates.append(months)
+    except Exception as e:
+        raw_parts.append(f"relative_parse error: {e}")
+
+    estimated_months = (
+        max(estimated_month_candidates) if estimated_month_candidates else None
+    )
+    return _dedupe_ordered(results), estimated_months, "\n".join(raw_parts)
 
 
 def eval_chinese_time_nlp(text: str) -> tuple[list[str], float | None, str]:
@@ -240,27 +418,44 @@ def eval_chinese_time_nlp(text: str) -> tuple[list[str], float | None, str]:
     tn = TimeNormalizer()
     results = []
     raw = ""
+    estimated_months = None
     try:
         parsed = tn.parse(target=text)
         raw = str(parsed)
         if parsed:
             results.append(str(parsed))
+            parsed_type = parsed.get("type")
+            if parsed_type == "timedelta":
+                estimated_months = _months_from_timedelta(parsed.get("timedelta"))
+            elif parsed_type == "timestamp":
+                estimated_months = _months_since(_parse_datetime(parsed.get("timestamp")))
+            elif parsed_type == "timespan":
+                timespan = parsed.get("timespan")
+                if isinstance(timespan, list) and timespan:
+                    estimated_months = _months_since(_parse_datetime(timespan[0]))
+            if estimated_months is not None and estimated_months <= 0.05:
+                fallback_months = _estimate_months_from_temporal_text(text)
+                estimated_months = fallback_months
     except Exception as e:
         raw = f"Error: {e}"
-    return results, None, raw
+    return results, estimated_months, raw
 
 
 def eval_stanza(text: str, nlp) -> tuple[list[str], float | None, str]:
     """Evaluate stanza NER for temporal entities."""
     results = []
     raw_parts = []
+    estimated_month_candidates: list[float] = []
     try:
         doc = nlp(text)
         for sent in doc.sentences:
             for ent in sent.entities:
-                if ent.type in ("DATE", "TIME", "DURATION", "SET"):
+                if ent.type in ("DATE", "DURATION"):
                     results.append(f"[{ent.type}] {ent.text}")
                     raw_parts.append(f"{ent.type}: {ent.text}")
+                    estimated = _estimate_months_from_temporal_text(ent.text)
+                    if estimated is not None:
+                        estimated_month_candidates.append(estimated)
             # Also check tokens for temporal POS tags
             for token in sent.tokens:
                 for word in token.words:
@@ -268,7 +463,10 @@ def eval_stanza(text: str, nlp) -> tuple[list[str], float | None, str]:
                         pass  # captured by NER above
     except Exception as e:
         raw_parts.append(f"Error: {e}")
-    return results, None, "; ".join(raw_parts) if raw_parts else "no entities"
+    estimated_months = (
+        max(estimated_month_candidates) if estimated_month_candidates else None
+    )
+    return results, estimated_months, "; ".join(raw_parts) if raw_parts else "no entities"
 
 
 def eval_current_regex(text: str) -> tuple[list[str], float | None, str]:

@@ -10,7 +10,7 @@
       "estimated_months": 3.0,
       "raw_output": "matches=2, confidence=0.6, months=3.0, meets_6mo=False\nreasoning: 明确时间表述提示持续约3个月（3-6个月）。",
       "error": null,
-      "latency_ms": 2.3208359998534434
+      "latency_ms": 2.3862520029069856
     },
     {
       "tool_name": "regex_current",
@@ -24,7 +24,7 @@
       "estimated_months": 84.0,
       "raw_output": "matches=4, confidence=0.9, months=84.0, meets_6mo=True\nreasoning: 明确时间表述提示持续约84个月（≥6个月）。",
       "error": null,
-      "latency_ms": 0.08449700180790387
+      "latency_ms": 0.05990199861116707
     },
     {
       "tool_name": "regex_current",
@@ -36,7 +36,7 @@
       "estimated_months": 6.0,
       "raw_output": "matches=2, confidence=0.9, months=6.0, meets_6mo=True\nreasoning: 明确时间表述提示持续约6个月（≥6个月）。",
       "error": null,
-      "latency_ms": 0.05979199704597704
+      "latency_ms": 0.04008200266980566
     },
     {
       "tool_name": "regex_current",
@@ -47,7 +47,7 @@
       "estimated_months": 2.0,
       "raw_output": "matches=1, confidence=0.3, months=2.0, meets_6mo=False\nreasoning: 明确时间表述提示持续约2个月（<3个月）。",
       "error": null,
-      "latency_ms": 0.06610499985981733
+      "latency_ms": 0.05572800000663847
     },
     {
       "tool_name": "regex_current",
@@ -61,7 +61,7 @@
       "estimated_months": 24.0,
       "raw_output": "matches=4, confidence=0.9, months=24.0, meets_6mo=True\nreasoning: 明确时间表述提示持续约24个月（≥6个月）。",
       "error": null,
-      "latency_ms": 0.06887999916216359
+      "latency_ms": 0.053054001909913495
     },
     {
       "tool_name": "regex_current",
@@ -74,7 +74,7 @@
       "estimated_months": 5.0,
       "raw_output": "matches=3, confidence=0.6, months=5.0, meets_6mo=False\nreasoning: 明确时间表述提示持续约5个月（3-6个月）。",
       "error": null,
-      "latency_ms": 0.06767500235582702
+      "latency_ms": 0.055655000323895365
     },
     {
       "tool_name": "regex_current",
@@ -87,7 +87,7 @@
       "estimated_months": 120.0,
       "raw_output": "matches=3, confidence=0.95, months=120.0, meets_6mo=True\nreasoning: 明确时间表述提示持续约120个月（≥6个月）。 频率表述与病程标志并存，置信度上调。 发现复发/既往史标志，提示病程超过6个月。",
       "error": null,
-      "latency_ms": 0.06603200017707422
+      "latency_ms": 0.05221100218477659
     },
     {
       "tool_name": "regex_current",
@@ -99,7 +99,7 @@
       "estimated_months": 12.0,
       "raw_output": "matches=2, confidence=0.85, months=12.0, meets_6mo=True\nreasoning: 相对时间参照提示持续约12个月。",
       "error": null,
-      "latency_ms": 0.0612680014455691
+      "latency_ms": 0.04754499968839809
     },
     {
       "tool_name": "regex_current",
@@ -113,7 +113,7 @@
       "estimated_months": 12.0,
       "raw_output": "matches=4, confidence=0.85, months=12.0, meets_6mo=True\nreasoning: 相对时间参照提示持续约12个月。",
       "error": null,
-      "latency_ms": 0.05557400072575547
+      "latency_ms": 0.04480899951886386
     },
     {
       "tool_name": "regex_current",
@@ -125,7 +125,7 @@
       "estimated_months": 24.0,
       "raw_output": "matches=2, confidence=0.85, months=24.0, meets_6mo=True\nreasoning: 相对时间参照提示持续约24个月。",
       "error": null,
-      "latency_ms": 0.05095799861010164
+      "latency_ms": 0.04787299985764548
     },
     {
       "tool_name": "regex_current",
@@ -137,7 +137,7 @@
       "estimated_months": 1.0,
       "raw_output": "matches=2, confidence=0.0, months=1.0, meets_6mo=False\nreasoning: ",
       "error": null,
-      "latency_ms": 0.05569699715124443
+      "latency_ms": 0.050103000830858946
     },
     {
       "tool_name": "regex_current",
@@ -149,7 +149,7 @@
       "estimated_months": null,
       "raw_output": "matches=2, confidence=0.6, months=None, meets_6mo=True\nreasoning: 发现1个生活事件时间参照和病程/持续性描述，提示较长病程。 发现1个频率/持续性表述，提示症状持续但时间不明确。",
       "error": null,
-      "latency_ms": 0.056244000006699935
+      "latency_ms": 0.04624199937097728
     },
     {
       "tool_name": "regex_current",
@@ -163,7 +163,7 @@
       "estimated_months": 12.0,
       "raw_output": "matches=4, confidence=0.6, months=12.0, meets_6mo=True\nreasoning: 发现3个起病/病程标志，提示较长病程。 频率表述与病程标志并存，置信度上调。 发现4个持续性/病程标志，提示慢性精神科病程。 发现复发/既往史标志，提示病程超过6个月。",
       "error": null,
-      "latency_ms": 0.06418799966922961
+      "latency_ms": 0.06228100028238259
     },
     {
       "tool_name": "regex_current",
@@ -176,7 +176,7 @@
       "estimated_months": null,
       "raw_output": "matches=3, confidence=0.7, months=None, meets_6mo=True\nreasoning: 发现1个生活事件时间参照和病程/持续性描述，提示较长病程。 发现1个起病标志和1个病程变化描述，虽无明确时间但提示较长病程。 频率表述与病程标志并存，置信度上调。",
       "error": null,
-      "latency_ms": 0.06266700074775144
+      "latency_ms": 0.060876998759340495
     },
     {
       "tool_name": "regex_current",
@@ -189,7 +189,7 @@
       "estimated_months": 36.0,
       "raw_output": "matches=3, confidence=0.9, months=36.0, meets_6mo=True\nreasoning: 明确时间表述提示持续约36个月（≥6个月）。",
       "error": null,
-      "latency_ms": 0.053913998272037134
+      "latency_ms": 0.0478490001114551
     },
     {
       "tool_name": "regex_current",
@@ -198,7 +198,7 @@
       "estimated_months": null,
       "raw_output": "matches=0, confidence=0.0, months=None, meets_6mo=False\nreasoning: 对话中未发现任何时间线信息。",
       "error": null,
-      "latency_ms": 0.03851499786833301
+      "latency_ms": 0.030159000743879005
     },
     {
       "tool_name": "regex_current",
@@ -207,7 +207,7 @@
       "estimated_months": null,
       "raw_output": "matches=0, confidence=0.0, months=None, meets_6mo=False\nreasoning: 对话中未发现任何时间线信息。",
       "error": null,
-      "latency_ms": 0.0468440011900384
+      "latency_ms": 0.035085999115835875
     },
     {
       "tool_name": "regex_current",
@@ -219,7 +219,7 @@
       "estimated_months": null,
       "raw_output": "matches=2, confidence=0.0, months=None, meets_6mo=False\nreasoning: 发现近期起病表述，置信度下调。",
       "error": null,
-      "latency_ms": 0.06199199924594723
+      "latency_ms": 0.04865099981543608
     },
     {
       "tool_name": "regex_current",
@@ -228,7 +228,7 @@
       "estimated_months": null,
       "raw_output": "matches=0, confidence=0.0, months=None, meets_6mo=False\nreasoning: 对话中未发现任何时间线信息。",
       "error": null,
-      "latency_ms": 0.0354410003637895
+      "latency_ms": 0.029704002372454852
     },
     {
       "tool_name": "regex_current",
@@ -237,7 +237,7 @@
       "estimated_months": null,
       "raw_output": "matches=0, confidence=0.0, months=None, meets_6mo=False\nreasoning: 对话中未发现任何时间线信息。",
       "error": null,
-      "latency_ms": 0.03559800097718835
+      "latency_ms": 0.04028199691674672
     }
   ],
   "jionlp": [
@@ -245,183 +245,195 @@
       "tool_name": "jionlp",
       "case_id": "E1",
       "extracted_entities": [
-        "{'delta': {'day': 1}, 'point': {'time': [None, None], 'string': '我失眠大概有三个月了，晚上翻来覆去睡不着'}}"
+        "{'type': 'time_period', 'definition': 'blur', 'time': {'delta': {'day': 1}, 'point': {'time': ['2026-04-01 18:00:00', '2026-04-01 23:59:59'], 'string': '我失眠大概有三个月了，晚上翻来覆去睡不着'}}}"
       ],
       "estimated_months": null,
-      "raw_output": "{'type': 'time_period', 'definition': 'blur', 'time': {'delta': {'day': 1}, 'point': {'time': [None, None], 'string': '我失眠大概有三个月了，晚上翻来覆去睡不着'}}}\nTimeExtractor error: module 'jionlp' has no attribute 'T",
+      "raw_output": "parse_time: {'type': 'time_period', 'definition': 'blur', 'time': {'delta': {'day': 1}, 'point': {'time': ['2026-04-01 18:00:00', '2026-04-01 23:59:59'], 'string': '我失眠大概有三个月了，晚上翻来覆去睡不着'}}}\nTimeExtrac",
       "error": null,
-      "latency_ms": 38.195229000848485
+      "latency_ms": 37.13938600049005
     },
     {
       "tool_name": "jionlp",
       "case_id": "E2",
       "extracted_entities": [],
       "estimated_months": null,
-      "raw_output": "parse_time error: object of type 'NoneType' has no len()\nTimeExtractor error: module 'jionlp' has no attribute 'TimeExtractor'",
+      "raw_output": "parse_time error: can not parse the string `这种情况已经持续了七年了，从高中就开始了`.\nTimeExtractor unavailable",
       "error": null,
-      "latency_ms": 0.0483170006191358
+      "latency_ms": 0.25632499819039367
     },
     {
       "tool_name": "jionlp",
       "case_id": "E3",
       "extracted_entities": [],
       "estimated_months": null,
-      "raw_output": "parse_time error: object of type 'NoneType' has no len()\nTimeExtractor error: module 'jionlp' has no attribute 'TimeExtractor'",
+      "raw_output": "parse_time error: can not parse the string `我焦虑紧张大概半年多了，总是担心各种事情`.\nTimeExtractor unavailable",
       "error": null,
-      "latency_ms": 0.044723001337843016
+      "latency_ms": 0.21534400002565235
     },
     {
       "tool_name": "jionlp",
       "case_id": "E4",
       "extracted_entities": [],
       "estimated_months": null,
-      "raw_output": "parse_time error: object of type 'NoneType' has no len()\nTimeExtractor error: module 'jionlp' has no attribute 'TimeExtractor'",
+      "raw_output": "parse_time error: can not parse the string `心情低落两个月了，什么都不想做`.\nTimeExtractor unavailable",
       "error": null,
-      "latency_ms": 0.04068500129505992
+      "latency_ms": 0.18920900038210675
     },
     {
       "tool_name": "jionlp",
       "case_id": "E5",
       "extracted_entities": [],
       "estimated_months": null,
-      "raw_output": "parse_time error: object of type 'NoneType' has no len()\nTimeExtractor error: module 'jionlp' has no attribute 'TimeExtractor'",
+      "raw_output": "parse_time error: can not parse the string `已经吃了两年的药了，但是效果不太好，症状反反复复`.\nTimeExtractor unavailable",
       "error": null,
-      "latency_ms": 0.040203998651122674
+      "latency_ms": 0.2442820004944224
     },
     {
       "tool_name": "jionlp",
       "case_id": "E6",
       "extracted_entities": [],
       "estimated_months": null,
-      "raw_output": "parse_time error: object of type 'NoneType' has no len()\nTimeExtractor error: module 'jionlp' has no attribute 'TimeExtractor'",
+      "raw_output": "parse_time error: can not parse the string `持续了五个月左右，情绪一直很低落`.\nTimeExtractor unavailable",
       "error": null,
-      "latency_ms": 0.0395379975088872
+      "latency_ms": 0.2019419989665039
     },
     {
       "tool_name": "jionlp",
       "case_id": "E7",
       "extracted_entities": [],
       "estimated_months": null,
-      "raw_output": "parse_time error: object of type 'NoneType' has no len()\nTimeExtractor error: module 'jionlp' has no attribute 'TimeExtractor'",
+      "raw_output": "parse_time error: can not parse the string `断断续续有十年了，中间好过一阵子又复发了`.\nTimeExtractor unavailable",
       "error": null,
-      "latency_ms": 0.039460999687435105
+      "latency_ms": 0.2263470014440827
     },
     {
       "tool_name": "jionlp",
       "case_id": "R1",
-      "extracted_entities": [],
-      "estimated_months": null,
-      "raw_output": "parse_time error: object of type 'NoneType' has no len()\nTimeExtractor error: module 'jionlp' has no attribute 'TimeExtractor'",
+      "extracted_entities": [
+        "{'type': 'time_span', 'definition': 'accurate', 'time': ['2025-11-07 00:00:00', '2026-02-02 23:59:59']}"
+      ],
+      "estimated_months": 4.83,
+      "raw_output": "parse_time: {'type': 'time_span', 'definition': 'accurate', 'time': ['2025-11-07 00:00:00', '2026-02-02 23:59:59']}\nTimeExtractor unavailable",
       "error": null,
-      "latency_ms": 0.03799100159085356
+      "latency_ms": 0.35783799830824137
     },
     {
       "tool_name": "jionlp",
       "case_id": "R2",
-      "extracted_entities": [],
-      "estimated_months": null,
-      "raw_output": "parse_time error: object of type 'NoneType' has no len()\nTimeExtractor error: module 'jionlp' has no attribute 'TimeExtractor'",
+      "extracted_entities": [
+        "{'type': 'time_span', 'definition': 'accurate', 'time': ['2025-09-01 00:00:00', '2025-09-30 23:59:59']}"
+      ],
+      "estimated_months": 7.07,
+      "raw_output": "parse_time: {'type': 'time_span', 'definition': 'accurate', 'time': ['2025-09-01 00:00:00', '2025-09-30 23:59:59']}\nTimeExtractor unavailable",
       "error": null,
-      "latency_ms": 0.04565299968817271
+      "latency_ms": 2.132519999577198
     },
     {
       "tool_name": "jionlp",
       "case_id": "R3",
-      "extracted_entities": [],
-      "estimated_months": null,
-      "raw_output": "parse_time error: object of type 'NoneType' has no len()\nTimeExtractor error: module 'jionlp' has no attribute 'TimeExtractor'",
+      "extracted_entities": [
+        "{'type': 'time_span', 'definition': 'accurate', 'time': ['2024-01-01 00:00:00', '2024-12-31 23:59:59']}"
+      ],
+      "estimated_months": 27.37,
+      "raw_output": "parse_time: {'type': 'time_span', 'definition': 'accurate', 'time': ['2024-01-01 00:00:00', '2024-12-31 23:59:59']}\nTimeExtractor unavailable",
       "error": null,
-      "latency_ms": 0.040364000597037375
+      "latency_ms": 0.40399499994236976
     },
     {
       "tool_name": "jionlp",
       "case_id": "R4",
-      "extracted_entities": [],
-      "estimated_months": null,
-      "raw_output": "parse_time error: object of type 'NoneType' has no len()\nTimeExtractor error: module 'jionlp' has no attribute 'TimeExtractor'",
+      "extracted_entities": [
+        "{'type': 'time_point', 'definition': 'blur', 'time': ['2026-03-01 00:00:00', '2026-03-31 23:59:59']}"
+      ],
+      "estimated_months": 1.03,
+      "raw_output": "parse_time: {'type': 'time_point', 'definition': 'blur', 'time': ['2026-03-01 00:00:00', '2026-03-31 23:59:59']}\nTimeExtractor unavailable",
       "error": null,
-      "latency_ms": 0.039791000745026395
+      "latency_ms": 0.2478200003679376
     },
     {
       "tool_name": "jionlp",
       "case_id": "I1",
-      "extracted_entities": [],
+      "extracted_entities": [
+        "{'type': 'time_point', 'definition': 'accurate', 'time': ['2026-04-01 01:02:54', '2026-04-01 01:02:54']}"
+      ],
       "estimated_months": null,
-      "raw_output": "parse_time error: object of type 'NoneType' has no len()\nTimeExtractor error: module 'jionlp' has no attribute 'TimeExtractor'",
+      "raw_output": "parse_time: {'type': 'time_point', 'definition': 'accurate', 'time': ['2026-04-01 01:02:54', '2026-04-01 01:02:54']}\nTimeExtractor unavailable",
       "error": null,
-      "latency_ms": 0.03872000161209144
+      "latency_ms": 0.2836259991454426
     },
     {
       "tool_name": "jionlp",
       "case_id": "I2",
       "extracted_entities": [],
       "estimated_months": null,
-      "raw_output": "parse_time error: object of type 'NoneType' has no len()\nTimeExtractor error: module 'jionlp' has no attribute 'TimeExtractor'",
+      "raw_output": "parse_time error: can not parse the string `反复发作很多次了，看了好几个医院都看不好`.\nTimeExtractor unavailable",
       "error": null,
-      "latency_ms": 0.04145000275457278
+      "latency_ms": 0.21515600019483827
     },
     {
       "tool_name": "jionlp",
       "case_id": "I3",
       "extracted_entities": [],
       "estimated_months": null,
-      "raw_output": "parse_time error: object of type 'NoneType' has no len()\nTimeExtractor error: module 'jionlp' has no attribute 'TimeExtractor'",
+      "raw_output": "parse_time error: can not parse the string `退休以后就一直这样，越来越严重了`.\nTimeExtractor unavailable",
       "error": null,
-      "latency_ms": 0.038471000152640045
+      "latency_ms": 0.2069590009341482
     },
     {
       "tool_name": "jionlp",
       "case_id": "I4",
       "extracted_entities": [],
       "estimated_months": null,
-      "raw_output": "parse_time error: object of type 'NoneType' has no len()\nTimeExtractor error: module 'jionlp' has no attribute 'TimeExtractor'",
+      "raw_output": "parse_time error: can not parse the string `很久了，具体多久记不清了，反正好几年了`.\nTimeExtractor unavailable",
       "error": null,
-      "latency_ms": 0.03792599818552844
+      "latency_ms": 0.19404100021347404
     },
     {
       "tool_name": "jionlp",
       "case_id": "S1",
       "extracted_entities": [],
       "estimated_months": null,
-      "raw_output": "parse_time error: object of type 'NoneType' has no len()\nTimeExtractor error: module 'jionlp' has no attribute 'TimeExtractor'",
+      "raw_output": "parse_time error: can not parse the string `最近才开始的，就这几天心慌特别厉害`.\nTimeExtractor unavailable",
       "error": null,
-      "latency_ms": 0.04023400106234476
+      "latency_ms": 0.24061000294750556
     },
     {
       "tool_name": "jionlp",
       "case_id": "S2",
-      "extracted_entities": [],
-      "estimated_months": null,
-      "raw_output": "parse_time error: object of type 'NoneType' has no len()\nTimeExtractor error: module 'jionlp' has no attribute 'TimeExtractor'",
+      "extracted_entities": [
+        "{'type': 'time_span', 'definition': 'blur', 'time': ['2026-03-23 00:00:00', '2026-03-29 23:59:59']}"
+      ],
+      "estimated_months": 0.3,
+      "raw_output": "parse_time: {'type': 'time_span', 'definition': 'blur', 'time': ['2026-03-23 00:00:00', '2026-03-29 23:59:59']}\nTimeExtractor unavailable",
       "error": null,
-      "latency_ms": 0.03719700180226937
+      "latency_ms": 0.26768300085677765
     },
     {
       "tool_name": "jionlp",
       "case_id": "S3",
       "extracted_entities": [],
       "estimated_months": null,
-      "raw_output": "parse_time error: object of type 'NoneType' has no len()\nTimeExtractor error: module 'jionlp' has no attribute 'TimeExtractor'",
+      "raw_output": "parse_time error: can not parse the string `刚刚开始有这个问题，也就三四天吧`.\nTimeExtractor unavailable",
       "error": null,
-      "latency_ms": 0.039596998249180615
+      "latency_ms": 0.21770199964521453
     },
     {
       "tool_name": "jionlp",
       "case_id": "N1",
       "extracted_entities": [],
       "estimated_months": null,
-      "raw_output": "parse_time error: object of type 'NoneType' has no len()\nTimeExtractor error: module 'jionlp' has no attribute 'TimeExtractor'",
+      "raw_output": "parse_time error: can not parse the string `我就是心情不好，什么都不想做，吃不下饭`.\nTimeExtractor unavailable",
       "error": null,
-      "latency_ms": 0.03602699871407822
+      "latency_ms": 0.21112099784659222
     },
     {
       "tool_name": "jionlp",
       "case_id": "N2",
       "extracted_entities": [],
       "estimated_months": null,
-      "raw_output": "parse_time error: object of type 'NoneType' has no len()\nTimeExtractor error: module 'jionlp' has no attribute 'TimeExtractor'",
+      "raw_output": "parse_time error: can not parse the string `头疼，胸闷，浑身没劲`.\nTimeExtractor unavailable",
       "error": null,
-      "latency_ms": 0.040678001823835075
+      "latency_ms": 0.165482000738848
     }
   ],
   "dateparser": [
@@ -430,9 +442,9 @@
       "case_id": "E1",
       "extracted_entities": [],
       "estimated_months": null,
-      "raw_output": "None",
+      "raw_output": "search_dates: None",
       "error": null,
-      "latency_ms": 132.2750180006551
+      "latency_ms": 135.18538000062108
     },
     {
       "tool_name": "dateparser",
@@ -441,9 +453,9 @@
         "年 -> 2026-12-31 00:00:00"
       ],
       "estimated_months": null,
-      "raw_output": "[('年', datetime.datetime(2026, 12, 31, 0, 0))]",
+      "raw_output": "search_dates: [('年', datetime.datetime(2026, 12, 31, 0, 0))]\nparse('从高中就开始')=None\nparse('已经持续了七年了，从高中就开始了')=None",
       "error": null,
-      "latency_ms": 1.6353979990526568
+      "latency_ms": 1.9123660022160038
     },
     {
       "tool_name": "dateparser",
@@ -452,18 +464,18 @@
         "年 -> 2026-12-31 00:00:00"
       ],
       "estimated_months": null,
-      "raw_output": "[('年', datetime.datetime(2026, 12, 31, 0, 0))]",
+      "raw_output": "search_dates: [('年', datetime.datetime(2026, 12, 31, 0, 0))]",
       "error": null,
-      "latency_ms": 0.7771119999233633
+      "latency_ms": 0.7935189969430212
     },
     {
       "tool_name": "dateparser",
       "case_id": "E4",
       "extracted_entities": [],
       "estimated_months": null,
-      "raw_output": "None",
+      "raw_output": "search_dates: None",
       "error": null,
-      "latency_ms": 1.5074900002218783
+      "latency_ms": 1.4717970007041004
     },
     {
       "tool_name": "dateparser",
@@ -472,18 +484,18 @@
         "年 -> 2026-12-31 00:00:00"
       ],
       "estimated_months": null,
-      "raw_output": "[('年', datetime.datetime(2026, 12, 31, 0, 0))]",
+      "raw_output": "search_dates: [('年', datetime.datetime(2026, 12, 31, 0, 0))]\nparse('已经吃了两年的药了')=None",
       "error": null,
-      "latency_ms": 0.7833759991626721
+      "latency_ms": 0.9410530001332518
     },
     {
       "tool_name": "dateparser",
       "case_id": "E6",
       "extracted_entities": [],
       "estimated_months": null,
-      "raw_output": "None",
+      "raw_output": "search_dates: None",
       "error": null,
-      "latency_ms": 1.4002130010339897
+      "latency_ms": 1.448137998522725
     },
     {
       "tool_name": "dateparser",
@@ -492,80 +504,83 @@
         "年 -> 2026-12-31 00:00:00"
       ],
       "estimated_months": null,
-      "raw_output": "[('年', datetime.datetime(2026, 12, 31, 0, 0))]",
+      "raw_output": "search_dates: [('年', datetime.datetime(2026, 12, 31, 0, 0))]",
       "error": null,
-      "latency_ms": 0.7617160008521751
+      "latency_ms": 0.8173469977919012
     },
     {
       "tool_name": "dateparser",
       "case_id": "R1",
       "extracted_entities": [
-        "去年 -> 2025-04-01 00:42:49.754118"
+        "去年 -> 2025-04-01 01:02:54.688988",
+        "去年 -> 2025-04-01 01:02:54.691316"
       ],
-      "estimated_months": null,
-      "raw_output": "[('去年', datetime.datetime(2025, 4, 1, 0, 42, 49, 754118))]",
+      "estimated_months": 12.17,
+      "raw_output": "search_dates: [('去年', datetime.datetime(2025, 4, 1, 1, 2, 54, 688988))]\nparse('去年')=2025-04-01 01:02:54.691316\nparse('去年冬天')=None",
       "error": null,
-      "latency_ms": 1.3106650003464893
+      "latency_ms": 3.1576700021105353
     },
     {
       "tool_name": "dateparser",
       "case_id": "R2",
       "extracted_entities": [
-        "现在 -> 2026-04-01 00:42:49.799992"
+        "现在 -> 2026-04-01 01:02:54.738603",
+        "去年 -> 2025-04-01 01:02:54.738961"
       ],
-      "estimated_months": null,
-      "raw_output": "[('现在', datetime.datetime(2026, 4, 1, 0, 42, 49, 799992))]",
+      "estimated_months": 12.17,
+      "raw_output": "search_dates: [('现在', datetime.datetime(2026, 4, 1, 1, 2, 54, 738603))]\nparse('去年')=2025-04-01 01:02:54.738961\nparse('从去年九月份就开始')=None\nparse('从去年九月')=None",
       "error": null,
-      "latency_ms": 1.5065549996506888
+      "latency_ms": 1.9171809981344268
     },
     {
       "tool_name": "dateparser",
       "case_id": "R3",
       "extracted_entities": [],
       "estimated_months": null,
-      "raw_output": "None",
+      "raw_output": "search_dates: None\nparse('前年')=None\nparse('离婚以后')=None",
       "error": null,
-      "latency_ms": 0.47318699944298714
+      "latency_ms": 1.0326250012440141
     },
     {
       "tool_name": "dateparser",
       "case_id": "R4",
       "extracted_entities": [
-        "上个月 -> 2026-03-01 00:42:49.910145"
+        "上个月 -> 2026-03-01 01:02:54.863467",
+        "上个月 -> 2026-03-01 01:02:54.864110"
       ],
-      "estimated_months": null,
-      "raw_output": "[('上个月', datetime.datetime(2026, 3, 1, 0, 42, 49, 910145))]",
+      "estimated_months": 1.03,
+      "raw_output": "search_dates: [('上个月', datetime.datetime(2026, 3, 1, 1, 2, 54, 863467))]\nparse('上个月')=2026-03-01 01:02:54.864110",
       "error": null,
-      "latency_ms": 1.166960999398725
+      "latency_ms": 1.8078960019920487
     },
     {
       "tool_name": "dateparser",
       "case_id": "I1",
       "extracted_entities": [
-        "现在 -> 2026-04-01 00:42:49.964635"
+        "现在 -> 2026-04-01 01:02:54.926908"
       ],
       "estimated_months": null,
-      "raw_output": "[('现在', datetime.datetime(2026, 4, 1, 0, 42, 49, 964635))]",
+      "raw_output": "search_dates: [('现在', datetime.datetime(2026, 4, 1, 1, 2, 54, 926908))]\nparse('从上高中就开始')=None",
       "error": null,
-      "latency_ms": 0.7668070029467344
+      "latency_ms": 0.9003670020319987
     },
     {
       "tool_name": "dateparser",
       "case_id": "I2",
       "extracted_entities": [],
       "estimated_months": null,
-      "raw_output": "None",
+      "raw_output": "search_dates: None",
       "error": null,
-      "latency_ms": 0.2455769972584676
+      "latency_ms": 0.29158699908293784
     },
     {
       "tool_name": "dateparser",
       "case_id": "I3",
       "extracted_entities": [],
       "estimated_months": null,
-      "raw_output": "None",
+      "raw_output": "search_dates: None\nparse('退休以后')=None",
       "error": null,
-      "latency_ms": 0.2345649991184473
+      "latency_ms": 0.3765920009755064
     },
     {
       "tool_name": "dateparser",
@@ -574,58 +589,58 @@
         "年 -> 2026-12-31 00:00:00"
       ],
       "estimated_months": null,
-      "raw_output": "[('年', datetime.datetime(2026, 12, 31, 0, 0))]",
+      "raw_output": "search_dates: [('年', datetime.datetime(2026, 12, 31, 0, 0))]",
       "error": null,
-      "latency_ms": 0.7664139993721619
+      "latency_ms": 0.7826750006643124
     },
     {
       "tool_name": "dateparser",
       "case_id": "S1",
       "extracted_entities": [],
       "estimated_months": null,
-      "raw_output": "None",
+      "raw_output": "search_dates: None",
       "error": null,
-      "latency_ms": 0.8081730011326727
+      "latency_ms": 0.8418209981755354
     },
     {
       "tool_name": "dateparser",
       "case_id": "S2",
       "extracted_entities": [
-        "上周 -> 2026-03-25 00:42:50.215121"
+        "上周 -> 2026-03-25 01:02:55.234255"
       ],
-      "estimated_months": null,
-      "raw_output": "[('上周', datetime.datetime(2026, 3, 25, 0, 42, 50, 215121))]",
+      "estimated_months": 0.23,
+      "raw_output": "search_dates: [('上周', datetime.datetime(2026, 3, 25, 1, 2, 55, 234255))]",
       "error": null,
-      "latency_ms": 1.1590440008149017
+      "latency_ms": 1.1952700006077066
     },
     {
       "tool_name": "dateparser",
       "case_id": "S3",
       "extracted_entities": [
-        "刚刚 -> 2026-04-01 00:42:50.263187"
+        "刚刚 -> 2026-04-01 01:02:55.291618"
       ],
       "estimated_months": null,
-      "raw_output": "[('刚刚', datetime.datetime(2026, 4, 1, 0, 42, 50, 263187))]",
+      "raw_output": "search_dates: [('刚刚', datetime.datetime(2026, 4, 1, 1, 2, 55, 291618))]",
       "error": null,
-      "latency_ms": 1.1862610008392949
+      "latency_ms": 1.2253150016476866
     },
     {
       "tool_name": "dateparser",
       "case_id": "N1",
       "extracted_entities": [],
       "estimated_months": null,
-      "raw_output": "None",
+      "raw_output": "search_dates: None",
       "error": null,
-      "latency_ms": 0.23143799990066327
+      "latency_ms": 0.2790319995256141
     },
     {
       "tool_name": "dateparser",
       "case_id": "N2",
       "extracted_entities": [],
       "estimated_months": null,
-      "raw_output": "None",
+      "raw_output": "search_dates: None",
       "error": null,
-      "latency_ms": 0.09340199903817847
+      "latency_ms": 0.11032899783458561
     }
   ],
   "ChineseTimeNLP": [
@@ -635,10 +650,10 @@
       "extracted_entities": [
         "{'type': 'timedelta', 'timedelta': {'year': 0, 'month': 3, 'day': 0, 'hour': 20, 'minute': 0, 'second': 0}}"
       ],
-      "estimated_months": null,
+      "estimated_months": 3.0,
       "raw_output": "{'type': 'timedelta', 'timedelta': {'year': 0, 'month': 3, 'day': 0, 'hour': 20, 'minute': 0, 'second': 0}}",
       "error": null,
-      "latency_ms": 10.284035000950098
+      "latency_ms": 10.118813999724807
     },
     {
       "tool_name": "ChineseTimeNLP",
@@ -646,21 +661,21 @@
       "extracted_entities": [
         "{'type': 'timedelta', 'timedelta': {'year': 7, 'month': 0, 'day': 0, 'hour': 0, 'minute': 0, 'second': 0}}"
       ],
-      "estimated_months": null,
+      "estimated_months": 84.0,
       "raw_output": "{'type': 'timedelta', 'timedelta': {'year': 7, 'month': 0, 'day': 0, 'hour': 0, 'minute': 0, 'second': 0}}",
       "error": null,
-      "latency_ms": 1.506821998191299
+      "latency_ms": 1.5419659976032563
     },
     {
       "tool_name": "ChineseTimeNLP",
       "case_id": "E3",
       "extracted_entities": [
-        "{'type': 'timestamp', 'timestamp': '2026-04-01 00:42:49'}"
+        "{'type': 'timestamp', 'timestamp': '2026-04-01 01:02:54'}"
       ],
-      "estimated_months": null,
-      "raw_output": "{'type': 'timestamp', 'timestamp': '2026-04-01 00:42:49'}",
+      "estimated_months": 7.0,
+      "raw_output": "{'type': 'timestamp', 'timestamp': '2026-04-01 01:02:54'}",
       "error": null,
-      "latency_ms": 1.099089000490494
+      "latency_ms": 1.1189700016984716
     },
     {
       "tool_name": "ChineseTimeNLP",
@@ -668,10 +683,10 @@
       "extracted_entities": [
         "{'type': 'timedelta', 'timedelta': {'year': 0, 'month': 2, 'day': 0, 'hour': 0, 'minute': 0, 'second': 0}}"
       ],
-      "estimated_months": null,
+      "estimated_months": 2.0,
       "raw_output": "{'type': 'timedelta', 'timedelta': {'year': 0, 'month': 2, 'day': 0, 'hour': 0, 'minute': 0, 'second': 0}}",
       "error": null,
-      "latency_ms": 0.5241830003797077
+      "latency_ms": 0.529510998603655
     },
     {
       "tool_name": "ChineseTimeNLP",
@@ -679,10 +694,10 @@
       "extracted_entities": [
         "{'type': 'timedelta', 'timedelta': {'year': 2, 'month': 0, 'day': 0, 'hour': 0, 'minute': 0, 'second': 0}}"
       ],
-      "estimated_months": null,
+      "estimated_months": 24.0,
       "raw_output": "{'type': 'timedelta', 'timedelta': {'year': 2, 'month': 0, 'day': 0, 'hour': 0, 'minute': 0, 'second': 0}}",
       "error": null,
-      "latency_ms": 0.566759001230821
+      "latency_ms": 0.5909340034122579
     },
     {
       "tool_name": "ChineseTimeNLP",
@@ -690,10 +705,10 @@
       "extracted_entities": [
         "{'type': 'timedelta', 'timedelta': {'year': 0, 'month': 5, 'day': 0, 'hour': 0, 'minute': 0, 'second': 0}}"
       ],
-      "estimated_months": null,
+      "estimated_months": 5.0,
       "raw_output": "{'type': 'timedelta', 'timedelta': {'year': 0, 'month': 5, 'day': 0, 'hour': 0, 'minute': 0, 'second': 0}}",
       "error": null,
-      "latency_ms": 0.5661020004481543
+      "latency_ms": 0.5774489982286468
     },
     {
       "tool_name": "ChineseTimeNLP",
@@ -701,32 +716,32 @@
       "extracted_entities": [
         "{'type': 'timestamp', 'timestamp': '2010-01-01 00:00:00'}"
       ],
-      "estimated_months": null,
+      "estimated_months": 197.8,
       "raw_output": "{'type': 'timestamp', 'timestamp': '2010-01-01 00:00:00'}",
       "error": null,
-      "latency_ms": 0.6948500013095327
+      "latency_ms": 0.7214469987957273
     },
     {
       "tool_name": "ChineseTimeNLP",
       "case_id": "R1",
       "extracted_entities": [
-        "{'type': 'timespan', 'timespan': ['2025-01-01 00:00:00', '2026-04-01 00:42:49']}"
+        "{'type': 'timespan', 'timespan': ['2025-01-01 00:00:00', '2026-04-01 01:02:54']}"
       ],
-      "estimated_months": null,
-      "raw_output": "{'type': 'timespan', 'timespan': ['2025-01-01 00:00:00', '2026-04-01 00:42:49']}",
+      "estimated_months": 15.17,
+      "raw_output": "{'type': 'timespan', 'timespan': ['2025-01-01 00:00:00', '2026-04-01 01:02:54']}",
       "error": null,
-      "latency_ms": 0.7457629981217906
+      "latency_ms": 0.7465470007446129
     },
     {
       "tool_name": "ChineseTimeNLP",
       "case_id": "R2",
       "extracted_entities": [
-        "{'type': 'timespan', 'timespan': ['2025-09-01 00:00:00', '2026-04-01 00:42:49']}"
+        "{'type': 'timespan', 'timespan': ['2025-09-01 00:00:00', '2026-04-01 01:02:54']}"
       ],
-      "estimated_months": null,
-      "raw_output": "{'type': 'timespan', 'timespan': ['2025-09-01 00:00:00', '2026-04-01 00:42:49']}",
+      "estimated_months": 7.07,
+      "raw_output": "{'type': 'timespan', 'timespan': ['2025-09-01 00:00:00', '2026-04-01 01:02:54']}",
       "error": null,
-      "latency_ms": 0.8253029991465155
+      "latency_ms": 0.8232939981098752
     },
     {
       "tool_name": "ChineseTimeNLP",
@@ -734,10 +749,10 @@
       "extracted_entities": [
         "{'type': 'timestamp', 'timestamp': '2024-01-01 00:00:00'}"
       ],
-      "estimated_months": null,
+      "estimated_months": 27.37,
       "raw_output": "{'type': 'timestamp', 'timestamp': '2024-01-01 00:00:00'}",
       "error": null,
-      "latency_ms": 0.6529539969051257
+      "latency_ms": 0.662129998090677
     },
     {
       "tool_name": "ChineseTimeNLP",
@@ -745,21 +760,21 @@
       "extracted_entities": [
         "{'type': 'timestamp', 'timestamp': '2026-03-01 00:00:00'}"
       ],
-      "estimated_months": null,
+      "estimated_months": 1.03,
       "raw_output": "{'type': 'timestamp', 'timestamp': '2026-03-01 00:00:00'}",
       "error": null,
-      "latency_ms": 0.7061160031298641
+      "latency_ms": 0.7178050000220537
     },
     {
       "tool_name": "ChineseTimeNLP",
       "case_id": "I1",
       "extracted_entities": [
-        "{'type': 'timestamp', 'timestamp': '2026-04-01 00:42:49'}"
+        "{'type': 'timestamp', 'timestamp': '2026-04-01 01:02:54'}"
       ],
-      "estimated_months": null,
-      "raw_output": "{'type': 'timestamp', 'timestamp': '2026-04-01 00:42:49'}",
+      "estimated_months": 60.0,
+      "raw_output": "{'type': 'timestamp', 'timestamp': '2026-04-01 01:02:54'}",
       "error": null,
-      "latency_ms": 0.6568140015588142
+      "latency_ms": 0.6608039984712377
     },
     {
       "tool_name": "ChineseTimeNLP",
@@ -770,7 +785,7 @@
       "estimated_months": null,
       "raw_output": "{'type': 'error', 'error': 'no time pattern could be extracted.'}",
       "error": null,
-      "latency_ms": 0.37738399987574667
+      "latency_ms": 0.38211300125112757
     },
     {
       "tool_name": "ChineseTimeNLP",
@@ -781,40 +796,40 @@
       "estimated_months": null,
       "raw_output": "{'type': 'error', 'error': 'no time pattern could be extracted.'}",
       "error": null,
-      "latency_ms": 0.39409099917975254
+      "latency_ms": 0.401850000343984
     },
     {
       "tool_name": "ChineseTimeNLP",
       "case_id": "I4",
       "extracted_entities": [
-        "{'type': 'timespan', 'timespan': ['2026-04-01 00:42:50', '2026-04-01 00:42:50']}"
+        "{'type': 'timespan', 'timespan': ['2026-04-01 01:02:55', '2026-04-01 01:02:55']}"
       ],
-      "estimated_months": null,
-      "raw_output": "{'type': 'timespan', 'timespan': ['2026-04-01 00:42:50', '2026-04-01 00:42:50']}",
+      "estimated_months": 36.0,
+      "raw_output": "{'type': 'timespan', 'timespan': ['2026-04-01 01:02:55', '2026-04-01 01:02:55']}",
       "error": null,
-      "latency_ms": 0.7102939998731017
+      "latency_ms": 0.7191240001702681
     },
     {
       "tool_name": "ChineseTimeNLP",
       "case_id": "S1",
       "extracted_entities": [
-        "{'type': 'timespan', 'timespan': ['2026-04-01 00:42:50', '2026-04-01 00:42:50']}"
+        "{'type': 'timespan', 'timespan': ['2026-04-01 01:02:55', '2026-04-01 01:02:55']}"
       ],
-      "estimated_months": null,
-      "raw_output": "{'type': 'timespan', 'timespan': ['2026-04-01 00:42:50', '2026-04-01 00:42:50']}",
+      "estimated_months": 0.1,
+      "raw_output": "{'type': 'timespan', 'timespan': ['2026-04-01 01:02:55', '2026-04-01 01:02:55']}",
       "error": null,
-      "latency_ms": 0.6877550003991928
+      "latency_ms": 0.6993950009928085
     },
     {
       "tool_name": "ChineseTimeNLP",
       "case_id": "S2",
       "extracted_entities": [
-        "{'type': 'timespan', 'timespan': ['2026-03-23 00:00:00', '2026-04-01 00:42:50']}"
+        "{'type': 'timespan', 'timespan': ['2026-03-23 00:00:00', '2026-04-01 01:02:55']}"
       ],
-      "estimated_months": null,
-      "raw_output": "{'type': 'timespan', 'timespan': ['2026-03-23 00:00:00', '2026-04-01 00:42:50']}",
+      "estimated_months": 0.3,
+      "raw_output": "{'type': 'timespan', 'timespan': ['2026-03-23 00:00:00', '2026-04-01 01:02:55']}",
       "error": null,
-      "latency_ms": 0.7238819998747203
+      "latency_ms": 0.7552859970019199
     },
     {
       "tool_name": "ChineseTimeNLP",
@@ -822,10 +837,10 @@
       "extracted_entities": [
         "{'type': 'timedelta', 'timedelta': {'year': 0, 'month': 0, 'day': 34, 'hour': 0, 'minute': 0, 'second': 0}}"
       ],
-      "estimated_months": null,
+      "estimated_months": 1.13,
       "raw_output": "{'type': 'timedelta', 'timedelta': {'year': 0, 'month': 0, 'day': 34, 'hour': 0, 'minute': 0, 'second': 0}}",
       "error": null,
-      "latency_ms": 0.5250239992165007
+      "latency_ms": 0.5379989997891244
     },
     {
       "tool_name": "ChineseTimeNLP",
@@ -836,7 +851,7 @@
       "estimated_months": null,
       "raw_output": "{'type': 'error', 'error': 'no time pattern could be extracted.'}",
       "error": null,
-      "latency_ms": 0.3468180002528243
+      "latency_ms": 0.3594699992390815
     },
     {
       "tool_name": "ChineseTimeNLP",
@@ -847,7 +862,7 @@
       "estimated_months": null,
       "raw_output": "{'type': 'error', 'error': 'no time pattern could be extracted.'}",
       "error": null,
-      "latency_ms": 0.3366589990037028
+      "latency_ms": 0.33265500314882956
     }
   ],
   "stanza": [
@@ -855,13 +870,12 @@
       "tool_name": "stanza",
       "case_id": "E1",
       "extracted_entities": [
-        "[DATE] 三个月",
-        "[TIME] 晚上"
+        "[DATE] 三个月"
       ],
-      "estimated_months": null,
-      "raw_output": "DATE: 三个月; TIME: 晚上",
+      "estimated_months": 3.0,
+      "raw_output": "DATE: 三个月",
       "error": null,
-      "latency_ms": 385.43477799976245
+      "latency_ms": 384.7755970018625
     },
     {
       "tool_name": "stanza",
@@ -869,10 +883,10 @@
       "extracted_entities": [
         "[DATE] 七年"
       ],
-      "estimated_months": null,
+      "estimated_months": 84.0,
       "raw_output": "DATE: 七年",
       "error": null,
-      "latency_ms": 53.93776699929731
+      "latency_ms": 65.85886899847537
     },
     {
       "tool_name": "stanza",
@@ -880,10 +894,10 @@
       "extracted_entities": [
         "[DATE] 半年"
       ],
-      "estimated_months": null,
+      "estimated_months": 6.0,
       "raw_output": "DATE: 半年",
       "error": null,
-      "latency_ms": 55.88428400005796
+      "latency_ms": 65.07245199827594
     },
     {
       "tool_name": "stanza",
@@ -891,10 +905,10 @@
       "extracted_entities": [
         "[DATE] 两个月"
       ],
-      "estimated_months": null,
+      "estimated_months": 2.0,
       "raw_output": "DATE: 两个月",
       "error": null,
-      "latency_ms": 48.10589400221943
+      "latency_ms": 56.709929998760344
     },
     {
       "tool_name": "stanza",
@@ -902,10 +916,10 @@
       "extracted_entities": [
         "[DATE] 两年"
       ],
-      "estimated_months": null,
+      "estimated_months": 24.0,
       "raw_output": "DATE: 两年",
       "error": null,
-      "latency_ms": 53.09503299940843
+      "latency_ms": 75.13729200218222
     },
     {
       "tool_name": "stanza",
@@ -913,10 +927,10 @@
       "extracted_entities": [
         "[DATE] 五个月"
       ],
-      "estimated_months": null,
+      "estimated_months": 5.0,
       "raw_output": "DATE: 五个月",
       "error": null,
-      "latency_ms": 49.10370599827729
+      "latency_ms": 59.942737003439106
     },
     {
       "tool_name": "stanza",
@@ -924,10 +938,10 @@
       "extracted_entities": [
         "[DATE] 十年"
       ],
-      "estimated_months": null,
+      "estimated_months": 120.0,
       "raw_output": "DATE: 十年",
       "error": null,
-      "latency_ms": 54.02368900104193
+      "latency_ms": 62.635344998852815
     },
     {
       "tool_name": "stanza",
@@ -935,10 +949,10 @@
       "extracted_entities": [
         "[DATE] 去年冬天"
       ],
-      "estimated_months": null,
+      "estimated_months": 12.0,
       "raw_output": "DATE: 去年冬天",
       "error": null,
-      "latency_ms": 42.92391999842948
+      "latency_ms": 42.80588300025556
     },
     {
       "tool_name": "stanza",
@@ -946,10 +960,10 @@
       "extracted_entities": [
         "[DATE] 去年九月"
       ],
-      "estimated_months": null,
+      "estimated_months": 12.0,
       "raw_output": "DATE: 去年九月",
       "error": null,
-      "latency_ms": 53.87375599821098
+      "latency_ms": 58.16385200159857
     },
     {
       "tool_name": "stanza",
@@ -957,10 +971,10 @@
       "extracted_entities": [
         "[DATE] 前年"
       ],
-      "estimated_months": null,
+      "estimated_months": 24.0,
       "raw_output": "DATE: 前年",
       "error": null,
-      "latency_ms": 52.86432999855606
+      "latency_ms": 61.69620899891015
     },
     {
       "tool_name": "stanza",
@@ -968,10 +982,10 @@
       "extracted_entities": [
         "[DATE] 上个月"
       ],
-      "estimated_months": null,
+      "estimated_months": 1.0,
       "raw_output": "DATE: 上个月",
       "error": null,
-      "latency_ms": 52.84795500119799
+      "latency_ms": 60.95016300241696
     },
     {
       "tool_name": "stanza",
@@ -980,7 +994,7 @@
       "estimated_months": null,
       "raw_output": "no entities",
       "error": null,
-      "latency_ms": 45.41276599775301
+      "latency_ms": 64.86150499767973
     },
     {
       "tool_name": "stanza",
@@ -989,7 +1003,7 @@
       "estimated_months": null,
       "raw_output": "no entities",
       "error": null,
-      "latency_ms": 50.071431000105804
+      "latency_ms": 62.67920399841387
     },
     {
       "tool_name": "stanza",
@@ -998,7 +1012,7 @@
       "estimated_months": null,
       "raw_output": "no entities",
       "error": null,
-      "latency_ms": 43.70815400034189
+      "latency_ms": 50.038460998621304
     },
     {
       "tool_name": "stanza",
@@ -1006,10 +1020,10 @@
       "extracted_entities": [
         "[DATE] 好几年"
       ],
-      "estimated_months": null,
+      "estimated_months": 36.0,
       "raw_output": "DATE: 好几年",
       "error": null,
-      "latency_ms": 55.31480999707128
+      "latency_ms": 64.83755499721156
     },
     {
       "tool_name": "stanza",
@@ -1017,10 +1031,10 @@
       "extracted_entities": [
         "[DATE] 这几天"
       ],
-      "estimated_months": null,
+      "estimated_months": 0.1,
       "raw_output": "DATE: 这几天",
       "error": null,
-      "latency_ms": 49.57753899725503
+      "latency_ms": 57.32544900092762
     },
     {
       "tool_name": "stanza",
@@ -1029,10 +1043,10 @@
         "[DATE] 上周",
         "[DATE] 这个星期"
       ],
-      "estimated_months": null,
+      "estimated_months": 0.25,
       "raw_output": "DATE: 上周; DATE: 这个星期",
       "error": null,
-      "latency_ms": 45.99168400091003
+      "latency_ms": 55.08840900074574
     },
     {
       "tool_name": "stanza",
@@ -1040,10 +1054,10 @@
       "extracted_entities": [
         "[DATE] 三四天"
       ],
-      "estimated_months": null,
+      "estimated_months": 0.1,
       "raw_output": "DATE: 三四天",
       "error": null,
-      "latency_ms": 52.46593599804328
+      "latency_ms": 61.122944000089774
     },
     {
       "tool_name": "stanza",
@@ -1052,7 +1066,7 @@
       "estimated_months": null,
       "raw_output": "no entities",
       "error": null,
-      "latency_ms": 42.543848998320755
+      "latency_ms": 63.258948001021054
     },
     {
       "tool_name": "stanza",
@@ -1061,7 +1075,7 @@
       "estimated_months": null,
       "raw_output": "no entities",
       "error": null,
-      "latency_ms": 40.043618999334285
+      "latency_ms": 49.352096997608896
     }
   ]
 }
