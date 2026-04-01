@@ -218,10 +218,6 @@ dependencies = [
 ]
 
 [package.optional-dependencies]
-dev = [
-    { name = "pytest" },
-    { name = "pytest-cov" },
-]
 retrieval = [
     { name = "sentence-transformers" },
 ]
@@ -241,13 +237,11 @@ requires-dist = [
     { name = "omegaconf", specifier = ">=2.3" },
     { name = "pyarrow", specifier = ">=15.0" },
     { name = "pydantic", specifier = ">=2.0" },
-    { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0" },
-    { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=5.0" },
     { name = "scikit-learn", specifier = ">=1.4" },
     { name = "scipy", specifier = ">=1.12" },
     { name = "sentence-transformers", marker = "extra == 'retrieval'", specifier = ">=3.0" },
 ]
-provides-extras = ["dev", "retrieval"]
+provides-extras = ["retrieval"]
 
 [package.metadata.requires-dev]
 dev = [

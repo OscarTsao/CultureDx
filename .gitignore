@@ -10,7 +10,11 @@ data/cache/
 .env
 
 # Large model artifacts (adapter weights, tokenizer, checkpoints)
-outputs/finetune/criterion_checker_lora/*.safetensors
+outputs/finetune/**/*.safetensors
+outputs/finetune/**/*.pt
+outputs/finetune/**/*.pth
+outputs/finetune/**/*.bin
+outputs/finetune/**/*.optimizer.*
 outputs/finetune/criterion_checker_lora/tokenizer.json
 outputs/finetune/criterion_checker_lora/vocab.json
 outputs/finetune/criterion_checker_lora/merges.txt
