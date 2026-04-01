@@ -1,4 +1,9 @@
-"""Experiment runner: processes cases through a mode and emits canonical artifacts."""
+"""Experiment runner for case execution and canonical artifact emission.
+
+This module is the bridge between mode execution and reviewer-facing outputs:
+it runs cases, preserves ordering under bounded concurrency, and writes both
+legacy-compatible and canonical artifacts for evaluation/reporting.
+"""
 from __future__ import annotations
 
 import json
@@ -63,7 +68,12 @@ class ExperimentRunner:
         return run_dir
 
     def run(self, cases: list[ClinicalCase]) -> list[DiagnosisResult]:
-        """Run the configured mode across cases with bounded concurrency."""
+        """Run the configured mode across cases with bounded concurrency.
+
+        Results are written in input order even when cases are processed in
+        parallel. The method also captures the last case/evidence/result tuple
+        set so later metric/report steps operate on the exact emitted payloads.
+        """
         if not cases:
             self._last_case_contexts = []
             self._save_predictions([])
@@ -121,7 +131,11 @@ class ExperimentRunner:
         num_cases: int,
         mode_type: str,
     ) -> None:
-        """Save canonical and legacy run metadata."""
+        """Save canonical and legacy run metadata.
+
+        ``run_manifest.json`` is the preferred schema; ``run_info.json`` stays
+        for compatibility with older scripts and analysis notebooks.
+        """
         manifest = RunManifest(
             run_id=self.run_id,
             created_at=datetime.now(timezone.utc).isoformat(),
@@ -187,7 +201,11 @@ class ExperimentRunner:
         return metrics
 
     def _save_predictions(self, case_contexts: list[dict[str, Any]]) -> None:
-        """Save canonical prediction, failure, and timing artifacts."""
+        """Save canonical prediction, failure, and timing artifacts.
+
+        The three files are emitted together so downstream tools can join them
+        by ``run_id`` and ``case_id`` without depending on positional order.
+        """
         pred_path = self.output_dir / "predictions.jsonl"
         failure_path = self.output_dir / "failures.jsonl"
         timing_path = self.output_dir / "stage_timings.jsonl"
@@ -267,7 +285,12 @@ class ExperimentRunner:
         results: list[DiagnosisResult],
         cases: list[ClinicalCase],
     ) -> list[dict[str, Any]]:
-        """Compute lightweight slice-aware reporting for common review slices."""
+        """Compute lightweight slice-aware reporting for common review slices.
+
+        This is intentionally lightweight rather than a full stratified stats
+        framework; it exists to flag obvious regime differences in reviewer
+        summaries and regression checks.
+        """
         somatic_terms = tuple(load_somatization_map().keys())
         transcript_texts = {
             case.case_id: " ".join(turn.text for turn in case.transcript)

@@ -1,10 +1,13 @@
-"""Confidence Calibrator — statistical, no LLM.
+"""Confidence calibrator for diagnosis ranking, abstention, and audit traces.
 
-Computes calibrated diagnostic confidence from:
-- Criterion checker confidence scores
-- Evidence coverage
-- Logic engine threshold satisfaction ratio
-- Somatization mapper hit rate (if applicable)
+The calibrator is intentionally non-LLM and split into two paths:
+
+- learned artifact path when a persisted linear calibrator is available
+- heuristic fallback path when no artifact exists or loading fails
+
+Both paths produce interpretable feature summaries and machine-readable
+decision traces so downstream reviewers can see why a disorder became primary,
+comorbid, abstained, or rejected.
 """
 from __future__ import annotations
 
@@ -144,8 +147,11 @@ class CalibratorArtifact:
 
 class ConfidenceCalibrator:
     """Statistical confidence calibrator for diagnostic decisions.
-    
-    No LLM. Combines multiple signals into a calibrated confidence score.
+
+    No LLM is involved here. The class combines checker outputs, evidence
+    coverage, rule-threshold satisfaction, and optional learned parameters into
+    a calibrated split between primary, comorbid, abstained, and rejected
+    diagnoses.
     """
 
     def __init__(
@@ -224,12 +230,12 @@ class ConfidenceCalibrator:
         confirmation_types: dict[str, str] | None = None,
         scale_scores: list[ScaleScore] | None = None,
     ) -> CalibrationOutput:
-        """Calibrate confidence for confirmed disorders.
-        
-        Args:
-            confirmed_disorders: Disorder codes confirmed by logic engine.
-            checker_outputs: All checker outputs (confirmed + rejected).
-            evidence: Optional evidence brief for coverage computation.
+        """Calibrate confidence for logic-confirmed disorders.
+
+        ``confirmed_disorders`` comes from the deterministic logic engine.
+        This method then scores each confirmed disorder, ranks them, and makes
+        the final primary/comorbid/abstain/rejected split while preserving the
+        feature-level reasoning used for that decision.
         """
         checker_map = {co.disorder: co for co in checker_outputs}
 
@@ -541,7 +547,11 @@ class ConfidenceCalibrator:
         evidence: EvidenceBrief | None = None,
         scale_scores: list[ScaleScore] | None = None,
     ) -> dict[str, float]:
-        """Public wrapper for building the calibrator feature map."""
+        """Public wrapper for building the calibrator feature map.
+
+        This is the safest entry point for training/evaluation scripts that
+        need the same feature construction logic as runtime calibration.
+        """
         return self._extract_feature_map(
             disorder_code=disorder_code,
             checker_output=checker_output,

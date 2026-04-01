@@ -1,11 +1,13 @@
-"""HiED-MAS: Hierarchical Evidence-grounded Diagnostic pipeline.
+"""HiED-MAS: hierarchical evidence-grounded diagnosis orchestration.
 
-5-stage pipeline:
-  Stage 1: Triage → broad ICD-10 categories
-  Stage 2: Criterion Checkers → per-disorder criteria evaluation
-  Stage 2.5: Contrastive Disambiguation → shared criteria attribution (optional)
-  Stage 3: Logic Engine → deterministic ICD-10 threshold checking
-  Stage 4: Calibrator → statistical confidence scoring + abstention
+This file owns the repo's main diagnosis path. It keeps two execution
+semantics explicit:
+
+- benchmark/manual scope: closed-set evaluation with explicit target disorders
+- production/open-set: triage-driven or all-supported candidate resolution
+
+The main ``diagnose()`` method is intentionally stage-shaped so contributors
+can reason about failures, timings, and routing semantics at each boundary.
 """
 from __future__ import annotations
 
@@ -39,14 +41,11 @@ SUPPORTED_EXECUTION_MODES = frozenset({"auto", "benchmark_manual_scope", "produc
 
 
 class HiEDMode(BaseModeOrchestrator):
-    """Hierarchical Evidence-grounded Diagnostic MAS.
+    """Primary evidence-grounded diagnosis orchestrator.
 
-    Primary mode implementing the 5-stage pipeline:
-    1. Triage: classify into broad ICD-10 categories
-    2. Criterion Checkers: per-disorder ICD-10 criteria evaluation
-    2.5. Contrastive Disambiguation: shared criteria attribution (optional)
-    3. Logic Engine: deterministic threshold checking (no LLM)
-    4. Calibrator: statistical confidence + abstention (no LLM)
+    ``HiEDMode`` is the main place where routing semantics, deterministic
+    diagnosis logic, calibration, differential disambiguation, and comorbidity
+    resolution are wired together for one case.
     """
 
     def __init__(
@@ -148,6 +147,12 @@ class HiEDMode(BaseModeOrchestrator):
     def diagnose(
         self, case: ClinicalCase, evidence: EvidenceBrief | None = None
     ) -> DiagnosisResult:
+        """Execute one case through the staged HiED pipeline.
+
+        The method keeps stage timings, routing semantics, candidate disorder
+        scope, and failure reasons visible in the returned ``DiagnosisResult``
+        so downstream evaluation and review tooling can audit the path taken.
+        """
         case_start = time.monotonic()
         stage_timings: dict[str, float] = {}
         try:
@@ -498,7 +503,13 @@ class HiEDMode(BaseModeOrchestrator):
         )
 
     def _resolve_mode_semantics(self) -> tuple[str, str]:
-        """Resolve explicit benchmark/manual vs production/open-set semantics."""
+        """Resolve explicit benchmark/manual vs production/open-set semantics.
+
+        This helper is intentionally strict: if callers provide
+        ``target_disorders`` while claiming open-set semantics, or request
+        manual scope without an explicit disorder set, the mode fails fast
+        instead of silently reinterpreting the request.
+        """
         scope_policy = self.scope_policy
         if scope_policy == "auto":
             scope_policy = "manual" if self.target_disorders is not None else "triage"

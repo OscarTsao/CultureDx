@@ -1,4 +1,9 @@
-"""End-to-end evidence extraction pipeline."""
+"""Evidence orchestration from transcript turns to ``EvidenceBrief``.
+
+The pipeline prefers explicit partial outputs over opaque failure: most stage
+errors are captured as machine-readable ``FailureInfo`` records and returned in
+the brief instead of raising past the caller.
+"""
 from __future__ import annotations
 
 import logging
@@ -19,7 +24,13 @@ SUPPORTED_SCOPE_POLICIES = frozenset({"auto", "manual", "triage", "all_supported
 
 
 class EvidencePipeline:
-    """Orchestrate evidence extraction: extract -> somatize -> match -> assemble."""
+    """Orchestrate evidence extraction: extract -> somatize -> match -> assemble.
+
+    Scope resolution is explicit and never silently narrows to a hidden subset.
+    The returned ``EvidenceBrief`` may therefore represent a complete success,
+    a partial success with recoverable failures, or a scope/input failure that
+    still preserves debugging context.
+    """
 
     def __init__(
         self,
@@ -97,7 +108,12 @@ class EvidencePipeline:
         case: ClinicalCase,
         target_disorders: list[str] | None = None,
     ) -> EvidenceBrief:
-        """Run the full evidence extraction pipeline for a case."""
+        """Run the full evidence extraction pipeline for a case.
+
+        The method preserves stage timings and recoverable failures in the
+        returned brief so callers can continue diagnosis or abstain explicitly
+        without losing evidence-generation context.
+        """
         # Check brief cache first (sweep acceleration)
         if self._brief_cache is not None and target_disorders is None:
             cached = self._brief_cache.get(case.case_id, self._brief_cache_cfg_hash)
@@ -305,7 +321,13 @@ class EvidencePipeline:
         self,
         target_disorders: list[str] | None,
     ) -> tuple[str, list[str]]:
-        """Resolve the effective disorder scope without hidden defaults."""
+        """Resolve the effective disorder scope without hidden defaults.
+
+        ``manual`` and ``triage`` both require an explicit disorder set.
+        ``all_supported`` expands to the ontology-backed supported codes.
+        ``auto`` is only a convenience alias for ``manual`` when targets are
+        configured, otherwise ``all_supported``.
+        """
         configured = (
             list(target_disorders)
             if target_disorders is not None
@@ -354,6 +376,9 @@ class EvidencePipeline:
 
         This allows CriteriaMatcher to boost sentences that have somatization
         mappings for a particular criterion.
+
+        The matcher still performs normal retrieval/scoring; this map is only a
+        lightweight hint layer that preserves the original sentence text.
         """
         boost_map: dict[str, list[str]] = {}
         for span in spans:

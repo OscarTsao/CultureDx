@@ -1,0 +1,20 @@
+usage: finetune_checker.py [-h] [--train-file TRAIN_FILE]
+                           [--val-file VAL_FILE] [--output-dir OUTPUT_DIR]
+                           [--model-name MODEL_NAME] [--epochs EPOCHS]
+                           [--batch-size BATCH_SIZE]
+                           [--gradient-accumulation-steps GRADIENT_ACCUMULATION_STEPS]
+                           [--lr LR] [--lora-r LORA_R]
+                           [--lora-alpha LORA_ALPHA]
+                           [--lora-dropout LORA_DROPOUT]
+                           [--max-length MAX_LENGTH] [--bf16] [--load-in-4bit]
+                           [--seed SEED]
+
+Fine-tune criterion checker with LoRA
+
+options:
+  -h, --help            show this help message and exit
+  --train-file TRAIN_FILE
+                        Training JSONL file
+  --val-file VAL_FILE   Validation JSONL file
+  --output-dir OUTPUT_DIR
+                        Output directory for adapter weights

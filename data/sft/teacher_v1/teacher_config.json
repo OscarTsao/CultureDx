@@ -1,0 +1,23 @@
+{
+  "teacher_model": "Qwen/Qwen3-32B-AWQ",
+  "n_cases": 1000,
+  "n_examples": 4816,
+  "n_train": 4334,
+  "n_val": 482,
+  "disorders": [
+    "F32",
+    "F33",
+    "F41.1",
+    "F42",
+    "F43.1"
+  ],
+  "datasets": [
+    "lingxidiag16k",
+    "mdd5k_raw"
+  ],
+  "max_cases_per_dataset": 500,
+  "seed": 42,
+  "guided_json": true,
+  "concurrency": 8,
+  "generation_time_sec": 27067
+}

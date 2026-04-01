@@ -204,3 +204,8 @@ Research/annotation work for Chinese somatization normalization now lives in:
 
 Synthetic/demo fixtures under `tests/fixtures/somatization_*` are not real
 benchmark artifacts and must not be reported as empirical results.
+
+## Further Reading
+
+- [developer_guide.md](/home/user/YuNing/CultureDx/docs/developer_guide.md)
+  quickest code-reading path for new contributors.

@@ -1,4 +1,9 @@
-"""Base mode orchestrator."""
+"""Shared utilities and contracts for diagnostic mode orchestrators.
+
+Every mode subclass implements ``diagnose()`` and then reuses the helper
+utilities here for transcript rendering, evidence summarization, parallel
+checker fanout, and standardized abstention payloads.
+"""
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
@@ -27,6 +32,11 @@ class BaseModeOrchestrator(ABC):
     def diagnose(
         self, case: ClinicalCase, evidence: EvidenceBrief | None = None
     ) -> DiagnosisResult:
+        """Run one case through the mode and return a structured diagnosis.
+
+        Implementations should keep routing mode, scope policy, failures, and
+        stage timings explicit in the returned ``DiagnosisResult``.
+        """
         ...
 
     @staticmethod

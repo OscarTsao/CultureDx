@@ -1,4 +1,9 @@
-"""Triage routing, calibration, and evaluation helpers."""
+"""Triage routing, calibration artifact, and evaluation helpers.
+
+This module turns broad category scores into explicit routing decisions that
+the rest of the repo can audit: calibrated category scores, selected candidate
+disorders, uncertainty, and routing-quality metrics.
+"""
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
@@ -223,7 +228,17 @@ def route_triage_categories(
     activation_threshold: float = 0.2,
     max_categories: int = 3,
 ) -> TriageRoutingResult:
-    """Convert category scores into a structured routing decision."""
+    """Convert category scores into a structured routing decision.
+
+    The selection rule is intentionally simple and inspectable:
+
+    - if one category is confident enough, keep all activated categories above
+      the activation threshold
+    - otherwise fall back to the top ``max_categories`` categories
+
+    This keeps open-set routing behavior explicit even without a learned
+    calibration artifact.
+    """
     raw_scores = {item.category: item.raw_score for item in category_inputs}
     calibrated_scores = calibrate_scores(raw_scores, calibration_artifact)
     score_key = calibrated_scores if calibration_artifact is not None else raw_scores
@@ -282,6 +297,7 @@ def route_triage_categories(
 
 
 def _expand_categories_to_codes(categories: Sequence[str]) -> list[str]:
+    """Expand ordered triage categories into a deduplicated disorder list."""
     disorder_codes: list[str] = []
     for category in categories:
         for code in CATEGORY_DISORDERS.get(category, []):
@@ -296,7 +312,12 @@ def fit_temperature_scaling(
     max_temperature: float = 10.0,
     min_temperature: float = 0.25,
 ) -> TriageCalibrationArtifact:
-    """Fit a global temperature for triage calibration using BCE."""
+    """Fit a global temperature for triage calibration using BCE.
+
+    The artifact is intentionally simple and inspectable so the repo can ship a
+    safe fallback path when no private training data or learned artifact is
+    available.
+    """
     category_set = sorted({category for example in examples for category in example.raw_category_scores})
     if not category_set:
         return TriageCalibrationArtifact(
