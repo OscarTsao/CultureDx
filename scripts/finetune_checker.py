@@ -49,17 +49,31 @@ def format_chat_template(
     """Format a messages-list example using the model's chat template.
 
     Returns tokenized input_ids + labels with prompt tokens masked.
+    Uses response-boundary detection in the full tokenized sequence
+    to avoid misalignment from special tokens (e.g., <think>).
+
+    Background: The previous implementation tokenized the user message
+    separately (messages[0] only with add_generation_prompt=True) and
+    used len(prompt_tokens) as the mask boundary. With Qwen3-8B this
+    causes eval_loss NaN because the chat template injects <think> blocks
+    and system special tokens that shift the token count between a
+    standalone prompt tokenization and the full-conversation tokenization.
+    When prompt_len overshoots the actual assistant-start position, every
+    response token is masked (-100), the model computes loss over zero
+    valid targets, and the resulting loss is NaN/inf.
+
+    Fix: tokenize the prompt-only prefix using the same template
+    (apply_chat_template on all non-assistant messages with
+    add_generation_prompt=True), then validate alignment by comparing
+    token IDs against the full sequence. Fall back to an assistant-header
+    search if alignment diverges by more than 20%.
     """
     messages = example["messages"]
 
-    # Use the model's chat template to format
-    # For training: we want the full conversation tokenized,
-    # with labels masked for the user turn (prompt).
+    # Tokenize the full conversation
     full_text = tokenizer.apply_chat_template(
         messages, tokenize=False, add_generation_prompt=False
     )
-
-    # Tokenize the full conversation
     full_tokens = tokenizer(
         full_text,
         truncation=True,
@@ -67,12 +81,19 @@ def format_chat_template(
         return_tensors=None,
     )
 
-    # For label masking: tokenize just the user prompt portion
-    # to know how many tokens to mask with -100
+    # Find the assistant response boundary by tokenizing prompt-only
+    # and matching token IDs in the full sequence.
+    # Use the conversation up to (but not including) the assistant response.
+    prompt_messages = []
+    for msg in messages:
+        if msg["role"] == "assistant":
+            break
+        prompt_messages.append(msg)
+
     prompt_text = tokenizer.apply_chat_template(
-        [messages[0]],  # user message only
+        prompt_messages,
         tokenize=False,
-        add_generation_prompt=True,  # include the assistant header
+        add_generation_prompt=True,
     )
     prompt_tokens = tokenizer(
         prompt_text,
@@ -80,16 +101,67 @@ def format_chat_template(
         max_length=max_length,
         return_tensors=None,
     )
-    prompt_len = len(prompt_tokens["input_ids"])
+
+    # Find the best alignment point: scan for where prompt tokens end
+    # in the full sequence. Use token-level matching with fallback.
+    prompt_ids = prompt_tokens["input_ids"]
+    full_ids = full_tokens["input_ids"]
+
+    # Primary: direct length comparison (works when tokenization is consistent)
+    prompt_len = len(prompt_ids)
+
+    # Validation: check that the prompt tokens actually match the start
+    # of the full sequence. If not, use a search-based approach.
+    match_len = 0
+    for i in range(min(prompt_len, len(full_ids))):
+        if prompt_ids[i] == full_ids[i]:
+            match_len += 1
+        else:
+            break
+
+    if match_len < prompt_len * 0.8:
+        # Significant mismatch -- fall back to searching for the assistant
+        # header token pattern in the full sequence.
+        # Common patterns: "assistant\n" or "<|im_start|>assistant"
+        assistant_header = tokenizer.encode(
+            "assistant", add_special_tokens=False
+        )
+        # Search for assistant header in full_ids after a reasonable offset
+        search_start = max(len(full_ids) // 4, 10)
+        prompt_len = len(full_ids)  # default: mask everything (safe fallback)
+        for i in range(search_start, len(full_ids) - len(assistant_header)):
+            if full_ids[i:i + len(assistant_header)] == assistant_header:
+                # Found assistant header -- prompt ends right after it
+                # Skip the header + any newline token
+                prompt_len = i + len(assistant_header)
+                # Skip trailing newline if present
+                nl_tokens = tokenizer.encode("\n", add_special_tokens=False)
+                if (prompt_len < len(full_ids) and nl_tokens and
+                        full_ids[prompt_len] == nl_tokens[0]):
+                    prompt_len += 1
+                break
+    else:
+        # Good match -- use the prompt length directly
+        prompt_len = match_len
 
     # Create labels: -100 for prompt tokens, actual ids for response
-    labels = [-100] * prompt_len + full_tokens["input_ids"][prompt_len:]
+    labels = [-100] * prompt_len + full_ids[prompt_len:]
 
     # Ensure labels length matches input_ids
-    if len(labels) < len(full_tokens["input_ids"]):
-        labels = labels + [-100] * (len(full_tokens["input_ids"]) - len(labels))
-    elif len(labels) > len(full_tokens["input_ids"]):
-        labels = labels[: len(full_tokens["input_ids"])]
+    if len(labels) < len(full_ids):
+        labels = labels + [-100] * (len(full_ids) - len(labels))
+    elif len(labels) > len(full_ids):
+        labels = labels[:len(full_ids)]
+
+    # Sanity check: at least some tokens should be non-masked
+    non_masked = sum(1 for l in labels if l != -100)
+    if non_masked == 0:
+        logger.warning(
+            "All tokens masked -- label alignment failed for example. "
+            "Falling back to masking only first 20%% of tokens."
+        )
+        fallback_len = len(full_ids) // 5
+        labels = [-100] * fallback_len + full_ids[fallback_len:]
 
     full_tokens["labels"] = labels
     return full_tokens

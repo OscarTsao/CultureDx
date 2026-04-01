@@ -43,6 +43,18 @@ class EvidenceBriefAssembler:
                     ce for ce in criterion_list
                     if ce.confidence >= self.min_confidence
                 ]
+                # Populate structured metadata from spans
+                for ce in filtered:
+                    ce.has_negated_spans = any(
+                        s.expression_type == "negated" for s in ce.spans
+                    )
+                    ce.has_somatization_mapped = any(
+                        s.mapping_source is not None for s in ce.spans
+                    )
+                    ce.somatization_sources = [
+                        s.mapping_source for s in ce.spans
+                        if s.mapping_source is not None
+                    ]
                 name = get_disorder_name(disorder_code, language) or disorder_code
                 disorder_evidence.append(
                     DisorderEvidence(

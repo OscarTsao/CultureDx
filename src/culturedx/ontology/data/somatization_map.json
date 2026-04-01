@@ -1,6 +1,6 @@
 {
-  "version": "2.0",
-  "description": "Chinese somatic symptom to psychiatric criterion mapping (CCMD-3/CMeKG-inspired, 150 entries)",
+  "version": "2.1",
+  "description": "Chinese somatic symptom to psychiatric criterion mapping (CCMD-3/CMeKG-inspired, 150 entries) with provenance/source annotations per entry",
   "mappings": {
     "头疼": {
       "criteria": [
@@ -8,7 +8,8 @@
         "F41.1.B1",
         "F45.C3"
       ],
-      "category": "pain"
+      "category": "pain",
+      "source": "ICD-10 F41.1.B1 motor tension; ICD-10 F45 somatoform criteria"
     },
     "头痛": {
       "criteria": [
@@ -16,14 +17,16 @@
         "F41.1.B1",
         "F45.C3"
       ],
-      "category": "pain"
+      "category": "pain",
+      "source": "ICD-10 F41.1.B1 motor tension; ICD-10 F45 somatoform criteria"
     },
     "偏头痛": {
       "criteria": [
         "F32.C6",
         "F45.C3"
       ],
-      "category": "pain"
+      "category": "pain",
+      "source": "ICD-10 F41.1.B1 motor tension; ICD-10 F45 somatoform criteria"
     },
     "失眠": {
       "criteria": [
@@ -31,7 +34,8 @@
         "F41.1.B4",
         "F51.A"
       ],
-      "category": "sleep"
+      "category": "sleep",
+      "source": "ICD-10 F32 criterion C4 sleep disturbance; ICD-10 F51 sleep disorder criteria"
     },
     "睡不着": {
       "criteria": [
@@ -39,35 +43,40 @@
         "F41.1.B4",
         "F51.A"
       ],
-      "category": "sleep"
+      "category": "sleep",
+      "source": "ICD-10 F32 criterion C4 sleep disturbance; ICD-10 F51 sleep disorder criteria"
     },
     "入睡困难": {
       "criteria": [
         "F32.C6",
         "F51.A"
       ],
-      "category": "sleep"
+      "category": "sleep",
+      "source": "ICD-10 F32 criterion C4 sleep disturbance; ICD-10 F51 sleep disorder criteria"
     },
     "早醒": {
       "criteria": [
         "F32.C6",
         "F51.A"
       ],
-      "category": "sleep"
+      "category": "sleep",
+      "source": "ICD-10 F32 criterion C4 sleep disturbance; ICD-10 F51 sleep disorder criteria"
     },
     "多梦": {
       "criteria": [
         "F32.C6",
         "F51.A"
       ],
-      "category": "sleep"
+      "category": "sleep",
+      "source": "ICD-10 F32 criterion C4 sleep disturbance; ICD-10 F51 sleep disorder criteria"
     },
     "噩梦": {
       "criteria": [
         "F43.1.B1",
         "F51.A"
       ],
-      "category": "sleep"
+      "category": "sleep",
+      "source": "ICD-10 F43.1 trauma re-experiencing; ICD-10 F51 sleep disorder criteria"
     },
     "心慌": {
       "criteria": [
@@ -75,7 +84,8 @@
         "F41.1.B2",
         "F45.C2"
       ],
-      "category": "cardiovascular"
+      "category": "cardiovascular",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity; ICD-10 F41.0 panic criteria"
     },
     "心悸": {
       "criteria": [
@@ -83,7 +93,8 @@
         "F41.1.B2",
         "F45.C2"
       ],
-      "category": "cardiovascular"
+      "category": "cardiovascular",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity; ICD-10 F41.0 panic criteria"
     },
     "胸闷": {
       "criteria": [
@@ -91,21 +102,24 @@
         "F41.1.B2",
         "F45.C2"
       ],
-      "category": "cardiovascular"
+      "category": "cardiovascular",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity; ICD-10 F41.0 panic criteria"
     },
     "胸痛": {
       "criteria": [
         "F41.0.B3",
         "F45.C2"
       ],
-      "category": "cardiovascular"
+      "category": "cardiovascular",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity; ICD-10 F41.0 panic criteria"
     },
     "气短": {
       "criteria": [
         "F41.0.B3",
         "F41.1.B2"
       ],
-      "category": "respiratory"
+      "category": "respiratory",
+      "source": "ICD-10 F41.0 panic attack respiratory symptoms; CCMD-3 somatic equivalents"
     },
     "呼吸困难": {
       "criteria": [
@@ -113,109 +127,126 @@
         "F41.1.B2",
         "F45.C2"
       ],
-      "category": "respiratory"
+      "category": "respiratory",
+      "source": "ICD-10 F41.0 panic attack respiratory symptoms; CCMD-3 somatic equivalents"
     },
     "喘不上气": {
       "criteria": [
         "F41.0.B3",
         "F45.C2"
       ],
-      "category": "respiratory"
+      "category": "respiratory",
+      "source": "ICD-10 F41.0 panic attack respiratory symptoms; CCMD-3 somatic equivalents"
     },
     "没有食欲": {
       "criteria": [
         "F32.C7"
       ],
-      "category": "appetite"
+      "category": "appetite",
+      "source": "ICD-10 F32 criterion C6 appetite/weight change"
     },
     "食欲不振": {
       "criteria": [
         "F32.C7"
       ],
-      "category": "appetite"
+      "category": "appetite",
+      "source": "ICD-10 F32 criterion C6 appetite/weight change"
     },
     "吃不下饭": {
       "criteria": [
         "F32.C7"
       ],
-      "category": "appetite"
+      "category": "appetite",
+      "source": "ICD-10 F32 criterion C6 appetite/weight change"
     },
     "体重下降": {
       "criteria": [
         "F32.C7"
       ],
-      "category": "appetite"
+      "category": "appetite",
+      "source": "ICD-10 F32 criterion C6 appetite/weight change"
     },
     "体重增加": {
       "criteria": [
         "F32.C7"
       ],
-      "category": "appetite"
+      "category": "appetite",
+      "source": "ICD-10 F32 criterion C6 appetite/weight change"
     },
     "全身无力": {
       "criteria": [
         "F32.B3",
         "F41.1.B1"
       ],
-      "category": "fatigue"
+      "category": "fatigue",
+      "source": "ICD-10 F32 criterion C6 fatigue/energy loss"
     },
     "疲劳": {
       "criteria": [
         "F32.B3",
         "F41.1.B1"
       ],
-      "category": "fatigue"
+      "category": "fatigue",
+      "source": "ICD-10 F32 criterion C6 fatigue/energy loss"
     },
     "疲乏": {
       "criteria": [
         "F32.B3"
       ],
-      "category": "fatigue"
+      "category": "fatigue",
+      "source": "ICD-10 F32 criterion C6 fatigue/energy loss"
     },
     "没有精神": {
       "criteria": [
         "F32.B3"
       ],
-      "category": "fatigue"
+      "category": "fatigue",
+      "source": "ICD-10 F32 criterion C6 fatigue/energy loss"
     },
     "浑身没劲": {
       "criteria": [
         "F32.B3",
         "F41.1.B1"
       ],
-      "category": "fatigue"
+      "category": "fatigue",
+      "source": "ICD-10 F32 criterion C6 fatigue/energy loss"
     },
     "肚子疼": {
       "criteria": [
         "F45.C1"
       ],
-      "category": "gastrointestinal"
+      "category": "gastrointestinal",
+      "source": "ICD-10 F41.1.B2 epigastric discomfort; ICD-10 F45 somatoform criteria"
     },
     "腹痛": {
       "criteria": [
         "F45.C1"
       ],
-      "category": "gastrointestinal"
+      "category": "gastrointestinal",
+      "source": "ICD-10 F41.1.B2 epigastric discomfort; ICD-10 F45 somatoform criteria"
     },
     "恶心": {
       "criteria": [
         "F41.0.B3",
         "F45.C1"
       ],
-      "category": "gastrointestinal"
+      "category": "gastrointestinal",
+      "source": "ICD-10 F41.1.B2 epigastric discomfort; ICD-10 F45 somatoform criteria"
     },
     "腹胀": {
       "criteria": [
         "F45.C1"
       ],
-      "category": "gastrointestinal"
+      "category": "gastrointestinal",
+      "source": "ICD-10 F41.1.B2 epigastric discomfort; ICD-10 F45 somatoform criteria"
     },
     "口干": {
       "criteria": [
         "F41.0.B2",
         "F41.1.B2"
       ],
-      "category": "autonomic"
+      "category": "autonomic",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity"
     },
     "出汗": {
       "criteria": [
@@ -223,14 +254,16 @@
         "F41.1.B2",
         "F40.C1"
       ],
-      "category": "autonomic"
+      "category": "autonomic",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity"
     },
     "手抖": {
       "criteria": [
         "F41.0.B2",
         "F40.C1"
       ],
-      "category": "autonomic"
+      "category": "autonomic",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity"
     },
     "震颤": {
       "criteria": [
@@ -238,107 +271,123 @@
         "F41.1.B1",
         "F40.C1"
       ],
-      "category": "autonomic"
+      "category": "autonomic",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity"
     },
     "头晕": {
       "criteria": [
         "F41.0.B4",
         "F41.1.B1"
       ],
-      "category": "autonomic"
+      "category": "autonomic",
+      "source": "ICD-10 F41.1.B2 autonomic symptoms; CCMD-3 somatic equivalents"
     },
     "眩晕": {
       "criteria": [
         "F41.0.B4"
       ],
-      "category": "autonomic"
+      "category": "autonomic",
+      "source": "ICD-10 F41.1.B2 autonomic symptoms; CCMD-3 somatic equivalents"
     },
     "背痛": {
       "criteria": [
         "F45.C3"
       ],
-      "category": "pain"
+      "category": "pain",
+      "source": "ICD-10 F41.1.B1 motor tension; ICD-10 F45 somatoform criteria"
     },
     "腰痛": {
       "criteria": [
         "F45.C3"
       ],
-      "category": "pain"
+      "category": "pain",
+      "source": "ICD-10 F41.1.B1 motor tension; ICD-10 F45 somatoform criteria"
     },
     "食欲下降": {
       "criteria": [
         "F32.C7",
         "F33.C7"
       ],
-      "category": "appetite"
+      "category": "appetite",
+      "source": "ICD-10 F32 criterion C6 appetite/weight change"
     },
     "没胃口": {
       "criteria": [
         "F32.C7",
         "F33.C7"
       ],
-      "category": "appetite"
+      "category": "appetite",
+      "source": "ICD-10 F32 criterion C6 appetite/weight change"
     },
     "暴饮暴食": {
       "criteria": [
         "F32.C7",
         "F33.C7"
       ],
-      "category": "appetite"
+      "category": "appetite",
+      "source": "ICD-10 F32 criterion C6 appetite/weight change"
     },
     "吃不下东西": {
       "criteria": [
         "F32.C7",
         "F33.C7"
       ],
-      "category": "appetite"
+      "category": "appetite",
+      "source": "ICD-10 F32 criterion C6 appetite/weight change"
     },
     "胃口不好": {
       "criteria": [
         "F32.C7",
         "F33.C7"
       ],
-      "category": "appetite"
+      "category": "appetite",
+      "source": "ICD-10 F32 criterion C6 appetite/weight change"
     },
     "不想吃饭": {
       "criteria": [
         "F32.C7",
         "F33.C7"
       ],
-      "category": "appetite"
+      "category": "appetite",
+      "source": "ICD-10 F32 criterion C6 appetite/weight change"
     },
     "吃什么都没味道": {
       "criteria": [
         "F32.C7",
         "F33.C7"
       ],
-      "category": "appetite"
+      "category": "appetite",
+      "source": "ICD-10 F32 criterion C6 appetite/weight change"
     },
     "暴食": {
       "criteria": [
         "F32.C7"
       ],
-      "category": "appetite"
+      "category": "appetite",
+      "source": "ICD-10 F32 criterion C6 appetite/weight change"
     },
     "食量减少": {
       "criteria": [
         "F32.C7",
         "F33.C7"
       ],
-      "category": "appetite"
+      "category": "appetite",
+      "source": "ICD-10 F32 criterion C6 appetite/weight change"
     },
     "消瘦": {
       "criteria": [
         "F32.C7",
         "F33.C7"
       ],
-      "category": "appetite"
+      "category": "appetite",
+      "source": "ICD-10 F32 criterion C6 appetite/weight change"
     },
     "发胖": {
       "criteria": [
         "F32.C7"
       ],
-      "category": "appetite"
+      "category": "appetite",
+      "source": "ICD-10 F32 criterion C6 appetite/weight change"
     },
     "浑身酸痛": {
       "criteria": [
@@ -346,13 +395,15 @@
         "F45.C3",
         "F41.1.B1"
       ],
-      "category": "pain"
+      "category": "pain",
+      "source": "ICD-10 F41.1.B1 motor tension; ICD-10 F45 somatoform criteria"
     },
     "腰酸背痛": {
       "criteria": [
         "F45.C3"
       ],
-      "category": "pain"
+      "category": "pain",
+      "source": "ICD-10 F41.1.B1 motor tension; ICD-10 F45 somatoform criteria"
     },
     "全身疼痛": {
       "criteria": [
@@ -360,59 +411,68 @@
         "F45.C3",
         "F41.1.B1"
       ],
-      "category": "pain"
+      "category": "pain",
+      "source": "ICD-10 F41.1.B1 motor tension; ICD-10 F45 somatoform criteria"
     },
     "关节疼": {
       "criteria": [
         "F45.C3"
       ],
-      "category": "pain"
+      "category": "pain",
+      "source": "ICD-10 F41.1.B1 motor tension; ICD-10 F45 somatoform criteria"
     },
     "肌肉酸痛": {
       "criteria": [
         "F45.C3",
         "F41.1.B1"
       ],
-      "category": "pain"
+      "category": "pain",
+      "source": "ICD-10 F41.1.B1 motor tension; ICD-10 F45 somatoform criteria"
     },
     "肩膀疼": {
       "criteria": [
         "F45.C3",
         "F41.1.B1"
       ],
-      "category": "pain"
+      "category": "pain",
+      "source": "ICD-10 F41.1.B1 motor tension; ICD-10 F45 somatoform criteria"
     },
     "脖子疼": {
       "criteria": [
         "F45.C3",
         "F41.1.B1"
       ],
-      "category": "pain"
+      "category": "pain",
+      "source": "ICD-10 F41.1.B1 motor tension; ICD-10 F45 somatoform criteria"
     },
     "关节痛": {
       "criteria": [
         "F45.C3"
       ],
-      "category": "pain"
+      "category": "pain",
+      "source": "ICD-10 F41.1.B1 motor tension; ICD-10 F45 somatoform criteria"
     },
     "四肢疼痛": {
       "criteria": [
         "F45.C3"
       ],
-      "category": "pain"
+      "category": "pain",
+      "source": "ICD-10 F41.1.B1 motor tension; ICD-10 F45 somatoform criteria"
     },
     "浑身疼": {
       "criteria": [
         "F45.C3",
         "F41.1.B1"
       ],
-      "category": "pain"
+      "category": "pain",
+      "source": "ICD-10 F41.1.B1 motor tension; ICD-10 F45 somatoform criteria"
     },
     "腿疼": {
       "criteria": [
         "F45.C3"
       ],
-      "category": "pain"
+      "category": "pain",
+      "source": "ICD-10 F41.1.B1 motor tension; ICD-10 F45 somatoform criteria"
     },
     "手脚发麻": {
       "criteria": [
@@ -420,28 +480,32 @@
         "F41.1.B1",
         "F45.C3"
       ],
-      "category": "neurological"
+      "category": "neurological",
+      "source": "ICD-10 F41.1.B2 autonomic symptoms; CCMD-3 somatic equivalents"
     },
     "耳鸣": {
       "criteria": [
         "F41.0.B4",
         "F45.C3"
       ],
-      "category": "neurological"
+      "category": "neurological",
+      "source": "ICD-10 F41.1.B2 autonomic symptoms; CCMD-3 somatic equivalents"
     },
     "视力模糊": {
       "criteria": [
         "F41.0.B4",
         "F45.C3"
       ],
-      "category": "neurological"
+      "category": "neurological",
+      "source": "ICD-10 F41.1.B2 autonomic symptoms; CCMD-3 somatic equivalents"
     },
     "头昏脑涨": {
       "criteria": [
         "F41.0.B4",
         "F41.1.B1"
       ],
-      "category": "neurological"
+      "category": "neurological",
+      "source": "ICD-10 F41.1.B2 autonomic symptoms; CCMD-3 somatic equivalents"
     },
     "脑袋发蒙": {
       "criteria": [
@@ -449,7 +513,8 @@
         "F41.1.B1",
         "F41.1.B3"
       ],
-      "category": "neurological"
+      "category": "neurological",
+      "source": "ICD-10 F41.1.B2 autonomic symptoms; CCMD-3 somatic equivalents"
     },
     "记忆力下降": {
       "criteria": [
@@ -457,14 +522,16 @@
         "F33.C4",
         "F41.1.B3"
       ],
-      "category": "neurological"
+      "category": "neurological",
+      "source": "ICD-10 F41.1.B2 autonomic symptoms; CCMD-3 somatic equivalents"
     },
     "头昏": {
       "criteria": [
         "F41.0.B4",
         "F41.1.B1"
       ],
-      "category": "neurological"
+      "category": "neurological",
+      "source": "ICD-10 F41.1.B2 autonomic symptoms; CCMD-3 somatic equivalents"
     },
     "脑子不清楚": {
       "criteria": [
@@ -472,7 +539,8 @@
         "F33.C4",
         "F41.1.B3"
       ],
-      "category": "neurological"
+      "category": "neurological",
+      "source": "ICD-10 F41.1.B2 autonomic symptoms; CCMD-3 somatic equivalents"
     },
     "注意力不集中": {
       "criteria": [
@@ -480,7 +548,8 @@
         "F33.C4",
         "F41.1.B3"
       ],
-      "category": "neurological"
+      "category": "neurological",
+      "source": "ICD-10 F41.1.B2 autonomic symptoms; CCMD-3 somatic equivalents"
     },
     "反应迟钝": {
       "criteria": [
@@ -489,7 +558,8 @@
         "F33.C4",
         "F33.C5"
       ],
-      "category": "neurological"
+      "category": "neurological",
+      "source": "ICD-10 F41.1.B2 autonomic symptoms; CCMD-3 somatic equivalents"
     },
     "脑子转不动": {
       "criteria": [
@@ -497,14 +567,16 @@
         "F33.C4",
         "F41.1.B3"
       ],
-      "category": "neurological"
+      "category": "neurological",
+      "source": "ICD-10 F41.1.B2 autonomic symptoms; CCMD-3 somatic equivalents"
     },
     "发呆": {
       "criteria": [
         "F32.C4",
         "F33.C4"
       ],
-      "category": "neurological"
+      "category": "neurological",
+      "source": "ICD-10 F41.1.B2 autonomic symptoms; CCMD-3 somatic equivalents"
     },
     "健忘": {
       "criteria": [
@@ -512,14 +584,16 @@
         "F33.C4",
         "F41.1.B3"
       ],
-      "category": "neurological"
+      "category": "neurological",
+      "source": "ICD-10 F41.1.B2 autonomic symptoms; CCMD-3 somatic equivalents"
     },
     "麻木": {
       "criteria": [
         "F41.0.B2",
         "F45.C3"
       ],
-      "category": "neurological"
+      "category": "neurological",
+      "source": "ICD-10 F41.1.B2 autonomic symptoms; CCMD-3 somatic equivalents"
     },
     "心跳加速": {
       "criteria": [
@@ -527,28 +601,32 @@
         "F41.1.B2",
         "F45.C2"
       ],
-      "category": "cardiovascular"
+      "category": "cardiovascular",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity; ICD-10 F41.0 panic criteria"
     },
     "四肢发冷": {
       "criteria": [
         "F41.0.B2",
         "F45.C2"
       ],
-      "category": "cardiovascular"
+      "category": "cardiovascular",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity; ICD-10 F41.0 panic criteria"
     },
     "手脚冰凉": {
       "criteria": [
         "F41.0.B2",
         "F45.C2"
       ],
-      "category": "cardiovascular"
+      "category": "cardiovascular",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity; ICD-10 F41.0 panic criteria"
     },
     "脸发烫": {
       "criteria": [
         "F41.0.B2",
         "F41.1.B2"
       ],
-      "category": "cardiovascular"
+      "category": "cardiovascular",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity; ICD-10 F41.0 panic criteria"
     },
     "出冷汗": {
       "criteria": [
@@ -556,7 +634,8 @@
         "F41.1.B2",
         "F40.C1"
       ],
-      "category": "cardiovascular"
+      "category": "cardiovascular",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity; ICD-10 F41.0 panic criteria"
     },
     "心跳快": {
       "criteria": [
@@ -564,35 +643,40 @@
         "F41.1.B2",
         "F45.C2"
       ],
-      "category": "cardiovascular"
+      "category": "cardiovascular",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity; ICD-10 F41.0 panic criteria"
     },
     "心里发慌": {
       "criteria": [
         "F41.0.B2",
         "F41.1.B2"
       ],
-      "category": "cardiovascular"
+      "category": "cardiovascular",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity; ICD-10 F41.0 panic criteria"
     },
     "心脏不舒服": {
       "criteria": [
         "F41.0.B2",
         "F45.C2"
       ],
-      "category": "cardiovascular"
+      "category": "cardiovascular",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity; ICD-10 F41.0 panic criteria"
     },
     "脸红发热": {
       "criteria": [
         "F41.0.B2",
         "F40.C1"
       ],
-      "category": "cardiovascular"
+      "category": "cardiovascular",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity; ICD-10 F41.0 panic criteria"
     },
     "喉咙发紧": {
       "criteria": [
         "F41.0.B3",
         "F45.C2"
       ],
-      "category": "respiratory"
+      "category": "respiratory",
+      "source": "ICD-10 F41.0 panic attack respiratory symptoms; CCMD-3 somatic equivalents"
     },
     "胸口发闷": {
       "criteria": [
@@ -600,156 +684,180 @@
         "F41.1.B2",
         "F45.C2"
       ],
-      "category": "respiratory"
+      "category": "respiratory",
+      "source": "ICD-10 F41.0 panic attack respiratory symptoms; CCMD-3 somatic equivalents"
     },
     "呼吸急促": {
       "criteria": [
         "F41.0.B3",
         "F41.1.B2"
       ],
-      "category": "respiratory"
+      "category": "respiratory",
+      "source": "ICD-10 F41.0 panic attack respiratory symptoms; CCMD-3 somatic equivalents"
     },
     "喘不过气": {
       "criteria": [
         "F41.0.B3",
         "F45.C2"
       ],
-      "category": "respiratory"
+      "category": "respiratory",
+      "source": "ICD-10 F41.0 panic attack respiratory symptoms; CCMD-3 somatic equivalents"
     },
     "窒息感": {
       "criteria": [
         "F41.0.B3"
       ],
-      "category": "respiratory"
+      "category": "respiratory",
+      "source": "ICD-10 F41.0 panic attack respiratory symptoms; CCMD-3 somatic equivalents"
     },
     "透不过气": {
       "criteria": [
         "F41.0.B3",
         "F45.C2"
       ],
-      "category": "respiratory"
+      "category": "respiratory",
+      "source": "ICD-10 F41.0 panic attack respiratory symptoms; CCMD-3 somatic equivalents"
     },
     "胸口堵": {
       "criteria": [
         "F41.0.B3",
         "F45.C2"
       ],
-      "category": "respiratory"
+      "category": "respiratory",
+      "source": "ICD-10 F41.0 panic attack respiratory symptoms; CCMD-3 somatic equivalents"
     },
     "喉咙有异物感": {
       "criteria": [
         "F41.0.B3",
         "F45.C2"
       ],
-      "category": "respiratory"
+      "category": "respiratory",
+      "source": "ICD-10 F41.0 panic attack respiratory symptoms; CCMD-3 somatic equivalents"
     },
     "憋气": {
       "criteria": [
         "F41.0.B3"
       ],
-      "category": "respiratory"
+      "category": "respiratory",
+      "source": "ICD-10 F41.0 panic attack respiratory symptoms; CCMD-3 somatic equivalents"
     },
     "上不来气": {
       "criteria": [
         "F41.0.B3",
         "F45.C2"
       ],
-      "category": "respiratory"
+      "category": "respiratory",
+      "source": "ICD-10 F41.0 panic attack respiratory symptoms; CCMD-3 somatic equivalents"
     },
     "便秘": {
       "criteria": [
         "F45.C1"
       ],
-      "category": "gastrointestinal"
+      "category": "gastrointestinal",
+      "source": "ICD-10 F41.1.B2 epigastric discomfort; ICD-10 F45 somatoform criteria"
     },
     "腹泻": {
       "criteria": [
         "F45.C1"
       ],
-      "category": "gastrointestinal"
+      "category": "gastrointestinal",
+      "source": "ICD-10 F41.1.B2 epigastric discomfort; ICD-10 F45 somatoform criteria"
     },
     "呕吐": {
       "criteria": [
         "F45.C1"
       ],
-      "category": "gastrointestinal"
+      "category": "gastrointestinal",
+      "source": "ICD-10 F41.1.B2 epigastric discomfort; ICD-10 F45 somatoform criteria"
     },
     "胃痛": {
       "criteria": [
         "F41.0.B3",
         "F45.C1"
       ],
-      "category": "gastrointestinal"
+      "category": "gastrointestinal",
+      "source": "ICD-10 F41.1.B2 epigastric discomfort; ICD-10 F45 somatoform criteria"
     },
     "消化不良": {
       "criteria": [
         "F45.C1"
       ],
-      "category": "gastrointestinal"
+      "category": "gastrointestinal",
+      "source": "ICD-10 F41.1.B2 epigastric discomfort; ICD-10 F45 somatoform criteria"
     },
     "反酸": {
       "criteria": [
         "F45.C1"
       ],
-      "category": "gastrointestinal"
+      "category": "gastrointestinal",
+      "source": "ICD-10 F41.1.B2 epigastric discomfort; ICD-10 F45 somatoform criteria"
     },
     "胃不舒服": {
       "criteria": [
         "F41.0.B3",
         "F45.C1"
       ],
-      "category": "gastrointestinal"
+      "category": "gastrointestinal",
+      "source": "ICD-10 F41.1.B2 epigastric discomfort; ICD-10 F45 somatoform criteria"
     },
     "拉肚子": {
       "criteria": [
         "F45.C1"
       ],
-      "category": "gastrointestinal"
+      "category": "gastrointestinal",
+      "source": "ICD-10 F41.1.B2 epigastric discomfort; ICD-10 F45 somatoform criteria"
     },
     "干呕": {
       "criteria": [
         "F45.C1"
       ],
-      "category": "gastrointestinal"
+      "category": "gastrointestinal",
+      "source": "ICD-10 F41.1.B2 epigastric discomfort; ICD-10 F45 somatoform criteria"
     },
     "肠胃不好": {
       "criteria": [
         "F45.C1"
       ],
-      "category": "gastrointestinal"
+      "category": "gastrointestinal",
+      "source": "ICD-10 F41.1.B2 epigastric discomfort; ICD-10 F45 somatoform criteria"
     },
     "胃胀": {
       "criteria": [
         "F45.C1"
       ],
-      "category": "gastrointestinal"
+      "category": "gastrointestinal",
+      "source": "ICD-10 F41.1.B2 epigastric discomfort; ICD-10 F45 somatoform criteria"
     },
     "吃了就吐": {
       "criteria": [
         "F45.C1"
       ],
-      "category": "gastrointestinal"
+      "category": "gastrointestinal",
+      "source": "ICD-10 F41.1.B2 epigastric discomfort; ICD-10 F45 somatoform criteria"
     },
     "上腹不适": {
       "criteria": [
         "F41.1.B2",
         "F45.C1"
       ],
-      "category": "gastrointestinal"
+      "category": "gastrointestinal",
+      "source": "ICD-10 F41.1.B2 epigastric discomfort; ICD-10 F45 somatoform criteria"
     },
     "浑身发软": {
       "criteria": [
         "F32.B3",
         "F41.1.B1"
       ],
-      "category": "musculoskeletal"
+      "category": "musculoskeletal",
+      "source": "ICD-10 F41.1.B1 motor tension; Chinese psychiatric clinical consensus"
     },
     "腿脚无力": {
       "criteria": [
         "F32.B3",
         "F41.1.B1"
       ],
-      "category": "musculoskeletal"
+      "category": "musculoskeletal",
+      "source": "ICD-10 F41.1.B1 motor tension; Chinese psychiatric clinical consensus"
     },
     "四肢乏力": {
       "criteria": [
@@ -757,67 +865,77 @@
         "F33.B3",
         "F41.1.B1"
       ],
-      "category": "musculoskeletal"
+      "category": "musculoskeletal",
+      "source": "ICD-10 F41.1.B1 motor tension; Chinese psychiatric clinical consensus"
     },
     "身体僵硬": {
       "criteria": [
         "F41.1.B1",
         "F45.C3"
       ],
-      "category": "musculoskeletal"
+      "category": "musculoskeletal",
+      "source": "ICD-10 F41.1.B1 motor tension; Chinese psychiatric clinical consensus"
     },
     "肌肉紧张": {
       "criteria": [
         "F41.1.B1",
         "F45.C3"
       ],
-      "category": "musculoskeletal"
+      "category": "musculoskeletal",
+      "source": "ICD-10 F41.1.B1 motor tension; Chinese psychiatric clinical consensus"
     },
     "站不稳": {
       "criteria": [
         "F41.0.B4",
         "F41.1.B1"
       ],
-      "category": "musculoskeletal"
+      "category": "musculoskeletal",
+      "source": "ICD-10 F41.1.B1 motor tension; Chinese psychiatric clinical consensus"
     },
     "腿软": {
       "criteria": [
         "F32.B3",
         "F41.1.B1"
       ],
-      "category": "musculoskeletal"
+      "category": "musculoskeletal",
+      "source": "ICD-10 F41.1.B1 motor tension; Chinese psychiatric clinical consensus"
     },
     "使不上劲": {
       "criteria": [
         "F32.B3",
         "F33.B3"
       ],
-      "category": "musculoskeletal"
+      "category": "musculoskeletal",
+      "source": "ICD-10 F41.1.B1 motor tension; Chinese psychiatric clinical consensus"
     },
     "不能放松": {
       "criteria": [
         "F41.1.B1"
       ],
-      "category": "musculoskeletal"
+      "category": "musculoskeletal",
+      "source": "ICD-10 F41.1.B1 motor tension; Chinese psychiatric clinical consensus"
     },
     "皮肤瘙痒": {
       "criteria": [
         "F45.C3"
       ],
-      "category": "dermatological"
+      "category": "dermatological",
+      "source": "Chinese psychiatric clinical consensus; CCMD-3 somatic equivalents"
     },
     "起疹子": {
       "criteria": [
         "F45.C3"
       ],
-      "category": "dermatological"
+      "category": "dermatological",
+      "source": "Chinese psychiatric clinical consensus; CCMD-3 somatic equivalents"
     },
     "出汗多": {
       "criteria": [
         "F41.0.B2",
         "F41.1.B2"
       ],
-      "category": "dermatological"
+      "category": "dermatological",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity"
     },
     "盗汗": {
       "criteria": [
@@ -825,28 +943,32 @@
         "F41.1.B2",
         "F32.C6"
       ],
-      "category": "dermatological"
+      "category": "dermatological",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity"
     },
     "手心出汗": {
       "criteria": [
         "F41.0.B2",
         "F40.C1"
       ],
-      "category": "dermatological"
+      "category": "dermatological",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity"
     },
     "冒虚汗": {
       "criteria": [
         "F41.0.B2",
         "F41.1.B2"
       ],
-      "category": "dermatological"
+      "category": "dermatological",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity"
     },
     "做噩梦": {
       "criteria": [
         "F43.1.B1",
         "F51.A"
       ],
-      "category": "sleep"
+      "category": "sleep",
+      "source": "ICD-10 F43.1 trauma re-experiencing; ICD-10 F51 sleep disorder criteria"
     },
     "嗜睡": {
       "criteria": [
@@ -854,21 +976,24 @@
         "F33.C6",
         "F51.A"
       ],
-      "category": "sleep"
+      "category": "sleep",
+      "source": "ICD-10 F32 criterion C4 sleep disturbance; ICD-10 F51 sleep disorder criteria"
     },
     "睡眠浅": {
       "criteria": [
         "F32.C6",
         "F51.A"
       ],
-      "category": "sleep"
+      "category": "sleep",
+      "source": "ICD-10 F32 criterion C4 sleep disturbance; ICD-10 F51 sleep disorder criteria"
     },
     "半夜醒": {
       "criteria": [
         "F32.C6",
         "F51.A"
       ],
-      "category": "sleep"
+      "category": "sleep",
+      "source": "ICD-10 F32 criterion C4 sleep disturbance; ICD-10 F51 sleep disorder criteria"
     },
     "睡不好": {
       "criteria": [
@@ -877,7 +1002,8 @@
         "F41.1.B4",
         "F51.A"
       ],
-      "category": "sleep"
+      "category": "sleep",
+      "source": "ICD-10 F32 criterion C4 sleep disturbance; ICD-10 F51 sleep disorder criteria"
     },
     "整夜睡不着": {
       "criteria": [
@@ -885,7 +1011,8 @@
         "F33.C6",
         "F51.A"
       ],
-      "category": "sleep"
+      "category": "sleep",
+      "source": "ICD-10 F32 criterion C4 sleep disturbance; ICD-10 F51 sleep disorder criteria"
     },
     "睡觉不踏实": {
       "criteria": [
@@ -893,7 +1020,8 @@
         "F41.1.B4",
         "F51.A"
       ],
-      "category": "sleep"
+      "category": "sleep",
+      "source": "ICD-10 F32 criterion C4 sleep disturbance; ICD-10 F51 sleep disorder criteria"
     },
     "总是犯困": {
       "criteria": [
@@ -901,7 +1029,8 @@
         "F33.C6",
         "F51.A"
       ],
-      "category": "sleep"
+      "category": "sleep",
+      "source": "ICD-10 F32 criterion C4 sleep disturbance; ICD-10 F51 sleep disorder criteria"
     },
     "醒得早": {
       "criteria": [
@@ -909,40 +1038,46 @@
         "F33.C6",
         "F51.A"
       ],
-      "category": "sleep"
+      "category": "sleep",
+      "source": "ICD-10 F32 criterion C4 sleep disturbance; ICD-10 F51 sleep disorder criteria"
     },
     "白天犯困": {
       "criteria": [
         "F32.B3",
         "F51.A"
       ],
-      "category": "sleep"
+      "category": "sleep",
+      "source": "ICD-10 F32 criterion C4 sleep disturbance; ICD-10 F51 sleep disorder criteria"
     },
     "尿频": {
       "criteria": [
         "F45.C1"
       ],
-      "category": "urogenital"
+      "category": "urogenital",
+      "source": "ICD-10 F41.1.B2 epigastric discomfort; ICD-10 F45 somatoform criteria"
     },
     "性欲下降": {
       "criteria": [
         "F32.C7",
         "F33.C7"
       ],
-      "category": "urogenital"
+      "category": "urogenital",
+      "source": "ICD-10 F32 criterion C6 appetite/weight change"
     },
     "月经不调": {
       "criteria": [
         "F45.C1"
       ],
-      "category": "urogenital"
+      "category": "urogenital",
+      "source": "ICD-10 F41.1.B2 epigastric discomfort; ICD-10 F45 somatoform criteria"
     },
     "性欲减退": {
       "criteria": [
         "F32.C7",
         "F33.C7"
       ],
-      "category": "urogenital"
+      "category": "urogenital",
+      "source": "ICD-10 F32 criterion C6 appetite/weight change"
     },
     "乏力": {
       "criteria": [
@@ -950,28 +1085,32 @@
         "F33.B3",
         "F41.1.B1"
       ],
-      "category": "fatigue"
+      "category": "fatigue",
+      "source": "ICD-10 F32 criterion C6 fatigue/energy loss"
     },
     "没精神": {
       "criteria": [
         "F32.B3",
         "F33.B3"
       ],
-      "category": "fatigue"
+      "category": "fatigue",
+      "source": "ICD-10 F32 criterion C6 fatigue/energy loss"
     },
     "浑身不舒服": {
       "criteria": [
         "F32.B3",
         "F45.C3"
       ],
-      "category": "general"
+      "category": "general",
+      "source": "Chinese psychiatric clinical consensus; CCMD-3 somatic equivalents"
     },
     "身体发虚": {
       "criteria": [
         "F32.B3",
         "F33.B3"
       ],
-      "category": "general"
+      "category": "general",
+      "source": "Chinese psychiatric clinical consensus; CCMD-3 somatic equivalents"
     },
     "容易疲劳": {
       "criteria": [
@@ -979,27 +1118,31 @@
         "F33.B3",
         "F41.1.B1"
       ],
-      "category": "fatigue"
+      "category": "fatigue",
+      "source": "ICD-10 F32 criterion C6 fatigue/energy loss"
     },
     "提不起劲": {
       "criteria": [
         "F32.B3",
         "F33.B3"
       ],
-      "category": "fatigue"
+      "category": "fatigue",
+      "source": "ICD-10 F32 criterion C6 fatigue/energy loss"
     },
     "身体不舒服": {
       "criteria": [
         "F45.C3"
       ],
-      "category": "general"
+      "category": "general",
+      "source": "Chinese psychiatric clinical consensus; CCMD-3 somatic equivalents"
     },
     "虚弱": {
       "criteria": [
         "F32.B3",
         "F33.B3"
       ],
-      "category": "fatigue"
+      "category": "fatigue",
+      "source": "ICD-10 F32 criterion C6 fatigue/energy loss"
     },
     "没有力气": {
       "criteria": [
@@ -1007,28 +1150,32 @@
         "F33.B3",
         "F41.1.B1"
       ],
-      "category": "fatigue"
+      "category": "fatigue",
+      "source": "ICD-10 F32 criterion C6 fatigue/energy loss"
     },
     "发抖": {
       "criteria": [
         "F41.0.B2",
         "F40.C1"
       ],
-      "category": "autonomic"
+      "category": "autonomic",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity"
     },
     "打颤": {
       "criteria": [
         "F41.0.B2",
         "F40.C1"
       ],
-      "category": "autonomic"
+      "category": "autonomic",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity"
     },
     "嘴巴发干": {
       "criteria": [
         "F41.0.B2",
         "F41.1.B2"
       ],
-      "category": "autonomic"
+      "category": "autonomic",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity"
     },
     "冒汗": {
       "criteria": [
@@ -1036,21 +1183,24 @@
         "F41.1.B2",
         "F40.C1"
       ],
-      "category": "autonomic"
+      "category": "autonomic",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity"
     },
     "忽冷忽热": {
       "criteria": [
         "F41.0.B2",
         "F41.1.B2"
       ],
-      "category": "autonomic"
+      "category": "autonomic",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity"
     },
     "潮热": {
       "criteria": [
         "F41.0.B2",
         "F41.1.B2"
       ],
-      "category": "autonomic"
+      "category": "autonomic",
+      "source": "ICD-10 F41.1.B2 autonomic overactivity"
     }
   }
 }

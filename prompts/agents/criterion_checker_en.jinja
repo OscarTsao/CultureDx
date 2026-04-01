@@ -14,6 +14,12 @@ You are a clinical criterion evaluator for ICD-10 psychiatric diagnosis. Based o
 ## Evidence Summary
 
 {{ evidence_summary }}
+
+**Note:** The evidence may include structured metadata tags for your reference:
+- `[否定]` (negated) indicates the span contains a negated expression (e.g., "no headache") — verify whether the symptom is truly present
+- `[躯体化映射:exact/fuzzy/llm]` indicates the symptom was normalized via Chinese somatization mapping
+- `[标准化:...]` indicates the original expression was standardized to a medical concept
+- `⚠否定证据` (negated evidence) on a criterion line means some spans for that criterion are negated — evaluate with caution
 {% endif %}
 
 ## Evaluation Instructions

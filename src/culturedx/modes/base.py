@@ -83,17 +83,41 @@ class BaseModeOrchestrator(ABC):
 
     @staticmethod
     def _build_evidence_map(evidence: EvidenceBrief) -> dict[str, str]:
-        """Build disorder_code -> evidence summary text mapping."""
+        """Build disorder_code -> evidence summary text mapping.
+
+        Includes structured metadata from negation detection and
+        somatization mapping so the checker agent can use it.
+        """
         result = {}
         for de in evidence.disorder_evidence:
             parts = []
             for ce in de.criteria_evidence:
-                span_texts = [s.text for s in ce.spans]
-                if span_texts:
-                    parts.append(
-                        f"[{ce.criterion_id}] (conf={ce.confidence:.2f}): "
-                        + "; ".join(span_texts)
-                    )
+                if not ce.spans:
+                    continue
+                span_descs = []
+                for s in ce.spans:
+                    desc = s.text
+                    tags = []
+                    if s.expression_type == "negated":
+                        tags.append("否定")
+                    if s.mapping_source:
+                        tags.append(f"躯体化映射:{s.mapping_source}")
+                    if s.normalized_concept and s.normalized_concept != s.text:
+                        tags.append(f"标准化:{s.normalized_concept}")
+                    if tags:
+                        desc = f"{s.text} [{', '.join(tags)}]"
+                    span_descs.append(desc)
+                neg_marker = ""
+                if ce.has_negated_spans:
+                    neg_marker = " ⚠否定证据"
+                soma_marker = ""
+                if ce.has_somatization_mapped:
+                    sources = "/".join(sorted(set(ce.somatization_sources)))
+                    soma_marker = f" [躯体化:{sources}]"
+                parts.append(
+                    f"[{ce.criterion_id}] (conf={ce.confidence:.2f}){neg_marker}{soma_marker}: "
+                    + "; ".join(span_descs)
+                )
             if parts:
                 result[de.disorder_code] = "\n".join(parts)
         return result
