@@ -25,7 +25,7 @@ class LogicEngineResult:
     confirmation_type: str = "standard"  # "standard" or "soft"
 
 
-@dataclass  
+@dataclass
 class LogicEngineOutput:
     """Complete output from the logic engine."""
     confirmed: list[LogicEngineResult] = field(default_factory=list)

@@ -65,7 +65,12 @@ CHECKER_JSON_SCHEMA = {
 
 
 class CriterionCheckerAgent(BaseAgent):
-    """Evaluates ICD-10 diagnostic criteria for a single disorder."""
+    """Per-disorder ICD-10 criterion evaluation agent.
+
+    Evaluates whether a clinical transcript meets the ICD-10 diagnostic criteria
+    for a specific disorder, producing structured CheckerOutput with criterion-level
+    met/unmet decisions and confidence scores.
+    """
 
     def __init__(
         self,
