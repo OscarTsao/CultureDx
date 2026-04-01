@@ -37,18 +37,28 @@ class PsyCoTMode(BaseModeOrchestrator):
         self,
         llm_client,
         prompts_dir: str | Path = "prompts/agents",
+        checker_llm_client=None,
         target_disorders: list[str] | None = None,
+        prompt_variant: str = "",
         abstain_threshold: float = 0.3,
         comorbid_threshold: float = 0.5,
         comorbid_min_ratio: float = 0.9,
     ) -> None:
         self.mode_name = "psycot"
         self.llm = llm_client
+        self.checker_llm = checker_llm_client or llm_client
+        self.checker_model_name = (
+            getattr(checker_llm_client, "model", None)
+            if checker_llm_client is not None
+            else None
+        )
         self.prompts_dir = Path(prompts_dir)
         self.target_disorders = target_disorders
+        self._prompt_variant = ""
+        self.prompt_variant = prompt_variant
 
         # Criterion Checker (reused for all disorders)
-        self.checker = CriterionCheckerAgent(llm_client, prompts_dir)
+        self.checker = CriterionCheckerAgent(self.checker_llm, prompts_dir)
 
         # Logic Engine (deterministic, no LLM)
         self.logic_engine = DiagnosticLogicEngine()
@@ -63,6 +73,14 @@ class PsyCoTMode(BaseModeOrchestrator):
         self.comorbidity_resolver = ComorbidityResolver(
             comorbid_min_ratio=comorbid_min_ratio,
         )
+
+    @property
+    def prompt_variant(self) -> str:
+        return getattr(self, "_prompt_variant", "")
+
+    @prompt_variant.setter
+    def prompt_variant(self, value: str | None) -> None:
+        self._prompt_variant = value or ""
 
     def diagnose(
         self, case: ClinicalCase, evidence: EvidenceBrief | None = None
@@ -89,7 +107,13 @@ class PsyCoTMode(BaseModeOrchestrator):
 
         # Run criterion checkers in parallel
         checker_outputs = self._parallel_check_criteria(
-            self.checker, disorders, transcript_text, evidence_map, lang,
+            self.checker,
+            disorders,
+            transcript_text,
+            evidence_map,
+            lang,
+            prompt_variant=getattr(self, "_prompt_variant", ""),
+            checker_llm_client=self.checker_llm,
         )
 
         if not checker_outputs:
@@ -107,6 +131,7 @@ class PsyCoTMode(BaseModeOrchestrator):
                 criteria_results=checker_outputs,
                 mode=self.mode_name,
                 model_name=self.llm.model,
+                checker_model_name=self.checker_model_name,
                 language_used=lang,
             )
 
@@ -126,6 +151,7 @@ class PsyCoTMode(BaseModeOrchestrator):
                 criteria_results=checker_outputs,
                 mode=self.mode_name,
                 model_name=self.llm.model,
+                checker_model_name=self.checker_model_name,
                 language_used=lang,
             )
 
@@ -153,5 +179,6 @@ class PsyCoTMode(BaseModeOrchestrator):
             criteria_results=checker_outputs,
             mode=self.mode_name,
             model_name=self.llm.model,
+            checker_model_name=self.checker_model_name,
             language_used=lang,
         )

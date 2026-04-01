@@ -19,6 +19,7 @@ def create_llm_client(
     cache_path: Path | str | None = None,
     disable_thinking: bool = True,
     max_concurrent: int = 4,
+    max_retries: int = 3,
 ) -> BaseLLMClient:
     """Create an LLM client based on provider config."""
     if provider == "vllm":
@@ -34,6 +35,7 @@ def create_llm_client(
             provider=provider,
             max_concurrent=max_concurrent,
             disable_thinking=disable_thinking,
+            max_retries=max_retries,
         )
     return OllamaClient(
         base_url=base_url,
@@ -44,6 +46,8 @@ def create_llm_client(
         cache_path=cache_path,
         provider=provider,
         disable_thinking=disable_thinking,
+        max_retries=max_retries,
+        max_concurrent=max_concurrent,
     )
 
 

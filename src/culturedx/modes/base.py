@@ -1,4 +1,9 @@
-"""Base mode orchestrator."""
+"""Shared utilities and contracts for diagnostic mode orchestrators.
+
+Every mode subclass implements ``diagnose()`` and then reuses the helper
+utilities here for transcript rendering, evidence summarization, parallel
+checker fanout, and standardized abstention payloads.
+"""
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
@@ -12,6 +17,7 @@ from culturedx.core.models import (
     ClinicalCase,
     DiagnosisResult,
     EvidenceBrief,
+    FailureInfo,
 )
 
 
@@ -26,6 +32,11 @@ class BaseModeOrchestrator(ABC):
     def diagnose(
         self, case: ClinicalCase, evidence: EvidenceBrief | None = None
     ) -> DiagnosisResult:
+        """Run one case through the mode and return a structured diagnosis.
+
+        Implementations should keep routing mode, scope policy, failures, and
+        stage timings explicit in the returned ``DiagnosisResult``.
+        """
         ...
 
     @staticmethod
@@ -100,8 +111,18 @@ class BaseModeOrchestrator(ABC):
         case: ClinicalCase,
         lang: str,
         criteria_results: list[CheckerOutput] | None = None,
+        failure: FailureInfo | None = None,
+        candidate_disorders: list[str] | None = None,
+        routing_mode: str = "auto",
+        scope_policy: str = "auto",
+        decision_trace: dict | None = None,
+        failures: list[FailureInfo] | None = None,
+        stage_timings: dict[str, float] | None = None,
     ) -> DiagnosisResult:
         """Return an abstention DiagnosisResult."""
+        failure_list = list(failures or [])
+        if failure is not None:
+            failure_list.append(failure)
         return DiagnosisResult(
             case_id=case.case_id,
             primary_diagnosis=None,
@@ -110,7 +131,15 @@ class BaseModeOrchestrator(ABC):
             criteria_results=criteria_results or [],
             mode=self.mode_name,
             model_name=self.llm.model if self.llm else "",
+            checker_model_name=getattr(self, "checker_model_name", None),
             language_used=lang,
+            candidate_disorders=candidate_disorders or [],
+            routing_mode=routing_mode,
+            scope_policy=scope_policy,
+            decision_trace=decision_trace,
+            stage_timings=stage_timings or {},
+            failure=failure,
+            failures=failure_list,
         )
 
     def _parallel_check_criteria(
@@ -118,8 +147,10 @@ class BaseModeOrchestrator(ABC):
         checker,
         disorder_codes: list[str],
         transcript_text: str,
-        evidence_map: dict[str, str],
+        evidence_map: dict[str, str | dict[str, str]],
         lang: str,
+        prompt_variant: str = "",
+        checker_llm_client=None,
         max_workers: int | None = None,
     ) -> list:
         """Run criterion checkers in parallel using ThreadPoolExecutor.
@@ -137,23 +168,43 @@ class BaseModeOrchestrator(ABC):
         from culturedx.core.models import CheckerOutput
         from culturedx.ontology.icd10 import get_disorder_name
 
+        active_checker_llm = (
+            checker_llm_client
+            or getattr(checker, "llm", None)
+            or self.llm
+        )
         if max_workers is None:
-            max_workers = getattr(self.llm, "max_concurrent", 1)
+            max_workers = getattr(active_checker_llm, "max_concurrent", 1)
 
         def _check_one(disorder_code: str) -> CheckerOutput | None:
             get_disorder_name(disorder_code, lang) or disorder_code
-            evidence_summary = evidence_map.get(disorder_code)
+            evidence_payload = evidence_map.get(disorder_code)
+            evidence_summary = None
+            temporal_summary = None
+            if isinstance(evidence_payload, dict):
+                evidence_summary = evidence_payload.get("evidence_summary")
+                temporal_summary = evidence_payload.get("temporal_summary")
+            else:
+                evidence_summary = evidence_payload
 
             # Lightweight somatization hints when no evidence pipeline
             if not evidence_summary and lang == "zh":
                 from culturedx.ontology.symptom_map import scan_somatic_hints
                 evidence_summary = scan_somatic_hints(transcript_text, disorder_code)
 
+            checker_evidence = {}
+            if evidence_summary:
+                checker_evidence["evidence_summary"] = evidence_summary
+            if temporal_summary:
+                checker_evidence["temporal_summary"] = temporal_summary
             checker_input = AgentInput(
                 transcript_text=transcript_text,
-                evidence={"evidence_summary": evidence_summary} if evidence_summary else None,
+                evidence=checker_evidence or None,
                 language=lang,
-                extra={"disorder_code": disorder_code},
+                extra={
+                    "disorder_code": disorder_code,
+                    "prompt_variant": prompt_variant,
+                },
             )
             output = checker.run(checker_input)
             if output.parsed:
@@ -192,7 +243,7 @@ class BaseModeOrchestrator(ABC):
                             "Criterion checker failed for %s", code, exc_info=True
                         )
         t_total = time.monotonic() - t_start
-        actual_workers = getattr(self.llm, "max_concurrent", 1)
+        actual_workers = getattr(active_checker_llm, "max_concurrent", 1)
         logger.info(
             "Checker timing: %d disorders in %.1fs (%.1fs/disorder, %d workers)",
             len(disorder_codes),

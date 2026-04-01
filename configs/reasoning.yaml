@@ -1,0 +1,13 @@
+# Enable Qwen3 native thinking mode for reasoning experiments
+llm:
+  provider: vllm
+  model_id: "Qwen/Qwen3-32B-AWQ"
+  base_url: http://localhost:8000
+  temperature: 0.6
+  top_k: 20
+  max_retries: 3
+  disable_thinking: false
+  max_concurrent: 4
+
+# Note: temperature > 0 is recommended for thinking mode
+# max_tokens is set in the LLM client (default 2048 -> needs 4096+ for thinking)

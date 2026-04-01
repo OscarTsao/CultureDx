@@ -10,6 +10,24 @@ import click
 from culturedx.core.config import load_config
 
 
+def _create_configured_llm(cfg, llm_cfg):
+    """Build an LLM client from a config section without changing defaults."""
+    from culturedx.llm import create_llm_client
+
+    return create_llm_client(
+        provider=llm_cfg.provider,
+        base_url=llm_cfg.base_url,
+        model=llm_cfg.model_id,
+        temperature=llm_cfg.temperature,
+        top_k=llm_cfg.top_k,
+        max_tokens=getattr(llm_cfg, "max_tokens", 2048),
+        timeout=cfg.request_timeout_sec,
+        cache_path=Path(cfg.cache_dir) / "llm_cache.db",
+        disable_thinking=getattr(llm_cfg, "disable_thinking", True),
+        max_concurrent=getattr(llm_cfg, "max_concurrent", 4),
+    )
+
+
 @click.group()
 @click.option("--verbose", "-v", is_flag=True, help="Enable debug logging")
 def cli(verbose: bool) -> None:
@@ -59,20 +77,9 @@ def run(
         cases = cases[:limit]
     click.echo(f"Loaded {len(cases)} cases.")
 
-    # 3. Create LLM client
-    from culturedx.llm import create_llm_client
-
-    llm = create_llm_client(
-        provider=cfg.llm.provider,
-        base_url=cfg.llm.base_url,
-        model=cfg.llm.model_id,
-        temperature=cfg.llm.temperature,
-        top_k=cfg.llm.top_k,
-        timeout=cfg.request_timeout_sec,
-        cache_path=Path(cfg.cache_dir) / "llm_cache.db",
-        disable_thinking=getattr(cfg.llm, 'disable_thinking', True),
-        max_concurrent=getattr(cfg.llm, 'max_concurrent', 4),
-    )
+    # 3. Create LLM clients
+    llm = _create_configured_llm(cfg, cfg.llm)
+    checker_llm = _create_configured_llm(cfg, cfg.checker_llm) if cfg.checker_llm else None
 
     # 4. Create evidence pipeline (optional)
     evidence_pipeline = None
@@ -83,10 +90,17 @@ def run(
 
         retriever = create_retriever(cfg.evidence.retriever)
         click.echo(f"Retriever: {cfg.evidence.retriever.name}")
+        evidence_scope_policy = cfg.evidence.scope_policy
+        if evidence_scope_policy == "auto":
+            evidence_scope_policy = (
+                "manual" if cfg.mode.target_disorders else "all_supported"
+            )
+        click.echo(f"Evidence scope policy: {evidence_scope_policy}")
         evidence_pipeline = EvidencePipeline(
             llm_client=llm,
             retriever=retriever,
-            target_disorders=cfg.mode.target_disorders or ["F32", "F41.1"],
+            target_disorders=cfg.mode.target_disorders,
+            scope_policy=evidence_scope_policy,
             somatization_enabled=cfg.evidence.somatization.enabled,
             somatization_llm_fallback=cfg.evidence.somatization.llm_fallback,
             top_k=cfg.evidence.top_k_final,
@@ -99,19 +113,29 @@ def run(
 
     if mode_type == "hied":
         from culturedx.modes.hied import HiEDMode
-        mode = HiEDMode(
+        mode_kwargs = dict(
             llm_client=llm,
             target_disorders=cfg.mode.target_disorders,
+            scope_policy=cfg.mode.scope_policy,
+            execution_mode=cfg.mode.execution_mode,
             contrastive_enabled=cfg.mode.contrastive_enabled,
             comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
+            prompt_variant=cfg.mode.prompt_variant,
         )
+        if checker_llm is not None:
+            mode_kwargs["checker_llm_client"] = checker_llm
+        mode = HiEDMode(**mode_kwargs)
     elif mode_type == "psycot":
         from culturedx.modes.psycot import PsyCoTMode
-        mode = PsyCoTMode(
+        mode_kwargs = dict(
             llm_client=llm,
             target_disorders=cfg.mode.target_disorders,
             comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
+            prompt_variant=cfg.mode.prompt_variant,
         )
+        if checker_llm is not None:
+            mode_kwargs["checker_llm_client"] = checker_llm
+        mode = PsyCoTMode(**mode_kwargs)
     elif mode_type == "mas":
         from culturedx.modes.mas import MASMode
         mode = MASMode(
@@ -135,6 +159,9 @@ def run(
 
     if cfg.mode.target_disorders:
         click.echo(f"Target disorders: {', '.join(cfg.mode.target_disorders)}")
+    if mode_type == "hied":
+        click.echo(f"HiED scope policy: {cfg.mode.scope_policy}")
+        click.echo(f"HiED execution mode: {cfg.mode.execution_mode}")
 
     # 6. Run experiment
     base_output = output_dir or cfg.output_dir
@@ -246,20 +273,41 @@ def sweep(
         cases = cases[:limit]
     click.echo(f"Loaded {len(cases)} cases.")
 
-    # Create LLM client
-    from culturedx.llm import create_llm_client
+    # Create LLM clients
+    llm = _create_configured_llm(cfg, cfg.llm)
+    checker_llm = _create_configured_llm(cfg, cfg.checker_llm) if cfg.checker_llm else None
 
-    llm = create_llm_client(
-        provider=cfg.llm.provider,
-        base_url=cfg.llm.base_url,
-        model=cfg.llm.model_id,
-        temperature=cfg.llm.temperature,
-        top_k=cfg.llm.top_k,
-        timeout=cfg.request_timeout_sec,
-        cache_path=Path(cfg.cache_dir) / "llm_cache.db",
-        disable_thinking=getattr(cfg.llm, 'disable_thinking', True),
-        max_concurrent=getattr(cfg.llm, 'max_concurrent', 4),
-    )
+    # --- Sweep acceleration: shared caches across conditions ---
+    # 1. Create shared retriever (avoid reloading BGE-M3 per condition)
+    shared_retriever = None
+    embedding_cache = None
+    brief_cache = None
+    any_evidence = any(c.with_evidence for c in conditions)
+    if any_evidence:
+        from culturedx.evidence.embedding_cache import EmbeddingCache
+        from culturedx.evidence.brief_cache import EvidenceBriefCache
+        from culturedx.evidence.retriever_factory import create_retriever
+
+        embedding_cache = EmbeddingCache()
+        brief_cache = EvidenceBriefCache()
+        shared_retriever = create_retriever(
+            cfg.evidence.retriever, embedding_cache=embedding_cache
+        )
+        click.echo("Sweep acceleration: shared retriever + embedding cache + brief cache")
+
+    # 2. Smart condition ordering: no-evidence first (primes LLM cache)
+    def _condition_sort_key(c: SweepCondition) -> tuple:
+        # no_evidence < evidence, hied first (most cache-generative)
+        mode_order = {"hied": 0, "psycot": 1, "specialist": 2, "debate": 3, "single": 4}
+        return (
+            0 if not c.with_evidence else 1,
+            mode_order.get(c.mode_type, 9),
+            0 if not c.with_somatization else 1,
+        )
+    conditions = sorted(conditions, key=_condition_sort_key)
+    click.echo("Condition execution order (optimized for LLM cache):")
+    for i, c in enumerate(conditions):
+        click.echo(f"  {i+1}. {c.name}")
 
     def run_fn(condition: SweepCondition, cases_list: list) -> tuple:
         """Execute a single sweep condition and return (results, metrics)."""
@@ -269,10 +317,29 @@ def sweep(
         mode_type = condition.mode_type
         if mode_type == "hied":
             from culturedx.modes.hied import HiEDMode
-            mode = HiEDMode(llm_client=llm, target_disorders=condition.target_disorders, contrastive_enabled=cfg.mode.contrastive_enabled, comorbid_min_ratio=cfg.mode.comorbid_min_ratio)
+            mode_kwargs = dict(
+                llm_client=llm,
+                target_disorders=condition.target_disorders,
+                scope_policy=cfg.mode.scope_policy,
+                execution_mode=cfg.mode.execution_mode,
+                contrastive_enabled=cfg.mode.contrastive_enabled,
+                comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
+                prompt_variant=cfg.mode.prompt_variant,
+            )
+            if checker_llm is not None:
+                mode_kwargs["checker_llm_client"] = checker_llm
+            mode = HiEDMode(**mode_kwargs)
         elif mode_type == "psycot":
             from culturedx.modes.psycot import PsyCoTMode
-            mode = PsyCoTMode(llm_client=llm, target_disorders=condition.target_disorders, comorbid_min_ratio=cfg.mode.comorbid_min_ratio)
+            mode_kwargs = dict(
+                llm_client=llm,
+                target_disorders=condition.target_disorders,
+                comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
+                prompt_variant=cfg.mode.prompt_variant,
+            )
+            if checker_llm is not None:
+                mode_kwargs["checker_llm_client"] = checker_llm
+            mode = PsyCoTMode(**mode_kwargs)
         elif mode_type == "mas":
             from culturedx.modes.mas import MASMode
             mode = MASMode(llm_client=llm, target_disorders=condition.target_disorders)
@@ -286,21 +353,28 @@ def sweep(
             from culturedx.modes.single import SingleModelMode
             mode = SingleModelMode(llm_client=llm)
 
-        # Create evidence pipeline if condition requests it
+        # Create evidence pipeline using shared retriever + caches
         evidence_pipeline = None
-        if condition.with_evidence:
+        if condition.with_evidence and shared_retriever is not None:
             from culturedx.evidence.pipeline import EvidencePipeline
-            from culturedx.evidence.retriever_factory import create_retriever
 
-            retriever = create_retriever(cfg.evidence.retriever)
+            evidence_scope_policy = cfg.evidence.scope_policy
+            if evidence_scope_policy == "auto":
+                evidence_scope_policy = (
+                    "manual"
+                    if (condition.target_disorders or cfg.mode.target_disorders)
+                    else "all_supported"
+                )
             evidence_pipeline = EvidencePipeline(
                 llm_client=llm,
-                retriever=retriever,
-                target_disorders=condition.target_disorders or cfg.mode.target_disorders or ["F32", "F41.1"],
+                retriever=shared_retriever,
+                target_disorders=condition.target_disorders or cfg.mode.target_disorders,
+                scope_policy=evidence_scope_policy,
                 somatization_enabled=condition.with_somatization,
                 somatization_llm_fallback=cfg.evidence.somatization.llm_fallback,
                 top_k=cfg.evidence.top_k_final,
                 min_confidence=cfg.evidence.min_confidence,
+                brief_cache=brief_cache,
             )
 
         # Run through ExperimentRunner

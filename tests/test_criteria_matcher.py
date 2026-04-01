@@ -1,7 +1,10 @@
 """Tests for criteria matcher."""
 import pytest
-from culturedx.evidence.criteria_matcher import CriteriaMatcher
-from culturedx.evidence.retriever import MockRetriever
+from culturedx.evidence.criteria_matcher import (
+    ConceptOverlapReranker,
+    CriteriaMatcher,
+)
+from culturedx.evidence.retriever import LexicalRetriever, MockRetriever
 
 
 class TestCriteriaMatcher:
@@ -75,3 +78,46 @@ class TestCriteriaMatcher:
         assert evidence.criterion_id == "F32.B1"
         assert len(evidence.spans) == 0
         assert evidence.confidence == 0.0
+
+    def test_reranker_adds_signals(self):
+        retriever = LexicalRetriever()
+        matcher = CriteriaMatcher(
+            retriever=retriever,
+            top_k=5,
+            min_score=0.0,
+            reranker=ConceptOverlapReranker(),
+            rerank_top_n=3,
+        )
+        evidence = matcher.match_criterion(
+            criterion_text="sleep disturbance and insomnia",
+            sentences=["我最近睡不着", "今天头疼", "心情很好"],
+            turn_ids=[1, 2, 3],
+            criterion_id="F32.C6",
+        )
+        signals = getattr(evidence, "evidence_signals")
+        assert signals["reranked"] is True
+        assert "signal_tags" in signals
+        assert getattr(evidence, "retrieval_mode") in {"lexical", "dense", "hybrid", "mock"}
+
+    def test_contrastive_scores_are_concept_aware(self):
+        retriever = MockRetriever()
+        matcher = CriteriaMatcher(retriever=retriever, top_k=5, min_score=0.0)
+        results = {
+            "F32": [
+                matcher.match_criterion(
+                    criterion_text="sleep disturbance",
+                    sentences=["我睡不着"],
+                    criterion_id="F32.C6",
+                )
+            ],
+            "F41.1": [
+                matcher.match_criterion(
+                    criterion_text="sleep disturbance",
+                    sentences=["我睡不着觉"],
+                    criterion_id="F41.1.B4",
+                )
+            ],
+        }
+        scored = matcher.add_contrastive_scores(results)
+        assert scored["F32"][0].uniqueness_score <= 1.0
+        assert scored["F32"][0].uniqueness_score >= 0.0

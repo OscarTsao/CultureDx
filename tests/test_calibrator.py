@@ -12,7 +12,11 @@ from culturedx.core.models import (
     ScaleScore,
     SymptomSpan,
 )
-from culturedx.diagnosis.calibrator import CalibrationOutput, ConfidenceCalibrator
+from culturedx.diagnosis.calibrator import (
+    CalibrationOutput,
+    CalibratorArtifact,
+    ConfidenceCalibrator,
+)
 
 
 def _make_checker(
@@ -50,6 +54,7 @@ class TestConfidenceCalibrator:
         assert result.primary is not None
         assert result.primary.disorder_code == "F32"
         assert result.primary.decision == "diagnosis"
+        assert result.primary.placement == "primary"
         assert result.primary.confidence > 0.5
 
     def test_below_abstain_threshold(self, calibrator):
@@ -68,6 +73,49 @@ class TestConfidenceCalibrator:
         result = calibrator.calibrate(["F32", "F41.1"], [co1, co2])
         assert result.primary is not None
         assert len(result.comorbid) == 1
+        assert result.comorbid[0].placement == "comorbid"
+
+    def test_non_primary_below_comorbid_threshold_is_rejected(self):
+        calibrator = ConfidenceCalibrator(abstain_threshold=0.2, comorbid_threshold=0.95)
+        primary = _make_checker(
+            "F32",
+            [("B1", 0.95), ("B2", 0.9), ("C1", 0.85), ("C2", 0.8)],
+            [],
+            4,
+        )
+        weak_secondary = _make_checker(
+            "F41.1",
+            [("A", 0.45), ("B1", 0.42), ("B2", 0.4), ("B3", 0.38)],
+            ["B4"],
+            4,
+        )
+        result = calibrator.calibrate(["F32", "F41.1"], [primary, weak_secondary])
+        assert result.primary is not None
+        assert result.primary.disorder_code == "F32"
+        assert result.comorbid == []
+        assert len(result.rejected) == 1
+        assert result.rejected[0].disorder_code == "F41.1"
+        assert result.rejected[0].decision == "rejected"
+        assert result.rejected[0].placement == "rejected"
+        assert result.rejected[0].decision_reason in {
+            "below_comorbid_threshold",
+            "insufficient_threshold_support",
+            "insufficient_evidence_coverage",
+        }
+
+    def test_abstained_output_tracks_reason(self):
+        calibrator = ConfidenceCalibrator(abstain_threshold=0.7)
+        low = _make_checker(
+            "F32",
+            [("B1", 0.2), ("B2", 0.2)],
+            ["B3", "C1", "C2"],
+            4,
+        )
+        result = calibrator.calibrate(["F32"], [low])
+        assert result.primary is None
+        assert len(result.abstained) == 1
+        assert result.abstained[0].placement == "abstained"
+        assert result.abstained[0].decision_reason == "below_abstain_threshold"
 
     def test_empty_input(self, calibrator):
         result = calibrator.calibrate([], [])
@@ -117,6 +165,83 @@ class TestConfidenceCalibrator:
         # With high abstain threshold, medium confidence should abstain
         if result.primary is None:
             assert len(result.abstained) == 1
+
+    def test_feature_extraction_is_stable(self, calibrator):
+        primary = _make_checker("F32", [("B1", 0.9), ("B2", 0.8), ("C1", 0.7), ("C2", 0.7)], [], 4)
+        secondary = _make_checker("F41.1", [("A", 0.6), ("B1", 0.55), ("B2", 0.5), ("B3", 0.45)], [], 4)
+        features = calibrator.extract_calibration_features(
+            "F32",
+            primary,
+            [primary, secondary],
+            evidence=None,
+        )
+        assert "avg_confidence" in features
+        assert "threshold_ratio" in features
+        assert "met_fraction" in features
+        assert features["criteria_met_count"] == pytest.approx(4.0)
+        assert features["criteria_total_count"] == pytest.approx(4.0)
+
+    def test_artifact_roundtrip_and_learned_path(self, tmp_path):
+        artifact = CalibratorArtifact(
+            feature_names=[
+                "avg_confidence",
+                "threshold_ratio",
+                "evidence_coverage",
+            ],
+            weights={
+                "avg_confidence": 1.0,
+                "threshold_ratio": 1.5,
+                "evidence_coverage": 0.5,
+            },
+            bias=-0.5,
+            abstain_threshold=0.25,
+            comorbid_threshold=0.6,
+            metadata={"source": "unit-test"},
+        )
+        path = tmp_path / "artifact.json"
+        artifact.save(path)
+
+        loaded = CalibratorArtifact.load(path)
+        assert loaded.schema_version == artifact.schema_version
+        assert loaded.feature_names == artifact.feature_names
+        assert loaded.weights == artifact.weights
+        assert loaded.bias == pytest.approx(-0.5)
+
+        primary = _make_checker("F32", [("B1", 0.9), ("B2", 0.9), ("C1", 0.8), ("C2", 0.8)], [], 4)
+        learned = ConfidenceCalibrator(artifact=loaded)
+        result = learned.calibrate(["F32"], [primary])
+        assert result.primary is not None
+        assert result.primary.calibration_path == "artifact"
+        assert result.primary.decision_trace["artifact_type"] == "diagnosis_calibrator_linear"
+        assert "feature_vector" in result.primary.decision_trace
+
+    def test_fit_linear_artifact_from_synthetic_rows(self):
+        examples = [
+            {"avg_confidence": 0.9, "threshold_ratio": 1.0, "evidence_coverage": 0.9},
+            {"avg_confidence": 0.8, "threshold_ratio": 1.0, "evidence_coverage": 0.8},
+            {"avg_confidence": 0.2, "threshold_ratio": 0.2, "evidence_coverage": 0.1},
+            {"avg_confidence": 0.3, "threshold_ratio": 0.4, "evidence_coverage": 0.2},
+        ]
+        labels = [1, 1, 0, 0]
+        artifact = ConfidenceCalibrator.fit_linear_artifact(
+            examples=examples,
+            labels=labels,
+            feature_names=["avg_confidence", "threshold_ratio", "evidence_coverage"],
+            abstain_threshold=0.2,
+            comorbid_threshold=0.6,
+            metadata={"dataset": "synthetic"},
+        )
+        assert artifact.weights
+        assert artifact.bias != 0.0 or any(v != 0.0 for v in artifact.weights.values())
+        assert artifact.metadata["dataset"] == "synthetic"
+
+    def test_missing_artifact_falls_back_to_heuristic(self, tmp_path):
+        missing = tmp_path / "missing.json"
+        cal = ConfidenceCalibrator(artifact_path=missing)
+        co = _make_checker("F32", [("B1", 0.9), ("B2", 0.8), ("C1", 0.7), ("C2", 0.7)], [], 4)
+        result = cal.calibrate(["F32"], [co])
+        assert result.primary is not None
+        assert result.primary.calibration_path.startswith("heuristic")
 
 
 class TestScaleScoreSignal:
