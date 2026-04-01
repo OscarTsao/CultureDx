@@ -149,6 +149,7 @@ class BaseModeOrchestrator(ABC):
         transcript_text: str,
         evidence_map: dict[str, str | dict[str, str]],
         lang: str,
+        prompt_variant: str = "",
         checker_llm_client=None,
         max_workers: int | None = None,
     ) -> list:
@@ -200,7 +201,10 @@ class BaseModeOrchestrator(ABC):
                 transcript_text=transcript_text,
                 evidence=checker_evidence or None,
                 language=lang,
-                extra={"disorder_code": disorder_code},
+                extra={
+                    "disorder_code": disorder_code,
+                    "prompt_variant": prompt_variant,
+                },
             )
             output = checker.run(checker_input)
             if output.parsed:

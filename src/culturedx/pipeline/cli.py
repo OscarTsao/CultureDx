@@ -20,6 +20,7 @@ def _create_configured_llm(cfg, llm_cfg):
         model=llm_cfg.model_id,
         temperature=llm_cfg.temperature,
         top_k=llm_cfg.top_k,
+        max_tokens=getattr(llm_cfg, "max_tokens", 2048),
         timeout=cfg.request_timeout_sec,
         cache_path=Path(cfg.cache_dir) / "llm_cache.db",
         disable_thinking=getattr(llm_cfg, "disable_thinking", True),
@@ -119,6 +120,7 @@ def run(
             execution_mode=cfg.mode.execution_mode,
             contrastive_enabled=cfg.mode.contrastive_enabled,
             comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
+            prompt_variant=cfg.mode.prompt_variant,
         )
         if checker_llm is not None:
             mode_kwargs["checker_llm_client"] = checker_llm
@@ -129,6 +131,7 @@ def run(
             llm_client=llm,
             target_disorders=cfg.mode.target_disorders,
             comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
+            prompt_variant=cfg.mode.prompt_variant,
         )
         if checker_llm is not None:
             mode_kwargs["checker_llm_client"] = checker_llm
@@ -321,6 +324,7 @@ def sweep(
                 execution_mode=cfg.mode.execution_mode,
                 contrastive_enabled=cfg.mode.contrastive_enabled,
                 comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
+                prompt_variant=cfg.mode.prompt_variant,
             )
             if checker_llm is not None:
                 mode_kwargs["checker_llm_client"] = checker_llm
@@ -331,6 +335,7 @@ def sweep(
                 llm_client=llm,
                 target_disorders=condition.target_disorders,
                 comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
+                prompt_variant=cfg.mode.prompt_variant,
             )
             if checker_llm is not None:
                 mode_kwargs["checker_llm_client"] = checker_llm

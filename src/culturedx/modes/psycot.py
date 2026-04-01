@@ -39,6 +39,7 @@ class PsyCoTMode(BaseModeOrchestrator):
         prompts_dir: str | Path = "prompts/agents",
         checker_llm_client=None,
         target_disorders: list[str] | None = None,
+        prompt_variant: str = "",
         abstain_threshold: float = 0.3,
         comorbid_threshold: float = 0.5,
         comorbid_min_ratio: float = 0.9,
@@ -53,6 +54,8 @@ class PsyCoTMode(BaseModeOrchestrator):
         )
         self.prompts_dir = Path(prompts_dir)
         self.target_disorders = target_disorders
+        self._prompt_variant = ""
+        self.prompt_variant = prompt_variant
 
         # Criterion Checker (reused for all disorders)
         self.checker = CriterionCheckerAgent(self.checker_llm, prompts_dir)
@@ -70,6 +73,14 @@ class PsyCoTMode(BaseModeOrchestrator):
         self.comorbidity_resolver = ComorbidityResolver(
             comorbid_min_ratio=comorbid_min_ratio,
         )
+
+    @property
+    def prompt_variant(self) -> str:
+        return getattr(self, "_prompt_variant", "")
+
+    @prompt_variant.setter
+    def prompt_variant(self, value: str | None) -> None:
+        self._prompt_variant = value or ""
 
     def diagnose(
         self, case: ClinicalCase, evidence: EvidenceBrief | None = None
@@ -101,6 +112,7 @@ class PsyCoTMode(BaseModeOrchestrator):
             transcript_text,
             evidence_map,
             lang,
+            prompt_variant=getattr(self, "_prompt_variant", ""),
             checker_llm_client=self.checker_llm,
         )
 

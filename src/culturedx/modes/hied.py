@@ -62,6 +62,7 @@ class HiEDMode(BaseModeOrchestrator):
         contrastive_enabled: bool = False,
         ranker_weights_path: str | Path | None = None,
         comorbid_min_ratio: float = 0.9,
+        prompt_variant: str = "",
     ) -> None:
         self.mode_name = "hied"
         self.llm = llm_client
@@ -73,6 +74,7 @@ class HiEDMode(BaseModeOrchestrator):
         )
         self.prompts_dir = Path(prompts_dir)
         self.target_disorders = target_disorders
+        self.prompt_variant = prompt_variant
         if scope_policy not in SUPPORTED_SCOPE_POLICIES:
             raise ValueError(
                 f"Unsupported HiED scope_policy {scope_policy!r}; "
@@ -231,6 +233,7 @@ class HiEDMode(BaseModeOrchestrator):
                     "chief_complaint": (case.metadata or {}).get("chief_complaint"),
                     "age": (case.metadata or {}).get("age"),
                     "gender": (case.metadata or {}).get("gender"),
+                    "prompt_variant": self.prompt_variant,
                 },
             )
             triage_output = self.triage.run(triage_input)
@@ -288,6 +291,7 @@ class HiEDMode(BaseModeOrchestrator):
             transcript_text,
             evidence_map,
             lang,
+            prompt_variant=self.prompt_variant,
             checker_llm_client=self.checker_llm,
         )
         stage_timings["checker_fanout"] = time.monotonic() - checker_start
@@ -606,6 +610,7 @@ class HiEDMode(BaseModeOrchestrator):
                 "shared_pairs": all_shared_pairs,
                 "checker_evidence": checker_evidence,
                 "disorder_names": disorder_names,
+                "prompt_variant": self.prompt_variant,
             },
         )
 
@@ -675,6 +680,7 @@ class HiEDMode(BaseModeOrchestrator):
                 "checker_outputs": confirmed_checker_outputs,
                 "case_id": case.case_id,
                 "disorder_names": disorder_names,
+                "prompt_variant": self.prompt_variant,
             },
         )
         diff_output = self.differential.run(diff_input)

@@ -72,8 +72,12 @@ class TriageAgent(BaseAgent):
         if input.evidence:
             evidence_summary = input.evidence.get("evidence_summary")
 
-        # Render prompt
-        template_name = f"triage_{input.language}.jinja"
+        # Render prompt (with optional CoT variant)
+        prompt_variant = (input.extra or {}).get("prompt_variant", "")
+        if prompt_variant == "cot" and input.language == "zh":
+            template_name = "triage_cot_zh.jinja"
+        else:
+            template_name = f"triage_{input.language}.jinja"
         template = self._env.get_template(template_name)
         # Pass demographic/chief complaint info if available in extra
         extra = input.extra or {}

@@ -18,6 +18,7 @@ class LLMConfig(BaseModel):
     max_retries: int = 3
     disable_thinking: bool = True
     max_concurrent: int = 4
+    max_tokens: int = 2048
 
 
 class EvalConfig(BaseModel):
@@ -35,6 +36,7 @@ class ModeConfig(BaseModel):
     execution_mode: str = "auto"
     contrastive_enabled: bool = False
     comorbid_min_ratio: float = 0.9
+    prompt_variant: str = ""
 
 
 class DatasetConfig(BaseModel):
