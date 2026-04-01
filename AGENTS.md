@@ -211,3 +211,5 @@ benchmark artifacts and must not be reported as empirical results.
   quickest code-reading path for new contributors.
 - [study_overview.md](/home/user/YuNing/CultureDx/docs/study_overview.md)
   consolidated study, experiment, result, and method summary.
+- [module_replacement_memo.md](/home/user/YuNing/CultureDx/docs/module_replacement_memo.md)
+  module-by-module decision record for package replacement vs hybridization.
