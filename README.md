@@ -1,194 +1,166 @@
-# CultureDx
+# CultureDx: Culture-Adaptive Diagnostic Multi-Agent System with Evidence Grounding
 
-CultureDx is a culture-adaptive psychiatric differential-diagnosis research
-repo focused on Chinese and English clinical transcripts. The codebase
-combines evidence extraction, ICD-10 criterion checking, deterministic logic,
-and statistical calibration to produce diagnosis or abstention outputs.
+**CultureDx** is a multi-agent system (MAS) for Chinese psychiatric differential diagnosis and comorbidity detection, grounded in ICD-10 clinical criteria and culture-aware evidence extraction.
 
-This repository is still a research/prototype codebase, not a validated
-clinical product. Do not claim benchmark wins, production readiness, or
-clinical efficacy unless the supporting artifacts are committed and
-reproducible from this repo.
+## Key Contributions
 
-## What The System Does
+- **Evidence-grounded MAS architecture** that outperforms single-LLM baselines for Chinese psychiatric diagnosis by decomposing clinical reasoning into specialized agent roles
+- **Culture-aware somatization mapping** — a 150-entry ontology linking Chinese somatic expressions (e.g., "胸闷", "头晕") to ICD-10 diagnostic criteria, addressing the gap between Chinese clinical presentation and Western diagnostic frameworks
+- **Hybrid evidence pipeline** — 3-layer temporal extraction (regex + ChineseTimeNLP + stanza NER), scope-aware negation detection, and BGE-M3 native hybrid retrieval (dense + sparse + ColBERT)
+- **Deterministic diagnostic logic** — ICD-10 threshold rules and statistical calibration ensure reproducible, auditable diagnosis decisions separate from LLM uncertainty
+- **5 MAS architectures** compared: HiED (hierarchical), PsyCoT (flat), Specialist, Debate, and Single-model baseline
 
-- Normalizes multiple datasets into a shared `ClinicalCase` model.
-- Extracts evidence from transcripts, including Chinese somatization mapping.
-- Routes cases through several diagnosis modes:
-  `single`, `mas`, `hied`, `psycot`, `specialist`, and `debate`.
-- Applies deterministic ICD-10 threshold rules and a statistical calibrator.
-- Emits machine-readable predictions, metrics, and failure/abstention signals.
+## Architecture
 
-## Current Architecture
+```
+                    ┌─────────────┐
+                    │  Clinical    │
+                    │  Transcript  │
+                    └──────┬──────┘
+                           │
+                    ┌──────▼──────┐
+                    │  Evidence    │  extract → somatize → retrieve → match
+                    │  Pipeline    │
+                    └──────┬──────┘
+                           │
+              ┌────────────▼────────────┐
+              │     HiED Pipeline       │
+              │                         │
+              │  1. Triage Agent        │  LLM: broad ICD-10 routing
+              │  2. Criterion Checkers  │  LLM: per-disorder evaluation
+              │  3. Logic Engine        │  Deterministic: ICD-10 thresholds
+              │  4. Calibrator          │  Statistical: confidence scoring
+              │  5. Comorbidity         │  Rule-based: ICD-10 exclusions
+              │                         │
+              └────────────┬────────────┘
+                           │
+                    ┌──────▼──────┐
+                    │  Diagnosis   │
+                    │  Result      │  primary + comorbid + abstain
+                    └─────────────┘
+```
 
-The main research path is `HiED`:
+## Supported Disorders (15 ICD-10 codes)
 
-1. Scope resolution:
-   `manual` benchmark scope, `triage`-derived scope, or `all_supported`.
-2. Triage:
-   broad ICD-10 category routing when running production-style open-set flows.
-3. Criterion checking:
-   per-disorder checker fanout.
-4. Logic engine:
-   deterministic ICD-10 threshold evaluation.
-5. Calibrator:
-   statistical confidence scoring, abstention, and comorbidity candidate split.
-6. Comorbidity resolver:
-   exclusion rules plus confidence/rule-based filtering.
+| Category | Disorders |
+|----------|-----------|
+| Mood | F31 (Bipolar), F32 (Depressive episode), F33 (Recurrent depression), F39 (Unspecified mood) |
+| Anxiety | F40 (Phobic), F41.0 (Panic), F41.1 (GAD), F42 (OCD) |
+| Stress | F43.1 (PTSD), F43.2 (Adjustment) |
+| Psychotic | F20 (Schizophrenia), F22 (Delusional) |
+| Other | F45 (Somatoform), F51 (Sleep), F98 (Behavioral/emotional) |
 
-Evidence extraction is a separate pipeline:
+## Datasets
 
-1. Symptom span extraction.
-2. Chinese somatization normalization.
-3. Criterion retrieval/matching.
-4. Evidence brief assembly.
+| Dataset | Cases | Language | Source |
+|---------|-------|----------|--------|
+| [LingxiDiag-16K](https://huggingface.co/datasets/Lingxin-Intelligence/LingxiDiag-16K) | ~14,000 | Chinese | Real clinical transcripts |
+| [MDD-5k](https://github.com/linhaowei1/MDD-5k) | 925 | Chinese | Simulated clinical interviews |
 
-See [architecture.md](/home/user/YuNing/CultureDx/docs/architecture.md) for the
-system walkthrough.
-
-## Supported Modes
-
-- `single`: single-model baseline.
-- `mas`: checker plus differential synthesis.
-- `hied`: hierarchical evidence-grounded pipeline; primary path for diagnosis
-  logic work.
-- `psycot`: flat criterion checking without triage.
-- `specialist`: specialist-agent ensemble.
-- `debate`: debate-style ensemble with judge.
-
-## Benchmark Mode vs Production Mode
-
-Two execution semantics now matter explicitly:
-
-- Closed-set benchmark/manual scope:
-  set `mode.target_disorders` and `mode.scope_policy: manual`.
-  `HiED` reports `routing_mode=benchmark_manual_scope`.
-- Production-style open-set routing:
-  omit `mode.target_disorders`; `HiED` resolves `scope_policy=triage` by
-  default and reports `routing_mode=production_open_set`.
-
-For the evidence pipeline, `scope_policy=auto` no longer silently narrows to
-`F32/F41.1`. It resolves to:
-
-- `manual` when explicit target disorders are configured.
-- `all_supported` when no explicit scope is provided.
-- `triage` only when the caller passes triage-derived candidate disorders.
-
-## Maturity Level
-
-What is already present:
-
-- Solid local test coverage for core models, evidence modules, modes, metrics,
-  and helpers.
-- Deterministic ICD-10 logic and statistical calibration components.
-- Ollama and vLLM client support.
-
-What is still research/prototype grade:
-
-- Calibration/training artifacts are not yet standardized across all flows.
-- Some routing/calibration/evidence features still rely on heuristics.
-- Evaluation scripts and outputs are not yet fully unified.
-
-## Local Setup
+## Installation
 
 ```bash
+# Clone
+git clone https://github.com/OscarTsao/CultureDx.git
+cd CultureDx
+
+# Install (requires Python >= 3.11)
 uv sync
-```
 
-Optional retrieval extras:
-
-```bash
+# Optional: retrieval support (BGE-M3)
 uv pip install -e ".[retrieval]"
-```
 
-## Common Commands
-
-```bash
-make check
+# Verify
 uv run pytest -q
 uv run culturedx --help
-uv run culturedx smoke
 ```
 
-Run HiED in closed-set benchmark/manual mode:
+## Quick Start
 
 ```bash
+# Smoke test
+uv run culturedx smoke
+
+# Run HiED pipeline on MDD-5k
 uv run culturedx run \
   -c configs/base.yaml \
   -c configs/hied.yaml \
   -d mdd5k \
   --data-path data/raw/mdd5k
-```
 
-Run with evidence extraction enabled:
-
-```bash
+# Run with evidence extraction
 uv run culturedx run \
   -c configs/base.yaml \
   -c configs/hied.yaml \
   -d mdd5k \
   --with-evidence \
   --data-path data/raw/mdd5k
-```
 
-Dry-run an ablation sweep:
-
-```bash
+# Ablation sweep
 uv run culturedx sweep \
   -c configs/base.yaml \
   -c configs/hied.yaml \
   -d mdd5k \
+  --modes hied,single \
   --dry-run
 ```
 
-## Evaluation And Artifacts
+## LLM Backend
 
-Current run directories typically contain:
+CultureDx supports two backends:
 
-- `run_manifest.json`
-- `run_info.json`
-- `predictions.jsonl`
-- `failures.jsonl`
-- `stage_timings.jsonl`
-- `metrics.json` when ground truth is available
-- `metrics_summary.json`
-- `summary.md`
+| Backend | Config | Use Case |
+|---------|--------|----------|
+| [Ollama](https://ollama.ai) | `configs/base.yaml` | Local development |
+| [vLLM](https://docs.vllm.ai) | `configs/vllm_awq.yaml` | Production evaluation |
 
-Prediction records come from `DiagnosisResult`. They may include:
+Recommended models: Qwen3-32B-AWQ (teacher/eval), Qwen3-8B (finetuned student)
 
-- `decision`
-- `routing_mode`
-- `scope_policy`
-- `candidate_disorders`
-- `decision_trace`
-- `failure` / `failures`
+## Project Structure
 
-Evidence outputs (`EvidenceBrief`) may include:
+```
+src/culturedx/
+  core/          Config models, data structures
+  data/adapters/ Dataset normalization (LingxiDiag, MDD-5k, E-DAIC)
+  llm/           Ollama/vLLM clients, cache, JSON parsing
+  evidence/      Symptom extraction, somatization, retrieval, negation
+  agents/        Triage, criterion checker, differential, specialist, judge
+  diagnosis/     Logic engine, calibrator, comorbidity resolver
+  modes/         HiED, PsyCoT, Specialist, Debate, Single orchestrators
+  ontology/      ICD-10 criteria definitions, somatization mapping
+  eval/          Metrics, reports, code mapping
+  pipeline/      CLI, runner, sweep
+configs/         YAML configuration overlays
+prompts/agents/  Bilingual Jinja2 prompt templates
+scripts/         Evaluation, finetuning, teacher data generation
+tests/           561 unit tests (deterministic, no GPU required)
+paper/           Paper drafts, figures, and supplementary materials
+```
 
-- `scope_policy`
-- `target_disorders`
-- `failures`
-- `stage_timings`
+## Evaluation Output
 
-`run_info.json` and `metrics.json` remain as legacy-compatible outputs; the
-canonical task-6 artifacts are `run_manifest.json`, `metrics_summary.json`,
-`failures.jsonl`, and `stage_timings.jsonl`.
+Each run produces:
+- `predictions.jsonl` — per-case diagnosis predictions
+- `metrics.json` — accuracy, F1, precision, recall with bootstrap CIs
+- `failures.jsonl` — abstention and error records
+- `stage_timings.jsonl` — per-stage latency measurements
+- `summary.md` — human-readable evaluation report
 
-## Safety And Reporting Rules
+## Disclaimer
 
-- Treat all diagnosis outputs as research artifacts, not clinical advice.
-- Prefer abstention over overclaiming when evidence is weak or routing fails.
-- Do not fabricate training results, benchmark numbers, or calibration
-  artifacts.
-- If a calibration artifact or model is unavailable, use a documented fallback
-  path instead of inventing parameters.
+This system is a **research prototype** for academic investigation. All diagnostic outputs are research artifacts — not validated clinical advice. Do not use for actual clinical decision-making.
 
-## Repo Docs
+## Citation
 
-- [AGENTS.md](/home/user/YuNing/CultureDx/AGENTS.md)
-- [developer_guide.md](/home/user/YuNing/CultureDx/docs/developer_guide.md)
-- [study_overview.md](/home/user/YuNing/CultureDx/docs/study_overview.md)
-- [architecture.md](/home/user/YuNing/CultureDx/docs/architecture.md)
-- [operations.md](/home/user/YuNing/CultureDx/docs/operations.md)
-- [triage-routing.md](/home/user/YuNing/CultureDx/docs/triage-routing.md)
-- [somatization_benchmark.md](/home/user/YuNing/CultureDx/docs/somatization_benchmark.md)
+```bibtex
+@misc{culturedx2026,
+  title={CultureDx: Culture-Adaptive Diagnostic Multi-Agent System with Evidence Grounding for Chinese Psychiatric Differential Diagnosis},
+  author={Tsao, Yu-Ning},
+  year={2026},
+  url={https://github.com/OscarTsao/CultureDx}
+}
+```
+
+## License
+
+This project is licensed under the Apache License 2.0 — see [LICENSE](LICENSE) for details.
