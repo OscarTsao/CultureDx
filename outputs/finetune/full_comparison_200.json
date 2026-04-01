@@ -1,0 +1,34 @@
+{
+  "7B base": {
+    "coverage": "95/200 (48%)",
+    "json_parse": "80/95 (84%)",
+    "criterion_acc": "49.5%",
+    "correct": 258,
+    "total": 521,
+    "time": "564s"
+  },
+  "7B+LoRA-4K": {
+    "coverage": "95/200 (48%)",
+    "json_parse": "60/95 (63%)",
+    "criterion_acc": "78.1%",
+    "correct": 235,
+    "total": 301,
+    "time": "696s"
+  },
+  "4B base": {
+    "coverage": "174/200 (87%)",
+    "json_parse": "103/174 (59%)",
+    "criterion_acc": "59.0%",
+    "correct": 258,
+    "total": 437,
+    "time": "1662s"
+  },
+  "4B+LoRA-12K": {
+    "coverage": "174/200 (87%)",
+    "json_parse": "113/174 (65%)",
+    "criterion_acc": "74.6%",
+    "correct": 408,
+    "total": 547,
+    "time": "1676s"
+  }
+}

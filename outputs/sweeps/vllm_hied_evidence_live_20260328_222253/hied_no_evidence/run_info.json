@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-03-28T14:22:54.444254+00:00",
+  "git_hash": "b37d64342080677c14ce8b37412d43363f560c20",
+  "mode": "hied",
+  "dataset": "mdd5k",
+  "num_cases": 50,
+  "config": {
+    "condition": "hied_no_evidence",
+    "mode": "hied",
+    "with_evidence": false,
+    "retriever": "none",
+    "with_somatization": false,
+    "target_disorders": [
+      "F32",
+      "F33",
+      "F41.1",
+      "F42",
+      "F43.1"
+    ]
+  },
+  "config_fingerprint": "b326374f3e6697d0"
+}

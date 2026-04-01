@@ -18,6 +18,7 @@ class LLMConfig(BaseModel):
     max_retries: int = 3
     disable_thinking: bool = True
     max_concurrent: int = 4
+    max_tokens: int = 2048
 
 
 class EvalConfig(BaseModel):
@@ -31,8 +32,11 @@ class ModeConfig(BaseModel):
     type: str = "single"
     variants: list[str] | None = None
     target_disorders: list[str] | None = None
+    scope_policy: str = "auto"
+    execution_mode: str = "auto"
     contrastive_enabled: bool = False
     comorbid_min_ratio: float = 0.9
+    prompt_variant: str = ""
 
 
 class DatasetConfig(BaseModel):
@@ -59,6 +63,7 @@ class RetrieverConfig(BaseModel):
     batch_size: int = 32
     cache_dir: str = "data/cache/retriever"
     device: str = "auto"
+    mode_weights: tuple[float, float, float] = (0.4, 0.2, 0.4)  # (dense, sparse, colbert)
 
 
 class SomatizationConfig(BaseModel):
@@ -68,6 +73,7 @@ class SomatizationConfig(BaseModel):
 
 class EvidenceConfig(BaseModel):
     enabled: bool = True
+    scope_policy: str = "auto"
     retriever: RetrieverConfig = RetrieverConfig()
     somatization: SomatizationConfig = SomatizationConfig()
     top_k_retrieval: int = 20
@@ -85,6 +91,7 @@ class CultureDxConfig(BaseModel):
     request_timeout_sec: int = 300
     mode: ModeConfig = ModeConfig()
     llm: LLMConfig = LLMConfig()
+    checker_llm: LLMConfig | None = None
     eval: EvalConfig = EvalConfig()
     dataset: DatasetConfig = DatasetConfig()
     evidence: EvidenceConfig = EvidenceConfig()

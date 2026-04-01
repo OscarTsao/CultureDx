@@ -1,6 +1,8 @@
 """Tests for retriever abstraction."""
 import pytest
 from culturedx.evidence.retriever import (
+    HybridRetriever,
+    LexicalRetriever,
     RetrievalResult,
     MockRetriever,
 )
@@ -12,6 +14,7 @@ class TestRetrievalResult:
         assert r.text == "I feel sad"
         assert r.turn_id == 1
         assert r.score == 0.85
+        assert r.source == "dense"
 
     def test_sort_by_score(self):
         results = [
@@ -73,3 +76,54 @@ class TestMockRetriever:
         )
         for r in results:
             assert 0.0 <= r.score <= 1.0
+
+
+class TestLexicalRetriever:
+    def test_prefers_token_overlap(self):
+        retriever = LexicalRetriever()
+        results = retriever.retrieve(
+            query="睡不着 失眠",
+            sentences=["我最近睡不着", "今天头疼", "天气不错"],
+            top_k=3,
+        )
+        assert results[0].text == "我最近睡不着"
+        assert results[0].source == "lexical"
+        assert results[0].score >= results[-1].score
+
+    def test_batch_order_matches_queries(self):
+        retriever = LexicalRetriever()
+        batches = retriever.retrieve_batch(
+            queries=["失眠", "头疼"],
+            sentences=["我睡不着", "我头疼", "没事"],
+            top_k=2,
+        )
+        assert len(batches) == 2
+        assert all(len(batch) <= 2 for batch in batches)
+
+
+class TestHybridRetriever:
+    def test_combines_dense_and_lexical_results(self):
+        dense = MockRetriever()
+        lexical = LexicalRetriever()
+        retriever = HybridRetriever(dense_retriever=dense, lexical_retriever=lexical)
+        results = retriever.retrieve(
+            query="失眠",
+            sentences=["我睡不着", "我头疼", "我很焦虑"],
+            top_k=3,
+        )
+        assert len(results) == 3
+        assert all(r.source in {"hybrid", "dense", "lexical"} for r in results)
+        assert results[0].score >= results[-1].score
+
+    def test_batch_preserves_query_order(self):
+        retriever = HybridRetriever(
+            dense_retriever=MockRetriever(),
+            lexical_retriever=LexicalRetriever(),
+        )
+        batches = retriever.retrieve_batch(
+            queries=["失眠", "焦虑"],
+            sentences=["我睡不着", "我心慌", "没事"],
+            top_k=2,
+        )
+        assert len(batches) == 2
+        assert all(len(batch) <= 2 for batch in batches)

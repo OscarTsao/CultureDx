@@ -15,6 +15,7 @@ from culturedx.core.models import (
     SymptomSpan,
     Turn,
 )
+from culturedx.agents.base import AgentOutput
 from culturedx.modes.hied import HiEDMode
 
 
@@ -93,7 +94,7 @@ class TestHiEDMode:
     """Tests for HiEDMode orchestrator."""
 
     def test_basic_pipeline_with_target_disorders(self):
-        """HiED with target_disorders skips triage."""
+        """HiED with target_disorders runs in explicit manual benchmark scope."""
         responses = [
             # Criterion checker for F32 (meets threshold: 5 of 9 met, 2 core needed)
             make_checker_response("F32", 6, 9),
@@ -110,9 +111,12 @@ class TestHiEDMode:
         assert result.case_id == "test-001"
         assert result.mode == "hied"
         assert result.language_used == "zh"
+        assert result.scope_policy == "manual"
+        assert result.routing_mode == "benchmark_manual_scope"
+        assert result.candidate_disorders == ["F32"]
 
     def test_triage_activates_disorders(self):
-        """HiED with no target_disorders runs triage first."""
+        """HiED with no target_disorders runs triage in production/open-set mode."""
         responses = [
             # Triage response
             make_triage_response([
@@ -137,6 +141,8 @@ class TestHiEDMode:
         assert result.mode == "hied"
         # Should have checked multiple disorders
         assert len(result.criteria_results) > 0
+        assert result.scope_policy == "triage"
+        assert result.routing_mode == "production_open_set"
 
     def test_unsupported_language_abstains(self):
         """HiED abstains for unsupported languages."""
@@ -242,13 +248,15 @@ class TestHiEDMode:
         assert result.primary_diagnosis is not None
 
     def test_empty_candidates(self):
-        """HiED abstains when no candidates."""
+        """HiED reports a scope failure when manual scope has no candidates."""
         llm = FakeLLM()
         mode = HiEDMode(llm_client=llm, target_disorders=[])
         case = make_case()
         result = mode.diagnose(case)
 
         assert result.decision == "abstain"
+        assert result.failure is not None
+        assert result.failure.code == "scope_resolution_failed"
 
     def test_build_transcript_text(self):
         """Transcript builder produces expected format."""
@@ -279,3 +287,28 @@ class TestHiEDMode:
         emap = HiEDMode._build_evidence_map(evidence)
         assert "F32" in emap
         assert "A1" in emap["F32"]
+
+    def test_production_mode_rejects_manual_targets(self):
+        llm = FakeLLM()
+        mode = HiEDMode(
+            llm_client=llm,
+            target_disorders=["F32"],
+            execution_mode="production_open_set",
+        )
+        result = mode.diagnose(make_case())
+        assert result.decision == "abstain"
+        assert result.failure is not None
+        assert result.failure.code == "scope_resolution_failed"
+
+    def test_triage_failure_is_machine_readable(self):
+        llm = FakeLLM()
+        mode = HiEDMode(llm_client=llm, abstain_threshold=0.1)
+        mode.triage.run = lambda _input: AgentOutput(
+            raw_response="{}",
+            parsed=None,
+            model_name="test-model",
+            prompt_hash="test-hash",
+        )
+        result = mode.diagnose(make_case())
+        assert result.failures
+        assert any(f.code == "triage_failed" for f in result.failures)

@@ -1,13 +1,106 @@
-"""Per-criterion evidence matching via dense retrieval."""
+"""Per-criterion evidence matching via dense, lexical, or hybrid retrieval."""
 from __future__ import annotations
 
 from dataclasses import replace
+from typing import Protocol
 
 from culturedx.core.models import CriterionEvidence, SymptomSpan
+from culturedx.evidence.normalization import (
+    concept_signature,
+    contains_duration_marker,
+    contains_functional_impairment_marker,
+    contains_negation,
+    jaccard_similarity,
+    normalize_text,
+)
 from culturedx.evidence.retriever import BaseRetriever, RetrievalResult
+from culturedx.evidence.somatization import resolve_symptom_concept
+from culturedx.evidence.negation import NegationDetector
 from culturedx.ontology.icd10 import get_disorder_criteria, get_criterion_text
 
 _SOMATIZATION_BOOST = 0.15
+_CONTRADICTION_NEGATION_PENALTY = 0.20
+
+_NEGATION_DETECTOR: NegationDetector | None = None
+
+
+def _get_negation_detector() -> NegationDetector:
+    """Lazy singleton for negation detector (avoid loading stanza until needed)."""
+    global _NEGATION_DETECTOR
+    if _NEGATION_DETECTOR is None:
+        _NEGATION_DETECTOR = NegationDetector(use_dep_parsing=False)
+    return _NEGATION_DETECTOR
+
+
+def is_evidence_negated(evidence_text: str, criterion_text: str) -> bool:
+    """Check if evidence text negates the criterion concept using scope-aware detection.
+
+    Returns True only if the negation detector finds a genuine negation.
+    Handles positive-negation idioms (睡不着, 吃不下) and clause boundaries.
+    """
+    detector = _get_negation_detector()
+    # Try with key symptom terms from the criterion
+    sig = concept_signature(criterion_text)
+    for term in sig:
+        if len(term) < 2:
+            continue
+        if term in evidence_text:
+            result = detector.detect(evidence_text, term)
+            if result.is_negated and result.confidence >= 0.7:
+                return True
+    # Fallback: check the full criterion text if it appears
+    if criterion_text in evidence_text:
+        result = detector.detect(evidence_text, criterion_text)
+        if result.is_negated and result.confidence >= 0.7:
+            return True
+    return False
+
+
+class EvidenceReranker(Protocol):
+    """Protocol for optional reranking stages."""
+
+    def rerank(
+        self,
+        criterion_text: str,
+        results: list[RetrievalResult],
+        criterion_id: str = "",
+    ) -> list[RetrievalResult]:
+        ...
+
+
+class ConceptOverlapReranker:
+    """Lightweight reranker based on concept overlap and negation signals."""
+
+    def __init__(self, concept_weight: float = 0.55, score_weight: float = 0.45) -> None:
+        self.concept_weight = concept_weight
+        self.score_weight = score_weight
+
+    def rerank(
+        self,
+        criterion_text: str,
+        results: list[RetrievalResult],
+        criterion_id: str = "",
+    ) -> list[RetrievalResult]:
+        if not results:
+            return []
+
+        reranked: list[RetrievalResult] = []
+        for result in results:
+            concept_score = jaccard_similarity(criterion_text, result.text)
+            negation_penalty = _CONTRADICTION_NEGATION_PENALTY if is_evidence_negated(result.text, criterion_text) else 0.0
+            fused = (
+                self.score_weight * result.score
+                + self.concept_weight * concept_score
+                - negation_penalty
+            )
+            reranked.append(
+                replace(
+                    result,
+                    score=max(0.0, min(1.0, fused)),
+                    matched_terms=tuple(sorted(set(result.matched_terms) | set(concept_signature(criterion_text)))),
+                )
+            )
+        return sorted(reranked, key=lambda r: (-r.score, r.turn_id, r.text))
 
 
 class CriteriaMatcher:
@@ -18,10 +111,14 @@ class CriteriaMatcher:
         retriever: BaseRetriever,
         top_k: int = 10,
         min_score: float = 0.1,
+        reranker: EvidenceReranker | None = None,
+        rerank_top_n: int = 5,
     ) -> None:
         self.retriever = retriever
         self.top_k = top_k
         self.min_score = min_score
+        self.reranker = reranker
+        self.rerank_top_n = rerank_top_n
 
     def match_criterion(
         self,
@@ -32,45 +129,17 @@ class CriteriaMatcher:
         somatization_map: dict[str, list[str]] | None = None,
     ) -> CriterionEvidence:
         """Match sentences to a single criterion via retrieval."""
-        results = self.retriever.retrieve(
+        raw_results = self.retriever.retrieve(
             query=criterion_text,
             sentences=sentences,
             top_k=self.top_k,
             turn_ids=turn_ids,
         )
-
-        # Apply somatization boost
-        if somatization_map and criterion_id:
-            boosted = []
-            for r in results:
-                if criterion_id in somatization_map.get(r.text, []):
-                    boosted.append(
-                        replace(r, score=min(1.0, r.score + _SOMATIZATION_BOOST))
-                    )
-                else:
-                    boosted.append(r)
-            results = sorted(boosted, key=lambda r: r.score, reverse=True)
-
-        # Filter by min_score and convert to CriterionEvidence
-        spans = []
-        for r in results:
-            if r.score < self.min_score:
-                continue
-            spans.append(
-                SymptomSpan(
-                    text=r.text,
-                    turn_id=r.turn_id,
-                    symptom_type="retrieved",
-                )
-            )
-
-        # Confidence from the best matching result after filtering
-        filtered_results = [r for r in results if r.score >= self.min_score]
-        confidence = filtered_results[0].score if filtered_results else 0.0
-        return CriterionEvidence(
+        return self._build_evidence(
+            criterion_text=criterion_text,
             criterion_id=criterion_id,
-            spans=spans,
-            confidence=confidence,
+            results=raw_results,
+            somatization_map=somatization_map,
         )
 
     def match_for_disorder(
@@ -94,13 +163,19 @@ class CriteriaMatcher:
             )
             if crit_text is None:
                 continue
-            evidence = self.match_criterion(
-                criterion_text=crit_text,
+            raw_results = self.retriever.retrieve(
+                query=crit_text,
                 sentences=sentences,
+                top_k=self.top_k,
                 turn_ids=turn_ids,
+            )
+            evidence = self._build_evidence(
+                criterion_text=crit_text,
                 criterion_id=full_id,
+                results=raw_results,
                 somatization_map=somatization_map,
             )
+            setattr(evidence, "criterion_type", criteria.get(crit_id, {}).get("type", ""))
             results.append(evidence)
         return results
 
@@ -112,12 +187,8 @@ class CriteriaMatcher:
         language: str = "zh",
         somatization_map: dict[str, list[str]] | None = None,
     ) -> dict[str, list[CriterionEvidence]]:
-        """Match all criteria for multiple disorders with batch retrieval.
-
-        Encodes sentences once for all criteria across all disorders.
-        """
-        # Collect all criteria queries
-        query_infos: list[tuple[str, str, str]] = []  # (disorder, full_id, text)
+        """Match all criteria for multiple disorders with batch retrieval."""
+        query_infos: list[tuple[str, str, str, dict]] = []
         for dc in disorder_codes:
             criteria = get_disorder_criteria(dc)
             if criteria is None:
@@ -126,12 +197,11 @@ class CriteriaMatcher:
                 full_id = f"{dc}.{crit_id}"
                 crit_text = get_criterion_text(dc, crit_id, language=language)
                 if crit_text:
-                    query_infos.append((dc, full_id, crit_text))
+                    query_infos.append((dc, full_id, crit_text, criteria.get(crit_id, {})))
 
         if not query_infos:
             return {dc: [] for dc in disorder_codes}
 
-        # Batch retrieve — encode sentences once
         queries = [qi[2] for qi in query_infos]
         batch_results = self.retriever.retrieve_batch(
             queries=queries,
@@ -140,94 +210,178 @@ class CriteriaMatcher:
             turn_ids=turn_ids,
         )
 
-        # Process results per criterion
         results_map: dict[str, list[CriterionEvidence]] = {
             dc: [] for dc in disorder_codes
         }
-        for (dc, full_id, _), results in zip(query_infos, batch_results):
-            # Apply somatization boost
-            if somatization_map and full_id:
-                boosted = []
-                for r in results:
-                    if full_id in somatization_map.get(r.text, []):
-                        boosted.append(
-                            replace(r, score=min(1.0, r.score + _SOMATIZATION_BOOST))
-                        )
-                    else:
-                        boosted.append(r)
-                results = sorted(boosted, key=lambda r: r.score, reverse=True)
+        for (dc, full_id, crit_text, crit_meta), results in zip(query_infos, batch_results):
+            evidence = self._build_evidence(
+                criterion_text=crit_text,
+                criterion_id=full_id,
+                results=results,
+                somatization_map=somatization_map,
+                criterion_meta=crit_meta,
+            )
+            setattr(evidence, "criterion_type", crit_meta.get("type", ""))
+            results_map[dc].append(evidence)
 
-            # Filter by min_score and convert
-            spans = []
+        return results_map
+
+    def _build_evidence(
+        self,
+        criterion_text: str,
+        criterion_id: str,
+        results: list[RetrievalResult],
+        somatization_map: dict[str, list[str]] | None = None,
+        criterion_meta: dict | None = None,
+    ) -> CriterionEvidence:
+        reranked = False
+        if self.reranker is not None and results:
+            head = results[: self.rerank_top_n]
+            tail = results[self.rerank_top_n :]
+            head = self.reranker.rerank(
+                criterion_text=criterion_text,
+                results=head,
+                criterion_id=criterion_id,
+            )
+            results = head + tail
+            reranked = True
+
+        if somatization_map and criterion_id:
+            boosted = []
             for r in results:
-                if r.score < self.min_score:
-                    continue
-                spans.append(
-                    SymptomSpan(
-                        text=r.text,
-                        turn_id=r.turn_id,
-                        symptom_type="retrieved",
+                if criterion_id in somatization_map.get(r.text, []):
+                    boosted.append(
+                        replace(r, score=min(1.0, r.score + _SOMATIZATION_BOOST))
                     )
-                )
+                else:
+                    boosted.append(r)
+            results = sorted(boosted, key=lambda r: (-r.score, r.turn_id, r.text))
 
-            filtered_results = [r for r in results if r.score >= self.min_score]
-            confidence = filtered_results[0].score if filtered_results else 0.0
-            results_map[dc].append(
-                CriterionEvidence(
-                    criterion_id=full_id,
-                    spans=spans,
-                    confidence=confidence,
+        spans = []
+        for r in results:
+            if r.score < self.min_score:
+                continue
+            spans.append(
+                SymptomSpan(
+                    text=r.text,
+                    turn_id=r.turn_id,
+                    symptom_type="retrieved",
                 )
             )
 
-        return results_map
+        filtered_results = [r for r in results if r.score >= self.min_score]
+        confidence = filtered_results[0].score if filtered_results else 0.0
+        evidence = CriterionEvidence(
+            criterion_id=criterion_id,
+            spans=spans,
+            confidence=confidence,
+        )
+        signals = self._build_signals(
+            criterion_text=criterion_text,
+            criterion_id=criterion_id,
+            results=results,
+            filtered_results=filtered_results,
+            reranked=reranked,
+            criterion_meta=criterion_meta or {},
+        )
+        setattr(evidence, "evidence_signals", signals)
+        setattr(evidence, "signal_tags", signals["signal_tags"])
+        setattr(evidence, "retrieval_mode", signals["retrieval_mode"])
+        return evidence
+
+    def _build_signals(
+        self,
+        criterion_text: str,
+        criterion_id: str,
+        results: list[RetrievalResult],
+        filtered_results: list[RetrievalResult],
+        reranked: bool,
+        criterion_meta: dict,
+    ) -> dict:
+        signal_tags: list[str] = []
+        if not filtered_results:
+            signal_tags.append("insufficient_evidence")
+        else:
+            top = filtered_results[0]
+            if is_evidence_negated(top.text, criterion_text) and jaccard_similarity(criterion_text, top.text) > 0.20:
+                signal_tags.append("contradiction")
+
+        criterion_type = criterion_meta.get("type", "")
+        result_texts = [r.text for r in filtered_results]
+        result_blob = " ".join(result_texts)
+        if criterion_type == "duration" or "持续" in criterion_text or "duration" in normalize_text(criterion_text):
+            if not contains_duration_marker(result_blob):
+                signal_tags.append("duration_missing")
+
+        if any(keyword in normalize_text(criterion_text) for keyword in ("功能", "工作", "学习", "社交", "impair")):
+            if not contains_functional_impairment_marker(result_blob):
+                signal_tags.append("functional_impairment_missing")
+
+        return {
+            "criterion_id": criterion_id,
+            "signal_tags": signal_tags,
+            "reranked": reranked,
+            "retrieval_mode": self._retrieval_mode_name(),
+            "top_score": filtered_results[0].score if filtered_results else 0.0,
+            "span_count": len(filtered_results),
+            "concept_signature": sorted(concept_signature(criterion_text)),
+        }
+
+    def _retrieval_mode_name(self) -> str:
+        name = type(self.retriever).__name__.replace("Retriever", "").lower()
+        if name == "hybrid":
+            return "hybrid"
+        if name == "lexical":
+            return "lexical"
+        if name == "mock":
+            return "mock"
+        return "dense"
 
     @staticmethod
     def add_contrastive_scores(
         results_map: dict[str, list[CriterionEvidence]],
     ) -> dict[str, list[CriterionEvidence]]:
-        """Compute cross-disorder uniqueness scores for each criterion's evidence.
-
-        For each criterion, measures how specific its evidence spans are to that
-        disorder vs shared across multiple disorders. A span that matches criteria
-        in 3 disorders gets uniqueness 0.0; a span matching only 1 disorder gets 1.0.
-        """
+        """Compute cross-disorder uniqueness scores for each criterion's evidence."""
         n_disorders = len(results_map)
         if n_disorders <= 1:
             return results_map
 
-        # Build inverted index: span_text -> set of disorder codes that matched it
-        span_disorders: dict[str, set[str]] = {}
+        span_concepts: dict[str, set[str]] = {}
         for dc, criteria_list in results_map.items():
             for ce in criteria_list:
                 for span in ce.spans:
-                    key = span.text.strip()
+                    key = CriteriaMatcher._concept_key_for_span(span.text)
                     if key:
-                        if key not in span_disorders:
-                            span_disorders[key] = set()
-                        span_disorders[key].add(dc)
+                        span_concepts.setdefault(key, set()).add(dc)
 
-        # Compute uniqueness per criterion
         for dc, criteria_list in results_map.items():
             for ce in criteria_list:
                 if not ce.spans:
-                    ce.uniqueness_score = 0.5  # No evidence = neutral
+                    ce.uniqueness_score = 0.5
                     continue
 
                 span_uniquenesses = []
                 for span in ce.spans:
-                    key = span.text.strip()
+                    key = CriteriaMatcher._concept_key_for_span(span.text)
                     if not key:
                         continue
-                    n_matched = len(span_disorders.get(key, {dc}))
-                    # 1.0 if unique to this disorder, 0.0 if shared with all
+                    n_matched = len(span_concepts.get(key, {dc}))
                     u = 1.0 - ((n_matched - 1) / (n_disorders - 1))
                     span_uniquenesses.append(u)
 
                 if span_uniquenesses:
-                    # Confidence-weighted: higher-scoring spans matter more
                     ce.uniqueness_score = sum(span_uniquenesses) / len(span_uniquenesses)
                 else:
                     ce.uniqueness_score = 0.5
 
         return results_map
+
+    @staticmethod
+    def _concept_key_for_span(text: str) -> str:
+        resolved = resolve_symptom_concept(text)
+        if resolved is not None:
+            return f"{resolved.category}|{resolved.canonical_text}|{','.join(resolved.criteria)}"
+        tokens = sorted(concept_signature(text))
+        if not tokens:
+            return normalize_text(text)
+        return "|".join(tokens[:8])

@@ -11,7 +11,13 @@ class BaseLLMClient(Protocol):
     model: str
 
     def generate(
-        self, prompt: str, prompt_hash: str = "", language: str = "zh"
+        self,
+        prompt: str,
+        prompt_hash: str = "",
+        language: str = "zh",
+        json_schema: dict | None = None,
+        *,
+        prompt_prefix: str | None = None,
     ) -> str:
         """Generate a single response."""
         ...
@@ -21,6 +27,9 @@ class BaseLLMClient(Protocol):
         prompts: list[str],
         prompt_hashes: list[str] | None = None,
         language: str = "zh",
+        json_schema: dict | None = None,
+        *,
+        prompt_prefix: str | None = None,
     ) -> list[str]:
         """Generate responses for multiple prompts (may be parallel)."""
         ...

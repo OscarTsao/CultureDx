@@ -103,9 +103,12 @@ class CriterionCheckerAgent(BaseAgent):
         if input.evidence and disorder_code == "F41.1":
             temporal_summary = input.evidence.get("temporal_summary")
 
-        # Render prompt: use temporal-enhanced template for F41.1 if temporal data exists
+        # Render prompt: select template variant
+        prompt_variant = (input.extra or {}).get("prompt_variant", "")
         if temporal_summary and disorder_code == "F41.1" and input.language == "zh":
             template_name = "criterion_checker_temporal_zh.jinja"
+        elif prompt_variant == "cot" and input.language == "zh":
+            template_name = "criterion_checker_cot_zh.jinja"
         else:
             template_name = f"criterion_checker_{input.language}.jinja"
         template = self._env.get_template(template_name)

@@ -1,19 +1,43 @@
-"""Confidence Calibrator — statistical, no LLM.
+"""Confidence calibrator for diagnosis ranking, abstention, and audit traces.
 
-Computes calibrated diagnostic confidence from:
-- Criterion checker confidence scores
-- Evidence coverage
-- Logic engine threshold satisfaction ratio
-- Somatization mapper hit rate (if applicable)
+The calibrator is intentionally non-LLM and split into two paths:
+
+- learned artifact path when a persisted linear calibrator is available
+- heuristic fallback path when no artifact exists or loading fails
+
+Both paths produce interpretable feature summaries and machine-readable
+decision traces so downstream reviewers can see why a disorder became primary,
+comorbid, abstained, or rejected.
 """
 from __future__ import annotations
 
+import json
+import math
 import logging
 from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Any, Sequence
 
-from culturedx.core.models import CheckerOutput, CriterionResult, EvidenceBrief, ScaleScore
+from culturedx.core.models import CheckerOutput, EvidenceBrief, ScaleScore
 
 logger = logging.getLogger(__name__)
+
+CALIBRATOR_ARTIFACT_SCHEMA_VERSION = 1
+DEFAULT_CALIBRATOR_FEATURE_NAMES = (
+    "avg_confidence",
+    "threshold_ratio",
+    "evidence_coverage",
+    "core_score",
+    "uniqueness_score",
+    "margin_score",
+    "variance_penalty",
+    "info_content_score",
+    "scale_score_signal",
+    "criteria_met_count",
+    "criteria_total_count",
+    "met_fraction",
+    "met_minus_required",
+)
 
 # Common Chinese stop characters that inflate character-set overlap
 _ZH_STOP_CHARS = frozenset("的了是我有在不会很也都你他她它这那个人们要和就")
@@ -39,7 +63,12 @@ class CalibratedDiagnosis:
     """A diagnosis with calibrated confidence and decision."""
     disorder_code: str
     confidence: float
-    decision: str  # "diagnosis" or "abstain"
+    decision: str  # "diagnosis", "abstain", or "rejected"
+    placement: str = ""  # "primary", "comorbid", "abstained", "rejected"
+    decision_reason: str = ""
+    calibration_path: str = ""
+    feature_vector: dict[str, float] = field(default_factory=dict)
+    decision_trace: dict[str, object] = field(default_factory=dict)
     evidence_coverage: float = 0.0
     avg_criterion_confidence: float = 0.0
     threshold_ratio: float = 0.0
@@ -60,12 +89,69 @@ class CalibrationOutput:
     primary: CalibratedDiagnosis | None = None
     comorbid: list[CalibratedDiagnosis] = field(default_factory=list)
     abstained: list[CalibratedDiagnosis] = field(default_factory=list)
+    rejected: list[CalibratedDiagnosis] = field(default_factory=list)
+
+
+@dataclass
+class CalibratorArtifact:
+    """Stable JSON schema for learned diagnosis-calibrator parameters."""
+
+    schema_version: int = CALIBRATOR_ARTIFACT_SCHEMA_VERSION
+    artifact_type: str = "diagnosis_calibrator_linear"
+    model_type: str = "logistic_regression"
+    feature_names: list[str] = field(default_factory=lambda: list(DEFAULT_CALIBRATOR_FEATURE_NAMES))
+    weights: dict[str, float] = field(default_factory=dict)
+    bias: float = 0.0
+    abstain_threshold: float = 0.3
+    comorbid_threshold: float = 0.5
+    metadata: dict[str, Any] = field(default_factory=dict)
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "schema_version": self.schema_version,
+            "artifact_type": self.artifact_type,
+            "model_type": self.model_type,
+            "feature_names": list(self.feature_names),
+            "weights": {k: float(v) for k, v in self.weights.items()},
+            "bias": float(self.bias),
+            "abstain_threshold": float(self.abstain_threshold),
+            "comorbid_threshold": float(self.comorbid_threshold),
+            "metadata": dict(self.metadata),
+        }
+
+    def save(self, path: str | Path) -> None:
+        """Persist the artifact as stable JSON."""
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(self.to_dict(), f, indent=2, ensure_ascii=False)
+
+    @classmethod
+    def from_dict(cls, data: dict[str, Any]) -> "CalibratorArtifact":
+        return cls(
+            schema_version=int(data.get("schema_version", CALIBRATOR_ARTIFACT_SCHEMA_VERSION)),
+            artifact_type=str(data.get("artifact_type", "diagnosis_calibrator_linear")),
+            model_type=str(data.get("model_type", "logistic_regression")),
+            feature_names=list(data.get("feature_names", list(DEFAULT_CALIBRATOR_FEATURE_NAMES))),
+            weights={str(k): float(v) for k, v in dict(data.get("weights", {})).items()},
+            bias=float(data.get("bias", 0.0)),
+            abstain_threshold=float(data.get("abstain_threshold", 0.3)),
+            comorbid_threshold=float(data.get("comorbid_threshold", 0.5)),
+            metadata=dict(data.get("metadata", {})),
+        )
+
+    @classmethod
+    def load(cls, path: str | Path) -> "CalibratorArtifact":
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+        return cls.from_dict(data)
 
 
 class ConfidenceCalibrator:
     """Statistical confidence calibrator for diagnostic decisions.
-    
-    No LLM. Combines multiple signals into a calibrated confidence score.
+
+    No LLM is involved here. The class combines checker outputs, evidence
+    coverage, rule-threshold satisfaction, and optional learned parameters into
+    a calibrated split between primary, comorbid, abstained, and rejected
+    diagnoses.
     """
 
     def __init__(
@@ -73,6 +159,8 @@ class ConfidenceCalibrator:
         abstain_threshold: float = 0.3,
         comorbid_threshold: float = 0.5,
         version: int = 2,
+        artifact_path: str | Path | None = None,
+        artifact: CalibratorArtifact | dict[str, Any] | None = None,
         # V1 weights (backward compat)
         evidence_weight: float = 0.3,
         criterion_weight: float = 0.4,
@@ -84,6 +172,32 @@ class ConfidenceCalibrator:
         self.evidence_weight = evidence_weight
         self.criterion_weight = criterion_weight
         self.threshold_weight = threshold_weight
+        self.artifact: CalibratorArtifact | None = None
+        self.artifact_path = Path(artifact_path) if artifact_path is not None else None
+        if artifact is not None:
+            self.artifact = (
+                artifact if isinstance(artifact, CalibratorArtifact)
+                else CalibratorArtifact.from_dict(artifact)
+            )
+            self.abstain_threshold = self.artifact.abstain_threshold
+            self.comorbid_threshold = self.artifact.comorbid_threshold
+        elif self.artifact_path is not None:
+            try:
+                if self.artifact_path.exists():
+                    self.artifact = CalibratorArtifact.load(self.artifact_path)
+                    self.abstain_threshold = self.artifact.abstain_threshold
+                    self.comorbid_threshold = self.artifact.comorbid_threshold
+                else:
+                    logger.warning(
+                        "Calibrator artifact %s not found; using heuristic fallback",
+                        self.artifact_path,
+                    )
+            except Exception:
+                logger.warning(
+                    "Failed to load calibrator artifact %s; using heuristic fallback",
+                    self.artifact_path,
+                    exc_info=True,
+                )
         # V2 weights — tuned via LOO cross-validation (scripts/tune_calibrator_weights.py)
         # Changes from initial weights:
         #   core_score 0.30->0.05: was inflating short-checklist disorders (F41.1=5
@@ -116,12 +230,12 @@ class ConfidenceCalibrator:
         confirmation_types: dict[str, str] | None = None,
         scale_scores: list[ScaleScore] | None = None,
     ) -> CalibrationOutput:
-        """Calibrate confidence for confirmed disorders.
-        
-        Args:
-            confirmed_disorders: Disorder codes confirmed by logic engine.
-            checker_outputs: All checker outputs (confirmed + rejected).
-            evidence: Optional evidence brief for coverage computation.
+        """Calibrate confidence for logic-confirmed disorders.
+
+        ``confirmed_disorders`` comes from the deterministic logic engine.
+        This method then scores each confirmed disorder, ranks them, and makes
+        the final primary/comorbid/abstain/rejected split while preserving the
+        feature-level reasoning used for that decision.
         """
         checker_map = {co.disorder: co for co in checker_outputs}
 
@@ -136,18 +250,21 @@ class ConfidenceCalibrator:
             co = checker_map.get(code)
             if co is None:
                 continue
-            if self.version >= 2:
-                cal = self._compute_calibrated_v2(
-                    code, co, confirmed_outputs, evidence, scale_scores,
-                )
-            else:
-                cal = self._compute_calibrated(code, co, evidence)
+            cal = self._score_disorder(
+                code,
+                co,
+                confirmed_outputs,
+                evidence,
+                scale_scores,
+            )
             scored.append(cal)
 
         # Apply soft confirmation penalty
         if confirmation_types:
             for cal in scored:
                 ctype = confirmation_types.get(cal.disorder_code)
+                if ctype:
+                    cal.decision_trace["confirmation_type"] = ctype
                 if ctype == "soft":
                     cal.confidence *= 0.85
 
@@ -158,26 +275,295 @@ class ConfidenceCalibrator:
         primary = None
         comorbid = []
         abstained = []
+        rejected = []
 
-        for cal in scored:
+        for rank, cal in enumerate(scored, start=1):
+            cal.decision_trace.update({
+                "rank": rank,
+                "abstain_threshold": self.abstain_threshold,
+                "comorbid_threshold": self.comorbid_threshold,
+                "confidence": cal.confidence,
+                "threshold_ratio": cal.threshold_ratio,
+                "evidence_coverage": cal.evidence_coverage,
+                "criteria_met_count": cal.criteria_met_count,
+                "criteria_total_count": cal.criteria_total_count,
+                "calibration_path": cal.calibration_path,
+            })
             if cal.confidence < self.abstain_threshold:
                 cal.decision = "abstain"
+                cal.placement = "abstained"
+                cal.decision_reason = "below_abstain_threshold"
                 abstained.append(cal)
             elif primary is None:
                 cal.decision = "diagnosis"
+                cal.placement = "primary"
+                cal.decision_reason = "highest_confidence_above_abstain_threshold"
                 primary = cal
             elif cal.confidence >= self.comorbid_threshold:
                 cal.decision = "diagnosis"
+                cal.placement = "comorbid"
+                cal.decision_reason = "meets_comorbid_threshold"
                 comorbid.append(cal)
             else:
-                cal.decision = "diagnosis"
-                comorbid.append(cal)
+                cal.decision = "rejected"
+                cal.placement = "rejected"
+                cal.decision_reason = self._classify_rejection_reason(cal)
+                rejected.append(cal)
 
         return CalibrationOutput(
             primary=primary,
             comorbid=comorbid,
             abstained=abstained,
+            rejected=rejected,
         )
+
+    def _classify_rejection_reason(self, diagnosis: CalibratedDiagnosis) -> str:
+        """Provide an interpretable reason for non-primary rejection."""
+        if diagnosis.threshold_ratio < 1.0:
+            return "insufficient_threshold_support"
+        if diagnosis.evidence_coverage < 0.25:
+            return "insufficient_evidence_coverage"
+        return "below_comorbid_threshold"
+
+    def _score_disorder(
+        self,
+        disorder_code: str,
+        checker_output: CheckerOutput,
+        all_confirmed_outputs: list[CheckerOutput],
+        evidence: EvidenceBrief | None,
+        scale_scores: list[ScaleScore] | None,
+    ) -> CalibratedDiagnosis:
+        """Score one confirmed disorder with either artifact or heuristic path."""
+        if self.artifact is not None:
+            return self._compute_calibrated_artifact(
+                disorder_code,
+                checker_output,
+                all_confirmed_outputs,
+                evidence,
+                scale_scores,
+            )
+        if self.version >= 2:
+            return self._compute_calibrated_v2(
+                disorder_code,
+                checker_output,
+                all_confirmed_outputs,
+                evidence,
+                scale_scores,
+            )
+        return self._compute_calibrated(disorder_code, checker_output, evidence)
+
+    def _compute_calibrated_artifact(
+        self,
+        disorder_code: str,
+        checker_output: CheckerOutput,
+        all_confirmed_outputs: list[CheckerOutput],
+        evidence: EvidenceBrief | None,
+        scale_scores: list[ScaleScore] | None = None,
+    ) -> CalibratedDiagnosis:
+        """Score a disorder using a learned linear calibration artifact."""
+        feature_map = self._extract_feature_map(
+            disorder_code=disorder_code,
+            checker_output=checker_output,
+            all_confirmed_outputs=all_confirmed_outputs,
+            evidence=evidence,
+            scale_scores=scale_scores,
+        )
+        score = self._linear_score(feature_map, self.artifact)
+        confidence = self._sigmoid(score)
+
+        decision_trace = {
+            "calibration_path": "artifact",
+            "artifact_type": self.artifact.artifact_type,
+            "schema_version": self.artifact.schema_version,
+            "linear_score": score,
+            "feature_names": list(self.artifact.feature_names),
+            "feature_vector": {name: feature_map.get(name, 0.0) for name in self.artifact.feature_names},
+            "metadata": dict(self.artifact.metadata),
+        }
+
+        met_criteria = [cr for cr in checker_output.criteria if cr.status == "met"]
+        met_count = len(met_criteria)
+        total_count = len(checker_output.criteria)
+        return CalibratedDiagnosis(
+            disorder_code=disorder_code,
+            confidence=confidence,
+            decision="",
+            calibration_path="artifact",
+            feature_vector=decision_trace["feature_vector"],
+            decision_trace=decision_trace,
+            evidence_coverage=feature_map["evidence_coverage"],
+            avg_criterion_confidence=feature_map["avg_confidence"],
+            threshold_ratio=feature_map["threshold_ratio"],
+            criteria_met_count=met_count,
+            criteria_total_count=total_count,
+            core_score=feature_map["core_score"],
+            uniqueness_score=feature_map["uniqueness_score"],
+            margin_score=feature_map["margin_score"],
+            variance_penalty=feature_map["variance_penalty"],
+            info_content_score=feature_map["info_content_score"],
+            scale_score_signal=feature_map["scale_score_signal"],
+        )
+
+    @staticmethod
+    def _sigmoid(value: float) -> float:
+        if value >= 0:
+            z = math.exp(-value)
+            return 1.0 / (1.0 + z)
+        z = math.exp(value)
+        return z / (1.0 + z)
+
+    @staticmethod
+    def _linear_score(feature_map: dict[str, float], artifact: CalibratorArtifact) -> float:
+        score = artifact.bias
+        for name in artifact.feature_names:
+            score += artifact.weights.get(name, 0.0) * feature_map.get(name, 0.0)
+        return score
+
+    def _extract_feature_map(
+        self,
+        disorder_code: str,
+        checker_output: CheckerOutput,
+        all_confirmed_outputs: list[CheckerOutput],
+        evidence: EvidenceBrief | None,
+        scale_scores: list[ScaleScore] | None = None,
+    ) -> dict[str, float]:
+        """Build a stable feature map for both heuristic and learned calibration."""
+        met_criteria = [cr for cr in checker_output.criteria if cr.status == "met"]
+        avg_conf = (
+            sum(cr.confidence for cr in met_criteria) / len(met_criteria)
+            if met_criteria
+            else 0.0
+        )
+
+        from culturedx.ontology.icd10 import get_disorder_threshold
+        threshold = get_disorder_threshold(disorder_code)
+        required = self._compute_required_from_threshold(
+            threshold, checker_output, disorder_code
+        )
+        threshold_ratio = (
+            min(1.0, checker_output.criteria_met_count / required)
+            if required > 0
+            else (1.0 if checker_output.criteria_met_count > 0 else 0.0)
+        )
+
+        evidence_coverage = self._compute_evidence_coverage(
+            disorder_code, checker_output, evidence
+        )
+        core_score = self._compute_core_score(checker_output, disorder_code)
+        uniqueness = self._compute_evidence_uniqueness(
+            disorder_code, checker_output, all_confirmed_outputs
+        )
+        margin = self._compute_margin_score(checker_output, disorder_code, required)
+        variance = self._compute_variance_penalty(checker_output)
+        info_content = self._compute_info_content(checker_output)
+        scale_score_sig = self._compute_scale_score_signal(disorder_code, scale_scores)
+        met_count = len(met_criteria)
+        total_count = len(checker_output.criteria)
+        met_fraction = met_count / total_count if total_count > 0 else 0.0
+        met_minus_required = float(met_count - required)
+
+        feature_map = {
+            "avg_confidence": avg_conf,
+            "threshold_ratio": threshold_ratio,
+            "evidence_coverage": evidence_coverage,
+            "core_score": core_score,
+            "uniqueness_score": uniqueness,
+            "margin_score": margin,
+            "variance_penalty": variance,
+            "info_content_score": info_content,
+            "scale_score_signal": scale_score_sig,
+            "criteria_met_count": float(met_count),
+            "criteria_total_count": float(total_count),
+            "met_fraction": met_fraction,
+            "met_minus_required": met_minus_required,
+        }
+        return feature_map
+
+    @classmethod
+    def fit_linear_artifact(
+        cls,
+        examples: Sequence[dict[str, float]],
+        labels: Sequence[int | bool],
+        feature_names: Sequence[str] | None = None,
+        abstain_threshold: float = 0.3,
+        comorbid_threshold: float = 0.5,
+        metadata: dict[str, Any] | None = None,
+        c: float = 1.0,
+        max_iter: int = 1000,
+    ) -> CalibratorArtifact:
+        """Fit a simple logistic-regression artifact from feature rows."""
+        if len(examples) != len(labels):
+            raise ValueError(
+                f"examples/labels length mismatch: {len(examples)} vs {len(labels)}"
+            )
+        if not examples:
+            raise ValueError("cannot fit calibrator artifact from empty data")
+
+        names = list(feature_names) if feature_names is not None else cls._infer_feature_names(examples)
+        if len(set(int(bool(v)) for v in labels)) < 2:
+            raise ValueError("need both positive and negative labels to fit artifact")
+
+        try:
+            from sklearn.linear_model import LogisticRegression
+        except Exception as exc:  # pragma: no cover - dependency should exist in repo
+            raise RuntimeError("scikit-learn is required to fit a calibrator artifact") from exc
+
+        X = [[float(example.get(name, 0.0)) for name in names] for example in examples]
+        y = [int(bool(label)) for label in labels]
+
+        model = LogisticRegression(C=c, max_iter=max_iter, random_state=42)
+        model.fit(X, y)
+
+        weights = {name: float(weight) for name, weight in zip(names, model.coef_[0])}
+        return CalibratorArtifact(
+            feature_names=names,
+            weights=weights,
+            bias=float(model.intercept_[0]),
+            abstain_threshold=abstain_threshold,
+            comorbid_threshold=comorbid_threshold,
+            metadata={
+                **(metadata or {}),
+                "n_examples": len(examples),
+                "positive_rate": float(sum(y) / len(y)),
+            },
+        )
+
+    @staticmethod
+    def _infer_feature_names(examples: Sequence[dict[str, float]]) -> list[str]:
+        names: list[str] = []
+        seen: set[str] = set()
+        for example in examples:
+            for name in example.keys():
+                if name not in seen:
+                    seen.add(name)
+                    names.append(name)
+        return names
+
+    def extract_calibration_features(
+        self,
+        disorder_code: str,
+        checker_output: CheckerOutput,
+        all_confirmed_outputs: list[CheckerOutput],
+        evidence: EvidenceBrief | None = None,
+        scale_scores: list[ScaleScore] | None = None,
+    ) -> dict[str, float]:
+        """Public wrapper for building the calibrator feature map.
+
+        This is the safest entry point for training/evaluation scripts that
+        need the same feature construction logic as runtime calibration.
+        """
+        return self._extract_feature_map(
+            disorder_code=disorder_code,
+            checker_output=checker_output,
+            all_confirmed_outputs=all_confirmed_outputs,
+            evidence=evidence,
+            scale_scores=scale_scores,
+        )
+
+    @classmethod
+    def load_artifact(cls, path: str | Path) -> CalibratorArtifact:
+        """Load a learned calibrator artifact from disk."""
+        return CalibratorArtifact.load(path)
 
     def _compute_calibrated(
         self,
@@ -228,6 +614,18 @@ class ConfidenceCalibrator:
             disorder_code=disorder_code,
             confidence=confidence,
             decision="",  # Set by calibrate()
+            calibration_path=f"heuristic_v{self.version}",
+            feature_vector={
+                "avg_confidence": avg_conf,
+                "threshold_ratio": threshold_ratio,
+                "evidence_coverage": evidence_coverage,
+            },
+            decision_trace={
+                "calibration_path": f"heuristic_v{self.version}",
+                "avg_criterion_confidence": avg_conf,
+                "threshold_ratio": threshold_ratio,
+                "evidence_coverage": evidence_coverage,
+            },
             evidence_coverage=evidence_coverage,
             avg_criterion_confidence=avg_conf,
             threshold_ratio=threshold_ratio,
@@ -298,6 +696,30 @@ class ConfidenceCalibrator:
             disorder_code=disorder_code,
             confidence=confidence,
             decision="",
+            calibration_path="heuristic_v2",
+            feature_vector={
+                "avg_confidence": avg_conf,
+                "threshold_ratio": threshold_ratio,
+                "evidence_coverage": evidence_coverage,
+                "core_score": core_score,
+                "uniqueness_score": uniqueness,
+                "margin_score": margin,
+                "variance_penalty": variance,
+                "info_content_score": info_content,
+                "scale_score_signal": scale_score_sig,
+            },
+            decision_trace={
+                "calibration_path": "heuristic_v2",
+                "avg_criterion_confidence": avg_conf,
+                "threshold_ratio": threshold_ratio,
+                "evidence_coverage": evidence_coverage,
+                "core_score": core_score,
+                "uniqueness_score": uniqueness,
+                "margin_score": margin,
+                "variance_penalty": variance,
+                "info_content_score": info_content,
+                "scale_score_signal": scale_score_sig,
+            },
             evidence_coverage=evidence_coverage,
             avg_criterion_confidence=avg_conf,
             threshold_ratio=threshold_ratio,

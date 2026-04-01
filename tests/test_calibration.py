@@ -5,7 +5,9 @@ import pytest
 
 from culturedx.eval.calibration import (
     CalibrationResult,
+    compute_abstention_breakdown,
     compute_calibration,
+    compute_brier_score,
     format_calibration_table,
     format_reliability_diagram_data,
 )
@@ -53,6 +55,22 @@ class TestComputeCalibration:
         result = compute_calibration([0.8], [True], mode="single")
         assert result.n_samples == 1
         assert result.ece == pytest.approx(0.2)  # |0.8 - 1.0| = 0.2
+
+    def test_brier_score(self):
+        score = compute_brier_score([0.9, 0.1], [True, False])
+        assert score == pytest.approx(((0.9 - 1.0) ** 2 + (0.1 - 0.0) ** 2) / 2)
+
+    def test_abstention_breakdown(self):
+        summary = compute_abstention_breakdown(
+            confidences=[0.9, 0.2, 0.6, 0.1],
+            correct=[True, False, True, False],
+            abstained=[False, True, False, True],
+        )
+        assert summary["n_samples"] == 4
+        assert summary["abstain_rate"] == pytest.approx(0.5)
+        assert summary["coverage"] == pytest.approx(0.5)
+        assert "diagnosed_accuracy" in summary
+        assert "abstained_accuracy" in summary
 
 
 class TestFormatting:

@@ -1,0 +1,609 @@
+[2026-04-01 02:02:54] Waiting for teacher data generation (PID 154302)...
+[2026-04-01 02:02:54] Teacher gen: 259/5000 prompts completed
+[2026-04-01 02:03:54] Teacher gen: 299/5000 prompts completed
+[2026-04-01 02:04:54] Teacher gen: 340/5000 prompts completed
+[2026-04-01 02:05:54] Teacher gen: 381/5000 prompts completed
+[2026-04-01 02:06:54] Teacher gen: 418/5000 prompts completed
+[2026-04-01 02:07:54] Teacher gen: 458/5000 prompts completed
+[2026-04-01 02:08:54] Teacher gen: 495/5000 prompts completed
+[2026-04-01 02:09:54] Teacher gen: 537/5000 prompts completed
+[2026-04-01 02:10:54] Teacher gen: 578/5000 prompts completed
+[2026-04-01 02:11:54] Teacher gen: 618/5000 prompts completed
+[2026-04-01 02:12:54] Teacher gen: 658/5000 prompts completed
+[2026-04-01 02:13:54] Teacher gen: 698/5000 prompts completed
+[2026-04-01 02:14:54] Teacher gen: 738/5000 prompts completed
+[2026-04-01 02:15:54] Teacher gen: 778/5000 prompts completed
+[2026-04-01 02:16:54] Teacher gen: 813/5000 prompts completed
+[2026-04-01 02:17:54] Teacher gen: 852/5000 prompts completed
+[2026-04-01 02:18:54] Teacher gen: 890/5000 prompts completed
+[2026-04-01 02:19:54] Teacher gen: 928/5000 prompts completed
+[2026-04-01 02:20:54] Teacher gen: 970/5000 prompts completed
+[2026-04-01 02:21:54] Teacher gen: 1009/5000 prompts completed
+[2026-04-01 02:22:54] Teacher gen: 1048/5000 prompts completed
+[2026-04-01 02:23:54] Teacher gen: 1085/5000 prompts completed
+[2026-04-01 02:24:54] Teacher gen: 1124/5000 prompts completed
+[2026-04-01 02:25:54] Teacher gen: 1164/5000 prompts completed
+[2026-04-01 02:26:54] Teacher gen: 1200/5000 prompts completed
+[2026-04-01 02:27:54] Teacher gen: 1235/5000 prompts completed
+[2026-04-01 02:28:54] Teacher gen: 1270/5000 prompts completed
+[2026-04-01 02:29:54] Teacher gen: 1306/5000 prompts completed
+[2026-04-01 02:30:54] Teacher gen: 1343/5000 prompts completed
+[2026-04-01 02:31:54] Teacher gen: 1377/5000 prompts completed
+[2026-04-01 02:32:54] Teacher gen: 1410/5000 prompts completed
+[2026-04-01 02:33:54] Teacher gen: 1445/5000 prompts completed
+[2026-04-01 02:34:54] Teacher gen: 1480/5000 prompts completed
+[2026-04-01 02:35:54] Teacher gen: 1517/5000 prompts completed
+[2026-04-01 02:36:54] Teacher gen: 1554/5000 prompts completed
+[2026-04-01 02:37:54] Teacher gen: 1591/5000 prompts completed
+[2026-04-01 02:38:54] Teacher gen: 1626/5000 prompts completed
+[2026-04-01 02:39:54] Teacher gen: 1666/5000 prompts completed
+[2026-04-01 02:40:54] Teacher gen: 1704/5000 prompts completed
+[2026-04-01 02:41:54] Teacher gen: 1744/5000 prompts completed
+[2026-04-01 02:42:54] Teacher gen: 1784/5000 prompts completed
+[2026-04-01 02:43:54] Teacher gen: 1818/5000 prompts completed
+[2026-04-01 02:44:54] Teacher gen: 1860/5000 prompts completed
+[2026-04-01 02:45:54] Teacher gen: 1900/5000 prompts completed
+[2026-04-01 02:46:54] Teacher gen: 1939/5000 prompts completed
+[2026-04-01 02:47:54] Teacher gen: 1980/5000 prompts completed
+[2026-04-01 02:48:54] Teacher gen: 2017/5000 prompts completed
+[2026-04-01 02:49:54] Teacher gen: 2059/5000 prompts completed
+[2026-04-01 02:50:54] Teacher gen: 2099/5000 prompts completed
+[2026-04-01 02:51:54] Teacher gen: 2136/5000 prompts completed
+[2026-04-01 02:52:54] Teacher gen: 2174/5000 prompts completed
+[2026-04-01 02:53:54] Teacher gen: 2211/5000 prompts completed
+[2026-04-01 02:54:54] Teacher gen: 2250/5000 prompts completed
+[2026-04-01 02:55:54] Teacher gen: 2293/5000 prompts completed
+[2026-04-01 02:56:54] Teacher gen: 2332/5000 prompts completed
+[2026-04-01 02:57:54] Teacher gen: 2369/5000 prompts completed
+[2026-04-01 02:58:54] Teacher gen: 2406/5000 prompts completed
+[2026-04-01 02:59:54] Teacher gen: 2444/5000 prompts completed
+[2026-04-01 03:00:54] Teacher gen: 2483/5000 prompts completed
+[2026-04-01 03:01:54] Teacher gen: 2502/5000 prompts completed
+[2026-04-01 03:02:54] Teacher gen: 2510/5000 prompts completed
+[2026-04-01 03:03:54] Teacher gen: 2517/5000 prompts completed
+[2026-04-01 03:04:54] Teacher gen: 2523/5000 prompts completed
+[2026-04-01 03:05:54] Teacher gen: 2529/5000 prompts completed
+[2026-04-01 03:06:54] Teacher gen: 2536/5000 prompts completed
+[2026-04-01 03:07:54] Teacher gen: 2541/5000 prompts completed
+[2026-04-01 03:08:54] Teacher gen: 2548/5000 prompts completed
+[2026-04-01 03:09:54] Teacher gen: 2555/5000 prompts completed
+[2026-04-01 03:10:54] Teacher gen: 2561/5000 prompts completed
+[2026-04-01 03:11:54] Teacher gen: 2568/5000 prompts completed
+[2026-04-01 03:12:54] Teacher gen: 2575/5000 prompts completed
+[2026-04-01 03:13:54] Teacher gen: 2581/5000 prompts completed
+[2026-04-01 03:14:54] Teacher gen: 2588/5000 prompts completed
+[2026-04-01 03:15:54] Teacher gen: 2595/5000 prompts completed
+[2026-04-01 03:16:54] Teacher gen: 2601/5000 prompts completed
+[2026-04-01 03:17:54] Teacher gen: 2608/5000 prompts completed
+[2026-04-01 03:18:54] Teacher gen: 2615/5000 prompts completed
+[2026-04-01 03:19:54] Teacher gen: 2621/5000 prompts completed
+[2026-04-01 03:20:54] Teacher gen: 2629/5000 prompts completed
+[2026-04-01 03:21:54] Teacher gen: 2635/5000 prompts completed
+[2026-04-01 03:22:54] Teacher gen: 2641/5000 prompts completed
+[2026-04-01 03:23:54] Teacher gen: 2647/5000 prompts completed
+[2026-04-01 03:24:54] Teacher gen: 2653/5000 prompts completed
+[2026-04-01 03:25:54] Teacher gen: 2660/5000 prompts completed
+[2026-04-01 03:26:54] Teacher gen: 2666/5000 prompts completed
+[2026-04-01 03:27:54] Teacher gen: 2672/5000 prompts completed
+[2026-04-01 03:28:54] Teacher gen: 2680/5000 prompts completed
+[2026-04-01 03:29:54] Teacher gen: 2686/5000 prompts completed
+[2026-04-01 03:30:54] Teacher gen: 2693/5000 prompts completed
+[2026-04-01 03:31:54] Teacher gen: 2700/5000 prompts completed
+[2026-04-01 03:32:54] Teacher gen: 2706/5000 prompts completed
+[2026-04-01 03:33:54] Teacher gen: 2712/5000 prompts completed
+[2026-04-01 03:34:54] Teacher gen: 2719/5000 prompts completed
+[2026-04-01 03:35:54] Teacher gen: 2725/5000 prompts completed
+[2026-04-01 03:36:54] Teacher gen: 2730/5000 prompts completed
+[2026-04-01 03:37:54] Teacher gen: 2736/5000 prompts completed
+[2026-04-01 03:38:54] Teacher gen: 2743/5000 prompts completed
+[2026-04-01 03:39:54] Teacher gen: 2749/5000 prompts completed
+[2026-04-01 03:40:54] Teacher gen: 2755/5000 prompts completed
+[2026-04-01 03:41:54] Teacher gen: 2761/5000 prompts completed
+[2026-04-01 03:42:54] Teacher gen: 2767/5000 prompts completed
+[2026-04-01 03:43:54] Teacher gen: 2775/5000 prompts completed
+[2026-04-01 03:44:54] Teacher gen: 2780/5000 prompts completed
+[2026-04-01 03:45:54] Teacher gen: 2787/5000 prompts completed
+[2026-04-01 03:46:54] Teacher gen: 2794/5000 prompts completed
+[2026-04-01 03:47:54] Teacher gen: 2800/5000 prompts completed
+[2026-04-01 03:48:54] Teacher gen: 2806/5000 prompts completed
+[2026-04-01 03:49:54] Teacher gen: 2814/5000 prompts completed
+[2026-04-01 03:50:54] Teacher gen: 2820/5000 prompts completed
+[2026-04-01 03:51:55] Teacher gen: 2826/5000 prompts completed
+[2026-04-01 03:52:55] Teacher gen: 2834/5000 prompts completed
+[2026-04-01 03:53:55] Teacher gen: 2840/5000 prompts completed
+[2026-04-01 03:54:55] Teacher gen: 2846/5000 prompts completed
+[2026-04-01 03:55:55] Teacher gen: 2852/5000 prompts completed
+[2026-04-01 03:56:55] Teacher gen: 2859/5000 prompts completed
+[2026-04-01 03:57:55] Teacher gen: 2866/5000 prompts completed
+[2026-04-01 03:58:55] Teacher gen: 2871/5000 prompts completed
+[2026-04-01 03:59:55] Teacher gen: 2878/5000 prompts completed
+[2026-04-01 04:00:55] Teacher gen: 2885/5000 prompts completed
+[2026-04-01 04:01:55] Teacher gen: 2891/5000 prompts completed
+[2026-04-01 04:02:55] Teacher gen: 2897/5000 prompts completed
+[2026-04-01 04:03:55] Teacher gen: 2905/5000 prompts completed
+[2026-04-01 04:04:55] Teacher gen: 2911/5000 prompts completed
+[2026-04-01 04:05:55] Teacher gen: 2918/5000 prompts completed
+[2026-04-01 04:06:55] Teacher gen: 2925/5000 prompts completed
+[2026-04-01 04:07:55] Teacher gen: 2930/5000 prompts completed
+[2026-04-01 04:08:55] Teacher gen: 2937/5000 prompts completed
+[2026-04-01 04:09:55] Teacher gen: 2944/5000 prompts completed
+[2026-04-01 04:10:55] Teacher gen: 2950/5000 prompts completed
+[2026-04-01 04:11:55] Teacher gen: 2957/5000 prompts completed
+[2026-04-01 04:12:55] Teacher gen: 2964/5000 prompts completed
+[2026-04-01 04:13:55] Teacher gen: 2970/5000 prompts completed
+[2026-04-01 04:14:55] Teacher gen: 2977/5000 prompts completed
+[2026-04-01 04:15:55] Teacher gen: 2983/5000 prompts completed
+[2026-04-01 04:16:55] Teacher gen: 2990/5000 prompts completed
+[2026-04-01 04:17:55] Teacher gen: 2997/5000 prompts completed
+[2026-04-01 04:18:55] Teacher gen: 3003/5000 prompts completed
+[2026-04-01 04:19:55] Teacher gen: 3010/5000 prompts completed
+[2026-04-01 04:20:55] Teacher gen: 3017/5000 prompts completed
+[2026-04-01 04:21:55] Teacher gen: 3024/5000 prompts completed
+[2026-04-01 04:22:55] Teacher gen: 3030/5000 prompts completed
+[2026-04-01 04:23:55] Teacher gen: 3036/5000 prompts completed
+[2026-04-01 04:24:55] Teacher gen: 3043/5000 prompts completed
+[2026-04-01 04:25:55] Teacher gen: 3050/5000 prompts completed
+[2026-04-01 04:26:55] Teacher gen: 3055/5000 prompts completed
+[2026-04-01 04:27:55] Teacher gen: 3062/5000 prompts completed
+[2026-04-01 04:28:55] Teacher gen: 3069/5000 prompts completed
+[2026-04-01 04:29:55] Teacher gen: 3075/5000 prompts completed
+[2026-04-01 04:30:55] Teacher gen: 3081/5000 prompts completed
+[2026-04-01 04:31:55] Teacher gen: 3087/5000 prompts completed
+[2026-04-01 04:32:55] Teacher gen: 3094/5000 prompts completed
+[2026-04-01 04:33:55] Teacher gen: 3101/5000 prompts completed
+[2026-04-01 04:34:55] Teacher gen: 3108/5000 prompts completed
+[2026-04-01 04:35:55] Teacher gen: 3115/5000 prompts completed
+[2026-04-01 04:36:55] Teacher gen: 3120/5000 prompts completed
+[2026-04-01 04:37:55] Teacher gen: 3127/5000 prompts completed
+[2026-04-01 04:38:55] Teacher gen: 3134/5000 prompts completed
+[2026-04-01 04:39:55] Teacher gen: 3140/5000 prompts completed
+[2026-04-01 04:40:55] Teacher gen: 3148/5000 prompts completed
+[2026-04-01 04:41:55] Teacher gen: 3154/5000 prompts completed
+[2026-04-01 04:42:55] Teacher gen: 3160/5000 prompts completed
+[2026-04-01 04:43:55] Teacher gen: 3166/5000 prompts completed
+[2026-04-01 04:44:55] Teacher gen: 3173/5000 prompts completed
+[2026-04-01 04:45:55] Teacher gen: 3180/5000 prompts completed
+[2026-04-01 04:46:55] Teacher gen: 3186/5000 prompts completed
+[2026-04-01 04:47:55] Teacher gen: 3193/5000 prompts completed
+[2026-04-01 04:48:55] Teacher gen: 3200/5000 prompts completed
+[2026-04-01 04:49:55] Teacher gen: 3205/5000 prompts completed
+[2026-04-01 04:50:55] Teacher gen: 3212/5000 prompts completed
+[2026-04-01 04:51:55] Teacher gen: 3217/5000 prompts completed
+[2026-04-01 04:52:55] Teacher gen: 3224/5000 prompts completed
+[2026-04-01 04:53:55] Teacher gen: 3231/5000 prompts completed
+[2026-04-01 04:54:55] Teacher gen: 3238/5000 prompts completed
+[2026-04-01 04:55:55] Teacher gen: 3245/5000 prompts completed
+[2026-04-01 04:56:55] Teacher gen: 3250/5000 prompts completed
+[2026-04-01 04:57:55] Teacher gen: 3258/5000 prompts completed
+[2026-04-01 04:58:55] Teacher gen: 3264/5000 prompts completed
+[2026-04-01 04:59:55] Teacher gen: 3270/5000 prompts completed
+[2026-04-01 05:00:55] Teacher gen: 3277/5000 prompts completed
+[2026-04-01 05:01:55] Teacher gen: 3284/5000 prompts completed
+[2026-04-01 05:02:55] Teacher gen: 3289/5000 prompts completed
+[2026-04-01 05:03:55] Teacher gen: 3295/5000 prompts completed
+[2026-04-01 05:04:55] Teacher gen: 3302/5000 prompts completed
+[2026-04-01 05:05:55] Teacher gen: 3309/5000 prompts completed
+[2026-04-01 05:06:55] Teacher gen: 3315/5000 prompts completed
+[2026-04-01 05:07:55] Teacher gen: 3321/5000 prompts completed
+[2026-04-01 05:08:55] Teacher gen: 3329/5000 prompts completed
+[2026-04-01 05:09:55] Teacher gen: 3334/5000 prompts completed
+[2026-04-01 05:10:55] Teacher gen: 3341/5000 prompts completed
+[2026-04-01 05:11:55] Teacher gen: 3346/5000 prompts completed
+[2026-04-01 05:12:55] Teacher gen: 3352/5000 prompts completed
+[2026-04-01 05:13:55] Teacher gen: 3358/5000 prompts completed
+[2026-04-01 05:14:55] Teacher gen: 3365/5000 prompts completed
+[2026-04-01 05:15:55] Teacher gen: 3371/5000 prompts completed
+[2026-04-01 05:16:55] Teacher gen: 3379/5000 prompts completed
+[2026-04-01 05:17:55] Teacher gen: 3385/5000 prompts completed
+[2026-04-01 05:18:55] Teacher gen: 3391/5000 prompts completed
+[2026-04-01 05:19:55] Teacher gen: 3398/5000 prompts completed
+[2026-04-01 05:20:55] Teacher gen: 3404/5000 prompts completed
+[2026-04-01 05:21:55] Teacher gen: 3410/5000 prompts completed
+[2026-04-01 05:22:55] Teacher gen: 3416/5000 prompts completed
+[2026-04-01 05:23:55] Teacher gen: 3423/5000 prompts completed
+[2026-04-01 05:24:55] Teacher gen: 3430/5000 prompts completed
+[2026-04-01 05:25:55] Teacher gen: 3436/5000 prompts completed
+[2026-04-01 05:26:55] Teacher gen: 3444/5000 prompts completed
+[2026-04-01 05:27:55] Teacher gen: 3450/5000 prompts completed
+[2026-04-01 05:28:55] Teacher gen: 3457/5000 prompts completed
+[2026-04-01 05:29:55] Teacher gen: 3464/5000 prompts completed
+[2026-04-01 05:30:55] Teacher gen: 3470/5000 prompts completed
+[2026-04-01 05:31:55] Teacher gen: 3476/5000 prompts completed
+[2026-04-01 05:32:55] Teacher gen: 3482/5000 prompts completed
+[2026-04-01 05:33:55] Teacher gen: 3488/5000 prompts completed
+[2026-04-01 05:34:55] Teacher gen: 3495/5000 prompts completed
+[2026-04-01 05:35:55] Teacher gen: 3500/5000 prompts completed
+[2026-04-01 05:36:55] Teacher gen: 3507/5000 prompts completed
+[2026-04-01 05:37:55] Teacher gen: 3513/5000 prompts completed
+[2026-04-01 05:38:55] Teacher gen: 3520/5000 prompts completed
+[2026-04-01 05:39:55] Teacher gen: 3525/5000 prompts completed
+[2026-04-01 05:40:55] Teacher gen: 3530/5000 prompts completed
+[2026-04-01 05:41:55] Teacher gen: 3536/5000 prompts completed
+[2026-04-01 05:42:55] Teacher gen: 3543/5000 prompts completed
+[2026-04-01 05:43:55] Teacher gen: 3549/5000 prompts completed
+[2026-04-01 05:44:55] Teacher gen: 3555/5000 prompts completed
+[2026-04-01 05:45:55] Teacher gen: 3561/5000 prompts completed
+[2026-04-01 05:46:55] Teacher gen: 3568/5000 prompts completed
+[2026-04-01 05:47:55] Teacher gen: 3575/5000 prompts completed
+[2026-04-01 05:48:55] Teacher gen: 3582/5000 prompts completed
+[2026-04-01 05:49:55] Teacher gen: 3589/5000 prompts completed
+[2026-04-01 05:50:55] Teacher gen: 3595/5000 prompts completed
+[2026-04-01 05:51:55] Teacher gen: 3602/5000 prompts completed
+[2026-04-01 05:52:55] Teacher gen: 3608/5000 prompts completed
+[2026-04-01 05:53:55] Teacher gen: 3615/5000 prompts completed
+[2026-04-01 05:54:55] Teacher gen: 3620/5000 prompts completed
+[2026-04-01 05:55:55] Teacher gen: 3627/5000 prompts completed
+[2026-04-01 05:56:55] Teacher gen: 3635/5000 prompts completed
+[2026-04-01 05:57:55] Teacher gen: 3641/5000 prompts completed
+[2026-04-01 05:58:55] Teacher gen: 3648/5000 prompts completed
+[2026-04-01 05:59:55] Teacher gen: 3654/5000 prompts completed
+[2026-04-01 06:00:55] Teacher gen: 3660/5000 prompts completed
+[2026-04-01 06:01:55] Teacher gen: 3667/5000 prompts completed
+[2026-04-01 06:02:55] Teacher gen: 3674/5000 prompts completed
+[2026-04-01 06:03:55] Teacher gen: 3680/5000 prompts completed
+[2026-04-01 06:04:55] Teacher gen: 3687/5000 prompts completed
+[2026-04-01 06:05:55] Teacher gen: 3693/5000 prompts completed
+[2026-04-01 06:06:55] Teacher gen: 3700/5000 prompts completed
+[2026-04-01 06:07:55] Teacher gen: 3706/5000 prompts completed
+[2026-04-01 06:08:55] Teacher gen: 3712/5000 prompts completed
+[2026-04-01 06:09:55] Teacher gen: 3720/5000 prompts completed
+[2026-04-01 06:10:55] Teacher gen: 3725/5000 prompts completed
+[2026-04-01 06:11:55] Teacher gen: 3732/5000 prompts completed
+[2026-04-01 06:12:55] Teacher gen: 3738/5000 prompts completed
+[2026-04-01 06:13:55] Teacher gen: 3745/5000 prompts completed
+[2026-04-01 06:14:55] Teacher gen: 3751/5000 prompts completed
+[2026-04-01 06:15:55] Teacher gen: 3758/5000 prompts completed
+[2026-04-01 06:16:55] Teacher gen: 3765/5000 prompts completed
+[2026-04-01 06:17:55] Teacher gen: 3771/5000 prompts completed
+[2026-04-01 06:18:55] Teacher gen: 3778/5000 prompts completed
+[2026-04-01 06:19:55] Teacher gen: 3785/5000 prompts completed
+[2026-04-01 06:20:55] Teacher gen: 3791/5000 prompts completed
+[2026-04-01 06:21:55] Teacher gen: 3797/5000 prompts completed
+[2026-04-01 06:22:55] Teacher gen: 3804/5000 prompts completed
+[2026-04-01 06:23:55] Teacher gen: 3810/5000 prompts completed
+[2026-04-01 06:24:55] Teacher gen: 3816/5000 prompts completed
+[2026-04-01 06:25:55] Teacher gen: 3823/5000 prompts completed
+[2026-04-01 06:26:55] Teacher gen: 3829/5000 prompts completed
+[2026-04-01 06:27:55] Teacher gen: 3835/5000 prompts completed
+[2026-04-01 06:28:55] Teacher gen: 3842/5000 prompts completed
+[2026-04-01 06:29:55] Teacher gen: 3849/5000 prompts completed
+[2026-04-01 06:30:55] Teacher gen: 3855/5000 prompts completed
+[2026-04-01 06:31:55] Teacher gen: 3862/5000 prompts completed
+[2026-04-01 06:32:55] Teacher gen: 3868/5000 prompts completed
+[2026-04-01 06:33:55] Teacher gen: 3875/5000 prompts completed
+[2026-04-01 06:34:55] Teacher gen: 3882/5000 prompts completed
+[2026-04-01 06:35:55] Teacher gen: 3889/5000 prompts completed
+[2026-04-01 06:36:55] Teacher gen: 3895/5000 prompts completed
+[2026-04-01 06:37:55] Teacher gen: 3901/5000 prompts completed
+[2026-04-01 06:38:55] Teacher gen: 3909/5000 prompts completed
+[2026-04-01 06:39:55] Teacher gen: 3915/5000 prompts completed
+[2026-04-01 06:40:55] Teacher gen: 3923/5000 prompts completed
+[2026-04-01 06:41:55] Teacher gen: 3929/5000 prompts completed
+[2026-04-01 06:42:55] Teacher gen: 3935/5000 prompts completed
+[2026-04-01 06:43:55] Teacher gen: 3942/5000 prompts completed
+[2026-04-01 06:44:55] Teacher gen: 3949/5000 prompts completed
+[2026-04-01 06:45:55] Teacher gen: 3955/5000 prompts completed
+[2026-04-01 06:46:55] Teacher gen: 3962/5000 prompts completed
+[2026-04-01 06:47:55] Teacher gen: 3969/5000 prompts completed
+[2026-04-01 06:48:55] Teacher gen: 3975/5000 prompts completed
+[2026-04-01 06:49:55] Teacher gen: 3982/5000 prompts completed
+[2026-04-01 06:50:55] Teacher gen: 3989/5000 prompts completed
+[2026-04-01 06:51:55] Teacher gen: 3995/5000 prompts completed
+[2026-04-01 06:52:55] Teacher gen: 4002/5000 prompts completed
+[2026-04-01 06:53:55] Teacher gen: 4008/5000 prompts completed
+[2026-04-01 06:54:55] Teacher gen: 4014/5000 prompts completed
+[2026-04-01 06:55:55] Teacher gen: 4020/5000 prompts completed
+[2026-04-01 06:56:55] Teacher gen: 4026/5000 prompts completed
+[2026-04-01 06:57:55] Teacher gen: 4033/5000 prompts completed
+[2026-04-01 06:58:55] Teacher gen: 4040/5000 prompts completed
+[2026-04-01 06:59:55] Teacher gen: 4045/5000 prompts completed
+[2026-04-01 07:00:55] Teacher gen: 4052/5000 prompts completed
+[2026-04-01 07:01:55] Teacher gen: 4059/5000 prompts completed
+[2026-04-01 07:02:55] Teacher gen: 4065/5000 prompts completed
+[2026-04-01 07:03:55] Teacher gen: 4072/5000 prompts completed
+[2026-04-01 07:04:55] Teacher gen: 4078/5000 prompts completed
+[2026-04-01 07:05:55] Teacher gen: 4084/5000 prompts completed
+[2026-04-01 07:06:55] Teacher gen: 4091/5000 prompts completed
+[2026-04-01 07:07:55] Teacher gen: 4099/5000 prompts completed
+[2026-04-01 07:08:55] Teacher gen: 4105/5000 prompts completed
+[2026-04-01 07:09:55] Teacher gen: 4111/5000 prompts completed
+[2026-04-01 07:10:55] Teacher gen: 4119/5000 prompts completed
+[2026-04-01 07:11:55] Teacher gen: 4125/5000 prompts completed
+[2026-04-01 07:12:55] Teacher gen: 4131/5000 prompts completed
+[2026-04-01 07:13:55] Teacher gen: 4138/5000 prompts completed
+[2026-04-01 07:14:55] Teacher gen: 4145/5000 prompts completed
+[2026-04-01 07:15:55] Teacher gen: 4150/5000 prompts completed
+[2026-04-01 07:16:55] Teacher gen: 4157/5000 prompts completed
+[2026-04-01 07:17:55] Teacher gen: 4165/5000 prompts completed
+[2026-04-01 07:18:55] Teacher gen: 4171/5000 prompts completed
+[2026-04-01 07:19:55] Teacher gen: 4178/5000 prompts completed
+[2026-04-01 07:20:55] Teacher gen: 4183/5000 prompts completed
+[2026-04-01 07:21:55] Teacher gen: 4190/5000 prompts completed
+[2026-04-01 07:22:55] Teacher gen: 4196/5000 prompts completed
+[2026-04-01 07:23:55] Teacher gen: 4203/5000 prompts completed
+[2026-04-01 07:24:55] Teacher gen: 4210/5000 prompts completed
+[2026-04-01 07:25:55] Teacher gen: 4217/5000 prompts completed
+[2026-04-01 07:26:55] Teacher gen: 4225/5000 prompts completed
+[2026-04-01 07:27:55] Teacher gen: 4231/5000 prompts completed
+[2026-04-01 07:28:55] Teacher gen: 4237/5000 prompts completed
+[2026-04-01 07:29:55] Teacher gen: 4244/5000 prompts completed
+[2026-04-01 07:30:55] Teacher gen: 4250/5000 prompts completed
+[2026-04-01 07:31:55] Teacher gen: 4256/5000 prompts completed
+[2026-04-01 07:32:55] Teacher gen: 4263/5000 prompts completed
+[2026-04-01 07:33:55] Teacher gen: 4269/5000 prompts completed
+[2026-04-01 07:34:55] Teacher gen: 4276/5000 prompts completed
+[2026-04-01 07:35:55] Teacher gen: 4283/5000 prompts completed
+[2026-04-01 07:36:55] Teacher gen: 4290/5000 prompts completed
+[2026-04-01 07:37:55] Teacher gen: 4296/5000 prompts completed
+[2026-04-01 07:38:55] Teacher gen: 4302/5000 prompts completed
+[2026-04-01 07:39:55] Teacher gen: 4309/5000 prompts completed
+[2026-04-01 07:40:55] Teacher gen: 4316/5000 prompts completed
+[2026-04-01 07:41:55] Teacher gen: 4322/5000 prompts completed
+[2026-04-01 07:42:55] Teacher gen: 4328/5000 prompts completed
+[2026-04-01 07:43:55] Teacher gen: 4335/5000 prompts completed
+[2026-04-01 07:44:55] Teacher gen: 4340/5000 prompts completed
+[2026-04-01 07:45:55] Teacher gen: 4347/5000 prompts completed
+[2026-04-01 07:46:55] Teacher gen: 4354/5000 prompts completed
+[2026-04-01 07:47:55] Teacher gen: 4359/5000 prompts completed
+[2026-04-01 07:48:55] Teacher gen: 4365/5000 prompts completed
+[2026-04-01 07:49:55] Teacher gen: 4372/5000 prompts completed
+[2026-04-01 07:50:55] Teacher gen: 4379/5000 prompts completed
+[2026-04-01 07:51:55] Teacher gen: 4385/5000 prompts completed
+[2026-04-01 07:52:55] Teacher gen: 4392/5000 prompts completed
+[2026-04-01 07:53:55] Teacher gen: 4399/5000 prompts completed
+[2026-04-01 07:54:55] Teacher gen: 4405/5000 prompts completed
+[2026-04-01 07:55:55] Teacher gen: 4410/5000 prompts completed
+[2026-04-01 07:56:55] Teacher gen: 4417/5000 prompts completed
+[2026-04-01 07:57:55] Teacher gen: 4423/5000 prompts completed
+[2026-04-01 07:58:56] Teacher gen: 4430/5000 prompts completed
+[2026-04-01 07:59:56] Teacher gen: 4435/5000 prompts completed
+[2026-04-01 08:00:56] Teacher gen: 4443/5000 prompts completed
+[2026-04-01 08:01:56] Teacher gen: 4449/5000 prompts completed
+[2026-04-01 08:02:56] Teacher gen: 4455/5000 prompts completed
+[2026-04-01 08:03:56] Teacher gen: 4461/5000 prompts completed
+[2026-04-01 08:04:56] Teacher gen: 4467/5000 prompts completed
+[2026-04-01 08:05:56] Teacher gen: 4474/5000 prompts completed
+[2026-04-01 08:06:56] Teacher gen: 4480/5000 prompts completed
+[2026-04-01 08:07:56] Teacher gen: 4487/5000 prompts completed
+[2026-04-01 08:08:56] Teacher gen: 4492/5000 prompts completed
+[2026-04-01 08:09:56] Teacher gen: 4500/5000 prompts completed
+[2026-04-01 08:10:56] Teacher gen: 4506/5000 prompts completed
+[2026-04-01 08:11:56] Teacher gen: 4512/5000 prompts completed
+[2026-04-01 08:12:56] Teacher gen: 4518/5000 prompts completed
+[2026-04-01 08:13:56] Teacher gen: 4525/5000 prompts completed
+[2026-04-01 08:14:56] Teacher gen: 4531/5000 prompts completed
+[2026-04-01 08:15:56] Teacher gen: 4537/5000 prompts completed
+[2026-04-01 08:16:56] Teacher gen: 4543/5000 prompts completed
+[2026-04-01 08:17:56] Teacher gen: 4550/5000 prompts completed
+[2026-04-01 08:18:56] Teacher gen: 4557/5000 prompts completed
+[2026-04-01 08:19:56] Teacher gen: 4563/5000 prompts completed
+[2026-04-01 08:20:56] Teacher gen: 4570/5000 prompts completed
+[2026-04-01 08:21:56] Teacher gen: 4578/5000 prompts completed
+[2026-04-01 08:22:56] Teacher gen: 4585/5000 prompts completed
+[2026-04-01 08:23:56] Teacher gen: 4592/5000 prompts completed
+[2026-04-01 08:24:56] Teacher gen: 4600/5000 prompts completed
+[2026-04-01 08:25:56] Teacher gen: 4604/5000 prompts completed
+[2026-04-01 08:26:56] Teacher gen: 4611/5000 prompts completed
+[2026-04-01 08:27:56] Teacher gen: 4618/5000 prompts completed
+[2026-04-01 08:28:56] Teacher gen: 4625/5000 prompts completed
+[2026-04-01 08:29:56] Teacher gen: 4630/5000 prompts completed
+[2026-04-01 08:30:56] Teacher gen: 4637/5000 prompts completed
+[2026-04-01 08:31:56] Teacher gen: 4643/5000 prompts completed
+[2026-04-01 08:32:56] Teacher gen: 4650/5000 prompts completed
+[2026-04-01 08:33:56] Teacher gen: 4656/5000 prompts completed
+[2026-04-01 08:34:56] Teacher gen: 4663/5000 prompts completed
+[2026-04-01 08:35:56] Teacher gen: 4670/5000 prompts completed
+[2026-04-01 08:36:56] Teacher gen: 4676/5000 prompts completed
+[2026-04-01 08:37:56] Teacher gen: 4682/5000 prompts completed
+[2026-04-01 08:38:56] Teacher gen: 4689/5000 prompts completed
+[2026-04-01 08:39:56] Teacher gen: 4695/5000 prompts completed
+[2026-04-01 08:40:56] Teacher gen: 4701/5000 prompts completed
+[2026-04-01 08:41:56] Teacher gen: 4707/5000 prompts completed
+[2026-04-01 08:42:56] Teacher gen: 4714/5000 prompts completed
+[2026-04-01 08:43:56] Teacher gen: 4720/5000 prompts completed
+[2026-04-01 08:44:56] Teacher gen: 4726/5000 prompts completed
+[2026-04-01 08:45:56] Teacher gen: 4733/5000 prompts completed
+[2026-04-01 08:46:56] Teacher gen: 4740/5000 prompts completed
+[2026-04-01 08:47:56] Teacher gen: 4746/5000 prompts completed
+[2026-04-01 08:48:56] Teacher gen: 4752/5000 prompts completed
+[2026-04-01 08:49:56] Teacher gen: 4759/5000 prompts completed
+[2026-04-01 08:50:56] Teacher gen: 4765/5000 prompts completed
+[2026-04-01 08:51:56] Teacher gen: 4772/5000 prompts completed
+[2026-04-01 08:52:56] Teacher gen: 4778/5000 prompts completed
+[2026-04-01 08:53:56] Teacher gen: 4785/5000 prompts completed
+[2026-04-01 08:54:56] Teacher gen: 4793/5000 prompts completed
+[2026-04-01 08:55:56] Teacher gen: 4800/5000 prompts completed
+[2026-04-01 08:56:56] Teacher gen: 4807/5000 prompts completed
+[2026-04-01 08:57:56] Teacher gen: 4814/5000 prompts completed
+[2026-04-01 08:58:56] Teacher gen: 4820/5000 prompts completed
+[2026-04-01 08:59:56] Teacher gen: 4826/5000 prompts completed
+[2026-04-01 09:00:56] Teacher gen: 4832/5000 prompts completed
+[2026-04-01 09:01:56] Teacher gen: 4839/5000 prompts completed
+[2026-04-01 09:02:56] Teacher gen: 4845/5000 prompts completed
+[2026-04-01 09:03:56] Teacher gen: 4852/5000 prompts completed
+[2026-04-01 09:04:56] Teacher gen: 4858/5000 prompts completed
+[2026-04-01 09:05:56] Teacher gen: 4864/5000 prompts completed
+[2026-04-01 09:06:56] Teacher gen: 4870/5000 prompts completed
+[2026-04-01 09:07:56] Teacher gen: 4876/5000 prompts completed
+[2026-04-01 09:08:56] Teacher gen: 4883/5000 prompts completed
+[2026-04-01 09:09:56] Teacher gen: 4888/5000 prompts completed
+[2026-04-01 09:10:56] Teacher gen: 4895/5000 prompts completed
+[2026-04-01 09:11:56] Teacher gen: 4901/5000 prompts completed
+[2026-04-01 09:12:56] Teacher gen: 4908/5000 prompts completed
+[2026-04-01 09:13:56] Teacher gen: 4915/5000 prompts completed
+[2026-04-01 09:14:56] Teacher gen: 4921/5000 prompts completed
+[2026-04-01 09:15:56] Teacher gen: 4928/5000 prompts completed
+[2026-04-01 09:16:56] Teacher gen: 4934/5000 prompts completed
+[2026-04-01 09:17:56] Teacher gen: 4940/5000 prompts completed
+[2026-04-01 09:18:56] Teacher gen: 4948/5000 prompts completed
+[2026-04-01 09:19:56] Teacher gen: 4953/5000 prompts completed
+[2026-04-01 09:20:56] Teacher gen: 4959/5000 prompts completed
+[2026-04-01 09:21:56] Teacher gen: 4965/5000 prompts completed
+[2026-04-01 09:22:56] Teacher gen: 4971/5000 prompts completed
+[2026-04-01 09:23:56] Teacher gen: 4978/5000 prompts completed
+[2026-04-01 09:24:56] Teacher gen: 4985/5000 prompts completed
+[2026-04-01 09:25:56] Teacher gen: 4990/5000 prompts completed
+[2026-04-01 09:26:56] Teacher gen: 4997/5000 prompts completed
+[2026-04-01 09:27:56] Teacher gen complete!
+[2026-04-01 09:27:56] Teacher data: 4334 training examples, 482 validation examples
+[2026-04-01 09:27:56] Stopping vLLM...
+[2026-04-01 09:27:56] No vLLM process found.
+[2026[2026-04-01 09:27:58] GPU memory used after stop:
+8969
+[2026-04-01 09:27:58] Verifying finetune script CLI...
+usage: finetune_checker.py [-h] [--train-file TRAIN_FILE]
+                           [--val-file VAL_FILE] [--output-dir OUTPUT_DIR]
+                           [--model-name MODEL_NAME] [--epochs EPOCHS]
+                           [--batch-size BATCH_SIZE]
+                           [--gradient-accumulation-steps GRADIENT_ACCUMULATION_STEPS]
+                           [--lr LR] [--lora-r LORA_R]
+                           [--lora-alpha LORA_ALPHA]
+                           [--lora-dropout LORA_DROPOUT]
+                           [--max-length MAX_LENGTH] [--bf16] [--load-in-4bit]
+                           [--seed SEED]
+
+Fine-tune criterion checker with LoRA
+
+options:
+  -h, --help            show this help message and exit
+  --train-file TRAIN_FILE
+                        Training JSONL file
+  --val-file VAL_FILE   Validation JSONL file
+  --output-dir OUTPUT_DIR
+                        Output directory for adapter weights
+[2026-04-01 09:27:58] Starting finetune:
+[2026-04-01 09:27:58] python3 scripts/finetune_checker.py --model-name Qwen/Qwen3-8B --train-file data/sft/teacher_v1/criterion_checker_train.jsonl --val-file data/sft/teacher_v1/criterion_checker_val.jsonl --output-dir outputs/finetune/qwen3_8b_teacher_v1 --epochs 3 --batch-size 4 --gradient-accumulation-steps 4 --lr 2e-4 --lora-r 16 --lora-alpha 32 --max-length 8192 --bf16 --load-in-4bit 
+/home/user/miniforge3/lib/python3.12/site-packages/torch/cuda/__init__.py:65: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[imp2026-2026-04-01 09:28:00,623 INFO Loading training data from data/sft/teacher_v1/criterion_checker_train.jsonl
+2026-04-01 09:28:00,841 INFO Loading validation data from data/sft/teacher_v1/criterion_checker_val.jsonl
+2026-04-01 09:28:00,863 INFO Train: 4334 examples, Val: 482 examples
+2026-04-01 09:28:00,864 INFO Loading tokenizer: Qwen/Qwen3-8B
+2026-04-01 09:28:01,981 INFO Loading model: Qwen/Qwen3-8B
+2026-04-01 09:28:01,981 INFO Using 4-bit quantization (QLoRA)
+`torch_dtype` is deprecated! Use `dtype` instead!
+2026-04-01 09:28:03,165 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?LoadLoading checkpoint shards:  20%|██        | 1/5 [00:02<00:08,  2.16LoadLoading checkpoint shards:  40%|████      | 2/5 [00:04<00:07,  2.54LoadLoading checkpoint shards:  60%|██████    | 3/5 [00:07<00:05,  2.61LoadLoading checkpoint shards:  80%|████████  | 4/5 [00:09<00:02,  2.37s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:09<00:00,  1.56s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:09<00:00,  1.96s/it]
+2026-04-01 09:28:13,423 INFO Configuring LoRA: r=16, alpha=32, dropout=0.05
+2026-04-01 09:28:13,663 INFO Tokenizing datasets (max_length=8192traintrainable params: 7,667,712 || all params: 8,198,403,072 || trainable%: 0.0935
+Tokenizing train (num_proc=4):   0%|          | 0/4334 [00:00<?, ? examplTokeTokenizing train (num_proc=4):   0%|          | 2/4334 [00:01<48:43,  1.48 examplTokeTokenizing train (num_proc=4):   0%|          | 6/4334 [00:01<14:17,  5.05 exampleTokTokenizing train (num_proc=4):   0%|          | 10/4334 [00:01<08:50,  8.15 examples/s]Tokenizing train (num_proc=4):   0%|          | 12/4334 [00:01<07:26,  9.68 exampleTokTokenizing train (num_proc=4):   1%|          | 26/4334 [00:01<02:23, 29.98 exampleTokenizing train (num_proc=4):   1%|          | 53/4334 [00:02<01:51, 38.41 examples/s]TokTokenizing train (num_proc=4):   1%|          | 40/4334 [00:02<03:00, 23.82 examples/s]Tokenizing train (num_proc=4):   2%|▏         | 85/4334 [00:02<00:52, 80.19 examples/s]Tokenizing train (num_proc=4):   2%|▏         | 101/4334 [00:02<00:49, 86.01 examples/s]Tokenizing train (num_proc=4):   3%|▎         | 119/4334 [00:02<00:42, 98.56 examples/s]Tokenizing train (num_proc=4):   3%|▎         | 134/4334 [00:03<00:40, 103.33 examples/s]Tokenizing train (num_proc=4):   3%|▎         | 151/4334 [00:03<00:43, 96.13 examples/s] Tokenizing train (num_proc=4):   4%|▍         | 169/4334 [00:03<00:38, 107.97 examples/s]Tokenizing train (num_proc=4):   4%|▍         | 190/4334 [00:03<00:32, 128.85 examples/s]Tokenizing train (num_proc=4):   5%|▍         | 208/4334 [00:03<00:29, 138.65 examples/s]Tokenizing train (num_proc=4):   5%|▌         | 226/4334 [00:03<00:29, 138.35 examples/s]Tokenizing train (num_proc=4):   6%|▌         | 245/4334 [00:03<00:28, 143.28 examples/s]Tokenizing train (num_proc=4):   6%|▌         | 261/4334 [00:03<00:28, 142.73 examples/s]Tokenizing train (num_proc=4):   6%|▋         | 278/4334 [00:04<00:27, 147.23 examples/s]Tokenizing train (num_proc=4):   7%|▋         | 299/4334 [00:04<00:26, 154.84 examples/s]Tokenizing train (num_proc=4):   7%|▋         | 315/4334 [00:04<00:30, 133.92 examples/s]Tokenizing train (num_proc=4):   8%|▊         | 339/4334 [00:04<00:25, 153.93 examples/s]Tokenizing train (num_proc=4):   8%|▊         | 358/4334 [00:04<00:26, 151.24 examples/s]Tokenizing train (num_proc=4):   9%|▊         | 377/4334 [00:04<00:25, 156.51 examples/s]Tokenizing train (num_proc=4):   9%|▉         | 396/4334 [00:04<00:24, 162.36 examples/s]Tokenizing train (num_proc=4):  10%|▉         | 414/4334 [00:04<00:24, 160.46 examples/s]Tokenizing train (num_proc=4):  10%|▉         | 431/4334 [00:05<00:26, 149.94 examples/s]Tokenizing train (num_proc=4):  10%|█         | 448/4334 [00:05<00:26, 144.67 examples/s]Tokenizing train (num_proc=4):  11%|█         | 464/4334 [00:05<00:26, 146.11 examples/s]Tokenizing train (num_proc=4):  11%|█         | 485/4334 [00:05<00:23, 162.41 examples/s]Tokenizing train (num_proc=4):  12%|█▏        | 503/4334 [00:05<00:23, 164.65 examples/s]Tokenizing train (num_proc=4):  12%|█▏        | 520/4334 [00:05<00:24, 152.58 examples/s]Tokenizing train (num_proc=4):  12%|█▏        | 537/4334 [00:05<00:24, 154.89 examples/s]Tokenizing train (num_proc=4):  13%|█▎        | 555/4334 [00:05<00:23, 157.63 examples/s]Tokenizing train (num_proc=4):  13%|█▎        | 571/4334 [00:05<00:24, 155.80 examples/s]Tokenizing train (num_proc=4):  14%|█▎        | 589/4334 [00:06<00:26, 143.14 examples/s]Tokenizing train (num_proc=4):  14%|█▍        | 606/4334 [00:06<00:24, 149.70 examples/s]Tokenizing train (num_proc=4):  14%|█▍        | 624/4334 [00:06<00:26, 141.67 examples/s]Tokenizing train (num_proc=4):  15%|█▍        | 639/4334 [00:06<00:29, 127.08 examples/s]Tokenizing train (num_proc=4):  15%|█▌        | 656/4334 [00:06<00:28, 129.02 examples/s]Tokenizing train (num_proc=4):  16%|█▌        | 674/4334 [00:06<00:26, 138.16 examples/s]Tokenizing train (num_proc=4):  16%|█▌        | 692/4334 [00:06<00:25, 145.17 examples/s]Tokenizing train (num_proc=4):  16%|█▋        | 708/4334 [00:06<00:24, 145.11 examples/s]Tokenizing train (num_proc=4):  17%|█▋        | 725/4334 [00:07<00:24, 147.01 examples/s]Tokenizing train (num_proc=4):  17%|█▋        | 744/4334 [00:07<00:24, 146.22 examples/s]Tokenizing train (num_proc=4):  18%|█▊        | 762/4334 [00:07<00:23, 153.87 examples/s]Tokenizing train (num_proc=4):  18%|█▊        | 779/4334 [00:07<00:25, 141.59 examples/s]Tokenizing train (num_proc=4):  18%|█▊        | 799/4334 [00:07<00:24, 144.18 examples/s]Tokenizing train (num_proc=4):  19%|█▉        | 821/4334 [00:07<00:21, 160.21 examples/s]Tokenizing train (num_proc=4):  19%|█▉        | 840/4334 [00:07<00:21, 165.63 examples/s]Tokenizing train (num_proc=4):  20%|█▉        | 858/4334 [00:07<00:21, 161.43 examples/s]Tokenizing train (num_proc=4):  20%|██        | 876/4334 [00:08<00:22, 154.97 examples/s]Tokenizing train (num_proc=4):  21%|██        | 894/4334 [00:08<00:23, 145.21 examples/s]Tokenizing train (num_proc=4):  21%|██        | 909/4334 [00:08<00:24, 137.58 examples/s]Tokenizing train (num_proc=4):  21%|██▏       | 927/4334 [00:08<00:23, 142.34 examples/s]Tokenizing train (num_proc=4):  22%|██▏       | 950/4334 [00:08<00:21, 158.01 examples/s]Tokenizing train (num_proc=4):  22%|██▏       | 971/4334 [00:08<00:19, 169.88 examples/s]Tokenizing train (num_proc=4):  23%|██▎       | 991/4334 [00:08<00:19, 171.53 examples/s]Tokenizing train (num_proc=4):  23%|██▎       | 1010/4334 [00:08<00:18, 176.09 examples/s]Tokenizing train (num_proc=4):  24%|██▎       | 1029/4334 [00:08<00:18, 176.05 examples/s]Tokenizing train (num_proc=4):  24%|██▍       | 1048/4334 [00:09<00:18, 179.27 examples/s]Tokenizing train (num_proc=4):  25%|██▍       | 1067/4334 [00:09<00:18, 173.57 examples/s]Tokenizing train (num_proc=4):  25%|██▌       | 1085/4334 [00:09<00:20, 160.43 examples/s]Tokenizing train (num_proc=4):  25%|██▌       | 1104/4334 [00:09<00:19, 164.75 examples/s]Tokenizing train (num_proc=4):  26%|██▌       | 1121/4334 [00:09<00:20, 157.52 examples/s]Tokenizing train (num_proc=4):  26%|██▋       | 1142/4334 [00:09<00:20, 152.78 examples/s]Tokenizing train (num_proc=4):  27%|██▋       | 1162/4334 [00:09<00:19, 161.70 examples/s]Tokenizing train (num_proc=4):  27%|██▋       | 1184/4334 [00:09<00:17, 176.44 examples/s]Tokenizing train (num_proc=4):  28%|██▊       | 1205/4334 [00:10<00:20, 154.61 examples/s]Tokenizing train (num_proc=4):  28%|██▊       | 1225/4334 [00:10<00:19, 158.91 examples/s]Tokenizing train (num_proc=4):  29%|██▊       | 1243/4334 [00:10<00:19, 155.46 examples/s]Tokenizing train (num_proc=4):  29%|██▉       | 1260/4334 [00:10<00:20, 150.80 examples/s]Tokenizing train (num_proc=4):  30%|██▉       | 1283/4334 [00:10<00:19, 156.65 examples/s]Tokenizing train (num_proc=4):  30%|██▉       | 1299/4334 [00:10<00:19, 152.21 examples/s]Tokenizing train (num_proc=4):  30%|███       | 1319/4334 [00:10<00:20, 149.53 examples/s]Tokenizing train (num_proc=4):  31%|███       | 1340/4334 [00:10<00:18, 161.25 examples/s]Tokenizing train (num_proc=4):  31%|███▏      | 1358/4334 [00:11<00:19, 155.98 examples/s]Tokenizing train (num_proc=4):  32%|███▏      | 1376/4334 [00:11<00:19, 153.56 examples/s]Tokenizing train (num_proc=4):  32%|███▏      | 1392/4334 [00:11<00:19, 151.62 examples/s]Tokenizing train (num_proc=4):  33%|███▎      | 1409/4334 [00:11<00:19, 149.55 examples/s]Tokenizing train (num_proc=4):  33%|███▎      | 1433/4334 [00:11<00:16, 170.66 examples/s]Tokenizing train (num_proc=4):  33%|███▎      | 1451/4334 [00:11<00:17, 162.05 examples/s]Tokenizing train (num_proc=4):  34%|███▍      | 1468/4334 [00:11<00:18, 157.09 examples/s]Tokenizing train (num_proc=4):  34%|███▍      | 1486/4334 [00:11<00:18, 153.60 examples/s]Tokenizing train (num_proc=4):  35%|███▍      | 1512/4334 [00:11<00:16, 170.12 examples/s]Tokenizing train (num_proc=4):  35%|███▌      | 1532/4334 [00:12<00:16, 166.87 examples/s]Tokenizing train (num_proc=4):  36%|███▌      | 1550/4334 [00:12<00:16, 169.81 examples/s]Tokenizing train (num_proc=4):  36%|███▋      | 1572/4334 [00:12<00:15, 174.40 examples/s]Tokenizing train (num_proc=4):  37%|███▋      | 1590/4334 [00:12<00:18, 151.47 examples/s]Tokenizing train (num_proc=4):  37%|███▋      | 1614/4334 [00:12<00:17, 155.19 examples/s]Tokenizing train (num_proc=4):  38%|███▊      | 1635/4334 [00:12<00:16, 161.03 examples/s]Tokenizing train (num_proc=4):  38%|███▊      | 1657/4334 [00:12<00:15, 167.98 examples/s]Tokenizing train (num_proc=4):  39%|███▊      | 1675/4334 [00:12<00:16, 160.54 examples/s]Tokenizing train (num_proc=4):  39%|███▉      | 1694/4334 [00:13<00:17, 154.25 examples/s]Tokenizing train (num_proc=4):  40%|███▉      | 1720/4334 [00:13<00:15, 172.27 examples/s]Tokenizing train (num_proc=4):  40%|████      | 1739/4334 [00:13<00:15, 171.96 examples/s]Tokenizing train (num_proc=4):  41%|████      | 1757/4334 [00:13<00:15, 171.52 examples/s]Tokenizing train (num_proc=4):  41%|████      | 1775/4334 [00:13<00:14, 171.74 examples/s]Tokenizing train (num_proc=4):  41%|████▏     | 1794/4334 [00:13<00:15, 164.69 examples/s]Tokenizing train (num_proc=4):  42%|████▏     | 1815/4334 [00:13<00:15, 167.03 examples/s]Tokenizing train (num_proc=4):  42%|████▏     | 1832/4334 [00:13<00:14, 167.36 examples/s]Tokenizing train (num_proc=4):  43%|████▎     | 1859/4334 [00:14<00:13, 186.61 examples/s]Tokenizing train (num_proc=4):  43%|████▎     | 1879/4334 [00:14<00:13, 175.68 examples/s]Tokenizing train (num_proc=4):  44%|████▍     | 1897/4334 [00:14<00:15, 159.27 examples/s]Tokenizing train (num_proc=4):  44%|████▍     | 1916/4334 [00:14<00:14, 165.46 examples/s]Tokenizing train (num_proc=4):  45%|████▍     | 1934/4334 [00:14<00:14, 165.15 examples/s]Tokenizing train (num_proc=4):  45%|████▌     | 1954/4334 [00:14<00:15, 158.38 examples/s]Tokenizing train (num_proc=4):  46%|████▌     | 1972/4334 [00:14<00:14, 162.29 examples/s]Tokenizing train (num_proc=4):  46%|████▌     | 1990/4334 [00:14<00:15, 147.05 examples/s]Tokenizing train (num_proc=4):  46%|████▋     | 2006/4334 [00:15<00:15, 149.18 examples/s]Tokenizing train (num_proc=4):  47%|████▋     | 2023/4334 [00:15<00:14, 154.16 examples/s]Tokenizing train (num_proc=4):  47%|████▋     | 2043/4334 [00:15<00:13, 165.09 examples/s]Tokenizing train (num_proc=4):  48%|████▊     | 2060/4334 [00:15<00:15, 146.80 examples/s]Tokenizing train (num_proc=4):  48%|████▊     | 2077/4334 [00:15<00:14, 152.03 examples/s]Tokenizing train (num_proc=4):  48%|████▊     | 2094/4334 [00:15<00:16, 139.29 examples/s]Tokenizing train (num_proc=4):  49%|████▊     | 2111/4334 [00:15<00:15, 141.93 examples/s]Tokenizing train (num_proc=4):  49%|████▉     | 2127/4334 [00:15<00:15, 140.96 examples/s]Tokenizing train (num_proc=4):  49%|████▉     | 2143/4334 [00:15<00:15, 144.75 examples/s]Tokenizing train (num_proc=4):  50%|████▉     | 2162/4334 [00:16<00:14, 151.02 examples/s]Tokenizing train (num_proc=4):  50%|█████     | 2179/4334 [00:16<00:14, 147.28 examples/s]Tokenizing train (num_proc=4):  51%|█████     | 2196/4334 [00:16<00:14, 151.83 examples/s]Tokenizing train (num_proc=4):  51%|█████     | 2212/4334 [00:16<00:13, 153.65 examples/s]Tokenizing train (num_proc=4):  51%|█████▏    | 2230/4334 [00:16<00:14, 140.67 examples/s]Tokenizing train (num_proc=4):  52%|█████▏    | 2247/4334 [00:16<00:14, 143.07 examples/s]Tokenizing train (num_proc=4):  52%|█████▏    | 2263/4334 [00:16<00:14, 141.59 examples/s]Tokenizing train (num_proc=4):  53%|█████▎    | 2280/4334 [00:16<00:14, 143.76 examples/s]Tokenizing train (num_proc=4):  53%|█████▎    | 2297/4334 [00:17<00:14, 144.99 examples/s]Tokenizing train (num_proc=4):  54%|█████▎    | 2323/4334 [00:17<00:12, 166.13 examples/s]Tokenizing train (num_proc=4):  54%|█████▍    | 2340/4334 [00:17<00:12, 161.27 examples/s]Tokenizing train (num_proc=4):  55%|█████▍    | 2363/4334 [00:17<00:11, 173.94 examples/s]Tokenizing train (num_proc=4):  55%|█████▍    | 2381/4334 [00:17<00:13, 147.78 examples/s]Tokenizing train (num_proc=4):  55%|█████▌    | 2399/4334 [00:17<00:13, 143.42 examples/s]Tokenizing train (num_proc=4):  56%|█████▌    | 2414/4334 [00:17<00:13, 142.55 examples/s]Tokenizing train (num_proc=4):  56%|█████▌    | 2429/4334 [00:17<00:13, 140.70 examples/s]Tokenizing train (num_proc=4):  56%|█████▋    | 2448/4334 [00:17<00:12, 146.61 examples/s]Tokenizing train (num_proc=4):  57%|█████▋    | 2464/4334 [00:18<00:12, 146.36 examples/s]Tokenizing train (num_proc=4):  57%|█████▋    | 2485/4334 [00:18<00:11, 156.83 examples/s]Tokenizing train (num_proc=4):  58%|█████▊    | 2506/4334 [00:18<00:10, 166.55 examples/s]Tokenizing train (num_proc=4):  58%|█████▊    | 2525/4334 [00:18<00:10, 171.22 examples/s]Tokenizing train (num_proc=4):  59%|█████▊    | 2543/4334 [00:18<00:10, 165.56 examples/s]Tokenizing train (num_proc=4):  59%|█████▉    | 2560/4334 [00:18<00:11, 152.29 examples/s]Tokenizing train (num_proc=4):  60%|█████▉    | 2584/4334 [00:18<00:10, 172.94 examples/s]Tokenizing train (num_proc=4):  60%|██████    | 2606/4334 [00:18<00:09, 173.04 examples/s]Tokenizing train (num_proc=4):  61%|██████    | 2627/4334 [00:19<00:09, 181.17 examples/s]Tokenizing train (num_proc=4):  61%|██████    | 2647/4334 [00:19<00:09, 177.18 examples/s]Tokenizing train (num_proc=4):  62%|██████▏   | 2666/4334 [00:19<00:10, 163.89 examples/s]Tokenizing train (num_proc=4):  62%|██████▏   | 2685/4334 [00:19<00:10, 163.17 examples/s]Tokenizing train (num_proc=4):  62%|██████▏   | 2703/4334 [00:19<00:10, 159.77 examples/s]Tokenizing train (num_proc=4):  63%|██████▎   | 2721/4334 [00:19<00:10, 160.79 examples/s]Tokenizing train (num_proc=4):  63%|██████▎   | 2738/4334 [00:19<00:10, 148.80 examples/s]Tokenizing train (num_proc=4):  64%|██████▎   | 2756/4334 [00:19<00:10, 156.44 examples/s]Tokenizing train (num_proc=4):  64%|██████▍   | 2774/4334 [00:19<00:10, 154.78 examples/s]Tokenizing train (num_proc=4):  64%|██████▍   | 2791/4334 [00:20<00:09, 156.36 examples/s]Tokenizing train (num_proc=4):  65%|██████▍   | 2811/4334 [00:20<00:09, 157.17 examples/s]Tokenizing train (num_proc=4):  65%|██████▌   | 2831/4334 [00:20<00:09, 165.56 examples/s]Tokenizing train (num_proc=4):  66%|██████▌   | 2853/4334 [00:20<00:08, 178.19 examples/s]Tokenizing train (num_proc=4):  66%|██████▋   | 2873/4334 [00:20<00:08, 172.00 examples/s]Tokenizing train (num_proc=4):  67%|██████▋   | 2891/4334 [00:20<00:08, 170.72 examples/s]Tokenizing train (num_proc=4):  67%|██████▋   | 2910/4334 [00:20<00:08, 160.58 examples/s]Tokenizing train (num_proc=4):  68%|██████▊   | 2928/4334 [00:20<00:09, 151.82 examples/s]Tokenizing train (num_proc=4):  68%|██████▊   | 2944/4334 [00:21<00:09, 143.67 examples/s]Tokenizing train (num_proc=4):  68%|██████▊   | 2963/4334 [00:21<00:09, 150.14 examples/s]Tokenizing train (num_proc=4):  69%|██████▉   | 2980/4334 [00:21<00:08, 152.05 examples/s]Tokenizing train (num_proc=4):  69%|██████▉   | 2997/4334 [00:21<00:08, 153.82 examples/s]Tokenizing train (num_proc=4):  70%|██████▉   | 3016/4334 [00:21<00:09, 144.13 examples/s]Tokenizing train (num_proc=4):  70%|███████   | 3034/4334 [00:21<00:08, 152.78 examples/s]Tokenizing train (num_proc=4):  70%|███████   | 3054/4334 [00:21<00:07, 163.96 examples/s]Tokenizing train (num_proc=4):  71%|███████   | 3072/4334 [00:21<00:07, 159.68 examples/s]Tokenizing train (num_proc=4):  71%|███████▏  | 3093/4334 [00:21<00:07, 172.68 examples/s]Tokenizing train (num_proc=4):  72%|███████▏  | 3114/4334 [00:22<00:08, 145.04 examples/s]Tokenizing train (num_proc=4):  72%|███████▏  | 3130/4334 [00:22<00:08, 138.05 examples/s]Tokenizing train (num_proc=4):  73%|███████▎  | 3147/4334 [00:22<00:08, 137.22 examples/s]Tokenizing train (num_proc=4):  73%|███████▎  | 3164/4334 [00:22<00:08, 143.37 examples/s]Tokenizing train (num_proc=4):  73%|███████▎  | 3185/4334 [00:22<00:07, 159.58 examples/s]Tokenizing train (num_proc=4):  74%|███████▍  | 3204/4334 [00:22<00:07, 159.48 examples/s]Tokenizing train (num_proc=4):  74%|███████▍  | 3222/4334 [00:22<00:06, 164.77 examples/s]Tokenizing train (num_proc=4):  75%|███████▍  | 3241/4334 [00:23<00:07, 146.22 examples/s]Tokenizing train (num_proc=4):  75%|███████▌  | 3257/4334 [00:23<00:07, 146.31 examples/s]Tokenizing train (num_proc=4):  76%|███████▌  | 3276/4334 [00:23<00:06, 154.32 examples/s]Tokenizing train (num_proc=4):  76%|███████▌  | 3295/4334 [00:23<00:06, 154.75 examples/s]Tokenizing train (num_proc=4):  76%|███████▋  | 3311/4334 [00:23<00:06, 151.77 examples/s]Tokenizing train (num_proc=4):  77%|███████▋  | 3329/4334 [00:23<00:06, 146.76 examples/s]Tokenizing train (num_proc=4):  77%|███████▋  | 3350/4334 [00:23<00:06, 160.58 examples/s]Tokenizing train (num_proc=4):  78%|███████▊  | 3369/4334 [00:23<00:05, 161.52 examples/s]Tokenizing train (num_proc=4):  78%|███████▊  | 3392/4334 [00:23<00:05, 174.76 examples/s]Tokenizing train (num_proc=4):  79%|███████▊  | 3410/4334 [00:24<00:05, 162.85 examples/s]Tokenizing train (num_proc=4):  79%|███████▉  | 3429/4334 [00:24<00:05, 161.21 examples/s]Tokenizing train (num_proc=4):  80%|███████▉  | 3452/4334 [00:24<00:05, 175.02 examples/s]Tokenizing train (num_proc=4):  80%|████████  | 3473/4334 [00:24<00:04, 174.04 examples/s]Tokenizing train (num_proc=4):  81%|████████  | 3492/4334 [00:24<00:05, 158.10 examples/s]Tokenizing train (num_proc=4):  81%|████████  | 3513/4334 [00:24<00:05, 162.05 examples/s]Tokenizing train (num_proc=4):  82%|████████▏ | 3536/4334 [00:24<00:04, 174.86 examples/s]Tokenizing train (num_proc=4):  82%|████████▏ | 3559/4334 [00:24<00:04, 160.34 examples/s]Tokenizing train (num_proc=4):  83%|████████▎ | 3577/4334 [00:25<00:05, 150.34 examples/s]Tokenizing train (num_proc=4):  83%|████████▎ | 3600/4334 [00:25<00:04, 164.53 examples/s]Tokenizing train (num_proc=4):  83%|████████▎ | 3618/4334 [00:25<00:04, 165.68 examples/s]Tokenizing train (num_proc=4):  84%|████████▍ | 3638/4334 [00:25<00:04, 162.94 examples/s]Tokenizing train (num_proc=4):  84%|████████▍ | 3657/4334 [00:25<00:04, 158.87 examples/s]Tokenizing train (num_proc=4):  85%|████████▍ | 3675/4334 [00:25<00:04, 160.03 examples/s]Tokenizing train (num_proc=4):  85%|████████▌ | 3695/4334 [00:25<00:03, 167.48 examples/s]Tokenizing train (num_proc=4):  86%|████████▌ | 3712/4334 [00:25<00:03, 165.79 examples/s]Tokenizing train (num_proc=4):  86%|████████▌ | 3729/4334 [00:26<00:04, 143.13 examples/s]Tokenizing train (num_proc=4):  86%|████████▋ | 3745/4334 [00:26<00:04, 131.66 examples/s]Tokenizing train (num_proc=4):  87%|████████▋ | 3763/4334 [00:26<00:04, 136.34 examples/s]Tokenizing train (num_proc=4):  87%|████████▋ | 3782/4334 [00:26<00:04, 133.92 examples/s]Tokenizing train (num_proc=4):  88%|████████▊ | 3796/4334 [00:26<00:04, 120.56 examples/s]Tokenizing train (num_proc=4):  88%|████████▊ | 3815/4334 [00:26<00:04, 127.61 examples/s]Tokenizing train (num_proc=4):  88%|████████▊ | 3830/4334 [00:26<00:04, 124.17 examples/s]Tokenizing train (num_proc=4):  89%|████████▊ | 3845/4334 [00:27<00:04, 121.83 examples/s]Tokenizing train (num_proc=4):  89%|████████▉ | 3859/4334 [00:27<00:03, 119.27 examples/s]Tokenizing train (num_proc=4):  89%|█████Tokenizing train (num_proc=4):  91%|██████�Tokenizing train (num_proc=4):  90%|█████Tokenizing train (num_proc=4):  91%|██████�Tokenizing train (num_proc=4):  90%|█████�Tokenizing train (num_proc=4):  92%|██████Tokenizing train (num_proc=4):  90%|██████Tokenizing train (num_proc=4):  92%|█████�Tokenizing train (num_proc=4):  91%|██████�Tokenizing train (num_proc=4):  92%|█████�Tokenizing train (num_proc=4):  91%|██████�Tokenizing train (num_proc=4):  92%|████�Tokenizing train (num_proc=4):  91%|███████�Tokenizing train (num_proc=4):  93%|████Tokenizing train (num_proc=4):  91%|████████Tokenizing train (num_proc=4):  93%|████Tokenizing train (num_proc=4):  92%|█████████▏| 3974/4334 [00:28<00:03, 91.98 examples/s]Tokenizing train (num_proc=4):  92%|█████████▏| 3986/4334 [00:28<00:03, 91.28 examples/s]Tokenizing train (num_proc=4):  92%|█████████▏| 3998/4334 [00:28<00:03, 91.26 examples/s]Tokenizing train (num_proc=4):  93%|█████████▎| 4015/4334 [00:28<00:03, 103.49 examples/s]Tokenizing train (num_proc=4):  93%|█████████▎| 4028/4334 [00:28<00:02, 108.70 examples/s]Tokenizing train (num_proc=4):  93%|█████████�Tokenizing train (num_proc=4):  95%|███Tokenizing train (num_proc=4):  94%|█████████�Tokenizing train (num_proc=4):  96%|█████████▌| 4144/4334 [00:29<00:02, 73.23 examples/s] Tokenizing train (num_proc=4):  96%|█████████▌| 4168/4334 [00:29<00:01, 96.81 examples/s]Tokenizing train (num_proc=4):  97%|█████████▋| 4184/4334 [00:29<00:01, 100.07 examples/s]Tokenizing train (num_proc=4):  97%|███�Tokenizing train (num_proc=4):  95%|█████████Tokenizing train (num_proc=4):  97%|█████████▋| 4210/4334 [00:30<00:01, 82.29 examples/s]Tokenizing train (num_proc=4):  97%|███�Tokenizing train (num_proc=4):  96%|████████�Tokenizing train (num_proc=4):  98%|████Tokenizing train (num_proc=4):  97%|████████Tokenizing train (num_proc=4):  98%|████�Tokenizing train (num_proc=4):  97%|███████�Tokenizing train (num_proc=4):  98%|████�Tokenizing train (num_proc=4):  97%|███████�Tokenizing train (num_proc=4):  99%|█████████▊| 4274/4334 [00:31<00:01, 59.03 examples/s]Tokenizing train (num_proc=4):  99%|█████████▉| 4284/4334 [00:31<00:01, 47.40 examples/s]Tokenizing train (num_proc=4):  99%|█████�Tokenizing train (num_proc=4):  98%|██████�Tokenizing train (num_proc=4):  99%|█████�Tokenizing train (num_proc=4):  98%|█████████▊| 4264/4334 [00:31<00:01, 36.44 examples/s]Tokenizing train (num_proc=4):  99%|█████████▉| 4291/4334 [00:32<00:00, 59.96 examples/s]Tokenizing train (num_proc=4):  99%|█████████▉| 4302/4334 [00:32<00:00, 58.96 examples/s]Tokenizing train (num_proc=4):  99%|█████████▉| 4311/4334 [00:32<00:00, 60.73 examples/s]Tokenizing train (num_proc=4): 100%|██████�Tokenizing train (num_proc=4): 100%|██████████| 4334/4334 [00:33<00:00, 130.21 examples/s]
+Tokenizing val (num_proc=4):   0%|          | 0/48Tokenizing train (num_prTokenizing val (num_proc=4):   1%|          | 3/482 [00:00<01:44,  4.60 examples/s]Tokenizing val (num_proc=4):   2%|▏         | 9/482 [00:00<00:32, 14.51 examTokenizing val (num_proc=4):   1%|          | 3/482 [00:00<01:43,  4.61 examples/s]Tokenizing val (num_proc=4):   2%|▏         | 8/482 [00:00<00:38, 12.27 examples/s]Tokenizing val (num_proc=4):   5%|▍         | 22/482 [00:00<00:12, 36.57 examples/s]Tokenizing val (num_proc=4):   8%|▊         | 37/482 [00:01<00:07, 55.90 examples/s]Tokenizing val (num_proc=4):  12%|█▏        | 56/482 [00:01<00:05, 84.52 examples/s]Tokenizing val (num_proc=4):  16%|█▌        | 78/482 [00:01<00:03, 109.09 examples/s]Tokenizing val (num_proc=4):  20%|██        | 97/482 [00:01<00:03, 121.68 examples/s]Tokenizing val (num_proc=4):  25%|██▍       | 120/482 [00:01<00:02, 146.78 examples/s]Tokenizing val (num_proc=4):  29%|██▉       | 142/482 [00:01<00:02, 164.37 examples/s]Tokenizing val (num_proc=4):  34%|███▎      | 162/482 [00:01<00:02, 158.36 examples/s]Tokenizing val (num_proc=4):  38%|███▊      | 182/482 [00:01<00:01, 157.52 examples/s]Tokenizing val (num_proc=4):  41%|████▏     | 200/482 [00:01<00:01, 159.36 examples/s]Tokenizing val (num_proc=4):  45%|████▌     | 217/482 [00:02<00:01, 161.21 examples/s]Tokenizing val (num_proc=4):  50%|████▉     | 239/482 [00:02<00:01, 177.06 examples/s]Tokenizing val (num_proc=4):  54%|█████▍    | 261/482 [00:02<00:01, 180.45 examples/s]Tokenizing val (num_proc=4):  58%|█████▊    | 280/482 [00:02<00:01, 161.78 examples/s]Tokenizing val (num_proc=4):  63%|██████▎   | 306/482 [00:02<00:00, 176.46 examples/s]Tokenizing val (num_proc=4):  68%|██████▊   | 326/482 [00:02<00:00, 179.31 examples/s]Tokenizing val (num_proc=4):  73%|███████▎  | 353/482 [00:02<00:00, 200.76 examples/s]Tokenizing val (num_proc=4):  78%|███████▊  | 376/482 [00:02<00:00, 192.71 examples/s]Tokenizing val (num_proc=4):  82%|████████▏ | 396/482 [00:03<00:00, 176.15 examples/s]Tokenizing val (num_proc=4):  87%|████████▋ | 421/482 [00:03<00:00, 181.70 examples/s]Tokenizing val (num_proc=4):  91%|█████████▏| 441/482 [00:03<00:00, 168.95 examples/s]Tokenizing val (num_proc=4):  95%|██████�Tokenizing val (num_proc=4): 100%|██████████| 482/482 [00:04<00:00, 114.35 examples/s]
+2026-04-01 09:28:51,647 INFO Training config: epochTokenizing val (num_proc=4): 100%|██████████| 482/482 [00:03<00:00, 121.66 examples/s]
+2026-04-01 09:28:51,958 INFO Training config: epochs=3, batch=4, grad_accum=4, effective_batch=16, lr=0.0002
+/home/user/YuNing/CultureDx/scripts/finetune_checker.py:349: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `Trainer.__init__`. Use `processing_class` instead.
+  trainer = Trainer(
+2026-04-01 09:28:51,980 INFO Starting training...
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned a`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/scripts/finetune_checker.py", line 401, in <module>
+    main()
+  File "/home/user/YuNing/CultureDx/scripts/finetune_checker.py", line 360, in main
+    trainer.train()
+  File "/home/user/miniforge3/lib/python3.12/site-packages/transformers/trainer.py", line 2325, in train
+    return inner_training_loop(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/transformers/trainer.py", line 2674, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/transformers/trainer.py", line 4020, in training_step
+    loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/transformers/trainer.py", line 4110, in compute_loss
+    outputs = model(**inputs)
+              ^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/accelerate/utils/operations.py", line 823, in forward
+    return model_forward(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/accelerate/utils/operations.py", line 811, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/torch/amp/autocast_mode.py", line 44, in decorate_autocast
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/peft/peft_model.py", line 1923, in forward
+    return self.base_model(
+           ^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/peft/tuners/tuners_utils.py", line 311, in forward
+    return self.model.forward(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/transformers/utils/generic.py", line 918, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 498, in forward
+    loss = self.loss_function(logits=logits, labels=labels, vocab_size=self.config.vocab_size, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/transformers/loss/loss_utils.py", line 55, in ForCausalLMLoss
+    logits = logits.float()
+             ^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 18.55 GiB. GPU 0 has a total capacity of 31.35 GiB of which 3.32 GiB is free. Process 2940 has 504.71 MiB memory in use. Process 5812 has 158.89 MiB memory in use. Including non-PyTorch memory, this process has 26.80 GiB memory in use. Of the allocated memory 24.99 GiB is allocated by PyTorch, and 1.24 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+  0%|          | 0/813 [00:06<?, ?it/s]
+ine 918, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 480, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+                                       ^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 410, in forward
+    hidden_states = decoder_layer(
+                    ^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/transformers/modeling_layers.py", line 93, in __call__
+    return self._gradient_checkpointing_func(partial(super().__call__, **kwargs), *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/torch/_compile.py", line 54, in inner
+    return disable_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py", line 1181, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/torch/utils/checkpoint.py", line 505, in checkpoint
+    return CheckpointFunction.apply(function, preserve, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/torch/autograd/function.py", line 583, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/torch/utils/checkpoint.py", line 268, in forward
+    outputs = run_function(*args)
+              ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 258, in forward
+    hidden_states = self.input_layernorm(hidden_states)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/miniforge3/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 62, in forward
+    variance = hidden_states.pow(2).mean(-1, keepdim=True)
+               ^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 512.00 MiB. GPU 0 has a total capacity of 31.35 GiB of which 47.62 MiB is free. Process 2940 has 504.71 MiB memory in use. Process 5812 has 158.89 MiB memory in use. Process 303217 has 13.02 GiB memory in use. Including non-PyTorch memory, this process has 7.76 GiB memory in use. Process 303372 has 9.28 GiB memory in use. Of the allocated memory 6.70 GiB is allocated by PyTorch, and 496.35 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+  0%|          | 0/813 [00:00<?, ?it/s]

@@ -14,6 +14,18 @@ class TestCreateRetriever:
         retriever = create_retriever(config)
         assert isinstance(retriever, MockRetriever)
 
+    def test_lexical_retriever(self):
+        config = RetrieverConfig(name="lexical")
+        retriever = create_retriever(config)
+        from culturedx.evidence.retriever import LexicalRetriever
+        assert isinstance(retriever, LexicalRetriever)
+
+    def test_hybrid_retriever(self):
+        config = RetrieverConfig(name="hybrid")
+        retriever = create_retriever(config)
+        from culturedx.evidence.retriever import HybridRetriever
+        assert isinstance(retriever, HybridRetriever)
+
     def test_unknown_retriever(self):
         config = RetrieverConfig(name="nonexistent")
         with pytest.raises(ValueError, match="Unknown retriever"):

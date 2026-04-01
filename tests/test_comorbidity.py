@@ -5,6 +5,7 @@ import pytest
 
 from culturedx.diagnosis.comorbidity import (
     ComorbidityResolver,
+    DEFAULT_ALLOWED_COMORBIDITY_PAIRS,
     EXCLUSION_RULES,
 )
 
@@ -115,6 +116,8 @@ class TestComorbidityResolver:
         )
         assert result.primary == "F32"
         assert "F41.1" not in result.comorbid
+        assert "F41.1" in result.rejected
+        assert any("confidence_ratio" in reason for reason in result.rejection_reasons)
 
     def test_ratio_keeps_sufficient_confidence(self):
         """ratio=0.5: F41.1 (0.5) >= 0.5 * 0.8 = 0.40 → kept."""
@@ -144,3 +147,16 @@ class TestComorbidityResolver:
         assert result.primary == ""
         assert result.comorbid == []
         assert result.excluded == []
+
+    def test_invalid_pair_not_emitted_when_allowed_pairs_enforced(self):
+        resolver = ComorbidityResolver(
+            allowed_pairs=DEFAULT_ALLOWED_COMORBIDITY_PAIRS,
+        )
+        result = resolver.resolve(
+            ["F20", "F51"],
+            confidences={"F20": 0.9, "F51": 0.8},
+        )
+        assert result.primary == "F20"
+        assert result.comorbid == []
+        assert "F51" in result.rejected
+        assert any("invalid_pair_with_F20" in reason for reason in result.rejection_reasons)

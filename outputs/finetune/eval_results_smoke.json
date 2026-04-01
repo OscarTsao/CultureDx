@@ -1,0 +1,27 @@
+{
+  "base_model": "Qwen/Qwen2.5-7B-Instruct",
+  "adapter_path": "outputs/finetune/criterion_checker_lora_smoke",
+  "val_examples": 20,
+  "base": {
+    "total_examples": 20,
+    "json_parse_rate": 1.0,
+    "total_criteria": 132,
+    "criterion_accuracy": 0.5984848484848485,
+    "correct_criteria": 79,
+    "total_seconds": 109.2,
+    "avg_seconds_per_example": 5.5
+  },
+  "lora": {
+    "total_examples": 20,
+    "json_parse_rate": 1.0,
+    "total_criteria": 132,
+    "criterion_accuracy": 0.803030303030303,
+    "correct_criteria": 106,
+    "total_seconds": 153.7,
+    "avg_seconds_per_example": 7.7
+  },
+  "improvement": {
+    "json_parse_rate_delta": 0.0,
+    "criterion_accuracy_delta": 0.20454545454545447
+  }
+}

@@ -145,6 +145,61 @@ def format_reliability_diagram_data(result: CalibrationResult) -> str:
     return "\n".join(lines)
 
 
+def compute_brier_score(confidences: list[float], correct: list[bool]) -> float:
+    """Compute the Brier score for confidence calibration."""
+    if len(confidences) != len(correct):
+        raise ValueError(
+            f"Length mismatch: {len(confidences)} confidences vs {len(correct)} correct"
+        )
+    if not confidences:
+        return 0.0
+    errors = [(c - float(y)) ** 2 for c, y in zip(confidences, correct)]
+    return float(sum(errors) / len(errors))
+
+
+def compute_abstention_breakdown(
+    confidences: list[float],
+    correct: list[bool],
+    abstained: list[bool],
+) -> dict[str, float | int]:
+    """Summarize abstention behavior for selective prediction analysis."""
+    if not (len(confidences) == len(correct) == len(abstained)):
+        raise ValueError(
+            "Length mismatch: confidences, correct, and abstained must align"
+        )
+    if not confidences:
+        return {
+            "n_samples": 0,
+            "abstain_rate": 0.0,
+            "coverage": 0.0,
+            "diagnosed_accuracy": 0.0,
+            "abstained_accuracy": 0.0,
+        }
+
+    n = len(confidences)
+    diagnosed = [i for i, flag in enumerate(abstained) if not flag]
+    abstained_idx = [i for i, flag in enumerate(abstained) if flag]
+
+    diagnosed_accuracy = (
+        sum(float(correct[i]) for i in diagnosed) / len(diagnosed)
+        if diagnosed
+        else 0.0
+    )
+    abstained_accuracy = (
+        sum(float(correct[i]) for i in abstained_idx) / len(abstained_idx)
+        if abstained_idx
+        else 0.0
+    )
+
+    return {
+        "n_samples": n,
+        "abstain_rate": float(len(abstained_idx) / n),
+        "coverage": float(len(diagnosed) / n),
+        "diagnosed_accuracy": float(diagnosed_accuracy),
+        "abstained_accuracy": float(abstained_accuracy),
+    }
+
+
 def calibration_from_predictions(
     predictions_path: str | Path,
     gold_labels: dict[str, str] | None = None,

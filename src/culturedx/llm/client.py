@@ -1,17 +1,13 @@
-# src/culturedx/llm/client.py
-"""Ollama LLM client with caching and prompt hashing."""
+"""Ollama LLM client with caching, pooling, and prompt hashing."""
 from __future__ import annotations
 
-import logging
-import time
+import asyncio
 import hashlib
 from pathlib import Path
-
-import httpx
+from typing import Any
 
 from culturedx.llm.cache import LLMCache
-
-logger = logging.getLogger(__name__)
+from culturedx.llm.runtime import LLMRequestStats, SharedLLMHTTPRuntime
 
 
 class OllamaClient:
@@ -27,6 +23,10 @@ class OllamaClient:
         cache_path: str | Path | None = None,
         provider: str = "ollama",
         disable_thinking: bool = True,
+        max_retries: int = 3,
+        max_concurrent: int = 4,
+        transport=None,
+        observability_hook=None,
     ) -> None:
         self.base_url = base_url.rstrip("/")
         self.model = model
@@ -34,11 +34,24 @@ class OllamaClient:
         self.temperature = temperature
         self.top_k = top_k
         self.timeout = timeout
-        self._cache = LLMCache(cache_path) if cache_path else None
+        self.max_retries = max_retries
+        self.max_concurrent = max(1, max_concurrent)
         self.disable_thinking = disable_thinking
+        self._cache = LLMCache(cache_path) if cache_path else None
+        self._runtime = SharedLLMHTTPRuntime(
+            base_url=self.base_url,
+            timeout=self.timeout,
+            max_concurrent=self.max_concurrent,
+            max_retries=self.max_retries,
+            transport=transport,
+            headers={"Content-Type": "application/json"},
+            observability_hook=observability_hook,
+        )
+        self.last_request_stats: LLMRequestStats | None = None
 
     def close(self) -> None:
-        """Close the cache connection."""
+        """Close the runtime and cache connections."""
+        self._runtime.close()
         if self._cache:
             self._cache.close()
 
@@ -53,26 +66,19 @@ class OllamaClient:
         """SHA-256 hash of a prompt template for cache keying."""
         return hashlib.sha256(prompt_text.encode("utf-8")).hexdigest()[:16]
 
-    def generate(
+    def _build_prompt(self, prompt: str, prompt_prefix: str | None = None) -> str:
+        if not prompt_prefix:
+            return prompt
+        return f"{prompt_prefix}\n\n{prompt}"
+
+    def _build_request_body(
         self,
         prompt: str,
-        prompt_hash: str = "",
-        language: str = "zh",
-        json_schema: dict | None = None,
-    ) -> str:
-        """Send prompt to Ollama and return response text."""
-        if not prompt_hash:
-            prompt_hash = self.compute_prompt_hash(prompt)
-
-        # Check cache
-        if self._cache:
-            cached = self._cache.get(self.provider, self.model, prompt_hash, language, prompt)
-            if cached is not None:
-                return cached
-
-        request_body = {
+        prompt_prefix: str | None = None,
+    ) -> dict[str, Any]:
+        body: dict[str, Any] = {
             "model": self.model,
-            "prompt": prompt,
+            "prompt": self._build_prompt(prompt, prompt_prefix=prompt_prefix),
             "stream": False,
             "options": {
                 "temperature": self.temperature,
@@ -80,35 +86,111 @@ class OllamaClient:
             },
         }
         if self.disable_thinking:
-            request_body["think"] = False
+            body["think"] = False
+        return body
 
-        max_retries = 3
-        for attempt in range(max_retries):
-            try:
-                response = httpx.post(
-                    f"{self.base_url}/api/generate",
-                    json=request_body,
-                    timeout=self.timeout,
-                )
-                response.raise_for_status()
-                text = response.json()["response"]
-                break  # success
-            except (httpx.TimeoutException, httpx.HTTPStatusError, ConnectionError) as e:
-                if attempt < max_retries - 1:
-                    wait = 2 ** attempt
-                    logger.warning(
-                        "LLM call failed (attempt %d/%d): %s. Retrying in %ds...",
-                        attempt + 1, max_retries, str(e), wait,
-                    )
-                    time.sleep(wait)
-                else:
-                    logger.error("LLM call failed after %d attempts: %s", max_retries, str(e))
-                    raise
+    def generate(
+        self,
+        prompt: str,
+        prompt_hash: str = "",
+        language: str = "zh",
+        json_schema: dict | None = None,
+        *,
+        prompt_prefix: str | None = None,
+    ) -> str:
+        """Send prompt to Ollama and return response text."""
+        if not prompt_hash:
+            prompt_hash = self.compute_prompt_hash(prompt)
 
-        # Store in cache
+        cache_input = self._build_prompt(prompt, prompt_prefix=prompt_prefix)
         if self._cache:
-            self._cache.put(self.provider, self.model, prompt_hash, language, prompt, text)
+            cached = self._cache.get(
+                self.provider, self.model, prompt_hash, language, cache_input
+            )
+            if cached is not None:
+                self.last_request_stats = LLMRequestStats(
+                    provider=self.provider,
+                    model=self.model,
+                    endpoint="/api/generate",
+                    prompt_hash=prompt_hash,
+                    language=language,
+                    cache_hit=True,
+                )
+                return cached
 
+        stats = LLMRequestStats(
+            provider=self.provider,
+            model=self.model,
+            endpoint="/api/generate",
+            prompt_hash=prompt_hash,
+            language=language,
+            structured_output_mode=None,
+        )
+        response = self._runtime.post_json(
+            "/api/generate",
+            self._build_request_body(prompt, prompt_prefix=prompt_prefix),
+            stats,
+        )
+        data = self._runtime.parse_json_response(response)
+        text = data["response"]
+
+        if self._cache:
+            self._cache.put(
+                self.provider, self.model, prompt_hash, language, cache_input, text
+            )
+        self.last_request_stats = stats
+        return text
+
+    async def async_generate(
+        self,
+        prompt: str,
+        prompt_hash: str = "",
+        language: str = "zh",
+        json_schema: dict | None = None,
+        *,
+        prompt_prefix: str | None = None,
+    ) -> str:
+        """Async variant for callers that want to manage their own event loop."""
+        if not prompt_hash:
+            prompt_hash = self.compute_prompt_hash(prompt)
+
+        cache_input = self._build_prompt(prompt, prompt_prefix=prompt_prefix)
+        if self._cache:
+            cached = self._cache.get(
+                self.provider, self.model, prompt_hash, language, cache_input
+            )
+            if cached is not None:
+                self.last_request_stats = LLMRequestStats(
+                    provider=self.provider,
+                    model=self.model,
+                    endpoint="/api/generate",
+                    prompt_hash=prompt_hash,
+                    language=language,
+                    cache_hit=True,
+                )
+                return cached
+
+        stats = LLMRequestStats(
+            provider=self.provider,
+            model=self.model,
+            endpoint="/api/generate",
+            prompt_hash=prompt_hash,
+            language=language,
+            structured_output_mode=None,
+        )
+        response = await self._runtime.apost_json(
+            "/api/generate",
+            self._build_request_body(prompt, prompt_prefix=prompt_prefix),
+            stats,
+        )
+        data = self._runtime.parse_json_response(response)
+        text = data["response"]
+
+        if self._cache:
+            self._cache.put(
+                self.provider, self.model, prompt_hash, language, cache_input, text
+            )
+        self.last_request_stats = stats
         return text
 
     def batch_generate(
@@ -116,23 +198,47 @@ class OllamaClient:
         prompts: list[str],
         prompt_hashes: list[str] | None = None,
         language: str = "zh",
+        *,
+        prompt_prefix: str | None = None,
     ) -> list[str]:
-        """Generate responses for multiple prompts using ThreadPoolExecutor."""
-        from concurrent.futures import ThreadPoolExecutor, as_completed
+        """Generate responses for multiple prompts using the async runtime."""
+        return asyncio.run(
+            self.async_batch_generate(
+                prompts,
+                prompt_hashes=prompt_hashes,
+                language=language,
+                prompt_prefix=prompt_prefix,
+            )
+        )
 
+    async def async_batch_generate(
+        self,
+        prompts: list[str],
+        prompt_hashes: list[str] | None = None,
+        language: str = "zh",
+        *,
+        prompt_prefix: str | None = None,
+    ) -> list[str]:
+        """Async batch generation with bounded concurrency and stable ordering."""
         if prompt_hashes is None:
             prompt_hashes = [""] * len(prompts)
+        if len(prompt_hashes) != len(prompts):
+            raise ValueError("prompt_hashes must match prompts length")
 
-        results = [None] * len(prompts)
+        semaphore = asyncio.Semaphore(self.max_concurrent)
 
-        def _gen(idx: int) -> tuple[int, str]:
-            return idx, self.generate(prompts[idx], prompt_hashes[idx], language)
+        async def _generate_one(idx: int) -> tuple[int, str]:
+            async with semaphore:
+                text = await self.async_generate(
+                    prompts[idx],
+                    prompt_hashes[idx],
+                    language,
+                    prompt_prefix=prompt_prefix,
+                )
+                return idx, text
 
-        max_workers = min(len(prompts), 4)
-        with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            futures = {executor.submit(_gen, i): i for i in range(len(prompts))}
-            for future in as_completed(futures):
-                idx, response = future.result()
-                results[idx] = response
-
-        return results
+        results = await asyncio.gather(*(_generate_one(i) for i in range(len(prompts))))
+        ordered = ["" for _ in prompts]
+        for idx, text in results:
+            ordered[idx] = text
+        return ordered

@@ -53,6 +53,14 @@ class TestLoadConfig:
         )
         assert cfg.mode.type == "single"
 
+    def test_load_with_vllm_overlay_overrides_model(self):
+        cfg = load_config(
+            CONFIGS_DIR / "base.yaml",
+            overrides=[CONFIGS_DIR / "vllm_awq.yaml"],
+        )
+        assert cfg.llm.provider == "vllm"
+        assert cfg.llm.model_id == "Qwen/Qwen3-32B-AWQ"
+
 
 class TestEvidenceConfig:
     def test_evidence_config_defaults(self):
