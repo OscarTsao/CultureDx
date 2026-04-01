@@ -13,14 +13,11 @@ from __future__ import annotations
 
 import json
 import math
-import logging
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Sequence
 
 from culturedx.core.models import CheckerOutput, EvidenceBrief, ScaleScore
-
-logger = logging.getLogger(__name__)
 
 CALIBRATOR_ARTIFACT_SCHEMA_VERSION = 1
 DEFAULT_CALIBRATOR_FEATURE_NAMES = (
@@ -159,6 +156,7 @@ class ConfidenceCalibrator:
         abstain_threshold: float = 0.3,
         comorbid_threshold: float = 0.5,
         version: int = 2,
+        mode: str = "heuristic-v2",
         artifact_path: str | Path | None = None,
         artifact: CalibratorArtifact | dict[str, Any] | None = None,
         # V1 weights (backward compat)
@@ -166,9 +164,15 @@ class ConfidenceCalibrator:
         criterion_weight: float = 0.4,
         threshold_weight: float = 0.3,
     ) -> None:
+        if mode not in ("heuristic-v2", "learned"):
+            raise ValueError(
+                f"Invalid calibrator mode {mode!r}; expected 'heuristic-v2' or 'learned'"
+            )
+
         self.abstain_threshold = abstain_threshold
         self.comorbid_threshold = comorbid_threshold
         self.version = version
+        self.mode = mode
         self.evidence_weight = evidence_weight
         self.criterion_weight = criterion_weight
         self.threshold_weight = threshold_weight
@@ -181,23 +185,19 @@ class ConfidenceCalibrator:
             )
             self.abstain_threshold = self.artifact.abstain_threshold
             self.comorbid_threshold = self.artifact.comorbid_threshold
-        elif self.artifact_path is not None:
-            try:
-                if self.artifact_path.exists():
-                    self.artifact = CalibratorArtifact.load(self.artifact_path)
-                    self.abstain_threshold = self.artifact.abstain_threshold
-                    self.comorbid_threshold = self.artifact.comorbid_threshold
-                else:
-                    logger.warning(
-                        "Calibrator artifact %s not found; using heuristic fallback",
-                        self.artifact_path,
-                    )
-            except Exception:
-                logger.warning(
-                    "Failed to load calibrator artifact %s; using heuristic fallback",
-                    self.artifact_path,
-                    exc_info=True,
+        elif mode == "learned":
+            if self.artifact_path is None:
+                raise ValueError(
+                    "Calibrator mode 'learned' requires artifact_path"
                 )
+            if not self.artifact_path.exists():
+                raise FileNotFoundError(
+                    f"Calibrator artifact not found at {self.artifact_path}. "
+                    "Use mode='heuristic-v2' or provide a valid artifact_path."
+                )
+            self.artifact = CalibratorArtifact.load(self.artifact_path)
+            self.abstain_threshold = self.artifact.abstain_threshold
+            self.comorbid_threshold = self.artifact.comorbid_threshold
         # V2 weights — tuned via LOO cross-validation (scripts/tune_calibrator_weights.py)
         # Changes from initial weights:
         #   core_score 0.30->0.05: was inflating short-checklist disorders (F41.1=5

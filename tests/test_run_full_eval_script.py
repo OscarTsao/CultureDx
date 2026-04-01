@@ -40,3 +40,29 @@ def test_resolve_model_output_dir_uses_subdirs_for_multi_model_runs(tmp_path: Pa
         model_names,
         "QuantTrio/Qwen3.5-35B-A3B-AWQ",
     ) == tmp_path / "quanttrio-qwen3-5-35b-a3b-awq"
+
+
+def test_build_case_selection_payload_records_exact_case_order():
+    load_info = {
+        "eval_cases": [
+            type("Case", (), {"case_id": "case-2"})(),
+            type("Case", (), {"case_id": "case-1"})(),
+        ]
+    }
+    dataset_spec = {
+        "output_name": "lingxidiag",
+        "adapter_name": "lingxidiag16k",
+        "data_path": "data/raw/lingxidiag16k",
+        "split": "validation",
+    }
+
+    payload = MODULE.build_case_selection_payload(
+        dataset_spec=dataset_spec,
+        load_info=load_info,
+        seed=42,
+    )
+
+    assert payload["dataset"] == "lingxidiag"
+    assert payload["case_ids"] == ["case-2", "case-1"]
+    assert payload["case_order_fingerprint"]
+    assert payload["runtime_context"]["seed"] == 42

@@ -22,23 +22,29 @@ _SOMATIZATION_BOOST = 0.15
 _CONTRADICTION_NEGATION_PENALTY = 0.20
 
 _NEGATION_DETECTOR: NegationDetector | None = None
+_NEGATION_DETECTOR_MODE: str | None = None
 
 
-def _get_negation_detector() -> NegationDetector:
+def _get_negation_detector(mode: str = "clause-rule") -> NegationDetector:
     """Lazy singleton for negation detector (avoid loading stanza until needed)."""
-    global _NEGATION_DETECTOR
-    if _NEGATION_DETECTOR is None:
-        _NEGATION_DETECTOR = NegationDetector(use_dep_parsing=False)
+    global _NEGATION_DETECTOR, _NEGATION_DETECTOR_MODE
+    if _NEGATION_DETECTOR is None or _NEGATION_DETECTOR_MODE != mode:
+        _NEGATION_DETECTOR = NegationDetector(mode=mode)
+        _NEGATION_DETECTOR_MODE = mode
     return _NEGATION_DETECTOR
 
 
-def is_evidence_negated(evidence_text: str, criterion_text: str) -> bool:
+def is_evidence_negated(
+    evidence_text: str,
+    criterion_text: str,
+    mode: str = "clause-rule",
+) -> bool:
     """Check if evidence text negates the criterion concept using scope-aware detection.
 
     Returns True only if the negation detector finds a genuine negation.
     Handles positive-negation idioms (睡不着, 吃不下) and clause boundaries.
     """
-    detector = _get_negation_detector()
+    detector = _get_negation_detector(mode)
     # Try with key symptom terms from the criterion
     sig = concept_signature(criterion_text)
     for term in sig:
@@ -71,9 +77,15 @@ class EvidenceReranker(Protocol):
 class ConceptOverlapReranker:
     """Lightweight reranker based on concept overlap and negation signals."""
 
-    def __init__(self, concept_weight: float = 0.55, score_weight: float = 0.45) -> None:
+    def __init__(
+        self,
+        concept_weight: float = 0.55,
+        score_weight: float = 0.45,
+        negation_mode: str = "clause-rule",
+    ) -> None:
         self.concept_weight = concept_weight
         self.score_weight = score_weight
+        self.negation_mode = negation_mode
 
     def rerank(
         self,
@@ -87,7 +99,15 @@ class ConceptOverlapReranker:
         reranked: list[RetrievalResult] = []
         for result in results:
             concept_score = jaccard_similarity(criterion_text, result.text)
-            negation_penalty = _CONTRADICTION_NEGATION_PENALTY if is_evidence_negated(result.text, criterion_text) else 0.0
+            negation_penalty = (
+                _CONTRADICTION_NEGATION_PENALTY
+                if is_evidence_negated(
+                    result.text,
+                    criterion_text,
+                    mode=self.negation_mode,
+                )
+                else 0.0
+            )
             fused = (
                 self.score_weight * result.score
                 + self.concept_weight * concept_score
@@ -113,12 +133,16 @@ class CriteriaMatcher:
         min_score: float = 0.1,
         reranker: EvidenceReranker | None = None,
         rerank_top_n: int = 5,
+        negation_mode: str = "clause-rule",
     ) -> None:
         self.retriever = retriever
         self.top_k = top_k
         self.min_score = min_score
         self.reranker = reranker
         self.rerank_top_n = rerank_top_n
+        self.negation_mode = negation_mode
+        if hasattr(self.reranker, "negation_mode"):
+            self.reranker.negation_mode = negation_mode
 
     def match_criterion(
         self,
@@ -303,7 +327,14 @@ class CriteriaMatcher:
             signal_tags.append("insufficient_evidence")
         else:
             top = filtered_results[0]
-            if is_evidence_negated(top.text, criterion_text) and jaccard_similarity(criterion_text, top.text) > 0.20:
+            if (
+                is_evidence_negated(
+                    top.text,
+                    criterion_text,
+                    mode=self.negation_mode,
+                )
+                and jaccard_similarity(criterion_text, top.text) > 0.20
+            ):
                 signal_tags.append("contradiction")
 
         criterion_type = criterion_meta.get("type", "")

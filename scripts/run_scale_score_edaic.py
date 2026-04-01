@@ -110,7 +110,7 @@ def main():
                 retriever=retriever,
                 target_disorders=TARGET_DISORDERS,
                 somatization_enabled=use_somat,
-                somatization_llm_fallback=False,
+                somatization_mode="ontology-only",
                 top_k=cfg.evidence.top_k_final,
                 min_confidence=cfg.evidence.min_confidence,
             )

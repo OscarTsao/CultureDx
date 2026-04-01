@@ -235,13 +235,10 @@ class TestConfidenceCalibrator:
         assert artifact.bias != 0.0 or any(v != 0.0 for v in artifact.weights.values())
         assert artifact.metadata["dataset"] == "synthetic"
 
-    def test_missing_artifact_falls_back_to_heuristic(self, tmp_path):
+    def test_missing_artifact_raises_in_learned_mode(self, tmp_path):
         missing = tmp_path / "missing.json"
-        cal = ConfidenceCalibrator(artifact_path=missing)
-        co = _make_checker("F32", [("B1", 0.9), ("B2", 0.8), ("C1", 0.7), ("C2", 0.7)], [], 4)
-        result = cal.calibrate(["F32"], [co])
-        assert result.primary is not None
-        assert result.primary.calibration_path.startswith("heuristic")
+        with pytest.raises(FileNotFoundError, match="Calibrator artifact not found"):
+            ConfidenceCalibrator(mode="learned", artifact_path=missing)
 
 
 class TestScaleScoreSignal:

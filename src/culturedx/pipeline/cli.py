@@ -8,6 +8,7 @@ from pathlib import Path
 import click
 
 from culturedx.core.config import load_config
+from culturedx.pipeline.reproducibility import apply_global_seed
 
 
 def _create_configured_llm(cfg, llm_cfg):
@@ -25,6 +26,7 @@ def _create_configured_llm(cfg, llm_cfg):
         cache_path=Path(cfg.cache_dir) / "llm_cache.db",
         disable_thinking=getattr(llm_cfg, "disable_thinking", True),
         max_concurrent=getattr(llm_cfg, "max_concurrent", 4),
+        seed=getattr(cfg, "seed", None),
     )
 
 
@@ -61,6 +63,7 @@ def run(
         cfg = load_config(config[0])
     else:
         cfg = load_config(config[0], overrides=list(config[1:]))
+    apply_global_seed(cfg.seed)
 
     # 2. Load dataset
     from culturedx.data.adapters import get_adapter
@@ -102,9 +105,12 @@ def run(
             target_disorders=cfg.mode.target_disorders,
             scope_policy=evidence_scope_policy,
             somatization_enabled=cfg.evidence.somatization.enabled,
-            somatization_llm_fallback=cfg.evidence.somatization.llm_fallback,
+            somatization_mode=cfg.evidence.somatization.mode,
+            rerank_enabled=cfg.evidence.rerank_enabled,
+            rerank_top_n=cfg.evidence.rerank_top_n,
             top_k=cfg.evidence.top_k_final,
             min_confidence=cfg.evidence.min_confidence,
+            negation_mode=cfg.evidence.negation_mode,
         )
 
     # 5. Create mode
@@ -121,6 +127,8 @@ def run(
             contrastive_enabled=cfg.mode.contrastive_enabled,
             comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
             prompt_variant=cfg.mode.prompt_variant,
+            calibrator_mode=cfg.mode.calibrator_mode,
+            calibrator_artifact_path=cfg.mode.calibrator_artifact_path,
         )
         if checker_llm is not None:
             mode_kwargs["checker_llm_client"] = checker_llm
@@ -188,6 +196,15 @@ def run(
         dataset_name=dataset,
         num_cases=len(cases),
         mode_type=cfg.mode.type,
+        case_ids=[case.case_id for case in cases],
+        runtime_context={
+            "config_paths": list(config),
+            "data_path": effective_data_path,
+            "split": split,
+            "limit": limit,
+            "with_evidence": with_evidence,
+            "seed": cfg.seed,
+        },
     )
 
     results = runner.run(cases)
@@ -325,6 +342,8 @@ def sweep(
                 contrastive_enabled=cfg.mode.contrastive_enabled,
                 comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
                 prompt_variant=cfg.mode.prompt_variant,
+                calibrator_mode=cfg.mode.calibrator_mode,
+                calibrator_artifact_path=cfg.mode.calibrator_artifact_path,
             )
             if checker_llm is not None:
                 mode_kwargs["checker_llm_client"] = checker_llm
@@ -371,9 +390,12 @@ def sweep(
                 target_disorders=condition.target_disorders or cfg.mode.target_disorders,
                 scope_policy=evidence_scope_policy,
                 somatization_enabled=condition.with_somatization,
-                somatization_llm_fallback=cfg.evidence.somatization.llm_fallback,
+                somatization_mode=cfg.evidence.somatization.mode,
+                rerank_enabled=cfg.evidence.rerank_enabled,
+                rerank_top_n=cfg.evidence.rerank_top_n,
                 top_k=cfg.evidence.top_k_final,
                 min_confidence=cfg.evidence.min_confidence,
+                negation_mode=cfg.evidence.negation_mode,
                 brief_cache=brief_cache,
             )
 

@@ -37,6 +37,8 @@ class ModeConfig(BaseModel):
     contrastive_enabled: bool = False
     comorbid_min_ratio: float = 0.9
     prompt_variant: str = ""
+    calibrator_mode: str = "heuristic-v2"  # "heuristic-v2" or "learned"
+    calibrator_artifact_path: str | None = None
 
 
 class DatasetConfig(BaseModel):
@@ -68,7 +70,8 @@ class RetrieverConfig(BaseModel):
 
 class SomatizationConfig(BaseModel):
     enabled: bool = True
-    llm_fallback: bool = True
+    mode: str = "ontology-only"  # "ontology-only", "ontology+llm", "llm-only"
+    llm_fallback: bool = True  # deprecated — use mode instead
 
 
 class EvidenceConfig(BaseModel):
@@ -76,9 +79,12 @@ class EvidenceConfig(BaseModel):
     scope_policy: str = "auto"
     retriever: RetrieverConfig = RetrieverConfig()
     somatization: SomatizationConfig = SomatizationConfig()
+    negation_mode: str = "clause-rule"  # "clause-rule" or "stanza-dep"
     top_k_retrieval: int = 20
     top_k_final: int = 10
     min_confidence: float = 0.1
+    rerank_enabled: bool = False
+    rerank_top_n: int = 5
 
 
 class CultureDxConfig(BaseModel):

@@ -108,12 +108,16 @@ class TestTriageAgent:
         assert output.parsed["selected_categories"] == ["mood"]
         assert output.parsed["open_set_score"] == pytest.approx(0.1)
 
-    def test_unparseable_activates_all(self, prompts_dir):
+    def test_unparseable_returns_parse_failure(self, prompts_dir):
         agent = TriageAgent(llm_client=MockLLM(response="I cannot classify"), prompts_dir=prompts_dir)
         output = agent.run(AgentInput(transcript_text="test", language="en"))
-        # Should activate all categories as fallback
-        assert len(output.parsed["disorder_codes"]) > 0
+        assert output.parsed["categories"] == []
+        assert output.parsed["disorder_codes"] == []
+        assert output.parsed["selected_categories"] == []
+        assert output.parsed["candidate_disorder_codes"] == []
         assert output.parsed["fallback_reason"] == "no_valid_categories"
+        assert output.parsed["routing_mode"] == "parse_failure"
+        assert output.parsed["parse_failure"] is True
 
     def test_invalid_category_ignored(self, prompts_dir):
         resp = json.dumps({"categories": [
@@ -168,20 +172,17 @@ class TestTriageAgent:
         )
         assert output.parsed["categories"][0]["confidence"] == output.parsed["calibrated_category_scores"]["mood"]
 
-    def test_missing_artifact_uses_safe_fallback(self, prompts_dir, tmp_path):
+    def test_missing_artifact_raises(self, prompts_dir, tmp_path):
         missing = tmp_path / "does_not_exist.json"
         resp = json.dumps({"categories": [
             {"category": "mood", "confidence": 0.9},
         ]})
-        agent = TriageAgent(
-            llm_client=MockLLM(response=resp),
-            prompts_dir=prompts_dir,
-            calibration_artifact_path=missing,
-        )
-        output = agent.run(AgentInput(transcript_text="test", language="en"))
-        assert output.parsed["routing_mode"] == "heuristic_fallback"
-        assert output.parsed["calibration_status"] == "fallback"
-        assert output.parsed["fallback_reason"] == "no_calibration_artifact"
+        with pytest.raises(FileNotFoundError, match="Triage calibration artifact not found"):
+            TriageAgent(
+                llm_client=MockLLM(response=resp),
+                prompts_dir=prompts_dir,
+                calibration_artifact_path=missing,
+            )
 
     def test_fit_and_evaluate_helpers(self):
         examples = [

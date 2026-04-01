@@ -52,6 +52,7 @@ from culturedx.eval.code_mapping import (
 )
 from culturedx.eval.metrics import compute_comorbidity_metrics, compute_diagnosis_metrics
 from culturedx.pipeline.artifacts import (
+    CaseSelectionManifest,
     build_failure_records,
     build_prediction_record,
     build_stage_timing_records,
@@ -59,6 +60,7 @@ from culturedx.pipeline.artifacts import (
     stable_fingerprint,
 )
 from culturedx.pipeline.cli import _create_configured_llm
+from culturedx.pipeline.reproducibility import apply_global_seed
 from culturedx.pipeline.runner import ExperimentRunner
 
 logging.basicConfig(
@@ -212,6 +214,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-dir", required=True, help="Evaluation output directory")
     parser.add_argument("--resume", action="store_true", help="Resume from checkpoint/output files")
     parser.add_argument("--dry-run", action="store_true", help="Count cases and plan the run without executing inference")
+    parser.add_argument(
+        "--split",
+        default=None,
+        help="Override dataset split (e.g. 'validation', 'train'). Applies to all datasets that support splits.",
+    )
     return parser.parse_args()
 
 
@@ -327,7 +334,7 @@ def resolve_dataset_spec(dataset_name: str, cfg: CultureDxConfig) -> dict[str, A
             "output_name": "lingxidiag",
             "adapter_name": "lingxidiag16k",
             "data_path": data_path,
-            "split": "train",
+            "split": "validation",
         }
 
     data_path_obj = Path(data_path)
@@ -375,6 +382,8 @@ def create_mode(cfg: CultureDxConfig):
             execution_mode=cfg.mode.execution_mode,
             contrastive_enabled=cfg.mode.contrastive_enabled,
             comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
+            calibrator_mode=cfg.mode.calibrator_mode,
+            calibrator_artifact_path=cfg.mode.calibrator_artifact_path,
         )
         if checker_llm is not None:
             mode_kwargs["checker_llm_client"] = checker_llm
@@ -439,9 +448,12 @@ def create_evidence_pipeline(cfg: CultureDxConfig, llm_client):
         target_disorders=cfg.mode.target_disorders,
         scope_policy=evidence_scope_policy,
         somatization_enabled=cfg.evidence.somatization.enabled,
-        somatization_llm_fallback=cfg.evidence.somatization.llm_fallback,
+        somatization_mode=cfg.evidence.somatization.mode,
+        rerank_enabled=cfg.evidence.rerank_enabled,
+        rerank_top_n=cfg.evidence.rerank_top_n,
         top_k=cfg.evidence.top_k_final,
         min_confidence=cfg.evidence.min_confidence,
+        negation_mode=cfg.evidence.negation_mode,
     )
 
 
@@ -552,6 +564,45 @@ def build_eval_plan_payload(
         "max_cases": args.max_cases,
         "culturedx_config": cfg.model_dump(),
     }
+
+
+def build_case_selection_payload(
+    *,
+    dataset_spec: dict[str, Any],
+    load_info: dict[str, Any],
+    seed: int,
+) -> dict[str, Any]:
+    case_ids = [str(case.case_id) for case in load_info["eval_cases"]]
+    payload = CaseSelectionManifest(
+        run_id="",
+        dataset=dataset_spec["output_name"],
+        num_cases=len(case_ids),
+        case_ids=case_ids,
+        case_order_fingerprint=stable_fingerprint(case_ids) if case_ids else "",
+        runtime_context={
+            "adapter_name": dataset_spec["adapter_name"],
+            "data_path": dataset_spec["data_path"],
+            "split": dataset_spec["split"],
+            "seed": seed,
+        },
+    )
+    return serialize_dataclass(payload)
+
+
+def write_case_selection_manifests(
+    output_dir: Path,
+    *,
+    dataset_specs: list[dict[str, Any]],
+    dataset_loads: dict[str, dict[str, Any]],
+    seed: int,
+) -> None:
+    for spec in dataset_specs:
+        payload = build_case_selection_payload(
+            dataset_spec=spec,
+            load_info=dataset_loads[spec["output_name"]],
+            seed=seed,
+        )
+        write_json(output_dir / f"case_list_{spec['output_name']}.json", payload)
 
 
 def compute_config_hash(plan_payload: dict[str, Any]) -> str:
@@ -1387,8 +1438,12 @@ def run_eval_for_model(
 def main() -> int:
     args = parse_args()
     cfg = load_culturedx_config(args.config)
+    apply_global_seed(cfg.seed)
 
     dataset_specs = [resolve_dataset_spec(name, cfg) for name in normalize_name_list(args.datasets)]
+    if args.split is not None:
+        for spec in dataset_specs:
+            spec["split"] = args.split
     mode_names = normalize_name_list(args.modes)
     model_names = normalize_model_name_list(args.model_name, cfg.llm.model_id)
     base_output_dir = Path(args.output_dir)
@@ -1406,6 +1461,12 @@ def main() -> int:
 
     for model_name in model_names:
         run_output_dir = resolve_model_output_dir(base_output_dir, model_names, model_name)
+        write_case_selection_manifests(
+            run_output_dir,
+            dataset_specs=dataset_specs,
+            dataset_loads=dataset_loads,
+            seed=cfg.seed,
+        )
         run_eval_for_model(
             args=args,
             cfg=cfg,

@@ -605,4 +605,9 @@ If you need to cite the repo's study from another doc or PR, use this order:
 5. [comorbidity_analysis.md](/home/user/YuNing/CultureDx/outputs/comorbidity_analysis.md)
 6. [paper_narrative_v2.md](/home/user/YuNing/CultureDx/docs/paper_narrative_v2.md)
 
+## Improvement Queue
+
+See [improvement_queue.md](improvement_queue.md) for the priority-ordered
+pipeline improvement plan (P0–P5) and future scoring positions (B–E).
+
 That order keeps claims closest to their underlying committed evidence.

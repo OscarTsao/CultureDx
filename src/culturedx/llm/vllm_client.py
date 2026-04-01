@@ -10,6 +10,9 @@ import httpx
 
 from culturedx.llm.cache import LLMCache
 from culturedx.llm.runtime import LLMRequestStats, SharedLLMHTTPRuntime
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class VLLMClient:
@@ -36,6 +39,7 @@ class VLLMClient:
         max_concurrent: int = 4,
         disable_thinking: bool = True,
         max_retries: int = 3,
+        seed: int | None = None,
         transport: httpx.BaseTransport | httpx.AsyncBaseTransport | None = None,
         observability_hook=None,
         structured_output_mode: str = "auto",
@@ -51,6 +55,7 @@ class VLLMClient:
         self.max_concurrent = max(1, max_concurrent)
         self.disable_thinking = disable_thinking
         self.max_retries = max_retries
+        self.seed = seed
         self.structured_output_mode = structured_output_mode
         self._cache = LLMCache(cache_path) if cache_path else None
         self._runtime = SharedLLMHTTPRuntime(
@@ -66,8 +71,12 @@ class VLLMClient:
 
     def _cache_key_input(self, prompt: str, prompt_prefix: str | None = None) -> str:
         if not prompt_prefix:
-            return prompt
-        return f"{prompt_prefix}\n\n{prompt}"
+            key_input = prompt
+        else:
+            key_input = f"{prompt_prefix}\n\n{prompt}"
+        if self.seed is None:
+            return key_input
+        return f"{key_input}\n\n[seed:{self.seed}]"
 
     @staticmethod
     def compute_prompt_hash(template_source: str) -> str:
@@ -103,6 +112,8 @@ class VLLMClient:
             "top_p": self.top_p,
             "max_tokens": self.max_tokens,
         }
+        if self.seed is not None:
+            body["seed"] = self.seed
         if self.disable_thinking:
             body["chat_template_kwargs"] = {"enable_thinking": False}
         return body
@@ -260,6 +271,10 @@ class VLLMClient:
         last_exc: Exception | None = None
         for mode in preferred_modes:
             try:
+                logger.debug(
+                    "Attempting structured output mode=%s for model=%s",
+                    mode, self.model,
+                )
                 stats = LLMRequestStats(
                     provider=self.provider,
                     model=self.model,
@@ -279,6 +294,10 @@ class VLLMClient:
                     stats,
                 )
                 text = self._parse_chat_content(response)
+                logger.debug(
+                    "Structured output succeeded with mode=%s for model=%s",
+                    mode, self.model,
+                )
                 self._cache_put(prompt_hash, language, prompt, prompt_prefix, text)
                 return text, stats
             except httpx.HTTPStatusError as exc:
@@ -287,6 +306,11 @@ class VLLMClient:
                     status_code = exc.response.status_code
                     body_text = exc.response.text.lower()
                     if status_code in {400, 404, 422} or "response_format" in body_text:
+                        logger.info(
+                            "Structured output mode=%s rejected (status=%d), "
+                            "falling back to guided_json for model=%s",
+                            mode, status_code, self.model,
+                        )
                         continue
                 raise
 

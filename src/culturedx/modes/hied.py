@@ -63,6 +63,8 @@ class HiEDMode(BaseModeOrchestrator):
         ranker_weights_path: str | Path | None = None,
         comorbid_min_ratio: float = 0.9,
         prompt_variant: str = "",
+        calibrator_mode: str = "heuristic-v2",
+        calibrator_artifact_path: str | Path | None = None,
     ) -> None:
         self.mode_name = "hied"
         self.llm = llm_client
@@ -108,6 +110,8 @@ class HiEDMode(BaseModeOrchestrator):
         self.calibrator = ConfidenceCalibrator(
             abstain_threshold=abstain_threshold,
             comorbid_threshold=comorbid_threshold,
+            mode=calibrator_mode,
+            artifact_path=calibrator_artifact_path,
         )
 
         # Stage 4.5: Differential disambiguation (for close calls)
@@ -245,22 +249,28 @@ class HiEDMode(BaseModeOrchestrator):
                     "categories": triage_output.parsed.get("categories", []),
                 }
             else:
-                logger.warning("Triage failed for case %s, using all disorders", case.case_id)
-                from culturedx.ontology.icd10 import list_disorders
-
-                candidate_codes = list_disorders()
+                logger.warning("Triage parse failure for case %s: no disorder_codes in response", case.case_id)
                 triage_failure = FailureInfo(
-                    code="triage_failed",
+                    code="triage_parse_failure",
                     stage="triage",
-                    message="Triage response was missing disorder_codes; fell back to all supported disorders.",
-                    recoverable=True,
+                    message="Triage response was missing disorder_codes; cannot determine candidate disorders.",
+                    recoverable=False,
                 )
                 failures.append(triage_failure)
                 decision_trace["triage"] = {
                     "used": True,
-                    "fallback": "all_supported",
+                    "parse_failure": True,
                     "failure_code": triage_failure.code,
                 }
+                # Do NOT silently expand to all disorders — return abstain
+                return self._abstain(
+                    case,
+                    lang,
+                    failure=triage_failure,
+                    decision_trace=decision_trace,
+                    stage_timings=stage_timings,
+                    failures=failures,
+                )
 
         if not candidate_codes:
             failure = FailureInfo(

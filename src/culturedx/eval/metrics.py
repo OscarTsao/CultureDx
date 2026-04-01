@@ -50,6 +50,11 @@ def macro_f1(preds: list[str], golds: list[str]) -> float:
     return float(f1_score(golds, preds, average="macro", zero_division=0))
 
 
+def weighted_f1(preds: list[str], golds: list[str]) -> float:
+    """Weighted F1 score (accounts for class imbalance)."""
+    return float(f1_score(golds, preds, average="weighted", zero_division=0))
+
+
 def binary_f1(preds: list[int], golds: list[int]) -> float:
     """Binary F1 score (positive class)."""
     return float(f1_score(golds, preds, average="binary", zero_division=0))
@@ -93,6 +98,7 @@ def compute_diagnosis_metrics(
         "top1_accuracy": top_k_accuracy(preds, golds, k=1),
         "top3_accuracy": top_k_accuracy(preds, golds, k=3),
         "macro_f1": macro_f1(primary_preds, primary_golds),
+        "weighted_f1": weighted_f1(primary_preds, primary_golds),
     }
 
 

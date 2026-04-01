@@ -50,6 +50,23 @@ class TestOllamaClient:
         assert client.last_request_stats.cache_hit is False
         client.close()
 
+    def test_generate_includes_seed_when_configured(self):
+        seen = {}
+
+        def handler(request: httpx.Request) -> httpx.Response:
+            seen["body"] = json.loads(request.content.decode())
+            return _response_json({"response": "ok"}, request)
+
+        client = OllamaClient(
+            base_url="http://localhost:11434",
+            model="qwen3:14b",
+            seed=42,
+            transport=httpx.MockTransport(handler),
+        )
+        client.generate("Diagnose this patient", prompt_hash="abc123", language="zh")
+        assert seen["body"]["options"]["seed"] == 42
+        client.close()
+
     def test_cache_hit_skips_transport(self, tmp_path):
         cache_path = tmp_path / "cache.db"
         calls = {"count": 0}
@@ -71,6 +88,35 @@ class TestOllamaClient:
         assert client.last_request_stats is not None
         assert client.last_request_stats.cache_hit is True
         client.close()
+
+    def test_cache_key_distinguishes_seed(self, tmp_path):
+        cache_path = tmp_path / "cache.db"
+        calls = {"count": 0}
+
+        def handler(request: httpx.Request) -> httpx.Response:
+            calls["count"] += 1
+            return _response_json({"response": f"response-{calls['count']}"}, request)
+
+        client_a = OllamaClient(
+            base_url="http://localhost:11434",
+            model="qwen3:14b",
+            cache_path=cache_path,
+            seed=41,
+            transport=httpx.MockTransport(handler),
+        )
+        client_b = OllamaClient(
+            base_url="http://localhost:11434",
+            model="qwen3:14b",
+            cache_path=cache_path,
+            seed=42,
+            transport=httpx.MockTransport(handler),
+        )
+
+        assert client_a.generate("prompt") == "response-1"
+        assert client_b.generate("prompt") == "response-2"
+        assert calls["count"] == 2
+        client_a.close()
+        client_b.close()
 
     def test_retry_on_timeout(self):
         calls = {"count": 0}
@@ -96,6 +142,26 @@ class TestOllamaClient:
 
 
 class TestVLLMClient:
+    def test_generate_includes_seed_when_configured(self):
+        seen = {}
+
+        async def handler(request: httpx.Request) -> httpx.Response:
+            seen["body"] = json.loads(request.content.decode())
+            return _response_json(
+                {"choices": [{"message": {"content": "ok"}}]},
+                request,
+            )
+
+        client = VLLMClient(
+            base_url="http://localhost:8000",
+            model="qwen3-32b",
+            seed=42,
+            transport=httpx.MockTransport(handler),
+        )
+        client.generate("Prompt")
+        assert seen["body"]["seed"] == 42
+        client.close()
+
     def test_structured_outputs_use_response_format_then_fallback(self):
         calls = {"count": 0}
         seen_bodies: list[dict] = []

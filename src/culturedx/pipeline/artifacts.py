@@ -42,7 +42,22 @@ class RunManifest:
     num_cases: int = 0
     model_name: str = ""
     config_fingerprint: str = ""
+    case_selection_fingerprint: str = ""
     config: dict[str, Any] = field(default_factory=dict)
+    runtime_context: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass
+class CaseSelectionManifest:
+    """Exact ordered case selection for a run."""
+
+    schema_version: str = ARTIFACT_SCHEMA_VERSION
+    run_id: str = ""
+    dataset: str = ""
+    num_cases: int = 0
+    case_ids: list[str] = field(default_factory=list)
+    case_order_fingerprint: str = ""
+    runtime_context: dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass

@@ -8,7 +8,7 @@ from culturedx.evidence.negation import NegationDetector
 
 @pytest.fixture(scope="module")
 def detector() -> NegationDetector:
-    return NegationDetector(use_dep_parsing=True)
+    return NegationDetector(mode="clause-rule")
 
 
 def test_simple_negation(detector: NegationDetector):

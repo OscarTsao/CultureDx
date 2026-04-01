@@ -194,7 +194,7 @@ def create_evidence_pipeline(llm_client, condition: AblationCondition):
         target_disorders=list(condition.target_disorders),
         extractor_enabled=True,
         somatization_enabled=condition.with_somatization,
-        somatization_llm_fallback=condition.with_somatization,
+        somatization_mode="ontology+llm" if condition.with_somatization else "ontology-only",
     )
 
 

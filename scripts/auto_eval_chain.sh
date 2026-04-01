@@ -8,6 +8,8 @@
 #
 # Usage:
 #   FINETUNE_PID=320737 nohup ./scripts/auto_eval_chain.sh > outputs/eval/auto_chain.log 2>&1 &
+#
+# Evaluates on validation split with full N (no case limit) for paper-ready results.
 
 set -euo pipefail
 
@@ -18,6 +20,7 @@ FINETUNE_PID=${FINETUNE_PID:-320737}
 VLLM_PORT=${VLLM_PORT:-8000}
 VLLM_URL="http://localhost:${VLLM_PORT}"
 DATASETS="lingxidiag,mdd5k"
+EVAL_SPLIT="validation"
 BATCH_SIZE=50
 EVAL_SCRIPT="scripts/run_full_eval.py"
 
@@ -112,6 +115,7 @@ run_eval() {
         --model-name "$model_name" \
         --batch-size "$BATCH_SIZE" \
         --output-dir "$output_dir" \
+        --split "$EVAL_SPLIT" \
         --with-evidence \
         --with-somatization \
         --resume \
@@ -200,7 +204,8 @@ log "===== PHASE 4: Reasoning/CoT ablation ====="
 stop_vllm
 sleep 5
 
-export MAX_CASES=200
+# Full validation set — no case limit for definitive results
+# export MAX_CASES=200
 export MODEL="Qwen/Qwen3-32B-AWQ"
 export DATASETS="lingxidiag,mdd5k"
 

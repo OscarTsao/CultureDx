@@ -38,18 +38,15 @@ def create_retriever(
     if config.name == "hybrid":
         dense_retriever: BaseRetriever
         if config.model_id:
-            try:
-                from culturedx.evidence.retriever import BGEM3Retriever
+            from culturedx.evidence.retriever import BGEM3Retriever
 
-                dense_retriever = BGEM3Retriever(
-                    model_id=config.model_id,
-                    device=config.device,
-                    cache_dir=config.cache_dir or None,
-                    embedding_cache=embedding_cache,
-                    mode_weights=config.mode_weights,
-                )
-            except ImportError:
-                dense_retriever = MockRetriever()
+            dense_retriever = BGEM3Retriever(
+                model_id=config.model_id,
+                device=config.device,
+                cache_dir=config.cache_dir or None,
+                embedding_cache=embedding_cache,
+                mode_weights=config.mode_weights,
+            )
         else:
             dense_retriever = MockRetriever()
         return HybridRetriever(dense_retriever=dense_retriever)

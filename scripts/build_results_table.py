@@ -45,9 +45,11 @@ METRICS = [
     ("Top-1 Acc", "metrics_parent_normalized", "top1_accuracy"),
     ("Top-3 Acc", "metrics_parent_normalized", "top3_accuracy"),
     ("Macro F1",  "metrics_parent_normalized", "macro_f1"),
+    ("Weighted F1", "metrics_parent_normalized", "weighted_f1"),
     ("Top-1 Acc (exact)", "metrics_exact", "top1_accuracy"),
     ("Top-3 Acc (exact)", "metrics_exact", "top3_accuracy"),
     ("Macro F1 (exact)",  "metrics_exact", "macro_f1"),
+    ("Weighted F1 (exact)", "metrics_exact", "weighted_f1"),
 ]
 
 # ── Load data ──────────────────────────────────────────────────────────
