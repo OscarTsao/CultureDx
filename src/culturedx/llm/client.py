@@ -3,11 +3,14 @@ from __future__ import annotations
 
 import asyncio
 import hashlib
+import logging
 from pathlib import Path
 from typing import Any
 
 from culturedx.llm.cache import LLMCache
 from culturedx.llm.runtime import LLMRequestStats, SharedLLMHTTPRuntime
+
+logger = logging.getLogger(__name__)
 
 
 class OllamaClient:
@@ -101,6 +104,9 @@ class OllamaClient:
         """Send prompt to Ollama and return response text."""
         if not prompt_hash:
             prompt_hash = self.compute_prompt_hash(prompt)
+
+        if json_schema is not None:
+            logger.warning("OllamaClient does not support json_schema; parameter ignored")
 
         cache_input = self._build_prompt(prompt, prompt_prefix=prompt_prefix)
         if self._cache:

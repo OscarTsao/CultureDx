@@ -1,38 +1,0 @@
-2026-03-27 14:44:53,239 INFO Loaded 200 val examples
-2026-03-27 14:44:53,240 INFO Loading base model: Qwen/Qwen2.5-7B-Instruct (4-bit)
-`torch_dtype` is deprecated! Use `dtype` instead!
-2026-03-27 14:44:55,416 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:04,  1.67s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.85s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:05<00:01,  1.93s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:07<00:00,  1.72s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:07<00:00,  1.77s/it]
-2026-03-27 14:45:02,956 INFO Evaluating base on 200 examples...
-The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
-2026-03-27 14:46:49,714 INFO   base: 20/200 done
-2026-03-27 14:48:44,649 INFO   base: 40/200 done
-2026-03-27 14:50:18,954 INFO   base: 60/200 done
-2026-03-27 14:52:33,524 INFO   base: 80/200 done
-2026-03-27 14:54:22,826 INFO   base: 100/200 done
-2026-03-27 14:56:22,832 INFO   base: 120/200 done
-2026-03-27 14:57:56,664 INFO   base: 140/200 done
-2026-03-27 14:59:41,525 INFO   base: 160/200 done
-2026-03-27 15:01:36,011 INFO   base: 180/200 done
-2026-03-27 15:03:23,305 INFO   base: 200/200 done
-2026-03-27 15:03:23,306 INFO base results: json_parse=100.0%, criterion_acc=58.1%, time=1100s
-2026-03-27 15:03:23,307 INFO Loading LoRA adapter from outputs/finetune/criterion_checker_lora
-2026-03-27 15:03:23,353 INFO Evaluating lora on 200 examples...
-2026-03-27 15:06:27,946 INFO   lora: 20/200 done
-2026-03-27 15:10:06,677 INFO   lora: 40/200 done
-2026-03-27 15:13:02,899 INFO   lora: 60/200 done
-2026-03-27 15:16:07,697 INFO   lora: 80/200 done
-2026-03-27 15:18:45,841 INFO   lora: 100/200 done
-2026-03-27 15:21:37,980 INFO   lora: 120/200 done
-2026-03-27 15:24:31,369 INFO   lora: 140/200 done
-2026-03-27 15:27:08,087 INFO   lora: 160/200 done
-2026-03-27 15:30:46,112 INFO   lora: 180/200 done
-2026-03-27 15:34:19,316 INFO   lora: 200/200 done
-2026-03-27 15:34:19,317 INFO lora results: json_parse=95.5%, criterion_acc=78.1%, time=1856s
-2026-03-27 15:34:19,317 INFO ============================================================
-2026-03-27 15:34:19,317 INFO EVALUATION RESULTS
-2026-03-27 15:34:19,317 INFO ============================================================
-2026-03-27 15:34:19,317 INFO Base:  json_parse=100.0%  criterion_acc=58.1%
-2026-03-27 15:34:19,317 INFO LoRA:  json_parse=95.5%  criterion_acc=78.1%
-2026-03-27 15:34:19,317 INFO Delta: json_parse=-4.5pp  criterion_acc=+20.0pp
-2026-03-27 15:34:19,317 INFO Saved to outputs/finetune/eval_results.json

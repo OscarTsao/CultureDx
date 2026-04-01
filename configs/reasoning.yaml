@@ -1,3 +1,9 @@
+# ┌─────────────────────────────────────────────────────────────────┐
+# │ RESEARCH-ONLY: reasoning/CoT ablation config.                  │
+# │ NOT for standard paper reproduction.                           │
+# │ temperature > 0 breaks deterministic greedy decoding.          │
+# │ Do NOT combine with hied.yaml for reproducing paper results.   │
+# └─────────────────────────────────────────────────────────────────┘
 # Enable Qwen3 native thinking mode for reasoning experiments
 llm:
   provider: vllm

@@ -344,8 +344,6 @@ class SomatizationMapper:
             ambiguity_flags=list(payload.get("ambiguity_flags", [])),
             cache_metadata=dict(payload.get("cache_metadata", {})),
         )
-        for key, value in payload.items():
-            setattr(mapped, key, value)
         return mapped
 
     def _llm_map(self, symptom_text: str, context: str) -> list[str]:

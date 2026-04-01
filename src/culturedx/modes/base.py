@@ -177,7 +177,6 @@ class BaseModeOrchestrator(ABC):
             max_workers = getattr(active_checker_llm, "max_concurrent", 1)
 
         def _check_one(disorder_code: str) -> CheckerOutput | None:
-            get_disorder_name(disorder_code, lang) or disorder_code
             evidence_payload = evidence_map.get(disorder_code)
             evidence_summary = None
             temporal_summary = None
@@ -237,9 +236,7 @@ class BaseModeOrchestrator(ABC):
                         if co:
                             checker_outputs.append(co)
                     except Exception:
-                        import logging
-
-                        logging.getLogger(__name__).warning(
+                        logger.warning(
                             "Criterion checker failed for %s", code, exc_info=True
                         )
         t_total = time.monotonic() - t_start

@@ -1,0 +1,83 @@
+\documentclass[11pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{natbib}
+\usepackage{xcolor}
+\usepackage{multirow}
+\usepackage{adjustbox}
+\usepackage{enumitem}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+
+% Metadata
+\title{CultureDx: Culture-Adaptive Diagnostic Multi-Agent System\\
+       with Evidence Grounding for Chinese Psychiatric\\
+       Differential Diagnosis}
+
+\author{Yu-Ning Tsao \\
+  National Yunlin University of Science and Technology \\
+  \texttt{M11237033@yuntech.edu.tw}}
+
+\date{\today}
+
+% Document
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Large language models (LLMs) show promise for psychiatric differential diagnosis, but their parametric knowledge of non-Western clinical presentations remains weak. Chinese psychiatric interviews feature pervasive somatic idioms of distress (e.g., ``chest tightness'' for anxiety, ``head dizziness'' for depression) that map poorly to ICD-10 criteria without explicit cultural adaptation. We present CultureDx, a culture-adaptive multi-agent system (MAS) that decomposes clinical reasoning into specialized agent roles: triage routing, per-disorder criterion checking against ICD-10 criteria, deterministic logic evaluation, and statistical confidence calibration. Our evidence pipeline includes a 150-entry Chinese somatization ontology, temporal extraction, scope-aware negation detection, and hybrid dense-sparse retrieval. Experiments on LingxiDiag-16K and MDD-5k demonstrate that evidence-grounded MAS outperforms single-LLM baselines for Chinese psychiatric diagnosis, with particular gains in comorbidity detection and culture-specific symptom attribution.
+% TODO: Add specific numbers once experiments complete
+\end{abstract}
+
+% Sections
+\section{Introduction}
+\label{sec:introduction}
+\input{sections/introduction}
+
+\section{Related Work}
+\label{sec:related-work}
+\input{sections/related_work}
+
+\section{Method}
+\label{sec:method}
+\input{sections/method}
+
+\section{Experimental Setup}
+\label{sec:experiments}
+\input{sections/experiments}
+
+\section{Results}
+\label{sec:results}
+\input{sections/results}
+
+\section{Analysis}
+\label{sec:analysis}
+\input{sections/analysis}
+
+\section{Discussion}
+\label{sec:discussion}
+\input{sections/discussion}
+
+\section{Conclusion}
+\label{sec:conclusion}
+\input{sections/conclusion}
+
+% References
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+% Appendix
+\appendix
+\section{Supplementary Materials}
+\label{sec:supplementary}
+\input{sections/supplementary}
+
+\end{document}

@@ -198,16 +198,16 @@ For `EvidencePipeline`:
 
 Research/annotation work for Chinese somatization normalization now lives in:
 
-- [somatization_benchmark.md](/home/user/YuNing/CultureDx/docs/somatization_benchmark.md)
-- [somatization_dataset.py](/home/user/YuNing/CultureDx/src/culturedx/evidence/somatization_dataset.py)
-- [somatization_benchmark.py](/home/user/YuNing/CultureDx/src/culturedx/evidence/somatization_benchmark.py)
+- `docs/somatization_benchmark.md` on branches where the benchmark doc is present.
+- [somatization_dataset.py](src/culturedx/evidence/somatization_dataset.py)
+- [somatization_benchmark.py](src/culturedx/evidence/somatization_benchmark.py)
 
 Synthetic/demo fixtures under `tests/fixtures/somatization_*` are not real
 benchmark artifacts and must not be reported as empirical results.
 
 ## Further Reading
 
-- [developer_guide.md](/home/user/YuNing/CultureDx/docs/developer_guide.md)
+- `docs/developer_guide.md` on branches where the guide is present:
   quickest code-reading path for new contributors.
-- [study_overview.md](/home/user/YuNing/CultureDx/docs/study_overview.md)
+- `docs/study_overview.md` on branches where the overview is present:
   consolidated study, experiment, result, and method summary.

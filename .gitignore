@@ -1,8 +1,12 @@
 __pycache__/
 *.pyc
 *.egg-info/
+*.lock
+!uv.lock
+.pytest_cache/
 dist/
 .venv/
+outputs/
 data/raw/
 data/cache/
 *.db

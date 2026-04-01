@@ -133,7 +133,7 @@ src/culturedx/
 configs/         YAML configuration overlays
 prompts/agents/  Bilingual Jinja2 prompt templates
 scripts/         Evaluation, finetuning, teacher data generation
-tests/           561 unit tests (deterministic, no GPU required)
+tests/           Unit tests (deterministic, no GPU required)
 paper/           Paper drafts, figures, and supplementary materials
 ```
 

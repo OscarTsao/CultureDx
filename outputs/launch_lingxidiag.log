@@ -1,7 +1,0 @@
-[2026-03-20 19:50:57] Found PID file /home/user/YuNing/CultureDx/outputs/n200_remaining_pid.txt: PID=PID=2152677
-[2026-03-20 19:50:57] Waiting for PID PID=2152677 to finish...
-[2026-03-20 19:50:57] PID PID=2152677 has exited.
-[2026-03-20 19:50:57] Starting LingxiDiag-16K 200-case sweep (hied + single + psycot)...
-[2026-03-20 19:50:57] LingxiDiag sweep launched. PID=2170252
-[2026-03-20 19:50:57] Log: /home/user/YuNing/CultureDx/outputs/vllm_lingxidiag_crossval.log
-[2026-03-20 19:50:57] PID saved to: /home/user/YuNing/CultureDx/outputs/lingxidiag_crossval_pid.txt

@@ -24,4 +24,4 @@ paper/
 
 All experiments are reproducible from the `scripts/` directory. See the main README for instructions.
 
-Research experiment history is preserved on the `pr-stack/docs-and-production-hardening` branch with full commit-level traceability.
+Research experiment history is preserved on development branches with full commit-level traceability.
