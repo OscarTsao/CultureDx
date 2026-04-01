@@ -209,3 +209,5 @@ benchmark artifacts and must not be reported as empirical results.
 
 - [developer_guide.md](/home/user/YuNing/CultureDx/docs/developer_guide.md)
   quickest code-reading path for new contributors.
+- [study_overview.md](/home/user/YuNing/CultureDx/docs/study_overview.md)
+  consolidated study, experiment, result, and method summary.

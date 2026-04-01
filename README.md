@@ -187,6 +187,7 @@ canonical task-6 artifacts are `run_manifest.json`, `metrics_summary.json`,
 
 - [AGENTS.md](/home/user/YuNing/CultureDx/AGENTS.md)
 - [developer_guide.md](/home/user/YuNing/CultureDx/docs/developer_guide.md)
+- [study_overview.md](/home/user/YuNing/CultureDx/docs/study_overview.md)
 - [architecture.md](/home/user/YuNing/CultureDx/docs/architecture.md)
 - [operations.md](/home/user/YuNing/CultureDx/docs/operations.md)
 - [triage-routing.md](/home/user/YuNing/CultureDx/docs/triage-routing.md)
