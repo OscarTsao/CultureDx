@@ -17,7 +17,7 @@ from culturedx.core.models import (
     DiagnosisResult,
     EvidenceBrief,
 )
-from culturedx.modes.base import BaseModeOrchestrator
+from culturedx.modes.base import BaseModeOrchestrator, resolve_inner_parallelism
 
 logger = logging.getLogger(__name__)
 
@@ -151,7 +151,15 @@ class DebateMode(BaseModeOrchestrator):
             return None
 
         opinions = []
-        workers = min(len(PERSPECTIVES), max_workers)
+        requested_workers = min(len(PERSPECTIVES), max_workers)
+        workers, collapse_reason = resolve_inner_parallelism(requested_workers)
+        if collapse_reason is not None:
+            logger.info(
+                "Debate perspective fanout collapsed from %d to %d worker inside %s",
+                requested_workers,
+                workers,
+                collapse_reason,
+            )
         if workers <= 1:
             for p in PERSPECTIVES:
                 result = _run_one(p)

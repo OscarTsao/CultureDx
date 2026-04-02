@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import asyncio
+from concurrent.futures import ThreadPoolExecutor
 import json
 from pathlib import Path
 
@@ -145,7 +146,7 @@ class TestVLLMClient:
     def test_generate_includes_seed_when_configured(self):
         seen = {}
 
-        async def handler(request: httpx.Request) -> httpx.Response:
+        def handler(request: httpx.Request) -> httpx.Response:
             seen["body"] = json.loads(request.content.decode())
             return _response_json(
                 {"choices": [{"message": {"content": "ok"}}]},
@@ -227,10 +228,45 @@ class TestVLLMClient:
         assert results == ["response:slow prompt", "response:fast prompt"]
         client.close()
 
+    def test_batch_generate_is_safe_inside_thread_pool_workers(self):
+        async def handler(request: httpx.Request) -> httpx.Response:
+            body = json.loads(request.content.decode())
+            prompt = body["messages"][-1]["content"]
+            await asyncio.sleep(0.01)
+            return _response_json(
+                {
+                    "choices": [
+                        {"message": {"content": f"response:{prompt}"}}
+                    ]
+                },
+                request,
+            )
+
+        client = VLLMClient(
+            base_url="http://localhost:8000",
+            model="qwen3-32b",
+            max_concurrent=2,
+            transport=httpx.MockTransport(handler),
+        )
+
+        def _run_batch(batch_id: int) -> list[str]:
+            return client.batch_generate(
+                [f"slow prompt {batch_id}", f"fast prompt {batch_id}"]
+            )
+
+        with ThreadPoolExecutor(max_workers=4) as executor:
+            results = list(executor.map(_run_batch, range(4)))
+
+        assert results == [
+            [f"response:slow prompt {idx}", f"response:fast prompt {idx}"]
+            for idx in range(4)
+        ]
+        client.close()
+
     def test_retry_on_timeout(self):
         calls = {"count": 0}
 
-        async def handler(request: httpx.Request) -> httpx.Response:
+        def handler(request: httpx.Request) -> httpx.Response:
             calls["count"] += 1
             if calls["count"] == 1:
                 raise httpx.ReadTimeout("timeout", request=request)

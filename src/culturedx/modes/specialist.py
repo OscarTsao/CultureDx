@@ -17,7 +17,7 @@ from culturedx.core.models import (
     DiagnosisResult,
     EvidenceBrief,
 )
-from culturedx.modes.base import BaseModeOrchestrator
+from culturedx.modes.base import BaseModeOrchestrator, resolve_inner_parallelism
 from culturedx.ontology.icd10 import get_disorder_name, list_disorders
 
 logger = logging.getLogger(__name__)
@@ -139,7 +139,15 @@ class SpecialistMode(BaseModeOrchestrator):
             return output.parsed if output.parsed else None
 
         opinions = []
-        workers = min(len(candidate_codes), max_workers)
+        requested_workers = min(len(candidate_codes), max_workers)
+        workers, collapse_reason = resolve_inner_parallelism(requested_workers)
+        if collapse_reason is not None:
+            logger.info(
+                "Specialist fanout collapsed from %d to %d worker inside %s",
+                requested_workers,
+                workers,
+                collapse_reason,
+            )
         if workers <= 1:
             for code in candidate_codes:
                 result = _run_one(code)

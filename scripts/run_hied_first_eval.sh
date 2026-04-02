@@ -32,7 +32,7 @@ VLLM_URL="http://localhost:${VLLM_PORT}"
 MODEL=${MODEL:-"Qwen/Qwen3-32B-AWQ"}
 DATASETS=${DATASETS:-"lingxidiag,mdd5k"}
 EVAL_SCRIPT="scripts/run_full_eval.py"
-BATCH_SIZE=${BATCH_SIZE:-50}
+BATCH_SIZE=${BATCH_SIZE:-100}
 OUTPUT_BASE=${OUTPUT_BASE:-"outputs/eval/hied_first_$(date +%Y%m%d_%H%M%S)"}
 LOG_DIR="${OUTPUT_BASE}/logs"
 FINETUNE_PID=${FINETUNE_PID:-""}
@@ -146,7 +146,7 @@ llm:
   top_k: ${top_k}
   disable_thinking: ${disable_thinking}
   max_tokens: ${max_tokens}
-  max_concurrent: 4
+  max_concurrent: 32
 mode:
   name: ${mode}
   type: ${mode}
@@ -160,7 +160,11 @@ YAML
 
     local -a config_args=(
         --config configs/base.yaml
-        --config "configs/${mode}.yaml"
+    )
+    if [[ -f "configs/${mode}.yaml" ]]; then
+        config_args+=(--config "configs/${mode}.yaml")
+    fi
+    config_args+=(
         --config configs/vllm_awq.yaml
     )
     if [[ "$with_evidence" == "1" ]]; then
@@ -301,7 +305,7 @@ llm:
   top_k: 1
   disable_thinking: true
   max_tokens: 2048
-  max_concurrent: 4
+  max_concurrent: 32
 YAML
         FT_OUT="${OUTPUT_BASE}/hied-finetuned"
         mkdir -p "$FT_OUT"

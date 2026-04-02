@@ -51,6 +51,7 @@ from culturedx.eval.code_mapping import (
     map_dataset_code,
 )
 from culturedx.eval.metrics import compute_comorbidity_metrics, compute_diagnosis_metrics
+from culturedx.modes.base import case_execution_context
 from culturedx.pipeline.artifacts import (
     CaseSelectionManifest,
     build_failure_records,
@@ -68,6 +69,8 @@ logging.basicConfig(
     format="%(asctime)s %(name)s %(levelname)s %(message)s",
 )
 logger = logging.getLogger("run_full_eval")
+
+MAX_CASES_IN_FLIGHT_CAP = 8
 
 DEFAULT_DATASET_PATHS: dict[str, str] = {
     "lingxidiag": "data/raw/lingxidiag16k",
@@ -108,26 +111,29 @@ class ResumableExperimentRunner(ExperimentRunner):
 
         def _process_one(idx: int, case: ClinicalCase) -> tuple[int, dict[str, Any] | None, dict[str, Any] | None]:
             try:
-                evidence = None
-                evidence_start = time.monotonic()
-                if self.evidence_pipeline is not None:
-                    evidence = self.evidence_pipeline.extract(case)
-                    if "total" not in evidence.stage_timings:
-                        evidence.stage_timings["total"] = time.monotonic() - evidence_start
+                with case_execution_context(
+                    outer_parallelism=self.max_cases_in_flight > 1,
+                ):
+                    evidence = None
+                    evidence_start = time.monotonic()
+                    if self.evidence_pipeline is not None:
+                        evidence = self.evidence_pipeline.extract(case)
+                        if "total" not in evidence.stage_timings:
+                            evidence.stage_timings["total"] = time.monotonic() - evidence_start
 
-                diagnosis_start = time.monotonic()
-                result = self.mode.diagnose(case, evidence=evidence)
-                result.stage_timings.setdefault(
-                    "diagnosis_total",
-                    time.monotonic() - diagnosis_start,
-                )
-                context = {
-                    "batch_index": idx,
-                    "case": case,
-                    "evidence": evidence,
-                    "result": result,
-                }
-                return idx, context, None
+                    diagnosis_start = time.monotonic()
+                    result = self.mode.diagnose(case, evidence=evidence)
+                    result.stage_timings.setdefault(
+                        "diagnosis_total",
+                        time.monotonic() - diagnosis_start,
+                    )
+                    context = {
+                        "batch_index": idx,
+                        "case": case,
+                        "evidence": evidence,
+                        "result": result,
+                    }
+                    return idx, context, None
             except Exception as exc:  # pragma: no cover - exercised by real failures
                 return idx, None, {
                     "case_id": case.case_id,
@@ -1122,7 +1128,15 @@ def run_mode_dataset(
     )
     mode, llm_client, checker_llm = create_mode(run_cfg)
     evidence_pipeline = create_evidence_pipeline(run_cfg, llm_client)
-    max_cases_in_flight = max(1, min(batch_size, getattr(run_cfg.llm, "max_concurrent", 4)))
+    # Hard-cap outer case fanout. Modes may still fan out internally, so keep
+    # the top-level pool small enough to avoid thread explosion under evaluation.
+    max_cases_in_flight = max(1, min(batch_size, MAX_CASES_IN_FLIGHT_CAP))
+    if batch_size > MAX_CASES_IN_FLIGHT_CAP:
+        logger.info(
+            "Capping max_cases_in_flight to %d (requested batch_size=%d)",
+            MAX_CASES_IN_FLIGHT_CAP,
+            batch_size,
+        )
     runner = ResumableExperimentRunner(
         mode=mode,
         output_dir=runner_dir,
@@ -1297,8 +1311,8 @@ def run_eval_for_model(
     checkpoint = load_checkpoint(checkpoint_path)
     if args.resume:
         if checkpoint is None:
-            raise SystemExit(f"--resume requested but no checkpoint found at {checkpoint_path}")
-        if checkpoint.get("config_hash") != config_hash:
+            logger.info("--resume: no checkpoint at %s, starting fresh", checkpoint_path)
+        elif checkpoint.get("config_hash") != config_hash:
             raise SystemExit(
                 "Checkpoint config hash does not match current config. "
                 "Use a fresh output directory or rerun with the original settings."

@@ -1,0 +1,13 @@
+{
+  "dataset": "lingxidiag",
+  "mode": "psycot",
+  "last_completed_index": 907,
+  "total_cases": 907,
+  "started_at": "2026-04-01T20:58:14.512108+00:00",
+  "updated_at": "2026-04-01T21:00:20.501275+00:00",
+  "config_hash": "18c98ecabde111cb",
+  "completed_pairs": [
+    "psycot:lingxidiag"
+  ],
+  "status": "running"
+}

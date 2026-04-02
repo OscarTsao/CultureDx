@@ -20,7 +20,7 @@ from culturedx.core.models import ClinicalCase, DiagnosisResult
 from culturedx.eval.code_mapping import map_code_list
 from culturedx.eval.metrics import compute_comorbidity_metrics, compute_diagnosis_metrics
 from culturedx.evidence.pipeline import EvidencePipeline
-from culturedx.modes.base import BaseModeOrchestrator
+from culturedx.modes.base import BaseModeOrchestrator, case_execution_context
 from culturedx.ontology.symptom_map import load_somatization_map
 from culturedx.pipeline.artifacts import (
     CaseSelectionManifest,
@@ -98,19 +98,22 @@ class ExperimentRunner:
 
         def _process_one(idx: int, case: ClinicalCase) -> tuple[int, Any, DiagnosisResult]:
             logger.info("Processing case %d/%d: %s", idx + 1, len(cases), case.case_id)
-            evidence = None
-            evidence_start = time.monotonic()
-            if self.evidence_pipeline is not None:
-                evidence = self.evidence_pipeline.extract(case)
-                if "total" not in evidence.stage_timings:
-                    evidence.stage_timings["total"] = time.monotonic() - evidence_start
-            diagnosis_start = time.monotonic()
-            result = self.mode.diagnose(case, evidence=evidence)
-            result.stage_timings.setdefault(
-                "diagnosis_total",
-                time.monotonic() - diagnosis_start,
-            )
-            return idx, evidence, result
+            with case_execution_context(
+                outer_parallelism=self.max_cases_in_flight > 1,
+            ):
+                evidence = None
+                evidence_start = time.monotonic()
+                if self.evidence_pipeline is not None:
+                    evidence = self.evidence_pipeline.extract(case)
+                    if "total" not in evidence.stage_timings:
+                        evidence.stage_timings["total"] = time.monotonic() - evidence_start
+                diagnosis_start = time.monotonic()
+                result = self.mode.diagnose(case, evidence=evidence)
+                result.stage_timings.setdefault(
+                    "diagnosis_total",
+                    time.monotonic() - diagnosis_start,
+                )
+                return idx, evidence, result
 
         if self.max_cases_in_flight <= 1 or len(cases) == 1:
             for idx, case in enumerate(cases):

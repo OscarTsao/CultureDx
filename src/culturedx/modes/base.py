@@ -7,10 +7,34 @@ checker fanout, and standardized abstention payloads.
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
+from contextlib import contextmanager
 import logging
+import threading
 import time
 
 logger = logging.getLogger(__name__)
+
+_case_execution_state = threading.local()
+
+
+@contextmanager
+def case_execution_context(*, outer_parallelism: bool):
+    """Mark the current thread as already participating in case-level fanout."""
+    prior = bool(getattr(_case_execution_state, "outer_parallelism", False))
+    _case_execution_state.outer_parallelism = prior or outer_parallelism
+    try:
+        yield
+    finally:
+        _case_execution_state.outer_parallelism = prior
+
+
+def resolve_inner_parallelism(requested_workers: int) -> tuple[int, str | None]:
+    """Resolve inner parallelism for checker threads.
+
+    With sync HTTP (no asyncio), nested thread pools are safe at moderate scale.
+    max_cases_in_flight=8 x 5 checker threads = 40 threads total — well within limits.
+    """
+    return requested_workers, None
 
 from culturedx.core.models import (
     CheckerOutput,
@@ -198,7 +222,7 @@ class BaseModeOrchestrator(ABC):
             or self.llm
         )
         if max_workers is None:
-            max_workers = getattr(active_checker_llm, "max_concurrent", 1)
+            max_workers = max(getattr(active_checker_llm, "max_concurrent", 1), 5)
 
         def _check_one(disorder_code: str) -> CheckerOutput | None:
             evidence_payload = evidence_map.get(disorder_code)
@@ -240,9 +264,17 @@ class BaseModeOrchestrator(ABC):
             return None
 
         checker_outputs = []
-        workers = min(len(disorder_codes), max_workers)
+        requested_workers = min(len(disorder_codes), max_workers)
+        workers, collapse_reason = resolve_inner_parallelism(requested_workers)
+        if collapse_reason is not None:
+            logger.info(
+                "Checker fanout collapsed from %d to %d worker inside %s",
+                requested_workers,
+                workers,
+                collapse_reason,
+            )
         if workers <= 1:
-            # Single disorder: no threading overhead
+            # Single disorder or nested outer fanout: avoid extra thread pool churn.
             for code in disorder_codes:
                 co = _check_one(code)
                 if co:
@@ -264,12 +296,11 @@ class BaseModeOrchestrator(ABC):
                             "Criterion checker failed for %s", code, exc_info=True
                         )
         t_total = time.monotonic() - t_start
-        actual_workers = getattr(active_checker_llm, "max_concurrent", 1)
         logger.info(
             "Checker timing: %d disorders in %.1fs (%.1fs/disorder, %d workers)",
             len(disorder_codes),
             t_total,
             t_total / max(len(disorder_codes), 1),
-            actual_workers,
+            workers,
         )
         return checker_outputs

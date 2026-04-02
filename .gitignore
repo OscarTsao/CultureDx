@@ -23,3 +23,19 @@ outputs/finetune/criterion_checker_lora/chat_template.jinja
 
 # Temp PID files
 outputs/*_pid.txt
+
+# Qwen3 SFT checkpoints (metadata committed at top level, skip per-checkpoint copies)
+outputs/finetune/qwen3_8b_teacher_v1/checkpoint-*/
+outputs/finetune/qwen3_8b_teacher_v1/tokenizer.json
+outputs/finetune/qwen3_8b_teacher_v1/vocab.json
+outputs/finetune/qwen3_8b_teacher_v1/merges.txt
+
+# Codex tool config
+.codex/
+
+# PDFs
+*.pdf
+
+# Eval logs (results JSONL tracked, logs not)
+outputs/eval/*.log
+outputs/eval/*/logs/
