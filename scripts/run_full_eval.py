@@ -401,6 +401,7 @@ def create_mode(cfg: CultureDxConfig):
             calibrator_mode=cfg.mode.calibrator_mode,
             calibrator_artifact_path=cfg.mode.calibrator_artifact_path,
             force_prediction=cfg.mode.force_prediction,
+            diagnose_then_verify=cfg.mode.diagnose_then_verify,
         )
         if checker_llm is not None:
             mode_kwargs["checker_llm_client"] = checker_llm

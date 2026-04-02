@@ -1,0 +1,96 @@
+{
+  "global": {
+    "num_cases": 1000,
+    "num_abstained": 0,
+    "abstention_rate": 0.0,
+    "top1_accuracy": 0.443,
+    "top3_accuracy": 0.443,
+    "exact_match": 0.393,
+    "hamming_loss": 0.5825,
+    "macro_f1": 0.17097934974905293,
+    "reference_top1_accuracy_bucketed": 0.439,
+    "reference_top3_accuracy_bucketed": 0.439,
+    "diagnosis_metrics": {
+      "accuracy": 0.393,
+      "top1_accuracy": 0.439,
+      "top3_accuracy": 0.439,
+      "macro_f1": 0.17097934974905293,
+      "weighted_f1": 0.3903223284683357,
+      "overall": 0.3664603356434778
+    },
+    "comorbidity_metrics": {
+      "hamming_accuracy": 0.4175,
+      "subset_accuracy": 0.393,
+      "comorbidity_detection_f1": 0.0,
+      "label_coverage": 0.4175,
+      "label_precision": 0.443,
+      "avg_predicted_labels": 1.0,
+      "avg_gold_labels": 1.091
+    },
+    "table4_paper_metrics": {
+      "2class_Acc": 0.7124735729386892,
+      "2class_F1_macro": 0.6340175686131719,
+      "2class_F1_weighted": 0.7053086410368155,
+      "4class_Acc": 0.443,
+      "4class_F1_macro": 0.35085551904745893,
+      "4class_F1_weighted": 0.36663150995278376,
+      "12class_Acc": 0.393,
+      "12class_Top1": 0.443,
+      "12class_Top3": 0.443,
+      "12class_F1_macro": 0.1443576399416601,
+      "12class_F1_weighted": 0.3700705432863941,
+      "2class_n": 473,
+      "4class_n": 1000,
+      "12class_n": 1000,
+      "Overall": 0.45506499952881574
+    }
+  },
+  "by_mode": {
+    "hied": {
+      "num_cases": 1000,
+      "num_abstained": 0,
+      "abstention_rate": 0.0,
+      "top1_accuracy": 0.443,
+      "top3_accuracy": 0.443,
+      "exact_match": 0.393,
+      "hamming_loss": 0.5825,
+      "macro_f1": 0.17097934974905293,
+      "reference_top1_accuracy_bucketed": 0.439,
+      "reference_top3_accuracy_bucketed": 0.439,
+      "diagnosis_metrics": {
+        "accuracy": 0.393,
+        "top1_accuracy": 0.439,
+        "top3_accuracy": 0.439,
+        "macro_f1": 0.17097934974905293,
+        "weighted_f1": 0.3903223284683357,
+        "overall": 0.3664603356434778
+      },
+      "comorbidity_metrics": {
+        "hamming_accuracy": 0.4175,
+        "subset_accuracy": 0.393,
+        "comorbidity_detection_f1": 0.0,
+        "label_coverage": 0.4175,
+        "label_precision": 0.443,
+        "avg_predicted_labels": 1.0,
+        "avg_gold_labels": 1.091
+      },
+      "table4_paper_metrics": {
+        "2class_Acc": 0.7124735729386892,
+        "2class_F1_macro": 0.6340175686131719,
+        "2class_F1_weighted": 0.7053086410368155,
+        "4class_Acc": 0.443,
+        "4class_F1_macro": 0.35085551904745893,
+        "4class_F1_weighted": 0.36663150995278376,
+        "12class_Acc": 0.393,
+        "12class_Top1": 0.443,
+        "12class_Top3": 0.443,
+        "12class_F1_macro": 0.1443576399416601,
+        "12class_F1_weighted": 0.3700705432863941,
+        "2class_n": 473,
+        "4class_n": 1000,
+        "12class_n": 1000,
+        "Overall": 0.45506499952881574
+      }
+    }
+  }
+}

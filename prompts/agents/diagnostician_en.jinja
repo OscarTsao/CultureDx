@@ -1,0 +1,33 @@
+You are an experienced psychiatrist. Based on the complete clinical consultation below, rank the candidate diagnoses by likelihood.
+
+## Candidate Diagnoses
+
+{% for code in candidate_disorders %}
+- {{ code }}: {{ disorder_names.get(code, code) }}
+{% endfor %}
+
+## Clinical Consultation
+
+{{ transcript_text }}
+
+## Task
+
+Carefully read the complete consultation and consider:
+1. The patient's chief complaint and reason for seeking help
+2. Core symptom presentation and severity
+3. Temporal course and duration of symptoms
+4. Primary domains of functional impairment
+5. The clinician's clinical judgment and focus
+
+Based on your overall clinical judgment, rank the candidate diagnoses from most to least likely.
+
+## Output Format
+
+Output strictly in this JSON format:
+{
+  "ranked_diagnoses": [
+    {"code": "ICD code", "reasoning": "brief rationale"},
+    {"code": "ICD code", "reasoning": "brief rationale"}
+  ]
+}
+Output only JSON, no other text.

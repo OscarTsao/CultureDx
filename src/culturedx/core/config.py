@@ -34,6 +34,7 @@ class ModeConfig(BaseModel):
     target_disorders: list[str] | None = None
     scope_policy: str = "auto"
     execution_mode: str = "auto"
+    diagnose_then_verify: bool = False
     contrastive_enabled: bool = False
     comorbid_min_ratio: float = 0.9
     prompt_variant: str = ""

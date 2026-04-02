@@ -56,6 +56,7 @@ class HiEDMode(BaseModeOrchestrator):
         target_disorders: list[str] | None = None,
         scope_policy: str = "auto",
         execution_mode: str = "auto",
+        diagnose_then_verify: bool = False,
         abstain_threshold: float = 0.3,
         comorbid_threshold: float = 0.5,
         differential_threshold: float = 0.10,
@@ -77,6 +78,7 @@ class HiEDMode(BaseModeOrchestrator):
         )
         self.prompts_dir = Path(prompts_dir)
         self.target_disorders = target_disorders
+        self.diagnose_then_verify = diagnose_then_verify
         self.prompt_variant = prompt_variant
         self.force_prediction = force_prediction
         if scope_policy not in SUPPORTED_SCOPE_POLICIES:
@@ -94,6 +96,14 @@ class HiEDMode(BaseModeOrchestrator):
 
         # Stage 1: Triage
         self.triage = TriageAgent(llm_client, prompts_dir)
+
+        # Stage 1.5: Diagnostician (optional DtV path)
+        if self.diagnose_then_verify:
+            from culturedx.agents.diagnostician import DiagnosticianAgent
+
+            self.diagnostician = DiagnosticianAgent(llm_client, prompts_dir)
+        else:
+            self.diagnostician = None
 
         # Stage 2: Criterion Checkers (one per disorder, reuse single agent)
         self.checker = CriterionCheckerAgent(self.checker_llm, prompts_dir)
@@ -219,7 +229,52 @@ class HiEDMode(BaseModeOrchestrator):
                     candidate_disorders=candidate_codes,
                     routing_mode=routing_mode,
                     scope_policy=scope_policy,
-                    decision_trace={**decision_trace, "force_prediction": forced_trace},
+                    decision_trace={
+                        **decision_trace,
+                        "force_prediction": forced_trace,
+                        "checker_outputs": [
+                            {
+                                "disorder_code": cal.disorder_code,
+                                "criteria_met_count": cal.criteria_met_count,
+                                "criteria_total_count": cal.criteria_total_count,
+                                "confidence": cal.confidence,
+                                "threshold_ratio": cal.threshold_ratio,
+                                "decision": cal.decision,
+                                "placement": cal.placement,
+                                "decision_reason": cal.decision_reason,
+                                "core_score": cal.core_score,
+                                "uniqueness_score": cal.uniqueness_score,
+                                "margin_score": cal.margin_score,
+                                "avg_criterion_confidence": cal.avg_criterion_confidence,
+                                "evidence_coverage": cal.evidence_coverage,
+                                "triage_rank": idx,
+                            }
+                            for idx, cal in enumerate(
+                                [cal_output.primary]
+                                + cal_output.comorbid
+                                + cal_output.abstained
+                                + cal_output.rejected
+                            )
+                            if cal is not None
+                        ],
+                        "raw_checker_outputs": [
+                            {
+                                "disorder_code": co.disorder,
+                                "criteria_met_count": co.criteria_met_count,
+                                "criteria_total_count": co.criteria_required,
+                                "met_ratio": co.criteria_met_count / co.criteria_required if co.criteria_required > 0 else 0.0,
+                                "per_criterion": [
+                                    {
+                                        "criterion_id": cr.criterion_id,
+                                        "status": cr.status,
+                                        "confidence": cr.confidence,
+                                    }
+                                    for cr in co.criteria
+                                ],
+                            }
+                            for co in checker_outputs
+                        ],
+                    },
                     stage_timings={**stage_timings, "total": time.monotonic() - case_start},
                     failures=failures,
                 )
@@ -408,6 +463,23 @@ class HiEDMode(BaseModeOrchestrator):
 
         logger.info("Case %s: %d candidate disorders from triage", case.case_id, len(candidate_codes))
         decision_trace["candidate_disorders"] = candidate_codes
+
+        # === DtV: Diagnostician-first path ===
+        if self.diagnose_then_verify and self.diagnostician is not None:
+            return self._diagnose_then_verify(
+                case=case,
+                lang=lang,
+                transcript_text=transcript_text,
+                evidence=evidence,
+                evidence_map=evidence_map,
+                candidate_codes=candidate_codes,
+                routing_mode=routing_mode,
+                scope_policy=scope_policy,
+                decision_trace=decision_trace,
+                stage_timings=stage_timings,
+                failures=failures,
+                case_start=case_start,
+            )
 
         # === Stage 2: Criterion Checkers (parallel) ===
         checker_start = time.monotonic()
@@ -617,6 +689,23 @@ class HiEDMode(BaseModeOrchestrator):
                     diff_result.decision_trace = {
                         **decision_trace,
                         **(diff_result.decision_trace or {}),
+                        "raw_checker_outputs": [
+                            {
+                                "disorder_code": co.disorder,
+                                "criteria_met_count": co.criteria_met_count,
+                                "criteria_total_count": co.criteria_required,
+                                "met_ratio": co.criteria_met_count / co.criteria_required if co.criteria_required > 0 else 0.0,
+                                "per_criterion": [
+                                    {
+                                        "criterion_id": cr.criterion_id,
+                                        "status": cr.status,
+                                        "confidence": cr.confidence,
+                                    }
+                                    for cr in co.criteria
+                                ],
+                            }
+                            for co in checker_outputs
+                        ],
                     }
                     diff_result.stage_timings = {
                         **stage_timings,
@@ -664,6 +753,48 @@ class HiEDMode(BaseModeOrchestrator):
             decision_trace={
                 **decision_trace,
                 "logic_engine_confirmed_codes": logic_output.confirmed_codes,
+                "checker_outputs": [
+                    {
+                        "disorder_code": cal.disorder_code,
+                        "criteria_met_count": cal.criteria_met_count,
+                        "criteria_total_count": cal.criteria_total_count,
+                        "confidence": cal.confidence,
+                        "threshold_ratio": cal.threshold_ratio,
+                        "decision": cal.decision,
+                        "placement": cal.placement,
+                        "decision_reason": cal.decision_reason,
+                        "core_score": cal.core_score,
+                        "uniqueness_score": cal.uniqueness_score,
+                        "margin_score": cal.margin_score,
+                        "avg_criterion_confidence": cal.avg_criterion_confidence,
+                        "evidence_coverage": cal.evidence_coverage,
+                        "triage_rank": idx,
+                    }
+                    for idx, cal in enumerate(
+                        [cal_output.primary]
+                        + cal_output.comorbid
+                        + cal_output.abstained
+                        + cal_output.rejected
+                    )
+                    if cal is not None
+                ],
+                "raw_checker_outputs": [
+                    {
+                        "disorder_code": co.disorder,
+                        "criteria_met_count": co.criteria_met_count,
+                        "criteria_total_count": co.criteria_required,
+                        "met_ratio": co.criteria_met_count / co.criteria_required if co.criteria_required > 0 else 0.0,
+                        "per_criterion": [
+                            {
+                                "criterion_id": cr.criterion_id,
+                                "status": cr.status,
+                                "confidence": cr.confidence,
+                            }
+                            for cr in co.criteria
+                        ],
+                    }
+                    for co in checker_outputs
+                ],
                 "calibration": {
                     "primary": primary_cal.disorder_code,
                     "primary_reason": primary_cal.decision_reason,
@@ -675,6 +806,187 @@ class HiEDMode(BaseModeOrchestrator):
                     "excluded": comorbidity_result.excluded,
                     "rejected": comorbidity_result.rejected,
                 },
+            },
+            stage_timings=stage_timings,
+            failures=failures,
+        )
+
+    def _diagnose_then_verify(
+        self,
+        *,
+        case: ClinicalCase,
+        lang: str,
+        transcript_text: str,
+        evidence: EvidenceBrief | None,
+        evidence_map: dict,
+        candidate_codes: list[str],
+        routing_mode: str,
+        scope_policy: str,
+        decision_trace: dict[str, object],
+        stage_timings: dict[str, float],
+        failures: list[FailureInfo],
+        case_start: float,
+    ) -> DiagnosisResult:
+        """Diagnose-then-Verify: holistic ranking followed by checker verification."""
+        full_transcript = self._build_transcript_text(case, max_chars=20000)
+        disorder_names = {
+            code: get_disorder_name(code, lang) or code
+            for code in candidate_codes
+        }
+
+        diag_start = time.monotonic()
+        diag_input = AgentInput(
+            transcript_text=full_transcript,
+            language=lang,
+            extra={
+                "candidate_disorders": candidate_codes,
+                "disorder_names": disorder_names,
+            },
+        )
+        diag_output = self.diagnostician.run(diag_input)
+        stage_timings["diagnostician"] = time.monotonic() - diag_start
+
+        ranked_codes: list[str] = []
+        diag_reasoning: list[str] = []
+        if diag_output.parsed and diag_output.parsed.get("ranked_codes"):
+            ranked_codes = diag_output.parsed["ranked_codes"]
+            diag_reasoning = diag_output.parsed.get("reasoning", [])
+
+        if not ranked_codes:
+            logger.warning(
+                "Diagnostician returned no ranking for case %s, using candidate order",
+                case.case_id,
+            )
+            ranked_codes = candidate_codes
+
+        decision_trace["diagnostician"] = {
+            "ranked_codes": ranked_codes,
+            "reasoning": diag_reasoning,
+            "used": bool(diag_output.parsed and diag_output.parsed.get("ranked_codes")),
+        }
+
+        logger.info(
+            "Case %s: Diagnostician ranked %d disorders, top-2: %s",
+            case.case_id,
+            len(ranked_codes),
+            ranked_codes[:2],
+        )
+
+        verify_codes = ranked_codes[:2]
+        checker_start = time.monotonic()
+        checker_outputs = self._parallel_check_criteria(
+            self.checker,
+            verify_codes,
+            transcript_text,
+            evidence_map,
+            lang,
+            prompt_variant=self.prompt_variant,
+            checker_llm_client=self.checker_llm,
+        )
+        stage_timings["checker_verify"] = time.monotonic() - checker_start
+
+        remaining_codes = [code for code in candidate_codes if code not in verify_codes]
+        if remaining_codes:
+            remaining_start = time.monotonic()
+            remaining_outputs = self._parallel_check_criteria(
+                self.checker,
+                remaining_codes,
+                transcript_text,
+                evidence_map,
+                lang,
+                prompt_variant=self.prompt_variant,
+                checker_llm_client=self.checker_llm,
+            )
+            stage_timings["checker_remaining"] = time.monotonic() - remaining_start
+            all_checker_outputs = checker_outputs + remaining_outputs
+        else:
+            all_checker_outputs = checker_outputs
+
+        top1_code = ranked_codes[0]
+        top2_code = ranked_codes[1] if len(ranked_codes) > 1 else None
+
+        logic_output = self.logic_engine.evaluate(checker_outputs)
+        confirmed_set = set(logic_output.confirmed_codes)
+
+        primary = top1_code
+        comorbid: list[str] = []
+        confidence = 0.8
+        veto_applied = False
+
+        if top1_code in confirmed_set:
+            confidence = 0.9
+            if top2_code and top2_code in confirmed_set:
+                comorbid = [top2_code]
+        elif top2_code and top2_code in confirmed_set:
+            logger.info(
+                "Case %s: DtV veto - top-1 %s not confirmed, promoting top-2 %s",
+                case.case_id,
+                top1_code,
+                top2_code,
+            )
+            primary = top2_code
+            confidence = 0.7
+            veto_applied = True
+        else:
+            confidence = 0.6
+
+        if comorbid:
+            confirmed_codes_list = [primary] + comorbid
+            confidences = {primary: confidence, comorbid[0]: confidence - 0.1}
+            comorbidity_result = self.comorbidity_resolver.resolve(
+                confirmed=confirmed_codes_list,
+                confidences=confidences,
+            )
+            primary = comorbidity_result.primary
+            comorbid = comorbidity_result.comorbid
+
+        stage_timings["total"] = time.monotonic() - case_start
+
+        return DiagnosisResult(
+            case_id=case.case_id,
+            primary_diagnosis=primary,
+            comorbid_diagnoses=comorbid,
+            confidence=confidence,
+            decision="diagnosis",
+            criteria_results=all_checker_outputs,
+            mode=self.mode_name,
+            model_name=self.llm.model,
+            checker_model_name=self.checker_model_name,
+            language_used=lang,
+            candidate_disorders=candidate_codes,
+            routing_mode=routing_mode,
+            scope_policy=scope_policy,
+            decision_trace={
+                **decision_trace,
+                "dtv_mode": True,
+                "diagnostician_ranked": ranked_codes,
+                "diagnostician_reasoning": diag_reasoning,
+                "verify_codes": verify_codes,
+                "veto_applied": veto_applied,
+                "veto_from": top1_code if veto_applied else None,
+                "veto_to": primary if veto_applied else None,
+                "logic_engine_confirmed_codes": logic_output.confirmed_codes,
+                "raw_checker_outputs": [
+                    {
+                        "disorder_code": co.disorder,
+                        "criteria_met_count": co.criteria_met_count,
+                        "criteria_total_count": co.criteria_required,
+                        "met_ratio": (
+                            co.criteria_met_count / co.criteria_required
+                            if co.criteria_required > 0
+                            else 0.0
+                        ),
+                        "per_criterion": [
+                            {
+                                "criterion_id": cr.criterion_id,
+                                "status": cr.status,
+                                "confidence": cr.confidence,
+                            }
+                            for cr in co.criteria
+                        ],
+                    }
+                    for co in all_checker_outputs
+                ],
             },
             stage_timings=stage_timings,
             failures=failures,
