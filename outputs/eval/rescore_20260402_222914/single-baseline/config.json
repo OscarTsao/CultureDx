@@ -1,0 +1,109 @@
+{
+  "config_paths": [
+    "configs/base.yaml",
+    "configs/vllm_awq.yaml",
+    "configs/targets/lingxidiag_12class.yaml",
+    "outputs/eval/rescore_20260402_222914/single-baseline/eval_config.yaml"
+  ],
+  "datasets": [
+    {
+      "requested_name": "lingxidiag",
+      "output_name": "lingxidiag",
+      "adapter_name": "lingxidiag16k",
+      "data_path": "data/raw/lingxidiag16k",
+      "split": "validation",
+      "all_cases": 1000,
+      "eval_cases": 1000,
+      "filtered_out": 0
+    }
+  ],
+  "modes": [
+    "single"
+  ],
+  "model_name": "Qwen/Qwen3-32B-AWQ",
+  "adapter_path": null,
+  "with_evidence": false,
+  "with_somatization": false,
+  "force_prediction": true,
+  "max_cases": 0,
+  "culturedx_config": {
+    "seed": 42,
+    "output_dir": "outputs/runs",
+    "cache_dir": "data/cache",
+    "log_level": "INFO",
+    "request_timeout_sec": 300,
+    "mode": {
+      "name": "single",
+      "type": "single",
+      "variants": null,
+      "target_disorders": null,
+      "scope_policy": "auto",
+      "execution_mode": "auto",
+      "contrastive_enabled": false,
+      "comorbid_min_ratio": 0.9,
+      "prompt_variant": "",
+      "calibrator_mode": "heuristic-v2",
+      "calibrator_artifact_path": null,
+      "force_prediction": true
+    },
+    "llm": {
+      "provider": "vllm",
+      "model_id": "Qwen/Qwen3-32B-AWQ",
+      "base_url": "http://localhost:8000",
+      "temperature": 0.0,
+      "top_k": 1,
+      "max_retries": 3,
+      "disable_thinking": true,
+      "max_concurrent": 48,
+      "max_tokens": 2048
+    },
+    "checker_llm": null,
+    "eval": {
+      "binary_threshold_phq8": 10,
+      "binary_threshold_hamd17": 8,
+      "bootstrap_resamples": 10000
+    },
+    "dataset": {
+      "name": "",
+      "language": "zh",
+      "coding_system": "icd10",
+      "transcript_format": "dialogue",
+      "data_path": "",
+      "split_strategy": "stratified"
+    },
+    "evidence": {
+      "enabled": true,
+      "scope_policy": "auto",
+      "retriever": {
+        "name": "mock",
+        "model_id": "",
+        "embedding_dim": 1024,
+        "max_length": 512,
+        "batch_size": 32,
+        "cache_dir": "data/cache/retriever",
+        "device": "auto",
+        "mode_weights": [
+          0.4,
+          0.2,
+          0.4
+        ]
+      },
+      "somatization": {
+        "enabled": true,
+        "mode": "ontology-only",
+        "llm_fallback": true
+      },
+      "negation_mode": "clause-rule",
+      "top_k_retrieval": 20,
+      "top_k_final": 10,
+      "min_confidence": 0.1,
+      "rerank_enabled": false,
+      "rerank_top_n": 5
+    }
+  },
+  "generated_at": "2026-04-02T14:29:14.920158+00:00",
+  "config_hash": "bef5bfbfc52a9106",
+  "output_dir": "outputs/eval/rescore_20260402_222914/single-baseline",
+  "batch_size": 100,
+  "dry_run": false
+}

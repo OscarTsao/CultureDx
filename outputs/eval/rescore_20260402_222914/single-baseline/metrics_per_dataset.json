@@ -1,0 +1,68 @@
+{
+  "single:lingxidiag": {
+    "num_cases": 992,
+    "num_abstained": 0,
+    "abstention_rate": 0.0,
+    "top1_accuracy": 0.4727822580645161,
+    "top3_accuracy": 0.6431451612903226,
+    "exact_match": 0.019153225806451613,
+    "hamming_loss": 0.690356182795699,
+    "macro_f1": 0.2060465502648757,
+    "reference_top1_accuracy_bucketed": 0.46673387096774194,
+    "reference_top3_accuracy_bucketed": 0.6360887096774194,
+    "diagnosis_metrics": {
+      "accuracy": 0.019153225806451613,
+      "top1_accuracy": 0.46673387096774194,
+      "top3_accuracy": 0.6360887096774194,
+      "macro_f1": 0.2060465502648757,
+      "weighted_f1": 0.41933858135461277,
+      "overall": 0.3494721876142203
+    },
+    "comorbidity_metrics": {
+      "hamming_accuracy": 0.30964381720430106,
+      "subset_accuracy": 0.019153225806451613,
+      "comorbidity_detection_f1": 0.15748031496062992,
+      "label_coverage": 0.621135752688172,
+      "label_precision": 0.3170362903225806,
+      "avg_predicted_labels": 2.09375,
+      "avg_gold_labels": 1.091733870967742
+    },
+    "table4_paper_metrics": {
+      "2class_Acc": 0.7526427061310782,
+      "2class_F1_macro": 0.6724861368384298,
+      "2class_F1_weighted": 0.7406534756813231,
+      "4class_Acc": 0.40725806451612906,
+      "4class_F1_macro": 0.3821480840367449,
+      "4class_F1_weighted": 0.4036343016323594,
+      "12class_Acc": 0.25100806451612906,
+      "12class_Top1": 0.48185483870967744,
+      "12class_Top3": 0.5796370967741935,
+      "12class_F1_macro": 0.1671790023877606,
+      "12class_F1_weighted": 0.41869105372753074,
+      "2class_n": 473,
+      "4class_n": 992,
+      "12class_n": 992,
+      "Overall": 0.4779266204501233
+    },
+    "timing": {
+      "pair_key": "single:lingxidiag",
+      "elapsed_sec": 18.22793474199716,
+      "cases_per_sec": 54.860850346144815,
+      "avg_elapsed_sec_per_case": 0.01822793474199716,
+      "batch_count": 10,
+      "resume_from": 0,
+      "num_cases": 1000
+    }
+  },
+  "timing_by_mode_dataset": {
+    "single:lingxidiag": {
+      "pair_key": "single:lingxidiag",
+      "elapsed_sec": 18.22793474199716,
+      "cases_per_sec": 54.860850346144815,
+      "avg_elapsed_sec_per_case": 0.01822793474199716,
+      "batch_count": 10,
+      "resume_from": 0,
+      "num_cases": 1000
+    }
+  }
+}

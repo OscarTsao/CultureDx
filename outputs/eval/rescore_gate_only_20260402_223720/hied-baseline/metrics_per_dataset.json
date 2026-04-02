@@ -1,0 +1,68 @@
+{
+  "hied:lingxidiag": {
+    "num_cases": 702,
+    "num_abstained": 0,
+    "abstention_rate": 0.0,
+    "top1_accuracy": 0.349002849002849,
+    "top3_accuracy": 0.5698005698005698,
+    "exact_match": 0.06125356125356125,
+    "hamming_loss": 0.776994301994302,
+    "macro_f1": 0.14468615561465337,
+    "reference_top1_accuracy_bucketed": 0.34615384615384615,
+    "reference_top3_accuracy_bucketed": 0.5669515669515669,
+    "diagnosis_metrics": {
+      "accuracy": 0.06125356125356125,
+      "top1_accuracy": 0.34615384615384615,
+      "top3_accuracy": 0.5669515669515669,
+      "macro_f1": 0.14468615561465337,
+      "weighted_f1": 0.2886754679674241,
+      "overall": 0.28154411958821035
+    },
+    "comorbidity_metrics": {
+      "hamming_accuracy": 0.22300569800569797,
+      "subset_accuracy": 0.06125356125356125,
+      "comorbidity_detection_f1": 0.14444444444444443,
+      "label_coverage": 0.5581671415004749,
+      "label_precision": 0.23074548907882245,
+      "avg_predicted_labels": 2.6495726495726495,
+      "avg_gold_labels": 1.0854700854700854
+    },
+    "table4_paper_metrics": {
+      "2class_Acc": 0.5718562874251497,
+      "2class_F1_macro": 0.4380081659547931,
+      "2class_F1_weighted": 0.5578966673944991,
+      "4class_Acc": 0.4131054131054131,
+      "4class_F1_macro": 0.3652596015509354,
+      "4class_F1_weighted": 0.40617282718504577,
+      "12class_Acc": 0.06125356125356125,
+      "12class_Top1": 0.349002849002849,
+      "12class_Top3": 0.5698005698005698,
+      "12class_F1_macro": 0.1446248458103124,
+      "12class_F1_weighted": 0.4106744616660363,
+      "2class_n": 334,
+      "4class_n": 702,
+      "12class_n": 702,
+      "Overall": 0.3897868409226513
+    },
+    "timing": {
+      "pair_key": "hied:lingxidiag",
+      "elapsed_sec": 70.41102565999608,
+      "cases_per_sec": 14.202321165279495,
+      "avg_elapsed_sec_per_case": 0.07041102565999609,
+      "batch_count": 10,
+      "resume_from": 0,
+      "num_cases": 1000
+    }
+  },
+  "timing_by_mode_dataset": {
+    "hied:lingxidiag": {
+      "pair_key": "hied:lingxidiag",
+      "elapsed_sec": 70.41102565999608,
+      "cases_per_sec": 14.202321165279495,
+      "avg_elapsed_sec_per_case": 0.07041102565999609,
+      "batch_count": 10,
+      "resume_from": 0,
+      "num_cases": 1000
+    }
+  }
+}
