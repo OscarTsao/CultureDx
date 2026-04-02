@@ -5,11 +5,18 @@ mode:
   scope_policy: manual
   execution_mode: benchmark_manual_scope
   target_disorders:
+    - F20
+    - F31
     - F32
-    - F33
+    - F39
+    - F41.0
     - F41.1
     - F42
     - F43.1
+    - F43.2
+    - F45
+    - F51
+    - F98
 
 evidence:
   scope_policy: manual

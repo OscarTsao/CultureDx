@@ -1,0 +1,4 @@
+2026-04-01 18:08:13,508 run_full_eval INFO Loading dataset lingxidiag via adapter=lingxidiag16k from data/raw/lingxidiag16k
+2026-04-01 18:08:13,612 run_full_eval INFO Loading dataset mdd5k via adapter=mdd5k_raw from data/raw/mdd5k_repo
+2026-04-01 18:08:13,893 run_full_eval INFO Preparing evaluation for model=Qwen/Qwen3-32B-AWQ output_dir=outputs/eval/hied_first_20260401_180727/hied-no-somat
+--resume requested but no checkpoint found at outputs/eval/hied_first_20260401_180727/hied-no-somat/checkpoint.json

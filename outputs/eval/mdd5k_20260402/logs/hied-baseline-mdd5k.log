@@ -1,0 +1,1025 @@
+2026-04-02 12:25:36,969 run_full_eval INFO Loading dataset mdd5k via adapter=mdd5k_raw from data/raw/mdd5k_repo
+2026-04-02 12:25:37,265 run_full_eval INFO Preparing evaluation for model=Qwen/Qwen3-32B-AWQ output_dir=outputs/eval/mdd5k_20260402/hied-baseline
+2026-04-02 12:25:37,265 run_full_eval INFO --resume: no checkpoint at outputs/eval/mdd5k_20260402/hied-baseline/checkpoint.json, starting fresh
+2026-04-02 12:25:37,271 run_full_eval INFO Capping max_cases_in_flight to 8 (requested batch_size=100)
+2026-04-02 12:25:37,271 run_full_eval INFO Running hied:mdd5k on 870 cases (resume_from=0, evidence=no, somatization=no)
+2026-04-02 12:25:37,272 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,272 culturedx.modes.hied INFO Case patient_1: 5 candidate disorders from triage
+2026-04-02 12:25:37,272 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,272 culturedx.modes.hied INFO Case patient_10: 5 candidate disorders from triage
+2026-04-02 12:25:37,272 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,273 culturedx.modes.hied INFO Case patient_1002: 5 candidate disorders from triage
+2026-04-02 12:25:37,273 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,273 culturedx.modes.hied INFO Case patient_1003: 5 candidate disorders from triage
+2026-04-02 12:25:37,273 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,273 culturedx.modes.hied INFO Case patient_1004: 5 candidate disorders from triage
+2026-04-02 12:25:37,273 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,273 culturedx.modes.hied INFO Case patient_1005: 5 candidate disorders from triage
+2026-04-02 12:25:37,274 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,274 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,274 culturedx.modes.hied INFO Case patient_1008: 5 candidate disorders from triage
+2026-04-02 12:25:37,274 culturedx.modes.hied INFO Case patient_1006: 5 candidate disorders from triage
+2026-04-02 12:25:37,301 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,303 culturedx.modes.hied INFO Case patient_1005: confidence gap 0.0902 < 0.10, running differential
+2026-04-02 12:25:37,319 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,320 culturedx.modes.hied INFO Case patient_1002: confidence gap 0.0596 < 0.10, running differential
+2026-04-02 12:25:37,330 culturedx.modes.base INFO Checker timing: 5 disorders in 0.1s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,331 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,331 culturedx.modes.hied INFO Case patient_101: 5 candidate disorders from triage
+2026-04-02 12:25:37,346 culturedx.modes.base INFO Checker timing: 5 disorders in 0.1s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,348 culturedx.modes.hied INFO Case patient_1: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:25:37,348 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,348 culturedx.modes.hied INFO Case patient_1010: 5 candidate disorders from triage
+2026-04-02 12:25:37,349 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,349 culturedx.modes.hied INFO Case patient_1011: 5 candidate disorders from triage
+2026-04-02 12:25:37,361 culturedx.modes.base INFO Checker timing: 5 disorders in 0.1s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,362 culturedx.modes.hied INFO Case patient_1003: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:25:37,362 culturedx.modes.base INFO Checker timing: 5 disorders in 0.1s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,364 culturedx.modes.hied INFO Case patient_10: confidence gap 0.0686 < 0.10, running differential
+2026-04-02 12:25:37,367 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,367 culturedx.modes.hied INFO Case patient_101: confidence gap 0.0740 < 0.10, running differential
+2026-04-02 12:25:37,368 culturedx.modes.base INFO Checker timing: 5 disorders in 0.1s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,369 culturedx.modes.hied INFO Case patient_1004: confidence gap 0.0988 < 0.10, running differential
+2026-04-02 12:25:37,369 culturedx.modes.base INFO Checker timing: 5 disorders in 0.1s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,370 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,370 culturedx.modes.hied INFO Case patient_1013: 5 candidate disorders from triage
+2026-04-02 12:25:37,376 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,377 culturedx.modes.hied INFO Case patient_1010: confidence gap 0.0459 < 0.10, running differential
+2026-04-02 12:25:37,379 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,379 culturedx.modes.hied INFO Case patient_1015: 5 candidate disorders from triage
+2026-04-02 12:25:37,382 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,383 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,383 culturedx.modes.hied INFO Case patient_1016: 5 candidate disorders from triage
+2026-04-02 12:25:37,387 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,387 culturedx.modes.hied INFO Case patient_1017: 5 candidate disorders from triage
+2026-04-02 12:25:37,389 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,389 culturedx.modes.hied INFO Case patient_1018: 5 candidate disorders from triage
+2026-04-02 12:25:37,392 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,392 culturedx.modes.hied INFO Case patient_1019: 5 candidate disorders from triage
+2026-04-02 12:25:37,408 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,408 culturedx.modes.hied INFO Case patient_102: 5 candidate disorders from triage
+2026-04-02 12:25:37,420 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,420 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,420 culturedx.modes.hied INFO Case patient_1020: 5 candidate disorders from triage
+2026-04-02 12:25:37,428 culturedx.modes.base INFO Checker timing: 5 disorders in 0.1s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,430 culturedx.modes.hied INFO Case patient_1013: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:25:37,430 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,430 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,430 culturedx.modes.hied INFO Case patient_1021: 5 candidate disorders from triage
+2026-04-02 12:25:37,438 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,439 culturedx.modes.hied INFO Case patient_1018: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:25:37,441 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,441 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,441 culturedx.modes.hied INFO Case patient_1022: 5 candidate disorders from triage
+2026-04-02 12:25:37,447 culturedx.modes.base INFO Checker timing: 5 disorders in 0.1s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,449 culturedx.modes.hied INFO Case patient_1017: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:25:37,451 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,452 culturedx.modes.hied INFO Case patient_102: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:25:37,453 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,453 culturedx.modes.hied INFO Case patient_1023: 5 candidate disorders from triage
+2026-04-02 12:25:37,455 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,456 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,456 culturedx.modes.hied INFO Case patient_1024: 5 candidate disorders from triage
+2026-04-02 12:25:37,466 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,466 culturedx.modes.hied INFO Case patient_1025: 5 candidate disorders from triage
+2026-04-02 12:25:37,467 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,468 culturedx.modes.hied INFO Case patient_1021: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:25:37,473 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,473 culturedx.modes.hied INFO Case patient_1026: 5 candidate disorders from triage
+2026-04-02 12:25:37,477 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,481 culturedx.modes.hied INFO Case patient_1022: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:25:37,481 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,481 culturedx.modes.hied INFO Case patient_1027: 5 candidate disorders from triage
+2026-04-02 12:25:37,490 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,490 culturedx.modes.hied INFO Case patient_1023: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:25:37,491 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,491 culturedx.modes.hied INFO Case patient_1028: 5 candidate disorders from triage
+2026-04-02 12:25:37,491 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,493 culturedx.modes.hied INFO Case patient_1024: confidence gap 0.0079 < 0.10, running differential
+2026-04-02 12:25:37,498 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,499 culturedx.modes.hied INFO Case patient_1025: confidence gap 0.0373 < 0.10, running differential
+2026-04-02 12:25:37,500 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,501 culturedx.modes.hied INFO Case patient_1026: confidence gap 0.0791 < 0.10, running differential
+2026-04-02 12:25:37,502 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,502 culturedx.modes.hied INFO Case patient_1029: 5 candidate disorders from triage
+2026-04-02 12:25:37,506 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,508 culturedx.modes.hied INFO Case patient_1027: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:25:37,510 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,510 culturedx.modes.hied INFO Case patient_103: 5 candidate disorders from triage
+2026-04-02 12:25:37,512 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,512 culturedx.modes.hied INFO Case patient_1030: 5 candidate disorders from triage
+2026-04-02 12:25:37,521 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,521 culturedx.modes.hied INFO Case patient_1031: 5 candidate disorders from triage
+2026-04-02 12:25:37,524 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,526 culturedx.modes.hied INFO Case patient_1029: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:25:37,531 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,532 culturedx.modes.hied INFO Case patient_1028: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:25:37,534 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,534 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,535 culturedx.modes.hied INFO Case patient_1032: 5 candidate disorders from triage
+2026-04-02 12:25:37,538 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,539 culturedx.modes.hied INFO Case patient_1034: 5 candidate disorders from triage
+2026-04-02 12:25:37,546 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,547 culturedx.modes.hied INFO Case patient_1031: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:25:37,547 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,550 culturedx.modes.hied INFO Case patient_1030: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:25:37,551 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,554 culturedx.modes.hied INFO Case patient_1032: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:25:37,554 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,554 culturedx.modes.hied INFO Case patient_104: 5 candidate disorders from triage
+2026-04-02 12:25:37,559 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,559 culturedx.modes.hied INFO Case patient_105: 5 candidate disorders from triage
+2026-04-02 12:25:37,559 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,560 culturedx.modes.hied INFO Case patient_1034: confidence gap 0.0016 < 0.10, running differential
+2026-04-02 12:25:37,566 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,566 culturedx.modes.hied INFO Case patient_106: 5 candidate disorders from triage
+2026-04-02 12:25:37,571 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,572 culturedx.modes.hied INFO Case patient_104: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:25:37,573 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,574 culturedx.modes.hied INFO Case patient_105: confidence gap 0.0390 < 0.10, running differential
+2026-04-02 12:25:37,575 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,576 culturedx.modes.hied INFO Case patient_106: confidence gap 0.0567 < 0.10, running differential
+2026-04-02 12:25:37,577 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:37,577 culturedx.modes.hied INFO Case patient_107: 5 candidate disorders from triage
+2026-04-02 12:25:37,582 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:37,583 culturedx.modes.hied INFO Case patient_107: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:25:56,277 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:25:56,278 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:56,278 culturedx.modes.hied INFO Case patient_109: 5 candidate disorders from triage
+2026-04-02 12:25:56,285 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:56,286 culturedx.modes.hied INFO Case patient_109: confidence gap 0.0724 < 0.10, running differential
+2026-04-02 12:25:56,286 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:56,286 culturedx.modes.hied INFO Case patient_11: 5 candidate disorders from triage
+2026-04-02 12:25:56,292 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:56,292 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:56,292 culturedx.modes.hied INFO Case patient_111: 5 candidate disorders from triage
+2026-04-02 12:25:56,297 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:56,299 culturedx.modes.hied INFO Case patient_111: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:25:56,299 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:56,299 culturedx.modes.hied INFO Case patient_112: 5 candidate disorders from triage
+2026-04-02 12:25:56,303 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:56,304 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:56,304 culturedx.modes.hied INFO Case patient_113: 5 candidate disorders from triage
+2026-04-02 12:25:56,310 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:56,311 culturedx.modes.hied INFO Case patient_113: confidence gap 0.0204 < 0.10, running differential
+2026-04-02 12:25:56,312 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:56,312 culturedx.modes.hied INFO Case patient_114: 5 candidate disorders from triage
+2026-04-02 12:25:56,317 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:56,318 culturedx.modes.hied INFO Case patient_114: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:25:56,318 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:25:56,318 culturedx.modes.hied INFO Case patient_115: 5 candidate disorders from triage
+2026-04-02 12:25:56,323 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:25:56,323 culturedx.modes.hied INFO Case patient_115: confidence gap 0.0280 < 0.10, running differential
+2026-04-02 12:26:01,102 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:26:01,102 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:26:01,102 culturedx.modes.hied INFO Case patient_116: 5 candidate disorders from triage
+2026-04-02 12:26:01,109 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:26:01,109 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:26:01,109 culturedx.modes.hied INFO Case patient_117: 5 candidate disorders from triage
+2026-04-02 12:26:01,114 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-02 12:26:01,116 culturedx.modes.hied INFO Case patient_117: confidence gap 0.0554 < 0.10, running differential
+2026-04-02 12:26:05,753 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:26:05,753 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:26:05,753 culturedx.modes.hied INFO Case patient_118: 5 candidate disorders from triage
+2026-04-02 12:26:13,314 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:26:13,314 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:26:13,314 culturedx.modes.hied INFO Case patient_119: 5 candidate disorders from triage
+2026-04-02 12:26:17,985 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:26:17,986 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:26:17,986 culturedx.modes.hied INFO Case patient_12: 5 candidate disorders from triage
+2026-04-02 12:26:21,167 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:26:21,167 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:26:21,167 culturedx.modes.hied INFO Case patient_120: 5 candidate disorders from triage
+2026-04-02 12:26:30,079 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:26:30,080 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:26:30,080 culturedx.modes.hied INFO Case patient_121: 5 candidate disorders from triage
+2026-04-02 12:26:30,100 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:26:30,100 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:26:30,100 culturedx.modes.hied INFO Case patient_122: 5 candidate disorders from triage
+2026-04-02 12:26:39,334 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:26:39,334 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:26:39,334 culturedx.modes.hied INFO Case patient_125: 5 candidate disorders from triage
+2026-04-02 12:26:46,219 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:26:46,223 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:26:46,223 culturedx.modes.hied INFO Case patient_126: 5 candidate disorders from triage
+2026-04-02 12:26:55,198 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:27:05,404 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:27:15,950 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:27:25,789 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:27:32,293 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:27:32,294 culturedx.modes.base INFO Checker timing: 5 disorders in 79.0s (15.8s/disorder, 5 workers)
+2026-04-02 12:27:32,296 culturedx.modes.hied INFO Case patient_119: confidence gap 0.0299 < 0.10, running differential
+2026-04-02 12:27:51,280 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:27:51,281 culturedx.modes.base INFO Checker timing: 5 disorders in 105.5s (21.1s/disorder, 5 workers)
+2026-04-02 12:27:51,283 culturedx.modes.hied INFO Case patient_118: confidence gap 0.0046 < 0.10, running differential
+2026-04-02 12:28:09,711 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:28:20,381 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:28:20,382 culturedx.modes.base INFO Checker timing: 5 disorders in 119.2s (23.8s/disorder, 5 workers)
+2026-04-02 12:28:20,383 culturedx.modes.hied INFO Case patient_120: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:28:32,687 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:28:32,689 culturedx.modes.base INFO Checker timing: 5 disorders in 134.7s (26.9s/disorder, 5 workers)
+2026-04-02 12:28:32,689 culturedx.modes.hied INFO Case patient_12: confidence gap 0.0662 < 0.10, running differential
+2026-04-02 12:28:42,526 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:28:50,060 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:28:57,857 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:29:05,511 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:29:13,234 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:29:13,235 culturedx.modes.base INFO Checker timing: 5 disorders in 163.2s (32.6s/disorder, 5 workers)
+2026-04-02 12:29:13,238 culturedx.modes.hied INFO Case patient_121: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:29:20,447 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:29:28,869 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:29:37,454 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:29:50,551 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:30:01,639 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:30:12,673 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:30:22,973 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:30:31,398 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:30:37,899 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:30:37,901 culturedx.modes.base INFO Checker timing: 5 disorders in 247.8s (49.6s/disorder, 5 workers)
+2026-04-02 12:30:37,901 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:30:37,901 culturedx.modes.hied INFO Case patient_127: 5 candidate disorders from triage
+2026-04-02 12:30:50,036 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:30:59,524 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:31:04,172 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:31:14,514 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:31:24,275 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:31:24,275 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:31:24,276 culturedx.modes.hied INFO Case patient_128: 5 candidate disorders from triage
+2026-04-02 12:31:32,890 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:31:32,891 culturedx.modes.base INFO Checker timing: 5 disorders in 286.7s (57.3s/disorder, 5 workers)
+2026-04-02 12:31:32,892 culturedx.modes.hied INFO Case patient_126: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:31:39,174 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:31:39,174 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:31:39,175 culturedx.modes.hied INFO Case patient_129: 5 candidate disorders from triage
+2026-04-02 12:31:39,443 culturedx.llm.runtime WARNING LLM request failed (/v1/chat/completions attempt 1/3): timed out. Retrying in 1s...
+2026-04-02 12:31:52,656 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:31:52,657 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:31:52,657 culturedx.modes.hied INFO Case patient_13: 5 candidate disorders from triage
+2026-04-02 12:31:56,954 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:31:56,955 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:31:56,955 culturedx.modes.hied INFO Case patient_131: 5 candidate disorders from triage
+2026-04-02 12:32:01,794 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:32:01,795 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:32:01,795 culturedx.modes.hied INFO Case patient_132: 5 candidate disorders from triage
+2026-04-02 12:32:10,944 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:32:21,084 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:32:26,375 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:32:31,851 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:32:40,627 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:32:40,628 culturedx.modes.base INFO Checker timing: 5 disorders in 122.7s (24.5s/disorder, 5 workers)
+2026-04-02 12:32:40,628 culturedx.modes.hied INFO Case patient_127: confidence gap 0.0684 < 0.10, running differential
+2026-04-02 12:32:49,345 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:32:59,148 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:33:07,756 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:33:13,145 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:33:18,602 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:33:18,603 culturedx.modes.base INFO Checker timing: 5 disorders in 114.3s (22.9s/disorder, 5 workers)
+2026-04-02 12:33:18,605 culturedx.modes.hied INFO Case patient_128: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:33:27,309 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:33:27,309 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:33:27,309 culturedx.modes.hied INFO Case patient_133: 5 candidate disorders from triage
+2026-04-02 12:33:36,936 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:33:43,379 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:33:51,456 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:33:57,382 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:34:05,099 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:34:05,100 culturedx.modes.base INFO Checker timing: 5 disorders in 145.9s (29.2s/disorder, 5 workers)
+2026-04-02 12:34:05,101 culturedx.modes.hied INFO Case patient_129: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:34:23,240 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:34:33,068 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:34:43,222 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:34:50,063 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:34:58,120 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:34:58,120 culturedx.modes.base INFO Checker timing: 5 disorders in 185.5s (37.1s/disorder, 5 workers)
+2026-04-02 12:34:58,124 culturedx.modes.hied INFO Case patient_13: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:35:12,676 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:35:12,677 culturedx.modes.base INFO Checker timing: 5 disorders in 513.3s (102.7s/disorder, 5 workers)
+2026-04-02 12:35:12,677 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:35:12,677 culturedx.modes.hied INFO Case patient_134: 5 candidate disorders from triage
+2026-04-02 12:35:19,041 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:35:28,007 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:35:35,224 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:35:43,205 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:35:51,031 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:35:51,032 culturedx.modes.base INFO Checker timing: 5 disorders in 234.1s (46.8s/disorder, 5 workers)
+2026-04-02 12:35:51,033 culturedx.modes.hied INFO Case patient_131: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:36:00,436 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:36:07,599 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:36:16,173 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:36:24,872 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:36:24,873 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:36:24,873 culturedx.modes.hied INFO Case patient_135: 5 candidate disorders from triage
+2026-04-02 12:36:29,105 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:36:38,786 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:36:38,787 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:36:38,787 culturedx.modes.hied INFO Case patient_136: 5 candidate disorders from triage
+2026-04-02 12:36:52,192 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:37:01,902 culturedx.llm.runtime WARNING LLM request failed (/v1/chat/completions attempt 1/3): timed out. Retrying in 1s...
+2026-04-02 12:37:10,332 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:37:20,368 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:37:28,526 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:37:35,307 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:37:35,307 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:37:35,307 culturedx.modes.hied INFO Case patient_137: 5 candidate disorders from triage
+2026-04-02 12:37:42,332 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:37:42,333 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:37:42,333 culturedx.modes.hied INFO Case patient_138: 5 candidate disorders from triage
+2026-04-02 12:37:58,525 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:38:06,546 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:38:12,782 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:38:12,784 culturedx.modes.base INFO Checker timing: 5 disorders in 285.5s (57.1s/disorder, 5 workers)
+2026-04-02 12:38:12,784 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:38:12,784 culturedx.modes.hied INFO Case patient_139: 5 candidate disorders from triage
+2026-04-02 12:38:17,951 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:38:27,360 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:38:27,360 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:38:27,360 culturedx.modes.hied INFO Case patient_14: 5 candidate disorders from triage
+2026-04-02 12:38:30,779 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:38:35,601 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:38:35,602 culturedx.modes.base INFO Checker timing: 5 disorders in 202.9s (40.6s/disorder, 5 workers)
+2026-04-02 12:38:35,603 culturedx.modes.hied INFO Case patient_134: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:38:48,354 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:38:58,172 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:39:00,659 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:39:12,379 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:39:27,918 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:39:35,191 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:39:41,470 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:39:49,483 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:39:58,389 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:39:58,390 culturedx.modes.base INFO Checker timing: 5 disorders in 199.6s (39.9s/disorder, 5 workers)
+2026-04-02 12:39:58,391 culturedx.modes.hied INFO Case patient_136: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:40:05,083 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:40:05,085 culturedx.modes.base INFO Checker timing: 5 disorders in 220.2s (44.0s/disorder, 5 workers)
+2026-04-02 12:40:05,085 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:40:05,085 culturedx.modes.hied INFO Case patient_140: 5 candidate disorders from triage
+2026-04-02 12:40:15,260 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:40:26,219 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:40:34,689 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:40:41,318 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:40:57,285 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:40:57,286 culturedx.modes.base INFO Checker timing: 5 disorders in 202.0s (40.4s/disorder, 5 workers)
+2026-04-02 12:40:57,287 culturedx.modes.hied INFO Case patient_137: confidence gap 0.0116 < 0.10, running differential
+2026-04-02 12:41:05,567 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:41:15,599 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:41:21,748 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:41:28,756 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:41:28,757 culturedx.modes.base INFO Checker timing: 5 disorders in 567.0s (113.4s/disorder, 5 workers)
+2026-04-02 12:41:28,758 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:41:28,758 culturedx.modes.hied INFO Case patient_143: 5 candidate disorders from triage
+2026-04-02 12:41:35,220 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:41:49,856 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:41:49,857 culturedx.modes.base INFO Checker timing: 5 disorders in 247.5s (49.5s/disorder, 5 workers)
+2026-04-02 12:41:49,858 culturedx.modes.hied INFO Case patient_138: confidence gap 0.0532 < 0.10, running differential
+2026-04-02 12:41:59,991 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:42:07,661 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:42:14,354 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:42:21,781 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:42:28,266 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:42:28,267 culturedx.modes.base INFO Checker timing: 5 disorders in 255.5s (51.1s/disorder, 5 workers)
+2026-04-02 12:42:28,273 culturedx.modes.hied INFO Case patient_139: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:42:40,522 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:42:49,237 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:42:55,181 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:43:00,826 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:43:08,404 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:43:08,405 culturedx.modes.base INFO Checker timing: 5 disorders in 281.0s (56.2s/disorder, 5 workers)
+2026-04-02 12:43:08,407 culturedx.modes.hied INFO Case patient_14: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:43:14,671 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:43:14,671 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:43:14,671 culturedx.modes.hied INFO Case patient_145: 5 candidate disorders from triage
+2026-04-02 12:43:19,433 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:43:19,433 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:43:19,433 culturedx.modes.hied INFO Case patient_146: 5 candidate disorders from triage
+2026-04-02 12:43:27,600 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:43:33,543 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:43:41,711 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:43:48,493 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:43:55,874 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:43:55,874 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:43:55,874 culturedx.modes.hied INFO Case patient_147: 5 candidate disorders from triage
+2026-04-02 12:44:06,718 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:44:06,719 culturedx.modes.base INFO Checker timing: 5 disorders in 241.6s (48.3s/disorder, 5 workers)
+2026-04-02 12:44:06,720 culturedx.modes.hied INFO Case patient_140: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:44:16,874 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:44:24,192 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:44:34,713 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:44:42,976 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:44:49,375 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:44:49,376 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:44:49,376 culturedx.modes.hied INFO Case patient_148: 5 candidate disorders from triage
+2026-04-02 12:44:57,051 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:44:57,051 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:44:57,051 culturedx.modes.hied INFO Case patient_149: 5 candidate disorders from triage
+2026-04-02 12:45:02,926 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:45:02,926 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:45:02,926 culturedx.modes.hied INFO Case patient_15: 5 candidate disorders from triage
+2026-04-02 12:45:12,336 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:45:21,916 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:45:21,918 culturedx.modes.base INFO Checker timing: 5 disorders in 233.2s (46.6s/disorder, 5 workers)
+2026-04-02 12:45:21,918 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:45:21,918 culturedx.modes.hied INFO Case patient_150: 5 candidate disorders from triage
+2026-04-02 12:45:31,686 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:45:37,596 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:45:44,640 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:45:57,295 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:45:57,296 culturedx.modes.base INFO Checker timing: 5 disorders in 162.6s (32.5s/disorder, 5 workers)
+2026-04-02 12:45:57,297 culturedx.modes.hied INFO Case patient_145: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:46:02,509 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:46:09,750 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:46:17,611 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:46:17,632 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:46:35,951 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:46:35,953 culturedx.modes.base INFO Checker timing: 5 disorders in 196.5s (39.3s/disorder, 5 workers)
+2026-04-02 12:46:35,954 culturedx.modes.hied INFO Case patient_146: confidence gap 0.0158 < 0.10, running differential
+2026-04-02 12:46:51,576 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:46:57,806 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:47:04,909 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:47:11,526 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:47:20,128 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:47:20,128 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:47:20,128 culturedx.modes.hied INFO Case patient_151: 5 candidate disorders from triage
+2026-04-02 12:47:34,234 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:47:41,693 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:47:41,695 culturedx.modes.base INFO Checker timing: 5 disorders in 225.8s (45.2s/disorder, 5 workers)
+2026-04-02 12:47:41,695 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:47:41,695 culturedx.modes.hied INFO Case patient_152: 5 candidate disorders from triage
+2026-04-02 12:47:52,849 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:47:58,002 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:48:07,964 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:48:16,510 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:48:27,059 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:48:38,195 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:48:47,724 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:48:55,974 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:48:55,975 culturedx.modes.base INFO Checker timing: 5 disorders in 238.9s (47.8s/disorder, 5 workers)
+2026-04-02 12:48:55,976 culturedx.modes.hied INFO Case patient_149: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:49:07,493 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:49:07,494 culturedx.modes.base INFO Checker timing: 5 disorders in 258.1s (51.6s/disorder, 5 workers)
+2026-04-02 12:49:07,496 culturedx.modes.hied INFO Case patient_148: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:49:21,714 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:49:32,660 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:49:39,332 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:49:46,509 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:50:01,950 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:50:03,035 culturedx.llm.runtime WARNING LLM request failed (/v1/chat/completions attempt 1/3): timed out. Retrying in 1s...
+2026-04-02 12:50:16,062 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:50:21,927 culturedx.llm.runtime WARNING LLM request failed (/v1/chat/completions attempt 1/3): timed out. Retrying in 1s...
+2026-04-02 12:50:21,933 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:50:22,026 culturedx.llm.runtime WARNING LLM request failed (/v1/chat/completions attempt 1/3): timed out. Retrying in 1s...
+2026-04-02 12:50:40,490 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:50:40,491 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:50:40,491 culturedx.modes.hied INFO Case patient_153: 5 candidate disorders from triage
+2026-04-02 12:50:44,030 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:50:44,031 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:50:44,031 culturedx.modes.hied INFO Case patient_154: 5 candidate disorders from triage
+2026-04-02 12:50:57,908 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:51:05,990 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:51:11,792 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:51:20,327 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:51:33,348 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:51:40,761 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:51:48,771 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:51:56,645 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:52:03,053 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:52:03,054 culturedx.modes.base INFO Checker timing: 5 disorders in 282.9s (56.6s/disorder, 5 workers)
+2026-04-02 12:52:03,055 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:52:03,055 culturedx.modes.hied INFO Case patient_155: 5 candidate disorders from triage
+2026-04-02 12:52:11,162 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:52:11,163 culturedx.modes.base INFO Checker timing: 5 disorders in 269.5s (53.9s/disorder, 5 workers)
+2026-04-02 12:52:11,164 culturedx.modes.hied INFO Case patient_152: confidence gap 0.0394 < 0.10, running differential
+2026-04-02 12:52:16,364 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:52:16,364 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:52:16,364 culturedx.modes.hied INFO Case patient_157: 5 candidate disorders from triage
+2026-04-02 12:52:21,531 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:52:21,531 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:52:21,531 culturedx.modes.hied INFO Case patient_158: 5 candidate disorders from triage
+2026-04-02 12:52:34,310 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:52:45,742 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:52:45,743 culturedx.modes.base INFO Checker timing: 5 disorders in 443.8s (88.8s/disorder, 5 workers)
+2026-04-02 12:52:45,744 culturedx.modes.hied INFO Case patient_150: confidence gap 0.0116 < 0.10, running differential
+2026-04-02 12:52:55,444 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:53:05,282 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:53:17,319 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:53:30,540 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:53:30,541 culturedx.modes.base INFO Checker timing: 5 disorders in 507.6s (101.5s/disorder, 5 workers)
+2026-04-02 12:53:30,542 culturedx.modes.hied INFO Case patient_15: confidence gap 0.0678 < 0.10, running differential
+2026-04-02 12:53:36,913 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:53:42,494 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:53:42,495 culturedx.modes.base INFO Checker timing: 5 disorders in 182.0s (36.4s/disorder, 5 workers)
+2026-04-02 12:53:42,497 culturedx.modes.hied INFO Case patient_153: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:53:54,121 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:54:04,700 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:54:12,936 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:54:18,385 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:54:23,695 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:54:23,696 culturedx.modes.base INFO Checker timing: 5 disorders in 219.7s (43.9s/disorder, 5 workers)
+2026-04-02 12:54:23,700 culturedx.modes.hied INFO Case patient_154: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:54:33,055 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:54:40,876 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:54:48,235 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:54:53,551 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:55:03,681 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:55:03,683 culturedx.modes.base INFO Checker timing: 5 disorders in 180.6s (36.1s/disorder, 5 workers)
+2026-04-02 12:55:03,683 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:55:03,683 culturedx.modes.hied INFO Case patient_159: 5 candidate disorders from triage
+2026-04-02 12:55:09,019 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:55:09,020 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:55:09,020 culturedx.modes.hied INFO Case patient_16: 5 candidate disorders from triage
+2026-04-02 12:55:18,588 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:55:25,718 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:55:33,480 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:55:38,669 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:55:45,646 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:55:45,647 culturedx.modes.base INFO Checker timing: 5 disorders in 209.3s (41.9s/disorder, 5 workers)
+2026-04-02 12:55:45,647 culturedx.modes.hied INFO Case patient_157: confidence gap 0.0374 < 0.10, running differential
+2026-04-02 12:55:54,730 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:56:04,448 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:56:11,623 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:56:18,680 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:56:24,412 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:56:24,413 culturedx.modes.base INFO Checker timing: 5 disorders in 242.9s (48.6s/disorder, 5 workers)
+2026-04-02 12:56:24,415 culturedx.modes.hied INFO Case patient_158: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:56:29,907 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:56:29,908 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:56:29,908 culturedx.modes.hied INFO Case patient_161: 5 candidate disorders from triage
+2026-04-02 12:56:36,435 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:56:36,436 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:56:36,436 culturedx.modes.hied INFO Case patient_162: 5 candidate disorders from triage
+2026-04-02 12:56:40,745 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:56:40,746 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:56:40,746 culturedx.modes.hied INFO Case patient_163: 5 candidate disorders from triage
+2026-04-02 12:56:47,649 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:56:47,649 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:56:47,649 culturedx.modes.hied INFO Case patient_164: 5 candidate disorders from triage
+2026-04-02 12:56:53,979 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:57:02,679 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:57:10,501 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:57:16,385 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:57:24,841 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:57:24,843 culturedx.modes.base INFO Checker timing: 5 disorders in 141.2s (28.2s/disorder, 5 workers)
+2026-04-02 12:57:24,843 culturedx.modes.hied INFO Case patient_159: confidence gap 0.0400 < 0.10, running differential
+2026-04-02 12:57:42,194 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:57:47,785 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:57:56,332 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:58:05,329 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:58:05,329 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:58:05,329 culturedx.modes.hied INFO Case patient_165: 5 candidate disorders from triage
+2026-04-02 12:58:16,283 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:58:16,284 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:58:16,284 culturedx.modes.hied INFO Case patient_166: 5 candidate disorders from triage
+2026-04-02 12:58:34,838 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:58:49,386 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:58:54,596 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:59:02,173 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:59:02,175 culturedx.modes.base INFO Checker timing: 5 disorders in 233.2s (46.6s/disorder, 5 workers)
+2026-04-02 12:59:02,175 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 12:59:02,175 culturedx.modes.hied INFO Case patient_167: 5 candidate disorders from triage
+2026-04-02 12:59:09,097 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:59:14,523 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:59:23,901 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:59:28,202 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:59:28,203 culturedx.modes.base INFO Checker timing: 5 disorders in 178.3s (35.7s/disorder, 5 workers)
+2026-04-02 12:59:28,204 culturedx.modes.hied INFO Case patient_161: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 12:59:35,644 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:59:40,629 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:59:44,703 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:59:59,952 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:00:07,070 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:00:14,099 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:00:21,259 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:00:30,348 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:00:30,349 culturedx.modes.base INFO Checker timing: 5 disorders in 229.6s (45.9s/disorder, 5 workers)
+2026-04-02 13:00:30,350 culturedx.modes.hied INFO Case patient_163: confidence gap 0.0079 < 0.10, running differential
+2026-04-02 13:00:45,150 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:00:53,783 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:00:53,784 culturedx.modes.base INFO Checker timing: 5 disorders in 257.3s (51.5s/disorder, 5 workers)
+2026-04-02 13:00:53,784 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:00:53,784 culturedx.modes.hied INFO Case patient_168: 5 candidate disorders from triage
+2026-04-02 13:01:04,343 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:01:10,817 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:01:19,016 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:01:24,889 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:01:24,890 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:01:24,890 culturedx.modes.hied INFO Case patient_169: 5 candidate disorders from triage
+2026-04-02 13:01:42,684 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:01:47,684 culturedx.llm.runtime WARNING LLM request failed (/v1/chat/completions attempt 1/3): timed out. Retrying in 1s...
+2026-04-02 13:01:58,540 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:01:58,540 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:02:10,258 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:02:21,390 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:02:21,391 culturedx.modes.base INFO Checker timing: 5 disorders in 256.1s (51.2s/disorder, 5 workers)
+2026-04-02 13:02:21,392 culturedx.modes.hied INFO Case patient_165: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:02:31,930 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:02:32,677 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:02:42,685 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:02:50,021 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:03:03,748 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:03:14,276 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:03:16,392 culturedx.llm.runtime WARNING LLM request failed (/v1/chat/completions attempt 1/3): timed out. Retrying in 1s...
+2026-04-02 13:03:24,063 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:03:33,947 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:03:38,593 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:03:38,593 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:03:38,593 culturedx.modes.hied INFO Case patient_17: 5 candidate disorders from triage
+2026-04-02 13:03:44,416 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:03:44,417 culturedx.modes.base INFO Checker timing: 5 disorders in 282.2s (56.4s/disorder, 5 workers)
+2026-04-02 13:03:44,419 culturedx.modes.hied INFO Case patient_167: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:03:52,654 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:03:52,654 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:03:52,654 culturedx.modes.hied INFO Case patient_171: 5 candidate disorders from triage
+2026-04-02 13:03:58,521 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:04:09,110 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:04:15,983 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:04:23,253 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:04:28,908 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:04:28,910 culturedx.modes.base INFO Checker timing: 5 disorders in 215.1s (43.0s/disorder, 5 workers)
+2026-04-02 13:04:28,911 culturedx.modes.hied INFO Case patient_168: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:04:35,989 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:04:44,072 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:04:56,616 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:05:05,021 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:05:11,882 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:05:11,883 culturedx.modes.base INFO Checker timing: 5 disorders in 227.0s (45.4s/disorder, 5 workers)
+2026-04-02 13:05:11,884 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:05:11,884 culturedx.modes.hied INFO Case patient_172: 5 candidate disorders from triage
+2026-04-02 13:05:20,056 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:05:20,056 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:05:20,056 culturedx.modes.hied INFO Case patient_173: 5 candidate disorders from triage
+2026-04-02 13:05:56,701 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:05:56,702 culturedx.modes.base INFO Checker timing: 5 disorders in 549.1s (109.8s/disorder, 5 workers)
+2026-04-02 13:05:56,703 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:05:56,703 culturedx.modes.hied INFO Case patient_174: 5 candidate disorders from triage
+2026-04-02 13:06:04,603 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:06:12,751 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:06:12,752 culturedx.modes.base INFO Checker timing: 5 disorders in 476.5s (95.3s/disorder, 5 workers)
+2026-04-02 13:06:19,016 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:06:28,254 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:06:33,768 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:06:44,475 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:06:49,138 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:06:49,139 culturedx.modes.base INFO Checker timing: 5 disorders in 190.5s (38.1s/disorder, 5 workers)
+2026-04-02 13:06:49,141 culturedx.modes.hied INFO Case patient_17: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:06:59,631 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:07:08,678 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:07:14,664 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:07:19,630 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:07:29,356 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:07:29,356 culturedx.modes.base INFO Checker timing: 5 disorders in 216.7s (43.3s/disorder, 5 workers)
+2026-04-02 13:07:29,359 culturedx.modes.hied INFO Case patient_171: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:07:33,525 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:07:42,441 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:07:48,138 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:07:56,353 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:08:01,816 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:08:19,100 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:08:26,719 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:08:33,601 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:08:43,190 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:08:48,715 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:08:48,717 culturedx.modes.base INFO Checker timing: 5 disorders in 208.7s (41.7s/disorder, 5 workers)
+2026-04-02 13:08:48,719 culturedx.modes.hied INFO Case patient_173: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:09:05,406 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:09:10,639 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:09:10,641 culturedx.modes.base INFO Checker timing: 5 disorders in 238.8s (47.8s/disorder, 5 workers)
+2026-04-02 13:09:10,642 culturedx.modes.hied INFO Case patient_172: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:09:17,944 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:09:24,705 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:09:32,757 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:09:39,360 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:09:46,280 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:09:50,887 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:09:53,856 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:10:01,561 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:10:01,562 culturedx.modes.base INFO Checker timing: 5 disorders in 244.9s (49.0s/disorder, 5 workers)
+2026-04-02 13:10:01,572 run_full_eval INFO Batch 100/870 (11.5%) | mode=hied dataset=mdd5k | elapsed: 44m | ETA: 5h 42m
+2026-04-02 13:10:01,572 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:10:01,572 culturedx.modes.hied INFO Case patient_175: 5 candidate disorders from triage
+2026-04-02 13:10:01,572 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:10:01,573 culturedx.modes.hied INFO Case patient_176: 5 candidate disorders from triage
+2026-04-02 13:10:01,573 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:10:01,573 culturedx.modes.hied INFO Case patient_177: 5 candidate disorders from triage
+2026-04-02 13:10:01,573 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:10:01,573 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:10:01,573 culturedx.modes.hied INFO Case patient_178: 5 candidate disorders from triage
+2026-04-02 13:10:01,573 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:10:01,573 culturedx.modes.hied INFO Case patient_179: 5 candidate disorders from triage
+2026-04-02 13:10:01,574 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:10:01,574 culturedx.modes.hied INFO Case patient_18: 5 candidate disorders from triage
+2026-04-02 13:10:01,574 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:10:01,574 culturedx.modes.hied INFO Case patient_180: 5 candidate disorders from triage
+2026-04-02 13:10:01,574 culturedx.modes.hied INFO Case patient_181: 5 candidate disorders from triage
+2026-04-02 13:10:25,105 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:10:33,685 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:10:38,156 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:10:47,824 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:10:53,485 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:10:53,487 culturedx.modes.base INFO Checker timing: 5 disorders in 51.9s (10.4s/disorder, 5 workers)
+2026-04-02 13:10:53,488 culturedx.modes.hied INFO Case patient_178: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:11:04,005 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:11:08,537 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:11:18,463 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:11:26,581 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:11:31,630 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:11:31,631 culturedx.modes.base INFO Checker timing: 5 disorders in 90.1s (18.0s/disorder, 5 workers)
+2026-04-02 13:11:31,632 culturedx.modes.hied INFO Case patient_179: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:11:43,155 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:11:53,956 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:11:58,438 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:12:08,467 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:12:13,472 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:12:22,949 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:12:28,199 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:12:28,200 culturedx.modes.base INFO Checker timing: 5 disorders in 146.6s (29.3s/disorder, 5 workers)
+2026-04-02 13:12:28,201 culturedx.modes.hied INFO Case patient_176: confidence gap 0.0387 < 0.10, running differential
+2026-04-02 13:12:34,142 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:12:43,906 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:12:50,210 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:12:57,986 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:13:07,314 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:13:07,316 culturedx.modes.base INFO Checker timing: 5 disorders in 185.7s (37.1s/disorder, 5 workers)
+2026-04-02 13:13:07,319 culturedx.modes.hied INFO Case patient_177: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:13:13,971 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:13:24,854 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:13:37,916 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:13:43,070 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:13:48,228 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:13:48,228 culturedx.modes.base INFO Checker timing: 5 disorders in 226.7s (45.3s/disorder, 5 workers)
+2026-04-02 13:13:48,230 culturedx.modes.hied INFO Case patient_175: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:13:57,212 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:14:10,872 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:14:17,198 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:14:24,870 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:14:31,774 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:14:37,894 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:14:43,701 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:14:43,702 culturedx.modes.base INFO Checker timing: 5 disorders in 282.1s (56.4s/disorder, 5 workers)
+2026-04-02 13:14:43,703 culturedx.modes.hied INFO Case patient_18: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:14:53,359 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:15:01,680 culturedx.llm.runtime WARNING LLM request failed (/v1/chat/completions attempt 1/3): timed out. Retrying in 1s...
+2026-04-02 13:15:01,686 culturedx.llm.runtime WARNING LLM request failed (/v1/chat/completions attempt 1/3): timed out. Retrying in 1s...
+2026-04-02 13:15:01,708 culturedx.llm.runtime WARNING LLM request failed (/v1/chat/completions attempt 1/3): timed out. Retrying in 1s...
+2026-04-02 13:15:01,720 culturedx.llm.runtime WARNING LLM request failed (/v1/chat/completions attempt 1/3): timed out. Retrying in 1s...
+2026-04-02 13:15:01,732 culturedx.llm.runtime WARNING LLM request failed (/v1/chat/completions attempt 1/3): timed out. Retrying in 1s...
+2026-04-02 13:15:22,332 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:15:22,332 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:15:22,332 culturedx.modes.hied INFO Case patient_182: 5 candidate disorders from triage
+2026-04-02 13:15:25,870 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:15:25,870 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:15:25,870 culturedx.modes.hied INFO Case patient_183: 5 candidate disorders from triage
+2026-04-02 13:15:30,718 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:15:30,718 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:15:30,718 culturedx.modes.hied INFO Case patient_184: 5 candidate disorders from triage
+2026-04-02 13:15:39,118 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:15:39,118 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:15:39,118 culturedx.modes.hied INFO Case patient_185: 5 candidate disorders from triage
+2026-04-02 13:15:42,688 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:15:42,689 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:15:42,689 culturedx.modes.hied INFO Case patient_186: 5 candidate disorders from triage
+2026-04-02 13:15:46,923 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:15:46,923 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:15:46,923 culturedx.modes.hied INFO Case patient_187: 5 candidate disorders from triage
+2026-04-02 13:15:56,473 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:15:56,475 culturedx.modes.base INFO Checker timing: 5 disorders in 354.9s (71.0s/disorder, 5 workers)
+2026-04-02 13:15:56,476 culturedx.modes.hied INFO Case patient_180: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:16:05,549 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:16:11,891 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:16:30,158 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:16:36,551 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:16:47,139 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:16:57,607 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:17:06,639 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:17:06,640 culturedx.modes.base INFO Checker timing: 5 disorders in 425.1s (85.0s/disorder, 5 workers)
+2026-04-02 13:17:06,641 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:17:06,641 culturedx.modes.hied INFO Case patient_188: 5 candidate disorders from triage
+2026-04-02 13:17:14,216 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:17:19,362 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:17:19,363 culturedx.modes.base INFO Checker timing: 5 disorders in 117.0s (23.4s/disorder, 5 workers)
+2026-04-02 13:17:19,364 culturedx.modes.hied INFO Case patient_182: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:17:31,417 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:17:39,207 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:17:46,217 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:17:52,649 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:17:57,813 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:17:57,814 culturedx.modes.base INFO Checker timing: 5 disorders in 151.9s (30.4s/disorder, 5 workers)
+2026-04-02 13:17:57,816 culturedx.modes.hied INFO Case patient_183: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:18:06,973 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:18:11,361 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:18:20,513 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:18:26,193 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:18:35,822 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:18:35,824 culturedx.modes.base INFO Checker timing: 5 disorders in 185.1s (37.0s/disorder, 5 workers)
+2026-04-02 13:18:35,824 culturedx.modes.hied INFO Case patient_184: confidence gap 0.0299 < 0.10, running differential
+2026-04-02 13:18:43,299 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:18:52,983 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:19:01,673 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:19:08,619 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:19:13,822 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:19:13,823 culturedx.modes.base INFO Checker timing: 5 disorders in 214.7s (42.9s/disorder, 5 workers)
+2026-04-02 13:19:13,826 culturedx.modes.hied INFO Case patient_185: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:19:31,574 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:19:36,942 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:19:46,055 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:19:51,791 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:19:51,812 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:19:51,812 culturedx.modes.base INFO Checker timing: 5 disorders in 249.1s (49.8s/disorder, 5 workers)
+2026-04-02 13:19:51,815 culturedx.modes.hied INFO Case patient_186: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:20:07,999 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:20:17,826 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:20:25,302 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:20:35,591 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:20:35,592 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:20:35,592 culturedx.modes.hied INFO Case patient_189: 5 candidate disorders from triage
+2026-04-02 13:20:46,890 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:20:47,002 culturedx.llm.runtime WARNING LLM request failed (/v1/chat/completions attempt 1/3): timed out. Retrying in 1s...
+2026-04-02 13:21:02,199 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:21:08,360 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:21:17,440 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:21:22,404 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:21:33,060 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:21:33,061 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:21:33,061 culturedx.modes.hied INFO Case patient_190: 5 candidate disorders from triage
+2026-04-02 13:21:36,578 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:21:36,579 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:21:36,579 culturedx.modes.hied INFO Case patient_191: 5 candidate disorders from triage
+2026-04-02 13:21:41,494 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:21:41,495 culturedx.modes.base INFO Checker timing: 5 disorders in 274.9s (55.0s/disorder, 5 workers)
+2026-04-02 13:21:41,496 culturedx.modes.hied INFO Case patient_188: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:21:49,787 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:21:49,788 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:21:49,788 culturedx.modes.hied INFO Case patient_192: 5 candidate disorders from triage
+2026-04-02 13:21:54,184 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:21:54,184 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:21:54,184 culturedx.modes.hied INFO Case patient_193: 5 candidate disorders from triage
+2026-04-02 13:21:59,398 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:21:59,399 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:21:59,399 culturedx.modes.hied INFO Case patient_194: 5 candidate disorders from triage
+2026-04-02 13:22:10,195 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:22:19,770 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:22:25,318 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:22:34,281 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:22:40,977 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:22:40,978 culturedx.modes.base INFO Checker timing: 5 disorders in 125.4s (25.1s/disorder, 5 workers)
+2026-04-02 13:22:40,981 culturedx.modes.hied INFO Case patient_189: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:22:53,959 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:23:05,045 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:23:15,014 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:23:21,652 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:23:27,701 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:23:27,702 culturedx.modes.base INFO Checker timing: 5 disorders in 114.6s (22.9s/disorder, 5 workers)
+2026-04-02 13:23:27,705 culturedx.modes.hied INFO Case patient_190: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:23:43,193 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:23:51,107 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:23:51,108 culturedx.modes.base INFO Checker timing: 5 disorders in 484.2s (96.8s/disorder, 5 workers)
+2026-04-02 13:23:51,112 culturedx.modes.hied INFO Case patient_187: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:23:58,217 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:24:05,812 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:24:14,231 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:24:20,769 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:24:20,773 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:24:20,774 culturedx.modes.hied INFO Case patient_195: 5 candidate disorders from triage
+2026-04-02 13:24:32,387 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:24:40,990 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:24:46,841 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:24:55,293 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:25:11,685 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:25:11,686 culturedx.modes.base INFO Checker timing: 5 disorders in 201.9s (40.4s/disorder, 5 workers)
+2026-04-02 13:25:11,687 culturedx.modes.hied INFO Case patient_192: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:25:19,484 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:25:19,486 culturedx.modes.base INFO Checker timing: 5 disorders in 222.9s (44.6s/disorder, 5 workers)
+2026-04-02 13:25:19,486 culturedx.modes.hied INFO Case patient_191: confidence gap 0.0229 < 0.10, running differential
+2026-04-02 13:25:31,749 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:25:39,661 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:25:50,390 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:25:54,716 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:25:59,975 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:25:59,976 culturedx.modes.base INFO Checker timing: 5 disorders in 245.8s (49.2s/disorder, 5 workers)
+2026-04-02 13:25:59,978 culturedx.modes.hied INFO Case patient_193: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:26:17,392 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:26:25,249 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:26:31,207 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:26:40,083 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:26:45,879 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:26:45,879 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:26:45,879 culturedx.modes.hied INFO Case patient_196: 5 candidate disorders from triage
+2026-04-02 13:26:53,616 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:26:53,616 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:26:53,616 culturedx.modes.hied INFO Case patient_197: 5 candidate disorders from triage
+2026-04-02 13:26:59,438 culturedx.llm.runtime WARNING LLM request failed (/v1/chat/completions attempt 1/3): timed out. Retrying in 1s...
+2026-04-02 13:27:06,224 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:27:06,224 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:27:06,224 culturedx.modes.hied INFO Case patient_199: 5 candidate disorders from triage
+2026-04-02 13:27:15,756 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:27:21,139 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:27:28,676 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:27:36,205 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:27:44,221 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:27:44,221 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:27:44,221 culturedx.modes.hied INFO Case patient_2: 5 candidate disorders from triage
+2026-04-02 13:27:50,132 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:27:50,132 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:27:50,132 culturedx.modes.hied INFO Case patient_20: 5 candidate disorders from triage
+2026-04-02 13:27:56,640 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:27:56,640 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:27:56,640 culturedx.modes.hied INFO Case patient_200: 5 candidate disorders from triage
+2026-04-02 13:28:01,674 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:28:01,675 culturedx.modes.base INFO Checker timing: 5 disorders in 220.9s (44.2s/disorder, 5 workers)
+2026-04-02 13:28:01,677 culturedx.modes.hied INFO Case patient_195: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:28:09,047 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:28:21,333 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:28:29,413 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:28:34,973 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:28:41,207 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:28:41,208 culturedx.modes.base INFO Checker timing: 5 disorders in 115.3s (23.1s/disorder, 5 workers)
+2026-04-02 13:28:41,210 culturedx.modes.hied INFO Case patient_196: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:28:51,277 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:29:01,369 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:29:08,813 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:29:14,156 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:29:19,919 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:29:19,920 culturedx.modes.base INFO Checker timing: 5 disorders in 146.3s (29.3s/disorder, 5 workers)
+2026-04-02 13:29:19,921 culturedx.modes.hied INFO Case patient_197: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:29:36,387 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:29:41,909 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:29:52,308 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:29:57,664 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:30:04,987 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:30:04,988 culturedx.modes.base INFO Checker timing: 5 disorders in 178.8s (35.8s/disorder, 5 workers)
+2026-04-02 13:30:04,989 culturedx.modes.hied INFO Case patient_199: confidence gap 0.0874 < 0.10, running differential
+2026-04-02 13:30:28,232 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:30:34,693 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:30:34,694 culturedx.modes.base INFO Checker timing: 5 disorders in 515.3s (103.1s/disorder, 5 workers)
+2026-04-02 13:30:34,695 culturedx.modes.hied INFO Case patient_194: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:30:43,221 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:30:49,030 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:30:59,082 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:31:04,205 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:31:04,207 culturedx.modes.base INFO Checker timing: 5 disorders in 200.0s (40.0s/disorder, 5 workers)
+2026-04-02 13:31:04,210 culturedx.modes.hied INFO Case patient_2: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:31:15,399 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:31:17,737 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:31:29,764 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:31:35,276 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:31:40,637 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:31:40,638 culturedx.modes.base INFO Checker timing: 5 disorders in 230.5s (46.1s/disorder, 5 workers)
+2026-04-02 13:31:40,640 culturedx.modes.hied INFO Case patient_20: confidence gap 0.0000 < 0.10, running differential
+2026-04-02 13:31:51,326 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:31:59,644 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:32:09,996 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:32:18,624 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:32:18,624 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:32:18,624 culturedx.modes.hied INFO Case patient_201: 5 candidate disorders from triage
+2026-04-02 13:32:24,403 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:32:34,075 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:32:34,076 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:32:34,076 culturedx.modes.hied INFO Case patient_203: 5 candidate disorders from triage
+2026-04-02 13:32:37,974 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:32:37,975 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:32:37,975 culturedx.modes.hied INFO Case patient_204: 5 candidate disorders from triage
+2026-04-02 13:32:46,780 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:32:46,781 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:32:46,781 culturedx.modes.hied INFO Case patient_205: 5 candidate disorders from triage
+2026-04-02 13:32:50,130 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:32:50,130 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:32:50,130 culturedx.modes.hied INFO Case patient_206: 5 candidate disorders from triage
+2026-04-02 13:32:56,749 culturedx.llm.runtime WARNING LLM request failed (/v1/chat/completions attempt 1/3): timed out. Retrying in 1s...
+2026-04-02 13:33:06,020 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:33:06,021 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:33:06,021 culturedx.modes.hied INFO Case patient_207: 5 candidate disorders from triage
+2026-04-02 13:33:10,561 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:33:10,562 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:33:10,562 culturedx.modes.hied INFO Case patient_209: 5 candidate disorders from triage
+2026-04-02 13:33:25,938 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:33:34,340 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:33:39,863 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:33:48,360 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:33:57,130 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:34:08,257 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:34:21,170 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:34:21,171 culturedx.modes.base INFO Checker timing: 5 disorders in 122.5s (24.5s/disorder, 5 workers)
+2026-04-02 13:34:21,172 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:34:21,172 culturedx.modes.hied INFO Case patient_210: 5 candidate disorders from triage
+2026-04-02 13:34:26,942 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:34:36,120 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:34:36,872 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:34:36,873 culturedx.modes.base INFO Checker timing: 5 disorders in 122.8s (24.6s/disorder, 5 workers)
+2026-04-02 13:34:36,873 culturedx.modes.hied INFO Case patient_203: confidence gap 0.0686 < 0.10, running differential
+2026-04-02 13:34:58,741 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:35:04,298 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:35:13,508 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:35:18,339 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:35:28,734 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:35:42,871 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:35:56,825 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:36:01,744 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:36:01,746 culturedx.modes.base INFO Checker timing: 5 disorders in 203.8s (40.8s/disorder, 5 workers)
+2026-04-02 13:36:01,747 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-02 13:36:01,747 culturedx.modes.hied INFO Case patient_211: 5 candidate disorders from triage
+2026-04-02 13:36:12,423 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:36:24,705 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:36:35,304 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:36:44,104 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:36:50,924 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:37:01,542 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 13:37:01,543 culturedx.modes.base INFO Checker timing: 5 disorders in 251.4s (50.3s/disorder, 5 workers)
+2026-04-02 13:37:01,544 culturedx.modes.hied INFO Case patient_206: confidence gap 0.0000 < 0.10, running differential

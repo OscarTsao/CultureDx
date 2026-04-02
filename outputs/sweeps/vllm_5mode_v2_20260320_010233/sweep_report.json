@@ -11,14 +11,20 @@
       "condition": "hied_no_evidence",
       "n_cases": 50,
       "metrics_parent_normalized": {
+        "accuracy": 0.14,
         "top1_accuracy": 0.42,
         "top3_accuracy": 0.6,
-        "macro_f1": 0.15418803418803417
+        "macro_f1": 0.15418803418803417,
+        "weighted_f1": 0.41751111111111117,
+        "overall": 0.3463398290598291
       },
       "metrics_exact": {
+        "accuracy": 0.1,
         "top1_accuracy": 0.3,
         "top3_accuracy": 0.36,
-        "macro_f1": 0.10400000000000001
+        "macro_f1": 0.10400000000000001,
+        "weighted_f1": 0.2664,
+        "overall": 0.22608
       },
       "total_seconds": 2722.0,
       "avg_seconds_per_case": 54.4
@@ -27,14 +33,20 @@
       "condition": "single_no_evidence",
       "n_cases": 50,
       "metrics_parent_normalized": {
+        "accuracy": 0.0,
         "top1_accuracy": 0.56,
         "top3_accuracy": 0.76,
-        "macro_f1": 0.2941595441595442
+        "macro_f1": 0.2941595441595442,
+        "weighted_f1": 0.5209259259259259,
+        "overall": 0.42701709401709403
       },
       "metrics_exact": {
+        "accuracy": 0.0,
         "top1_accuracy": 0.0,
         "top3_accuracy": 0.0,
-        "macro_f1": 0.0
+        "macro_f1": 0.0,
+        "weighted_f1": 0.0,
+        "overall": 0.0
       },
       "total_seconds": 525.3,
       "avg_seconds_per_case": 10.5
@@ -43,14 +55,20 @@
       "condition": "psycot_no_evidence",
       "n_cases": 50,
       "metrics_parent_normalized": {
+        "accuracy": 0.14,
         "top1_accuracy": 0.42,
         "top3_accuracy": 0.58,
-        "macro_f1": 0.15675908943791134
+        "macro_f1": 0.15675908943791134,
+        "weighted_f1": 0.4250490883590463,
+        "overall": 0.3443616355593916
       },
       "metrics_exact": {
+        "accuracy": 0.1,
         "top1_accuracy": 0.26,
         "top3_accuracy": 0.34,
-        "macro_f1": 0.10144927536231885
+        "macro_f1": 0.10144927536231885,
+        "weighted_f1": 0.24956521739130433,
+        "overall": 0.21020289855072463
       },
       "total_seconds": 0.1,
       "avg_seconds_per_case": 0.0
@@ -59,14 +77,20 @@
       "condition": "specialist_no_evidence",
       "n_cases": 50,
       "metrics_parent_normalized": {
+        "accuracy": 0.02,
         "top1_accuracy": 0.5,
         "top3_accuracy": 0.82,
-        "macro_f1": 0.15476190476190477
+        "macro_f1": 0.15476190476190477,
+        "weighted_f1": 0.3780952380952381,
+        "overall": 0.3745714285714285
       },
       "metrics_exact": {
+        "accuracy": 0.0,
         "top1_accuracy": 0.46,
         "top3_accuracy": 0.46,
-        "macro_f1": 0.1282051282051282
+        "macro_f1": 0.1282051282051282,
+        "weighted_f1": 0.3133333333333333,
+        "overall": 0.27230769230769225
       },
       "total_seconds": 2524.1,
       "avg_seconds_per_case": 50.5
@@ -75,14 +99,20 @@
       "condition": "debate_no_evidence",
       "n_cases": 50,
       "metrics_parent_normalized": {
+        "accuracy": 0.02,
         "top1_accuracy": 0.58,
         "top3_accuracy": 0.86,
-        "macro_f1": 0.4521103896103896
+        "macro_f1": 0.4521103896103896,
+        "weighted_f1": 0.47964285714285715,
+        "overall": 0.47835064935064936
       },
       "metrics_exact": {
+        "accuracy": 0.0,
         "top1_accuracy": 0.44,
         "top3_accuracy": 0.44,
-        "macro_f1": 0.10416666666666666
+        "macro_f1": 0.10416666666666666,
+        "weighted_f1": 0.3133333333333333,
+        "overall": 0.25949999999999995
       },
       "total_seconds": 3396.8,
       "avg_seconds_per_case": 67.9

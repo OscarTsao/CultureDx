@@ -1,0 +1,68 @@
+{
+  "hied:lingxidiag": {
+    "num_cases": 1000,
+    "num_abstained": 0,
+    "abstention_rate": 0.0,
+    "top1_accuracy": 0.393,
+    "top3_accuracy": 0.677,
+    "exact_match": 0.021,
+    "hamming_loss": 0.7786333333333333,
+    "macro_f1": 0.1544672302536854,
+    "reference_top1_accuracy_bucketed": 0.387,
+    "reference_top3_accuracy_bucketed": 0.67,
+    "diagnosis_metrics": {
+      "accuracy": 0.021,
+      "top1_accuracy": 0.387,
+      "top3_accuracy": 0.67,
+      "macro_f1": 0.1544672302536854,
+      "weighted_f1": 0.30634775982672746,
+      "overall": 0.3077629980160826
+    },
+    "comorbidity_metrics": {
+      "hamming_accuracy": 0.22136666666666668,
+      "subset_accuracy": 0.021,
+      "comorbidity_detection_f1": 0.162426614481409,
+      "label_coverage": 0.6801666666666667,
+      "label_precision": 0.22655,
+      "avg_predicted_labels": 3.446,
+      "avg_gold_labels": 1.091
+    },
+    "table4_paper_metrics": {
+      "2class_Acc": 0.6511627906976745,
+      "2class_F1_macro": 0.48255971994775543,
+      "2class_F1_weighted": 0.6068264276486217,
+      "4class_Acc": 0.385,
+      "4class_F1_macro": 0.3379868697313292,
+      "4class_F1_weighted": 0.37348569601891474,
+      "12class_Acc": 0.021,
+      "12class_Top1": 0.393,
+      "12class_Top3": 0.677,
+      "12class_F1_macro": 0.15535436403756517,
+      "12class_F1_weighted": 0.42360940723671475,
+      "2class_n": 473,
+      "4class_n": 1000,
+      "12class_n": 1000,
+      "Overall": 0.40972593411987046
+    },
+    "timing": {
+      "pair_key": "hied:lingxidiag",
+      "elapsed_sec": 735.1945845320006,
+      "cases_per_sec": 1.3601841213732082,
+      "avg_elapsed_sec_per_case": 0.7351945845320006,
+      "batch_count": 10,
+      "resume_from": 0,
+      "num_cases": 1000
+    }
+  },
+  "timing_by_mode_dataset": {
+    "hied:lingxidiag": {
+      "pair_key": "hied:lingxidiag",
+      "elapsed_sec": 735.1945845320006,
+      "cases_per_sec": 1.3601841213732082,
+      "avg_elapsed_sec_per_case": 0.7351945845320006,
+      "batch_count": 10,
+      "resume_from": 0,
+      "num_cases": 1000
+    }
+  }
+}

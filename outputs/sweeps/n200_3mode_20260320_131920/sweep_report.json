@@ -11,14 +11,20 @@
       "condition": "hied_no_evidence",
       "n_cases": 200,
       "metrics_parent_normalized": {
-        "top1_accuracy": 0.515,
-        "top3_accuracy": 0.705,
-        "macro_f1": 0.07177374720040629
+        "accuracy": 0.2,
+        "top1_accuracy": 0.49,
+        "top3_accuracy": 0.67,
+        "macro_f1": 0.07177374720040629,
+        "weighted_f1": 0.4597909157275174,
+        "overall": 0.3783129325855847
       },
       "metrics_exact": {
-        "top1_accuracy": 0.375,
-        "top3_accuracy": 0.41,
-        "macro_f1": 0.045437788018433185
+        "accuracy": 0.14,
+        "top1_accuracy": 0.36,
+        "top3_accuracy": 0.39,
+        "macro_f1": 0.045437788018433185,
+        "weighted_f1": 0.287315668202765,
+        "overall": 0.24455069124423962
       },
       "total_seconds": 11177.0,
       "avg_seconds_per_case": 55.9
@@ -27,14 +33,20 @@
       "condition": "psycot_no_evidence",
       "n_cases": 200,
       "metrics_parent_normalized": {
-        "top1_accuracy": 0.51,
-        "top3_accuracy": 0.67,
-        "macro_f1": 0.0668778419251009
+        "accuracy": 0.185,
+        "top1_accuracy": 0.47,
+        "top3_accuracy": 0.635,
+        "macro_f1": 0.0668778419251009,
+        "weighted_f1": 0.44745593419506463,
+        "overall": 0.3608667552240331
       },
       "metrics_exact": {
-        "top1_accuracy": 0.285,
-        "top3_accuracy": 0.375,
-        "macro_f1": 0.038918918918918924
+        "accuracy": 0.14,
+        "top1_accuracy": 0.275,
+        "top3_accuracy": 0.355,
+        "macro_f1": 0.038918918918918924,
+        "weighted_f1": 0.25810810810810814,
+        "overall": 0.21340540540540545
       },
       "total_seconds": 0.3,
       "avg_seconds_per_case": 0.0
@@ -43,14 +55,20 @@
       "condition": "single_no_evidence",
       "n_cases": 200,
       "metrics_parent_normalized": {
-        "top1_accuracy": 0.525,
-        "top3_accuracy": 0.765,
-        "macro_f1": 0.13032950836930202
+        "accuracy": 0.0,
+        "top1_accuracy": 0.515,
+        "top3_accuracy": 0.74,
+        "macro_f1": 0.13032950836930202,
+        "weighted_f1": 0.44774414850686034,
+        "overall": 0.3666147313752324
       },
       "metrics_exact": {
+        "accuracy": 0.0,
         "top1_accuracy": 0.0,
         "top3_accuracy": 0.0,
-        "macro_f1": 0.0
+        "macro_f1": 0.0,
+        "weighted_f1": 0.0,
+        "overall": 0.0
       },
       "total_seconds": 5171.5,
       "avg_seconds_per_case": 25.9

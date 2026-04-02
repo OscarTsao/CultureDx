@@ -1,0 +1,421 @@
+[2026-04-01 23:30:38] ===== REMAINING EVAL CONDITIONS =====
+[2026-04-01 23:30:38] vLLM already healthy at http://localhost:8000
+[2026-04-01 23:30:38] === Condition: hied-evidence (mode=hied, ev=1, som=1, think=false, var=) ===
+2026-04-01 23:30:38,776 run_full_eval INFO Loading dataset lingxidiag via adapter=lingxidiag16k from data/raw/lingxidiag16k
+2026-04-01 23:30:38,883 run_full_eval INFO Loading dataset mdd5k via adapter=mdd5k_raw from data/raw/mdd5k_repo
+2026-04-01 23:30:39,165 run_full_eval INFO Preparing evaluation for model=Qwen/Qwen3-32B-AWQ output_dir=outputs/eval/hied_first_20260401_182240/hied-evidence
+2026-04-01 23:30:39,165 run_full_eval INFO --resume: no checkpoint at outputs/eval/hied_first_20260401_182240/hied-evidence/checkpoint.json, starting fresh
+2026-04-01 23:30:40,039 datasets INFO PyTorch version 2.10.0 available.
+Fetching 30 files:   0%|          | 0/30 [00:00<?, ?it/s]Fetching 30 files: 100%|██████████| 30/30 [00:00<00:00, 18040.02it/s]
+2026-04-01 23:30:41,268 FlagEmbedding.finetune.embedder.encoder_only.m3.runner INFO loading existing colbert_linear and sparse_linear---------
+2026-04-01 23:30:41,275 run_full_eval INFO Capping max_cases_in_flight to 8 (requested batch_size=100)
+2026-04-01 23:30:41,275 run_full_eval INFO Running hied:lingxidiag on 907 cases (resume_from=0, evidence=yes, somatization=yes)
+2026-04-01 23:30:41,283 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 374577341
+2026-04-01 23:30:41,283 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 318518739
+2026-04-01 23:30:41,297 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 350352506
+2026-04-01 23:30:41,301 culturedx.evidence.pipeline INFO Temporal extraction for 374577341: confidence=0.90, months=24.0
+2026-04-01 23:30:41,301 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 341328894
+2026-04-01 23:30:41,307 culturedx.evidence.pipeline INFO Temporal extraction for 341328894: confidence=0.55, months=8.0
+2026-04-01 23:30:41,307 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 337522433
+2026-04-01 23:30:41,307 culturedx.evidence.pipeline INFO Temporal extraction for 350352506: confidence=0.55, months=8.0
+2026-04-01 23:30:41,312 culturedx.evidence.pipeline INFO Temporal extraction for 337522433: confidence=0.55, months=8.0
+2026-04-01 23:30:41,313 culturedx.evidence.pipeline INFO Temporal extraction for 318518739: confidence=0.95, months=36.0
+2026-04-01 23:30:41,313 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 300493869
+2026-04-01 23:30:41,313 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 377662897
+2026-04-01 23:30:41,317 culturedx.evidence.pipeline INFO Temporal extraction for 300493869: confidence=0.00, months=2.0
+2026-04-01 23:30:41,319 culturedx.evidence.pipeline INFO Temporal extraction for 377662897: confidence=0.30, months=1.0
+2026-04-01 23:30:41,320 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 303364596
+2026-04-01 23:30:41,324 culturedx.evidence.pipeline INFO Temporal extraction for 303364596: confidence=0.55, months=8.0
+2026-04-01 23:30:41,606 culturedx.evidence.pipeline WARNING Criteria matching failed for case 337522433
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/pipeline.py", line 251, in extract
+    criteria_results = self._matcher.match_all_disorders(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/criteria_matcher.py", line 230, in match_all_disorders
+    batch_results = self.retriever.retrieve_batch(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/retriever.py", line 384, in retrieve_batch
+    scores = self._score_native(query, sentences)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/retriever.py", line 326, in _score_native
+    raw = self._flag_model.compute_score(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/FlagEmbedding/inference/embedder/encoder_only/m3.py", line 399, in compute_score
+    return self.compute_score_single_device(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/FlagEmbedding/inference/embedder/encoder_only/m3.py", line 509, in compute_score_single_device
+    if self.use_fp16: self.model.half()
+                      ^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1208, in half
+    return self._apply(lambda t: t.half() if t.is_floating_point() else t)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 964, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1208, in <lambda>
+    return self._apply(lambda t: t.half() if t.is_floating_point() else t)
+                                 ^^^^^^^^
+RuntimeError: expected scalar type Float but found Half
+2026-04-01 23:30:41,617 culturedx.evidence.pipeline WARNING Criteria matching failed for case 374577341
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/pipeline.py", line 251, in extract
+    criteria_results = self._matcher.match_all_disorders(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/criteria_matcher.py", line 230, in match_all_disorders
+    batch_results = self.retriever.retrieve_batch(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/retriever.py", line 384, in retrieve_batch
+    scores = self._score_native(query, sentences)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/retriever.py", line 326, in _score_native
+    raw = self._flag_model.compute_score(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/FlagEmbedding/inference/embedder/encoder_only/m3.py", line 399, in compute_score
+    return self.compute_score_single_device(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/FlagEmbedding/inference/embedder/encoder_only/m3.py", line 509, in compute_score_single_device
+    if self.use_fp16: self.model.half()
+                      ^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1208, in half
+    return self._apply(lambda t: t.half() if t.is_floating_point() else t)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  [Previous line repeated 4 more times]
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 964, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1208, in <lambda>
+    return self._apply(lambda t: t.half() if t.is_floating_point() else t)
+                                 ^^^^^^^^
+RuntimeError: expected scalar type Float but found Half
+2026-04-01 23:30:41,618 culturedx.evidence.pipeline WARNING Criteria matching failed for case 300493869
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/pipeline.py", line 251, in extract
+    criteria_results = self._matcher.match_all_disorders(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/criteria_matcher.py", line 230, in match_all_disorders
+    batch_results = self.retriever.retrieve_batch(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/retriever.py", line 384, in retrieve_batch
+    scores = self._score_native(query, sentences)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/retriever.py", line 326, in _score_native
+    raw = self._flag_model.compute_score(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/FlagEmbedding/inference/embedder/encoder_only/m3.py", line 399, in compute_score
+    return self.compute_score_single_device(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/FlagEmbedding/inference/embedder/encoder_only/m3.py", line 509, in compute_score_single_device
+    if self.use_fp16: self.model.half()
+                      ^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1208, in half
+    return self._apply(lambda t: t.half() if t.is_floating_point() else t)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  [Previous line repeated 4 more times]
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 964, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1208, in <lambda>
+    return self._apply(lambda t: t.half() if t.is_floating_point() else t)
+                                 ^^^^^^^^
+RuntimeError: expected scalar type Float but found Half
+2026-04-01 23:30:41,620 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-01 23:30:41,621 culturedx.evidence.pipeline WARNING Criteria matching failed for case 303364596
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/pipeline.py", line 251, in extract
+    criteria_results = self._matcher.match_all_disorders(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/criteria_matcher.py", line 230, in match_all_disorders
+    batch_results = self.retriever.retrieve_batch(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/retriever.py", line 384, in retrieve_batch
+    scores = self._score_native(query, sentences)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/retriever.py", line 326, in _score_native
+    raw = self._flag_model.compute_score(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/FlagEmbedding/inference/embedder/encoder_only/m3.py", line 399, in compute_score
+    return self.compute_score_single_device(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/FlagEmbedding/inference/embedder/encoder_only/m3.py", line 509, in compute_score_single_device
+    if self.use_fp16: self.model.half()
+                      ^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1208, in half
+    return self._apply(lambda t: t.half() if t.is_floating_point() else t)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  [Previous line repeated 3 more times]
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 964, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1208, in <lambda>
+    return self._apply(lambda t: t.half() if t.is_floating_point() else t)
+                                 ^^^^^^^^
+RuntimeError: expected scalar type Float but found Half
+2026-04-01 23:30:41,621 culturedx.evidence.pipeline WARNING Criteria matching failed for case 341328894
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/pipeline.py", line 251, in extract
+    criteria_results = self._matcher.match_all_disorders(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/criteria_matcher.py", line 230, in match_all_disorders
+    batch_results = self.retriever.retrieve_batch(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/retriever.py", line 384, in retrieve_batch
+    scores = self._score_native(query, sentences)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/retriever.py", line 326, in _score_native
+    raw = self._flag_model.compute_score(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/FlagEmbedding/inference/embedder/encoder_only/m3.py", line 399, in compute_score
+    return self.compute_score_single_device(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/FlagEmbedding/inference/embedder/encoder_only/m3.py", line 509, in compute_score_single_device
+    if self.use_fp16: self.model.half()
+                      ^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1208, in half
+    return self._apply(lambda t: t.half() if t.is_floating_point() else t)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  [Previous line repeated 3 more times]
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 964, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1208, in <lambda>
+    return self._apply(lambda t: t.half() if t.is_floating_point() else t)
+                                 ^^^^^^^^
+RuntimeError: expected scalar type Float but found Half
+2026-04-01 23:30:41,621 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-01 23:30:41,621 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-01 23:30:41,621 culturedx.modes.hied INFO Case 337522433: 5 candidate disorders from triage
+2026-04-01 23:30:41,622 culturedx.evidence.pipeline WARNING Criteria matching failed for case 377662897
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/pipeline.py", line 251, in extract
+    criteria_results = self._matcher.match_all_disorders(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/criteria_matcher.py", line 230, in match_all_disorders
+    batch_results = self.retriever.retrieve_batch(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/retriever.py", line 384, in retrieve_batch
+    scores = self._score_native(query, sentences)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/retriever.py", line 326, in _score_native
+    raw = self._flag_model.compute_score(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/FlagEmbedding/inference/embedder/encoder_only/m3.py", line 399, in compute_score
+    return self.compute_score_single_device(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/FlagEmbedding/inference/embedder/encoder_only/m3.py", line 509, in compute_score_single_device
+    if self.use_fp16: self.model.half()
+                      ^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1208, in half
+    return self._apply(lambda t: t.half() if t.is_floating_point() else t)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  [Previous line repeated 3 more times]
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 964, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1208, in <lambda>
+    return self._apply(lambda t: t.half() if t.is_floating_point() else t)
+                                 ^^^^^^^^
+RuntimeError: expected scalar type Float but found Half
+2026-04-01 23:30:41,623 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-01 23:30:41,622 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-01 23:30:41,622 culturedx.modes.hied INFO Case 374577341: 5 candidate disorders from triage
+2026-04-01 23:30:41,623 culturedx.modes.hied INFO Case 300493869: 5 candidate disorders from triage
+2026-04-01 23:30:41,622 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-01 23:30:41,623 culturedx.modes.hied INFO Case 377662897: 5 candidate disorders from triage
+2026-04-01 23:30:41,624 culturedx.modes.hied INFO Case 341328894: 5 candidate disorders from triage
+2026-04-01 23:30:41,625 culturedx.modes.hied INFO Case 303364596: 5 candidate disorders from triage
+2026-04-01 23:30:41,654 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-01 23:30:41,656 culturedx.evidence.pipeline WARNING Criteria matching failed for case 350352506
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/pipeline.py", line 251, in extract
+    criteria_results = self._matcher.match_all_disorders(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/criteria_matcher.py", line 230, in match_all_disorders
+    batch_results = self.retriever.retrieve_batch(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/retriever.py", line 384, in retrieve_batch
+    scores = self._score_native(query, sentences)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/retriever.py", line 326, in _score_native
+    raw = self._flag_model.compute_score(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/FlagEmbedding/inference/embedder/encoder_only/m3.py", line 399, in compute_score
+    return self.compute_score_single_device(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/FlagEmbedding/inference/embedder/encoder_only/m3.py", line 509, in compute_score_single_device
+    if self.use_fp16: self.model.half()
+                      ^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1208, in half
+    return self._apply(lambda t: t.half() if t.is_floating_point() else t)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  [Previous line repeated 4 more times]
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 964, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1208, in <lambda>
+    return self._apply(lambda t: t.half() if t.is_floating_point() else t)
+                                 ^^^^^^^^
+RuntimeError: expected scalar type Float but found Half
+2026-04-01 23:30:41,656 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-01 23:30:41,657 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-01 23:30:41,657 culturedx.modes.hied INFO Case 337522433: confidence gap 0.0008 < 0.10, running differential
+2026-04-01 23:30:41,658 culturedx.modes.hied INFO Case 350352506: 5 candidate disorders from triage
+2026-04-01 23:30:41,663 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-01 23:30:41,664 culturedx.modes.hied INFO Case 303364596: confidence gap 0.0386 < 0.10, running differential
+2026-04-01 23:30:41,665 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-01 23:30:41,666 culturedx.evidence.pipeline INFO Extracted 15 symptom spans for case 327826586
+2026-04-01 23:30:41,668 culturedx.evidence.pipeline INFO Temporal extraction for 327826586: confidence=0.55, months=8.0
+2026-04-01 23:30:41,669 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-01 23:30:41,672 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-01 23:30:41,673 culturedx.modes.hied INFO Case 350352506: confidence gap 0.0003 < 0.10, running differential
+2026-04-01 23:30:41,675 culturedx.evidence.pipeline WARNING Criteria matching failed for case 327826586
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/pipeline.py", line 251, in extract
+    criteria_results = self._matcher.match_all_disorders(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/criteria_matcher.py", line 230, in match_all_disorders
+    batch_results = self.retriever.retrieve_batch(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/retriever.py", line 384, in retrieve_batch
+    scores = self._score_native(query, sentences)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/retriever.py", line 326, in _score_native
+    raw = self._flag_model.compute_score(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/FlagEmbedding/inference/embedder/encoder_only/m3.py", line 399, in compute_score
+    return self.compute_score_single_device(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/FlagEmbedding/inference/embedder/encoder_only/m3.py", line 509, in compute_score_single_device
+    if self.use_fp16: self.model.half()
+                      ^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1208, in half
+    return self._apply(lambda t: t.half() if t.is_floating_point() else t)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  [Previous line repeated 4 more times]
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 964, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1208, in <lambda>
+    return self._apply(lambda t: t.half() if t.is_floating_point() else t)
+                                 ^^^^^^^^
+RuntimeError: expected scalar type Float but found Half
+2026-04-01 23:30:41,675 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-01 23:30:41,676 culturedx.modes.hied INFO Case 327826586: 5 candidate disorders from triage
+2026-04-01 23:30:42,148 culturedx.evidence.pipeline WARNING Criteria matching failed for case 318518739
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/pipeline.py", line 251, in extract
+    criteria_results = self._matcher.match_all_disorders(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/criteria_matcher.py", line 230, in match_all_disorders
+    batch_results = self.retriever.retrieve_batch(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/retriever.py", line 384, in retrieve_batch
+    scores = self._score_native(query, sentences)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/evidence/retriever.py", line 326, in _score_native
+    raw = self._flag_model.compute_score(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/FlagEmbedding/inference/embedder/encoder_only/m3.py", line 399, in compute_score
+    return self.compute_score_single_device(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/FlagEmbedding/inference/embedder/encoder_only/m3.py", line 511, in compute_score_single_device
+    self.model.to(device)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1381, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 964, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1367, in convert
+    return t.to(
+           ^^^^^
+torch.AcceleratorError: CUDA error: out of memory
+Search for `cudaErrorMemoryAllocation' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+2026-04-01 23:30:42,149 culturedx.modes.hied INFO HiED manual scope mode: using 5 target disorders
+2026-04-01 23:30:42,149 culturedx.modes.hied INFO Case 318518739: 5 candidate disorders from triage
+2026-04-01 23:30:42,152 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-01 23:30:42,153 culturedx.modes.hied INFO Case 318518739: confidence gap 0.0179 < 0.10, running differential

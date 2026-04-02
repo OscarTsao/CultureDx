@@ -1,7 +1,8 @@
 """Disorder code mapping for evaluation.
 
-Maps dataset-level disorder codes to system-level ICD-10 codes,
-handling ambiguous codes (F41 -> F41.0/F41.1) and exclusions.
+Maps dataset-level disorder codes to system-level ICD-10 codes for CultureDx's
+supported ontology. Paper-aligned LingxiDiagBench Table 4 evaluation now lives
+in ``culturedx.eval.lingxidiag_paper``.
 """
 from __future__ import annotations
 
@@ -25,8 +26,8 @@ AMBIGUOUS_MAP: dict[str, list[str]] = {
     "F43": ["F43.1", "F43.2"],  # PTSD or Adjustment
 }
 
-# Codes to exclude from evaluation (not psychiatric diagnoses)
-EXCLUDED_CODES = {"Others", "Z71"}
+# Do not silently drop any labels in paper-aligned evaluation.
+EXCLUDED_CODES: set[str] = set()
 
 _SYSTEM_CODES = tuple(
     dict.fromkeys(
@@ -34,8 +35,6 @@ _SYSTEM_CODES = tuple(
     )
 )
 _SYSTEM_CODE_SET = set(_SYSTEM_CODES)
-
-
 def map_dataset_code(code: str) -> list[str]:
     """Map a dataset diagnosis code to system ICD-10 codes.
 
@@ -51,12 +50,21 @@ def map_dataset_code(code: str) -> list[str]:
         return list(AMBIGUOUS_MAP[normalized])
     if normalized in _SYSTEM_CODE_SET:
         return [normalized]
+    parent = normalized.split(".", 1)[0]
+    if parent in EXACT_MAP:
+        return [EXACT_MAP[parent]]
+    if parent in AMBIGUOUS_MAP:
+        return list(AMBIGUOUS_MAP[parent])
+    if parent in _SYSTEM_CODE_SET:
+        return [parent]
 
     for sys_code in sorted(_SYSTEM_CODES, key=len, reverse=True):
         if sys_code.startswith(normalized) or normalized.startswith(sys_code):
             return [sys_code]
 
-    return []  # unmapped
+    # Unsupported or out-of-ontology labels fall back to the generic "Others"
+    # bucket for non-paper evaluation paths.
+    return ["Others"]
 
 
 def map_code_list(codes: list[str]) -> list[str]:

@@ -2,14 +2,20 @@
   "condition": "psycot_bge-m3_no_somatization",
   "n_cases": 200,
   "metrics_parent_normalized": {
-    "top1_accuracy": 0.475,
-    "top3_accuracy": 0.605,
-    "macro_f1": 0.06547465912014407
+    "accuracy": 0.14,
+    "top1_accuracy": 0.44,
+    "top3_accuracy": 0.565,
+    "macro_f1": 0.06547465912014407,
+    "weighted_f1": 0.39915680473372783,
+    "overall": 0.3219262927707744
   },
   "metrics_exact": {
-    "top1_accuracy": 0.25,
-    "top3_accuracy": 0.275,
-    "macro_f1": 0.04082840236686391
+    "accuracy": 0.0,
+    "top1_accuracy": 0.235,
+    "top3_accuracy": 0.255,
+    "macro_f1": 0.04082840236686391,
+    "weighted_f1": 0.23661242603550295,
+    "overall": 0.15348816568047335
   },
   "total_seconds": 4838.6,
   "avg_seconds_per_case": 24.2

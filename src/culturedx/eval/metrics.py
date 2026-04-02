@@ -71,6 +71,18 @@ def multiclass_accuracy(preds: list[str], golds: list[str]) -> float:
     return float(accuracy_score(golds, preds))
 
 
+def exact_match_accuracy(preds: list[list[str]], golds: list[list[str]]) -> float:
+    """Order-sensitive exact-list accuracy.
+
+    A case counts as correct only when the predicted diagnosis list exactly
+    matches the gold diagnosis list after any upstream normalization, including
+    primary-first ordering and comorbid label membership.
+    """
+    if not preds or not golds:
+        return 0.0
+    return sum(1 for pred, gold in zip(preds, golds) if pred == gold) / len(preds)
+
+
 def binary_f1(preds: list[int], golds: list[int]) -> float:
     """Binary F1 score (positive class)."""
     return float(f1_score(golds, preds, average="binary", zero_division=0))
@@ -103,6 +115,11 @@ def compute_diagnosis_metrics(
         preds: Predicted diagnosis lists per case.
         golds: Ground truth diagnosis lists per case.
         normalize: ICD code normalization level ("parent" or None).
+
+    Returns:
+        ``accuracy`` is order-sensitive exact-match accuracy over the full
+        predicted diagnosis list. ``top1_accuracy`` and ``top3_accuracy`` are
+        ranking metrics against the primary gold diagnosis.
     """
     if normalize:
         preds = [normalize_code_list(p, normalize) for p in preds]
@@ -121,7 +138,7 @@ def compute_diagnosis_metrics(
     primary_preds = [p[0] if p else "unknown" for p in preds]
     primary_golds = [g[0] if g else "unknown" for g in golds]
     metrics = {
-        "accuracy": multiclass_accuracy(primary_preds, primary_golds),
+        "accuracy": exact_match_accuracy(preds, golds),
         "top1_accuracy": top_k_accuracy(preds, golds, k=1),
         "top3_accuracy": top_k_accuracy(preds, golds, k=3),
         "macro_f1": macro_f1(primary_preds, primary_golds),

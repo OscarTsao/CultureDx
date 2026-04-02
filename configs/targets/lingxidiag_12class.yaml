@@ -1,0 +1,16 @@
+# Target disorders that cover all system-supported parent codes in the paper's
+# 12-class set. Z71 is not in the CultureDx ontology and is handled as a paper
+# evaluation mismatch rather than a target disorder.
+target_disorders:
+  - F20
+  - F31
+  - F32
+  - F39
+  - F41.0
+  - F41.1
+  - F42
+  - F43.1
+  - F43.2
+  - F45
+  - F51
+  - F98

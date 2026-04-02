@@ -1,0 +1,11 @@
+{
+  "dataset": "lingxidiag",
+  "mode": "hied",
+  "last_completed_index": 700,
+  "total_cases": 907,
+  "started_at": "2026-04-01T10:24:49.247066+00:00",
+  "updated_at": "2026-04-01T13:38:48.847088+00:00",
+  "config_hash": "29ff8dc68f0c977b",
+  "completed_pairs": [],
+  "status": "running"
+}

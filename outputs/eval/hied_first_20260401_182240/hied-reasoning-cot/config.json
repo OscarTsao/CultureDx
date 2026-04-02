@@ -4,18 +4,18 @@
     "configs/hied.yaml",
     "configs/vllm_awq.yaml",
     "configs/reasoning.yaml",
-    "outputs/eval/hied_first_20260401_182240/hied-reasoning-cot/eval_config.yaml"
+    "outputs/eval/hied_first_20260401_182240/hied-reasoning-cot/eval_config_mdd5k.yaml"
   ],
   "datasets": [
     {
-      "requested_name": "lingxidiag",
-      "output_name": "lingxidiag",
-      "adapter_name": "lingxidiag16k",
-      "data_path": "data/raw/lingxidiag16k",
+      "requested_name": "mdd5k",
+      "output_name": "mdd5k",
+      "adapter_name": "mdd5k_raw",
+      "data_path": "data/raw/mdd5k_repo",
       "split": "validation",
-      "all_cases": 1000,
-      "eval_cases": 907,
-      "filtered_out": 93
+      "all_cases": 925,
+      "eval_cases": 870,
+      "filtered_out": 55
     }
   ],
   "modes": [
@@ -106,8 +106,8 @@
       "rerank_top_n": 5
     }
   },
-  "generated_at": "2026-04-01T20:55:50.431569+00:00",
-  "config_hash": "6378d278d58faa17",
+  "generated_at": "2026-04-02T04:25:14.185695+00:00",
+  "config_hash": "4721d67748fc5a84",
   "output_dir": "outputs/eval/hied_first_20260401_182240/hied-reasoning-cot",
   "batch_size": 100,
   "dry_run": false

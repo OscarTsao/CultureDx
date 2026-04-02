@@ -39,6 +39,7 @@ class ModeConfig(BaseModel):
     prompt_variant: str = ""
     calibrator_mode: str = "heuristic-v2"  # "heuristic-v2" or "learned"
     calibrator_artifact_path: str | None = None
+    force_prediction: bool = False
 
 
 class DatasetConfig(BaseModel):

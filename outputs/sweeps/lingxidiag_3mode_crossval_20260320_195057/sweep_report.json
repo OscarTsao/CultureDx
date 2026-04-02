@@ -11,14 +11,20 @@
       "condition": "hied_no_evidence",
       "n_cases": 200,
       "metrics_parent_normalized": {
+        "accuracy": 0.24,
         "top1_accuracy": 0.36,
-        "top3_accuracy": 0.46,
-        "macro_f1": 0.08221289981654302
+        "top3_accuracy": 0.455,
+        "macro_f1": 0.08221289981654302,
+        "weighted_f1": 0.3116770608997368,
+        "overall": 0.28977799214325595
       },
       "metrics_exact": {
+        "accuracy": 0.215,
         "top1_accuracy": 0.295,
         "top3_accuracy": 0.345,
-        "macro_f1": 0.051122961747513074
+        "macro_f1": 0.051122961747513074,
+        "weighted_f1": 0.21553122756640344,
+        "overall": 0.2243308378627833
       },
       "total_seconds": 4245.4,
       "avg_seconds_per_case": 21.2
@@ -27,14 +33,20 @@
       "condition": "single_no_evidence",
       "n_cases": 200,
       "metrics_parent_normalized": {
-        "top1_accuracy": 0.405,
+        "accuracy": 0.015,
+        "top1_accuracy": 0.4,
         "top3_accuracy": 0.525,
-        "macro_f1": 0.07792258189696989
+        "macro_f1": 0.07792258189696989,
+        "weighted_f1": 0.347086311159978,
+        "overall": 0.2730017786113896
       },
       "metrics_exact": {
+        "accuracy": 0.0,
         "top1_accuracy": 0.0,
         "top3_accuracy": 0.0,
-        "macro_f1": 0.0
+        "macro_f1": 0.0,
+        "weighted_f1": 0.0,
+        "overall": 0.0
       },
       "total_seconds": 955.4,
       "avg_seconds_per_case": 4.8
@@ -43,14 +55,20 @@
       "condition": "psycot_no_evidence",
       "n_cases": 200,
       "metrics_parent_normalized": {
+        "accuracy": 0.24,
         "top1_accuracy": 0.41,
-        "top3_accuracy": 0.51,
-        "macro_f1": 0.09397446129289706
+        "top3_accuracy": 0.505,
+        "macro_f1": 0.09397446129289706,
+        "weighted_f1": 0.3800528731045491,
+        "overall": 0.3258054668794892
       },
       "metrics_exact": {
+        "accuracy": 0.22,
         "top1_accuracy": 0.285,
         "top3_accuracy": 0.34,
-        "macro_f1": 0.053666755342733
+        "macro_f1": 0.053666755342733,
+        "weighted_f1": 0.23213620643788238,
+        "overall": 0.2261605923561231
       },
       "total_seconds": 4025.1,
       "avg_seconds_per_case": 20.1

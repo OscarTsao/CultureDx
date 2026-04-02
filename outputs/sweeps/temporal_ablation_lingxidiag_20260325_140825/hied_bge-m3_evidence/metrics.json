@@ -2,14 +2,20 @@
   "condition": "hied_bge-m3_evidence",
   "n_cases": 200,
   "metrics_parent_normalized": {
-    "top1_accuracy": 0.455,
-    "top3_accuracy": 0.695,
-    "macro_f1": 0.10427681389016134
+    "accuracy": 0.16,
+    "top1_accuracy": 0.45,
+    "top3_accuracy": 0.69,
+    "macro_f1": 0.10427681389016134,
+    "weighted_f1": 0.3999244636585738,
+    "overall": 0.360840255509747
   },
   "metrics_exact": {
+    "accuracy": 0.13,
     "top1_accuracy": 0.31,
     "top3_accuracy": 0.39,
-    "macro_f1": 0.059749653499653506
+    "macro_f1": 0.059749653499653506,
+    "weighted_f1": 0.23144988738738742,
+    "overall": 0.2242399081774082
   },
   "total_seconds": 10103.5,
   "avg_seconds_per_case": 50.5

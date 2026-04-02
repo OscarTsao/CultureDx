@@ -159,6 +159,7 @@ class ConfidenceCalibrator:
         mode: str = "heuristic-v2",
         artifact_path: str | Path | None = None,
         artifact: CalibratorArtifact | dict[str, Any] | None = None,
+        force_prediction: bool = False,
         # V1 weights (backward compat)
         evidence_weight: float = 0.3,
         criterion_weight: float = 0.4,
@@ -173,6 +174,7 @@ class ConfidenceCalibrator:
         self.comorbid_threshold = comorbid_threshold
         self.version = version
         self.mode = mode
+        self.force_prediction = force_prediction
         self.evidence_weight = evidence_weight
         self.criterion_weight = criterion_weight
         self.threshold_weight = threshold_weight
@@ -288,8 +290,14 @@ class ConfidenceCalibrator:
                 "criteria_met_count": cal.criteria_met_count,
                 "criteria_total_count": cal.criteria_total_count,
                 "calibration_path": cal.calibration_path,
+                "force_prediction": self.force_prediction,
             })
-            if cal.confidence < self.abstain_threshold:
+            if primary is None and self.force_prediction:
+                cal.decision = "diagnosis"
+                cal.placement = "primary"
+                cal.decision_reason = "forced_highest_confidence"
+                primary = cal
+            elif cal.confidence < self.abstain_threshold:
                 cal.decision = "abstain"
                 cal.placement = "abstained"
                 cal.decision_reason = "below_abstain_threshold"

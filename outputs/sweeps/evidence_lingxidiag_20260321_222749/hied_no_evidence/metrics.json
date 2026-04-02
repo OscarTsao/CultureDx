@@ -2,14 +2,20 @@
   "condition": "hied_no_evidence",
   "n_cases": 200,
   "metrics_parent_normalized": {
-    "top1_accuracy": 0.405,
-    "top3_accuracy": 0.57,
-    "macro_f1": 0.09559542736013325
+    "accuracy": 0.215,
+    "top1_accuracy": 0.4,
+    "top3_accuracy": 0.56,
+    "macro_f1": 0.09559542736013325,
+    "weighted_f1": 0.3631932773109244,
+    "overall": 0.3267577409342115
   },
   "metrics_exact": {
+    "accuracy": 0.155,
     "top1_accuracy": 0.28,
     "top3_accuracy": 0.325,
-    "macro_f1": 0.053127413127413134
+    "macro_f1": 0.053127413127413134,
+    "weighted_f1": 0.22,
+    "overall": 0.2066254826254826
   },
   "total_seconds": 2701.3,
   "avg_seconds_per_case": 13.5

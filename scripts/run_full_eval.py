@@ -50,6 +50,7 @@ from culturedx.eval.code_mapping import (
     is_correct_prediction,
     map_dataset_code,
 )
+from culturedx.eval.lingxidiag_paper import compute_table4_metrics, pred_to_parent_list
 from culturedx.eval.metrics import compute_comorbidity_metrics, compute_diagnosis_metrics
 from culturedx.modes.base import case_execution_context
 from culturedx.pipeline.artifacts import (
@@ -70,7 +71,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger("run_full_eval")
 
-MAX_CASES_IN_FLIGHT_CAP = 8
+MAX_CASES_IN_FLIGHT_CAP = 16
 
 DEFAULT_DATASET_PATHS: dict[str, str] = {
     "lingxidiag": "data/raw/lingxidiag16k",
@@ -225,6 +226,11 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Override dataset split (e.g. 'validation', 'train'). Applies to all datasets that support splits.",
     )
+    parser.add_argument(
+        "--force-prediction",
+        action="store_true",
+        help="Disable abstention for paper-aligned LingxiDiagBench comparison.",
+    )
     return parser.parse_args()
 
 
@@ -322,7 +328,11 @@ def safe_rate(numerator: float, denominator: float) -> float:
     return numerator / denominator
 
 
-def resolve_dataset_spec(dataset_name: str, cfg: CultureDxConfig) -> dict[str, Any]:
+def resolve_dataset_spec(
+    dataset_name: str,
+    cfg: CultureDxConfig,
+    split_override: str | None = None,
+) -> dict[str, Any]:
     requested = dataset_name.strip().lower()
     if requested not in DATASET_ALIASES:
         supported = ", ".join(sorted(DATASET_ALIASES))
@@ -340,7 +350,7 @@ def resolve_dataset_spec(dataset_name: str, cfg: CultureDxConfig) -> dict[str, A
             "output_name": "lingxidiag",
             "adapter_name": "lingxidiag16k",
             "data_path": data_path,
-            "split": "validation",
+            "split": split_override or "validation",
         }
 
     data_path_obj = Path(data_path)
@@ -390,6 +400,7 @@ def create_mode(cfg: CultureDxConfig):
             comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
             calibrator_mode=cfg.mode.calibrator_mode,
             calibrator_artifact_path=cfg.mode.calibrator_artifact_path,
+            force_prediction=cfg.mode.force_prediction,
         )
         if checker_llm is not None:
             mode_kwargs["checker_llm_client"] = checker_llm
@@ -401,6 +412,7 @@ def create_mode(cfg: CultureDxConfig):
             llm_client=llm,
             target_disorders=cfg.mode.target_disorders,
             comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
+            force_prediction=cfg.mode.force_prediction,
         )
         if checker_llm is not None:
             mode_kwargs["checker_llm_client"] = checker_llm
@@ -567,6 +579,7 @@ def build_eval_plan_payload(
         "adapter_path": args.adapter_path,
         "with_evidence": args.with_evidence,
         "with_somatization": args.with_somatization and args.with_evidence,
+        "force_prediction": cfg.mode.force_prediction,
         "max_cases": args.max_cases,
         "culturedx_config": cfg.model_dump(),
     }
@@ -707,6 +720,10 @@ def serialize_case_result(
     )
     prediction_record["dataset"] = dataset_name
     prediction_record["mode"] = mode_name
+    prediction_record["diagnosis_code_full"] = str(
+        ((case.metadata or {}).get("diagnosis_code_full")) or ""
+    )
+    prediction_record["DiagnosisCode"] = prediction_record["diagnosis_code_full"]
     prediction_record["gold_eval_codes"] = map_eval_code_list(case.diagnoses)
 
     predicted_codes = []
@@ -775,6 +792,23 @@ def compute_per_disorder_metrics(rows: list[dict[str, Any]]) -> dict[str, dict[s
 
 
 def compute_group_metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    empty_table4 = {
+        "2class_Acc": None,
+        "2class_F1_macro": None,
+        "2class_F1_weighted": None,
+        "4class_Acc": None,
+        "4class_F1_macro": None,
+        "4class_F1_weighted": None,
+        "12class_Acc": None,
+        "12class_Top1": None,
+        "12class_Top3": None,
+        "12class_F1_macro": None,
+        "12class_F1_weighted": None,
+        "2class_n": 0,
+        "4class_n": 0,
+        "12class_n": 0,
+        "Overall": None,
+    }
     if not rows:
         return {
             "num_cases": 0,
@@ -787,12 +821,32 @@ def compute_group_metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
             "macro_f1": 0.0,
             "reference_top1_accuracy_bucketed": 0.0,
             "reference_top3_accuracy_bucketed": 0.0,
+            "table4_paper_metrics": empty_table4,
         }
 
     preds = [row.get("pred_eval_codes", []) for row in rows]
     golds = [row.get("gold_eval_codes", []) for row in rows]
     diagnosis_metrics = compute_diagnosis_metrics(preds, golds, normalize=None)
     comorbidity_metrics = compute_comorbidity_metrics(preds, golds, normalize=None)
+    paper_rows = []
+    for row in rows:
+        if str(row.get("dataset", "lingxidiag")) == "lingxidiag":
+            paper_row = dict(row)
+            paper_row["DiagnosisCode"] = paper_row.get("diagnosis_code_full", "")
+            paper_rows.append(paper_row)
+    table4_metrics = (
+        compute_table4_metrics(
+            paper_rows,
+            lambda case_row: pred_to_parent_list(
+                [
+                    *([case_row["primary_diagnosis"]] if case_row.get("primary_diagnosis") else []),
+                    *list(case_row.get("comorbid_diagnoses", [])),
+                ]
+            ),
+        )
+        if paper_rows
+        else empty_table4
+    )
 
     num_cases = len(rows)
     num_abstained = sum(1 for row in rows if row.get("decision") == "abstain")
@@ -806,13 +860,14 @@ def compute_group_metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "abstention_rate": num_abstained / num_cases,
         "top1_accuracy": top1_accuracy,
         "top3_accuracy": top3_accuracy,
-        "exact_match": comorbidity_metrics.get("subset_accuracy", 0.0),
+        "exact_match": diagnosis_metrics.get("accuracy", 0.0),
         "hamming_loss": 1.0 - hamming_accuracy if hamming_accuracy is not None else None,
         "macro_f1": diagnosis_metrics.get("macro_f1", 0.0),
         "reference_top1_accuracy_bucketed": diagnosis_metrics.get("top1_accuracy", 0.0),
         "reference_top3_accuracy_bucketed": diagnosis_metrics.get("top3_accuracy", 0.0),
         "diagnosis_metrics": diagnosis_metrics,
         "comorbidity_metrics": comorbidity_metrics,
+        "table4_paper_metrics": table4_metrics,
     }
 
 
@@ -1452,12 +1507,14 @@ def run_eval_for_model(
 def main() -> int:
     args = parse_args()
     cfg = load_culturedx_config(args.config)
+    if args.force_prediction:
+        cfg.mode.force_prediction = True
     apply_global_seed(cfg.seed)
 
-    dataset_specs = [resolve_dataset_spec(name, cfg) for name in normalize_name_list(args.datasets)]
-    if args.split is not None:
-        for spec in dataset_specs:
-            spec["split"] = args.split
+    dataset_specs = [
+        resolve_dataset_spec(name, cfg, split_override=args.split)
+        for name in normalize_name_list(args.datasets)
+    ]
     mode_names = normalize_name_list(args.modes)
     model_names = normalize_model_name_list(args.model_name, cfg.llm.model_id)
     base_output_dir = Path(args.output_dir)

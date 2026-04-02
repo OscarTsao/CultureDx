@@ -11,14 +11,20 @@
       "condition": "hied_no_evidence",
       "n_cases": 3,
       "metrics_parent_normalized": {
+        "accuracy": 0.0,
         "top1_accuracy": 0.0,
         "top3_accuracy": 0.0,
-        "macro_f1": 0.0
+        "macro_f1": 0.0,
+        "weighted_f1": 0.0,
+        "overall": 0.0
       },
       "metrics_exact": {
+        "accuracy": 0.0,
         "top1_accuracy": 0.0,
         "top3_accuracy": 0.0,
-        "macro_f1": 0.0
+        "macro_f1": 0.0,
+        "weighted_f1": 0.0,
+        "overall": 0.0
       },
       "total_seconds": 6.2,
       "avg_seconds_per_case": 2.1

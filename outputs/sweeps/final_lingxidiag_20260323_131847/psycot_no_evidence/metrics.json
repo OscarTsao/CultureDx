@@ -2,14 +2,20 @@
   "condition": "psycot_no_evidence",
   "n_cases": 200,
   "metrics_parent_normalized": {
-    "top1_accuracy": 0.415,
-    "top3_accuracy": 0.625,
-    "macro_f1": 0.09643293539930127
+    "accuracy": 0.17,
+    "top1_accuracy": 0.41,
+    "top3_accuracy": 0.615,
+    "macro_f1": 0.09643293539930127,
+    "weighted_f1": 0.333953091207398,
+    "overall": 0.3250772053213398
   },
   "metrics_exact": {
+    "accuracy": 0.115,
     "top1_accuracy": 0.325,
     "top3_accuracy": 0.34,
-    "macro_f1": 0.0638650657518582
+    "macro_f1": 0.0638650657518582,
+    "weighted_f1": 0.2289965694682676,
+    "overall": 0.21457232704402518
   },
   "total_seconds": 0.4,
   "avg_seconds_per_case": 0.0

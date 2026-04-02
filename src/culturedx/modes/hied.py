@@ -65,6 +65,7 @@ class HiEDMode(BaseModeOrchestrator):
         prompt_variant: str = "",
         calibrator_mode: str = "heuristic-v2",
         calibrator_artifact_path: str | Path | None = None,
+        force_prediction: bool = False,
     ) -> None:
         self.mode_name = "hied"
         self.llm = llm_client
@@ -77,6 +78,7 @@ class HiEDMode(BaseModeOrchestrator):
         self.prompts_dir = Path(prompts_dir)
         self.target_disorders = target_disorders
         self.prompt_variant = prompt_variant
+        self.force_prediction = force_prediction
         if scope_policy not in SUPPORTED_SCOPE_POLICIES:
             raise ValueError(
                 f"Unsupported HiED scope_policy {scope_policy!r}; "
@@ -112,6 +114,7 @@ class HiEDMode(BaseModeOrchestrator):
             comorbid_threshold=comorbid_threshold,
             mode=calibrator_mode,
             artifact_path=calibrator_artifact_path,
+            force_prediction=force_prediction,
         )
 
         # Stage 4.5: Differential disambiguation (for close calls)
@@ -149,6 +152,104 @@ class HiEDMode(BaseModeOrchestrator):
                 else:
                     result["F41.1"] = {"temporal_summary": temporal_summary}
         return result
+
+    def _force_prediction_result(
+        self,
+        *,
+        case: ClinicalCase,
+        lang: str,
+        checker_outputs: list[CheckerOutput],
+        evidence: EvidenceBrief | None,
+        candidate_codes: list[str],
+        routing_mode: str,
+        scope_policy: str,
+        decision_trace: dict[str, object],
+        stage_timings: dict[str, float],
+        failures: list[FailureInfo],
+        fallback_reason: str,
+        case_start: float,
+    ) -> DiagnosisResult:
+        """Force a diagnosis for paper-aligned no-abstention evaluation."""
+        forced_trace = {
+            "enabled": True,
+            "reason": fallback_reason,
+        }
+
+        if checker_outputs:
+            cal_output = self.calibrator.calibrate(
+                confirmed_disorders=[output.disorder for output in checker_outputs],
+                checker_outputs=checker_outputs,
+                evidence=evidence,
+                scale_scores=case.scale_scores,
+            )
+            if cal_output.primary is not None:
+                all_calibrated = [cal_output.primary] + cal_output.comorbid
+                confidences = {item.disorder_code: item.confidence for item in all_calibrated}
+                ranked_codes = [item.disorder_code for item in all_calibrated]
+                comorbidity_result = self.comorbidity_resolver.resolve(
+                    confirmed=ranked_codes,
+                    confidences=confidences,
+                )
+                primary_cal = next(
+                    (
+                        item
+                        for item in all_calibrated
+                        if item.disorder_code == comorbidity_result.primary
+                    ),
+                    cal_output.primary,
+                )
+                forced_trace.update(
+                    {
+                        "source": "checker_scores",
+                        "selected": primary_cal.disorder_code,
+                        "ranked_candidates": ranked_codes,
+                    }
+                )
+                return DiagnosisResult(
+                    case_id=case.case_id,
+                    primary_diagnosis=comorbidity_result.primary,
+                    comorbid_diagnoses=comorbidity_result.comorbid,
+                    confidence=primary_cal.confidence,
+                    decision="diagnosis",
+                    criteria_results=checker_outputs,
+                    mode=self.mode_name,
+                    model_name=self.llm.model,
+                    checker_model_name=self.checker_model_name,
+                    language_used=lang,
+                    candidate_disorders=candidate_codes,
+                    routing_mode=routing_mode,
+                    scope_policy=scope_policy,
+                    decision_trace={**decision_trace, "force_prediction": forced_trace},
+                    stage_timings={**stage_timings, "total": time.monotonic() - case_start},
+                    failures=failures,
+                )
+
+        triage_info = decision_trace.get("triage")
+        triage_codes = candidate_codes if isinstance(triage_info, dict) and triage_info.get("used") else []
+        forced_code = triage_codes[0] if triage_codes else "Others"
+        forced_trace.update(
+            {
+                "source": "triage" if triage_codes else "others_fallback",
+                "selected": forced_code,
+            }
+        )
+        return DiagnosisResult(
+            case_id=case.case_id,
+            primary_diagnosis=forced_code,
+            confidence=0.0,
+            decision="diagnosis",
+            criteria_results=checker_outputs,
+            mode=self.mode_name,
+            model_name=self.llm.model,
+            checker_model_name=self.checker_model_name,
+            language_used=lang,
+            candidate_disorders=candidate_codes,
+            routing_mode=routing_mode,
+            scope_policy=scope_policy,
+            decision_trace={**decision_trace, "force_prediction": forced_trace},
+            stage_timings={**stage_timings, "total": time.monotonic() - case_start},
+            failures=failures,
+        )
 
     def diagnose(
         self, case: ClinicalCase, evidence: EvidenceBrief | None = None
@@ -279,6 +380,21 @@ class HiEDMode(BaseModeOrchestrator):
                 message="No candidate disorders resolved for HiED.",
                 details={"scope_policy": scope_policy},
             )
+            if self.force_prediction:
+                return self._force_prediction_result(
+                    case=case,
+                    lang=lang,
+                    checker_outputs=[],
+                    evidence=evidence,
+                    candidate_codes=[],
+                    routing_mode=routing_mode,
+                    scope_policy=scope_policy,
+                    decision_trace=decision_trace,
+                    stage_timings=stage_timings,
+                    failures=failures + [failure],
+                    fallback_reason="no_candidate_disorders",
+                    case_start=case_start,
+                )
             return self._abstain(
                 case,
                 lang,
@@ -312,6 +428,21 @@ class HiEDMode(BaseModeOrchestrator):
                 stage="criterion_checkers",
                 message="No checker outputs were produced for the candidate disorders.",
             )
+            if self.force_prediction:
+                return self._force_prediction_result(
+                    case=case,
+                    lang=lang,
+                    checker_outputs=[],
+                    evidence=evidence,
+                    candidate_codes=candidate_codes,
+                    routing_mode=routing_mode,
+                    scope_policy=scope_policy,
+                    decision_trace=decision_trace,
+                    stage_timings=stage_timings,
+                    failures=failures + [failure],
+                    fallback_reason="checker_outputs_missing",
+                    case_start=case_start,
+                )
             return self._abstain(
                 case,
                 lang,
@@ -346,6 +477,24 @@ class HiEDMode(BaseModeOrchestrator):
                 message="No disorders satisfied ICD-10 threshold rules.",
                 details={"confirmed_codes": logic_output.confirmed_codes},
             )
+            if self.force_prediction:
+                return self._force_prediction_result(
+                    case=case,
+                    lang=lang,
+                    checker_outputs=checker_outputs,
+                    evidence=evidence,
+                    candidate_codes=candidate_codes,
+                    routing_mode=routing_mode,
+                    scope_policy=scope_policy,
+                    decision_trace={
+                        **decision_trace,
+                        "logic_engine_confirmed_codes": logic_output.confirmed_codes,
+                    },
+                    stage_timings=stage_timings,
+                    failures=failures + [failure],
+                    fallback_reason="logic_engine_abstained",
+                    case_start=case_start,
+                )
             return DiagnosisResult(
                 case_id=case.case_id,
                 primary_diagnosis=None,
@@ -390,6 +539,21 @@ class HiEDMode(BaseModeOrchestrator):
                 stage="calibrator",
                 message="Calibrator abstained from selecting a primary diagnosis.",
             )
+            if self.force_prediction:
+                return self._force_prediction_result(
+                    case=case,
+                    lang=lang,
+                    checker_outputs=checker_outputs,
+                    evidence=evidence,
+                    candidate_codes=candidate_codes,
+                    routing_mode=routing_mode,
+                    scope_policy=scope_policy,
+                    decision_trace=decision_trace,
+                    stage_timings=stage_timings,
+                    failures=failures + [failure],
+                    fallback_reason="calibrator_abstained",
+                    case_start=case_start,
+                )
             return DiagnosisResult(
                 case_id=case.case_id,
                 primary_diagnosis=None,

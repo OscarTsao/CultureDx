@@ -2,18 +2,18 @@
   "config_paths": [
     "configs/base.yaml",
     "configs/vllm_awq.yaml",
-    "outputs/eval/hied_first_20260401_182240/single-baseline/eval_config.yaml"
+    "outputs/eval/hied_first_20260401_182240/single-baseline/eval_config_mdd5k.yaml"
   ],
   "datasets": [
     {
-      "requested_name": "lingxidiag",
-      "output_name": "lingxidiag",
-      "adapter_name": "lingxidiag16k",
-      "data_path": "data/raw/lingxidiag16k",
+      "requested_name": "mdd5k",
+      "output_name": "mdd5k",
+      "adapter_name": "mdd5k_raw",
+      "data_path": "data/raw/mdd5k_repo",
       "split": "validation",
-      "all_cases": 1000,
-      "eval_cases": 907,
-      "filtered_out": 93
+      "all_cases": 925,
+      "eval_cases": 870,
+      "filtered_out": 55
     }
   ],
   "modes": [
@@ -98,8 +98,8 @@
       "rerank_top_n": 5
     }
   },
-  "generated_at": "2026-04-01T15:55:22.613231+00:00",
-  "config_hash": "7e9d0cfc56ce9db8",
+  "generated_at": "2026-04-02T04:25:04.420972+00:00",
+  "config_hash": "f5e5d8e96150ecac",
   "output_dir": "outputs/eval/hied_first_20260401_182240/single-baseline",
   "batch_size": 100,
   "dry_run": false

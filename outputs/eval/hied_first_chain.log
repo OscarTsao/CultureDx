@@ -1,0 +1,3 @@
+[2026-04-01 16:30:16] Waiting for finetune PID 320737 to finish...
+[2026-04-01 18:01:16] Finetune PID 320737 finished.
+./scripts/run_hied_first_eval.sh: line 206: syntax error near unexpected token `then'

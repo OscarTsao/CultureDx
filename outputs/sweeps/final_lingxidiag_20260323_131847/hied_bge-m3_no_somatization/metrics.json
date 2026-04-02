@@ -2,14 +2,20 @@
   "condition": "hied_bge-m3_no_somatization",
   "n_cases": 200,
   "metrics_parent_normalized": {
-    "top1_accuracy": 0.415,
-    "top3_accuracy": 0.74,
-    "macro_f1": 0.08588734205892899
+    "accuracy": 0.1,
+    "top1_accuracy": 0.41,
+    "top3_accuracy": 0.735,
+    "macro_f1": 0.08588734205892899,
+    "weighted_f1": 0.3412971927830987,
+    "overall": 0.33443690696840556
   },
   "metrics_exact": {
+    "accuracy": 0.07,
     "top1_accuracy": 0.32,
     "top3_accuracy": 0.39,
-    "macro_f1": 0.05572048918823112
+    "macro_f1": 0.05572048918823112,
+    "weighted_f1": 0.22185794044665014,
+    "overall": 0.21151568592697628
   },
   "total_seconds": 3682.3,
   "avg_seconds_per_case": 18.4

@@ -11,17 +11,20 @@
       "condition": "hied_no_evidence",
       "n_cases": 217,
       "metrics_parent_normalized": {
-        "top1_accuracy": 0.12698412698412698,
+        "accuracy": 0.07936507936507936,
+        "top1_accuracy": 0.14285714285714285,
         "top3_accuracy": 0.15873015873015872,
-        "macro_f1": 0.04507042253521127
+        "macro_f1": 0.0625,
+        "weighted_f1": 0.25,
+        "overall": 0.1386904761904762
       },
       "metrics_comorbidity": {
-        "hamming_accuracy": 0.10052910052910052,
-        "subset_accuracy": 0.047619047619047616,
+        "hamming_accuracy": 0.1164021164021164,
+        "subset_accuracy": 0.07936507936507936,
         "comorbidity_detection_f1": 0.0,
         "label_coverage": 0.15873015873015872,
-        "label_precision": 0.10052910052910052,
-        "avg_predicted_labels": 1.1904761904761905,
+        "label_precision": 0.8148148148148148,
+        "avg_predicted_labels": 0.4444444444444444,
         "avg_gold_labels": 1.0
       },
       "total_seconds": 2368.7,
@@ -31,17 +34,20 @@
       "condition": "hied_bge-m3_evidence",
       "n_cases": 217,
       "metrics_parent_normalized": {
-        "top1_accuracy": 0.20634920634920634,
+        "accuracy": 0.1746031746031746,
+        "top1_accuracy": 0.2222222222222222,
         "top3_accuracy": 0.2698412698412698,
-        "macro_f1": 0.06842105263157895
+        "macro_f1": 0.09090909090909091,
+        "weighted_f1": 0.36363636363636365,
+        "overall": 0.22424242424242422
       },
       "metrics_comorbidity": {
-        "hamming_accuracy": 0.21164021164021163,
-        "subset_accuracy": 0.15873015873015872,
+        "hamming_accuracy": 0.2222222222222222,
+        "subset_accuracy": 0.1746031746031746,
         "comorbidity_detection_f1": 0.0,
         "label_coverage": 0.2698412698412698,
-        "label_precision": 0.21164021164021163,
-        "avg_predicted_labels": 1.1428571428571428,
+        "label_precision": 0.8253968253968254,
+        "avg_predicted_labels": 0.5079365079365079,
         "avg_gold_labels": 1.0
       },
       "total_seconds": 8650.0,

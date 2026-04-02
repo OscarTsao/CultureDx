@@ -1,0 +1,124 @@
+[2026-04-01 18:07:27] ===== PHASE 2: HiED ablations =====
+[2026-04-01 18:07:30] Starting vLLM with model: Qwen/Qwen3-32B-AWQ
+[2026-04-01 18:07:30] vLLM PID: 514561 (log: outputs/eval/hied_first_20260401_180727/logs/vllm_Qwen_Qwen3-32B-AWQ.log)
+[2026-04-01 18:08:10] vLLM is healthy after 40s
+[2026-04-01 18:08:10] === Condition: hied-baseline (mode=hied, evidence=0, somat=0, thinking=false, variant=) ===
+2026-04-01 18:08:11,084 run_full_eval INFO Loading dataset lingxidiag via adapter=lingxidiag16k from data/raw/lingxidiag16k
+2026-04-01 18:08:11,194 run_full_eval INFO Loading dataset mdd5k via adapter=mdd5k_raw from data/raw/mdd5k_repo
+2026-04-01 18:08:11,476 run_full_eval INFO Preparing evaluation for model=Qwen/Qwen3-32B-AWQ output_dir=outputs/eval/hied_first_20260401_180727/hied-baseline
+--resume requested but no checkpoint found at outputs/eval/hied_first_20260401_180727/hied-baseline/checkpoint.json
+[2026-04-01 18:08:11] === WARNING: hied-baseline exited with errors (continuing chain) ===
+[2026-04-01 18:08:11] === Condition: hied-evidence (mode=hied, evidence=1, somat=1, thinking=false, variant=) ===
+2026-04-01 18:08:12,311 run_full_eval INFO Loading dataset lingxidiag via adapter=lingxidiag16k from data/raw/lingxidiag16k
+2026-04-01 18:08:12,417 run_full_eval INFO Loading dataset mdd5k via adapter=mdd5k_raw from data/raw/mdd5k_repo
+2026-04-01 18:08:12,699 run_full_eval INFO Preparing evaluation for model=Qwen/Qwen3-32B-AWQ output_dir=outputs/eval/hied_first_20260401_180727/hied-evidence
+--resume requested but no checkpoint found at outputs/eval/hied_first_20260401_180727/hied-evidence/checkpoint.json
+[2026-04-01 18:08:12] === WARNING: hied-evidence exited with errors (continuing chain) ===
+[2026-04-01 18:08:12] === Condition: hied-no-somat (mode=hied, evidence=1, somat=0, thinking=false, variant=) ===
+2026-04-01 18:08:13,508 run_full_eval INFO Loading dataset lingxidiag via adapter=lingxidiag16k from data/raw/lingxidiag16k
+2026-04-01 18:08:13,612 run_full_eval INFO Loading dataset mdd5k via adapter=mdd5k_raw from data/raw/mdd5k_repo
+2026-04-01 18:08:13,893 run_full_eval INFO Preparing evaluation for model=Qwen/Qwen3-32B-AWQ output_dir=outputs/eval/hied_first_20260401_180727/hied-no-somat
+--resume requested but no checkpoint found at outputs/eval/hied_first_20260401_180727/hied-no-somat/checkpoint.json
+[2026-04-01 18:08:14] === WARNING: hied-no-somat exited with errors (continuing chain) ===
+[2026-04-01 18:08:14] === Condition: hied-mock-evidence (mode=hied, evidence=1, somat=1, thinking=false, variant=) ===
+2026-04-01 18:08:14,702 run_full_eval INFO Loading dataset lingxidiag via adapter=lingxidiag16k from data/raw/lingxidiag16k
+2026-04-01 18:08:14,807 run_full_eval INFO Loading dataset mdd5k via adapter=mdd5k_raw from data/raw/mdd5k_repo
+2026-04-01 18:08:15,088 run_full_eval INFO Preparing evaluation for model=Qwen/Qwen3-32B-AWQ output_dir=outputs/eval/hied_first_20260401_180727/hied-mock-evidence
+--resume requested but no checkpoint found at outputs/eval/hied_first_20260401_180727/hied-mock-evidence/checkpoint.json
+[2026-04-01 18:08:15] === WARNING: hied-mock-evidence exited with errors (continuing chain) ===
+[2026-04-01 18:08:15] === Condition: hied-evidence-rerank (mode=hied, evidence=1, somat=1, thinking=false, variant=) ===
+2026-04-01 18:08:15,904 run_full_eval INFO Loading dataset lingxidiag via adapter=lingxidiag16k from data/raw/lingxidiag16k
+2026-04-01 18:08:16,011 run_full_eval INFO Loading dataset mdd5k via adapter=mdd5k_raw from data/raw/mdd5k_repo
+2026-04-01 18:08:16,294 run_full_eval INFO Preparing evaluation for model=Qwen/Qwen3-32B-AWQ output_dir=outputs/eval/hied_first_20260401_180727/hied-evidence-rerank
+--resume requested but no checkpoint found at outputs/eval/hied_first_20260401_180727/hied-evidence-rerank/checkpoint.json
+[2026-04-01 18:08:16] === WARNING: hied-evidence-rerank exited with errors (continuing chain) ===
+[2026-04-01 18:08:16] === Condition: hied-reasoning (mode=hied, evidence=0, somat=0, thinking=true, variant=) ===
+2026-04-01 18:08:17,101 run_full_eval INFO Loading dataset lingxidiag via adapter=lingxidiag16k from data/raw/lingxidiag16k
+2026-04-01 18:08:17,208 run_full_eval INFO Loading dataset mdd5k via adapter=mdd5k_raw from data/raw/mdd5k_repo
+2026-04-01 18:08:17,486 run_full_eval INFO Preparing evaluation for model=Qwen/Qwen3-32B-AWQ output_dir=outputs/eval/hied_first_20260401_180727/hied-reasoning
+--resume requested but no checkpoint found at outputs/eval/hied_first_20260401_180727/hied-reasoning/checkpoint.json
+[2026-04-01 18:08:17] === WARNING: hied-reasoning exited with errors (continuing chain) ===
+[2026-04-01 18:08:17] === Condition: hied-reasoning-evidence (mode=hied, evidence=1, somat=1, thinking=true, variant=) ===
+2026-04-01 18:08:18,296 run_full_eval INFO Loading dataset lingxidiag via adapter=lingxidiag16k from data/raw/lingxidiag16k
+2026-04-01 18:08:18,402 run_full_eval INFO Loading dataset mdd5k via adapter=mdd5k_raw from data/raw/mdd5k_repo
+2026-04-01 18:08:18,686 run_full_eval INFO Preparing evaluation for model=Qwen/Qwen3-32B-AWQ output_dir=outputs/eval/hied_first_20260401_180727/hied-reasoning-evidence
+--resume requested but no checkpoint found at outputs/eval/hied_first_20260401_180727/hied-reasoning-evidence/checkpoint.json
+[2026-04-01 18:08:18] === WARNING: hied-reasoning-evidence exited with errors (continuing chain) ===
+[2026-04-01 18:08:18] === Condition: hied-cot (mode=hied, evidence=0, somat=0, thinking=false, variant=cot) ===
+2026-04-01 18:08:19,491 run_full_eval INFO Loading dataset lingxidiag via adapter=lingxidiag16k from data/raw/lingxidiag16k
+2026-04-01 18:08:19,597 run_full_eval INFO Loading dataset mdd5k via adapter=mdd5k_raw from data/raw/mdd5k_repo
+2026-04-01 18:08:19,880 run_full_eval INFO Preparing evaluation for model=Qwen/Qwen3-32B-AWQ output_dir=outputs/eval/hied_first_20260401_180727/hied-cot
+--resume requested but no checkpoint found at outputs/eval/hied_first_20260401_180727/hied-cot/checkpoint.json
+[2026-04-01 18:08:20] === WARNING: hied-cot exited with errors (continuing chain) ===
+[2026-04-01 18:08:20] === Condition: hied-reasoning-cot (mode=hied, evidence=0, somat=0, thinking=true, variant=cot) ===
+2026-04-01 18:08:20,688 run_full_eval INFO Loading dataset lingxidiag via adapter=lingxidiag16k from data/raw/lingxidiag16k
+2026-04-01 18:08:20,793 run_full_eval INFO Loading dataset mdd5k via adapter=mdd5k_raw from data/raw/mdd5k_repo
+2026-04-01 18:08:21,074 run_full_eval INFO Preparing evaluation for model=Qwen/Qwen3-32B-AWQ output_dir=outputs/eval/hied_first_20260401_180727/hied-reasoning-cot
+--resume requested but no checkpoint found at outputs/eval/hied_first_20260401_180727/hied-reasoning-cot/checkpoint.json
+[2026-04-01 18:08:21] === WARNING: hied-reasoning-cot exited with errors (continuing chain) ===
+[2026-04-01 18:08:21] === Condition: hied-full-pipeline (mode=hied, evidence=1, somat=1, thinking=true, variant=cot) ===
+2026-04-01 18:08:21,884 run_full_eval INFO Loading dataset lingxidiag via adapter=lingxidiag16k from data/raw/lingxidiag16k
+2026-04-01 18:08:21,991 run_full_eval INFO Loading dataset mdd5k via adapter=mdd5k_raw from data/raw/mdd5k_repo
+2026-04-01 18:08:22,275 run_full_eval INFO Preparing evaluation for model=Qwen/Qwen3-32B-AWQ output_dir=outputs/eval/hied_first_20260401_180727/hied-full-pipeline
+--resume requested but no checkpoint found at outputs/eval/hied_first_20260401_180727/hied-full-pipeline/checkpoint.json
+[2026-04-01 18:08:22] === WARNING: hied-full-pipeline exited with errors (continuing chain) ===
+[2026-04-01 18:08:22] ===== HiED ablations complete =====
+[2026-04-01 18:08:22] ===== PHASE 3: Other modes =====
+[2026-04-01 18:08:22] === Condition: single-baseline (mode=single, evidence=0, somat=0, thinking=false, variant=) ===
+Traceback (most recent call last):
+  File "/home/user/YuNing/CultureDx/scripts/run_full_eval.py", line 1484, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/user/YuNing/CultureDx/scripts/run_full_eval.py", line 1440, in main
+    cfg = load_culturedx_config(args.config)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/scripts/run_full_eval.py", line 228, in load_culturedx_config
+    return load_config(base_path, overrides=overrides)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/src/culturedx/core/config.py", line 114, in load_config
+    overlay = OmegaConf.load(str(override_path))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/YuNing/CultureDx/.venv/lib/python3.12/site-packages/omegaconf/omegaconf.py", line 189, in load
+    with io.open(os.path.abspath(file_), "r", encoding="utf-8") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/user/YuNing/CultureDx/configs/single.yaml'
+[2026-04-01 18:08:23] === WARNING: single-baseline exited with errors (continuing chain) ===
+[2026-04-01 18:08:23] === Condition: psycot-evidence (mode=psycot, evidence=1, somat=1, thinking=false, variant=) ===
+2026-04-01 18:08:23,888 run_full_eval INFO Loading dataset lingxidiag via adapter=lingxidiag16k from data/raw/lingxidiag16k
+2026-04-01 18:08:23,995 run_full_eval INFO Loading dataset mdd5k via adapter=mdd5k_raw from data/raw/mdd5k_repo
+2026-04-01 18:08:24,277 run_full_eval INFO Preparing evaluation for model=Qwen/Qwen3-32B-AWQ output_dir=outputs/eval/hied_first_20260401_180727/psycot-evidence
+--resume requested but no checkpoint found at outputs/eval/hied_first_20260401_180727/psycot-evidence/checkpoint.json
+[2026-04-01 18:08:24] === WARNING: psycot-evidence exited with errors (continuing chain) ===
+[2026-04-01 18:08:24] === Condition: psycot-reasoning-cot (mode=psycot, evidence=1, somat=1, thinking=true, variant=cot) ===
+2026-04-01 18:08:25,099 run_full_eval INFO Loading dataset lingxidiag via adapter=lingxidiag16k from data/raw/lingxidiag16k
+2026-04-01 18:08:25,206 run_full_eval INFO Loading dataset mdd5k via adapter=mdd5k_raw from data/raw/mdd5k_repo
+2026-04-01 18:08:25,487 run_full_eval INFO Preparing evaluation for model=Qwen/Qwen3-32B-AWQ output_dir=outputs/eval/hied_first_20260401_180727/psycot-reasoning-cot
+--resume requested but no checkpoint found at outputs/eval/hied_first_20260401_180727/psycot-reasoning-cot/checkpoint.json
+[2026-04-01 18:08:25] === WARNING: psycot-reasoning-cot exited with errors (continuing chain) ===
+[2026-04-01 18:08:25] ===== Other modes complete =====
+[2026-04-01 18:08:25] ===== PHASE 4: Finetuned Qwen3-8B eval =====
+[2026-04-01 18:08:25] Using checkpoint: outputs/finetune/qwen3_8b_teacher_v1/checkpoint-813
+[2026-04-01 18:08:28] Starting vLLM with Qwen3-8B + LoRA adapter
+[2026-04-01 18:08:28] vLLM+LoRA is healthy after 0s
+2026-04-01 18:08:29,375 run_full_eval INFO Loading dataset lingxidiag via adapter=lingxidiag16k from data/raw/lingxidiag16k
+2026-04-01 18:08:29,485 run_full_eval INFO Loading dataset mdd5k via adapter=mdd5k_raw from data/raw/mdd5k_repo
+2026-04-01 18:08:29,783 run_full_eval INFO Preparing evaluation for model=culturedx-checker output_dir=outputs/eval/hied_first_20260401_180727/hied-finetuned
+--resume requested but no checkpoint found at outputs/eval/hied_first_20260401_180727/hied-finetuned/checkpoint.json
+[2026-04-01 18:08:29] WARNING: Finetuned eval exited with errors
+[2026-04-01 18:08:29] ===== ALL EVALUATION PHASES COMPLETE =====
+[2026-04-01 18:08:29] Results directory: outputs/eval/hied_first_20260401_180727
+[2026-04-01 18:08:29] Conditions evaluated:
+[2026-04-01 18:08:29]   hied-baseline
+[2026-04-01 18:08:29]   hied-cot
+[2026-04-01 18:08:29]   hied-evidence
+[2026-04-01 18:08:29]   hied-evidence-rerank
+[2026-04-01 18:08:29]   hied-finetuned
+[2026-04-01 18:08:29]   hied-full-pipeline
+[2026-04-01 18:08:29]   hied-mock-evidence
+[2026-04-01 18:08:29]   hied-no-somat
+[2026-04-01 18:08:29]   hied-reasoning
+[2026-04-01 18:08:29]   hied-reasoning-cot
+[2026-04-01 18:08:29]   hied-reasoning-evidence
+[2026-04-01 18:08:29]   psycot-evidence
+[2026-04-01 18:08:29]   psycot-reasoning-cot
+[2026-04-01 18:08:29]   single-baseline

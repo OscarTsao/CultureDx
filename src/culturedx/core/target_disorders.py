@@ -5,12 +5,25 @@ from pathlib import Path
 
 from omegaconf import OmegaConf
 
-FINAL_TARGET_DISORDERS = ["F32", "F33", "F41.1", "F42", "F43.1"]
+FINAL_TARGET_DISORDERS = [
+    "F20",
+    "F31",
+    "F32",
+    "F39",
+    "F41.0",
+    "F41.1",
+    "F42",
+    "F43.1",
+    "F43.2",
+    "F45",
+    "F51",
+    "F98",
+]
 FINAL_TARGET_DISORDERS_CONFIG_PATH = (
     Path(__file__).resolve().parents[3]
     / "configs"
     / "targets"
-    / "final_target_disorders.yaml"
+    / "lingxidiag_12class.yaml"
 )
 
 

@@ -95,6 +95,13 @@ class TestComputeHelpers:
         assert metrics["weighted_f1"] == pytest.approx(2 / 3)
         assert metrics["overall"] == pytest.approx(0.6)
 
+    def test_compute_diagnosis_metrics_accuracy_is_ordered_exact_match(self):
+        preds = [["F32", "F41.1"], ["F41.1"]]
+        golds = [["F32"], ["F41.1"]]
+        metrics = compute_diagnosis_metrics(preds, golds)
+        assert metrics["accuracy"] == pytest.approx(0.5)
+        assert metrics["top1_accuracy"] == pytest.approx(1.0)
+
     def test_compute_severity_metrics(self):
         preds = [10.0, 5.0]
         golds = [12.0, 3.0]

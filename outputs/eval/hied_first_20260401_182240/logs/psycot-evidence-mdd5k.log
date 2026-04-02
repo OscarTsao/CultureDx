@@ -1,0 +1,3 @@
+2026-04-02 12:25:14,963 run_full_eval INFO Loading dataset mdd5k via adapter=mdd5k_raw from data/raw/mdd5k_repo
+2026-04-02 12:25:15,265 run_full_eval INFO Preparing evaluation for model=Qwen/Qwen3-32B-AWQ output_dir=outputs/eval/hied_first_20260401_182240/psycot-evidence
+Checkpoint config hash does not match current config. Use a fresh output directory or rerun with the original settings.

@@ -1,10 +1,15 @@
-# Canonical target disorder set for benchmark evaluation.
-# All configs and scripts should reference this file as the single source of truth.
-# The ontology supports 13 disorders total (see ontology/data/icd10_criteria.json);
-# this subset covers the core differential diagnosis scope for Chinese psychiatric evaluation.
+# Legacy alias retained for older scripts; the canonical paper-aligned target
+# list also lives in configs/targets/lingxidiag_12class.yaml.
 target_disorders:
+  - F20    # Schizophrenia
+  - F31    # Bipolar affective disorder
   - F32    # Depressive episode
-  - F33    # Recurrent depressive disorder
+  - F39    # Unspecified mood disorder
+  - F41.0  # Panic disorder
   - F41.1  # Generalised anxiety disorder
   - F42    # Obsessive-compulsive disorder
   - F43.1  # Post-traumatic stress disorder
+  - F43.2  # Adjustment disorders
+  - F45    # Somatoform disorders
+  - F51    # Nonorganic sleep disorders
+  - F98    # Childhood/adolescent behavioural disorders

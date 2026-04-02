@@ -117,6 +117,20 @@ class TestConfidenceCalibrator:
         assert result.abstained[0].placement == "abstained"
         assert result.abstained[0].decision_reason == "below_abstain_threshold"
 
+    def test_force_prediction_never_returns_empty_primary(self):
+        calibrator = ConfidenceCalibrator(abstain_threshold=0.95, force_prediction=True)
+        low = _make_checker(
+            "F32",
+            [("B1", 0.2), ("B2", 0.2)],
+            ["B3", "C1", "C2"],
+            4,
+        )
+        result = calibrator.calibrate(["F32"], [low])
+        assert result.primary is not None
+        assert result.primary.disorder_code == "F32"
+        assert result.primary.placement == "primary"
+        assert result.primary.decision_reason == "forced_highest_confidence"
+
     def test_empty_input(self, calibrator):
         result = calibrator.calibrate([], [])
         assert result.primary is None

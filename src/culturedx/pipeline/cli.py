@@ -129,6 +129,7 @@ def run(
             prompt_variant=cfg.mode.prompt_variant,
             calibrator_mode=cfg.mode.calibrator_mode,
             calibrator_artifact_path=cfg.mode.calibrator_artifact_path,
+            force_prediction=cfg.mode.force_prediction,
         )
         if checker_llm is not None:
             mode_kwargs["checker_llm_client"] = checker_llm
@@ -140,6 +141,7 @@ def run(
             target_disorders=cfg.mode.target_disorders,
             comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
             prompt_variant=cfg.mode.prompt_variant,
+            force_prediction=cfg.mode.force_prediction,
         )
         if checker_llm is not None:
             mode_kwargs["checker_llm_client"] = checker_llm
@@ -344,6 +346,7 @@ def sweep(
                 prompt_variant=cfg.mode.prompt_variant,
                 calibrator_mode=cfg.mode.calibrator_mode,
                 calibrator_artifact_path=cfg.mode.calibrator_artifact_path,
+                force_prediction=cfg.mode.force_prediction,
             )
             if checker_llm is not None:
                 mode_kwargs["checker_llm_client"] = checker_llm
@@ -355,6 +358,7 @@ def sweep(
                 target_disorders=condition.target_disorders,
                 comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
                 prompt_variant=cfg.mode.prompt_variant,
+                force_prediction=cfg.mode.force_prediction,
             )
             if checker_llm is not None:
                 mode_kwargs["checker_llm_client"] = checker_llm

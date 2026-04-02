@@ -1,0 +1,13 @@
+llm:
+  provider: vllm
+  model_id: "Qwen/Qwen3-32B-AWQ"
+  base_url: "http://localhost:8000"
+  temperature: 0.0
+  top_k: 1
+  disable_thinking: true
+  max_tokens: 2048
+  max_concurrent: 48
+mode:
+  name: hied
+  type: hied
+  prompt_variant: ""

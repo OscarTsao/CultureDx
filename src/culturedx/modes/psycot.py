@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
+import time
 
 from culturedx.agents.criterion_checker import CriterionCheckerAgent
 from culturedx.core.models import (
@@ -15,6 +16,7 @@ from culturedx.core.models import (
     ClinicalCase,
     DiagnosisResult,
     EvidenceBrief,
+    FailureInfo,
 )
 from culturedx.diagnosis.calibrator import ConfidenceCalibrator
 from culturedx.diagnosis.comorbidity import ComorbidityResolver
@@ -43,6 +45,7 @@ class PsyCoTMode(BaseModeOrchestrator):
         abstain_threshold: float = 0.3,
         comorbid_threshold: float = 0.5,
         comorbid_min_ratio: float = 0.9,
+        force_prediction: bool = False,
     ) -> None:
         self.mode_name = "psycot"
         self.llm = llm_client
@@ -54,6 +57,7 @@ class PsyCoTMode(BaseModeOrchestrator):
         )
         self.prompts_dir = Path(prompts_dir)
         self.target_disorders = target_disorders
+        self.force_prediction = force_prediction
         self._prompt_variant = ""
         self.prompt_variant = prompt_variant
 
@@ -67,6 +71,7 @@ class PsyCoTMode(BaseModeOrchestrator):
         self.calibrator = ConfidenceCalibrator(
             abstain_threshold=abstain_threshold,
             comorbid_threshold=comorbid_threshold,
+            force_prediction=force_prediction,
         )
 
         # Comorbidity resolver
@@ -85,6 +90,7 @@ class PsyCoTMode(BaseModeOrchestrator):
     def diagnose(
         self, case: ClinicalCase, evidence: EvidenceBrief | None = None
     ) -> DiagnosisResult:
+        case_start = time.monotonic()
         lang = case.language
         if lang not in ("zh", "en"):
             return self._abstain(case, lang)
@@ -101,6 +107,17 @@ class PsyCoTMode(BaseModeOrchestrator):
             disorders = list_disorders()
 
         if not disorders:
+            if self.force_prediction:
+                return self._force_prediction_result(
+                    case=case,
+                    lang=lang,
+                    checker_outputs=[],
+                    evidence=evidence,
+                    candidate_codes=[],
+                    case_start=case_start,
+                    failures=[],
+                    fallback_reason="no_candidate_disorders",
+                )
             return self._abstain(case, lang)
 
         logger.info("PsyCoT checking %d disorders for case %s", len(disorders), case.case_id)
@@ -117,12 +134,45 @@ class PsyCoTMode(BaseModeOrchestrator):
         )
 
         if not checker_outputs:
+            if self.force_prediction:
+                failure = FailureInfo(
+                    code="checker_failed",
+                    stage="criterion_checkers",
+                    message="No checker outputs were produced for the candidate disorders.",
+                )
+                return self._force_prediction_result(
+                    case=case,
+                    lang=lang,
+                    checker_outputs=[],
+                    evidence=evidence,
+                    candidate_codes=disorders,
+                    case_start=case_start,
+                    failures=[failure],
+                    fallback_reason="checker_outputs_missing",
+                )
             return self._abstain(case, lang, criteria_results=[])
 
         # Logic Engine: deterministic threshold checking
         logic_output = self.logic_engine.evaluate(checker_outputs)
 
         if not logic_output.confirmed:
+            if self.force_prediction:
+                failure = FailureInfo(
+                    code="rule_abstain",
+                    stage="logic_engine",
+                    message="No disorders satisfied ICD-10 threshold rules.",
+                    details={"confirmed_codes": logic_output.confirmed_codes},
+                )
+                return self._force_prediction_result(
+                    case=case,
+                    lang=lang,
+                    checker_outputs=checker_outputs,
+                    evidence=evidence,
+                    candidate_codes=disorders,
+                    case_start=case_start,
+                    failures=[failure],
+                    fallback_reason="logic_engine_abstained",
+                )
             return DiagnosisResult(
                 case_id=case.case_id,
                 primary_diagnosis=None,
@@ -143,6 +193,22 @@ class PsyCoTMode(BaseModeOrchestrator):
         )
 
         if cal_output.primary is None:
+            if self.force_prediction:
+                failure = FailureInfo(
+                    code="rule_abstain",
+                    stage="calibrator",
+                    message="Calibrator abstained from selecting a primary diagnosis.",
+                )
+                return self._force_prediction_result(
+                    case=case,
+                    lang=lang,
+                    checker_outputs=checker_outputs,
+                    evidence=evidence,
+                    candidate_codes=disorders,
+                    case_start=case_start,
+                    failures=[failure],
+                    fallback_reason="calibrator_abstained",
+                )
             return DiagnosisResult(
                 case_id=case.case_id,
                 primary_diagnosis=None,
@@ -181,4 +247,90 @@ class PsyCoTMode(BaseModeOrchestrator):
             model_name=self.llm.model,
             checker_model_name=self.checker_model_name,
             language_used=lang,
+        )
+
+    def _force_prediction_result(
+        self,
+        *,
+        case: ClinicalCase,
+        lang: str,
+        checker_outputs: list[CheckerOutput],
+        evidence: EvidenceBrief | None,
+        candidate_codes: list[str],
+        case_start: float,
+        failures: list[FailureInfo],
+        fallback_reason: str,
+    ) -> DiagnosisResult:
+        """Force a diagnosis for paper-aligned no-abstention evaluation."""
+        force_trace = {
+            "enabled": True,
+            "reason": fallback_reason,
+        }
+        if checker_outputs:
+            cal_output = self.calibrator.calibrate(
+                confirmed_disorders=[output.disorder for output in checker_outputs],
+                checker_outputs=checker_outputs,
+                evidence=evidence,
+                scale_scores=case.scale_scores,
+            )
+            if cal_output.primary is not None:
+                all_calibrated = [cal_output.primary] + cal_output.comorbid
+                confidences = {item.disorder_code: item.confidence for item in all_calibrated}
+                ranked_codes = [item.disorder_code for item in all_calibrated]
+                comorbidity_result = self.comorbidity_resolver.resolve(
+                    confirmed=ranked_codes,
+                    confidences=confidences,
+                )
+                primary_cal = next(
+                    (
+                        item
+                        for item in all_calibrated
+                        if item.disorder_code == comorbidity_result.primary
+                    ),
+                    cal_output.primary,
+                )
+                force_trace.update(
+                    {
+                        "source": "checker_scores",
+                        "selected": primary_cal.disorder_code,
+                        "ranked_candidates": ranked_codes,
+                    }
+                )
+                return DiagnosisResult(
+                    case_id=case.case_id,
+                    primary_diagnosis=comorbidity_result.primary,
+                    comorbid_diagnoses=comorbidity_result.comorbid,
+                    confidence=primary_cal.confidence,
+                    decision="diagnosis",
+                    criteria_results=checker_outputs,
+                    mode=self.mode_name,
+                    model_name=self.llm.model,
+                    checker_model_name=self.checker_model_name,
+                    language_used=lang,
+                    candidate_disorders=candidate_codes,
+                    decision_trace={"force_prediction": force_trace},
+                    stage_timings={"total": time.monotonic() - case_start},
+                    failures=failures,
+                )
+
+        force_trace.update(
+            {
+                "source": "others_fallback",
+                "selected": "Others",
+            }
+        )
+        return DiagnosisResult(
+            case_id=case.case_id,
+            primary_diagnosis="Others",
+            confidence=0.0,
+            decision="diagnosis",
+            criteria_results=checker_outputs,
+            mode=self.mode_name,
+            model_name=self.llm.model,
+            checker_model_name=self.checker_model_name,
+            language_used=lang,
+            candidate_disorders=candidate_codes,
+            decision_trace={"force_prediction": force_trace},
+            stage_timings={"total": time.monotonic() - case_start},
+            failures=failures,
         )

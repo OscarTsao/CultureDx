@@ -1,0 +1,125 @@
+{
+  "config_paths": [
+    "configs/base.yaml",
+    "configs/hied.yaml",
+    "configs/vllm_awq.yaml",
+    "configs/evidence.yaml",
+    "configs/reasoning.yaml",
+    "/tmp/culturedx_eval_AtOG1W.yaml"
+  ],
+  "datasets": [
+    {
+      "requested_name": "lingxidiag",
+      "output_name": "lingxidiag",
+      "adapter_name": "lingxidiag16k",
+      "data_path": "data/raw/lingxidiag16k",
+      "split": "validation",
+      "all_cases": 1000,
+      "eval_cases": 907,
+      "filtered_out": 93
+    },
+    {
+      "requested_name": "mdd5k",
+      "output_name": "mdd5k",
+      "adapter_name": "mdd5k_raw",
+      "data_path": "data/raw/mdd5k_repo",
+      "split": "validation",
+      "all_cases": 925,
+      "eval_cases": 870,
+      "filtered_out": 55
+    }
+  ],
+  "modes": [
+    "hied"
+  ],
+  "model_name": "Qwen/Qwen3-32B-AWQ",
+  "adapter_path": null,
+  "with_evidence": true,
+  "with_somatization": true,
+  "max_cases": 0,
+  "culturedx_config": {
+    "seed": 42,
+    "output_dir": "outputs/runs",
+    "cache_dir": "data/cache",
+    "log_level": "INFO",
+    "request_timeout_sec": 300,
+    "mode": {
+      "name": "hied",
+      "type": "hied",
+      "variants": null,
+      "target_disorders": [
+        "F32",
+        "F33",
+        "F41.1",
+        "F42",
+        "F43.1"
+      ],
+      "scope_policy": "manual",
+      "execution_mode": "benchmark_manual_scope",
+      "contrastive_enabled": false,
+      "comorbid_min_ratio": 0.9,
+      "prompt_variant": "cot",
+      "calibrator_mode": "heuristic-v2",
+      "calibrator_artifact_path": null
+    },
+    "llm": {
+      "provider": "vllm",
+      "model_id": "Qwen/Qwen3-32B-AWQ",
+      "base_url": "http://localhost:8000",
+      "temperature": 0.6,
+      "top_k": 20,
+      "max_retries": 3,
+      "disable_thinking": false,
+      "max_concurrent": 4,
+      "max_tokens": 4096
+    },
+    "checker_llm": null,
+    "eval": {
+      "binary_threshold_phq8": 10,
+      "binary_threshold_hamd17": 8,
+      "bootstrap_resamples": 10000
+    },
+    "dataset": {
+      "name": "",
+      "language": "zh",
+      "coding_system": "icd10",
+      "transcript_format": "dialogue",
+      "data_path": "",
+      "split_strategy": "stratified"
+    },
+    "evidence": {
+      "enabled": true,
+      "scope_policy": "auto",
+      "retriever": {
+        "name": "bge-m3",
+        "model_id": "BAAI/bge-m3",
+        "embedding_dim": 1024,
+        "max_length": 512,
+        "batch_size": 32,
+        "cache_dir": "data/cache/retriever",
+        "device": "auto",
+        "mode_weights": [
+          0.4,
+          0.2,
+          0.4
+        ]
+      },
+      "somatization": {
+        "enabled": true,
+        "mode": "ontology-only",
+        "llm_fallback": true
+      },
+      "negation_mode": "clause-rule",
+      "top_k_retrieval": 20,
+      "top_k_final": 10,
+      "min_confidence": 0.1,
+      "rerank_enabled": false,
+      "rerank_top_n": 5
+    }
+  },
+  "generated_at": "2026-04-01T10:08:22.275397+00:00",
+  "config_hash": "f03873c02bf89a50",
+  "output_dir": "outputs/eval/hied_first_20260401_180727/hied-full-pipeline",
+  "batch_size": 50,
+  "dry_run": false
+}
