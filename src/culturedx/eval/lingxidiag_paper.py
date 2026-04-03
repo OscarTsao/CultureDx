@@ -134,6 +134,21 @@ def classify_4class_from_raw(diagnosis_code: str) -> str:
     return "Others"
 
 
+def classify_2class_prediction(pred_primary: str) -> str:
+    """Map a primary parent-level prediction into the paper's binary task.
+
+    Non-F32/F41 predictions stay outside the 2-class label space as ``Other``.
+    The paper metrics still score these correctly because ``accuracy_score``
+    and ``f1_score(..., labels=PAPER_2_CLASSES)`` penalize them against the
+    gold Depression/Anxiety labels without inventing a target-class confusion.
+    """
+    if pred_primary == "F32":
+        return "Depression"
+    if pred_primary == "F41":
+        return "Anxiety"
+    return "Other"
+
+
 def compute_singlelabel_metrics(
     y_true: list[str],
     y_pred: list[str],
@@ -236,13 +251,7 @@ def compute_table4_metrics(
 
         gold_2 = classify_2class_from_raw(raw_code)
         if gold_2 is not None:
-            if pred_primary == "F32":
-                pred_2 = "Depression"
-            elif pred_primary == "F41":
-                pred_2 = "Anxiety"
-            else:
-                # Keep binary evaluation in the paper's 2-class label space.
-                pred_2 = "Anxiety" if gold_2 == "Depression" else "Depression"
+            pred_2 = classify_2class_prediction(pred_primary)
             gold_2_all.append(gold_2)
             pred_2_all.append(pred_2)
 
@@ -281,6 +290,7 @@ __all__ = [
     "PAPER_4_CLASSES",
     "classify_2class",
     "classify_2class_from_raw",
+    "classify_2class_prediction",
     "classify_4class_from_raw",
     "compute_multilabel_metrics",
     "compute_singlelabel_metrics",

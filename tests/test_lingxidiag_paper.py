@@ -80,7 +80,7 @@ def test_compute_table4_metrics_returns_full_metric_row() -> None:
     assert metrics["Overall"] == (10.0 + (2.0 / 12.0)) / 11.0
 
 
-def test_compute_table4_metrics_binary_non_target_predictions_flip_to_opposite_gold(
+def test_compute_table4_metrics_binary_non_target_predictions_stay_outside_label_space(
     monkeypatch,
 ) -> None:
     captured: dict[str, list[str]] = {}
@@ -110,4 +110,4 @@ def test_compute_table4_metrics_binary_non_target_predictions_flip_to_opposite_g
     compute_table4_metrics(cases, lambda case: case["pred"])
 
     assert captured["y_true"] == ["Depression", "Anxiety"]
-    assert captured["y_pred"] == ["Anxiety", "Depression"]
+    assert captured["y_pred"] == ["Other", "Other"]

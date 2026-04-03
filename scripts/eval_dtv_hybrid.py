@@ -5,7 +5,7 @@ sys.path.insert(0, "/home/user/YuNing/CultureDx/src")
 
 from culturedx.eval.lingxidiag_paper import (
     PAPER_12_CLASSES, PAPER_2_CLASSES, PAPER_4_CLASSES,
-    classify_2class_from_raw, classify_4class_from_raw,
+    classify_2class_from_raw, classify_2class_prediction, classify_4class_from_raw,
     compute_singlelabel_metrics, gold_to_parent_list,
     pred_to_parent_list, to_paper_parent,
 )
@@ -71,12 +71,7 @@ def compute_dtv_table4(cases):
         # 2-class
         gold_2_label = classify_2class_from_raw(raw_code)
         if gold_2_label is not None:
-            if pred_p == "F32":
-                pred_2_label = "Depression"
-            elif pred_p == "F41":
-                pred_2_label = "Anxiety"
-            else:
-                pred_2_label = "Anxiety" if gold_2_label == "Depression" else "Depression"
+            pred_2_label = classify_2class_prediction(pred_p)
             gold_2.append(gold_2_label)
             pred_2.append(pred_2_label)
 
