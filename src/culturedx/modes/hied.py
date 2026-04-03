@@ -932,7 +932,7 @@ class HiEDMode(BaseModeOrchestrator):
 
         if comorbid:
             confirmed_codes_list = [primary] + comorbid
-            confidences = {primary: confidence, comorbid[0]: confidence - 0.1}
+            confidences = {primary: confidence, comorbid[0]: confidence - 0.05}
             comorbidity_result = self.comorbidity_resolver.resolve(
                 confirmed=confirmed_codes_list,
                 confidences=confidences,
