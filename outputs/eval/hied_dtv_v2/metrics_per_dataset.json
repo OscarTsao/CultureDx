@@ -1,0 +1,68 @@
+{
+  "hied:lingxidiag": {
+    "num_cases": 1000,
+    "num_abstained": 0,
+    "abstention_rate": 0.0,
+    "top1_accuracy": 0.392,
+    "top3_accuracy": 0.392,
+    "exact_match": 0.349,
+    "hamming_loss": 0.63,
+    "macro_f1": 0.18014345780995303,
+    "reference_top1_accuracy_bucketed": 0.388,
+    "reference_top3_accuracy_bucketed": 0.388,
+    "diagnosis_metrics": {
+      "accuracy": 0.349,
+      "top1_accuracy": 0.388,
+      "top3_accuracy": 0.388,
+      "macro_f1": 0.18014345780995303,
+      "weighted_f1": 0.372476673204859,
+      "overall": 0.3355240262029624
+    },
+    "comorbidity_metrics": {
+      "hamming_accuracy": 0.37,
+      "subset_accuracy": 0.349,
+      "comorbidity_detection_f1": 0.0,
+      "label_coverage": 0.37,
+      "label_precision": 0.392,
+      "avg_predicted_labels": 1.0,
+      "avg_gold_labels": 1.091
+    },
+    "table4_paper_metrics": {
+      "2class_Acc": 0.6088794926004228,
+      "2class_F1_macro": 0.6413046723391551,
+      "2class_F1_weighted": 0.6892800572613942,
+      "4class_Acc": 0.413,
+      "4class_F1_macro": 0.33548909759982426,
+      "4class_F1_weighted": 0.3490680946888559,
+      "12class_Acc": 0.349,
+      "12class_Top1": 0.392,
+      "12class_Top3": 0.392,
+      "12class_F1_macro": 0.14933906735341637,
+      "12class_F1_weighted": 0.35417656241807305,
+      "2class_n": 473,
+      "4class_n": 1000,
+      "12class_n": 1000,
+      "Overall": 0.42486700402374017
+    },
+    "timing": {
+      "pair_key": "hied:lingxidiag",
+      "elapsed_sec": 2078.340826981992,
+      "cases_per_sec": 0.48115303660378156,
+      "avg_elapsed_sec_per_case": 2.078340826981992,
+      "batch_count": 20,
+      "resume_from": 0,
+      "num_cases": 1000
+    }
+  },
+  "timing_by_mode_dataset": {
+    "hied:lingxidiag": {
+      "pair_key": "hied:lingxidiag",
+      "elapsed_sec": 2078.340826981992,
+      "cases_per_sec": 0.48115303660378156,
+      "avg_elapsed_sec_per_case": 2.078340826981992,
+      "batch_count": 20,
+      "resume_from": 0,
+      "num_cases": 1000
+    }
+  }
+}

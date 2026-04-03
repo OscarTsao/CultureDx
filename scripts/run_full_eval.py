@@ -833,7 +833,11 @@ def compute_group_metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
     for row in rows:
         if str(row.get("dataset", "lingxidiag")) == "lingxidiag":
             paper_row = dict(row)
-            paper_row["DiagnosisCode"] = paper_row.get("diagnosis_code_full", "")
+            paper_row["DiagnosisCode"] = str(
+                paper_row.get("diagnosis_code_full")
+                or paper_row.get("DiagnosisCode", "")
+                or ""
+            )
             paper_rows.append(paper_row)
     table4_metrics = (
         compute_table4_metrics(

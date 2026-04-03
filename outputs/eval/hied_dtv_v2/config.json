@@ -1,0 +1,123 @@
+{
+  "config_paths": [
+    "configs/base.yaml",
+    "configs/vllm_32b.yaml",
+    "configs/vllm_awq.yaml",
+    "configs/hied_dtv.yaml"
+  ],
+  "datasets": [
+    {
+      "requested_name": "lingxidiag",
+      "output_name": "lingxidiag",
+      "adapter_name": "lingxidiag16k",
+      "data_path": "data/raw/lingxidiag16k",
+      "split": "validation",
+      "all_cases": 1000,
+      "eval_cases": 1000,
+      "filtered_out": 0
+    }
+  ],
+  "modes": [
+    "hied"
+  ],
+  "model_name": "Qwen/Qwen3-32B-AWQ",
+  "adapter_path": null,
+  "with_evidence": false,
+  "with_somatization": false,
+  "force_prediction": true,
+  "max_cases": 0,
+  "culturedx_config": {
+    "seed": 42,
+    "output_dir": "outputs/runs",
+    "cache_dir": "data/cache",
+    "log_level": "INFO",
+    "request_timeout_sec": 300,
+    "mode": {
+      "name": "hied-dtv",
+      "type": "hied",
+      "variants": null,
+      "target_disorders": [
+        "F20",
+        "F31",
+        "F32",
+        "F39",
+        "F41.0",
+        "F41.1",
+        "F42",
+        "F43.1",
+        "F43.2",
+        "F45",
+        "F51",
+        "F98"
+      ],
+      "scope_policy": "manual",
+      "execution_mode": "benchmark_manual_scope",
+      "diagnose_then_verify": true,
+      "contrastive_enabled": false,
+      "comorbid_min_ratio": 0.9,
+      "prompt_variant": "",
+      "calibrator_mode": "heuristic-v2",
+      "calibrator_artifact_path": null,
+      "force_prediction": true
+    },
+    "llm": {
+      "provider": "vllm",
+      "model_id": "Qwen/Qwen3-32B-AWQ",
+      "base_url": "http://localhost:8000",
+      "temperature": 0.0,
+      "top_k": 1,
+      "max_retries": 3,
+      "disable_thinking": true,
+      "max_concurrent": 4,
+      "max_tokens": 2048
+    },
+    "checker_llm": null,
+    "eval": {
+      "binary_threshold_phq8": 10,
+      "binary_threshold_hamd17": 8,
+      "bootstrap_resamples": 10000
+    },
+    "dataset": {
+      "name": "",
+      "language": "zh",
+      "coding_system": "icd10",
+      "transcript_format": "dialogue",
+      "data_path": "",
+      "split_strategy": "stratified"
+    },
+    "evidence": {
+      "enabled": true,
+      "scope_policy": "manual",
+      "retriever": {
+        "name": "mock",
+        "model_id": "",
+        "embedding_dim": 1024,
+        "max_length": 512,
+        "batch_size": 32,
+        "cache_dir": "data/cache/retriever",
+        "device": "auto",
+        "mode_weights": [
+          0.4,
+          0.2,
+          0.4
+        ]
+      },
+      "somatization": {
+        "enabled": true,
+        "mode": "ontology-only",
+        "llm_fallback": true
+      },
+      "negation_mode": "clause-rule",
+      "top_k_retrieval": 20,
+      "top_k_final": 10,
+      "min_confidence": 0.1,
+      "rerank_enabled": false,
+      "rerank_top_n": 5
+    }
+  },
+  "generated_at": "2026-04-03T04:11:24.881763+00:00",
+  "config_hash": "ec49cb8591869c54",
+  "output_dir": "outputs/eval/hied_dtv_v2",
+  "batch_size": 50,
+  "dry_run": false
+}
