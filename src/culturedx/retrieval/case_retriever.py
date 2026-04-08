@@ -267,6 +267,7 @@ class CaseRetriever:
                     "diagnosis_codes": case_codes,
                     "diagnosis_names": names,
                     "transcript_preview": meta.get("transcript_preview", ""),
+                    "key_evidence": meta.get("key_evidence", []),
                     "matched_class": parent,
                 })
 

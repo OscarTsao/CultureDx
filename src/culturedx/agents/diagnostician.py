@@ -11,6 +11,27 @@ from culturedx.llm.json_utils import extract_json_from_response
 
 logger = logging.getLogger(__name__)
 
+# One-line ICD-10 core descriptions for each supported disorder.
+# Injected into the v2 diagnostician prompt so the LLM doesn't rely
+# solely on parametric knowledge (which is weak for rare classes).
+DISORDER_DESCRIPTIONS: dict[str, str] = {
+    "F20": "持续性妄想、幻听、思维松弛/破裂、情感淡漠",
+    "F22": "持续妄想障碍，无精神分裂症完整特征",
+    "F31": "既往或目前存在躁狂/轻躁狂发作与抑郁发作的交替或混合",
+    "F32": "情绪持续低落、兴趣/愉快感下降、精力不足；可轻/中/重度；无既往躁狂/轻躁狂",
+    "F33": "复发性抑郁发作，需有明确既往独立发作证据且间隔≥2个月",
+    "F39": "存在心境障碍证据，但资料不足以明确归入抑郁或双相等具体亚型",
+    "F40": "恐惧症：对特定情境/物体的过度恐惧与回避",
+    "F41": "焦虑障碍：过度担忧、紧张不安、自主神经症状",
+    "F41.1": "过度担忧、紧张不安、心悸、胸闷、出汗、眩晕；与特定情境无关",
+    "F42": "反复强迫观念/行为，自知过度但难以抵抗",
+    "F43": "与明确应激事件有关；急性应激反应、PTSD或适应障碍",
+    "F45": "反复躯体症状，检查难以找到足以解释的器质性原因",
+    "F51": "失眠、嗜睡、梦魇等；非器质性原因；睡眠问题为主要主诉并致显著困扰",
+    "F98": "多见于儿童期起病，以发育期特异表现为主（遗尿/口吃/进食等）",
+    "Z71": "主要需要咨询服务而非特定疾病治疗",
+}
+
 
 class DiagnosticianAgent(BaseAgent):
     """Rank candidate diagnoses using holistic clinical judgment."""
@@ -45,6 +66,7 @@ class DiagnosticianAgent(BaseAgent):
             transcript_text=input.transcript_text,
             candidate_disorders=candidate_disorders,
             disorder_names=disorder_names,
+            disorder_descriptions=DISORDER_DESCRIPTIONS,
             similar_cases=similar_cases,
         )
 

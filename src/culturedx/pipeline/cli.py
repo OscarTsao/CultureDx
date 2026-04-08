@@ -199,10 +199,17 @@ def run(
         # Auto-generate timestamped run dir
         run_dir = ExperimentRunner.create_run_dir(base_output, cfg.mode.type, dataset)
 
+    # Use case-level parallelism when vLLM continuous batching is available
+    max_cases_in_flight = getattr(cfg.llm, "max_concurrent", 1)
+    if cfg.llm.provider == "vllm":
+        # vLLM handles concurrent requests efficiently via continuous batching
+        max_cases_in_flight = max(max_cases_in_flight, 4)
+
     runner = ExperimentRunner(
         mode=mode,
         output_dir=run_dir,
         evidence_pipeline=evidence_pipeline,
+        max_cases_in_flight=max_cases_in_flight,
     )
 
     click.echo(f"Output directory: {run_dir}")

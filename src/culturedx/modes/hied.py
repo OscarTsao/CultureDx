@@ -858,6 +858,7 @@ class HiEDMode(BaseModeOrchestrator):
                         "diagnosis_code": codes[0] if codes else "?",
                         "diagnosis_name": names[0] if names else "",
                         "chief_complaint_summary": sc.get("transcript_preview", "")[:100],
+                        "key_evidence": sc.get("key_evidence", []),
                     })
                 similar_cases = similar_cases_for_prompt
             except Exception as e:
