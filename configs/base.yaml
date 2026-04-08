@@ -9,7 +9,7 @@ mode:
   type: single
   scope_policy: auto
   execution_mode: auto
-  comorbid_min_ratio: 0.9
+  comorbid_min_ratio: 0.50
 
 llm:
   provider: ollama

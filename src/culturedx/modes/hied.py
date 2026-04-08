@@ -133,7 +133,7 @@ class HiEDMode(BaseModeOrchestrator):
         self.differential = DifferentialDiagnosisAgent(llm_client, prompts_dir)
         self.differential_threshold = differential_threshold
 
-        # Stage 4b: Comorbidity resolver
+        # Stage 4b: Comorbidity resolver (blacklist: FORBIDDEN_PAIRS from ICD-10)
         self.comorbidity_resolver = ComorbidityResolver(
             comorbid_min_ratio=comorbid_min_ratio,
         )

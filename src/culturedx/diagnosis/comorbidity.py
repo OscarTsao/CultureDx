@@ -1,9 +1,10 @@
 """Comorbidity Resolver — ICD-10 exclusion and interaction rules.
 
 Handles:
-- Mutual exclusion rules (e.g., F32 vs F33)
-- Hierarchical exclusion (e.g., F33 supersedes F32)
-- Bereavement exclusion for depressive episodes
+- Hierarchical exclusion (e.g., F33 supersedes F32, F31 supersedes F32/F33)
+- Mutual exclusion (e.g., F20 vs F22)
+- Forbidden pairs from ICD-10 exclusion criteria
+- Confidence-based comorbidity gating
 - Maximum comorbidity limits
 """
 from __future__ import annotations
@@ -14,8 +15,12 @@ from dataclasses import dataclass, field
 logger = logging.getLogger(__name__)
 
 
-# ICD-10 exclusion rules: if A is present, exclude B
-# Format: (superseding, excluded)
+def _pair_key(left: str, right: str) -> frozenset[str]:
+    return frozenset((left, right))
+
+
+# ICD-10 hierarchical exclusion rules: if A is present, exclude B.
+# These are directional — A supersedes B.
 EXCLUSION_RULES: list[tuple[str, str]] = [
     # F33 (recurrent depressive) supersedes F32 (single episode)
     ("F33", "F32"),
@@ -24,28 +29,29 @@ EXCLUSION_RULES: list[tuple[str, str]] = [
     ("F31", "F33"),
     # Schizophrenia excludes persistent delusional disorder
     ("F20", "F22"),
-    # GAD and panic can co-occur, but if panic is primary, GAD may be secondary
-    # (not exclusion, just hierarchy — no rule here)
 ]
 
-
-def _pair_key(left: str, right: str) -> frozenset[str]:
-    return frozenset((left, right))
-
-
-DEFAULT_ALLOWED_COMORBIDITY_PAIRS: set[frozenset[str]] = {
-    _pair_key("F32", "F41.1"),
-    _pair_key("F32", "F42"),
-    _pair_key("F33", "F41.1"),
-    _pair_key("F33", "F42"),
-    _pair_key("F41.1", "F42"),
-    _pair_key("F41.1", "F43.1"),
-    _pair_key("F41.1", "F43.2"),
-    _pair_key("F32", "F43.1"),
-    _pair_key("F32", "F43.2"),
-    _pair_key("F33", "F43.1"),
-    _pair_key("F33", "F43.2"),
+# ICD-10 forbidden comorbidity pairs — these CANNOT coexist.
+# Based on ICD-10 exclusion criteria, NOT derived from any dataset.
+# Everything NOT in this set is allowed (ICD-10 default: any two
+# disorders can co-occur if each independently meets criteria).
+FORBIDDEN_COMORBIDITY_PAIRS: set[frozenset[str]] = {
+    # F32 excluded by F31 (bipolar supersedes depression)
+    _pair_key("F32", "F31"),
+    # F33 excluded by F31
+    _pair_key("F33", "F31"),
+    # F32 and F33 are mutually exclusive (single vs recurrent)
+    _pair_key("F32", "F33"),
+    # F41.2 (mixed anxiety-depression) excluded when either F32 or F41
+    # independently meets full diagnostic criteria
+    _pair_key("F41.2", "F32"),
+    _pair_key("F41.2", "F33"),
+    _pair_key("F41.2", "F41"),
+    _pair_key("F41.2", "F41.1"),
+    # F20 (schizophrenia) excludes F22 (persistent delusional)
+    _pair_key("F20", "F22"),
 }
+
 
 @dataclass
 class ComorbidityResult:
@@ -61,9 +67,10 @@ class ComorbidityResult:
 
 class ComorbidityResolver:
     """Resolves comorbidity interactions using ICD-10 rules.
-    
-    Takes a set of confirmed disorders and applies exclusion rules
-    to produce a valid comorbidity set.
+
+    Uses a blacklist (forbidden pairs) rather than a whitelist.
+    ICD-10 principle: any two disorders can coexist unless explicitly
+    excluded by exclusion criteria.
     """
 
     def __init__(
@@ -71,12 +78,26 @@ class ComorbidityResolver:
         max_comorbid: int = 3,
         exclusion_rules: list[tuple[str, str]] | None = None,
         comorbid_min_ratio: float = 0.0,
-        allowed_pairs: set[frozenset[str]] | None = None,
+        forbidden_pairs: set[frozenset[str]] | None = None,
     ) -> None:
         self.max_comorbid = max_comorbid
         self.rules = exclusion_rules if exclusion_rules is not None else EXCLUSION_RULES
         self.comorbid_min_ratio = comorbid_min_ratio
-        self.allowed_pairs = set(allowed_pairs) if allowed_pairs is not None else None
+        self.forbidden_pairs = (
+            set(forbidden_pairs) if forbidden_pairs is not None
+            else FORBIDDEN_COMORBIDITY_PAIRS
+        )
+
+    def _pair_forbidden(self, a: str, b: str) -> bool:
+        """Check if a pair is forbidden, matching at both exact and parent level."""
+        a_parent = a.split(".")[0]
+        b_parent = b.split(".")[0]
+        for left, right in [
+            (a, b), (a_parent, b), (a, b_parent), (a_parent, b_parent),
+        ]:
+            if _pair_key(left, right) in self.forbidden_pairs:
+                return True
+        return False
 
     def resolve(
         self,
@@ -84,11 +105,11 @@ class ComorbidityResolver:
         confidences: dict[str, float] | None = None,
     ) -> ComorbidityResult:
         """Resolve comorbidity from a list of confirmed disorders.
-        
+
         Args:
             confirmed: List of confirmed disorder codes (ordered by confidence).
             confidences: Optional mapping of disorder code to confidence score.
-        
+
         Returns:
             ComorbidityResult with primary, comorbid, and excluded lists.
         """
@@ -96,7 +117,7 @@ class ComorbidityResolver:
             return ComorbidityResult(primary="", comorbid=[], excluded=[])
 
         confs = confidences or {}
-        
+
         # Sort by confidence descending
         sorted_disorders = sorted(
             confirmed,
@@ -104,7 +125,7 @@ class ComorbidityResolver:
             reverse=True,
         )
 
-        # Apply exclusion rules
+        # Apply hierarchical exclusion rules
         active = list(sorted_disorders)
         excluded = []
         reasons = []
@@ -123,7 +144,6 @@ class ComorbidityResolver:
                 logger.info("Exclusion: %s excludes %s", superseding, to_exclude)
 
         if not active:
-            # All excluded — shouldn't happen, but use first confirmed
             return ComorbidityResult(
                 primary=sorted_disorders[0],
                 comorbid=[],
@@ -143,7 +163,6 @@ class ComorbidityResolver:
         comorbid = []
         rejected = []
         rejection_reasons = []
-        primary_conf = confs.get(primary, 0.0)
 
         for candidate in active[1:]:
             if len(comorbid) >= self.max_comorbid:
@@ -156,31 +175,31 @@ class ComorbidityResolver:
                 })
                 continue
 
-            if (
-                self.allowed_pairs is not None
-                and _pair_key(primary, candidate) not in self.allowed_pairs
-            ):
+            # Blacklist check: reject forbidden pairs
+            if self._pair_forbidden(primary, candidate):
                 rejected.append(candidate)
-                rejection_reasons.append(f"{candidate} rejected: invalid_pair_with_{primary}")
+                rejection_reasons.append(
+                    f"{candidate} rejected: forbidden_pair_with_{primary}"
+                )
                 decision_trace.append({
                     "disorder": candidate,
                     "decision": "rejected",
-                    "reason": f"invalid_pair_with_{primary}",
+                    "reason": f"forbidden_pair_with_{primary}",
                 })
                 continue
 
-            if self.comorbid_min_ratio > 0 and primary_conf > 0:
+            # Absolute confidence threshold
+            if self.comorbid_min_ratio > 0:
                 candidate_conf = confs.get(candidate, 0.0)
-                min_required = self.comorbid_min_ratio * primary_conf
-                if candidate_conf < min_required:
+                if candidate_conf < self.comorbid_min_ratio:
                     rejected.append(candidate)
                     rejection_reasons.append(
-                        f"{candidate} rejected: confidence_ratio_below_{self.comorbid_min_ratio:.2f}"
+                        f"{candidate} rejected: confidence_below_{self.comorbid_min_ratio:.2f}"
                     )
                     decision_trace.append({
                         "disorder": candidate,
                         "decision": "rejected",
-                        "reason": "confidence_ratio_below_threshold",
+                        "reason": "confidence_below_absolute_threshold",
                     })
                     continue
 
