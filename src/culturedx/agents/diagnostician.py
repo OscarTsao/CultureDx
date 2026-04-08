@@ -33,12 +33,19 @@ class DiagnosticianAgent(BaseAgent):
         candidate_disorders = list(extra.get("candidate_disorders", []))
         disorder_names = dict(extra.get("disorder_names", {}))
 
-        template_name = f"diagnostician_{input.language}.jinja"
+        prompt_variant = extra.get("prompt_variant", "")
+        if prompt_variant == "v2" and input.language == "zh":
+            template_name = "diagnostician_v2_zh.jinja"
+        else:
+            template_name = f"diagnostician_{input.language}.jinja"
         template = self._env.get_template(template_name)
+        # Pass similar cases if available (from CaseRetriever)
+        similar_cases = extra.get("similar_cases", None)
         prompt = template.render(
             transcript_text=input.transcript_text,
             candidate_disorders=candidate_disorders,
             disorder_names=disorder_names,
+            similar_cases=similar_cases,
         )
 
         source, _, _ = self._env.loader.get_source(self._env, template_name)

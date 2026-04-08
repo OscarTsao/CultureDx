@@ -67,8 +67,10 @@ class HiEDMode(BaseModeOrchestrator):
         calibrator_mode: str = "heuristic-v2",
         calibrator_artifact_path: str | Path | None = None,
         force_prediction: bool = False,
+        case_retriever=None,
     ) -> None:
         self.mode_name = "hied"
+        self.case_retriever = case_retriever
         self.llm = llm_client
         self.checker_llm = checker_llm_client or llm_client
         self.checker_model_name = (
@@ -835,12 +837,41 @@ class HiEDMode(BaseModeOrchestrator):
         }
 
         diag_start = time.monotonic()
+        # Retrieve similar training cases if CaseRetriever is available
+        similar_cases = None
+        if self.case_retriever is not None:
+            try:
+                # Use balanced retrieval: 1 nearest neighbor per candidate class
+                if hasattr(self.case_retriever, 'retrieve_balanced'):
+                    similar_cases = self.case_retriever.retrieve_balanced(
+                        full_transcript, candidate_codes, top_per_class=1,
+                    )
+                else:
+                    similar_cases = self.case_retriever.retrieve(full_transcript, top_k=5)
+                # Flatten for prompt: use first diagnosis code/name per case
+                similar_cases_for_prompt = []
+                for sc in similar_cases:
+                    codes = sc.get("diagnosis_codes", [])
+                    names = sc.get("diagnosis_names", [])
+                    similar_cases_for_prompt.append({
+                        "similarity": sc["similarity"],
+                        "diagnosis_code": codes[0] if codes else "?",
+                        "diagnosis_name": names[0] if names else "",
+                        "chief_complaint_summary": sc.get("transcript_preview", "")[:100],
+                    })
+                similar_cases = similar_cases_for_prompt
+            except Exception as e:
+                logger.warning("CaseRetriever failed: %s", e)
+                similar_cases = None
+
         diag_input = AgentInput(
             transcript_text=full_transcript,
             language=lang,
             extra={
                 "candidate_disorders": candidate_codes,
                 "disorder_names": disorder_names,
+                "similar_cases": similar_cases,
+                "prompt_variant": self.prompt_variant,
             },
         )
         diag_output = self.diagnostician.run(diag_input)
@@ -872,7 +903,7 @@ class HiEDMode(BaseModeOrchestrator):
             ranked_codes[:2],
         )
 
-        verify_codes = ranked_codes[:2]
+        verify_codes = ranked_codes[:3]
         checker_start = time.monotonic()
         checker_outputs = self._parallel_check_criteria(
             self.checker,
@@ -904,6 +935,7 @@ class HiEDMode(BaseModeOrchestrator):
 
         top1_code = ranked_codes[0]
         top2_code = ranked_codes[1] if len(ranked_codes) > 1 else None
+        top3_code = ranked_codes[2] if len(ranked_codes) > 2 else None
 
         logic_output = self.logic_engine.evaluate(checker_outputs)
         confirmed_set = set(logic_output.confirmed_codes)
@@ -915,8 +947,11 @@ class HiEDMode(BaseModeOrchestrator):
 
         if top1_code in confirmed_set:
             confidence = 0.9
-            if top2_code and top2_code in confirmed_set:
-                comorbid = [top2_code]
+            # Add best confirmed comorbid (top-2 preferred, top-3 as fallback)
+            for tc in [top2_code, top3_code]:
+                if tc and tc in confirmed_set:
+                    comorbid.append(tc)
+            comorbid = comorbid[:1]  # cap to 1 comorbid (max 2 labels, per paper protocol)
         elif top2_code and top2_code in confirmed_set:
             logger.info(
                 "Case %s: DtV veto - top-1 %s not confirmed, promoting top-2 %s",
@@ -927,12 +962,28 @@ class HiEDMode(BaseModeOrchestrator):
             primary = top2_code
             confidence = 0.7
             veto_applied = True
+            # top-3 can still be comorbid if confirmed
+            if top3_code and top3_code in confirmed_set:
+                comorbid = [top3_code]  # max 1 comorbid
+        elif top3_code and top3_code in confirmed_set:
+            logger.info(
+                "Case %s: DtV veto - top-1 %s and top-2 %s not confirmed, promoting top-3 %s",
+                case.case_id,
+                top1_code,
+                top2_code,
+                top3_code,
+            )
+            primary = top3_code
+            confidence = 0.6
+            veto_applied = True
         else:
             confidence = 0.6
 
         if comorbid:
             confirmed_codes_list = [primary] + comorbid
-            confidences = {primary: confidence, comorbid[0]: confidence - 0.05}
+            confidences = {primary: confidence}
+            for i, c in enumerate(comorbid):
+                confidences[c] = confidence - 0.05 * (i + 1)
             comorbidity_result = self.comorbidity_resolver.resolve(
                 confirmed=confirmed_codes_list,
                 confidences=confidences,

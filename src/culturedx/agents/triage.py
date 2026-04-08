@@ -74,7 +74,9 @@ class TriageAgent(BaseAgent):
 
         # Render prompt (with optional CoT variant)
         prompt_variant = (input.extra or {}).get("prompt_variant", "")
-        if prompt_variant == "cot" and input.language == "zh":
+        if prompt_variant == "v2" and input.language == "zh":
+            template_name = "triage_v2_cot_zh.jinja"
+        elif prompt_variant == "cot" and input.language == "zh":
             template_name = "triage_cot_zh.jinja"
         else:
             template_name = f"triage_{input.language}.jinja"

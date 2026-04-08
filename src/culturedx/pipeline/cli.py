@@ -117,6 +117,19 @@ def run(
     mode_type = cfg.mode.type
     click.echo(f"Mode: {mode_type}")
 
+    # Load CaseRetriever if index exists
+    case_retriever = None
+    case_index_path = Path("data/cache/train_case_index.faiss")
+    case_meta_path = Path("data/cache/train_case_metadata.json")
+    if case_index_path.exists() and case_meta_path.exists():
+        try:
+            from culturedx.retrieval.case_retriever import CaseRetriever
+            case_retriever = CaseRetriever(case_index_path, case_meta_path)
+        except ImportError:
+            pass
+        except Exception as e:
+            click.echo(f"Warning: CaseRetriever failed to load: {e}")
+
     if mode_type == "hied":
         from culturedx.modes.hied import HiEDMode
         mode_kwargs = dict(
@@ -134,6 +147,8 @@ def run(
         )
         if checker_llm is not None:
             mode_kwargs["checker_llm_client"] = checker_llm
+        if case_retriever is not None:
+            mode_kwargs["case_retriever"] = case_retriever
         mode = HiEDMode(**mode_kwargs)
     elif mode_type == "psycot":
         from culturedx.modes.psycot import PsyCoTMode

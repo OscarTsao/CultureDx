@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code when working in this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
 
@@ -8,99 +8,118 @@ This file provides guidance to Claude Code when working in this repository.
 
 **Core thesis:** Evidence-grounded MAS outperforms single LLMs for Chinese psychiatric diagnosis because LLMs have weak parametric knowledge of Chinese clinical presentations, somatization requires explicit culture-aware mapping, and differential/comorbid diagnosis requires genuine agent asymmetry.
 
+This is a research/prototype codebase, not a validated clinical product.
+
 ## Commands
 
 ```bash
 # Setup
 uv sync
+uv pip install -e ".[retrieval]"   # optional: adds BGE-M3 retriever
 
-# Run tests
+# Fast repo check (core tests only)
+make check
+
+# Full test suite
 uv run pytest -q
-uv run pytest tests/test_models.py -v
+
+# Single test file / specific test
+uv run pytest tests/test_hied_mode.py -v
+uv run pytest tests/test_calibrator.py::test_abstention -v
+
+# Skip tests requiring Ollama
 uv run pytest -m "not integration"
 
 # CLI
 uv run culturedx --help
 uv run culturedx smoke
-uv run culturedx run --config configs/base.yaml --dataset mdd5k
-uv run culturedx run --config configs/base.yaml --dataset mdd5k --with-evidence
-
-# Install with retrieval (BGE-M3)
-uv pip install -e ".[retrieval]"
 ```
+
+### Running experiments
+
+Configs layer with multiple `-c` flags (later files override earlier):
 
 ```bash
-# Sweep
-uv run culturedx sweep --config configs/base.yaml -c configs/hied.yaml -d mdd5k --dry-run
-uv run culturedx sweep --config configs/base.yaml -d mdd5k --modes hied,single -n 50
+# HiED benchmark (closed-set, manual scope)
+uv run culturedx run -c configs/base.yaml -c configs/hied.yaml -d mdd5k --data-path data/raw/mdd5k
+
+# With evidence extraction
+uv run culturedx run -c configs/base.yaml -c configs/hied.yaml -d mdd5k --with-evidence --data-path data/raw/mdd5k
+
+# Ablation sweep (dry-run first)
+uv run culturedx sweep -c configs/base.yaml -c configs/hied.yaml -d mdd5k --dry-run
+uv run culturedx sweep -c configs/base.yaml -d mdd5k --modes hied,single -n 50
 ```
 
-## Package Architecture (src/culturedx/)
+## Architecture
 
-| Module | Purpose |
-|--------|---------|
-| core/config.py | Pydantic config models (all YAML fields) |
-| core/models.py | Data structures (ClinicalCase, EvidenceBrief, DiagnosisResult) |
-| data/adapters/ | Dataset adapters (LingxiDiag16k, MDD-5k, E-DAIC) → ClinicalCase; PDCH adapter retained but unused (restricted data) |
-| llm/client.py | OllamaClient (temperature=0, top_k=1 = greedy) |
-| llm/cache.py | SQLite-backed LLM response cache |
-| llm/json_utils.py | JSON extraction from LLM responses |
-| agents/base.py | BaseAgent ABC |
-| agents/criterion_checker.py | CriterionCheckerAgent: per-disorder ICD-10 criteria evaluation |
-| agents/differential.py | DifferentialDiagnosisAgent: cross-disorder differential synthesis |
-| modes/base.py | BaseModeOrchestrator ABC |
-| modes/single.py | Single-model baseline (zero-shot/few-shot) |
-| modes/mas.py | MASMode orchestrator: checker + differential pipeline |
-| eval/metrics.py | Diagnosis and severity metrics |
-| pipeline/runner.py | ExperimentRunner |
-| pipeline/cli.py | Click CLI entry point |
-| evidence/extractor.py | LLM-based symptom span extraction |
-| evidence/somatization.py | Chinese somatization mapper (ontology + LLM fallback) |
-| evidence/retriever.py | BaseRetriever ABC, MockRetriever, BGEM3Retriever |
-| evidence/criteria_matcher.py | Per-criterion evidence retrieval with somatization boost |
-| evidence/brief.py | Evidence Brief assembly per-disorder per-criterion |
-| evidence/pipeline.py | End-to-end evidence extraction orchestrator |
-| ontology/icd10.py | ICD-10 criterion definitions (13 disorders) |
-| ontology/symptom_map.py | Chinese somatic symptom → criterion mapping (38 entries) |
-| prompts/agents/ | Bilingual Jinja2 prompts for MAS agents |
-| eval/evidence_metrics.py | Criterion coverage, evidence precision |
-| agents/triage.py | Triage: broad ICD-10 category classification |
-| agents/specialist.py | Free-form disorder specialist reasoning |
-| agents/perspective.py | Perspective agents (bio/psych/social/cultural) |
-| agents/judge.py | LLM judge for specialist & debate modes |
-| modes/hied.py | HiED: 4-stage primary pipeline (triage→checker→logic→calibrator) |
-| modes/psycot.py | PsyCoT: flat criterion checking (no triage) |
-| modes/specialist.py | Specialist-MAS: triage→specialists→judge |
-| modes/debate.py | Debate-MAS: 4 perspectives × 2 rounds→judge |
-| diagnosis/logic_engine.py | Deterministic ICD-10 threshold rules (no LLM) |
-| diagnosis/calibrator.py | Statistical confidence scoring (no LLM) |
-| diagnosis/comorbidity.py | ICD-10 exclusion rules for comorbidity |
-| eval/cross_lingual.py | Cross-lingual evidence gap test, AURC |
-| eval/report.py | Markdown + JSON evaluation report generator |
-| pipeline/sweep.py | Ablation sweep runner |
-| evidence/retriever_factory.py | Config-driven retriever selection |
+Source lives in `src/culturedx/`. Entry point: `pipeline/cli.py` (Click CLI) → `pipeline/runner.py` (ExperimentRunner).
+
+### Data flow
+
+All datasets (LingxiDiag16k, MDD-5k, E-DAIC) normalize to `ClinicalCase` via adapters in `data/adapters/`. The PDCH adapter exists but is unused (restricted data).
+
+### Diagnosis modes (in `modes/`)
+
+6 modes, all subclass `BaseModeOrchestrator`:
+
+- **`hied`** — Primary research path. 4-stage pipeline:
+  1. Scope resolution → triage (open-set) or manual scope (benchmark)
+  2. Criterion checker fanout (one per candidate disorder, uses `agents/criterion_checker.py`)
+  3. Logic engine — deterministic ICD-10 threshold rules (`diagnosis/logic_engine.py`, no LLM)
+  4. Calibrator — statistical confidence scoring + abstention (`diagnosis/calibrator.py`, no LLM) → comorbidity resolver (`diagnosis/comorbidity.py`)
+- **`single`** — Single-model baseline (zero-shot/few-shot)
+- **`mas`** — Criterion checker + differential synthesis
+- **`psycot`** — Flat criterion checking, no triage (checks ALL disorders)
+- **`specialist`** — Triage → specialist agents → LLM judge
+- **`debate`** — 4 perspectives (bio/psych/social/cultural) × 2 rounds → judge
+
+### Evidence pipeline (in `evidence/`)
+
+Separate from diagnosis modes; activated with `--with-evidence`:
+
+extract symptoms → somatize (Chinese only, via `ontology/symptom_map.py` then LLM fallback) → match criteria → assemble `EvidenceBrief`
+
+### LLM layer (in `llm/`)
+
+`OllamaClient` supports Ollama and vLLM backends. All calls are greedy (temperature=0.0, top_k=1). Responses cached in SQLite keyed by `{provider}:{model}:{prompt_hash}:{language}:{input_hash}`.
+
+### Prompts
+
+Bilingual (Chinese/English) Jinja2 templates in `prompts/agents/`.
+
+## Benchmark Mode vs Production Mode
+
+Two execution semantics that must stay explicit in configs and outputs:
+
+- **Closed-set benchmark** (`scope_policy: manual`): set `mode.target_disorders` explicitly. HiED reports `routing_mode=benchmark_manual_scope`.
+- **Production open-set** (`scope_policy: triage` or `all_supported`): omit `mode.target_disorders`. HiED uses triage or full ontology. Reports `routing_mode=production_open_set`.
+
+For evidence pipeline, `scope_policy: auto` resolves to `manual` when targets configured, otherwise `all_supported`. It does NOT silently narrow to F32/F41.1.
 
 ## Key Invariants
 
-1. All LLM calls via OllamaClient with temperature=0.0, top_k=1 (greedy)
-2. LLM cache key: {provider}:{model}:{prompt_hash}:{language}:{input_hash}
-3. All datasets normalize to ClinicalCase dataclass
-4. DiagnosisResult.decision is "diagnosis" or "abstain"
-5. No gold features at inference
-6. Somatization mapper: ontology lookup first, LLM fallback for unknown somatic symptoms
-7. EvidenceBrief uses DisorderEvidence (per-disorder) as primary structure
-8. Retriever optional dep: sentence-transformers only needed for BGEM3Retriever
-9. Evidence pipeline: extract → somatize (Chinese only) → match → assemble
-10. MAS mode: criterion checker per disorder → differential diagnosis synthesis
-11. HiED pipeline: Triage → Criterion Checkers → Logic Engine (deterministic) → Calibrator (statistical)
-12. PsyCoT: no triage, checks ALL disorders sequentially
-13. Logic Engine uses ICD-10 threshold dispatch (core_total, first_rank, min_symptoms, etc.)
-14. Comorbidity: F33 supersedes F32, F31 supersedes F32/F33, F20 supersedes F22
-15. 5 MAS modes: hied (primary), psycot (alt B), specialist (alt A), debate (alt C), single (baseline)
+1. `DiagnosisResult.decision` is always `"diagnosis"` or `"abstain"`
+2. No gold features at inference — system never peeks at ground truth
+3. Logic engine uses ICD-10 threshold dispatch: `core_total`, `first_rank`, `min_symptoms`, etc.
+4. Comorbidity hierarchy: F33 supersedes F32, F31 supersedes F32/F33, F20 supersedes F22
+5. Somatization mapper: ontology lookup first, LLM fallback only for unknown somatic symptoms
+6. Do not silently narrow disorder search space in production-style paths
+7. Prefer abstention when routing fails or evidence is weak
+
+## Run Artifacts
+
+Each run directory produces:
+
+- `run_manifest.json`, `predictions.jsonl`, `failures.jsonl`, `stage_timings.jsonl` — canonical outputs
+- `metrics_summary.json`, `summary.md` — when ground truth available
+- `run_info.json`, `metrics.json` — legacy-compatible
 
 ## Code Conventions
 
-- PEP 8, max line length 100
-- All file I/O: explicit encoding="utf-8"
+- Python 3.11+, PEP 8, max line length 100
 - Type hints everywhere
+- All file I/O: explicit `encoding="utf-8"`
 - Tests: deterministic (fixed seeds), no GPU required, no private data
+- Keep diffs reviewable; avoid unrelated refactors
+- Do not fabricate benchmark numbers, calibration artifacts, or learned weights
