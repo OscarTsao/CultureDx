@@ -132,7 +132,7 @@ class CaseRetriever:
             from sentence_transformers import SentenceTransformer
 
             logger.info("Loading BGE-M3 encoder (first call)...")
-            self._encoder = SentenceTransformer("BAAI/bge-m3")
+            self._encoder = SentenceTransformer("BAAI/bge-m3", device="cpu")
             logger.info("BGE-M3 encoder loaded.")
         return self._encoder
 
