@@ -105,6 +105,14 @@ class DiagnosticianAgent(BaseAgent):
             }
 
         allowed_codes = set(candidate_disorders)
+        # Build normalization map: parent code → child code in candidate list
+        # e.g. F41 → F41.1 if F41.1 is in candidates but F41 is not
+        _code_norm: dict[str, str] = {}
+        for c in candidate_disorders:
+            parent = c.split(".")[0]
+            if parent not in allowed_codes:
+                _code_norm[parent] = c
+
         ranked_codes: list[str] = []
         reasoning: list[str] = []
         seen_codes: set[str] = set()
@@ -115,16 +123,14 @@ class DiagnosticianAgent(BaseAgent):
             code = str(item.get("code", "")).strip()
             if not code:
                 continue
+            # Normalize parent codes to their child variant
+            code = _code_norm.get(code, code)
             if code not in allowed_codes:
                 logger.warning(
-                    "Diagnostician returned code %s outside candidate disorders %s",
+                    "Diagnostician returned unknown code %s, skipping",
                     code,
-                    candidate_disorders,
                 )
-                return {
-                    "ranked_codes": [],
-                    "reasoning": [],
-                }
+                continue
             if code in seen_codes:
                 continue
             seen_codes.add(code)

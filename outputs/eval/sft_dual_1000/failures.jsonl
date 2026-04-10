@@ -1,0 +1,2 @@
+{"case_id": "344699340", "error": "Client error '404 Not Found' for url 'http://localhost:8000/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"}
+{"case_id": "374577341", "error": "Client error '404 Not Found' for url 'http://localhost:8000/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"}
