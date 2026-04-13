@@ -1,18 +1,21 @@
 """Tests for temporal evidence propagation into checker prompts."""
 from __future__ import annotations
 
+import threading
+
 from culturedx.agents.base import AgentOutput
 from culturedx.core.models import ClinicalCase, EvidenceBrief, Turn
 from culturedx.evidence.temporal import TemporalFeatures, TemporalMatch
+from culturedx.modes.base import case_execution_context
 from culturedx.modes.hied import HiEDMode
 
 
 class FakeLLM:
     """Minimal fake LLM for mode construction."""
 
-    def __init__(self, model: str = "test-model"):
+    def __init__(self, model: str = "test-model", max_concurrent: int = 1):
         self.model = model
-        self.max_concurrent = 1
+        self.max_concurrent = max_concurrent
 
     def compute_prompt_hash(self, template_source: str) -> str:
         return "test-hash"
@@ -29,6 +32,24 @@ class CapturingChecker:
         return AgentOutput(
             parsed={
                 "disorder": "F41.1",
+                "criteria": [],
+                "criteria_met_count": 0,
+                "criteria_required": 1,
+            }
+        )
+
+
+class ThreadRecordingChecker:
+    """Checker stub that records which thread executed each disorder."""
+
+    def __init__(self):
+        self.thread_ids: list[int] = []
+
+    def run(self, agent_input):
+        self.thread_ids.append(threading.get_ident())
+        return AgentOutput(
+            parsed={
+                "disorder": agent_input.extra["disorder_code"],
                 "criteria": [],
                 "criteria_met_count": 0,
                 "criteria_required": 1,
@@ -88,3 +109,5 @@ def test_hied_builds_temporal_summary_into_checker_evidence():
     assert evidence_map["F41.1"]["temporal_summary"] == temporal_features.summary_zh()
     assert capturing_checker.inputs[0].evidence is not None
     assert capturing_checker.inputs[0].evidence["temporal_summary"] == temporal_features.summary_zh()
+
+

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import asyncio
+from concurrent.futures import ThreadPoolExecutor
 import json
 from pathlib import Path
 
@@ -50,6 +51,23 @@ class TestOllamaClient:
         assert client.last_request_stats.cache_hit is False
         client.close()
 
+    def test_generate_includes_seed_when_configured(self):
+        seen = {}
+
+        def handler(request: httpx.Request) -> httpx.Response:
+            seen["body"] = json.loads(request.content.decode())
+            return _response_json({"response": "ok"}, request)
+
+        client = OllamaClient(
+            base_url="http://localhost:11434",
+            model="qwen3:14b",
+            seed=42,
+            transport=httpx.MockTransport(handler),
+        )
+        client.generate("Diagnose this patient", prompt_hash="abc123", language="zh")
+        assert seen["body"]["options"]["seed"] == 42
+        client.close()
+
     def test_cache_hit_skips_transport(self, tmp_path):
         cache_path = tmp_path / "cache.db"
         calls = {"count": 0}
@@ -71,6 +89,35 @@ class TestOllamaClient:
         assert client.last_request_stats is not None
         assert client.last_request_stats.cache_hit is True
         client.close()
+
+    def test_cache_key_distinguishes_seed(self, tmp_path):
+        cache_path = tmp_path / "cache.db"
+        calls = {"count": 0}
+
+        def handler(request: httpx.Request) -> httpx.Response:
+            calls["count"] += 1
+            return _response_json({"response": f"response-{calls['count']}"}, request)
+
+        client_a = OllamaClient(
+            base_url="http://localhost:11434",
+            model="qwen3:14b",
+            cache_path=cache_path,
+            seed=41,
+            transport=httpx.MockTransport(handler),
+        )
+        client_b = OllamaClient(
+            base_url="http://localhost:11434",
+            model="qwen3:14b",
+            cache_path=cache_path,
+            seed=42,
+            transport=httpx.MockTransport(handler),
+        )
+
+        assert client_a.generate("prompt") == "response-1"
+        assert client_b.generate("prompt") == "response-2"
+        assert calls["count"] == 2
+        client_a.close()
+        client_b.close()
 
     def test_retry_on_timeout(self):
         calls = {"count": 0}
@@ -96,6 +143,26 @@ class TestOllamaClient:
 
 
 class TestVLLMClient:
+    def test_generate_includes_seed_when_configured(self):
+        seen = {}
+
+        def handler(request: httpx.Request) -> httpx.Response:
+            seen["body"] = json.loads(request.content.decode())
+            return _response_json(
+                {"choices": [{"message": {"content": "ok"}}]},
+                request,
+            )
+
+        client = VLLMClient(
+            base_url="http://localhost:8000",
+            model="qwen3-32b",
+            seed=42,
+            transport=httpx.MockTransport(handler),
+        )
+        client.generate("Prompt")
+        assert seen["body"]["seed"] == 42
+        client.close()
+
     def test_structured_outputs_use_response_format_then_fallback(self):
         calls = {"count": 0}
         seen_bodies: list[dict] = []
@@ -161,10 +228,45 @@ class TestVLLMClient:
         assert results == ["response:slow prompt", "response:fast prompt"]
         client.close()
 
+    def test_batch_generate_is_safe_inside_thread_pool_workers(self):
+        async def handler(request: httpx.Request) -> httpx.Response:
+            body = json.loads(request.content.decode())
+            prompt = body["messages"][-1]["content"]
+            await asyncio.sleep(0.01)
+            return _response_json(
+                {
+                    "choices": [
+                        {"message": {"content": f"response:{prompt}"}}
+                    ]
+                },
+                request,
+            )
+
+        client = VLLMClient(
+            base_url="http://localhost:8000",
+            model="qwen3-32b",
+            max_concurrent=2,
+            transport=httpx.MockTransport(handler),
+        )
+
+        def _run_batch(batch_id: int) -> list[str]:
+            return client.batch_generate(
+                [f"slow prompt {batch_id}", f"fast prompt {batch_id}"]
+            )
+
+        with ThreadPoolExecutor(max_workers=4) as executor:
+            results = list(executor.map(_run_batch, range(4)))
+
+        assert results == [
+            [f"response:slow prompt {idx}", f"response:fast prompt {idx}"]
+            for idx in range(4)
+        ]
+        client.close()
+
     def test_retry_on_timeout(self):
         calls = {"count": 0}
 
-        async def handler(request: httpx.Request) -> httpx.Response:
+        def handler(request: httpx.Request) -> httpx.Response:
             calls["count"] += 1
             if calls["count"] == 1:
                 raise httpx.ReadTimeout("timeout", request=request)

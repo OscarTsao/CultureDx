@@ -253,9 +253,7 @@ class MockRetriever(BaseRetriever):
 class BGEM3Retriever(BaseRetriever):
     """BGE-M3 retriever with native hybrid mode (dense + sparse + ColBERT).
 
-    Uses FlagEmbedding.BGEM3FlagModel when available for native multi-mode
-    retrieval.  Falls back to SentenceTransformer dense-only mode if
-    FlagEmbedding is not installed.
+    Uses FlagEmbedding.BGEM3FlagModel for native multi-mode retrieval.
     """
 
     #: True when the instance uses BGEM3FlagModel native hybrid scoring.
@@ -276,47 +274,20 @@ class BGEM3Retriever(BaseRetriever):
         self._mode_weights = mode_weights
         self._embedding_cache = embedding_cache
 
-        # --- try FlagEmbedding first (native hybrid) ---
         try:
             from FlagEmbedding import BGEM3FlagModel  # type: ignore[import-untyped]
+        except ImportError as e:
+            raise ImportError(
+                "FlagEmbedding is required for BGEM3Retriever. "
+                "Install with: pip install FlagEmbedding"
+            ) from e
 
-            use_fp16 = device != "cpu"
-            self._flag_model: Any = BGEM3FlagModel(
-                model_id, use_fp16=use_fp16, cache_dir=cache_dir,
-            )
-            self._st_model: Any = None
-            self.native_hybrid = True
-        except ImportError:
-            # --- fallback: SentenceTransformer dense-only ---
-            try:
-                from sentence_transformers import SentenceTransformer
-            except ImportError as e:
-                raise ImportError(
-                    "Either FlagEmbedding or sentence-transformers is required "
-                    "for BGEM3Retriever. Install with: "
-                    "pip install FlagEmbedding   OR   "
-                    "uv pip install 'culturedx[retrieval]'"
-                ) from e
-            self._flag_model = None
-            self._st_model = SentenceTransformer(
-                model_id, device=device, cache_folder=cache_dir,
-            )
-            self.native_hybrid = False
-
-    # ------------------------------------------------------------------
-    # Dense-only helpers (SentenceTransformer fallback path)
-    # ------------------------------------------------------------------
-
-    def _encode_cached(self, texts: list[str]) -> "np.ndarray":
-        """Encode texts with optional embedding cache (dense fallback)."""
-        if self._embedding_cache is not None:
-            cached = self._embedding_cache.get(texts)
-            if cached is not None:
-                return cached
-        embs = self._st_model.encode(texts, normalize_embeddings=True)
-        if self._embedding_cache is not None:
-            self._embedding_cache.put(texts, embs)
-        return embs
+        use_fp16 = device != "cpu"
+        self._flag_model: Any = BGEM3FlagModel(
+            model_id, use_fp16=use_fp16, cache_dir=cache_dir,
+        )
+        self._st_model: Any = None
+        self.native_hybrid = True
 
     # ------------------------------------------------------------------
     # Native hybrid helpers (FlagEmbedding path)
@@ -377,14 +348,7 @@ class BGEM3Retriever(BaseRetriever):
         if turn_ids is None:
             turn_ids = list(range(len(sentences)))
 
-        source = "hybrid-native" if self.native_hybrid else "dense"
-
-        if self.native_hybrid:
-            scores = self._score_native(query, sentences)
-        else:
-            query_emb = self._st_model.encode([query], normalize_embeddings=True)
-            sent_emb = self._encode_cached(sentences)
-            scores = np.dot(sent_emb, query_emb.T).flatten()
+        scores = self._score_native(query, sentences)
 
         top_indices = np.argsort(scores)[::-1][:top_k]
 
@@ -395,7 +359,7 @@ class BGEM3Retriever(BaseRetriever):
                     text=sentences[idx],
                     turn_id=turn_ids[idx],
                     score=float(scores[idx]),
-                    source=source,
+                    source="hybrid-native",
                     matched_terms=concept_terms(query),
                     normalized_text=normalize_text(sentences[idx]),
                 )
@@ -415,37 +379,9 @@ class BGEM3Retriever(BaseRetriever):
         if turn_ids is None:
             turn_ids = list(range(len(sentences)))
 
-        source = "hybrid-native" if self.native_hybrid else "dense"
-
-        if self.native_hybrid:
-            # Native hybrid: score each query against all sentences
-            all_results: list[list[RetrievalResult]] = []
-            for qi, query in enumerate(queries):
-                scores = self._score_native(query, sentences)
-                top_indices = np.argsort(scores)[::-1][:top_k]
-                results = []
-                for idx in top_indices:
-                    results.append(
-                        RetrievalResult(
-                            text=sentences[idx],
-                            turn_id=turn_ids[idx],
-                            score=float(scores[idx]),
-                            source=source,
-                            matched_terms=concept_terms(query),
-                            normalized_text=normalize_text(sentences[idx]),
-                        )
-                    )
-                all_results.append(_stable_sort(results))
-            return all_results
-
-        # Dense fallback: batch cosine similarity
-        query_embs = self._st_model.encode(queries, normalize_embeddings=True)
-        sent_embs = self._encode_cached(sentences)
-        scores_matrix = np.dot(sent_embs, query_embs.T)
-
-        all_results = []
-        for qi in range(len(queries)):
-            scores = scores_matrix[:, qi]
+        all_results: list[list[RetrievalResult]] = []
+        for qi, query in enumerate(queries):
+            scores = self._score_native(query, sentences)
             top_indices = np.argsort(scores)[::-1][:top_k]
             results = []
             for idx in top_indices:
@@ -454,8 +390,8 @@ class BGEM3Retriever(BaseRetriever):
                         text=sentences[idx],
                         turn_id=turn_ids[idx],
                         score=float(scores[idx]),
-                        source=source,
-                        matched_terms=concept_terms(queries[qi]),
+                        source="hybrid-native",
+                        matched_terms=concept_terms(query),
                         normalized_text=normalize_text(sentences[idx]),
                     )
                 )

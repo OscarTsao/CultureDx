@@ -4,15 +4,28 @@ from omegaconf import OmegaConf
 
 from culturedx.ontology.icd10 import list_disorders
 
-EXPECTED_TARGET_DISORDERS = ["F32", "F33", "F41.1", "F42", "F43.1"]
+EXPECTED_TARGET_DISORDERS = [
+    "F20",
+    "F31",
+    "F32",
+    "F39",
+    "F41.0",
+    "F41.1",
+    "F42",
+    "F43.1",
+    "F43.2",
+    "F45",
+    "F51",
+    "F98",
+]
 
 
-def test_final_target_disorders_config_matches_ontology() -> None:
+def test_lingxidiag_target_disorders_config_matches_ontology() -> None:
     config_path = (
         Path(__file__).resolve().parents[1]
         / "configs"
         / "targets"
-        / "final_target_disorders.yaml"
+        / "lingxidiag_12class.yaml"
     )
     cfg = OmegaConf.load(str(config_path))
     plain = OmegaConf.to_container(cfg, resolve=True)

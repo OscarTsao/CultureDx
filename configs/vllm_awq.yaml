@@ -7,4 +7,4 @@ llm:
   top_k: 1
   max_retries: 3
   disable_thinking: true
-  max_concurrent: 4
+  max_concurrent: 16

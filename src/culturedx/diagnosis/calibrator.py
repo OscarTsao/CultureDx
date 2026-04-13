@@ -13,14 +13,11 @@ from __future__ import annotations
 
 import json
 import math
-import logging
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Sequence
 
 from culturedx.core.models import CheckerOutput, EvidenceBrief, ScaleScore
-
-logger = logging.getLogger(__name__)
 
 CALIBRATOR_ARTIFACT_SCHEMA_VERSION = 1
 DEFAULT_CALIBRATOR_FEATURE_NAMES = (
@@ -159,16 +156,30 @@ class ConfidenceCalibrator:
         abstain_threshold: float = 0.3,
         comorbid_threshold: float = 0.5,
         version: int = 2,
+        mode: str = "heuristic-v2",
         artifact_path: str | Path | None = None,
         artifact: CalibratorArtifact | dict[str, Any] | None = None,
+        force_prediction: bool = False,
+        # Comorbidity gate thresholds
+        comorbid_ratio_threshold: float = 0.6,
+        comorbid_gap_threshold: float = 0.20,
         # V1 weights (backward compat)
         evidence_weight: float = 0.3,
         criterion_weight: float = 0.4,
         threshold_weight: float = 0.3,
     ) -> None:
+        if mode not in ("heuristic-v2", "learned"):
+            raise ValueError(
+                f"Invalid calibrator mode {mode!r}; expected 'heuristic-v2' or 'learned'"
+            )
+
         self.abstain_threshold = abstain_threshold
         self.comorbid_threshold = comorbid_threshold
         self.version = version
+        self.mode = mode
+        self.force_prediction = force_prediction
+        self.comorbid_ratio_threshold = comorbid_ratio_threshold
+        self.comorbid_gap_threshold = comorbid_gap_threshold
         self.evidence_weight = evidence_weight
         self.criterion_weight = criterion_weight
         self.threshold_weight = threshold_weight
@@ -181,23 +192,19 @@ class ConfidenceCalibrator:
             )
             self.abstain_threshold = self.artifact.abstain_threshold
             self.comorbid_threshold = self.artifact.comorbid_threshold
-        elif self.artifact_path is not None:
-            try:
-                if self.artifact_path.exists():
-                    self.artifact = CalibratorArtifact.load(self.artifact_path)
-                    self.abstain_threshold = self.artifact.abstain_threshold
-                    self.comorbid_threshold = self.artifact.comorbid_threshold
-                else:
-                    logger.warning(
-                        "Calibrator artifact %s not found; using heuristic fallback",
-                        self.artifact_path,
-                    )
-            except Exception:
-                logger.warning(
-                    "Failed to load calibrator artifact %s; using heuristic fallback",
-                    self.artifact_path,
-                    exc_info=True,
+        elif mode == "learned":
+            if self.artifact_path is None:
+                raise ValueError(
+                    "Calibrator mode 'learned' requires artifact_path"
                 )
+            if not self.artifact_path.exists():
+                raise FileNotFoundError(
+                    f"Calibrator artifact not found at {self.artifact_path}. "
+                    "Use mode='heuristic-v2' or provide a valid artifact_path."
+                )
+            self.artifact = CalibratorArtifact.load(self.artifact_path)
+            self.abstain_threshold = self.artifact.abstain_threshold
+            self.comorbid_threshold = self.artifact.comorbid_threshold
         # V2 weights — tuned via LOO cross-validation (scripts/tune_calibrator_weights.py)
         # Changes from initial weights:
         #   core_score 0.30->0.05: was inflating short-checklist disorders (F41.1=5
@@ -288,8 +295,14 @@ class ConfidenceCalibrator:
                 "criteria_met_count": cal.criteria_met_count,
                 "criteria_total_count": cal.criteria_total_count,
                 "calibration_path": cal.calibration_path,
+                "force_prediction": self.force_prediction,
             })
-            if cal.confidence < self.abstain_threshold:
+            if primary is None and self.force_prediction:
+                cal.decision = "diagnosis"
+                cal.placement = "primary"
+                cal.decision_reason = "forced_highest_confidence"
+                primary = cal
+            elif cal.confidence < self.abstain_threshold:
                 cal.decision = "abstain"
                 cal.placement = "abstained"
                 cal.decision_reason = "below_abstain_threshold"
@@ -300,10 +313,33 @@ class ConfidenceCalibrator:
                 cal.decision_reason = "highest_confidence_above_abstain_threshold"
                 primary = cal
             elif cal.confidence >= self.comorbid_threshold:
-                cal.decision = "diagnosis"
-                cal.placement = "comorbid"
-                cal.decision_reason = "meets_comorbid_threshold"
-                comorbid.append(cal)
+                # Comorbidity gate: met_ratio + confidence gap
+                met_ratio = (
+                    cal.criteria_met_count / cal.criteria_total_count
+                    if cal.criteria_total_count > 0 else 0.0
+                )
+                gap = primary.confidence - cal.confidence if primary else 0.0
+                passes_ratio = met_ratio >= self.comorbid_ratio_threshold
+                passes_gap = gap <= self.comorbid_gap_threshold
+                cal.decision_trace["comorbid_met_ratio"] = met_ratio
+                cal.decision_trace["comorbid_gap"] = gap
+                cal.decision_trace["comorbid_ratio_threshold"] = self.comorbid_ratio_threshold
+                cal.decision_trace["comorbid_gap_threshold"] = self.comorbid_gap_threshold
+                if passes_ratio and passes_gap:
+                    cal.decision = "diagnosis"
+                    cal.placement = "comorbid"
+                    cal.decision_reason = "meets_comorbid_gate"
+                    comorbid.append(cal)
+                else:
+                    cal.decision = "rejected"
+                    cal.placement = "rejected"
+                    reasons = []
+                    if not passes_ratio:
+                        reasons.append(f"met_ratio={met_ratio:.3f}<{self.comorbid_ratio_threshold}")
+                    if not passes_gap:
+                        reasons.append(f"gap={gap:.3f}>{self.comorbid_gap_threshold}")
+                    cal.decision_reason = "comorbid_gate_failed:" + ";".join(reasons)
+                    rejected.append(cal)
             else:
                 cal.decision = "rejected"
                 cal.placement = "rejected"

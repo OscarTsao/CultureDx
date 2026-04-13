@@ -20,9 +20,10 @@ from culturedx.core.models import ClinicalCase, DiagnosisResult
 from culturedx.eval.code_mapping import map_code_list
 from culturedx.eval.metrics import compute_comorbidity_metrics, compute_diagnosis_metrics
 from culturedx.evidence.pipeline import EvidencePipeline
-from culturedx.modes.base import BaseModeOrchestrator
+from culturedx.modes.base import BaseModeOrchestrator, case_execution_context
 from culturedx.ontology.symptom_map import load_somatization_map
 from culturedx.pipeline.artifacts import (
+    CaseSelectionManifest,
     MetricsSummary,
     RunManifest,
     build_failure_records,
@@ -33,6 +34,19 @@ from culturedx.pipeline.artifacts import (
 )
 
 logger = logging.getLogger(__name__)
+
+
+def _predict_four_class(codes: list[str]) -> str:
+    """Map ICD-10 codes to LingxiDiag 4-class label."""
+    has_dep = any(c.startswith("F32") or c.startswith("F33") for c in codes)
+    has_anx = any(c.startswith("F40") or c.startswith("F41") for c in codes)
+    if has_dep and has_anx:
+        return "Mixed"
+    if has_dep:
+        return "Depression"
+    if has_anx:
+        return "Anxiety"
+    return "Other"
 
 
 class ExperimentRunner:
@@ -84,19 +98,22 @@ class ExperimentRunner:
 
         def _process_one(idx: int, case: ClinicalCase) -> tuple[int, Any, DiagnosisResult]:
             logger.info("Processing case %d/%d: %s", idx + 1, len(cases), case.case_id)
-            evidence = None
-            evidence_start = time.monotonic()
-            if self.evidence_pipeline is not None:
-                evidence = self.evidence_pipeline.extract(case)
-                if "total" not in evidence.stage_timings:
-                    evidence.stage_timings["total"] = time.monotonic() - evidence_start
-            diagnosis_start = time.monotonic()
-            result = self.mode.diagnose(case, evidence=evidence)
-            result.stage_timings.setdefault(
-                "diagnosis_total",
-                time.monotonic() - diagnosis_start,
-            )
-            return idx, evidence, result
+            with case_execution_context(
+                outer_parallelism=self.max_cases_in_flight > 1,
+            ):
+                evidence = None
+                evidence_start = time.monotonic()
+                if self.evidence_pipeline is not None:
+                    evidence = self.evidence_pipeline.extract(case)
+                    if "total" not in evidence.stage_timings:
+                        evidence.stage_timings["total"] = time.monotonic() - evidence_start
+                diagnosis_start = time.monotonic()
+                result = self.mode.diagnose(case, evidence=evidence)
+                result.stage_timings.setdefault(
+                    "diagnosis_total",
+                    time.monotonic() - diagnosis_start,
+                )
+                return idx, evidence, result
 
         if self.max_cases_in_flight <= 1 or len(cases) == 1:
             for idx, case in enumerate(cases):
@@ -130,12 +147,17 @@ class ExperimentRunner:
         dataset_name: str,
         num_cases: int,
         mode_type: str,
+        *,
+        case_ids: list[str] | None = None,
+        runtime_context: dict[str, Any] | None = None,
     ) -> None:
         """Save canonical and legacy run metadata.
 
         ``run_manifest.json`` is the preferred schema; ``run_info.json`` stays
         for compatibility with older scripts and analysis notebooks.
         """
+        normalized_case_ids = [str(case_id) for case_id in (case_ids or [])]
+        normalized_runtime = dict(runtime_context or {})
         manifest = RunManifest(
             run_id=self.run_id,
             created_at=datetime.now(timezone.utc).isoformat(),
@@ -145,10 +167,27 @@ class ExperimentRunner:
             num_cases=num_cases,
             model_name=getattr(getattr(self.mode, "llm", None), "model", ""),
             config_fingerprint=stable_fingerprint(config_dict),
+            case_selection_fingerprint=stable_fingerprint(normalized_case_ids)
+            if normalized_case_ids
+            else "",
             config=config_dict,
+            runtime_context=normalized_runtime,
         )
         self._last_manifest = manifest
         self._write_json(self.output_dir / "run_manifest.json", serialize_dataclass(manifest))
+        if normalized_case_ids:
+            case_selection = CaseSelectionManifest(
+                run_id=self.run_id,
+                dataset=dataset_name,
+                num_cases=len(normalized_case_ids),
+                case_ids=normalized_case_ids,
+                case_order_fingerprint=manifest.case_selection_fingerprint,
+                runtime_context=normalized_runtime,
+            )
+            self._write_json(
+                self.output_dir / "case_selection.json",
+                serialize_dataclass(case_selection),
+            )
 
         legacy = {
             "timestamp": manifest.created_at,
@@ -158,6 +197,8 @@ class ExperimentRunner:
             "num_cases": manifest.num_cases,
             "config": config_dict,
             "config_fingerprint": manifest.config_fingerprint,
+            "case_selection_fingerprint": manifest.case_selection_fingerprint,
+            "runtime_context": normalized_runtime,
         }
         self._write_json(self.output_dir / "run_info.json", legacy)
 
@@ -187,6 +228,40 @@ class ExperimentRunner:
             if preds:
                 metrics["diagnosis"] = compute_diagnosis_metrics(preds, golds)
                 metrics["comorbidity"] = compute_comorbidity_metrics(preds, golds)
+                # 4-class evaluation (LingxiDiag-compatible)
+                four_class_preds = []
+                four_class_golds = []
+                for r, c in zip(results, cases):
+                    gold_label = (c.metadata or {}).get("four_class_label")
+                    if gold_label and c.diagnoses:
+                        pred_dx = [r.primary_diagnosis] if r.primary_diagnosis else []
+                        pred_dx += r.comorbid_diagnoses
+                        pred_label = _predict_four_class(pred_dx)
+                        four_class_preds.append(pred_label)
+                        four_class_golds.append(gold_label)
+                if four_class_preds:
+                    from sklearn.metrics import accuracy_score, f1_score as sk_f1
+
+                    metrics["four_class"] = {
+                        "accuracy": float(accuracy_score(four_class_golds, four_class_preds)),
+                        "macro_f1": float(
+                            sk_f1(
+                                four_class_golds,
+                                four_class_preds,
+                                average="macro",
+                                zero_division=0,
+                            )
+                        ),
+                        "weighted_f1": float(
+                            sk_f1(
+                                four_class_golds,
+                                four_class_preds,
+                                average="weighted",
+                                zero_division=0,
+                            )
+                        ),
+                        "n_cases": len(four_class_preds),
+                    }
 
         slice_metrics = self._compute_slice_metrics(results, cases)
         summary = MetricsSummary(

@@ -311,4 +311,7 @@ class TestHiEDMode:
         )
         result = mode.diagnose(make_case())
         assert result.failures
-        assert any(f.code == "triage_failed" for f in result.failures)
+        assert result.decision == "abstain"
+        assert result.failure is not None
+        assert result.failure.code == "triage_parse_failure"
+        assert any(f.code == "triage_parse_failure" for f in result.failures)

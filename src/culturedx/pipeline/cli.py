@@ -8,6 +8,7 @@ from pathlib import Path
 import click
 
 from culturedx.core.config import load_config
+from culturedx.pipeline.reproducibility import apply_global_seed
 
 
 def _create_configured_llm(cfg, llm_cfg):
@@ -25,6 +26,7 @@ def _create_configured_llm(cfg, llm_cfg):
         cache_path=Path(cfg.cache_dir) / "llm_cache.db",
         disable_thinking=getattr(llm_cfg, "disable_thinking", True),
         max_concurrent=getattr(llm_cfg, "max_concurrent", 4),
+        seed=getattr(cfg, "seed", None),
     )
 
 
@@ -61,6 +63,7 @@ def run(
         cfg = load_config(config[0])
     else:
         cfg = load_config(config[0], overrides=list(config[1:]))
+    apply_global_seed(cfg.seed)
 
     # 2. Load dataset
     from culturedx.data.adapters import get_adapter
@@ -102,14 +105,30 @@ def run(
             target_disorders=cfg.mode.target_disorders,
             scope_policy=evidence_scope_policy,
             somatization_enabled=cfg.evidence.somatization.enabled,
-            somatization_llm_fallback=cfg.evidence.somatization.llm_fallback,
+            somatization_mode=cfg.evidence.somatization.mode,
+            rerank_enabled=cfg.evidence.rerank_enabled,
+            rerank_top_n=cfg.evidence.rerank_top_n,
             top_k=cfg.evidence.top_k_final,
             min_confidence=cfg.evidence.min_confidence,
+            negation_mode=cfg.evidence.negation_mode,
         )
 
     # 5. Create mode
     mode_type = cfg.mode.type
     click.echo(f"Mode: {mode_type}")
+
+    # Load CaseRetriever if index exists
+    case_retriever = None
+    case_index_path = Path("data/cache/train_case_index.faiss")
+    case_meta_path = Path("data/cache/train_case_metadata.json")
+    if case_index_path.exists() and case_meta_path.exists():
+        try:
+            from culturedx.retrieval.case_retriever import CaseRetriever
+            case_retriever = CaseRetriever(case_index_path, case_meta_path)
+        except ImportError:
+            pass
+        except Exception as e:
+            click.echo(f"Warning: CaseRetriever failed to load: {e}")
 
     if mode_type == "hied":
         from culturedx.modes.hied import HiEDMode
@@ -118,12 +137,18 @@ def run(
             target_disorders=cfg.mode.target_disorders,
             scope_policy=cfg.mode.scope_policy,
             execution_mode=cfg.mode.execution_mode,
+            diagnose_then_verify=cfg.mode.diagnose_then_verify,
             contrastive_enabled=cfg.mode.contrastive_enabled,
             comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
             prompt_variant=cfg.mode.prompt_variant,
+            calibrator_mode=cfg.mode.calibrator_mode,
+            calibrator_artifact_path=cfg.mode.calibrator_artifact_path,
+            force_prediction=cfg.mode.force_prediction,
         )
         if checker_llm is not None:
             mode_kwargs["checker_llm_client"] = checker_llm
+        if case_retriever is not None:
+            mode_kwargs["case_retriever"] = case_retriever
         mode = HiEDMode(**mode_kwargs)
     elif mode_type == "psycot":
         from culturedx.modes.psycot import PsyCoTMode
@@ -132,6 +157,7 @@ def run(
             target_disorders=cfg.mode.target_disorders,
             comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
             prompt_variant=cfg.mode.prompt_variant,
+            force_prediction=cfg.mode.force_prediction,
         )
         if checker_llm is not None:
             mode_kwargs["checker_llm_client"] = checker_llm
@@ -173,10 +199,17 @@ def run(
         # Auto-generate timestamped run dir
         run_dir = ExperimentRunner.create_run_dir(base_output, cfg.mode.type, dataset)
 
+    # Use case-level parallelism when vLLM continuous batching is available
+    max_cases_in_flight = getattr(cfg.llm, "max_concurrent", 1)
+    if cfg.llm.provider == "vllm":
+        # vLLM handles concurrent requests efficiently via continuous batching
+        max_cases_in_flight = max(max_cases_in_flight, 4)
+
     runner = ExperimentRunner(
         mode=mode,
         output_dir=run_dir,
         evidence_pipeline=evidence_pipeline,
+        max_cases_in_flight=max_cases_in_flight,
     )
 
     click.echo(f"Output directory: {run_dir}")
@@ -188,6 +221,15 @@ def run(
         dataset_name=dataset,
         num_cases=len(cases),
         mode_type=cfg.mode.type,
+        case_ids=[case.case_id for case in cases],
+        runtime_context={
+            "config_paths": list(config),
+            "data_path": effective_data_path,
+            "split": split,
+            "limit": limit,
+            "with_evidence": with_evidence,
+            "seed": cfg.seed,
+        },
     )
 
     results = runner.run(cases)
@@ -322,9 +364,13 @@ def sweep(
                 target_disorders=condition.target_disorders,
                 scope_policy=cfg.mode.scope_policy,
                 execution_mode=cfg.mode.execution_mode,
+                diagnose_then_verify=cfg.mode.diagnose_then_verify,
                 contrastive_enabled=cfg.mode.contrastive_enabled,
                 comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
                 prompt_variant=cfg.mode.prompt_variant,
+                calibrator_mode=cfg.mode.calibrator_mode,
+                calibrator_artifact_path=cfg.mode.calibrator_artifact_path,
+                force_prediction=cfg.mode.force_prediction,
             )
             if checker_llm is not None:
                 mode_kwargs["checker_llm_client"] = checker_llm
@@ -336,6 +382,7 @@ def sweep(
                 target_disorders=condition.target_disorders,
                 comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
                 prompt_variant=cfg.mode.prompt_variant,
+                force_prediction=cfg.mode.force_prediction,
             )
             if checker_llm is not None:
                 mode_kwargs["checker_llm_client"] = checker_llm
@@ -371,9 +418,12 @@ def sweep(
                 target_disorders=condition.target_disorders or cfg.mode.target_disorders,
                 scope_policy=evidence_scope_policy,
                 somatization_enabled=condition.with_somatization,
-                somatization_llm_fallback=cfg.evidence.somatization.llm_fallback,
+                somatization_mode=cfg.evidence.somatization.mode,
+                rerank_enabled=cfg.evidence.rerank_enabled,
+                rerank_top_n=cfg.evidence.rerank_top_n,
                 top_k=cfg.evidence.top_k_final,
                 min_confidence=cfg.evidence.min_confidence,
+                negation_mode=cfg.evidence.negation_mode,
                 brief_cache=brief_cache,
             )
 

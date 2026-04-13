@@ -4,11 +4,18 @@ mode:
   name: mas
   type: mas
   target_disorders:
+    - F20
+    - F31
     - F32
-    - F33
+    - F39
+    - F41.0
     - F41.1
     - F42
     - F43.1
+    - F43.2
+    - F45
+    - F51
+    - F98
 
 llm:
   provider: ollama

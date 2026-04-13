@@ -117,6 +117,20 @@ class TestConfidenceCalibrator:
         assert result.abstained[0].placement == "abstained"
         assert result.abstained[0].decision_reason == "below_abstain_threshold"
 
+    def test_force_prediction_never_returns_empty_primary(self):
+        calibrator = ConfidenceCalibrator(abstain_threshold=0.95, force_prediction=True)
+        low = _make_checker(
+            "F32",
+            [("B1", 0.2), ("B2", 0.2)],
+            ["B3", "C1", "C2"],
+            4,
+        )
+        result = calibrator.calibrate(["F32"], [low])
+        assert result.primary is not None
+        assert result.primary.disorder_code == "F32"
+        assert result.primary.placement == "primary"
+        assert result.primary.decision_reason == "forced_highest_confidence"
+
     def test_empty_input(self, calibrator):
         result = calibrator.calibrate([], [])
         assert result.primary is None
@@ -235,13 +249,10 @@ class TestConfidenceCalibrator:
         assert artifact.bias != 0.0 or any(v != 0.0 for v in artifact.weights.values())
         assert artifact.metadata["dataset"] == "synthetic"
 
-    def test_missing_artifact_falls_back_to_heuristic(self, tmp_path):
+    def test_missing_artifact_raises_in_learned_mode(self, tmp_path):
         missing = tmp_path / "missing.json"
-        cal = ConfidenceCalibrator(artifact_path=missing)
-        co = _make_checker("F32", [("B1", 0.9), ("B2", 0.8), ("C1", 0.7), ("C2", 0.7)], [], 4)
-        result = cal.calibrate(["F32"], [co])
-        assert result.primary is not None
-        assert result.primary.calibration_path.startswith("heuristic")
+        with pytest.raises(FileNotFoundError, match="Calibrator artifact not found"):
+            ConfidenceCalibrator(mode="learned", artifact_path=missing)
 
 
 class TestScaleScoreSignal:

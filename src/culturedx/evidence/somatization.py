@@ -232,11 +232,35 @@ class SomatizationMapper:
     def __init__(
         self,
         llm_client=None,
-        llm_fallback: bool = True,
+        mode: str = "ontology-only",
+        llm_fallback: bool | None = None,
         prompts_dir: str | Path = "prompts/evidence",
     ) -> None:
+        """Initialize somatization mapper.
+
+        Args:
+            llm_client: LLM client for fallback mapping.
+            mode: "ontology-only", "ontology+llm", or "llm-only".
+            llm_fallback: Deprecated. If set, overrides mode for backwards compat.
+            prompts_dir: Path to prompt templates.
+        """
+        # Backwards compat: llm_fallback=True -> ontology+llm, False -> ontology-only
+        if llm_fallback is not None:
+            mode = "ontology+llm" if llm_fallback else "ontology-only"
+
+        if mode not in ("ontology-only", "ontology+llm", "llm-only"):
+            raise ValueError(
+                f"Invalid somatization mode {mode!r}; "
+                "expected 'ontology-only', 'ontology+llm', or 'llm-only'"
+            )
+        if mode in ("ontology+llm", "llm-only") and llm_client is None:
+            raise ValueError(
+                f"Somatization mode {mode!r} requires an llm_client"
+            )
+
         self.llm = llm_client
-        self.llm_fallback = llm_fallback and (llm_client is not None)
+        self.mode = mode
+        self.llm_fallback = mode in ("ontology+llm", "llm-only")
         if self.llm_fallback:
             self._env = Environment(
                 loader=FileSystemLoader(str(prompts_dir)),

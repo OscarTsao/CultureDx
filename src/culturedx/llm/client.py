@@ -28,6 +28,7 @@ class OllamaClient:
         disable_thinking: bool = True,
         max_retries: int = 3,
         max_concurrent: int = 4,
+        seed: int | None = None,
         transport=None,
         observability_hook=None,
     ) -> None:
@@ -40,6 +41,7 @@ class OllamaClient:
         self.max_retries = max_retries
         self.max_concurrent = max(1, max_concurrent)
         self.disable_thinking = disable_thinking
+        self.seed = seed
         self._cache = LLMCache(cache_path) if cache_path else None
         self._runtime = SharedLLMHTTPRuntime(
             base_url=self.base_url,
@@ -74,6 +76,12 @@ class OllamaClient:
             return prompt
         return f"{prompt_prefix}\n\n{prompt}"
 
+    def _cache_key_input(self, prompt: str, prompt_prefix: str | None = None) -> str:
+        key_input = self._build_prompt(prompt, prompt_prefix=prompt_prefix)
+        if self.seed is None:
+            return key_input
+        return f"{key_input}\n\n[seed:{self.seed}]"
+
     def _build_request_body(
         self,
         prompt: str,
@@ -88,6 +96,8 @@ class OllamaClient:
                 "top_k": self.top_k,
             },
         }
+        if self.seed is not None:
+            body["options"]["seed"] = self.seed
         if self.disable_thinking:
             body["think"] = False
         return body
@@ -108,7 +118,7 @@ class OllamaClient:
         if json_schema is not None:
             logger.warning("OllamaClient does not support json_schema; parameter ignored")
 
-        cache_input = self._build_prompt(prompt, prompt_prefix=prompt_prefix)
+        cache_input = self._cache_key_input(prompt, prompt_prefix=prompt_prefix)
         if self._cache:
             cached = self._cache.get(
                 self.provider, self.model, prompt_hash, language, cache_input
@@ -160,7 +170,7 @@ class OllamaClient:
         if not prompt_hash:
             prompt_hash = self.compute_prompt_hash(prompt)
 
-        cache_input = self._build_prompt(prompt, prompt_prefix=prompt_prefix)
+        cache_input = self._cache_key_input(prompt, prompt_prefix=prompt_prefix)
         if self._cache:
             cached = self._cache.get(
                 self.provider, self.model, prompt_hash, language, cache_input

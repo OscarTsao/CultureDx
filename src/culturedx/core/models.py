@@ -104,6 +104,9 @@ class CriterionEvidence:
     spans: list[SymptomSpan] = field(default_factory=list)
     confidence: float = 0.0
     uniqueness_score: float = 1.0  # 1.0 = unique to this disorder, 0.0 = shared with all
+    has_negated_spans: bool = False  # True if any span was negation-detected
+    has_somatization_mapped: bool = False  # True if any span was somatization-mapped
+    somatization_sources: list[str] = field(default_factory=list)  # e.g. ["exact", "fuzzy"]
 
 
 @dataclass

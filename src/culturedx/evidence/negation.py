@@ -9,10 +9,7 @@ from dataclasses import dataclass
 import re
 from typing import Any
 
-try:  # pragma: no cover - exercised through detector behavior
-    import stanza
-except ImportError:  # pragma: no cover - stanza is expected to be installed
-    stanza = None
+# stanza is imported on-demand when mode="stanza-dep" is requested
 
 
 NEGATION_CUES = (
@@ -130,8 +127,24 @@ class NegationDetector:
     _shared_nlp: Any | None = None
     _shared_nlp_failed = False
 
-    def __init__(self, use_dep_parsing: bool = True):
-        self.use_dep_parsing = bool(use_dep_parsing and stanza is not None)
+    def __init__(self, mode: str = "clause-rule"):
+        """Initialize negation detector.
+
+        Args:
+            mode: "clause-rule" (default, no deps) or "stanza-dep" (requires stanza).
+                  Crashes immediately if stanza-dep is requested but stanza is not installed.
+        """
+        if mode not in ("clause-rule", "stanza-dep"):
+            raise ValueError(f"Invalid negation mode {mode!r}; expected 'clause-rule' or 'stanza-dep'")
+        if mode == "stanza-dep":
+            try:
+                import stanza as _stanza  # noqa: F811
+            except ImportError as e:
+                raise ImportError(
+                    "stanza is required for negation mode 'stanza-dep'. "
+                    "Install with: pip install stanza"
+                ) from e
+        self.use_dep_parsing = mode == "stanza-dep"
 
     def detect(self, text: str, symptom: str) -> NegationResult:
         """Check if a symptom mention is negated in the given text."""
@@ -365,7 +378,8 @@ class NegationDetector:
 
     @classmethod
     def _get_nlp(cls) -> Any | None:
-        if not cls._shared_nlp_failed and cls._shared_nlp is None and stanza is not None:
+        if not cls._shared_nlp_failed and cls._shared_nlp is None:
+            import stanza
             try:
                 cls._shared_nlp = stanza.Pipeline(
                     "zh",
@@ -373,9 +387,13 @@ class NegationDetector:
                     tokenize_no_ssplit=True,
                     verbose=False,
                 )
-            except Exception:  # pragma: no cover - fallback is behavioral
+            except Exception as exc:
                 cls._shared_nlp_failed = True
                 cls._shared_nlp = None
+                raise RuntimeError(
+                    "Failed to initialize stanza zh pipeline for negation mode 'stanza-dep'. "
+                    "Ensure the stanza zh model is downloaded: python -c \"import stanza; stanza.download('zh')\""
+                ) from exc
         return cls._shared_nlp
 
     def _overlaps_positive_term(self, text: str, symptom_pos: int, symptom_end: int) -> bool:
@@ -425,4 +443,3 @@ def _find_all(text: str, needle: str) -> list[int]:
 
 def _span_overlaps(left_start: int, left_end: int, right_start: int, right_end: int) -> bool:
     return left_start < right_end and right_start < left_end
-

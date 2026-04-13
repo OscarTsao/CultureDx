@@ -78,6 +78,15 @@ class TestRunnerArtifacts:
             dataset_name="test",
             num_cases=1,
             mode_type="stub",
+            case_ids=[case.case_id for case in cases],
+            runtime_context={
+                "config_paths": ["configs/base.yaml", "configs/hied.yaml"],
+                "data_path": "tests/fixtures/mdd5k_sample.json",
+                "split": None,
+                "limit": None,
+                "with_evidence": True,
+                "seed": 42,
+            },
         )
         results = runner.run(cases)
         metrics = runner.evaluate(results, cases)
@@ -85,6 +94,7 @@ class TestRunnerArtifacts:
         assert metrics["diagnosis"]["top1_accuracy"] >= 0.0
         assert (tmp_path / "run" / "run_manifest.json").exists()
         assert (tmp_path / "run" / "run_info.json").exists()
+        assert (tmp_path / "run" / "case_selection.json").exists()
         assert (tmp_path / "run" / "predictions.jsonl").exists()
         assert (tmp_path / "run" / "failures.jsonl").exists()
         assert (tmp_path / "run" / "stage_timings.jsonl").exists()
@@ -103,6 +113,12 @@ class TestRunnerArtifacts:
 
         manifest = json.loads((tmp_path / "run" / "run_manifest.json").read_text(encoding="utf-8"))
         assert manifest["config_fingerprint"]
+        assert manifest["case_selection_fingerprint"]
+        assert manifest["runtime_context"]["seed"] == 42
+
+        case_selection = json.loads((tmp_path / "run" / "case_selection.json").read_text(encoding="utf-8"))
+        assert case_selection["case_ids"] == ["runner-001"]
+        assert case_selection["case_order_fingerprint"] == manifest["case_selection_fingerprint"]
 
         metrics_summary = json.loads((tmp_path / "run" / "metrics_summary.json").read_text(encoding="utf-8"))
         assert metrics_summary["schema_version"] == "v1"

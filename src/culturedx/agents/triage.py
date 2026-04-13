@@ -74,7 +74,9 @@ class TriageAgent(BaseAgent):
 
         # Render prompt (with optional CoT variant)
         prompt_variant = (input.extra or {}).get("prompt_variant", "")
-        if prompt_variant == "cot" and input.language == "zh":
+        if prompt_variant == "v2" and input.language == "zh":
+            template_name = "triage_v2_cot_zh.jinja"
+        elif prompt_variant == "cot" and input.language == "zh":
             template_name = "triage_cot_zh.jinja"
         else:
             template_name = f"triage_{input.language}.jinja"
@@ -109,6 +111,22 @@ class TriageAgent(BaseAgent):
     def _parse_triage(self, parsed: dict | list | None) -> dict:
         """Parse triage response and expand categories to a routing payload."""
         category_inputs, fallback_reason = normalize_triage_categories(parsed)
+        if not category_inputs:
+            logger.warning("Triage parse failure: no valid categories extracted from LLM response")
+            return {
+                "categories": [],
+                "disorder_codes": [],
+                "selected_categories": [],
+                "candidate_disorder_codes": [],
+                "fallback_reason": fallback_reason or "no_valid_categories",
+                "routing_mode": "parse_failure",
+                "calibration_status": "n/a",
+                "calibration_artifact_path": None,
+                "calibration_method": "n/a",
+                "calibration_temperature": None,
+                "raw_categories": [],
+                "parse_failure": True,
+            }
         routing = route_triage_categories(
             category_inputs,
             calibration_artifact=self._calibration_artifact,
@@ -117,8 +135,6 @@ class TriageAgent(BaseAgent):
             activation_threshold=self.activation_threshold,
             max_categories=self.max_categories,
         )
-        if fallback_reason is not None:
-            logger.warning("Triage produced no valid categories, activating all")
 
         payload = routing.to_dict()
         payload["fallback_reason"] = fallback_reason or payload.get("fallback_reason")

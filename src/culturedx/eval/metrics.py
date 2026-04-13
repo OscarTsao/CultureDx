@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import numpy as np
 from scipy import stats
-from sklearn.metrics import f1_score
+from sklearn.metrics import accuracy_score, f1_score
 
 
 def normalize_icd_code(code: str, level: str = "parent") -> str:
@@ -36,18 +36,51 @@ def normalize_code_list(codes: list[str], level: str = "parent") -> list[str]:
 def top_k_accuracy(
     preds: list[list[str]], golds: list[list[str]], k: int = 1
 ) -> float:
-    """Top-k accuracy: correct if any gold diagnosis is in top-k predictions."""
+    """Top-k accuracy against the primary gold diagnosis.
+
+    LingxiDiagBench-style diagnosis metrics treat the first gold label as the
+    reference diagnosis for ranking metrics. A case is correct only when that
+    primary gold code appears within the top-k predicted codes.
+    """
     correct = 0
     for pred_list, gold_list in zip(preds, golds):
-        top_k_preds = set(pred_list[:k])
-        if top_k_preds & set(gold_list):
+        gold_primary = gold_list[0] if gold_list else None
+        if gold_primary is not None and gold_primary in pred_list[:k]:
             correct += 1
     return correct / len(preds) if preds else 0.0
 
 
 def macro_f1(preds: list[str], golds: list[str]) -> float:
     """Macro-averaged F1 across all classes."""
+    if not preds or not golds:
+        return 0.0
     return float(f1_score(golds, preds, average="macro", zero_division=0))
+
+
+def weighted_f1(preds: list[str], golds: list[str]) -> float:
+    """Weighted F1 score (accounts for class imbalance)."""
+    if not preds or not golds:
+        return 0.0
+    return float(f1_score(golds, preds, average="weighted", zero_division=0))
+
+
+def multiclass_accuracy(preds: list[str], golds: list[str]) -> float:
+    """Standard single-label multi-class accuracy."""
+    if not preds or not golds:
+        return 0.0
+    return float(accuracy_score(golds, preds))
+
+
+def exact_match_accuracy(preds: list[list[str]], golds: list[list[str]]) -> float:
+    """Order-sensitive exact-list accuracy.
+
+    A case counts as correct only when the predicted diagnosis list exactly
+    matches the gold diagnosis list after any upstream normalization, including
+    primary-first ordering and comorbid label membership.
+    """
+    if not preds or not golds:
+        return 0.0
+    return sum(1 for pred, gold in zip(preds, golds) if pred == gold) / len(preds)
 
 
 def binary_f1(preds: list[int], golds: list[int]) -> float:
@@ -82,18 +115,37 @@ def compute_diagnosis_metrics(
         preds: Predicted diagnosis lists per case.
         golds: Ground truth diagnosis lists per case.
         normalize: ICD code normalization level ("parent" or None).
+
+    Returns:
+        ``accuracy`` is order-sensitive exact-match accuracy over the full
+        predicted diagnosis list. ``top1_accuracy`` and ``top3_accuracy`` are
+        ranking metrics against the primary gold diagnosis.
     """
     if normalize:
         preds = [normalize_code_list(p, normalize) for p in preds]
         golds = [normalize_code_list(g, normalize) for g in golds]
 
+    if not preds or not golds:
+        return {
+            "accuracy": 0.0,
+            "top1_accuracy": 0.0,
+            "top3_accuracy": 0.0,
+            "macro_f1": 0.0,
+            "weighted_f1": 0.0,
+            "overall": 0.0,
+        }
+
     primary_preds = [p[0] if p else "unknown" for p in preds]
     primary_golds = [g[0] if g else "unknown" for g in golds]
-    return {
+    metrics = {
+        "accuracy": exact_match_accuracy(preds, golds),
         "top1_accuracy": top_k_accuracy(preds, golds, k=1),
         "top3_accuracy": top_k_accuracy(preds, golds, k=3),
         "macro_f1": macro_f1(primary_preds, primary_golds),
+        "weighted_f1": weighted_f1(primary_preds, primary_golds),
     }
+    metrics["overall"] = float(np.mean(list(metrics.values())))
+    return metrics
 
 
 def compute_severity_metrics(

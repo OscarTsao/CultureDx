@@ -40,12 +40,13 @@ class EvidencePipeline:
         scope_policy: str = "auto",
         extractor_enabled: bool = True,
         somatization_enabled: bool = True,
-        somatization_llm_fallback: bool = True,
+        somatization_mode: str = "ontology-only",
         temporal_enabled: bool = True,
         rerank_enabled: bool = False,
         rerank_top_n: int = 5,
         top_k: int = 10,
         min_confidence: float = 0.1,
+        negation_mode: str = "clause-rule",
         prompts_dir: str | Path = "prompts/evidence",
         brief_cache: "EvidenceBriefCache | None" = None,
     ) -> None:
@@ -76,7 +77,7 @@ class EvidencePipeline:
         if somatization_enabled:
             self._somatizer = SomatizationMapper(
                 llm_client=llm_client,
-                llm_fallback=somatization_llm_fallback,
+                mode=somatization_mode,
                 prompts_dir=prompts_dir,
             )
         else:
@@ -88,6 +89,7 @@ class EvidencePipeline:
             min_score=min_confidence,
             reranker=ConceptOverlapReranker() if rerank_enabled else None,
             rerank_top_n=rerank_top_n,
+            negation_mode=negation_mode,
         )
         self._assembler = EvidenceBriefAssembler(
             min_confidence=min_confidence

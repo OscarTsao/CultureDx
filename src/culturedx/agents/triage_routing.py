@@ -168,10 +168,6 @@ def normalize_triage_categories(parsed: dict | list | None) -> tuple[list[Triage
 
     if not categories:
         fallback_reason = "no_valid_categories"
-        categories = [
-            TriageCategoryInput(category=category, raw_score=0.5)
-            for category in sorted(VALID_CATEGORIES)
-        ]
 
     categories.sort(key=lambda item: item.raw_score, reverse=True)
     return categories, fallback_reason
@@ -180,18 +176,18 @@ def normalize_triage_categories(parsed: dict | list | None) -> tuple[list[Triage
 def load_calibration_artifact(
     artifact_path: str | Path | None,
 ) -> tuple[TriageCalibrationArtifact | None, str | None]:
-    """Load an artifact if present; otherwise return a safe fallback."""
+    """Load a calibration artifact. Crashes if path is given but file is missing."""
     if artifact_path is None:
         return None, "no_artifact_path"
 
     path = Path(artifact_path)
     if not path.exists():
-        return None, "artifact_missing"
+        raise FileNotFoundError(
+            f"Triage calibration artifact not found at {path}. "
+            "Remove calibration_artifact_path from config or provide a valid path."
+        )
 
-    try:
-        return TriageCalibrationArtifact.load(path), None
-    except Exception as exc:
-        return None, f"artifact_load_failed:{exc}"
+    return TriageCalibrationArtifact.load(path), None
 
 
 def apply_temperature_scaling(raw_score: float, temperature: float) -> float:

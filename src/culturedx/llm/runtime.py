@@ -5,6 +5,7 @@ import asyncio
 from collections.abc import Callable
 from dataclasses import dataclass, field
 import logging
+import threading
 import time
 from typing import Any
 
@@ -36,6 +37,14 @@ class LLMRequestStats:
     request_tags: dict[str, str] = field(default_factory=dict)
 
 
+@dataclass
+class _AsyncClientState:
+    """Per-loop async client state for thread-safe async HTTP access."""
+
+    loop: asyncio.AbstractEventLoop
+    client: httpx.AsyncClient
+
+
 class SharedLLMHTTPRuntime:
     """Pooled sync/async HTTP runtime shared by Ollama and vLLM clients."""
 
@@ -62,7 +71,9 @@ class SharedLLMHTTPRuntime:
         self.headers = headers or {}
         self.observability_hook = observability_hook
         self._sync_client: httpx.Client | None = None
-        self._async_client: httpx.AsyncClient | None = None
+        self._async_local = threading.local()
+        self._async_client_lock = threading.Lock()
+        self._async_client_states: dict[tuple[int, int], _AsyncClientState] = {}
 
     def _sync(self) -> httpx.Client:
         if self._sync_client is None:
@@ -76,31 +87,79 @@ class SharedLLMHTTPRuntime:
         return self._sync_client
 
     async def _async(self) -> httpx.AsyncClient:
-        if self._async_client is None:
-            self._async_client = httpx.AsyncClient(
+        loop = asyncio.get_running_loop()
+        state = getattr(self._async_local, "state", None)
+        if (
+            state is None
+            or state.loop is not loop
+            or state.loop.is_closed()
+        ):
+            client = httpx.AsyncClient(
                 base_url=self.base_url,
                 timeout=self.timeout,
                 transport=self.transport,
                 limits=self.limits,
                 headers=self.headers,
             )
-        return self._async_client
+            state = _AsyncClientState(loop=loop, client=client)
+            self._async_local.state = state
+            with self._async_client_lock:
+                self._async_client_states[(threading.get_ident(), id(loop))] = state
+        return state.client
+
+    @staticmethod
+    def _close_async_client_sync(client: httpx.AsyncClient) -> None:
+        errors: list[BaseException] = []
+
+        def _runner() -> None:
+            try:
+                asyncio.run(client.aclose())
+            except BaseException as exc:  # pragma: no cover - best-effort cleanup
+                errors.append(exc)
+
+        closer = threading.Thread(
+            target=_runner,
+            name="culturedx-async-client-close",
+            daemon=True,
+        )
+        closer.start()
+        closer.join()
+        if errors:
+            raise errors[0]
 
     def close(self) -> None:
         if self._sync_client is not None:
             self._sync_client.close()
             self._sync_client = None
 
-        if self._async_client is not None:
-            try:
-                asyncio.run(self._async_client.aclose())
-            finally:
-                self._async_client = None
+        with self._async_client_lock:
+            states = list(self._async_client_states.values())
+            self._async_client_states.clear()
+
+        seen_clients: set[int] = set()
+        for state in states:
+            client_id = id(state.client)
+            if client_id in seen_clients:
+                continue
+            seen_clients.add(client_id)
+            self._close_async_client_sync(state.client)
+
+        self._async_local.state = None
 
     async def aclose(self) -> None:
-        if self._async_client is not None:
-            await self._async_client.aclose()
-            self._async_client = None
+        with self._async_client_lock:
+            states = list(self._async_client_states.values())
+            self._async_client_states.clear()
+
+        seen_clients: set[int] = set()
+        for state in states:
+            client_id = id(state.client)
+            if client_id in seen_clients:
+                continue
+            seen_clients.add(client_id)
+            await state.client.aclose()
+
+        self._async_local.state = None
         if self._sync_client is not None:
             self._sync_client.close()
             self._sync_client = None
