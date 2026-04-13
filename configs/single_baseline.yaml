@@ -1,0 +1,25 @@
+# Single-model baseline (paper-prompt, no pipeline)
+# Usage: uv run culturedx run -c configs/base.yaml -c configs/single_baseline.yaml \
+#          -d lingxidiag --data-path data/raw/lingxidiag16k
+
+mode:
+  name: single
+  type: single
+  scope_policy: manual
+  target_disorders:
+    - F20
+    - F31
+    - F32
+    - F39
+    - F41.0
+    - F41.1
+    - F42
+    - F43.1
+    - F43.2
+    - F45
+    - F51
+    - F98
+
+llm:
+  temperature: 0.0
+  max_tokens: 1536
