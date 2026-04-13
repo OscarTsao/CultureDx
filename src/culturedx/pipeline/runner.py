@@ -16,7 +16,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from culturedx.core.models import ClinicalCase, DiagnosisResult
+from culturedx.core.models import ClinicalCase, DiagnosisResult, FailureInfo
 from culturedx.eval.code_mapping import map_code_list
 from culturedx.eval.metrics import compute_comorbidity_metrics, compute_diagnosis_metrics
 from culturedx.evidence.pipeline import EvidencePipeline
@@ -116,11 +116,15 @@ class ExperimentRunner:
                     )
                     result = DiagnosisResult(
                         case_id=case.case_id,
-                        primary_diagnosis="",
+                        primary_diagnosis=None,
                         comorbid_diagnoses=[],
                         confidence=0.0,
                         decision="abstain",
-                        failure=str(exc),
+                        failure=FailureInfo(
+                            code="runner_exception",
+                            stage="diagnose",
+                            message=str(exc),
+                        ),
                     )
                 result.stage_timings.setdefault(
                     "diagnosis_total",
