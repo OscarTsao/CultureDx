@@ -1,0 +1,35 @@
+# Ablation 2b: DtV V1 + RAG
+# Isolates RAG effect: V1 prompts (no prompt_variant) + FAISS case retrieval
+# Compared to 02 (DtV V1 without RAG), this adds balanced top-5 retrieval
+# Compared to 04 (DtV V2 + RAG), this keeps V1 prompts
+mode:
+  name: hied-dtv-v1-rag
+  type: hied
+  diagnose_then_verify: true
+  force_prediction: true
+  scope_policy: manual
+  execution_mode: benchmark_manual_scope
+  comorbid_min_ratio: 0.0
+  target_disorders:
+    - F20
+    - F31
+    - F32
+    - F39
+    - F41.0
+    - F41.1
+    - F42
+    - F43.1
+    - F43.2
+    - F45
+    - F51
+    - F98
+
+llm:
+  temperature: 0.0
+  max_tokens: 1536
+
+retrieval:
+  enabled: true
+  top_k: 5
+  balanced_per_class: true
+  level: 1

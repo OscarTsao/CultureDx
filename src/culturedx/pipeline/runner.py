@@ -19,6 +19,7 @@ from typing import Any
 from culturedx.core.models import ClinicalCase, DiagnosisResult, FailureInfo
 from culturedx.eval.code_mapping import map_code_list
 from culturedx.eval.metrics import compute_comorbidity_metrics, compute_diagnosis_metrics
+from culturedx.eval.lingxidiag_paper import compute_table4_metrics, pred_to_parent_list
 from culturedx.evidence.pipeline import EvidencePipeline
 from culturedx.modes.base import BaseModeOrchestrator, case_execution_context
 from culturedx.ontology.symptom_map import load_somatization_map
@@ -280,6 +281,35 @@ class ExperimentRunner:
                         "n_cases": len(four_class_preds),
                     }
 
+
+        # ── Paper-official Table 4 metrics (2c/4c/12c + 11-metric Overall) ──
+        # Computes the same 11-metric Overall used by the research branch,
+        # giving every config a consistent cross-branch score.
+        try:
+            table4_cases = []
+            for r, c in zip(results, cases):
+                raw_code = (c.metadata or {}).get("diagnosis_code_full", "")
+                if not raw_code:
+                    # Fall back to joining diagnoses list
+                    raw_code = ",".join(c.diagnoses) if c.diagnoses else ""
+                pred_codes = []
+                if r.primary_diagnosis:
+                    pred_codes.append(r.primary_diagnosis)
+                pred_codes.extend(r.comorbid_diagnoses)
+                table4_cases.append({
+                    "DiagnosisCode": raw_code,
+                    "_pred_codes": pred_codes,
+                })
+            if table4_cases:
+                def _get_pred(case: dict) -> list[str]:
+                    return pred_to_parent_list(case["_pred_codes"])
+                metrics["table4"] = compute_table4_metrics(table4_cases, _get_pred)
+                logger.info(
+                    "Table 4 Overall: %.4f",
+                    metrics["table4"].get("Overall", float("nan")),
+                )
+        except Exception:
+            logger.warning("Table 4 computation failed", exc_info=True)
         slice_metrics = self._compute_slice_metrics(results, cases)
         summary = MetricsSummary(
             run_id=self.run_id,
