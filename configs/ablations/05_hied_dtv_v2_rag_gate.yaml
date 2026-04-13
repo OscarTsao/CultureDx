@@ -1,0 +1,36 @@
+# Ablation 5: + Comorbidity Gate (V2.4 Final)
+# DtV + V2 prompts + RAG + forbidden-pairs blacklist + confidence threshold
+# Equivalent to configs/v2.4_final.yaml
+mode:
+  name: hied-dtv-v2-rag-gate
+  type: hied
+  diagnose_then_verify: true
+  force_prediction: true
+  prompt_variant: v2
+  scope_policy: manual
+  execution_mode: benchmark_manual_scope
+  calibrator_mode: heuristic-v2
+  comorbid_min_ratio: 0.90
+  target_disorders:
+    - F20
+    - F31
+    - F32
+    - F39
+    - F41.0
+    - F41.1
+    - F42
+    - F43.1
+    - F43.2
+    - F45
+    - F51
+    - F98
+
+llm:
+  temperature: 0.0
+  max_tokens: 1536
+
+retrieval:
+  enabled: true
+  top_k: 5
+  balanced_per_class: true
+  level: 1
