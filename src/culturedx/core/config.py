@@ -89,6 +89,14 @@ class EvidenceConfig(BaseModel):
     rerank_top_n: int = 5
 
 
+class RetrievalConfig(BaseModel):
+    """RAG case retrieval (FAISS index) settings."""
+    enabled: bool = False
+    top_k: int = 5
+    balanced_per_class: bool = True
+    level: int = 1  # 1=label-only, 2=key evidence snippets
+
+
 class CultureDxConfig(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
@@ -103,6 +111,7 @@ class CultureDxConfig(BaseModel):
     eval: EvalConfig = EvalConfig()
     dataset: DatasetConfig = DatasetConfig()
     evidence: EvidenceConfig = EvidenceConfig()
+    retrieval: RetrievalConfig = RetrievalConfig()
 
 
 def load_config(

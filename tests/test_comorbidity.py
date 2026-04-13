@@ -107,8 +107,8 @@ class TestComorbidityResolver:
         assert "F41.1" in result.comorbid
         assert "F42" in result.comorbid
 
-    def test_abs_threshold_excludes_low_confidence(self):
-        """comorbid_min_ratio=0.7: F41.1 (0.5) < 0.7 → rejected."""
+    def test_ratio_threshold_excludes_low_confidence(self):
+        """comorbid_min_ratio=0.7: F41.1 ratio (0.5/0.8=0.625) < 0.7 → rejected."""
         resolver = ComorbidityResolver(comorbid_min_ratio=0.7)
         result = resolver.resolve(
             ["F32", "F41.1"],
@@ -117,7 +117,7 @@ class TestComorbidityResolver:
         assert result.primary == "F32"
         assert "F41.1" not in result.comorbid
         assert "F41.1" in result.rejected
-        assert any("confidence_below" in reason for reason in result.rejection_reasons)
+        assert any("ratio" in reason for reason in result.rejection_reasons)
 
     def test_abs_threshold_keeps_sufficient_confidence(self):
         """comorbid_min_ratio=0.4: F41.1 (0.5) >= 0.4 → kept."""

@@ -188,18 +188,20 @@ class ComorbidityResolver:
                 })
                 continue
 
-            # Absolute confidence threshold
+            # Confidence ratio threshold: comorbid must be >= ratio * primary
             if self.comorbid_min_ratio > 0:
+                primary_conf = confs.get(primary, 1.0)
                 candidate_conf = confs.get(candidate, 0.0)
-                if candidate_conf < self.comorbid_min_ratio:
+                ratio = candidate_conf / primary_conf if primary_conf > 0 else 0.0
+                if ratio < self.comorbid_min_ratio:
                     rejected.append(candidate)
                     rejection_reasons.append(
-                        f"{candidate} rejected: confidence_below_{self.comorbid_min_ratio:.2f}"
+                        f"{candidate} rejected: ratio_{ratio:.2f}_below_{self.comorbid_min_ratio:.2f}"
                     )
                     decision_trace.append({
                         "disorder": candidate,
                         "decision": "rejected",
-                        "reason": "confidence_below_absolute_threshold",
+                        "reason": f"confidence_ratio_{ratio:.3f}_below_{self.comorbid_min_ratio}",
                     })
                     continue
 

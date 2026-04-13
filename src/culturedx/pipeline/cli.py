@@ -117,18 +117,22 @@ def run(
     mode_type = cfg.mode.type
     click.echo(f"Mode: {mode_type}")
 
-    # Load CaseRetriever if index exists
+    # Load CaseRetriever only when retrieval is enabled in config
     case_retriever = None
-    case_index_path = Path("data/cache/train_case_index.faiss")
-    case_meta_path = Path("data/cache/train_case_metadata.json")
-    if case_index_path.exists() and case_meta_path.exists():
-        try:
-            from culturedx.retrieval.case_retriever import CaseRetriever
-            case_retriever = CaseRetriever(case_index_path, case_meta_path)
-        except ImportError:
-            pass
-        except Exception as e:
-            click.echo(f"Warning: CaseRetriever failed to load: {e}")
+    if cfg.retrieval.enabled:
+        case_index_path = Path("data/cache/train_case_index.faiss")
+        case_meta_path = Path("data/cache/train_case_metadata.json")
+        if case_index_path.exists() and case_meta_path.exists():
+            try:
+                from culturedx.retrieval.case_retriever import CaseRetriever
+                case_retriever = CaseRetriever(case_index_path, case_meta_path)
+                click.echo(f"RAG enabled: loaded {case_index_path}")
+            except ImportError:
+                click.echo("Warning: retrieval enabled but faiss/case_retriever not installed")
+            except Exception as e:
+                click.echo(f"Warning: CaseRetriever failed to load: {e}")
+        else:
+            click.echo("Warning: retrieval enabled but FAISS index not found")
 
     if mode_type == "hied":
         from culturedx.modes.hied import HiEDMode
