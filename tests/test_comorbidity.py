@@ -5,8 +5,8 @@ import pytest
 
 from culturedx.diagnosis.comorbidity import (
     ComorbidityResolver,
-    DEFAULT_ALLOWED_COMORBIDITY_PAIRS,
     EXCLUSION_RULES,
+    FORBIDDEN_COMORBIDITY_PAIRS,
 )
 
 
@@ -96,8 +96,8 @@ class TestComorbidityResolver:
         assert "F51" in result.comorbid
         assert len(result.excluded) == 0
 
-    def test_default_ratio_no_filtering(self):
-        """ratio=0.0 (default) keeps all comorbid — backward compatible."""
+    def test_default_min_ratio_no_filtering(self):
+        """comorbid_min_ratio=0.0 (default) keeps all comorbid."""
         resolver = ComorbidityResolver(comorbid_min_ratio=0.0)
         result = resolver.resolve(
             ["F32", "F41.1", "F42"],
@@ -107,8 +107,8 @@ class TestComorbidityResolver:
         assert "F41.1" in result.comorbid
         assert "F42" in result.comorbid
 
-    def test_ratio_excludes_low_confidence(self):
-        """ratio=0.7: F41.1 (0.5) < 0.7 * 0.8 = 0.56 → excluded."""
+    def test_abs_threshold_excludes_low_confidence(self):
+        """comorbid_min_ratio=0.7: F41.1 (0.5) < 0.7 → rejected."""
         resolver = ComorbidityResolver(comorbid_min_ratio=0.7)
         result = resolver.resolve(
             ["F32", "F41.1"],
@@ -117,11 +117,11 @@ class TestComorbidityResolver:
         assert result.primary == "F32"
         assert "F41.1" not in result.comorbid
         assert "F41.1" in result.rejected
-        assert any("confidence_ratio" in reason for reason in result.rejection_reasons)
+        assert any("confidence_below" in reason for reason in result.rejection_reasons)
 
-    def test_ratio_keeps_sufficient_confidence(self):
-        """ratio=0.5: F41.1 (0.5) >= 0.5 * 0.8 = 0.40 → kept."""
-        resolver = ComorbidityResolver(comorbid_min_ratio=0.5)
+    def test_abs_threshold_keeps_sufficient_confidence(self):
+        """comorbid_min_ratio=0.4: F41.1 (0.5) >= 0.4 → kept."""
+        resolver = ComorbidityResolver(comorbid_min_ratio=0.4)
         result = resolver.resolve(
             ["F32", "F41.1"],
             confidences={"F32": 0.8, "F41.1": 0.5},
@@ -130,7 +130,7 @@ class TestComorbidityResolver:
         assert "F41.1" in result.comorbid
 
     def test_exclusion_rules_still_work(self):
-        """F33+F32 → F32 excluded by ICD-10 rule regardless of ratio."""
+        """F33+F32 → F32 excluded by ICD-10 rule regardless of threshold."""
         resolver = ComorbidityResolver(comorbid_min_ratio=0.0)
         result = resolver.resolve(
             ["F33", "F32"],
@@ -148,15 +148,28 @@ class TestComorbidityResolver:
         assert result.comorbid == []
         assert result.excluded == []
 
-    def test_invalid_pair_not_emitted_when_allowed_pairs_enforced(self):
-        resolver = ComorbidityResolver(
-            allowed_pairs=DEFAULT_ALLOWED_COMORBIDITY_PAIRS,
-        )
+    def test_forbidden_pair_rejected(self):
+        """F32+F31 is a forbidden pair → F31 rejected as comorbid."""
+        resolver = ComorbidityResolver()
+        # F31 supersedes F32 via exclusion rules, so test with forbidden pair
+        # that isn't also an exclusion rule: F41.2 + F32
         result = resolver.resolve(
-            ["F20", "F51"],
-            confidences={"F20": 0.9, "F51": 0.8},
+            ["F32", "F41.2"],
+            confidences={"F32": 0.9, "F41.2": 0.8},
         )
-        assert result.primary == "F20"
-        assert result.comorbid == []
-        assert "F51" in result.rejected
-        assert any("invalid_pair_with_F20" in reason for reason in result.rejection_reasons)
+        assert result.primary == "F32"
+        assert "F41.2" not in result.comorbid
+        assert "F41.2" in result.rejected
+        assert any("forbidden_pair" in reason for reason in result.rejection_reasons)
+
+    def test_decision_trace_populated(self):
+        """Decision trace records all decisions."""
+        resolver = ComorbidityResolver()
+        result = resolver.resolve(
+            ["F32", "F41.1"],
+            confidences={"F32": 0.9, "F41.1": 0.8},
+        )
+        assert len(result.decision_trace) >= 2
+        decisions = {d["disorder"]: d["decision"] for d in result.decision_trace}
+        assert decisions["F32"] == "primary"
+        assert decisions["F41.1"] == "comorbid"

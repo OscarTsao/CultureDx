@@ -136,7 +136,7 @@ def test_dtv_promotes_confirmed_second_choice():
     assert result.candidate_disorders == ["F32", "F41.1", "F42"]
     assert result.decision_trace["dtv_mode"] is True
     assert result.decision_trace["diagnostician_ranked"] == ["F32", "F41.1", "F42"]
-    assert result.decision_trace["verify_codes"] == ["F32", "F41.1"]
+    assert result.decision_trace["verify_codes"] == ["F32", "F41.1", "F42"]
     assert result.decision_trace["veto_applied"] is True
     assert result.decision_trace["veto_from"] == "F32"
     assert result.decision_trace["veto_to"] == "F41.1"

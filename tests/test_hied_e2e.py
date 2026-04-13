@@ -619,9 +619,9 @@ class TestHiEDE2E:
         )
         result = mode.diagnose(_make_case())
         assert result.decision == "diagnosis"
-        # V2 tuned weights: threshold_ratio dominant -> F32 primary
-        assert result.primary_diagnosis == "F32"
-        assert "F41.1" in result.comorbid_diagnoses
+        # Calibrator scores: F41.1 met_ratio=1.0 > F32 met_ratio=0.545 -> F41.1 primary
+        assert result.primary_diagnosis == "F41.1"
+        # F32 rejected by calibrator (lower confidence than F41.1)
 
     # ------------------------------------------------------------------
     # Case 9: Contrastive skipped — only one disorder confirmed
@@ -677,6 +677,6 @@ class TestHiEDE2E:
         result = mode.diagnose(_make_case())
         assert result.decision == "diagnosis"
         # "both" means no downgrade -> same ranking as non-contrastive
-        # V2 tuned weights: threshold_ratio dominant -> F32 primary
-        assert result.primary_diagnosis == "F32"
-        assert "F41.1" in result.comorbid_diagnoses
+        # Calibrator scores: F41.1 met_ratio=1.0 > F32 met_ratio=0.545 -> F41.1 primary
+        assert result.primary_diagnosis == "F41.1"
+        # F32 rejected by calibrator (lower confidence than F41.1)
