@@ -108,7 +108,20 @@ class ExperimentRunner:
                     if "total" not in evidence.stage_timings:
                         evidence.stage_timings["total"] = time.monotonic() - evidence_start
                 diagnosis_start = time.monotonic()
-                result = self.mode.diagnose(case, evidence=evidence)
+                try:
+                    result = self.mode.diagnose(case, evidence=evidence)
+                except Exception as exc:
+                    logger.error(
+                        "Case %s failed: %s", case.case_id, exc,
+                    )
+                    result = DiagnosisResult(
+                        case_id=case.case_id,
+                        primary_diagnosis="",
+                        comorbid_diagnoses=[],
+                        confidence=0.0,
+                        decision="abstain",
+                        failure=str(exc),
+                    )
                 result.stage_timings.setdefault(
                     "diagnosis_total",
                     time.monotonic() - diagnosis_start,
