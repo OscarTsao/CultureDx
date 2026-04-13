@@ -5,7 +5,7 @@ SHELL := /bin/bash
 PYTHON := uv run
 N ?= 1000
 DATA_PATH ?= data/raw/lingxidiag16k
-DATASET ?= lingxidiag
+DATASET ?= lingxidiag16k
 BASE_CFG := configs/base.yaml
 VLLM_CFG := configs/vllm_awq.yaml
 OUTPUT_BASE := outputs/eval
@@ -68,4 +68,4 @@ results-table:
 
 # ─── Bootstrap CI ────────────────────────────────────────────────────
 bootstrap-ci:
-	$(PYTHON) python scripts/bootstrap_ci_final.py --results-dir $(OUTPUT_BASE)
+	$(PYTHON) python scripts/bootstrap_ci_final.py --base-dir .

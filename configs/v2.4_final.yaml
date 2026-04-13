@@ -2,7 +2,7 @@
 # Paper-aligned DtV (Diagnose-then-Verify) pipeline
 #
 # Usage: uv run culturedx run -c configs/base.yaml -c configs/v2.4_final.yaml \
-#          -d lingxidiag --data-path data/raw/lingxidiag16k
+#          -d lingxidiag16k --data-path data/raw/lingxidiag16k
 #
 # Key design choices:
 #   - DtV: diagnostician ranks → checker verifies → logic engine + comorbidity gate
