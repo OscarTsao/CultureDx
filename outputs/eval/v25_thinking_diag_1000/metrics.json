@@ -1,0 +1,18 @@
+{
+  "model": "Qwen/Qwen3-32B-AWQ",
+  "mode": "v2.5_thinking_diag",
+  "n_cases": 1000,
+  "12c_Acc": 0.497,
+  "12c_Top1": 0.505,
+  "12c_Top3": 0.505,
+  "12c_F1_macro": 0.19431303057603708,
+  "12c_F1_weighted": 0.4523993242149065,
+  "4c_Acc": 0.081,
+  "4c_F1_macro": 0.10001691448513382,
+  "2c_Acc": 0.6,
+  "2c_F1_macro": 0.5293627559287082,
+  "2c_n": 715,
+  "Overall": 0.3970521717626729,
+  "checker_confirmed": 435,
+  "checker_checked": 1901
+}

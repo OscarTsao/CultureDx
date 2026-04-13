@@ -1,0 +1,24 @@
+{
+  "model": "Qwen/Qwen3-32B-AWQ",
+  "mode": "two_pass",
+  "n_cases": 1000,
+  "n_f32_reexamined": 617,
+  "n_overridden": 6,
+  "override_dist": {
+    "F42": 3,
+    "F51": 2,
+    "F43": 1
+  },
+  "12c_Acc": 0.322,
+  "12c_Top1": 0.533,
+  "12c_Top3": 0.62,
+  "12c_F1_macro": 0.21272722466708271,
+  "12c_F1_weighted": 0.47564873265287594,
+  "4c_Acc": 0.575,
+  "4c_F1_macro": 0.5349530745237205,
+  "2c_Acc": 0.6993006993006993,
+  "2c_F1_macro": 0.4676221777205208,
+  "2c_n": 715,
+  "Overall": 0.49367132066129704,
+  "per_class_recall": {}
+}

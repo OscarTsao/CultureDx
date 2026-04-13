@@ -1,0 +1,22 @@
+{
+  "model": "Qwen/Qwen3-32B-AWQ",
+  "mode": "sc_dtv",
+  "n_cases": 1000,
+  "sc_dtv": {
+    "2class_Acc": 0.8266384778012685,
+    "2class_F1_macro": 0.7723398760330579,
+    "2class_F1_weighted": 0.8191165935736376,
+    "4class_Acc": 0.408,
+    "4class_F1_macro": 0.3693568350503491,
+    "4class_F1_weighted": 0.3890929371522792,
+    "12class_Acc": 0.431,
+    "12class_Top1": 0.484,
+    "12class_Top3": 0.484,
+    "12class_F1_macro": 0.133022901768704,
+    "12class_F1_weighted": 0.38726970731582583,
+    "2class_n": 473,
+    "4class_n": 1000,
+    "12class_n": 1000,
+    "Overall": 0.5003488480631929
+  }
+}
