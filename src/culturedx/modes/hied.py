@@ -61,6 +61,7 @@ class HiEDMode(BaseModeOrchestrator):
         comorbid_threshold: float = 0.5,
         differential_threshold: float = 0.10,
         contrastive_enabled: bool = False,
+        evidence_verification: bool = False,
         ranker_weights_path: str | Path | None = None,
         prompt_variant: str = "",
         calibrator_mode: str = "heuristic-v2",
@@ -111,6 +112,7 @@ class HiEDMode(BaseModeOrchestrator):
 
         # Stage 2.5: Contrastive disambiguation (optional)
         self.contrastive_enabled = contrastive_enabled
+        self.evidence_verification = evidence_verification
         self.contrastive = None
         if self.contrastive_enabled:
             from culturedx.agents.contrastive_checker import ContrastiveCheckerAgent
@@ -536,6 +538,52 @@ class HiEDMode(BaseModeOrchestrator):
                 checker_outputs, transcript_text, lang,
             )
             stage_timings["contrastive"] = time.monotonic() - contrastive_start
+
+        # === Stage 2.1: Evidence Verification (CPU, no LLM calls) ===
+        if getattr(self, "evidence_verification", False):
+            from culturedx.diagnosis.evidence_verifier import verify_checker_output
+            verify_start = time.monotonic()
+            verified_outputs = []
+            total_downgraded = 0
+            for co in checker_outputs:
+                co_dict = {
+                    "disorder_code": co.disorder,
+                    "criteria_met_count": co.criteria_met_count,
+                    "criteria_total_count": co.criteria_required,
+                    "per_criterion": [
+                        {
+                            "criterion_id": cr.criterion_id,
+                            "status": cr.status,
+                            "confidence": cr.confidence,
+                            "evidence": cr.evidence or "",
+                        }
+                        for cr in co.criteria
+                    ],
+                }
+                verified_dict, n_down, _ = verify_checker_output(co_dict, transcript_text)
+                total_downgraded += n_down
+                # Rebuild CheckerOutput from verified dict
+                from culturedx.core.models import CriterionResult, CheckerOutput as CO
+                new_criteria = [
+                    CriterionResult(
+                        criterion_id=c["criterion_id"],
+                        status=c["status"],
+                        confidence=c["confidence"],
+                        evidence=c.get("evidence", ""),
+                    )
+                    for c in verified_dict["per_criterion"]
+                ]
+                verified_outputs.append(CO(
+                    disorder=co.disorder,
+                    criteria=new_criteria,
+                    criteria_met_count=verified_dict["criteria_met_count"],
+                    criteria_required=co.criteria_required,
+                ))
+            if total_downgraded > 0:
+                logger.info("Evidence verification: %d criteria downgraded across %d disorders",
+                            total_downgraded, len(checker_outputs))
+                checker_outputs = verified_outputs
+            stage_timings["evidence_verification"] = time.monotonic() - verify_start
 
         # === Stage 3: Logic Engine (deterministic) ===
         logic_start = time.monotonic()

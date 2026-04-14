@@ -37,6 +37,7 @@ class ModeConfig(BaseModel):
     execution_mode: str = "auto"
     diagnose_then_verify: bool = False
     contrastive_enabled: bool = False
+    evidence_verification: bool = False
     prompt_variant: str = ""
     calibrator_mode: str = "heuristic-v2"  # "heuristic-v2" or "learned"
     calibrator_artifact_path: str | None = None
