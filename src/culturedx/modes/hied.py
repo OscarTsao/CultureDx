@@ -989,6 +989,44 @@ class HiEDMode(BaseModeOrchestrator):
         else:
             all_checker_outputs = checker_outputs
 
+        # === DtV Stage 2.1: Evidence Verification ===
+        if self.evidence_verification:
+            from culturedx.diagnosis.evidence_verifier import verify_checker_output
+            from culturedx.core.models import CriterionResult, CheckerOutput as CO
+            verify_start = time.monotonic()
+            verified_outputs = []
+            total_downgraded = 0
+            for co in all_checker_outputs:
+                co_dict = {
+                    "disorder_code": co.disorder,
+                    "criteria_met_count": co.criteria_met_count,
+                    "criteria_total_count": co.criteria_required,
+                    "per_criterion": [
+                        {"criterion_id": cr.criterion_id, "status": cr.status,
+                         "confidence": cr.confidence, "evidence": cr.evidence or ""}
+                        for cr in co.criteria
+                    ],
+                }
+                verified_dict, n_down, _ = verify_checker_output(co_dict, transcript_text)
+                total_downgraded += n_down
+                new_criteria = [
+                    CriterionResult(
+                        criterion_id=c["criterion_id"], status=c["status"],
+                        confidence=c["confidence"], evidence=c.get("evidence", ""),
+                    ) for c in verified_dict["per_criterion"]
+                ]
+                verified_outputs.append(CO(
+                    disorder=co.disorder, criteria=new_criteria,
+                    criteria_met_count=verified_dict["criteria_met_count"],
+                    criteria_required=co.criteria_required,
+                ))
+            if total_downgraded > 0:
+                logger.info("DtV evidence verification: %d criteria downgraded", total_downgraded)
+                all_checker_outputs = verified_outputs
+                checker_outputs = [co for co in verified_outputs
+                                   if co.disorder in set(c.disorder for c in checker_outputs)]
+            stage_timings["evidence_verification"] = time.monotonic() - verify_start
+
         top1_code = ranked_codes[0]
         top2_code = ranked_codes[1] if len(ranked_codes) > 1 else None
         top3_code = ranked_codes[2] if len(ranked_codes) > 2 else None
