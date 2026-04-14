@@ -26,7 +26,7 @@ class LingxiDiag16kAdapter(BaseDatasetAdapter):
             data_dir = data_dir / "data"
 
         if split is None:
-            split = "train"
+            split = "validation"
 
         parquet_files = sorted(data_dir.glob(f"{split}-*.parquet"))
         if not parquet_files:
