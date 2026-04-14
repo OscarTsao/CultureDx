@@ -238,7 +238,10 @@ def compute_table4_metrics(
         gold_4 = classify_4class_from_raw(raw_code)
         pred_primary = pred_parents[0] if pred_parents else "Others"
         pred_parent_set = set(pred_parents)
-        if "F32" in pred_parent_set and "F41" in pred_parent_set:
+        # Also check raw predictions for F41.2 (mixed anxiety-depression)
+        raw_pred_codes = case.get("_pred_codes", pred_parents)
+        has_pred_f41_2 = any("F41.2" in str(c) for c in raw_pred_codes)
+        if has_pred_f41_2 or ("F32" in pred_parent_set and "F41" in pred_parent_set):
             pred_4 = "Mixed"
         elif pred_primary == "F32":
             pred_4 = "Depression"
