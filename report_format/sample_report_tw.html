@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CultureDx 診斷意見書</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+         max-width: 780px; margin: 40px auto; padding: 0 20px; color: #333;
+         line-height: 1.8; background: #fafafa; font-size: 15px; }
+  .report { background: #fff; border-radius: 12px; padding: 36px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  h1 { font-size: 20px; color: #1a1a2e; margin: 0 0 6px; font-weight: 600; }
+  .subtitle { font-size: 13px; color: #888; margin-bottom: 20px; }
+  .meta { font-size: 13px; color: #666; margin-bottom: 24px;
+          padding-bottom: 16px; border-bottom: 1px solid #eee; }
+  .section-title { font-size: 16px; font-weight: 600; color: #2d3436;
+                   margin: 28px 0 12px; padding-left: 12px;
+                   border-left: 3px solid #3366cc; }
+  .dx-box { background: #f0f5ff; border: 1px solid #d0e0f8;
+            border-radius: 8px; padding: 16px 20px; margin: 12px 0 20px; }
+  .dx-primary { font-size: 17px; font-weight: 600; color: #1a4a8a; }
+  .dx-comorbid { font-size: 15px; color: #4a5568; margin-top: 6px; }
+  .dx-code { font-family: monospace; font-size: 14px; color: #888;
+             margin-right: 6px; }
+  .gold-box { background: #f0faf0; border: 1px solid #c6e6c6;
+              border-radius: 8px; padding: 10px 16px; margin: 8px 0;
+              font-size: 13px; color: #2d6a2d; }
+  .evidence-section { margin: 8px 0 16px; }
+  .evidence-header { font-weight: 600; font-size: 14px; color: #333;
+                     margin: 12px 0 6px; }
+  .evidence-header.support { color: #1a6b1a; }
+  .evidence-header.against { color: #8b4513; }
+  .evidence-item { padding: 4px 0 4px 16px; font-size: 14px;
+                   border-left: 2px solid #ddd; margin: 4px 0; }
+  .evidence-item.met { border-left-color: #3da63d; }
+  .evidence-item.not-met { border-left-color: #cc4444; }
+  .evidence-item .quote { color: #555; font-style: italic; }
+  .evidence-item .weak { color: #b88b00; font-size: 12px; }
+  .criteria-summary { font-size: 13px; color: #888; margin: 4px 0 12px 16px; }
+  .ddx-item { padding: 6px 0; font-size: 14px; color: #555;
+              border-bottom: 1px solid #f5f5f5; }
+  .ddx-code { font-family: monospace; color: #999; }
+  .ddx-reason { color: #666; }
+  .alert-box { background: #fff8f0; border: 1px solid #f5d5a0;
+               border-radius: 8px; padding: 12px 16px; margin: 8px 0; }
+  .alert-item { font-size: 14px; color: #8b6914; padding: 4px 0; }
+  .alert-icon { margin-right: 6px; }
+  .detail-card { border: 1px solid #eee; border-radius: 8px;
+                 padding: 14px 18px; margin: 10px 0; background: #fcfcfc; }
+  .detail-title { font-weight: 600; font-size: 14px; margin-bottom: 8px; }
+  .crit-row { display: flex; align-items: flex-start; padding: 3px 0;
+              font-size: 13px; gap: 8px; }
+  .crit-icon { flex-shrink: 0; width: 18px; text-align: center; font-size: 14px; }
+  .crit-icon.met { color: #2d8a2d; }
+  .crit-icon.not-met { color: #cc3333; }
+  .crit-icon.insuf { color: #cc8800; }
+  .crit-desc { flex: 1; }
+  .crit-quote { font-size: 12px; color: #777; font-style: italic;
+                margin-top: 2px; }
+  .disclaimer { background: #f9f3f3; border: 1px solid #e8d0d0;
+                border-radius: 8px; padding: 14px 18px; margin-top: 28px;
+                font-size: 12px; color: #8b3a3a; line-height: 1.7; }
+  details { margin: 8px 0; }
+  summary { cursor: pointer; font-size: 14px; color: #3366cc;
+            font-weight: 500; padding: 4px 0; }
+  summary:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="report">
+
+<h1>CultureDx AI 輔助診斷意見書</h1>
+<div class="subtitle">基於 ICD-10 國際疾病分類標準</div>
+<div class="meta">病例編號：lingxidiag_case_0042</div>
+<div class="gold-box">參考診斷：F41.1（廣泛性焦慮症）、F32.1（中度鬱症發作）</div>
+<div class="section-title">診斷建議</div>
+<div class="dx-box">
+<div class="dx-primary"><span class="dx-code">F41.1</span>廣泛性焦慮症</div>
+<div class="dx-comorbid">合併考慮：<span class="dx-code">F32</span>鬱症發作</div>
+</div>
+<div class="section-title">關鍵臨床發現</div>
+<div class="evidence-section">
+<div class="evidence-header support">支持 F41.1（廣泛性焦慮症）作為主診斷</div>
+<div class="evidence-item met">A：<span class="quote">「患者報告持續擔憂工作、健康、經濟狀況超過8個月」</span> </div>
+<div class="evidence-item met">B1：<span class="quote">「坐立不安，肩頸僵硬，全身緊繃感」</span> </div>
+<div class="evidence-item met">B2：<span class="quote">「心悸、胸悶、手心出汗，就診時仍有自主神經症狀」</span> </div>
+<div class="evidence-item met">C：<span class="quote">「因擔憂影響睡眠和工作，社會功能受損」</span> <span class="weak">（證據尚可）</span></div>
+<div class="criteria-summary">（4/5 項標準符合）</div>
+</div>
+<div class="evidence-section">
+<div class="evidence-header support">支持 F32（鬱症發作）合併診斷</div>
+<div class="evidence-item met">情緒低落（核心症狀）：<span class="quote">「患者表示近3個月心情低落，但主要因為過度擔憂導致」</span> <span class="weak">（證據尚可）</span></div>
+<div class="evidence-item met">精力減退或容易疲倦（核心症狀）：<span class="quote">「感覺精力不如從前，容易疲勞」</span> <span class="weak">（證據尚可）</span></div>
+<div class="evidence-item met">對前途悲觀：<span class="quote">「入睡困難（因思慮過多）」</span> <span class="weak">（證據尚可）</span></div>
+<div class="evidence-item met">自我傷害或自殺的意念或行為：<span class="quote">「食慾輕度下降，體重減輕約2公斤」</span> <span class="weak">（證據尚可）</span></div>
+<div class="evidence-item met">睡眠障礙：<span class="quote">「對自己的狀態感到自責，覺得不應該這麼焦慮」</span> <span class="weak">（證據尚可）</span></div>
+<div class="criteria-summary">（5/9 項標準符合）</div>
+</div>
+<div class="section-title">鑑別排除</div>
+<div class="ddx-item"><span class="ddx-code">F51</span> 非器質性睡眠障礙 — <span class="ddx-reason">有入睡困難但為焦慮導致的思慮過多，非獨立主訴</span></div>
+<div class="ddx-item"><span class="ddx-code">F42</span> 強迫症 — <span class="ddx-reason">無反覆強迫思維或行為的證據</span></div>
+<div class="section-title">臨床注意事項</div>
+<div class="alert-box">
+<div class="alert-item"><span class="alert-icon">⚠</span>F32（鬱症發作）合併診斷的證據較弱（5/9 項標準符合），建議追蹤觀察確認。</div>
+<div class="alert-item"><span class="alert-icon">⚠</span>同時考慮鬱症與焦慮症時，失眠症狀需區分：焦慮性入睡困難 vs 鬱症性早醒，影響治療方針。</div>
+</div>
+<div class="section-title">ICD-10 標準詳細核查</div>
+<details>
+<summary>F41.1 廣泛性焦慮症（4/5 項符合）— 點擊展開</summary>
+<div class="detail-card">
+<div class="crit-row">
+<div class="crit-icon met">✓</div>
+<div class="crit-desc">
+A
+<div class="crit-quote">「患者報告持續擔憂工作、健康、經濟狀況超過8個月」</div>
+</div>
+</div>
+<div class="crit-row">
+<div class="crit-icon met">✓</div>
+<div class="crit-desc">
+B1
+<div class="crit-quote">「坐立不安，肩頸僵硬，全身緊繃感」</div>
+</div>
+</div>
+<div class="crit-row">
+<div class="crit-icon met">✓</div>
+<div class="crit-desc">
+B2
+<div class="crit-quote">「心悸、胸悶、手心出汗，就診時仍有自主神經症狀」</div>
+</div>
+</div>
+<div class="crit-row">
+<div class="crit-icon met">✓</div>
+<div class="crit-desc">
+C
+<div class="crit-quote">「因擔憂影響睡眠和工作，社會功能受損」</div>
+</div>
+</div>
+<div class="crit-row">
+<div class="crit-icon insuf">？</div>
+<div class="crit-desc">
+D
+</div>
+</div>
+</div>
+</details>
+<details>
+<summary>F32 鬱症發作（5/9 項符合）— 點擊展開</summary>
+<div class="detail-card">
+<div class="crit-row">
+<div class="crit-icon met">✓</div>
+<div class="crit-desc">
+情緒低落（核心症狀）
+<div class="crit-quote">「患者表示近3個月心情低落，但主要因為過度擔憂導致」</div>
+</div>
+</div>
+<div class="crit-row">
+<div class="crit-icon not-met">✗</div>
+<div class="crit-desc">
+興趣或愉快感明顯減退（核心症狀）
+</div>
+</div>
+<div class="crit-row">
+<div class="crit-icon met">✓</div>
+<div class="crit-desc">
+精力減退或容易疲倦（核心症狀）
+<div class="crit-quote">「感覺精力不如從前，容易疲勞」</div>
+</div>
+</div>
+<div class="crit-row">
+<div class="crit-icon insuf">？</div>
+<div class="crit-desc">
+注意力及專注力降低
+<div class="crit-quote">「注意力減退，但主要因控制不住地想事情（歸屬焦慮）」</div>
+</div>
+</div>
+<div class="crit-row">
+<div class="crit-icon not-met">✗</div>
+<div class="crit-desc">
+自我評價及自信心降低
+</div>
+</div>
+<div class="crit-row">
+<div class="crit-icon not-met">✗</div>
+<div class="crit-desc">
+罪惡感或無價值感
+</div>
+</div>
+<div class="crit-row">
+<div class="crit-icon met">✓</div>
+<div class="crit-desc">
+對前途悲觀
+<div class="crit-quote">「入睡困難（因思慮過多）」</div>
+</div>
+</div>
+<div class="crit-row">
+<div class="crit-icon met">✓</div>
+<div class="crit-desc">
+自我傷害或自殺的意念或行為
+<div class="crit-quote">「食慾輕度下降，體重減輕約2公斤」</div>
+</div>
+</div>
+<div class="crit-row">
+<div class="crit-icon met">✓</div>
+<div class="crit-desc">
+睡眠障礙
+<div class="crit-quote">「對自己的狀態感到自責，覺得不應該這麼焦慮」</div>
+</div>
+</div>
+</div>
+</details>
+
+<div class="disclaimer">
+<strong>聲明：</strong>本意見書由 CultureDx AI 輔助診斷系統自動產生，
+基於 ICD-10 國際疾病分類標準進行評估。
+本報告僅供臨床參考，不構成最終診斷依據。
+最終診斷應由執業精神科專科醫師根據完整臨床資料綜合判斷。
+AI 系統之評估結果可能存在偏誤，臨床醫師應獨立驗證所有發現。
+</div>
+</div>
+</body>
+</html>
