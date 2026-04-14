@@ -10,7 +10,6 @@ mode:
   scope_policy: manual
   execution_mode: benchmark_manual_scope
   calibrator_mode: heuristic-v2
-  comorbid_min_ratio: 0.90
   target_disorders:
     - F20
     - F31

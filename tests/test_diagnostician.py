@@ -12,12 +12,16 @@ from culturedx.agents.diagnostician import DiagnosticianAgent
 class MockLLM:
     model: str = "test-model"
     response: str = ""
+    max_tokens: int = 512
+    context_window: int | None = None
+    last_prompt: str = ""
 
     @staticmethod
     def compute_prompt_hash(text: str) -> str:
         return "testhash"
 
     def generate(self, prompt: str, prompt_hash: str = "", language: str = "zh") -> str:
+        self.last_prompt = prompt
         return self.response
 
 
@@ -96,3 +100,33 @@ def test_diagnostician_rejects_out_of_scope_codes(tmp_path):
 
     assert output.parsed["ranked_codes"] == []
     assert output.parsed["reasoning"] == []
+
+
+def test_diagnostician_truncates_prompt_for_small_context(tmp_path):
+    prompts_dir = tmp_path / "agents"
+    prompts_dir.mkdir()
+    template = (
+        "Candidates: {% for code in candidate_disorders %}{{ code }} {% endfor %}\n"
+        "Transcript: {{ transcript_text }}\n"
+    )
+    (prompts_dir / "diagnostician_en.jinja").write_text(template, encoding="utf-8")
+    (prompts_dir / "diagnostician_zh.jinja").write_text(template, encoding="utf-8")
+
+    llm = MockLLM(
+        response=json.dumps({"ranked_diagnoses": [{"code": "F32", "reasoning": "ok"}]}),
+        max_tokens=256,
+        context_window=1024,
+    )
+    agent = DiagnosticianAgent(llm_client=llm, prompts_dir=prompts_dir)
+    long_transcript = "Patient reports worry. " * 1200
+    agent.run(
+        AgentInput(
+            transcript_text=long_transcript,
+            language="en",
+            extra={"candidate_disorders": ["F32"]},
+        )
+    )
+
+    assert llm.last_prompt
+    assert len(llm.last_prompt) < len("Candidates: F32 \nTranscript: " + long_transcript + "\n")
+    assert "omitted" in llm.last_prompt

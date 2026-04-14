@@ -62,7 +62,6 @@ class HiEDMode(BaseModeOrchestrator):
         differential_threshold: float = 0.10,
         contrastive_enabled: bool = False,
         ranker_weights_path: str | Path | None = None,
-        comorbid_min_ratio: float = 0.9,
         prompt_variant: str = "",
         calibrator_mode: str = "heuristic-v2",
         calibrator_artifact_path: str | Path | None = None,
@@ -134,9 +133,7 @@ class HiEDMode(BaseModeOrchestrator):
         self.differential_threshold = differential_threshold
 
         # Stage 4b: Comorbidity resolver (blacklist: FORBIDDEN_PAIRS from ICD-10)
-        self.comorbidity_resolver = ComorbidityResolver(
-            comorbid_min_ratio=comorbid_min_ratio,
-        )
+        self.comorbidity_resolver = ComorbidityResolver()
 
         # Stage 4a: Pairwise re-ranking (optional, no LLM)
         self.pairwise_ranker: PairwiseRanker | None = None
@@ -354,8 +351,9 @@ class HiEDMode(BaseModeOrchestrator):
                 stage_timings={"total": time.monotonic() - case_start},
             )
 
-        # When evidence is provided, transcript is supplementary — reduce budget
-        max_chars = 8000 if evidence else 20000
+        max_chars = self._default_transcript_char_budget(
+            evidence_present=bool(evidence),
+        )
         transcript_text = self._build_transcript_text(case, max_chars=max_chars)
         evidence_map = self._build_evidence_map(evidence) if evidence else {}
         decision_trace: dict[str, object] = {
@@ -830,7 +828,13 @@ class HiEDMode(BaseModeOrchestrator):
         case_start: float,
     ) -> DiagnosisResult:
         """Diagnose-then-Verify: holistic ranking followed by checker verification."""
-        full_transcript = self._build_transcript_text(case, max_chars=20000)
+        full_transcript = self._build_transcript_text(
+            case,
+            max_chars=self._default_transcript_char_budget(
+                evidence_present=False,
+                safety_margin_tokens=768,
+            ),
+        )
         disorder_names = {
             code: get_disorder_name(code, lang) or code
             for code in candidate_codes

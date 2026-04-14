@@ -96,9 +96,9 @@ class TestComorbidityResolver:
         assert "F51" in result.comorbid
         assert len(result.excluded) == 0
 
-    def test_default_min_ratio_no_filtering(self):
-        """comorbid_min_ratio=0.0 (default) keeps all comorbid."""
-        resolver = ComorbidityResolver(comorbid_min_ratio=0.0)
+    def test_default_keeps_all_comorbid(self):
+        """Default resolver keeps all valid comorbid disorders."""
+        resolver = ComorbidityResolver()
         result = resolver.resolve(
             ["F32", "F41.1", "F42"],
             confidences={"F32": 0.8, "F41.1": 0.5, "F42": 0.3},
@@ -107,31 +107,11 @@ class TestComorbidityResolver:
         assert "F41.1" in result.comorbid
         assert "F42" in result.comorbid
 
-    def test_ratio_threshold_excludes_low_confidence(self):
-        """comorbid_min_ratio=0.7: F41.1 ratio (0.5/0.8=0.625) < 0.7 → rejected."""
-        resolver = ComorbidityResolver(comorbid_min_ratio=0.7)
-        result = resolver.resolve(
-            ["F32", "F41.1"],
-            confidences={"F32": 0.8, "F41.1": 0.5},
-        )
-        assert result.primary == "F32"
-        assert "F41.1" not in result.comorbid
-        assert "F41.1" in result.rejected
-        assert any("ratio" in reason for reason in result.rejection_reasons)
 
-    def test_abs_threshold_keeps_sufficient_confidence(self):
-        """comorbid_min_ratio=0.4: F41.1 (0.5) >= 0.4 → kept."""
-        resolver = ComorbidityResolver(comorbid_min_ratio=0.4)
-        result = resolver.resolve(
-            ["F32", "F41.1"],
-            confidences={"F32": 0.8, "F41.1": 0.5},
-        )
-        assert result.primary == "F32"
-        assert "F41.1" in result.comorbid
 
     def test_exclusion_rules_still_work(self):
         """F33+F32 → F32 excluded by ICD-10 rule regardless of threshold."""
-        resolver = ComorbidityResolver(comorbid_min_ratio=0.0)
+        resolver = ComorbidityResolver()
         result = resolver.resolve(
             ["F33", "F32"],
             confidences={"F33": 0.9, "F32": 0.85},
@@ -142,7 +122,7 @@ class TestComorbidityResolver:
 
     def test_empty_input(self):
         """No confirmed disorders → empty result."""
-        resolver = ComorbidityResolver(comorbid_min_ratio=0.5)
+        resolver = ComorbidityResolver()
         result = resolver.resolve([])
         assert result.primary == ""
         assert result.comorbid == []

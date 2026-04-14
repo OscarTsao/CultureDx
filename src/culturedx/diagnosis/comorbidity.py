@@ -4,7 +4,6 @@ Handles:
 - Hierarchical exclusion (e.g., F33 supersedes F32, F31 supersedes F32/F33)
 - Mutual exclusion (e.g., F20 vs F22)
 - Forbidden pairs from ICD-10 exclusion criteria
-- Confidence-based comorbidity gating
 - Maximum comorbidity limits
 """
 from __future__ import annotations
@@ -77,12 +76,10 @@ class ComorbidityResolver:
         self,
         max_comorbid: int = 3,
         exclusion_rules: list[tuple[str, str]] | None = None,
-        comorbid_min_ratio: float = 0.0,
         forbidden_pairs: set[frozenset[str]] | None = None,
     ) -> None:
         self.max_comorbid = max_comorbid
         self.rules = exclusion_rules if exclusion_rules is not None else EXCLUSION_RULES
-        self.comorbid_min_ratio = comorbid_min_ratio
         self.forbidden_pairs = (
             set(forbidden_pairs) if forbidden_pairs is not None
             else FORBIDDEN_COMORBIDITY_PAIRS
@@ -108,7 +105,8 @@ class ComorbidityResolver:
 
         Args:
             confirmed: List of confirmed disorder codes (ordered by confidence).
-            confidences: Optional mapping of disorder code to confidence score.
+            confidences: Optional mapping of disorder code to confidence score
+                (used for ordering, not gating).
 
         Returns:
             ComorbidityResult with primary, comorbid, and excluded lists.
@@ -188,28 +186,12 @@ class ComorbidityResolver:
                 })
                 continue
 
-            # Confidence ratio threshold: comorbid must be >= ratio * primary
-            if self.comorbid_min_ratio > 0:
-                primary_conf = confs.get(primary, 1.0)
-                candidate_conf = confs.get(candidate, 0.0)
-                ratio = candidate_conf / primary_conf if primary_conf > 0 else 0.0
-                if ratio < self.comorbid_min_ratio:
-                    rejected.append(candidate)
-                    rejection_reasons.append(
-                        f"{candidate} rejected: ratio_{ratio:.2f}_below_{self.comorbid_min_ratio:.2f}"
-                    )
-                    decision_trace.append({
-                        "disorder": candidate,
-                        "decision": "rejected",
-                        "reason": f"confidence_ratio_{ratio:.3f}_below_{self.comorbid_min_ratio}",
-                    })
-                    continue
 
             comorbid.append(candidate)
             decision_trace.append({
                 "disorder": candidate,
                 "decision": "comorbid",
-                "reason": "passes_exclusions_and_thresholds",
+                "reason": "passes_exclusions",
             })
 
         return ComorbidityResult(

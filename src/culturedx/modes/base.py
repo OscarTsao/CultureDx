@@ -52,6 +52,36 @@ class BaseModeOrchestrator(ABC):
     mode_name: str = ""
     llm: object = None  # LLM client
 
+    def _context_window_tokens(self) -> int:
+        """Return the serving context window used for prompt budgeting."""
+        return int(getattr(self.llm, "context_window", None) or 16384)
+
+    def _max_output_tokens(self) -> int:
+        """Return configured generation cap used for prompt budgeting."""
+        return int(getattr(self.llm, "max_tokens", 2048) or 2048)
+
+    def _default_transcript_char_budget(
+        self,
+        *,
+        evidence_present: bool,
+        safety_margin_tokens: int = 1024,
+        chars_per_token: float = 1.8,
+    ) -> int:
+        """Estimate a conservative transcript budget for the active backend.
+
+        The budget is intentionally conservative because Chinese transcript
+        prompts plus long ICD instructions and RAG exemplars can otherwise
+        exceed smaller context windows even when character count looks modest.
+        """
+        input_budget_tokens = max(
+            512,
+            self._context_window_tokens() - self._max_output_tokens() - safety_margin_tokens,
+        )
+        max_chars = int(input_budget_tokens * chars_per_token)
+        if evidence_present:
+            max_chars = min(max_chars, 8000)
+        return max(1200, min(max_chars, 20000))
+
     @abstractmethod
     def diagnose(
         self, case: ClinicalCase, evidence: EvidenceBrief | None = None

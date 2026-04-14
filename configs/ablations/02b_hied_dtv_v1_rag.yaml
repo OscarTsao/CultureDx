@@ -9,7 +9,6 @@ mode:
   force_prediction: true
   scope_policy: manual
   execution_mode: benchmark_manual_scope
-  comorbid_min_ratio: 0.0
   target_disorders:
     - F20
     - F31

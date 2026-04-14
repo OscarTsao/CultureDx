@@ -27,10 +27,16 @@ class SingleModelMode(BaseModeOrchestrator):
         self,
         llm_client,
         prompts_dir: str | Path = "prompts/single",
+        target_disorders: list[str] | None = None,
+        prompt_variant: str = "",
+        case_retriever=None,
     ) -> None:
         self.mode_name = "single"
         self.llm = llm_client
         self.prompts_dir = Path(prompts_dir)
+        self.target_disorders = target_disorders or []
+        self.prompt_variant = prompt_variant
+        self.case_retriever = case_retriever
         self._env = Environment(
             loader=FileSystemLoader(str(self.prompts_dir)),
             keep_trailing_newline=True,
@@ -96,6 +102,61 @@ class SingleModelMode(BaseModeOrchestrator):
             disorder_evidence=new_disorders,
         )
 
+    def _retrieve_similar_cases(self, transcript_text: str) -> list[dict] | None:
+        """Retrieve similar training cases if CaseRetriever is available."""
+        if self.case_retriever is None:
+            return None
+        try:
+            candidate_codes = self.target_disorders or []
+            if hasattr(self.case_retriever, 'retrieve_balanced') and candidate_codes:
+                raw_cases = self.case_retriever.retrieve_balanced(
+                    transcript_text, candidate_codes, top_per_class=1,
+                )
+            else:
+                raw_cases = self.case_retriever.retrieve(transcript_text, top_k=5)
+            similar_cases = []
+            for sc in raw_cases:
+                codes = sc.get("diagnosis_codes", [])
+                names = sc.get("diagnosis_names", [])
+                similar_cases.append({
+                    "similarity": sc["similarity"],
+                    "diagnosis_code": codes[0] if codes else "?",
+                    "diagnosis_name": names[0] if names else "",
+                })
+            return similar_cases
+        except Exception as e:
+            logger.warning("CaseRetriever failed in single mode: %s", e)
+            return None
+
+    def _fit_prompt_to_context(
+        self,
+        *,
+        case: ClinicalCase,
+        template,
+        evidence: EvidenceBrief | None,
+        initial_max_chars: int,
+        similar_cases: list[dict] | None = None,
+    ) -> tuple[str, str]:
+        """Render a prompt while shrinking transcript text for smaller backbones."""
+        transcript_budget = initial_max_chars
+        context_chars = max(
+            1200,
+            int((self._context_window_tokens() - self._max_output_tokens() - 512) * 1.8),
+        )
+
+        while True:
+            transcript_text = self._build_transcript_text(case, max_chars=transcript_budget)
+            prompt = template.render(
+                transcript_text=transcript_text,
+                evidence=evidence,
+                similar_cases=similar_cases,
+            )
+            if len(prompt) <= context_chars or transcript_budget <= 1400:
+                return transcript_text, prompt
+
+            overflow = len(prompt) - context_chars
+            transcript_budget = max(1400, transcript_budget - overflow - 256)
+
     def diagnose(
         self, case: ClinicalCase, evidence: EvidenceBrief | None = None
     ) -> DiagnosisResult:
@@ -113,25 +174,44 @@ class SingleModelMode(BaseModeOrchestrator):
             )
         if evidence and evidence.disorder_evidence:
             template_name = f"zero_shot_evidence_{lang}.jinja"
+        elif getattr(self, "prompt_variant", "") == "rag":
+            template_name = f"zero_shot_rag_{lang}.jinja"
         else:
             template_name = f"zero_shot_{lang}.jinja"
         template = self._env.get_template(template_name)
-        # When evidence is provided, transcript is supplementary — reduce budget
-        max_chars = 8000 if evidence else 20000
+        max_chars = self._default_transcript_char_budget(
+            evidence_present=bool(evidence),
+        )
         transcript_text = self._build_transcript_text(case, max_chars=max_chars)
 
-        # Estimate non-evidence tokens and guard against context overflow
-        # Context: 16384 total - 2048 max_tokens = 14336 max input tokens
-        # Use 2.0 chars/token (worst-case for Qwen + mixed Chinese/punctuation)
-        # Budget 12000 tokens to leave 2336 tokens safety margin
-        base_prompt = template.render(transcript_text=transcript_text, evidence=None)
+        # Retrieve similar cases for RAG variant
+        similar_cases = None
+        if getattr(self, "prompt_variant", "") == "rag":
+            similar_cases = self._retrieve_similar_cases(transcript_text)
+
+        # Estimate non-evidence prompt overhead and reserve room for evidence.
+        base_prompt = template.render(
+            transcript_text=transcript_text,
+            evidence=None,
+            similar_cases=similar_cases,
+        )
         base_chars = len(base_prompt)
-        max_evidence_chars = int(12000 * 2.0) - base_chars
+        input_chars_budget = max(
+            1200,
+            int((self._context_window_tokens() - self._max_output_tokens() - 512) * 1.8),
+        )
+        max_evidence_chars = input_chars_budget - base_chars
 
         if evidence and max_evidence_chars > 0:
             evidence = self._truncate_evidence(evidence, max_evidence_chars, case.case_id)
 
-        prompt = template.render(transcript_text=transcript_text, evidence=evidence)
+        transcript_text, prompt = self._fit_prompt_to_context(
+            case=case,
+            template=template,
+            evidence=evidence,
+            initial_max_chars=max_chars,
+            similar_cases=similar_cases,
+        )
         source, _, _ = self._env.loader.get_source(self._env, template_name)
         prompt_hash = self.llm.compute_prompt_hash(source)
 

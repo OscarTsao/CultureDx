@@ -44,7 +44,6 @@ class PsyCoTMode(BaseModeOrchestrator):
         prompt_variant: str = "",
         abstain_threshold: float = 0.3,
         comorbid_threshold: float = 0.5,
-        comorbid_min_ratio: float = 0.9,
         force_prediction: bool = False,
     ) -> None:
         self.mode_name = "psycot"
@@ -75,9 +74,7 @@ class PsyCoTMode(BaseModeOrchestrator):
         )
 
         # Comorbidity resolver
-        self.comorbidity_resolver = ComorbidityResolver(
-            comorbid_min_ratio=comorbid_min_ratio,
-        )
+        self.comorbidity_resolver = ComorbidityResolver()
 
     @property
     def prompt_variant(self) -> str:

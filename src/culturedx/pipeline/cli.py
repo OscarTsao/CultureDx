@@ -27,6 +27,7 @@ def _create_configured_llm(cfg, llm_cfg):
         disable_thinking=getattr(llm_cfg, "disable_thinking", True),
         max_concurrent=getattr(llm_cfg, "max_concurrent", 4),
         seed=getattr(cfg, "seed", None),
+        context_window=getattr(llm_cfg, "context_window", None),
     )
 
 
@@ -143,7 +144,6 @@ def run(
             execution_mode=cfg.mode.execution_mode,
             diagnose_then_verify=cfg.mode.diagnose_then_verify,
             contrastive_enabled=cfg.mode.contrastive_enabled,
-            comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
             prompt_variant=cfg.mode.prompt_variant,
             calibrator_mode=cfg.mode.calibrator_mode,
             calibrator_artifact_path=cfg.mode.calibrator_artifact_path,
@@ -159,7 +159,6 @@ def run(
         mode_kwargs = dict(
             llm_client=llm,
             target_disorders=cfg.mode.target_disorders,
-            comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
             prompt_variant=cfg.mode.prompt_variant,
             force_prediction=cfg.mode.force_prediction,
         )
@@ -185,7 +184,14 @@ def run(
         )
     else:
         from culturedx.modes.single import SingleModelMode
-        mode = SingleModelMode(llm_client=llm)
+        mode_kwargs = dict(
+            llm_client=llm,
+            target_disorders=cfg.mode.target_disorders,
+            prompt_variant=cfg.mode.prompt_variant,
+        )
+        if case_retriever is not None:
+            mode_kwargs["case_retriever"] = case_retriever
+        mode = SingleModelMode(**mode_kwargs)
 
     if cfg.mode.target_disorders:
         click.echo(f"Target disorders: {', '.join(cfg.mode.target_disorders)}")
@@ -370,7 +376,6 @@ def sweep(
                 execution_mode=cfg.mode.execution_mode,
                 diagnose_then_verify=cfg.mode.diagnose_then_verify,
                 contrastive_enabled=cfg.mode.contrastive_enabled,
-                comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
                 prompt_variant=cfg.mode.prompt_variant,
                 calibrator_mode=cfg.mode.calibrator_mode,
                 calibrator_artifact_path=cfg.mode.calibrator_artifact_path,
@@ -384,7 +389,6 @@ def sweep(
             mode_kwargs = dict(
                 llm_client=llm,
                 target_disorders=condition.target_disorders,
-                comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
                 prompt_variant=cfg.mode.prompt_variant,
                 force_prediction=cfg.mode.force_prediction,
             )
@@ -402,7 +406,11 @@ def sweep(
             mode = DebateMode(llm_client=llm)
         else:
             from culturedx.modes.single import SingleModelMode
-            mode = SingleModelMode(llm_client=llm)
+            mode = SingleModelMode(
+                llm_client=llm,
+                target_disorders=cfg.mode.target_disorders,
+                prompt_variant=cfg.mode.prompt_variant,
+            )
 
         # Create evidence pipeline using shared retriever + caches
         evidence_pipeline = None

@@ -19,6 +19,7 @@ class LLMConfig(BaseModel):
     disable_thinking: bool = True
     max_concurrent: int = 4
     max_tokens: int = 2048
+    context_window: int | None = None
 
 
 class EvalConfig(BaseModel):
@@ -36,7 +37,6 @@ class ModeConfig(BaseModel):
     execution_mode: str = "auto"
     diagnose_then_verify: bool = False
     contrastive_enabled: bool = False
-    comorbid_min_ratio: float = 0.9
     prompt_variant: str = ""
     calibrator_mode: str = "heuristic-v2"  # "heuristic-v2" or "learned"
     calibrator_artifact_path: str | None = None

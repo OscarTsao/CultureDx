@@ -21,11 +21,12 @@ def create_llm_client(
     max_concurrent: int = 4,
     max_retries: int = 3,
     seed: int | None = None,
+    context_window: int | None = None,
 ) -> BaseLLMClient:
     """Create an LLM client based on provider config."""
     if provider == "vllm":
         from culturedx.llm.vllm_client import VLLMClient
-        return VLLMClient(
+        client = VLLMClient(
             base_url=base_url,
             model=model,
             temperature=temperature,
@@ -39,7 +40,8 @@ def create_llm_client(
             max_retries=max_retries,
             seed=seed,
         )
-    return OllamaClient(
+    else:
+        client = OllamaClient(
         base_url=base_url,
         model=model,
         temperature=temperature,
@@ -51,7 +53,14 @@ def create_llm_client(
         max_retries=max_retries,
         max_concurrent=max_concurrent,
         seed=seed,
-    )
+        )
+
+    # Keep serving metadata on the client instance so prompt builders can
+    # budget transcript length against the actual backend context window.
+    setattr(client, "context_window", context_window)
+    if not hasattr(client, "max_tokens"):
+        setattr(client, "max_tokens", max_tokens)
+    return client
 
 
 __all__ = [

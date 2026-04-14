@@ -1,0 +1,24 @@
+你是一位精神科诊断专家。请根据以下临床对话，判断患者最可能的精神疾病诊断。
+
+{% if similar_cases %}
+## 相似病例参考
+以下是与本案最相似的历史病例及其诊断：
+{% for case in similar_cases %}
+- 相似度 {{ "%.2f"|format(case.similarity) }}: {{ case.diagnosis_code }}（{{ case.diagnosis_name }}）
+{% endfor %}
+请参考但不要完全依赖这些病例。
+
+{% endif %}
+## 临床对话
+
+{{ transcript_text }}
+
+## 输出要求
+
+请以JSON格式输出：
+{
+  "primary_diagnosis": "ICD-10编码（如F32）",
+  "comorbid_diagnoses": ["其他共病编码"],
+  "confidence": 0.0到1.0之间的置信度,
+  "reasoning": "简短的诊断理由"
+}

@@ -6,6 +6,15 @@
 - {{ code }}：{{ disorder_names.get(code, code) }}
 {% endfor %}
 
+{% if similar_cases %}
+## 相似病例参考
+以下是与本案最相似的历史病例及其诊断：
+{% for case in similar_cases %}
+- 相似度 {{ "%.2f"|format(case.similarity) }}: {{ case.diagnosis_code }}（{{ case.diagnosis_name }}）
+{% endfor %}
+请参考但不要完全依赖这些病例。
+
+{% endif %}
 ## 临床对话
 
 {{ transcript_text }}

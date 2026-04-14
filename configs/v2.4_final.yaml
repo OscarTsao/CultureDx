@@ -9,7 +9,7 @@
 #   - V2 prompts: disorder descriptions, NOS mapping, think-before-answer
 #   - RAG Level 1: label-only similar cases (5 per class, balanced)
 #   - Forbidden-pairs blacklist (not whitelist) for comorbidity
-#   - abs_threshold=0.50, comorbid_min_ratio=0.90 (default, HPO showed +0.002 marginal)
+#   - abs_threshold=0.50 (HPO showed comorbid_min_ratio was a no-op)
 #   - force_prediction=true (no abstention for benchmark)
 
 mode:
@@ -21,7 +21,6 @@ mode:
   scope_policy: manual
   execution_mode: benchmark_manual_scope
   calibrator_mode: heuristic-v2
-  comorbid_min_ratio: 0.90
   target_disorders:
     - F20
     - F31

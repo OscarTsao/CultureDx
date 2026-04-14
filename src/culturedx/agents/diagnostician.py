@@ -48,6 +48,22 @@ class DiagnosticianAgent(BaseAgent):
             keep_trailing_newline=True,
         )
 
+    @staticmethod
+    def _clip_text_middle(text: str, max_chars: int) -> str:
+        """Head/tail trim already-formatted transcript text to a char budget."""
+        if len(text) <= max_chars:
+            return text
+        head_budget = int(max_chars * 0.6)
+        tail_budget = max_chars - head_budget
+        marker = "\n[...对话中间部分省略 / middle turns omitted...]\n"
+        return text[:head_budget] + marker + text[-tail_budget:]
+
+    def _max_prompt_chars(self) -> int:
+        context_window = int(getattr(self.llm, "context_window", None) or 16384)
+        max_tokens = int(getattr(self.llm, "max_tokens", 2048) or 2048)
+        input_budget_tokens = max(768, context_window - max_tokens - 512)
+        return int(input_budget_tokens * 1.8)
+
     def run(self, input: AgentInput) -> AgentOutput:
         """Rank candidate disorders for the case transcript."""
         extra = input.extra or {}
@@ -62,13 +78,26 @@ class DiagnosticianAgent(BaseAgent):
         template = self._env.get_template(template_name)
         # Pass similar cases if available (from CaseRetriever)
         similar_cases = extra.get("similar_cases", None)
+        transcript_text = input.transcript_text
         prompt = template.render(
-            transcript_text=input.transcript_text,
+            transcript_text=transcript_text,
             candidate_disorders=candidate_disorders,
             disorder_names=disorder_names,
             disorder_descriptions=DISORDER_DESCRIPTIONS,
             similar_cases=similar_cases,
         )
+        max_prompt_chars = self._max_prompt_chars()
+        if len(prompt) > max_prompt_chars:
+            overflow = len(prompt) - max_prompt_chars
+            clipped_chars = max(1400, len(transcript_text) - overflow - 256)
+            transcript_text = self._clip_text_middle(transcript_text, clipped_chars)
+            prompt = template.render(
+                transcript_text=transcript_text,
+                candidate_disorders=candidate_disorders,
+                disorder_names=disorder_names,
+                disorder_descriptions=DISORDER_DESCRIPTIONS,
+                similar_cases=similar_cases,
+            )
 
         source, _, _ = self._env.loader.get_source(self._env, template_name)
         prompt_hash = self.llm.compute_prompt_hash(source)
