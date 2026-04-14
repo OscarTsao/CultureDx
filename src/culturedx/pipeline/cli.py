@@ -154,34 +154,6 @@ def run(
         if case_retriever is not None:
             mode_kwargs["case_retriever"] = case_retriever
         mode = HiEDMode(**mode_kwargs)
-    elif mode_type == "psycot":
-        from culturedx.modes.psycot import PsyCoTMode
-        mode_kwargs = dict(
-            llm_client=llm,
-            target_disorders=cfg.mode.target_disorders,
-            prompt_variant=cfg.mode.prompt_variant,
-            force_prediction=cfg.mode.force_prediction,
-        )
-        if checker_llm is not None:
-            mode_kwargs["checker_llm_client"] = checker_llm
-        mode = PsyCoTMode(**mode_kwargs)
-    elif mode_type == "mas":
-        from culturedx.modes.mas import MASMode
-        mode = MASMode(
-            llm_client=llm,
-            target_disorders=cfg.mode.target_disorders,
-        )
-    elif mode_type == "specialist":
-        from culturedx.modes.specialist import SpecialistMode
-        mode = SpecialistMode(
-            llm_client=llm,
-            target_disorders=cfg.mode.target_disorders,
-        )
-    elif mode_type == "debate":
-        from culturedx.modes.debate import DebateMode
-        mode = DebateMode(
-            llm_client=llm,
-        )
     else:
         from culturedx.modes.single import SingleModelMode
         mode_kwargs = dict(
@@ -350,7 +322,7 @@ def sweep(
     # 2. Smart condition ordering: no-evidence first (primes LLM cache)
     def _condition_sort_key(c: SweepCondition) -> tuple:
         # no_evidence < evidence, hied first (most cache-generative)
-        mode_order = {"hied": 0, "psycot": 1, "specialist": 2, "debate": 3, "single": 4}
+        mode_order = {"hied": 0, "single": 1}
         return (
             0 if not c.with_evidence else 1,
             mode_order.get(c.mode_type, 9),
@@ -384,26 +356,6 @@ def sweep(
             if checker_llm is not None:
                 mode_kwargs["checker_llm_client"] = checker_llm
             mode = HiEDMode(**mode_kwargs)
-        elif mode_type == "psycot":
-            from culturedx.modes.psycot import PsyCoTMode
-            mode_kwargs = dict(
-                llm_client=llm,
-                target_disorders=condition.target_disorders,
-                prompt_variant=cfg.mode.prompt_variant,
-                force_prediction=cfg.mode.force_prediction,
-            )
-            if checker_llm is not None:
-                mode_kwargs["checker_llm_client"] = checker_llm
-            mode = PsyCoTMode(**mode_kwargs)
-        elif mode_type == "mas":
-            from culturedx.modes.mas import MASMode
-            mode = MASMode(llm_client=llm, target_disorders=condition.target_disorders)
-        elif mode_type == "specialist":
-            from culturedx.modes.specialist import SpecialistMode
-            mode = SpecialistMode(llm_client=llm, target_disorders=condition.target_disorders)
-        elif mode_type == "debate":
-            from culturedx.modes.debate import DebateMode
-            mode = DebateMode(llm_client=llm)
         else:
             from culturedx.modes.single import SingleModelMode
             mode = SingleModelMode(

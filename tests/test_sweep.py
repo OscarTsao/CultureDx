@@ -27,7 +27,6 @@ class TestBuildAblationConditions:
         names = [c.name for c in conditions]
         assert "hied_full" in names
         assert "single_full" in names
-        assert "psycot_full" in names
 
     def test_evidence_ablation(self):
         conditions = build_ablation_conditions(modes=["hied"])
@@ -47,9 +46,9 @@ class TestBuildAblationConditions:
         assert "single_no_somatization" not in names
 
     def test_custom_modes(self):
-        conditions = build_ablation_conditions(modes=["hied", "psycot"])
+        conditions = build_ablation_conditions(modes=["hied", "single"])
         mode_types = {c.mode_type for c in conditions}
-        assert mode_types == {"hied", "psycot"}
+        assert mode_types == {"hied", "single"}
 
     def test_no_ablation(self):
         conditions = build_ablation_conditions(

@@ -3,7 +3,6 @@ from __future__ import annotations
 
 from culturedx.core.models import ClinicalCase, Turn
 from culturedx.modes.hied import HiEDMode
-from culturedx.modes.psycot import PsyCoTMode
 
 
 class FakeLLM:
@@ -89,18 +88,3 @@ def test_hied_contrastive_and_differential_stay_on_main_llm():
     assert mode.contrastive is not None
     assert mode.contrastive.llm is main_llm
     assert mode.checker.llm is checker_llm
-
-
-def test_psycot_checker_falls_back_to_main_llm_when_not_overridden():
-    llm = FakeLLM("shared-model", responses=[_checker_response()])
-    mode = PsyCoTMode(
-        llm_client=llm,
-        target_disorders=["F32"],
-        abstain_threshold=0.1,
-    )
-
-    result = mode.diagnose(_make_case())
-
-    assert mode.checker.llm is llm
-    assert result.model_name == "shared-model"
-    assert result.checker_model_name is None

@@ -82,10 +82,9 @@ def build_ablation_conditions(
     - HiED vs single-model (does MAS help?)
     - With evidence vs without (does evidence help?)
     - With somatization mapper vs without (does culture-aware mapping help?)
-    - HiED vs psycot vs specialist vs debate (which MAS mode wins?)
     """
     if modes is None:
-        modes = ["hied", "psycot", "specialist", "debate", "single"]
+        modes = ["hied", "single"]
 
     conditions = []
 
