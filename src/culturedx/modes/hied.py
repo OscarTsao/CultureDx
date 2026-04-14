@@ -267,6 +267,7 @@ class HiEDMode(BaseModeOrchestrator):
                                         "criterion_id": cr.criterion_id,
                                         "status": cr.status,
                                         "confidence": cr.confidence,
+                                        "evidence": cr.evidence or "",
                                     }
                                     for cr in co.criteria
                                 ],
@@ -700,6 +701,7 @@ class HiEDMode(BaseModeOrchestrator):
                                         "criterion_id": cr.criterion_id,
                                         "status": cr.status,
                                         "confidence": cr.confidence,
+                                        "evidence": cr.evidence or "",
                                     }
                                     for cr in co.criteria
                                 ],
@@ -789,6 +791,7 @@ class HiEDMode(BaseModeOrchestrator):
                                 "criterion_id": cr.criterion_id,
                                 "status": cr.status,
                                 "confidence": cr.confidence,
+                                "evidence": cr.evidence or "",
                             }
                             for cr in co.criteria
                         ],
@@ -1037,6 +1040,7 @@ class HiEDMode(BaseModeOrchestrator):
                                 "criterion_id": cr.criterion_id,
                                 "status": cr.status,
                                 "confidence": cr.confidence,
+                                "evidence": cr.evidence or "",
                             }
                             for cr in co.criteria
                         ],

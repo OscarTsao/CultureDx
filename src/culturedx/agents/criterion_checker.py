@@ -167,7 +167,7 @@ class CriterionCheckerAgent(BaseAgent):
                     CriterionResult(
                         criterion_id=item.get("criterion_id", ""),
                         status=status,
-                        evidence=item.get("evidence"),
+                        evidence=item.get("evidence") or "",
                         confidence=max(0.0, min(1.0, float(item.get("confidence", 0.0)))),
                     )
                 )
@@ -179,6 +179,7 @@ class CriterionCheckerAgent(BaseAgent):
                     CriterionResult(
                         criterion_id=crit_id,
                         status="insufficient_evidence",
+                        evidence="",
                         confidence=0.0,
                     )
                 )
