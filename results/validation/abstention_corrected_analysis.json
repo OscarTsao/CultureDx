@@ -1,0 +1,72 @@
+{
+  "data_path": "decision_trace.raw_checker_outputs (CORRECTED)",
+  "baseline": {
+    "acc": 0.517,
+    "f1m": 0.2014,
+    "f1w": 0.4531,
+    "n_flip": 0
+  },
+  "z71_cases": [
+    {
+      "case_id": "344699340",
+      "pred": "F32",
+      "met_ratio": 1.0,
+      "total_met": 28,
+      "n_confirmed": 1
+    },
+    {
+      "case_id": "304404409",
+      "pred": "F32",
+      "met_ratio": 0.5,
+      "total_met": 24,
+      "n_confirmed": 0
+    },
+    {
+      "case_id": "352801207",
+      "pred": "F41.1",
+      "met_ratio": 0.5,
+      "total_met": 23,
+      "n_confirmed": 1
+    },
+    {
+      "case_id": "326740623",
+      "pred": "F32",
+      "met_ratio": 1.0,
+      "total_met": 33,
+      "n_confirmed": 2
+    },
+    {
+      "case_id": "320556364",
+      "pred": "F32",
+      "met_ratio": 1.5,
+      "total_met": 33,
+      "n_confirmed": 2
+    },
+    {
+      "case_id": "362931113",
+      "pred": "F41.1",
+      "met_ratio": 0.0,
+      "total_met": 30,
+      "n_confirmed": 1
+    },
+    {
+      "case_id": "399676049",
+      "pred": "F32",
+      "met_ratio": 0.5,
+      "total_met": 23,
+      "n_confirmed": 0
+    },
+    {
+      "case_id": "378151017",
+      "pred": "F51",
+      "met_ratio": 0.75,
+      "total_met": 26,
+      "n_confirmed": 1
+    }
+  ],
+  "distributions": {
+    "z71_met_ratio_mean": 0.72,
+    "others_met_ratio_mean": 0.93,
+    "specific_met_ratio_mean": 1.2
+  }
+}
