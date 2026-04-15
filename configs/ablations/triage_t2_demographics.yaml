@@ -1,0 +1,6 @@
+# T2: Triage scope, Age+Gender metadata
+mode:
+  scope_policy: triage
+  execution_mode: auto
+  triage_metadata_fields: ["age", "gender"]
+  target_disorders: null

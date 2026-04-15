@@ -1,0 +1,7 @@
+# T1: Triage scope, no metadata (paper-fair candidate filtering)
+# Triage agent selects candidates from transcript, not fixed list
+mode:
+  scope_policy: triage
+  execution_mode: auto
+  triage_metadata_fields: []
+  target_disorders: null
