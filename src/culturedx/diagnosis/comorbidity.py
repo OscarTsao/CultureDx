@@ -49,6 +49,25 @@ FORBIDDEN_COMORBIDITY_PAIRS: set[frozenset[str]] = {
     _pair_key("F41.2", "F41.1"),
     # F20 (schizophrenia) excludes F22 (persistent delusional)
     _pair_key("F20", "F22"),
+    # Schizophrenia + mood (should be schizoaffective F25)
+    _pair_key("F20", "F32"),
+    _pair_key("F20", "F33"),
+    _pair_key("F20", "F31"),
+    # Stress-related mutual exclusions
+    _pair_key("F43.1", "F43.2"),
+    # Z71 (counseling) excludes all specific disorders
+    _pair_key("Z71", "F32"),
+    _pair_key("Z71", "F33"),
+    _pair_key("Z71", "F41"),
+    _pair_key("Z71", "F41.1"),
+    _pair_key("Z71", "F42"),
+    _pair_key("Z71", "F43.1"),
+    _pair_key("Z71", "F43.2"),
+    _pair_key("Z71", "F45"),
+    _pair_key("Z71", "F20"),
+    _pair_key("Z71", "F31"),
+    _pair_key("Z71", "F51"),
+    _pair_key("Z71", "F98"),
 }
 
 

@@ -7,210 +7,673 @@
       "name_zh": "精神分裂症",
       "category": "psychotic",
       "criteria": {
-        "A1": {"text": "Thought echo, insertion, withdrawal, or broadcasting", "text_zh": "思维鸣响、插入、被夺或广播", "type": "first_rank"},
-        "A2": {"text": "Delusions of control, influence, passivity, or delusional perception", "text_zh": "被控制、被影响妄想或被动体验或妄想性知觉", "type": "first_rank"},
-        "A3": {"text": "Hallucinatory voices giving running commentary or discussing the patient", "text_zh": "评论性幻听或讨论患者的幻听", "type": "first_rank"},
-        "A4": {"text": "Persistent delusions that are culturally inappropriate and impossible", "text_zh": "持续的、文化上不恰当的或完全不可能的妄想", "type": "first_rank"},
-        "B1": {"text": "Persistent hallucinations in any modality with fleeting delusions", "text_zh": "任何形式的持续性幻觉伴浮动妄想", "type": "other"},
-        "B2": {"text": "Breaks or interpolations in thought resulting in incoherence or neologisms", "text_zh": "思维中断或联想散漫导致言语不连贯或语词新作", "type": "other"},
-        "B3": {"text": "Catatonic behavior (excitement, posturing, waxy flexibility, negativism, mutism, stupor)", "text_zh": "紧张症行为（兴奋、摆姿势、蜡样屈曲、违拗、缄默、木僵）", "type": "other"},
-        "B4": {"text": "Negative symptoms (marked apathy, paucity of speech, blunting of emotional responses)", "text_zh": "阴性症状（明显淡漠、言语贫乏、情感迟钝）", "type": "other"}
+        "A1": {
+          "text": "Thought echo, insertion, withdrawal, or broadcasting",
+          "text_zh": "思维鸣响、插入、被夺或广播",
+          "type": "first_rank"
+        },
+        "A2": {
+          "text": "Delusions of control, influence, passivity, or delusional perception",
+          "text_zh": "被控制、被影响妄想或被动体验或妄想性知觉",
+          "type": "first_rank"
+        },
+        "A3": {
+          "text": "Hallucinatory voices giving running commentary or discussing the patient",
+          "text_zh": "评论性幻听或讨论患者的幻听",
+          "type": "first_rank"
+        },
+        "A4": {
+          "text": "Persistent delusions that are culturally inappropriate and impossible",
+          "text_zh": "持续的、文化上不恰当的或完全不可能的妄想",
+          "type": "first_rank"
+        },
+        "B1": {
+          "text": "Persistent hallucinations in any modality with fleeting delusions",
+          "text_zh": "任何形式的持续性幻觉伴浮动妄想",
+          "type": "other"
+        },
+        "B2": {
+          "text": "Breaks or interpolations in thought resulting in incoherence or neologisms",
+          "text_zh": "思维中断或联想散漫导致言语不连贯或语词新作",
+          "type": "other"
+        },
+        "B3": {
+          "text": "Catatonic behavior (excitement, posturing, waxy flexibility, negativism, mutism, stupor)",
+          "text_zh": "紧张症行为（兴奋、摆姿势、蜡样屈曲、违拗、缄默、木僵）",
+          "type": "other"
+        },
+        "B4": {
+          "text": "Negative symptoms (marked apathy, paucity of speech, blunting of emotional responses)",
+          "text_zh": "阴性症状（明显淡漠、言语贫乏、情感迟钝）",
+          "type": "other"
+        }
       },
-      "threshold": {"min_first_rank": 1, "min_other": 2, "duration_months": 1}
+      "threshold": {
+        "min_first_rank": 1,
+        "min_other": 2,
+        "duration_months": 1
+      }
     },
     "F22": {
       "name": "Persistent delusional disorder",
       "name_zh": "持久性妄想性障碍",
       "category": "psychotic",
       "criteria": {
-        "A": {"text": "A delusion or set of related delusions other than those typical of schizophrenia", "text_zh": "一种妄想或一组相关妄想，非精神分裂症特征性妄想", "type": "core"},
-        "B": {"text": "Duration of at least 3 months", "text_zh": "持续至少3个月", "type": "duration"},
-        "C": {"text": "General criteria for schizophrenia are not met", "text_zh": "不符合精神分裂症的一般标准", "type": "exclusion"}
+        "A": {
+          "text": "A delusion or set of related delusions other than those typical of schizophrenia",
+          "text_zh": "一种妄想或一组相关妄想，非精神分裂症特征性妄想",
+          "type": "core"
+        },
+        "B": {
+          "text": "Duration of at least 3 months",
+          "text_zh": "持续至少3个月",
+          "type": "duration"
+        },
+        "C": {
+          "text": "General criteria for schizophrenia are not met",
+          "text_zh": "不符合精神分裂症的一般标准",
+          "type": "exclusion"
+        }
       },
-      "threshold": {"all_required": true, "duration_months": 3}
+      "threshold": {
+        "all_required": true,
+        "duration_months": 3
+      }
     },
     "F31": {
       "name": "Bipolar affective disorder",
       "name_zh": "双相情感障碍",
       "category": "mood",
       "criteria": {
-        "A": {"text": "At least two episodes of significantly disturbed mood and activity levels", "text_zh": "至少两次情绪和活动水平明显紊乱的发作", "type": "core"},
-        "B1": {"text": "Manic episode: elevated, expansive or irritable mood", "text_zh": "躁狂发作：情绪高涨、膨胀或易激惹", "type": "manic"},
-        "B2": {"text": "Increased activity or physical restlessness", "text_zh": "活动增多或坐立不安", "type": "manic"},
-        "B3": {"text": "Increased talkativeness or pressure of speech", "text_zh": "言语增多或言语迫促", "type": "manic"},
-        "B4": {"text": "Flight of ideas or subjective experience of thoughts racing", "text_zh": "意念飘忽或思维奔逸的主观体验", "type": "manic"},
-        "C1": {"text": "Depressive episode: depressed mood", "text_zh": "抑郁发作：情绪低落", "type": "depressive"},
-        "C2": {"text": "Loss of interest or pleasure", "text_zh": "兴趣或愉悦感丧失", "type": "depressive"},
-        "C3": {"text": "Decreased energy or increased fatigability", "text_zh": "精力减退或疲乏感增加", "type": "depressive"}
+        "A": {
+          "text": "At least two episodes of significantly disturbed mood and activity levels",
+          "text_zh": "至少两次情绪和活动水平明显紊乱的发作",
+          "type": "core"
+        },
+        "B1": {
+          "text": "Manic episode: elevated, expansive or irritable mood",
+          "text_zh": "躁狂发作：情绪高涨、膨胀或易激惹",
+          "type": "manic"
+        },
+        "B2": {
+          "text": "Increased activity or physical restlessness",
+          "text_zh": "活动增多或坐立不安",
+          "type": "manic"
+        },
+        "B3": {
+          "text": "Increased talkativeness or pressure of speech",
+          "text_zh": "言语增多或言语迫促",
+          "type": "manic"
+        },
+        "B4": {
+          "text": "Flight of ideas or subjective experience of thoughts racing",
+          "text_zh": "意念飘忽或思维奔逸的主观体验",
+          "type": "manic"
+        },
+        "C1": {
+          "text": "Depressive episode: depressed mood",
+          "text_zh": "抑郁发作：情绪低落",
+          "type": "depressive"
+        },
+        "C2": {
+          "text": "Loss of interest or pleasure",
+          "text_zh": "兴趣或愉悦感丧失",
+          "type": "depressive"
+        },
+        "C3": {
+          "text": "Decreased energy or increased fatigability",
+          "text_zh": "精力减退或疲乏感增加",
+          "type": "depressive"
+        }
       },
-      "threshold": {"min_episodes": 2, "at_least_one_manic": true}
+      "threshold": {
+        "min_episodes": 2,
+        "at_least_one_manic": true
+      }
     },
     "F32": {
       "name": "Depressive episode",
       "name_zh": "抑郁发作",
       "category": "mood",
       "criteria": {
-        "A": {"text": "Episode lasting at least 2 weeks", "text_zh": "发作持续至少2周", "type": "duration"},
-        "B1": {"text": "Depressed mood to a degree abnormal for the individual", "text_zh": "情绪低落达到对个体异常的程度", "type": "core"},
-        "B2": {"text": "Loss of interest or pleasure in activities normally pleasurable", "text_zh": "对通常令人愉快的活动丧失兴趣或愉悦感", "type": "core"},
-        "B3": {"text": "Decreased energy or increased fatigability", "text_zh": "精力减退或疲乏感增加", "type": "core"},
-        "C1": {"text": "Loss of confidence or self-esteem", "text_zh": "自信心丧失或自卑感", "type": "additional"},
-        "C2": {"text": "Unreasonable feelings of self-reproach or excessive inappropriate guilt", "text_zh": "无合理原因的自责或过分不恰当的内疚感", "type": "additional"},
-        "C3": {"text": "Recurrent thoughts of death or suicide, or any suicidal behavior", "text_zh": "反复出现死亡或自杀的想法，或任何自杀行为", "type": "additional"},
-        "C4": {"text": "Complaints of or evidence of diminished ability to think or concentrate", "text_zh": "主诉或有证据表明思考或集中注意力的能力减退", "type": "additional"},
-        "C5": {"text": "Change in psychomotor activity, with agitation or retardation", "text_zh": "精神运动性活动改变，激越或迟滞", "type": "additional"},
-        "C6": {"text": "Sleep disturbance of any type", "text_zh": "任何类型的睡眠障碍", "type": "additional"},
-        "C7": {"text": "Change in appetite with corresponding weight change", "text_zh": "食欲改变伴相应的体重变化", "type": "additional"}
+        "A": {
+          "text": "Episode lasting at least 2 weeks",
+          "text_zh": "发作持续至少2周",
+          "type": "duration"
+        },
+        "B1": {
+          "text": "Depressed mood to a degree abnormal for the individual",
+          "text_zh": "情绪低落达到对个体异常的程度",
+          "type": "core"
+        },
+        "B2": {
+          "text": "Loss of interest or pleasure in activities normally pleasurable",
+          "text_zh": "对通常令人愉快的活动丧失兴趣或愉悦感",
+          "type": "core"
+        },
+        "B3": {
+          "text": "Decreased energy or increased fatigability",
+          "text_zh": "精力减退或疲乏感增加",
+          "type": "core"
+        },
+        "C1": {
+          "text": "Loss of confidence or self-esteem",
+          "text_zh": "自信心丧失或自卑感",
+          "type": "additional"
+        },
+        "C2": {
+          "text": "Unreasonable feelings of self-reproach or excessive inappropriate guilt",
+          "text_zh": "无合理原因的自责或过分不恰当的内疚感",
+          "type": "additional"
+        },
+        "C3": {
+          "text": "Recurrent thoughts of death or suicide, or any suicidal behavior",
+          "text_zh": "反复出现死亡或自杀的想法，或任何自杀行为",
+          "type": "additional"
+        },
+        "C4": {
+          "text": "Complaints of or evidence of diminished ability to think or concentrate",
+          "text_zh": "主诉或有证据表明思考或集中注意力的能力减退",
+          "type": "additional"
+        },
+        "C5": {
+          "text": "Change in psychomotor activity, with agitation or retardation",
+          "text_zh": "精神运动性活动改变，激越或迟滞",
+          "type": "additional"
+        },
+        "C6": {
+          "text": "Sleep disturbance of any type",
+          "text_zh": "任何类型的睡眠障碍",
+          "type": "additional"
+        },
+        "C7": {
+          "text": "Change in appetite with corresponding weight change",
+          "text_zh": "食欲改变伴相应的体重变化",
+          "type": "additional"
+        }
       },
-      "threshold": {"min_core": 2, "min_total": 4, "duration_weeks": 2}
+      "threshold": {
+        "min_core": 2,
+        "min_total": 4,
+        "duration_weeks": 2
+      }
     },
     "F33": {
       "name": "Recurrent depressive disorder",
       "name_zh": "复发性抑郁障碍",
       "category": "mood",
       "criteria": {
-        "A": {"text": "At least one previous depressive episode lasting minimum 2 weeks, separated by at least 2 months", "text_zh": "至少有一次既往抑郁发作持续至少2周，与当前发作间隔至少2个月", "type": "core"},
-        "B1": {"text": "Depressed mood", "text_zh": "情绪低落", "type": "core"},
-        "B2": {"text": "Loss of interest or pleasure", "text_zh": "兴趣或愉悦感丧失", "type": "core"},
-        "B3": {"text": "Decreased energy or increased fatigability", "text_zh": "精力减退或疲乏感增加", "type": "core"},
-        "C1": {"text": "Loss of confidence or self-esteem", "text_zh": "自信心丧失或自卑感", "type": "additional"},
-        "C2": {"text": "Feelings of self-reproach or guilt", "text_zh": "自责或内疚感", "type": "additional"},
-        "C3": {"text": "Thoughts of death or suicidal ideation", "text_zh": "死亡或自杀的想法", "type": "additional"},
-        "C4": {"text": "Diminished ability to think or concentrate", "text_zh": "思考或集中注意力能力减退", "type": "additional"},
-        "C5": {"text": "Psychomotor agitation or retardation", "text_zh": "精神运动性激越或迟滞", "type": "additional"},
-        "C6": {"text": "Sleep disturbance", "text_zh": "睡眠障碍", "type": "additional"},
-        "C7": {"text": "Appetite change with weight change", "text_zh": "食欲改变伴体重变化", "type": "additional"}
+        "A": {
+          "text": "At least one previous depressive episode lasting minimum 2 weeks, separated by at least 2 months",
+          "text_zh": "至少有一次既往抑郁发作持续至少2周，与当前发作间隔至少2个月",
+          "type": "core"
+        },
+        "B1": {
+          "text": "Depressed mood",
+          "text_zh": "情绪低落",
+          "type": "core"
+        },
+        "B2": {
+          "text": "Loss of interest or pleasure",
+          "text_zh": "兴趣或愉悦感丧失",
+          "type": "core"
+        },
+        "B3": {
+          "text": "Decreased energy or increased fatigability",
+          "text_zh": "精力减退或疲乏感增加",
+          "type": "core"
+        },
+        "C1": {
+          "text": "Loss of confidence or self-esteem",
+          "text_zh": "自信心丧失或自卑感",
+          "type": "additional"
+        },
+        "C2": {
+          "text": "Feelings of self-reproach or guilt",
+          "text_zh": "自责或内疚感",
+          "type": "additional"
+        },
+        "C3": {
+          "text": "Thoughts of death or suicidal ideation",
+          "text_zh": "死亡或自杀的想法",
+          "type": "additional"
+        },
+        "C4": {
+          "text": "Diminished ability to think or concentrate",
+          "text_zh": "思考或集中注意力能力减退",
+          "type": "additional"
+        },
+        "C5": {
+          "text": "Psychomotor agitation or retardation",
+          "text_zh": "精神运动性激越或迟滞",
+          "type": "additional"
+        },
+        "C6": {
+          "text": "Sleep disturbance",
+          "text_zh": "睡眠障碍",
+          "type": "additional"
+        },
+        "C7": {
+          "text": "Appetite change with weight change",
+          "text_zh": "食欲改变伴体重变化",
+          "type": "additional"
+        }
       },
-      "threshold": {"min_core": 2, "min_total": 4, "recurrence_required": true}
+      "threshold": {
+        "min_core": 2,
+        "min_total": 4,
+        "recurrence_required": true
+      }
     },
     "F39": {
       "name": "Unspecified mood disorder",
       "name_zh": "未特指的心境障碍",
       "category": "mood",
       "criteria": {
-        "A1": {"text": "Persistent depressed mood or pervasive sadness", "text_zh": "持续的情绪低落或普遍性悲伤", "type": "core"},
-        "A2": {"text": "Marked loss of interest or reduced pleasure in usual activities", "text_zh": "对日常活动明显失去兴趣或愉悦感减少", "type": "core"},
-        "A3": {"text": "Mood instability with notable swings, irritability, or affective lability", "text_zh": "情绪不稳定，伴明显波动、易激惹或情感不稳", "type": "core"},
-        "A4": {"text": "Reduced energy, fatigue, or decline in usual activity level", "text_zh": "精力下降、疲乏或日常活动水平下降", "type": "core"},
-        "A5": {"text": "Sleep disturbance such as insomnia, hypersomnia, or fragmented sleep", "text_zh": "睡眠障碍，如失眠、嗜睡或睡眠片段化", "type": "additional"},
-        "A6": {"text": "Symptoms cause noticeable impairment in social, school, or occupational functioning", "text_zh": "症状导致社交、学习或职业功能明显受损", "type": "functional"}
+        "A1": {
+          "text": "Persistent depressed mood or pervasive sadness",
+          "text_zh": "持续的情绪低落或普遍性悲伤",
+          "type": "core"
+        },
+        "A2": {
+          "text": "Marked loss of interest or reduced pleasure in usual activities",
+          "text_zh": "对日常活动明显失去兴趣或愉悦感减少",
+          "type": "core"
+        },
+        "A3": {
+          "text": "Mood instability with notable swings, irritability, or affective lability",
+          "text_zh": "情绪不稳定，伴明显波动、易激惹或情感不稳",
+          "type": "core"
+        },
+        "A4": {
+          "text": "Reduced energy, fatigue, or decline in usual activity level",
+          "text_zh": "精力下降、疲乏或日常活动水平下降",
+          "type": "core"
+        },
+        "A5": {
+          "text": "Sleep disturbance such as insomnia, hypersomnia, or fragmented sleep",
+          "text_zh": "睡眠障碍，如失眠、嗜睡或睡眠片段化",
+          "type": "additional"
+        },
+        "A6": {
+          "text": "Symptoms cause noticeable impairment in social, school, or occupational functioning",
+          "text_zh": "症状导致社交、学习或职业功能明显受损",
+          "type": "functional"
+        }
       },
-      "threshold": {"min_total": 3}
+      "threshold": {
+        "min_total": 3
+      }
     },
     "F40": {
       "name": "Phobic anxiety disorders",
       "name_zh": "恐惧性焦虑障碍",
       "category": "anxiety",
       "criteria": {
-        "A": {"text": "Marked and consistently manifested fear or avoidance of specific situations or objects", "text_zh": "对特定情境或物体有显著且持续的恐惧或回避", "type": "core"},
-        "B": {"text": "Anxiety symptoms in the feared situation", "text_zh": "在恐惧情境中出现焦虑症状", "type": "core"},
-        "C1": {"text": "Autonomic symptoms (palpitations, sweating, trembling)", "text_zh": "自主神经症状（心悸、出汗、震颤）", "type": "autonomic"},
-        "C2": {"text": "Avoidance of the phobic situation", "text_zh": "回避恐惧情境", "type": "behavioral"},
-        "C3": {"text": "Significant emotional distress due to symptoms or avoidance", "text_zh": "因症状或回避行为导致显著的情绪痛苦", "type": "distress"}
+        "A": {
+          "text": "Marked and consistently manifested fear or avoidance of specific situations or objects",
+          "text_zh": "对特定情境或物体有显著且持续的恐惧或回避",
+          "type": "core"
+        },
+        "B": {
+          "text": "Anxiety symptoms in the feared situation",
+          "text_zh": "在恐惧情境中出现焦虑症状",
+          "type": "core"
+        },
+        "C1": {
+          "text": "Autonomic symptoms (palpitations, sweating, trembling)",
+          "text_zh": "自主神经症状（心悸、出汗、震颤）",
+          "type": "autonomic"
+        },
+        "C2": {
+          "text": "Avoidance of the phobic situation",
+          "text_zh": "回避恐惧情境",
+          "type": "behavioral"
+        },
+        "C3": {
+          "text": "Significant emotional distress due to symptoms or avoidance",
+          "text_zh": "因症状或回避行为导致显著的情绪痛苦",
+          "type": "distress"
+        }
       },
-      "threshold": {"core_required": true, "min_additional": 1}
+      "threshold": {
+        "core_required": true,
+        "min_additional": 1
+      }
     },
     "F41.0": {
       "name": "Panic disorder",
       "name_zh": "惊恐障碍",
       "category": "anxiety",
       "criteria": {
-        "A": {"text": "Recurrent unexpected panic attacks not restricted to known situations", "text_zh": "反复出现的非预期性惊恐发作，不限于已知情境", "type": "core"},
-        "B1": {"text": "Discrete episode of intense fear or discomfort starting abruptly", "text_zh": "突然发作的强烈恐惧或不适的离散发作", "type": "attack"},
-        "B2": {"text": "Autonomic arousal symptoms (palpitations, sweating, trembling, dry mouth)", "text_zh": "自主神经兴奋症状（心悸、出汗、震颤、口干）", "type": "somatic"},
-        "B3": {"text": "Chest or abdominal symptoms (difficulty breathing, choking, chest pain, nausea)", "text_zh": "胸部或腹部症状（呼吸困难、窒息感、胸痛、恶心）", "type": "somatic"},
-        "B4": {"text": "Mental symptoms (dizziness, derealization, fear of losing control, fear of dying)", "text_zh": "精神症状（头晕、现实解体、害怕失控、害怕死亡）", "type": "cognitive"}
+        "A": {
+          "text": "Recurrent unexpected panic attacks not restricted to known situations",
+          "text_zh": "反复出现的非预期性惊恐发作，不限于已知情境",
+          "type": "core"
+        },
+        "B1": {
+          "text": "Discrete episode of intense fear or discomfort starting abruptly",
+          "text_zh": "突然发作的强烈恐惧或不适的离散发作",
+          "type": "attack"
+        },
+        "B2": {
+          "text": "Autonomic arousal symptoms (palpitations, sweating, trembling, dry mouth)",
+          "text_zh": "自主神经兴奋症状（心悸、出汗、震颤、口干）",
+          "type": "somatic"
+        },
+        "B3": {
+          "text": "Chest or abdominal symptoms (difficulty breathing, choking, chest pain, nausea)",
+          "text_zh": "胸部或腹部症状（呼吸困难、窒息感、胸痛、恶心）",
+          "type": "somatic"
+        },
+        "B4": {
+          "text": "Mental symptoms (dizziness, derealization, fear of losing control, fear of dying)",
+          "text_zh": "精神症状（头晕、现实解体、害怕失控、害怕死亡）",
+          "type": "cognitive"
+        }
       },
-      "threshold": {"attacks_per_month": 3, "min_symptoms_per_attack": 4}
+      "threshold": {
+        "attacks_per_month": 3,
+        "min_symptoms_per_attack": 4
+      }
     },
     "F41.1": {
       "name": "Generalized anxiety disorder",
       "name_zh": "广泛性焦虑障碍",
       "category": "anxiety",
       "criteria": {
-        "A": {"text": "Period of at least 6 months with prominent tension, worry, and apprehension about everyday events", "text_zh": "至少6个月期间有显著的紧张、担忧和对日常事件的忧虑", "type": "core"},
-        "B1": {"text": "Motor tension (fidgeting, tension headaches, trembling, inability to relax)", "text_zh": "运动性紧张（坐立不安、紧张性头痛、震颤、无法放松）", "type": "somatic"},
-        "B2": {"text": "Autonomic overactivity (sweating, tachycardia, dry mouth, epigastric discomfort)", "text_zh": "自主神经过度活动（出汗、心动过速、口干、上腹不适）", "type": "somatic"},
-        "B3": {"text": "Difficulty concentrating or mind going blank due to worry or anxiety", "text_zh": "因担忧或焦虑而难以集中注意力或头脑一片空白", "type": "cognitive"},
-        "B4": {"text": "Sleep disturbance (difficulty falling or staying asleep, or restless unsatisfying sleep)", "text_zh": "睡眠障碍（入睡困难、睡眠维持困难或不安宁不满意的睡眠）", "type": "somatic"}
+        "A": {
+          "text": "Period of at least 6 months with prominent tension, worry, and apprehension about everyday events",
+          "text_zh": "至少6个月期间有显著的紧张、担忧和对日常事件的忧虑",
+          "type": "core"
+        },
+        "B1": {
+          "text": "Motor tension (fidgeting, tension headaches, trembling, inability to relax)",
+          "text_zh": "运动性紧张（坐立不安、紧张性头痛、震颤、无法放松）",
+          "type": "somatic"
+        },
+        "B2": {
+          "text": "Autonomic overactivity (sweating, tachycardia, dry mouth, epigastric discomfort)",
+          "text_zh": "自主神经过度活动（出汗、心动过速、口干、上腹不适）",
+          "type": "somatic"
+        },
+        "B3": {
+          "text": "Difficulty concentrating or mind going blank due to worry or anxiety",
+          "text_zh": "因担忧或焦虑而难以集中注意力或头脑一片空白",
+          "type": "cognitive"
+        },
+        "B4": {
+          "text": "Sleep disturbance (difficulty falling or staying asleep, or restless unsatisfying sleep)",
+          "text_zh": "睡眠障碍（入睡困难、睡眠维持困难或不安宁不满意的睡眠）",
+          "type": "somatic"
+        }
       },
-      "threshold": {"min_symptoms": 4, "duration_months": 6}
+      "threshold": {
+        "min_symptoms": 4,
+        "duration_months": 6
+      }
     },
     "F42": {
       "name": "Obsessive-compulsive disorder",
       "name_zh": "强迫症",
       "category": "anxiety",
       "criteria": {
-        "A": {"text": "Obsessions or compulsions present on most days for at least 2 successive weeks", "text_zh": "强迫思维或强迫行为在至少连续2周的大部分日子里出现", "type": "core"},
-        "B1": {"text": "Obsessions: recognized as own thoughts, repetitive and unpleasant", "text_zh": "强迫思维：被认为是自己的想法，重复且令人不快", "type": "obsession"},
-        "B2": {"text": "Compulsions: repetitive behaviors that are not inherently enjoyable", "text_zh": "强迫行为：重复的行为，本身并不令人愉快", "type": "compulsion"},
-        "C": {"text": "Cause distress or interfere with social or individual functioning", "text_zh": "引起痛苦或干扰社会或个人功能", "type": "distress"}
+        "A": {
+          "text": "Obsessions or compulsions present on most days for at least 2 successive weeks",
+          "text_zh": "强迫思维或强迫行为在至少连续2周的大部分日子里出现",
+          "type": "core"
+        },
+        "B1": {
+          "text": "Obsessions: recognized as own thoughts, repetitive and unpleasant",
+          "text_zh": "强迫思维：被认为是自己的想法，重复且令人不快",
+          "type": "obsession"
+        },
+        "B2": {
+          "text": "Compulsions: repetitive behaviors that are not inherently enjoyable",
+          "text_zh": "强迫行为：重复的行为，本身并不令人愉快",
+          "type": "compulsion"
+        },
+        "C": {
+          "text": "Cause distress or interfere with social or individual functioning",
+          "text_zh": "引起痛苦或干扰社会或个人功能",
+          "type": "distress"
+        }
       },
-      "threshold": {"duration_weeks": 2, "distress_required": true}
+      "threshold": {
+        "duration_weeks": 2,
+        "distress_required": true
+      }
     },
     "F43.1": {
       "name": "Post-traumatic stress disorder",
       "name_zh": "创伤后应激障碍",
       "category": "stress",
       "criteria": {
-        "A": {"text": "Exposure to an exceptionally threatening or catastrophic event", "text_zh": "暴露于异常威胁性或灾难性事件", "type": "core"},
-        "B1": {"text": "Persistent re-experiencing (flashbacks, nightmares, distress at reminders)", "text_zh": "持续的再体验（闪回、噩梦、在提醒时痛苦）", "type": "re-experiencing"},
-        "B2": {"text": "Avoidance of circumstances resembling or associated with the stressor", "text_zh": "回避与应激源相似或相关的情境", "type": "avoidance"},
-        "B3": {"text": "Inability to recall important aspects of the stressor, or persistent hyperarousal (hypervigilance, exaggerated startle, insomnia)", "text_zh": "无法回忆应激源的重要方面，或持续的过度觉醒（过度警觉、夸大的惊吓反应、失眠）", "type": "arousal"}
+        "A": {
+          "text": "Exposure to an exceptionally threatening or catastrophic event",
+          "text_zh": "暴露于异常威胁性或灾难性事件",
+          "type": "core"
+        },
+        "B1": {
+          "text": "Persistent re-experiencing (flashbacks, nightmares, distress at reminders)",
+          "text_zh": "持续的再体验（闪回、噩梦、在提醒时痛苦）",
+          "type": "re-experiencing"
+        },
+        "B2": {
+          "text": "Avoidance of circumstances resembling or associated with the stressor",
+          "text_zh": "回避与应激源相似或相关的情境",
+          "type": "avoidance"
+        },
+        "B3": {
+          "text": "Inability to recall important aspects of the stressor, or persistent hyperarousal (hypervigilance, exaggerated startle, insomnia)",
+          "text_zh": "无法回忆应激源的重要方面，或持续的过度觉醒（过度警觉、夸大的惊吓反应、失眠）",
+          "type": "arousal"
+        }
       },
-      "threshold": {"trauma_required": true, "onset_within_months": 6}
+      "threshold": {
+        "trauma_required": true,
+        "onset_within_months": 6
+      }
     },
     "F43.2": {
       "name": "Adjustment disorders",
       "name_zh": "适应障碍",
       "category": "stress",
       "criteria": {
-        "A": {"text": "Onset of symptoms within 1 month of identifiable psychosocial stressor", "text_zh": "在可确认的心理社会应激源后1个月内出现症状", "type": "core"},
-        "B1": {"text": "Depressed mood, anxiety, or worry", "text_zh": "情绪低落、焦虑或担忧", "type": "emotional"},
-        "B2": {"text": "Feeling of inability to cope, plan ahead, or continue in the present situation", "text_zh": "感觉无法应对、无法计划未来或无法继续现状", "type": "functional"},
-        "B3": {"text": "Some degree of disability in daily routine performance", "text_zh": "日常活动表现有一定程度的障碍", "type": "functional"},
-        "C": {"text": "Does not meet criteria for another specific disorder", "text_zh": "不符合其他特定障碍的标准", "type": "exclusion"}
+        "A": {
+          "text": "Onset of symptoms within 1 month of identifiable psychosocial stressor",
+          "text_zh": "在可确认的心理社会应激源后1个月内出现症状",
+          "type": "core"
+        },
+        "B1": {
+          "text": "Depressed mood, anxiety, or worry",
+          "text_zh": "情绪低落、焦虑或担忧",
+          "type": "emotional"
+        },
+        "B2": {
+          "text": "Feeling of inability to cope, plan ahead, or continue in the present situation",
+          "text_zh": "感觉无法应对、无法计划未来或无法继续现状",
+          "type": "functional"
+        },
+        "B3": {
+          "text": "Some degree of disability in daily routine performance",
+          "text_zh": "日常活动表现有一定程度的障碍",
+          "type": "functional"
+        },
+        "C": {
+          "text": "Does not meet criteria for another specific disorder",
+          "text_zh": "不符合其他特定障碍的标准",
+          "type": "exclusion"
+        }
       },
-      "threshold": {"onset_within_month": true, "duration_max_months": 6}
+      "threshold": {
+        "onset_within_month": true,
+        "duration_max_months": 6
+      }
     },
     "F45": {
       "name": "Somatoform disorders",
       "name_zh": "躯体形式障碍",
       "category": "somatoform",
       "criteria": {
-        "A": {"text": "Multiple and recurrent physical symptoms with no adequate physical explanation", "text_zh": "多种反复出现的躯体症状，无充分的躯体解释", "type": "core"},
-        "B": {"text": "Persistent refusal to accept medical reassurance that there is no physical cause", "text_zh": "持续拒绝接受无躯体原因的医学保证", "type": "core"},
-        "C1": {"text": "Gastrointestinal symptoms (abdominal pain, nausea, bloating, diarrhea)", "text_zh": "胃肠道症状（腹痛、恶心、腹胀、腹泻）", "type": "somatic_group"},
-        "C2": {"text": "Cardiovascular symptoms (breathlessness, chest pain)", "text_zh": "心血管症状（呼吸困难、胸痛）", "type": "somatic_group"},
-        "C3": {"text": "Pain symptoms (headache, limb pain, back pain, joint pain)", "text_zh": "疼痛症状（头痛、肢体痛、背痛、关节痛）", "type": "somatic_group"}
+        "A": {
+          "text": "Multiple and recurrent physical symptoms with no adequate physical explanation",
+          "text_zh": "多种反复出现的躯体症状，无充分的躯体解释",
+          "type": "core"
+        },
+        "B": {
+          "text": "Persistent refusal to accept medical reassurance that there is no physical cause",
+          "text_zh": "持续拒绝接受无躯体原因的医学保证",
+          "type": "core"
+        },
+        "C1": {
+          "text": "Gastrointestinal symptoms (abdominal pain, nausea, bloating, diarrhea)",
+          "text_zh": "胃肠道症状（腹痛、恶心、腹胀、腹泻）",
+          "type": "somatic_group"
+        },
+        "C2": {
+          "text": "Cardiovascular symptoms (breathlessness, chest pain)",
+          "text_zh": "心血管症状（呼吸困难、胸痛）",
+          "type": "somatic_group"
+        },
+        "C3": {
+          "text": "Pain symptoms (headache, limb pain, back pain, joint pain)",
+          "text_zh": "疼痛症状（头痛、肢体痛、背痛、关节痛）",
+          "type": "somatic_group"
+        }
       },
-      "threshold": {"min_somatic_groups": 2, "duration_years": 2}
+      "threshold": {
+        "min_somatic_groups": 2,
+        "duration_years": 2
+      }
     },
     "F51": {
       "name": "Nonorganic sleep disorders",
       "name_zh": "非器质性睡眠障碍",
       "category": "sleep",
       "criteria": {
-        "A": {"text": "Complaint of difficulty falling or staying asleep, or poor quality of sleep", "text_zh": "主诉入睡困难、睡眠维持困难或睡眠质量差", "type": "core"},
-        "B": {"text": "Sleep disturbance occurs at least 3 times per week for at least 1 month", "text_zh": "睡眠障碍至少每周3次，持续至少1个月", "type": "frequency"},
-        "C": {"text": "Preoccupation with sleeplessness and excessive concern about its consequences", "text_zh": "对失眠的过度关注及对其后果的过分担忧", "type": "cognitive"},
-        "D": {"text": "Unsatisfactory sleep causes marked distress or interferes with functioning", "text_zh": "不满意的睡眠引起显著的痛苦或干扰日常功能", "type": "distress"}
+        "A": {
+          "text": "Complaint of difficulty falling or staying asleep, or poor quality of sleep",
+          "text_zh": "主诉入睡困难、睡眠维持困难或睡眠质量差",
+          "type": "core"
+        },
+        "B": {
+          "text": "Sleep disturbance occurs at least 3 times per week for at least 1 month",
+          "text_zh": "睡眠障碍至少每周3次，持续至少1个月",
+          "type": "frequency"
+        },
+        "C": {
+          "text": "Preoccupation with sleeplessness and excessive concern about its consequences",
+          "text_zh": "对失眠的过度关注及对其后果的过分担忧",
+          "type": "cognitive"
+        },
+        "D": {
+          "text": "Unsatisfactory sleep causes marked distress or interferes with functioning",
+          "text_zh": "不满意的睡眠引起显著的痛苦或干扰日常功能",
+          "type": "distress"
+        }
       },
-      "threshold": {"frequency_per_week": 3, "duration_months": 1}
+      "threshold": {
+        "frequency_per_week": 3,
+        "duration_months": 1
+      }
     },
     "F98": {
       "name": "Other behavioral and emotional disorders",
       "name_zh": "其他行为和情绪障碍",
       "category": "behavioral",
       "criteria": {
-        "A1": {"text": "Emotional dysregulation with frequent intense reactions or poor self-soothing", "text_zh": "情绪调节困难，常出现强烈反应或难以自我安抚", "type": "core"},
-        "A2": {"text": "Behavioral problems such as impulsivity, oppositionality, or disruptive conduct", "text_zh": "存在行为问题，如冲动、对立违抗或扰乱性行为", "type": "core"},
-        "A3": {"text": "School, work, or daily-role dysfunction related to emotional or behavioral symptoms", "text_zh": "因情绪或行为症状导致学习、工作或日常角色功能受损", "type": "functional"},
-        "A4": {"text": "Social difficulties including peer conflict, withdrawal, or poor age-appropriate interaction", "text_zh": "存在社交困难，包括同伴冲突、退缩或缺乏符合年龄的互动", "type": "social"},
-        "A5": {"text": "Reactions are developmentally inappropriate for the person's age or context", "text_zh": "其反应与年龄或所处情境相比显得发育上不相称", "type": "developmental"},
-        "A6": {"text": "Mixed emotional symptoms such as concurrent anxiety, low mood, or irritability", "text_zh": "伴混合性情绪症状，如焦虑、情绪低落或易激惹同时存在", "type": "additional"}
+        "A1": {
+          "text": "Emotional dysregulation with frequent intense reactions or poor self-soothing",
+          "text_zh": "情绪调节困难，常出现强烈反应或难以自我安抚",
+          "type": "core"
+        },
+        "A2": {
+          "text": "Behavioral problems such as impulsivity, oppositionality, or disruptive conduct",
+          "text_zh": "存在行为问题，如冲动、对立违抗或扰乱性行为",
+          "type": "core"
+        },
+        "A3": {
+          "text": "School, work, or daily-role dysfunction related to emotional or behavioral symptoms",
+          "text_zh": "因情绪或行为症状导致学习、工作或日常角色功能受损",
+          "type": "functional"
+        },
+        "A4": {
+          "text": "Social difficulties including peer conflict, withdrawal, or poor age-appropriate interaction",
+          "text_zh": "存在社交困难，包括同伴冲突、退缩或缺乏符合年龄的互动",
+          "type": "social"
+        },
+        "A5": {
+          "text": "Reactions are developmentally inappropriate for the person's age or context",
+          "text_zh": "其反应与年龄或所处情境相比显得发育上不相称",
+          "type": "developmental"
+        },
+        "A6": {
+          "text": "Mixed emotional symptoms such as concurrent anxiety, low mood, or irritability",
+          "text_zh": "伴混合性情绪症状，如焦虑、情绪低落或易激惹同时存在",
+          "type": "additional"
+        }
       },
-      "threshold": {"min_total": 3}
+      "threshold": {
+        "min_total": 3
+      }
+    },
+    "Z71": {
+      "name": "Counseling",
+      "name_zh": "咨询",
+      "category": "counseling",
+      "criteria": {
+        "A1": {
+          "text": "Patient seeks advice or consultation without clear psychiatric symptoms",
+          "text_zh": "患者寻求建议或咨询，无明确精神症状",
+          "type": "core"
+        },
+        "A2": {
+          "text": "Primary concern is psychological well-being, life adjustment, or relationship issues",
+          "text_zh": "主要关切为心理健康、生活适应或人际关系问题",
+          "type": "core"
+        },
+        "A3": {
+          "text": "No symptom pattern meeting criteria for any specific psychiatric disorder",
+          "text_zh": "无符合任何特定精神障碍标准的症状模式",
+          "type": "exclusion"
+        }
+      },
+      "threshold": {
+        "min_total": 2,
+        "exclusion_required": true
+      }
+    },
+    "F41.2": {
+      "name": "Mixed anxiety and depressive disorder",
+      "name_zh": "混合性焦虑与抑郁障碍",
+      "category": "anxiety",
+      "criteria": {
+        "A": {
+          "text": "Both anxiety and depressive symptoms present",
+          "text_zh": "同时存在焦虑和抑郁症状",
+          "type": "core"
+        },
+        "B": {
+          "text": "Neither severe enough to independently meet diagnostic criteria",
+          "text_zh": "焦虑和抑郁均未严重到独立满足各自的诊断标准",
+          "type": "core"
+        },
+        "C": {
+          "text": "Autonomic symptoms present",
+          "text_zh": "存在自主神经症状（颤抖、心悸、口干、胃部不适）",
+          "type": "additional"
+        },
+        "D": {
+          "text": "Duration at least several weeks",
+          "text_zh": "持续至少数周",
+          "type": "duration"
+        }
+      },
+      "threshold": {
+        "min_total": 2,
+        "both_required": true
+      }
     }
   }
 }
