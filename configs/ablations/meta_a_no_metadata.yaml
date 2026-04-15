@@ -1,0 +1,4 @@
+# Config A: No patient metadata in triage (paper-aligned, fair comparison)
+# Triage only sees transcript_text, no Age/Gender/ChiefComplaint
+mode:
+  triage_metadata_fields: []

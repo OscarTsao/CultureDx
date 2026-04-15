@@ -62,6 +62,7 @@ class HiEDMode(BaseModeOrchestrator):
         differential_threshold: float = 0.10,
         contrastive_enabled: bool = False,
         evidence_verification: bool = False,
+        triage_metadata_fields: list[str] | None = None,
         ranker_weights_path: str | Path | None = None,
         prompt_variant: str = "",
         calibrator_mode: str = "heuristic-v2",
@@ -113,6 +114,7 @@ class HiEDMode(BaseModeOrchestrator):
         # Stage 2.5: Contrastive disambiguation (optional)
         self.contrastive_enabled = contrastive_enabled
         self.evidence_verification = evidence_verification
+        self.triage_metadata_fields = triage_metadata_fields
         self.contrastive = None
         if self.contrastive_enabled:
             from culturedx.agents.contrastive_checker import ContrastiveCheckerAgent
@@ -142,6 +144,25 @@ class HiEDMode(BaseModeOrchestrator):
         if ranker_weights_path is not None:
             self.pairwise_ranker = PairwiseRanker(ranker_weights_path)
             logger.info("Pairwise ranker loaded from %s", ranker_weights_path)
+
+
+    def _build_triage_extra(self, case, prompt_variant: str) -> dict:
+        """Build triage extra dict, gated by triage_metadata_fields config."""
+        extra = {"prompt_variant": prompt_variant}
+        fields = self.triage_metadata_fields  # None=all, []=none
+        meta = case.metadata or {}
+        if fields is None:
+            extra["chief_complaint"] = meta.get("chief_complaint")
+            extra["age"] = meta.get("age")
+            extra["gender"] = meta.get("gender")
+        else:
+            if "chief_complaint" in fields:
+                extra["chief_complaint"] = meta.get("chief_complaint")
+            if "age" in fields:
+                extra["age"] = meta.get("age")
+            if "gender" in fields:
+                extra["gender"] = meta.get("gender")
+        return extra
 
     @staticmethod
     def _build_evidence_map(evidence: EvidenceBrief) -> dict[str, str | dict[str, str]]:
@@ -392,12 +413,7 @@ class HiEDMode(BaseModeOrchestrator):
                 transcript_text=transcript_text,
                 evidence={"evidence_summary": self._build_global_evidence_summary(evidence)} if evidence else None,
                 language=lang,
-                extra={
-                    "chief_complaint": (case.metadata or {}).get("chief_complaint"),
-                    "age": (case.metadata or {}).get("age"),
-                    "gender": (case.metadata or {}).get("gender"),
-                    "prompt_variant": self.prompt_variant,
-                },
+                extra=self._build_triage_extra(case, self.prompt_variant),
             )
             triage_output = self.triage.run(triage_input)
             stage_timings["triage"] = time.monotonic() - triage_start

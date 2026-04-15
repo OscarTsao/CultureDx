@@ -1,0 +1,3 @@
+# Config B: Age+Gender only (no ChiefComplaint)
+mode:
+  triage_metadata_fields: ["age", "gender"]
