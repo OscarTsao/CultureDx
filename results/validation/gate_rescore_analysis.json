@@ -1,0 +1,21 @@
+{
+  "description": "CPU re-score: comorbidity gate effect on Config 05 predictions",
+  "base_config": "05_dtv_v2_rag",
+  "base_overall": 0.527,
+  "cases_changed": 1,
+  "total_cases": 1000,
+  "changed_case": {
+    "case_id": "359414476",
+    "gold": ["F32"],
+    "before": ["F32", "F20"],
+    "after": ["F32"],
+    "reason": "F20+F32 forbidden pair (schizophrenia+depression)"
+  },
+  "metrics_delta": {
+    "avg_labels": -0.001,
+    "12c_exact_match": "+1",
+    "12c_top1": "+0",
+    "overall_change": "negligible"
+  },
+  "conclusion": "Gate is a safety net (forbidden pairs only), not a performance driver. Fires on 0.1% of cases."
+}
