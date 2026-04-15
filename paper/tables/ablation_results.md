@@ -1,16 +1,12 @@
-# Ablation Results Table
+# Ablation Results (Validation Split, Qwen3-32B-AWQ, N=1000)
 
-| Condition | Dataset | Accuracy | F1 (Macro) | Delta |
-|-----------|---------|----------|------------|-------|
-| HiED baseline | LingxiDiag | -- | -- | -- |
-| + Thinking mode | LingxiDiag | -- | -- | -- |
-| + CoT prompts | LingxiDiag | -- | -- | -- |
-| + Thinking + CoT | LingxiDiag | -- | -- | -- |
-| PsyCoT + Thinking + CoT | LingxiDiag | -- | -- | -- |
-| HiED baseline | MDD-5k | -- | -- | -- |
-| + Thinking mode | MDD-5k | -- | -- | -- |
-| + CoT prompts | MDD-5k | -- | -- | -- |
-| + Thinking + CoT | MDD-5k | -- | -- | -- |
-| PsyCoT + Thinking + CoT | MDD-5k | -- | -- | -- |
+| Row | Config | 2c_Acc | 2c_Fm | 2c_Fw | 4c_Acc | 4c_Fm | 4c_Fw | 12c_Acc | 12c_T1 | 12c_T3 | 12c_Fm | 12c_Fw | Overall |
+|-----|--------|--------|-------|-------|--------|-------|-------|---------|--------|--------|--------|--------|---------|
+| 01 | Single | .753 | .708 | .775 | .404 | .379 | .400 | .249 | .478 | .575 | .167 | .414 | .482 |
+| 02 | Single+RAG | .792 | .752 | .811 | .354 | .306 | .321 | .024 | .541 | .702 | .198 | .415 | .469 |
+| 03 | DtV V1 | .733 | .701 | .770 | .411 | .374 | .393 | .252 | .456 | .532 | .174 | .405 | .475 |
+| 04 | DtV V1+RAG | .765 | .752 | .803 | .440 | .395 | .410 | .262 | .500 | .571 | .210 | .447 | .480 |
+| 05 | DtV V2+RAG | .812 | .794 | .828 | .448 | .408 | .423 | .317 | .523 | .599 | .193 | .453 | .527 |
+| 06 | DtV V2+RAG+Gate | .808 | .790 | .826 | .451 | .407 | .422 | .316 | .520 | .597 | .194 | .452 | .526 |
 
-*To be populated after reasoning ablation completes.*
+Best system: **Row 05** (DtV V2+RAG, Overall = 0.527)
