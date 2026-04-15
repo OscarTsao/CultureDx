@@ -97,6 +97,7 @@ class RetrievalConfig(BaseModel):
     top_k: int = 5
     balanced_per_class: bool = True
     level: int = 1  # 1=label-only, 2=key evidence snippets
+    output_level: int = 1  # 1=label-only, 3=label+EMR fields from train cases
 
 
 class CultureDxConfig(BaseModel):

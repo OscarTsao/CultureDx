@@ -24,3 +24,7 @@ outputs/finetune/criterion_checker_lora/chat_template.jinja
 # Temp PID files
 outputs/*_pid.txt
 data/sft/teacher_v1/criterion_checker_*.jsonl
+
+# Large data files
+data/sft/
+2602.09379v2.pdf

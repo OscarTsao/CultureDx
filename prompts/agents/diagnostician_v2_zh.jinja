@@ -21,7 +21,16 @@
 以下是从历史病例库中检索到的与本案最相似的病例及其最终诊断：
 {% for case in similar_cases %}
 - 相似度 {{ "%.2f"|format(case.similarity) }}: {{ case.diagnosis_code }}（{{ case.diagnosis_name }}）
-  主诉：{{ case.chief_complaint_summary }}
+  主诉：{{ case.chief_complaint or case.chief_complaint_summary }}
+{%- if case.age and case.gender %}
+  患者：{{ case.gender }}，{{ case.age }}岁
+{%- endif %}
+{%- if case.family_history %}
+  家族史：{{ case.family_history }}
+{%- endif %}
+{%- if case.present_illness %}
+  现病史摘要：{{ case.present_illness[:150] }}
+{%- endif %}
 {%- if case.key_evidence %}
   关键证据：{{ case.key_evidence | join("；") }}
 {%- endif %}

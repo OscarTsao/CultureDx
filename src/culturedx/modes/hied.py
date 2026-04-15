@@ -63,6 +63,7 @@ class HiEDMode(BaseModeOrchestrator):
         contrastive_enabled: bool = False,
         evidence_verification: bool = False,
         triage_metadata_fields: list[str] | None = None,
+        rag_output_level: int = 1,
         ranker_weights_path: str | Path | None = None,
         prompt_variant: str = "",
         calibrator_mode: str = "heuristic-v2",
@@ -115,6 +116,7 @@ class HiEDMode(BaseModeOrchestrator):
         self.contrastive_enabled = contrastive_enabled
         self.evidence_verification = evidence_verification
         self.triage_metadata_fields = triage_metadata_fields
+        self._rag_output_level = rag_output_level
         self.contrastive = None
         if self.contrastive_enabled:
             from culturedx.agents.contrastive_checker import ContrastiveCheckerAgent
@@ -921,16 +923,28 @@ class HiEDMode(BaseModeOrchestrator):
                     similar_cases = self.case_retriever.retrieve(full_transcript, top_k=5)
                 # Flatten for prompt: use first diagnosis code/name per case
                 similar_cases_for_prompt = []
+                rag_level = getattr(self, "_rag_output_level", 1)
                 for sc in similar_cases:
                     codes = sc.get("diagnosis_codes", [])
                     names = sc.get("diagnosis_names", [])
-                    similar_cases_for_prompt.append({
+                    entry = {
                         "similarity": sc["similarity"],
                         "diagnosis_code": codes[0] if codes else "?",
                         "diagnosis_name": names[0] if names else "",
                         "chief_complaint_summary": sc.get("transcript_preview", "")[:100],
                         "key_evidence": sc.get("key_evidence", []),
-                    })
+                    }
+                    if rag_level >= 3:
+                        entry["chief_complaint"] = sc.get("chief_complaint", "")
+                        entry["age"] = sc.get("age", "")
+                        entry["gender"] = sc.get("gender", "")
+                        fh = sc.get("family_history", "")
+                        if fh and fh not in ("阴性", "家族史：阴性", "无"):
+                            entry["family_history"] = fh
+                        pi = sc.get("present_illness", "")
+                        if pi and len(pi) > 10:
+                            entry["present_illness"] = pi[:200]
+                    similar_cases_for_prompt.append(entry)
                 similar_cases = similar_cases_for_prompt
             except Exception as e:
                 logger.warning("CaseRetriever failed: %s", e)
