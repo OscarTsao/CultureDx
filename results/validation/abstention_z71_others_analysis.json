@@ -1,0 +1,16 @@
+{
+  "baseline": {
+    "acc": 0.517,
+    "f1m": 0.20141106003143214,
+    "f1w": 0.453106500486681,
+    "z71_rec": 0.0,
+    "z71_hit": 0,
+    "z71_n": 8,
+    "oth_rec": 0.0,
+    "oth_hit": 0,
+    "oth_n": 85,
+    "n_flip": 0
+  },
+  "best_config": null,
+  "best_delta_f1m": 0.0
+}
