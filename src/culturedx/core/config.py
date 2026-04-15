@@ -38,7 +38,8 @@ class ModeConfig(BaseModel):
     diagnose_then_verify: bool = False
     contrastive_enabled: bool = False
     evidence_verification: bool = False
-    triage_metadata_fields: list[str] | None = None  # None=all, []=none
+    triage_metadata_fields: list[str] | None = None
+    checker_prompt_variant: str | None = None  # None=same as prompt_variant  # None=all, []=none
     prompt_variant: str = ""
     calibrator_mode: str = "heuristic-v2"  # "heuristic-v2" or "learned"
     calibrator_artifact_path: str | None = None

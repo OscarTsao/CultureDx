@@ -1,0 +1,3 @@
+# Overlay: use improved V2 checker with shared symptom + cultural calibration
+mode:
+  checker_prompt_variant: v2_improved

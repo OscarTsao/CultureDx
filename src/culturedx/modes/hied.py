@@ -63,6 +63,7 @@ class HiEDMode(BaseModeOrchestrator):
         evidence_verification: bool = False,
         triage_metadata_fields: list[str] | None = None,
         rag_output_level: int = 1,
+        checker_prompt_variant: str | None = None,
         ranker_weights_path: str | Path | None = None,
         prompt_variant: str = "",
         calibrator_mode: str = "heuristic-v2",
@@ -116,6 +117,7 @@ class HiEDMode(BaseModeOrchestrator):
         self.evidence_verification = evidence_verification
         self.triage_metadata_fields = triage_metadata_fields
         self._rag_output_level = rag_output_level
+        self._checker_prompt_variant = checker_prompt_variant
         self.contrastive = None
         if self.contrastive_enabled:
             from culturedx.agents.contrastive_checker import ContrastiveCheckerAgent
@@ -146,6 +148,11 @@ class HiEDMode(BaseModeOrchestrator):
             self.pairwise_ranker = PairwiseRanker(ranker_weights_path)
             logger.info("Pairwise ranker loaded from %s", ranker_weights_path)
 
+
+    @property
+    def _effective_checker_variant(self) -> str:
+        """Return checker prompt variant, falling back to main prompt_variant."""
+        return self._checker_prompt_variant or self.prompt_variant
 
     def _build_triage_extra(self, case, prompt_variant: str) -> dict:
         """Build triage extra dict, gated by triage_metadata_fields config."""
@@ -509,7 +516,7 @@ class HiEDMode(BaseModeOrchestrator):
             transcript_text,
             evidence_map,
             lang,
-            prompt_variant=self.prompt_variant,
+            prompt_variant=self._effective_checker_variant,
             checker_llm_client=self.checker_llm,
         )
         stage_timings["checker_fanout"] = time.monotonic() - checker_start
@@ -996,7 +1003,7 @@ class HiEDMode(BaseModeOrchestrator):
             transcript_text,
             evidence_map,
             lang,
-            prompt_variant=self.prompt_variant,
+            prompt_variant=self._effective_checker_variant,
             checker_llm_client=self.checker_llm,
         )
         stage_timings["checker_verify"] = time.monotonic() - checker_start
@@ -1010,7 +1017,7 @@ class HiEDMode(BaseModeOrchestrator):
                 transcript_text,
                 evidence_map,
                 lang,
-                prompt_variant=self.prompt_variant,
+                prompt_variant=self._effective_checker_variant,
                 checker_llm_client=self.checker_llm,
             )
             stage_timings["checker_remaining"] = time.monotonic() - remaining_start

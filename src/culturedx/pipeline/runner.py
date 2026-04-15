@@ -20,10 +20,7 @@ from culturedx.core.models import ClinicalCase, DiagnosisResult, FailureInfo
 from culturedx.eval.code_mapping import map_code_list
 from culturedx.eval.metrics import compute_comorbidity_metrics, compute_diagnosis_metrics
 from culturedx.eval.lingxidiag_paper import compute_table4_metrics, pred_to_parent_list
-try:
-    from culturedx.evidence.pipeline import EvidencePipeline
-except ImportError:
-    EvidencePipeline = None  # evidence pipeline removed
+from culturedx.evidence.pipeline import EvidencePipeline
 from culturedx.modes.base import BaseModeOrchestrator, case_execution_context
 from culturedx.ontology.symptom_map import load_somatization_map
 from culturedx.pipeline.artifacts import (

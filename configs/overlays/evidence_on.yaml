@@ -1,0 +1,4 @@
+# Enable evidence pipeline (somatization + negation extraction)
+evidence:
+  enabled: true
+  scope_policy: manual
