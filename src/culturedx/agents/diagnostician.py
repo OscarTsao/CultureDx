@@ -71,7 +71,7 @@ class DiagnosticianAgent(BaseAgent):
         disorder_names = dict(extra.get("disorder_names", {}))
 
         prompt_variant = extra.get("prompt_variant", "")
-        if prompt_variant == "v2" and input.language == "zh":
+        if prompt_variant in ("v2", "v2diag") and input.language == "zh":
             template_name = "diagnostician_v2_zh.jinja"
         else:
             template_name = f"diagnostician_{input.language}.jinja"
