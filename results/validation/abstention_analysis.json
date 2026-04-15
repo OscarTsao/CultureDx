@@ -1,0 +1,20 @@
+{
+  "description": "CPU re-score: abstention threshold for Z71/Others recovery",
+  "base_config": "05_dtv_v2_rag",
+  "gold_distribution": {
+    "F32": 365, "F41": 358, "Others": 85, "F39": 60, "F51": 36,
+    "F98": 30, "F42": 25, "F43": 11, "F31": 9, "Z71": 8, "F45": 8, "F20": 5
+  },
+  "baseline": {"acc": 0.517, "f1_macro": 0.201, "f1_weighted": 0.453},
+  "best_strategy": {
+    "name": "met_ratio < 0.4 → Others",
+    "flipped": 6, "correct": 5, "wrong": 1,
+    "f1_macro": 0.214, "delta_f1m": "+0.012"
+  },
+  "oracle": {
+    "z71_cases": 8, "others_cases": 85,
+    "acc": 0.610, "f1_macro": 0.407, "f1_weighted": 0.567,
+    "estimated_overall": 0.564, "delta_overall": "+0.037"
+  },
+  "conclusion": "Oracle ceiling +3.7pp Overall. Best practical strategy +0.012 F1m. Confidence signal uncalibrated (90% cases = 0.9). Dedicated Z71/Others classifier needed for real improvement."
+}
