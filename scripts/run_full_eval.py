@@ -327,7 +327,7 @@ def resolve_dataset_spec(dataset_name: str, cfg: CultureDxConfig) -> dict[str, A
             "output_name": "lingxidiag",
             "adapter_name": "lingxidiag16k",
             "data_path": data_path,
-            "split": "train",
+            "split": "validation",
         }
 
     data_path_obj = Path(data_path)

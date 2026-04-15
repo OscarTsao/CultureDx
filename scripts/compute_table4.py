@@ -62,7 +62,7 @@ def load_dataset_cases(data_path: Path) -> dict[str, dict]:
     if (data_dir / "data").is_dir():
         data_dir = data_dir / "data"
 
-    parquet_files = sorted(data_dir.glob("train-*.parquet"))
+    parquet_files = sorted(data_dir.glob("validation-*.parquet"))
     if not parquet_files:
         raise FileNotFoundError(f"No parquet files found in {data_dir}")
 

@@ -44,14 +44,14 @@ def test_resolve_model_output_dir_uses_subdirs_for_multi_model_runs(tmp_path: Pa
     ) == tmp_path / "quanttrio-qwen3-5-35b-a3b-awq"
 
 
-def test_resolve_dataset_spec_defaults_lingxidiag_to_train_split():
+def test_resolve_dataset_spec_defaults_lingxidiag_to_validation_split():
     cfg = CultureDxConfig(
         dataset=DatasetConfig(name="lingxidiag", data_path="data/raw/lingxidiag16k")
     )
 
     spec = MODULE.resolve_dataset_spec("lingxidiag", cfg)
 
-    assert spec["split"] == "train"
+    assert spec["split"] == "validation"
     assert spec["adapter_name"] == "lingxidiag16k"
 
 

@@ -55,7 +55,7 @@ class LingxiDiag16kAdapter(BaseDatasetAdapter):
 
         # Parse ICD codes from DiagnosisCode (may be comma-separated)
         raw_code = row.get("DiagnosisCode", "")
-        icd_codes = [c.strip() for c in raw_code.split(",") if c.strip()]
+        icd_codes = [c.strip() for c in re.split(r"[;,；，]", raw_code) if c.strip()]
 
         # Simplified labels (e.g., ["F41", "F32"])
         icd_labels = row.get("icd_clf_label", []) or []
