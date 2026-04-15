@@ -1,5 +1,0 @@
-mode:
-  name: hied-dtv
-  type: hied
-  diagnose_then_verify: true
-  force_prediction: true

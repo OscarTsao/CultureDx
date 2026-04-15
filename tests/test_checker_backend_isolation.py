@@ -64,6 +64,7 @@ def test_hied_uses_checker_llm_for_checker_fanout():
         checker_llm_client=checker_llm,
         target_disorders=["F32"],
         abstain_threshold=0.1,
+        prompt_variant="v2",
     )
 
     result = mode.diagnose(_make_case())
@@ -81,6 +82,7 @@ def test_hied_contrastive_and_differential_stay_on_main_llm():
         llm_client=main_llm,
         checker_llm_client=checker_llm,
         contrastive_enabled=True,
+        prompt_variant="v2",
     )
 
     assert mode.triage.llm is main_llm

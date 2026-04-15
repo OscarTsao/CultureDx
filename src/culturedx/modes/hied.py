@@ -28,7 +28,6 @@ from culturedx.core.models import (
     FailureInfo,
 )
 from culturedx.diagnosis.calibrator import ConfidenceCalibrator
-from culturedx.diagnosis.pairwise_ranker import PairwiseRanker
 from culturedx.diagnosis.comorbidity import ComorbidityResolver
 from culturedx.diagnosis.logic_engine import DiagnosticLogicEngine
 from culturedx.modes.base import BaseModeOrchestrator
@@ -142,7 +141,7 @@ class HiEDMode(BaseModeOrchestrator):
         self.comorbidity_resolver = ComorbidityResolver()
 
         # Stage 4a: Pairwise re-ranking (optional, no LLM)
-        self.pairwise_ranker: PairwiseRanker | None = None
+        self.pairwise_ranker = None  # removed: PairwiseRanker
         if ranker_weights_path is not None:
             self.pairwise_ranker = PairwiseRanker(ranker_weights_path)
             logger.info("Pairwise ranker loaded from %s", ranker_weights_path)

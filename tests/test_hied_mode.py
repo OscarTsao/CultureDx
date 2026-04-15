@@ -101,6 +101,7 @@ class TestHiEDMode:
         ]
         llm = FakeLLM(responses)
         mode = HiEDMode(
+        prompt_variant="v2",
             llm_client=llm,
             target_disorders=["F32"],
             abstain_threshold=0.1,
@@ -134,7 +135,8 @@ class TestHiEDMode:
             make_checker_response("F42", 1, 5),
         ]
         llm = FakeLLM(responses)
-        mode = HiEDMode(llm_client=llm, abstain_threshold=0.1)
+        mode = HiEDMode(
+            prompt_variant="v2",llm_client=llm, abstain_threshold=0.1)
         case = make_case()
         result = mode.diagnose(case)
 
@@ -147,7 +149,8 @@ class TestHiEDMode:
     def test_unsupported_language_abstains(self):
         """HiED abstains for unsupported languages."""
         llm = FakeLLM()
-        mode = HiEDMode(llm_client=llm)
+        mode = HiEDMode(
+            prompt_variant="v2",llm_client=llm)
         case = make_case(language="fr")
         result = mode.diagnose(case)
 
@@ -163,6 +166,7 @@ class TestHiEDMode:
         ]
         llm = FakeLLM(responses)
         mode = HiEDMode(
+            prompt_variant="v2",
             llm_client=llm,
             target_disorders=["F32"],
         )
@@ -180,6 +184,7 @@ class TestHiEDMode:
         ]
         llm = FakeLLM(responses)
         mode = HiEDMode(
+            prompt_variant="v2",
             llm_client=llm,
             target_disorders=["F32"],
             abstain_threshold=0.9,  # Very high threshold
@@ -196,6 +201,7 @@ class TestHiEDMode:
         ]
         llm = FakeLLM(responses)
         mode = HiEDMode(
+            prompt_variant="v2",
             llm_client=llm,
             target_disorders=["F32"],
             abstain_threshold=0.1,
@@ -236,6 +242,7 @@ class TestHiEDMode:
         ]
         llm = FakeLLM(responses)
         mode = HiEDMode(
+            prompt_variant="v2",
             llm_client=llm,
             target_disorders=["F32", "F41.1"],
             abstain_threshold=0.1,
@@ -250,7 +257,8 @@ class TestHiEDMode:
     def test_empty_candidates(self):
         """HiED reports a scope failure when manual scope has no candidates."""
         llm = FakeLLM()
-        mode = HiEDMode(llm_client=llm, target_disorders=[])
+        mode = HiEDMode(
+            prompt_variant="v2",llm_client=llm, target_disorders=[])
         case = make_case()
         result = mode.diagnose(case)
 
@@ -291,6 +299,7 @@ class TestHiEDMode:
     def test_production_mode_rejects_manual_targets(self):
         llm = FakeLLM()
         mode = HiEDMode(
+            prompt_variant="v2",
             llm_client=llm,
             target_disorders=["F32"],
             execution_mode="production_open_set",
@@ -302,7 +311,8 @@ class TestHiEDMode:
 
     def test_triage_failure_is_machine_readable(self):
         llm = FakeLLM()
-        mode = HiEDMode(llm_client=llm, abstain_threshold=0.1)
+        mode = HiEDMode(
+            prompt_variant="v2",llm_client=llm, abstain_threshold=0.1)
         mode.triage.run = lambda _input: AgentOutput(
             raw_response="{}",
             parsed=None,

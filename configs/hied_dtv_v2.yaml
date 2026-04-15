@@ -1,6 +1,0 @@
-mode:
-  name: hied-dtv-v2
-  type: hied
-  diagnose_then_verify: true
-  force_prediction: true
-  prompt_variant: v2

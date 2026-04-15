@@ -310,6 +310,7 @@ class TestHiEDE2E:
         )
 
         hied = HiEDMode(
+            prompt_variant="v2",
             llm_client=mock,
             prompts_dir=PROMPTS_DIR,
             target_disorders=["F32", "F33", "F41.1"],
@@ -346,6 +347,7 @@ class TestHiEDE2E:
         )
 
         hied = HiEDMode(
+            prompt_variant="v2",
             llm_client=mock,
             prompts_dir=PROMPTS_DIR,
             target_disorders=["F32", "F41.1"],
@@ -379,6 +381,7 @@ class TestHiEDE2E:
         )
 
         hied = HiEDMode(
+            prompt_variant="v2",
             llm_client=mock,
             prompts_dir=PROMPTS_DIR,
             target_disorders=["F32", "F41.1"],
@@ -420,6 +423,7 @@ class TestHiEDE2E:
         )
 
         hied = HiEDMode(
+            prompt_variant="v2",
             llm_client=mock,
             prompts_dir=PROMPTS_DIR,
             target_disorders=["F32", "F41.1"],
@@ -480,6 +484,7 @@ class TestHiEDE2E:
         )
 
         hied = HiEDMode(
+            prompt_variant="v2",
             llm_client=mock,
             prompts_dir=PROMPTS_DIR,
             target_disorders=["F32", "F41.1"],
@@ -516,6 +521,7 @@ class TestHiEDE2E:
         )
 
         hied = HiEDMode(
+            prompt_variant="v2",
             llm_client=mock,
             prompts_dir=PROMPTS_DIR,
             target_disorders=["F32", "F41.1"],
@@ -588,6 +594,7 @@ class TestHiEDE2E:
 
         llm = ContrastiveMockLLM({"F32": f32_resp, "F41.1": f41_resp})
         mode = HiEDMode(
+            prompt_variant="v2",
             llm_client=llm,
             prompts_dir=PROMPTS_DIR,
             target_disorders=["F32", "F41.1"],
@@ -612,6 +619,7 @@ class TestHiEDE2E:
         f41_resp = _f41_1_all_met_response()
         llm = MockLLMClient({"F32": f32_resp, "F41.1": f41_resp})
         mode = HiEDMode(
+            prompt_variant="v2",
             llm_client=llm,
             prompts_dir=PROMPTS_DIR,
             target_disorders=["F32", "F41.1"],
@@ -635,6 +643,7 @@ class TestHiEDE2E:
         f41_resp = _f41_1_below_threshold_response()
         llm = MockLLMClient({"F32": f32_resp, "F41.1": f41_resp})
         mode = HiEDMode(
+            prompt_variant="v2",
             llm_client=llm,
             prompts_dir=PROMPTS_DIR,
             target_disorders=["F32", "F41.1"],
@@ -669,6 +678,7 @@ class TestHiEDE2E:
 
         llm = BothMockLLM({"F32": f32_resp, "F41.1": f41_resp})
         mode = HiEDMode(
+            prompt_variant="v2",
             llm_client=llm,
             prompts_dir=PROMPTS_DIR,
             target_disorders=["F32", "F41.1"],

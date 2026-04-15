@@ -1,8 +1,0 @@
-# Config D: No patient metadata, RAG Level 3 (label + EMR from train cases)
-# Fair: current patient only sees transcript
-# Rich: RAG returns structured EMR fields from historical cases
-mode:
-  triage_metadata_fields: []  # no metadata for current patient
-
-retrieval:
-  output_level: 3  # label + EMR fields from train cases
