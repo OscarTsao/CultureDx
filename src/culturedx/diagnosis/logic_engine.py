@@ -114,6 +114,14 @@ class DiagnosticLogicEngine:
         if "min_somatic_groups" in threshold:
             return self._eval_somatoform(co.disorder, threshold, criteria_def, met_ids)
 
+        # Z71 counseling: exclusion criterion required
+        if threshold.get("exclusion_required"):
+            return self._eval_counseling(co.disorder, threshold, criteria_def, met_ids)
+
+        # F41.2 mixed anxiety-depression: both core criteria required
+        if threshold.get("both_required"):
+            return self._eval_mixed(co.disorder, threshold, criteria_def, met_ids)
+
         # Fallback: generic count check
         total_criteria = len(criteria_def)
         met_count = len(met_ids)
@@ -442,4 +450,36 @@ class DiagnosticLogicEngine:
             required_count=min_groups + (len(core_ids) if core_ids else 0),
             rule_explanation=f"Core: {'yes' if core_met else 'no'}, "
             f"Somatic groups: {somatic_met}/{min_groups}",
+        )
+    def _eval_counseling(
+        self, code: str, threshold: dict, criteria: dict, met_ids: set[str]
+    ) -> LogicEngineResult:
+        """Z71: core criteria + exclusion criterion must be met."""
+        min_total = threshold.get("min_total", 2)
+        exclusion_met = "A3" in met_ids
+        core_met = len({m for m in met_ids if m != "A3"})
+        meets = exclusion_met and (core_met + 1) >= min_total
+        return LogicEngineResult(
+            disorder_code=code,
+            meets_threshold=meets,
+            met_count=len(met_ids),
+            required_count=min_total,
+            rule_explanation=f"Counseling: core={core_met}, exclusion={'met' if exclusion_met else 'not'}",
+        )
+
+    def _eval_mixed(
+        self, code: str, threshold: dict, criteria: dict, met_ids: set[str]
+    ) -> LogicEngineResult:
+        """F41.2: Both A (anxiety+depression present) and B (neither independent) must be met."""
+        min_total = threshold.get("min_total", 2)
+        a_met = "A" in met_ids
+        b_met = "B" in met_ids
+        total_met = len(met_ids)
+        meets = a_met and b_met and total_met >= min_total
+        return LogicEngineResult(
+            disorder_code=code,
+            meets_threshold=meets,
+            met_count=total_met,
+            required_count=min_total,
+            rule_explanation=f"Mixed: A={'met' if a_met else 'not'} B={'met' if b_met else 'not'} total={total_met}/{min_total}",
         )

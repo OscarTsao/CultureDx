@@ -16,7 +16,7 @@ EXPECTED_TARGET_DISORDERS = [
     "F43.2",
     "F45",
     "F51",
-    "F98",
+    "F98", "F41.2", "Z71",
 ]
 
 

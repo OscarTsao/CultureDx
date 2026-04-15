@@ -17,12 +17,14 @@ import numpy as np
 from scipy.optimize import minimize_scalar
 
 CATEGORY_DISORDERS: dict[str, list[str]] = {
-    "mood": ["F31", "F32", "F33"],
-    "anxiety": ["F40", "F41.0", "F41.1", "F42"],
+    "mood": ["F31", "F32", "F33", "F39"],
+    "anxiety": ["F40", "F41.0", "F41.1", "F41.2", "F42"],
     "stress": ["F43.1", "F43.2"],
     "somatoform": ["F45"],
     "psychotic": ["F20", "F22"],
     "sleep": ["F51"],
+    "behavioral": ["F98"],
+    "counseling": ["Z71"],
 }
 
 VALID_CATEGORIES = frozenset(CATEGORY_DISORDERS.keys())

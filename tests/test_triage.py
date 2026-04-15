@@ -52,7 +52,7 @@ class TestTriageAgent:
         agent = TriageAgent(llm_client=MockLLM(response=resp), prompts_dir=prompts_dir)
         output = agent.run(AgentInput(transcript_text="Patient is depressed", language="en"))
         assert output.parsed["categories"][0]["category"] == "mood"
-        assert set(output.parsed["disorder_codes"]) == {"F31", "F32", "F33"}
+        assert set(output.parsed["disorder_codes"]) == {"F31", "F32", "F33", "F39"}
         assert output.parsed["routing_mode"] == "heuristic_fallback"
         assert output.parsed["calibration_status"] == "fallback"
         assert output.parsed["raw_category_scores"]["mood"] == 0.9
@@ -73,9 +73,11 @@ class TestTriageAgent:
             "F31",
             "F32",
             "F33",
+            "F39",
             "F40",
             "F41.0",
             "F41.1",
+            "F41.2",
             "F42",
         ]
 
@@ -209,7 +211,7 @@ class TestTriageAgent:
     def test_category_disorder_mapping(self):
         """Verify all expected categories exist in the mapping."""
         assert set(CATEGORY_DISORDERS.keys()) == {
-            "mood", "anxiety", "stress", "somatoform", "psychotic", "sleep"
+            "mood", "anxiety", "stress", "somatoform", "psychotic", "sleep", "behavioral", "counseling"
         }
         # Verify specific mappings
         assert "F32" in CATEGORY_DISORDERS["mood"]

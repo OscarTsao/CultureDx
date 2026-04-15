@@ -68,6 +68,11 @@ FORBIDDEN_COMORBIDITY_PAIRS: set[frozenset[str]] = {
     _pair_key("Z71", "F31"),
     _pair_key("Z71", "F51"),
     _pair_key("Z71", "F98"),
+    _pair_key("Z71", "F39"),
+    _pair_key("Z71", "F40"),
+    _pair_key("Z71", "F22"),
+    _pair_key("Z71", "F41.0"),
+    _pair_key("Z71", "F41.2"),
 }
 
 

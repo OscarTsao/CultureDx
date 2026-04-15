@@ -21,6 +21,8 @@ mode:
     - F45
     - F51
     - F98
+    - F41.2
+    - Z71
 
 llm:
   temperature: 0.0
