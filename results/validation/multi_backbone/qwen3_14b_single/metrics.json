@@ -1,0 +1,42 @@
+{
+  "diagnosis": {
+    "accuracy": 0.007,
+    "top1_accuracy": 0.375,
+    "top3_accuracy": 0.56,
+    "macro_f1": 0.12923733583775868,
+    "weighted_f1": 0.22442665818935587,
+    "overall": 0.25913279880542295
+  },
+  "comorbidity": {
+    "hamming_accuracy": 0.22898333333333334,
+    "subset_accuracy": 0.007,
+    "comorbidity_detection_f1": 0.1583411875589067,
+    "label_coverage": 0.5438333333333333,
+    "label_precision": 0.23508333333333334,
+    "avg_predicted_labels": 2.444,
+    "avg_gold_labels": 1.091
+  },
+  "four_class": {
+    "accuracy": 0.335,
+    "macro_f1": 0.1670096726345296,
+    "weighted_f1": 0.24616152504510821,
+    "n_cases": 1000
+  },
+  "table4": {
+    "2class_Acc": 0.6976744186046512,
+    "2class_F1_macro": 0.42259828500835694,
+    "2class_F1_weighted": 0.5943398270044352,
+    "4class_Acc": 0.36,
+    "4class_F1_macro": 0.24655110473634353,
+    "4class_F1_weighted": 0.2934165611806227,
+    "12class_Acc": 0.141,
+    "12class_Top1": 0.376,
+    "12class_Top3": 0.486,
+    "12class_F1_macro": 0.14114839564389378,
+    "12class_F1_weighted": 0.32234042624009485,
+    "2class_n": 473,
+    "4class_n": 1000,
+    "12class_n": 1000,
+    "Overall": 0.3710062744016726
+  }
+}
