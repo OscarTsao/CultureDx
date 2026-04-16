@@ -1,0 +1,126 @@
+{
+  "schema_version": "v1",
+  "run_id": "mdd5k_single",
+  "created_at": "2026-04-16T12:50:41.034353+00:00",
+  "git_hash": "9a571fc736c1bf5332bf6724840ef1a31ab13efb",
+  "mode": "single",
+  "dataset": "mdd5k_raw",
+  "num_cases": 925,
+  "model_name": "Qwen/Qwen3-32B-AWQ",
+  "config_fingerprint": "7b5fe545be64a5be",
+  "case_selection_fingerprint": "87a7bee4e0b36bb9",
+  "config": {
+    "cache_dir": "data/cache",
+    "checker_llm": null,
+    "dataset": {
+      "coding_system": "icd10",
+      "data_path": "",
+      "language": "zh",
+      "name": "",
+      "split_strategy": "stratified",
+      "transcript_format": "dialogue"
+    },
+    "eval": {
+      "binary_threshold_hamd17": 8,
+      "binary_threshold_phq8": 10,
+      "bootstrap_resamples": 10000
+    },
+    "evidence": {
+      "enabled": true,
+      "min_confidence": 0.1,
+      "negation_mode": "clause-rule",
+      "rerank_enabled": false,
+      "rerank_top_n": 5,
+      "retriever": {
+        "batch_size": 32,
+        "cache_dir": "data/cache/retriever",
+        "device": "auto",
+        "embedding_dim": 1024,
+        "max_length": 512,
+        "mode_weights": [
+          0.4,
+          0.2,
+          0.4
+        ],
+        "model_id": "",
+        "name": "mock"
+      },
+      "scope_policy": "auto",
+      "somatization": {
+        "enabled": true,
+        "llm_fallback": true,
+        "mode": "ontology-only"
+      },
+      "top_k_final": 10,
+      "top_k_retrieval": 20
+    },
+    "llm": {
+      "base_url": "http://localhost:8000",
+      "context_window": null,
+      "disable_thinking": true,
+      "max_concurrent": 16,
+      "max_retries": 3,
+      "max_tokens": 1536,
+      "model_id": "Qwen/Qwen3-32B-AWQ",
+      "provider": "vllm",
+      "temperature": 0.0,
+      "top_k": 1
+    },
+    "log_level": "INFO",
+    "mode": {
+      "calibrator_artifact_path": null,
+      "calibrator_mode": "heuristic-v2",
+      "checker_prompt_variant": null,
+      "contrastive_enabled": false,
+      "diagnose_then_verify": false,
+      "evidence_verification": false,
+      "execution_mode": "auto",
+      "force_prediction": false,
+      "name": "single",
+      "per_disorder_checker_variants": null,
+      "prompt_variant": "",
+      "scope_policy": "manual",
+      "target_disorders": [
+        "F20",
+        "F31",
+        "F32",
+        "F39",
+        "F41.0",
+        "F41.1",
+        "F42",
+        "F43.1",
+        "F43.2",
+        "F45",
+        "F51",
+        "F98",
+        "F41.2",
+        "Z71"
+      ],
+      "triage_metadata_fields": null,
+      "type": "single",
+      "variants": null
+    },
+    "output_dir": "outputs/runs",
+    "request_timeout_sec": 300,
+    "retrieval": {
+      "balanced_per_class": true,
+      "enabled": false,
+      "level": 1,
+      "output_level": 1,
+      "top_k": 5
+    },
+    "seed": 42
+  },
+  "runtime_context": {
+    "config_paths": [
+      "configs/base.yaml",
+      "configs/vllm_awq.yaml",
+      "configs/single_baseline.yaml"
+    ],
+    "data_path": "data/raw/mdd5k_repo",
+    "limit": 925,
+    "seed": 42,
+    "split": null,
+    "with_evidence": false
+  }
+}

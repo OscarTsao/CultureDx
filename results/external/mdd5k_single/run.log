@@ -1,0 +1,1860 @@
+Loading dataset 'mdd5k_raw' from data/raw/mdd5k_repo...
+Loaded 925 cases.
+Mode: single
+Target disorders: F20, F31, F32, F39, F41.0, F41.1, F42, F43.1, F43.2, F45, F51, F98, F41.2, Z71
+Output directory: results/external/mdd5k_single
+Running CultureDx mode=single on 925 cases...
+2026-04-16 20:50:41,036 culturedx.pipeline.runner INFO Processing case 1/925: patient_1
+2026-04-16 20:50:41,038 culturedx.pipeline.runner INFO Processing case 2/925: patient_10
+2026-04-16 20:50:41,039 culturedx.pipeline.runner INFO Processing case 3/925: patient_1002
+2026-04-16 20:50:41,039 culturedx.pipeline.runner INFO Processing case 4/925: patient_1003
+2026-04-16 20:50:41,040 culturedx.pipeline.runner INFO Processing case 5/925: patient_1004
+2026-04-16 20:50:41,041 culturedx.pipeline.runner INFO Processing case 6/925: patient_1005
+2026-04-16 20:50:41,042 culturedx.pipeline.runner INFO Processing case 7/925: patient_1006
+2026-04-16 20:50:41,042 culturedx.pipeline.runner INFO Processing case 8/925: patient_1008
+2026-04-16 20:50:41,043 culturedx.pipeline.runner INFO Processing case 9/925: patient_1009
+2026-04-16 20:50:41,043 culturedx.pipeline.runner INFO Processing case 10/925: patient_101
+2026-04-16 20:50:41,044 culturedx.pipeline.runner INFO Processing case 11/925: patient_1010
+2026-04-16 20:50:41,044 culturedx.pipeline.runner INFO Processing case 12/925: patient_1011
+2026-04-16 20:50:41,046 culturedx.pipeline.runner INFO Processing case 13/925: patient_1013
+2026-04-16 20:50:41,046 culturedx.pipeline.runner INFO Processing case 14/925: patient_1015
+2026-04-16 20:50:41,047 culturedx.pipeline.runner INFO Processing case 15/925: patient_1016
+2026-04-16 20:50:41,047 culturedx.pipeline.runner INFO Processing case 16/925: patient_1017
+2026-04-16 20:50:59,400 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:50:59,424 culturedx.pipeline.runner INFO Processing case 17/925: patient_1018
+2026-04-16 20:51:04,279 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:51:04,279 culturedx.pipeline.runner INFO Processing case 18/925: patient_1019
+2026-04-16 20:51:08,260 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:51:08,260 culturedx.pipeline.runner INFO Processing case 19/925: patient_102
+2026-04-16 20:51:16,257 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:51:16,258 culturedx.pipeline.runner INFO Processing case 20/925: patient_1020
+2026-04-16 20:51:20,344 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:51:20,344 culturedx.pipeline.runner INFO Processing case 21/925: patient_1021
+2026-04-16 20:51:24,342 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:51:24,342 culturedx.pipeline.runner INFO Processing case 22/925: patient_1022
+2026-04-16 20:51:32,087 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:51:32,088 culturedx.pipeline.runner INFO Processing case 23/925: patient_1023
+2026-04-16 20:51:36,255 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:51:36,256 culturedx.pipeline.runner INFO Processing case 24/925: patient_1024
+2026-04-16 20:51:40,557 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:51:40,557 culturedx.pipeline.runner INFO Processing case 25/925: patient_1025
+2026-04-16 20:51:48,521 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:51:48,539 culturedx.pipeline.runner INFO Processing case 26/925: patient_1026
+2026-04-16 20:51:53,072 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:51:53,073 culturedx.pipeline.runner INFO Processing case 27/925: patient_1027
+2026-04-16 20:51:57,036 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:51:57,036 culturedx.pipeline.runner INFO Processing case 28/925: patient_1028
+2026-04-16 20:52:04,781 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:52:04,781 culturedx.pipeline.runner INFO Processing case 29/925: patient_1029
+2026-04-16 20:52:08,891 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:52:08,892 culturedx.pipeline.runner INFO Processing case 30/925: patient_103
+2026-04-16 20:52:13,896 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:52:13,896 culturedx.pipeline.runner INFO Processing case 31/925: patient_1030
+2026-04-16 20:52:19,855 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:52:19,861 culturedx.pipeline.runner INFO Processing case 32/925: patient_1031
+2026-04-16 20:52:24,385 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:52:24,385 culturedx.pipeline.runner INFO Processing case 33/925: patient_1032
+2026-04-16 20:52:29,315 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:52:29,315 culturedx.pipeline.runner INFO Processing case 34/925: patient_1034
+2026-04-16 20:52:36,459 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:52:36,459 culturedx.pipeline.runner INFO Processing case 35/925: patient_104
+2026-04-16 20:52:40,431 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:52:40,432 culturedx.pipeline.runner INFO Processing case 36/925: patient_105
+2026-04-16 20:52:46,800 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:52:46,800 culturedx.pipeline.runner INFO Processing case 37/925: patient_106
+2026-04-16 20:52:52,365 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:52:52,366 culturedx.pipeline.runner INFO Processing case 38/925: patient_107
+2026-04-16 20:52:57,172 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:52:57,172 culturedx.pipeline.runner INFO Processing case 39/925: patient_109
+2026-04-16 20:53:03,401 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:53:03,401 culturedx.pipeline.runner INFO Processing case 40/925: patient_11
+2026-04-16 20:53:09,184 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:53:09,185 culturedx.pipeline.runner INFO Processing case 41/925: patient_111
+2026-04-16 20:53:13,236 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:53:13,237 culturedx.pipeline.runner INFO Processing case 42/925: patient_112
+2026-04-16 20:53:19,490 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:53:19,490 culturedx.pipeline.runner INFO Processing case 43/925: patient_113
+2026-04-16 20:53:25,504 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:53:25,505 culturedx.pipeline.runner INFO Processing case 44/925: patient_114
+2026-04-16 20:53:29,418 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:53:29,419 culturedx.pipeline.runner INFO Processing case 45/925: patient_115
+2026-04-16 20:53:36,452 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:53:36,453 culturedx.pipeline.runner INFO Processing case 46/925: patient_116
+2026-04-16 20:53:41,485 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:53:41,486 culturedx.pipeline.runner INFO Processing case 47/925: patient_117
+2026-04-16 20:53:45,719 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:53:45,719 culturedx.pipeline.runner INFO Processing case 48/925: patient_118
+2026-04-16 20:53:51,818 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:53:51,819 culturedx.pipeline.runner INFO Processing case 49/925: patient_119
+2026-04-16 20:53:57,183 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:53:57,183 culturedx.pipeline.runner INFO Processing case 50/925: patient_12
+2026-04-16 20:54:02,718 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:54:02,718 culturedx.pipeline.runner INFO Processing case 51/925: patient_120
+2026-04-16 20:54:07,640 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:54:07,641 culturedx.pipeline.runner INFO Processing case 52/925: patient_121
+2026-04-16 20:54:13,837 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:54:13,838 culturedx.pipeline.runner INFO Processing case 53/925: patient_122
+2026-04-16 20:54:19,513 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:54:19,513 culturedx.pipeline.runner INFO Processing case 54/925: patient_124
+2026-04-16 20:54:23,854 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:54:23,854 culturedx.pipeline.runner INFO Processing case 55/925: patient_125
+2026-04-16 20:54:29,601 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:54:29,601 culturedx.pipeline.runner INFO Processing case 56/925: patient_126
+2026-04-16 20:54:35,388 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:54:35,389 culturedx.pipeline.runner INFO Processing case 57/925: patient_127
+2026-04-16 20:54:39,563 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:54:39,563 culturedx.pipeline.runner INFO Processing case 58/925: patient_128
+2026-04-16 20:54:45,088 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:54:45,088 culturedx.pipeline.runner INFO Processing case 59/925: patient_129
+2026-04-16 20:54:51,256 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:54:51,257 culturedx.pipeline.runner INFO Processing case 60/925: patient_13
+2026-04-16 20:54:55,289 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:54:55,289 culturedx.pipeline.runner INFO Processing case 61/925: patient_131
+2026-04-16 20:55:01,763 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:55:01,764 culturedx.pipeline.runner INFO Processing case 62/925: patient_132
+2026-04-16 20:55:07,457 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:55:07,458 culturedx.pipeline.runner INFO Processing case 63/925: patient_133
+2026-04-16 20:55:11,841 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:55:11,841 culturedx.pipeline.runner INFO Processing case 64/925: patient_134
+2026-04-16 20:55:18,009 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:55:18,010 culturedx.pipeline.runner INFO Processing case 65/925: patient_135
+2026-04-16 20:55:23,180 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:55:23,181 culturedx.pipeline.runner INFO Processing case 66/925: patient_136
+2026-04-16 20:55:28,220 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:55:28,221 culturedx.pipeline.runner INFO Processing case 67/925: patient_137
+2026-04-16 20:55:33,983 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:55:33,984 culturedx.pipeline.runner INFO Processing case 68/925: patient_138
+2026-04-16 20:55:39,094 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:55:39,094 culturedx.pipeline.runner INFO Processing case 69/925: patient_139
+2026-04-16 20:55:43,949 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:55:43,949 culturedx.pipeline.runner INFO Processing case 70/925: patient_14
+2026-04-16 20:55:50,377 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:55:50,378 culturedx.pipeline.runner INFO Processing case 71/925: patient_140
+2026-04-16 20:55:54,268 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:55:54,268 culturedx.pipeline.runner INFO Processing case 72/925: patient_143
+2026-04-16 20:56:00,145 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:56:00,146 culturedx.pipeline.runner INFO Processing case 73/925: patient_144
+2026-04-16 20:56:06,679 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:56:06,680 culturedx.pipeline.runner INFO Processing case 74/925: patient_145
+2026-04-16 20:56:12,114 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:56:12,114 culturedx.pipeline.runner INFO Processing case 75/925: patient_146
+2026-04-16 20:56:16,634 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:56:16,635 culturedx.pipeline.runner INFO Processing case 76/925: patient_147
+2026-04-16 20:56:23,733 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:56:23,734 culturedx.pipeline.runner INFO Processing case 77/925: patient_148
+2026-04-16 20:56:28,586 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:56:28,586 culturedx.pipeline.runner INFO Processing case 78/925: patient_149
+2026-04-16 20:56:32,639 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:56:32,639 culturedx.pipeline.runner INFO Processing case 79/925: patient_15
+2026-04-16 20:56:39,607 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:56:39,608 culturedx.pipeline.runner INFO Processing case 80/925: patient_150
+2026-04-16 20:56:44,102 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:56:44,102 culturedx.pipeline.runner INFO Processing case 81/925: patient_151
+2026-04-16 20:56:49,382 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:56:49,382 culturedx.pipeline.runner INFO Processing case 82/925: patient_152
+2026-04-16 20:56:54,660 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:56:54,660 culturedx.pipeline.runner INFO Processing case 83/925: patient_153
+2026-04-16 20:56:59,340 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:56:59,341 culturedx.pipeline.runner INFO Processing case 84/925: patient_154
+2026-04-16 20:57:06,016 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:57:06,017 culturedx.pipeline.runner INFO Processing case 85/925: patient_155
+2026-04-16 20:57:11,411 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:57:11,411 culturedx.pipeline.runner INFO Processing case 86/925: patient_157
+2026-04-16 20:57:16,407 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:57:16,407 culturedx.pipeline.runner INFO Processing case 87/925: patient_158
+2026-04-16 20:57:22,742 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:57:22,742 culturedx.pipeline.runner INFO Processing case 88/925: patient_159
+2026-04-16 20:57:27,712 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:57:27,712 culturedx.pipeline.runner INFO Processing case 89/925: patient_16
+2026-04-16 20:57:31,718 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:57:31,718 culturedx.pipeline.runner INFO Processing case 90/925: patient_161
+2026-04-16 20:57:39,029 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:57:39,029 culturedx.pipeline.runner INFO Processing case 91/925: patient_162
+2026-04-16 20:57:44,123 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:57:44,124 culturedx.pipeline.runner INFO Processing case 92/925: patient_163
+2026-04-16 20:57:48,089 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:57:48,089 culturedx.pipeline.runner INFO Processing case 93/925: patient_164
+2026-04-16 20:57:55,544 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:57:55,544 culturedx.pipeline.runner INFO Processing case 94/925: patient_165
+2026-04-16 20:58:00,639 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:58:00,639 culturedx.pipeline.runner INFO Processing case 95/925: patient_166
+2026-04-16 20:58:04,551 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:58:04,551 culturedx.pipeline.runner INFO Processing case 96/925: patient_167
+2026-04-16 20:58:10,999 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:58:10,999 culturedx.pipeline.runner INFO Processing case 97/925: patient_168
+2026-04-16 20:58:16,666 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:58:16,666 culturedx.pipeline.runner INFO Processing case 98/925: patient_169
+2026-04-16 20:58:21,580 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:58:21,580 culturedx.pipeline.runner INFO Processing case 99/925: patient_17
+2026-04-16 20:58:27,183 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:58:27,184 culturedx.pipeline.runner INFO Processing case 100/925: patient_170
+2026-04-16 20:58:32,718 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:58:32,719 culturedx.pipeline.runner INFO Processing case 101/925: patient_171
+2026-04-16 20:58:35,152 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:58:35,152 culturedx.pipeline.runner INFO Processing case 102/925: patient_172
+2026-04-16 20:58:44,022 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:58:44,022 culturedx.pipeline.runner INFO Processing case 103/925: patient_173
+2026-04-16 20:58:48,574 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:58:48,575 culturedx.pipeline.runner INFO Processing case 104/925: patient_174
+2026-04-16 20:58:53,674 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:58:53,674 culturedx.pipeline.runner INFO Processing case 105/925: patient_175
+2026-04-16 20:59:00,089 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:59:00,089 culturedx.pipeline.runner INFO Processing case 106/925: patient_176
+2026-04-16 20:59:04,604 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:59:04,604 culturedx.pipeline.runner INFO Processing case 107/925: patient_177
+2026-04-16 20:59:09,571 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:59:09,571 culturedx.pipeline.runner INFO Processing case 108/925: patient_178
+2026-04-16 20:59:15,296 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:59:15,296 culturedx.pipeline.runner INFO Processing case 109/925: patient_179
+2026-04-16 20:59:19,896 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:59:19,896 culturedx.pipeline.runner INFO Processing case 110/925: patient_18
+2026-04-16 20:59:23,828 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:59:23,828 culturedx.pipeline.runner INFO Processing case 111/925: patient_180
+2026-04-16 20:59:31,091 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:59:31,091 culturedx.pipeline.runner INFO Processing case 112/925: patient_181
+2026-04-16 20:59:36,186 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:59:36,186 culturedx.pipeline.runner INFO Processing case 113/925: patient_182
+2026-04-16 20:59:40,449 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:59:40,450 culturedx.pipeline.runner INFO Processing case 114/925: patient_183
+2026-04-16 20:59:47,323 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:59:47,324 culturedx.pipeline.runner INFO Processing case 115/925: patient_184
+2026-04-16 20:59:51,875 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:59:51,876 culturedx.pipeline.runner INFO Processing case 116/925: patient_185
+2026-04-16 20:59:57,720 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 20:59:57,721 culturedx.pipeline.runner INFO Processing case 117/925: patient_186
+2026-04-16 21:00:03,940 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:00:03,940 culturedx.pipeline.runner INFO Processing case 118/925: patient_187
+2026-04-16 21:00:08,379 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:00:08,379 culturedx.pipeline.runner INFO Processing case 119/925: patient_188
+2026-04-16 21:00:12,862 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:00:12,863 culturedx.pipeline.runner INFO Processing case 120/925: patient_189
+2026-04-16 21:00:19,572 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:00:19,573 culturedx.pipeline.runner INFO Processing case 121/925: patient_19
+2026-04-16 21:00:24,749 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:00:24,749 culturedx.pipeline.runner INFO Processing case 122/925: patient_190
+2026-04-16 21:00:29,661 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:00:29,662 culturedx.pipeline.runner INFO Processing case 123/925: patient_191
+2026-04-16 21:00:36,341 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:00:36,341 culturedx.pipeline.runner INFO Processing case 124/925: patient_192
+2026-04-16 21:00:41,259 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:00:41,260 culturedx.pipeline.runner INFO Processing case 125/925: patient_193
+2026-04-16 21:00:46,222 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:00:46,222 culturedx.pipeline.runner INFO Processing case 126/925: patient_194
+2026-04-16 21:00:52,508 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:00:52,508 culturedx.pipeline.runner INFO Processing case 127/925: patient_195
+2026-04-16 21:00:57,372 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:00:57,372 culturedx.pipeline.runner INFO Processing case 128/925: patient_196
+2026-04-16 21:01:02,475 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:01:02,475 culturedx.pipeline.runner INFO Processing case 129/925: patient_197
+2026-04-16 21:01:08,579 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:01:08,579 culturedx.pipeline.runner INFO Processing case 130/925: patient_199
+2026-04-16 21:01:12,764 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:01:12,764 culturedx.pipeline.runner INFO Processing case 131/925: patient_2
+2026-04-16 21:01:18,436 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:01:18,437 culturedx.pipeline.runner INFO Processing case 132/925: patient_20
+2026-04-16 21:01:24,549 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:01:24,549 culturedx.pipeline.runner INFO Processing case 133/925: patient_200
+2026-04-16 21:01:28,780 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:01:28,781 culturedx.pipeline.runner INFO Processing case 134/925: patient_201
+2026-04-16 21:01:34,494 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:01:34,494 culturedx.pipeline.runner INFO Processing case 135/925: patient_202
+2026-04-16 21:01:40,753 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:01:40,754 culturedx.pipeline.runner INFO Processing case 136/925: patient_203
+2026-04-16 21:01:44,945 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:01:44,946 culturedx.pipeline.runner INFO Processing case 137/925: patient_204
+2026-04-16 21:01:50,360 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:01:50,360 culturedx.pipeline.runner INFO Processing case 138/925: patient_205
+2026-04-16 21:01:57,220 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:01:57,221 culturedx.pipeline.runner INFO Processing case 139/925: patient_206
+2026-04-16 21:02:01,496 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:02:01,497 culturedx.pipeline.runner INFO Processing case 140/925: patient_207
+2026-04-16 21:02:06,381 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:02:06,381 culturedx.pipeline.runner INFO Processing case 141/925: patient_208
+2026-04-16 21:02:13,806 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:02:13,806 culturedx.pipeline.runner INFO Processing case 142/925: patient_209
+2026-04-16 21:02:18,477 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:02:18,478 culturedx.pipeline.runner INFO Processing case 143/925: patient_210
+2026-04-16 21:02:23,182 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:02:23,183 culturedx.pipeline.runner INFO Processing case 144/925: patient_211
+2026-04-16 21:02:30,247 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:02:30,247 culturedx.pipeline.runner INFO Processing case 145/925: patient_212
+2026-04-16 21:02:34,775 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:02:34,775 culturedx.pipeline.runner INFO Processing case 146/925: patient_213
+2026-04-16 21:02:39,492 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:02:39,493 culturedx.pipeline.runner INFO Processing case 147/925: patient_214
+2026-04-16 21:02:46,544 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:02:46,544 culturedx.pipeline.runner INFO Processing case 148/925: patient_215
+2026-04-16 21:02:48,990 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:02:48,991 culturedx.pipeline.runner INFO Processing case 149/925: patient_216
+2026-04-16 21:02:55,845 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:02:55,845 culturedx.pipeline.runner INFO Processing case 150/925: patient_217
+2026-04-16 21:03:02,658 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:03:02,658 culturedx.pipeline.runner INFO Processing case 151/925: patient_218
+2026-04-16 21:03:07,695 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:03:07,696 culturedx.pipeline.runner INFO Processing case 152/925: patient_219
+2026-04-16 21:03:12,129 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:03:12,129 culturedx.pipeline.runner INFO Processing case 153/925: patient_22
+2026-04-16 21:03:19,964 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:03:19,964 culturedx.pipeline.runner INFO Processing case 154/925: patient_220
+2026-04-16 21:03:19,985 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:03:19,985 culturedx.pipeline.runner INFO Processing case 155/925: patient_221
+2026-04-16 21:03:27,902 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:03:27,903 culturedx.pipeline.runner INFO Processing case 156/925: patient_222
+2026-04-16 21:03:35,532 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:03:35,532 culturedx.pipeline.runner INFO Processing case 157/925: patient_223
+2026-04-16 21:03:39,912 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:03:39,913 culturedx.pipeline.runner INFO Processing case 158/925: patient_224
+2026-04-16 21:03:44,287 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:03:44,288 culturedx.pipeline.runner INFO Processing case 159/925: patient_225
+2026-04-16 21:03:51,635 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:03:51,635 culturedx.pipeline.runner INFO Processing case 160/925: patient_226
+2026-04-16 21:03:56,132 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:03:56,132 culturedx.pipeline.runner INFO Processing case 161/925: patient_227
+2026-04-16 21:04:00,302 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:04:00,302 culturedx.pipeline.runner INFO Processing case 162/925: patient_228
+2026-04-16 21:04:07,886 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:04:07,887 culturedx.pipeline.runner INFO Processing case 163/925: patient_229
+2026-04-16 21:04:11,819 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:04:11,819 culturedx.pipeline.runner INFO Processing case 164/925: patient_230
+2026-04-16 21:04:16,314 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:04:16,314 culturedx.pipeline.runner INFO Processing case 165/925: patient_231
+2026-04-16 21:04:23,143 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:04:23,143 culturedx.pipeline.runner INFO Processing case 166/925: patient_232
+2026-04-16 21:04:28,604 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:04:28,605 culturedx.pipeline.runner INFO Processing case 167/925: patient_233
+2026-04-16 21:04:32,719 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:04:32,719 culturedx.pipeline.runner INFO Processing case 168/925: patient_235
+2026-04-16 21:04:39,331 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:04:39,331 culturedx.pipeline.runner INFO Processing case 169/925: patient_237
+2026-04-16 21:04:45,045 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:04:45,045 culturedx.pipeline.runner INFO Processing case 170/925: patient_239
+2026-04-16 21:04:47,456 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:04:47,456 culturedx.pipeline.runner INFO Processing case 171/925: patient_24
+2026-04-16 21:04:55,738 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:04:55,738 culturedx.pipeline.runner INFO Processing case 172/925: patient_240
+2026-04-16 21:05:00,928 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:05:00,928 culturedx.pipeline.runner INFO Processing case 173/925: patient_241
+2026-04-16 21:05:05,021 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:05:05,021 culturedx.pipeline.runner INFO Processing case 174/925: patient_242
+2026-04-16 21:05:12,824 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:05:12,824 culturedx.pipeline.runner INFO Processing case 175/925: patient_243
+2026-04-16 21:05:17,384 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:05:17,384 culturedx.pipeline.runner INFO Processing case 176/925: patient_244
+2026-04-16 21:05:21,524 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:05:21,525 culturedx.pipeline.runner INFO Processing case 177/925: patient_245
+2026-04-16 21:05:29,097 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:05:29,097 culturedx.pipeline.runner INFO Processing case 178/925: patient_246
+2026-04-16 21:05:33,983 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:05:33,983 culturedx.pipeline.runner INFO Processing case 179/925: patient_247
+2026-04-16 21:05:37,995 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:05:37,995 culturedx.pipeline.runner INFO Processing case 180/925: patient_248
+2026-04-16 21:05:45,112 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:05:45,112 culturedx.pipeline.runner INFO Processing case 181/925: patient_249
+2026-04-16 21:05:50,498 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:05:50,499 culturedx.pipeline.runner INFO Processing case 182/925: patient_250
+2026-04-16 21:05:54,413 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:05:54,414 culturedx.pipeline.runner INFO Processing case 183/925: patient_251
+2026-04-16 21:06:01,705 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:06:01,705 culturedx.pipeline.runner INFO Processing case 184/925: patient_252
+2026-04-16 21:06:06,181 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:06:06,181 culturedx.pipeline.runner INFO Processing case 185/925: patient_253
+2026-04-16 21:06:10,757 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:06:10,757 culturedx.pipeline.runner INFO Processing case 186/925: patient_255
+2026-04-16 21:06:17,212 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:06:17,212 culturedx.pipeline.runner INFO Processing case 187/925: patient_256
+2026-04-16 21:06:22,153 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:06:22,153 culturedx.pipeline.runner INFO Processing case 188/925: patient_257
+2026-04-16 21:06:27,229 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:06:27,229 culturedx.pipeline.runner INFO Processing case 189/925: patient_258
+2026-04-16 21:06:33,127 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:06:33,127 culturedx.pipeline.runner INFO Processing case 190/925: patient_259
+2026-04-16 21:06:38,512 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:06:38,512 culturedx.pipeline.runner INFO Processing case 191/925: patient_26
+2026-04-16 21:06:43,147 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:06:43,147 culturedx.pipeline.runner INFO Processing case 192/925: patient_261
+2026-04-16 21:06:50,635 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:06:50,636 culturedx.pipeline.runner INFO Processing case 193/925: patient_262
+2026-04-16 21:06:54,599 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:06:54,600 culturedx.pipeline.runner INFO Processing case 194/925: patient_263
+2026-04-16 21:06:59,532 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:06:59,532 culturedx.pipeline.runner INFO Processing case 195/925: patient_264
+2026-04-16 21:07:06,985 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:07:06,986 culturedx.pipeline.runner INFO Processing case 196/925: patient_265
+2026-04-16 21:07:11,010 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:07:11,010 culturedx.pipeline.runner INFO Processing case 197/925: patient_266
+2026-04-16 21:07:15,404 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:07:15,404 culturedx.pipeline.runner INFO Processing case 198/925: patient_267
+2026-04-16 21:07:23,355 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:07:23,355 culturedx.pipeline.runner INFO Processing case 199/925: patient_268
+2026-04-16 21:07:27,484 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:07:27,484 culturedx.pipeline.runner INFO Processing case 200/925: patient_269
+2026-04-16 21:07:31,427 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:07:31,427 culturedx.pipeline.runner INFO Processing case 201/925: patient_27
+2026-04-16 21:07:39,912 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:07:39,913 culturedx.pipeline.runner INFO Processing case 202/925: patient_270
+2026-04-16 21:07:40,761 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:07:40,761 culturedx.pipeline.runner INFO Processing case 203/925: patient_271
+2026-04-16 21:07:47,836 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:07:47,836 culturedx.pipeline.runner INFO Processing case 204/925: patient_272
+2026-04-16 21:07:56,085 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:07:56,085 culturedx.pipeline.runner INFO Processing case 205/925: patient_273
+2026-04-16 21:08:00,246 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:08:00,247 culturedx.pipeline.runner INFO Processing case 206/925: patient_274
+2026-04-16 21:08:04,987 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:08:04,987 culturedx.pipeline.runner INFO Processing case 207/925: patient_275
+2026-04-16 21:08:12,352 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:08:12,353 culturedx.pipeline.runner INFO Processing case 208/925: patient_276
+2026-04-16 21:08:16,298 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:08:16,298 culturedx.pipeline.runner INFO Processing case 209/925: patient_277
+2026-04-16 21:08:21,701 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:08:21,702 culturedx.pipeline.runner INFO Processing case 210/925: patient_278
+2026-04-16 21:08:28,716 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:08:28,716 culturedx.pipeline.runner INFO Processing case 211/925: patient_28
+2026-04-16 21:08:32,796 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:08:32,797 culturedx.pipeline.runner INFO Processing case 212/925: patient_280
+2026-04-16 21:08:37,816 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:08:37,817 culturedx.pipeline.runner INFO Processing case 213/925: patient_281
+2026-04-16 21:08:45,390 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:08:45,390 culturedx.pipeline.runner INFO Processing case 214/925: patient_282
+2026-04-16 21:08:47,102 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:08:47,102 culturedx.pipeline.runner INFO Processing case 215/925: patient_283
+2026-04-16 21:08:50,958 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:08:50,959 culturedx.pipeline.runner INFO Processing case 216/925: patient_284
+2026-04-16 21:09:01,591 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:09:01,591 culturedx.pipeline.runner INFO Processing case 217/925: patient_285
+2026-04-16 21:09:01,610 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:09:01,610 culturedx.pipeline.runner INFO Processing case 218/925: patient_286
+2026-04-16 21:09:10,291 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:09:10,291 culturedx.pipeline.runner INFO Processing case 219/925: patient_287
+2026-04-16 21:09:18,188 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:09:18,189 culturedx.pipeline.runner INFO Processing case 220/925: patient_288
+2026-04-16 21:09:22,175 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:09:22,175 culturedx.pipeline.runner INFO Processing case 221/925: patient_289
+2026-04-16 21:09:24,622 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:09:24,622 culturedx.pipeline.runner INFO Processing case 222/925: patient_29
+2026-04-16 21:09:34,094 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:09:34,094 culturedx.pipeline.runner INFO Processing case 223/925: patient_290
+2026-04-16 21:09:38,214 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:09:38,214 culturedx.pipeline.runner INFO Processing case 224/925: patient_291
+2026-04-16 21:09:43,434 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:09:43,435 culturedx.pipeline.runner INFO Processing case 225/925: patient_292
+2026-04-16 21:09:49,965 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:09:49,966 culturedx.pipeline.runner INFO Processing case 226/925: patient_294
+2026-04-16 21:09:54,521 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:09:54,522 culturedx.pipeline.runner INFO Processing case 227/925: patient_295
+2026-04-16 21:09:56,201 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:09:56,201 culturedx.pipeline.runner INFO Processing case 228/925: patient_296
+2026-04-16 21:10:05,773 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:10:05,773 culturedx.pipeline.runner INFO Processing case 229/925: patient_297
+2026-04-16 21:10:10,566 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:10:10,566 culturedx.pipeline.runner INFO Processing case 230/925: patient_298
+2026-04-16 21:10:15,469 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:10:15,469 culturedx.pipeline.runner INFO Processing case 231/925: patient_299
+2026-04-16 21:10:22,076 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:10:22,076 culturedx.pipeline.runner INFO Processing case 232/925: patient_3
+2026-04-16 21:10:27,235 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:10:27,236 culturedx.pipeline.runner INFO Processing case 233/925: patient_30
+2026-04-16 21:10:32,144 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:10:32,144 culturedx.pipeline.runner INFO Processing case 234/925: patient_300
+2026-04-16 21:10:39,268 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:10:39,268 culturedx.pipeline.runner INFO Processing case 235/925: patient_301
+2026-04-16 21:10:43,398 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:10:43,398 culturedx.pipeline.runner INFO Processing case 236/925: patient_302
+2026-04-16 21:10:48,616 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:10:48,617 culturedx.pipeline.runner INFO Processing case 237/925: patient_303
+2026-04-16 21:10:54,907 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:10:54,908 culturedx.pipeline.runner INFO Processing case 238/925: patient_304
+2026-04-16 21:10:59,145 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:10:59,145 culturedx.pipeline.runner INFO Processing case 239/925: patient_305
+2026-04-16 21:11:05,412 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:11:05,412 culturedx.pipeline.runner INFO Processing case 240/925: patient_306
+2026-04-16 21:11:12,439 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:11:12,440 culturedx.pipeline.runner INFO Processing case 241/925: patient_307
+2026-04-16 21:11:15,558 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:11:15,558 culturedx.pipeline.runner INFO Processing case 242/925: patient_309
+2026-04-16 21:11:21,851 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:11:21,852 culturedx.pipeline.runner INFO Processing case 243/925: patient_311
+2026-04-16 21:11:28,050 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:11:28,050 culturedx.pipeline.runner INFO Processing case 244/925: patient_312
+2026-04-16 21:11:32,360 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:11:32,361 culturedx.pipeline.runner INFO Processing case 245/925: patient_313
+2026-04-16 21:11:37,389 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:11:37,389 culturedx.pipeline.runner INFO Processing case 246/925: patient_314
+2026-04-16 21:11:43,288 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:11:43,288 culturedx.pipeline.runner INFO Processing case 247/925: patient_315
+2026-04-16 21:11:48,682 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:11:48,682 culturedx.pipeline.runner INFO Processing case 248/925: patient_316
+2026-04-16 21:11:53,642 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:11:53,642 culturedx.pipeline.runner INFO Processing case 249/925: patient_317
+2026-04-16 21:11:59,181 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:11:59,182 culturedx.pipeline.runner INFO Processing case 250/925: patient_318
+2026-04-16 21:12:04,985 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:12:04,985 culturedx.pipeline.runner INFO Processing case 251/925: patient_319
+2026-04-16 21:12:09,699 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:12:09,699 culturedx.pipeline.runner INFO Processing case 252/925: patient_32
+2026-04-16 21:12:15,544 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:12:15,545 culturedx.pipeline.runner INFO Processing case 253/925: patient_322
+2026-04-16 21:12:21,843 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:12:21,844 culturedx.pipeline.runner INFO Processing case 254/925: patient_323
+2026-04-16 21:12:25,742 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:12:25,743 culturedx.pipeline.runner INFO Processing case 255/925: patient_324
+2026-04-16 21:12:32,081 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:12:32,082 culturedx.pipeline.runner INFO Processing case 256/925: patient_325
+2026-04-16 21:12:37,894 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:12:37,894 culturedx.pipeline.runner INFO Processing case 257/925: patient_326
+2026-04-16 21:12:41,950 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:12:41,950 culturedx.pipeline.runner INFO Processing case 258/925: patient_327
+2026-04-16 21:12:48,976 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:12:48,976 culturedx.pipeline.runner INFO Processing case 259/925: patient_328
+2026-04-16 21:12:53,656 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:12:53,657 culturedx.pipeline.runner INFO Processing case 260/925: patient_329
+2026-04-16 21:12:58,543 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:12:58,543 culturedx.pipeline.runner INFO Processing case 261/925: patient_33
+2026-04-16 21:13:04,938 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:13:04,939 culturedx.pipeline.runner INFO Processing case 262/925: patient_331
+2026-04-16 21:13:09,289 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:13:09,289 culturedx.pipeline.runner INFO Processing case 263/925: patient_332
+2026-04-16 21:13:14,187 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:13:14,188 culturedx.pipeline.runner INFO Processing case 264/925: patient_333
+2026-04-16 21:13:20,989 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:13:20,989 culturedx.pipeline.runner INFO Processing case 265/925: patient_334
+2026-04-16 21:13:25,483 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:13:25,483 culturedx.pipeline.runner INFO Processing case 266/925: patient_335
+2026-04-16 21:13:30,166 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:13:30,166 culturedx.pipeline.runner INFO Processing case 267/925: patient_336
+2026-04-16 21:13:37,207 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:13:37,208 culturedx.pipeline.runner INFO Processing case 268/925: patient_338
+2026-04-16 21:13:42,262 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:13:42,262 culturedx.pipeline.runner INFO Processing case 269/925: patient_339
+2026-04-16 21:13:45,404 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:13:45,404 culturedx.pipeline.runner INFO Processing case 270/925: patient_34
+2026-04-16 21:13:52,746 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:13:52,746 culturedx.pipeline.runner INFO Processing case 271/925: patient_340
+2026-04-16 21:13:57,699 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:13:57,700 culturedx.pipeline.runner INFO Processing case 272/925: patient_341
+2026-04-16 21:14:02,863 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:14:02,863 culturedx.pipeline.runner INFO Processing case 273/925: patient_344
+2026-04-16 21:14:08,897 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:14:08,897 culturedx.pipeline.runner INFO Processing case 274/925: patient_345
+2026-04-16 21:14:13,468 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:14:13,469 culturedx.pipeline.runner INFO Processing case 275/925: patient_346
+2026-04-16 21:14:18,812 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:14:18,812 culturedx.pipeline.runner INFO Processing case 276/925: patient_347
+2026-04-16 21:14:25,243 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:14:25,243 culturedx.pipeline.runner INFO Processing case 277/925: patient_348
+2026-04-16 21:14:29,658 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:14:29,658 culturedx.pipeline.runner INFO Processing case 278/925: patient_349
+2026-04-16 21:14:34,385 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:14:34,386 culturedx.pipeline.runner INFO Processing case 279/925: patient_35
+2026-04-16 21:14:42,540 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:14:42,541 culturedx.pipeline.runner INFO Processing case 280/925: patient_350
+2026-04-16 21:14:44,934 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:14:44,934 culturedx.pipeline.runner INFO Processing case 281/925: patient_352
+2026-04-16 21:14:45,668 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:14:45,668 culturedx.pipeline.runner INFO Processing case 282/925: patient_353
+2026-04-16 21:14:58,719 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:14:58,719 culturedx.pipeline.runner INFO Processing case 283/925: patient_354
+2026-04-16 21:15:02,758 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:15:02,758 culturedx.pipeline.runner INFO Processing case 284/925: patient_355
+2026-04-16 21:15:06,819 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:15:06,820 culturedx.pipeline.runner INFO Processing case 285/925: patient_356
+2026-04-16 21:15:14,615 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:15:14,615 culturedx.pipeline.runner INFO Processing case 286/925: patient_357
+2026-04-16 21:15:18,687 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:15:18,688 culturedx.pipeline.runner INFO Processing case 287/925: patient_358
+2026-04-16 21:15:22,801 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:15:22,801 culturedx.pipeline.runner INFO Processing case 288/925: patient_36
+2026-04-16 21:15:30,617 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:15:30,617 culturedx.pipeline.runner INFO Processing case 289/925: patient_360
+2026-04-16 21:15:34,583 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:15:34,584 culturedx.pipeline.runner INFO Processing case 290/925: patient_361
+2026-04-16 21:15:38,515 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:15:38,515 culturedx.pipeline.runner INFO Processing case 291/925: patient_364
+2026-04-16 21:15:46,428 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:15:46,428 culturedx.pipeline.runner INFO Processing case 292/925: patient_365
+2026-04-16 21:15:50,735 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:15:50,735 culturedx.pipeline.runner INFO Processing case 293/925: patient_366
+2026-04-16 21:15:54,759 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:15:54,759 culturedx.pipeline.runner INFO Processing case 294/925: patient_367
+2026-04-16 21:16:01,739 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:16:01,740 culturedx.pipeline.runner INFO Processing case 295/925: patient_368
+2026-04-16 21:16:07,014 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:16:07,015 culturedx.pipeline.runner INFO Processing case 296/925: patient_369
+2026-04-16 21:16:11,492 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:16:11,493 culturedx.pipeline.runner INFO Processing case 297/925: patient_37
+2026-04-16 21:16:18,036 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:16:18,036 culturedx.pipeline.runner INFO Processing case 298/925: patient_370
+2026-04-16 21:16:23,108 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:16:23,109 culturedx.pipeline.runner INFO Processing case 299/925: patient_371
+2026-04-16 21:16:28,378 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:16:28,379 culturedx.pipeline.runner INFO Processing case 300/925: patient_372
+2026-04-16 21:16:34,711 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:16:34,711 culturedx.pipeline.runner INFO Processing case 301/925: patient_373
+2026-04-16 21:16:39,018 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:16:39,019 culturedx.pipeline.runner INFO Processing case 302/925: patient_374
+2026-04-16 21:16:44,692 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:16:44,692 culturedx.pipeline.runner INFO Processing case 303/925: patient_375
+2026-04-16 21:16:50,592 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:16:50,592 culturedx.pipeline.runner INFO Processing case 304/925: patient_378
+2026-04-16 21:16:55,158 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:16:55,158 culturedx.pipeline.runner INFO Processing case 305/925: patient_379
+2026-04-16 21:17:01,076 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:17:01,077 culturedx.pipeline.runner INFO Processing case 306/925: patient_38
+2026-04-16 21:17:06,214 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:17:06,214 culturedx.pipeline.runner INFO Processing case 307/925: patient_380
+2026-04-16 21:17:10,834 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:17:10,835 culturedx.pipeline.runner INFO Processing case 308/925: patient_381
+2026-04-16 21:17:17,531 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:17:17,532 culturedx.pipeline.runner INFO Processing case 309/925: patient_382
+2026-04-16 21:17:22,245 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:17:22,246 culturedx.pipeline.runner INFO Processing case 310/925: patient_383
+2026-04-16 21:17:26,379 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:17:26,380 culturedx.pipeline.runner INFO Processing case 311/925: patient_385
+2026-04-16 21:17:33,031 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:17:33,031 culturedx.pipeline.runner INFO Processing case 312/925: patient_386
+2026-04-16 21:17:37,689 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:17:37,689 culturedx.pipeline.runner INFO Processing case 313/925: patient_387
+2026-04-16 21:17:41,648 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:17:41,649 culturedx.pipeline.runner INFO Processing case 314/925: patient_388
+2026-04-16 21:17:49,264 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:17:49,265 culturedx.pipeline.runner INFO Processing case 315/925: patient_389
+2026-04-16 21:17:53,491 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:17:53,491 culturedx.pipeline.runner INFO Processing case 316/925: patient_39
+2026-04-16 21:17:58,503 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:17:58,503 culturedx.pipeline.runner INFO Processing case 317/925: patient_390
+2026-04-16 21:18:05,195 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:18:05,195 culturedx.pipeline.runner INFO Processing case 318/925: patient_391
+2026-04-16 21:18:09,612 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:18:09,613 culturedx.pipeline.runner INFO Processing case 319/925: patient_392
+2026-04-16 21:18:14,347 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:18:14,347 culturedx.pipeline.runner INFO Processing case 320/925: patient_393
+2026-04-16 21:18:21,564 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:18:21,565 culturedx.pipeline.runner INFO Processing case 321/925: patient_394
+2026-04-16 21:18:25,865 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:18:25,865 culturedx.pipeline.runner INFO Processing case 322/925: patient_395
+2026-04-16 21:18:28,994 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:18:28,995 culturedx.pipeline.runner INFO Processing case 323/925: patient_396
+2026-04-16 21:18:37,674 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:18:37,674 culturedx.pipeline.runner INFO Processing case 324/925: patient_397
+2026-04-16 21:18:42,229 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:18:42,229 culturedx.pipeline.runner INFO Processing case 325/925: patient_399
+2026-04-16 21:18:45,352 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:18:45,352 culturedx.pipeline.runner INFO Processing case 326/925: patient_4
+2026-04-16 21:18:53,299 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:18:53,299 culturedx.pipeline.runner INFO Processing case 327/925: patient_40
+2026-04-16 21:18:57,483 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:18:57,483 culturedx.pipeline.runner INFO Processing case 328/925: patient_400
+2026-04-16 21:19:03,046 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:19:03,046 culturedx.pipeline.runner INFO Processing case 329/925: patient_401
+2026-04-16 21:19:09,892 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:19:09,893 culturedx.pipeline.runner INFO Processing case 330/925: patient_402
+2026-04-16 21:19:11,611 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:19:11,612 culturedx.pipeline.runner INFO Processing case 331/925: patient_403
+2026-04-16 21:19:19,512 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:19:19,513 culturedx.pipeline.runner INFO Processing case 332/925: patient_404
+2026-04-16 21:19:26,160 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:19:26,160 culturedx.pipeline.runner INFO Processing case 333/925: patient_405
+2026-04-16 21:19:30,404 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:19:30,404 culturedx.pipeline.runner INFO Processing case 334/925: patient_406
+2026-04-16 21:19:35,801 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:19:35,801 culturedx.pipeline.runner INFO Processing case 335/925: patient_407
+2026-04-16 21:19:42,191 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:19:42,192 culturedx.pipeline.runner INFO Processing case 336/925: patient_408
+2026-04-16 21:19:46,785 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:19:46,785 culturedx.pipeline.runner INFO Processing case 337/925: patient_409
+2026-04-16 21:19:51,975 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:19:51,975 culturedx.pipeline.runner INFO Processing case 338/925: patient_41
+2026-04-16 21:19:57,821 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:19:57,821 culturedx.pipeline.runner INFO Processing case 339/925: patient_412
+2026-04-16 21:20:03,372 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:20:03,373 culturedx.pipeline.runner INFO Processing case 340/925: patient_413
+2026-04-16 21:20:08,565 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:20:08,565 culturedx.pipeline.runner INFO Processing case 341/925: patient_414
+2026-04-16 21:20:14,096 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:20:14,097 culturedx.pipeline.runner INFO Processing case 342/925: patient_415
+2026-04-16 21:20:19,171 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:20:19,172 culturedx.pipeline.runner INFO Processing case 343/925: patient_416
+2026-04-16 21:20:25,392 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:20:25,392 culturedx.pipeline.runner INFO Processing case 344/925: patient_417
+2026-04-16 21:20:30,011 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:20:30,012 culturedx.pipeline.runner INFO Processing case 345/925: patient_418
+2026-04-16 21:20:35,289 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:20:35,289 culturedx.pipeline.runner INFO Processing case 346/925: patient_419
+2026-04-16 21:20:41,348 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:20:41,348 culturedx.pipeline.runner INFO Processing case 347/925: patient_42
+2026-04-16 21:20:45,867 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:20:45,867 culturedx.pipeline.runner INFO Processing case 348/925: patient_420
+2026-04-16 21:20:51,367 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:20:51,367 culturedx.pipeline.runner INFO Processing case 349/925: patient_421
+2026-04-16 21:20:58,054 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:20:58,054 culturedx.pipeline.runner INFO Processing case 350/925: patient_422
+2026-04-16 21:21:02,205 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:21:02,205 culturedx.pipeline.runner INFO Processing case 351/925: patient_423
+2026-04-16 21:21:07,666 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:21:07,667 culturedx.pipeline.runner INFO Processing case 352/925: patient_425
+2026-04-16 21:21:14,576 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:21:14,576 culturedx.pipeline.runner INFO Processing case 353/925: patient_426
+2026-04-16 21:21:16,957 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:21:16,957 culturedx.pipeline.runner INFO Processing case 354/925: patient_427
+2026-04-16 21:21:23,890 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:21:23,891 culturedx.pipeline.runner INFO Processing case 355/925: patient_428
+2026-04-16 21:21:30,665 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:21:30,666 culturedx.pipeline.runner INFO Processing case 356/925: patient_429
+2026-04-16 21:21:34,884 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:21:34,885 culturedx.pipeline.runner INFO Processing case 357/925: patient_43
+2026-04-16 21:21:40,295 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:21:40,295 culturedx.pipeline.runner INFO Processing case 358/925: patient_430
+2026-04-16 21:21:46,956 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:21:46,957 culturedx.pipeline.runner INFO Processing case 359/925: patient_431
+2026-04-16 21:21:50,997 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:21:50,997 culturedx.pipeline.runner INFO Processing case 360/925: patient_432
+2026-04-16 21:21:56,241 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:21:56,241 culturedx.pipeline.runner INFO Processing case 361/925: patient_433
+2026-04-16 21:22:02,776 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:22:02,777 culturedx.pipeline.runner INFO Processing case 362/925: patient_434
+2026-04-16 21:22:07,289 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:22:07,289 culturedx.pipeline.runner INFO Processing case 363/925: patient_435
+2026-04-16 21:22:12,760 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:22:12,760 culturedx.pipeline.runner INFO Processing case 364/925: patient_436
+2026-04-16 21:22:19,438 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:22:19,439 culturedx.pipeline.runner INFO Processing case 365/925: patient_438
+2026-04-16 21:22:24,021 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:22:24,021 culturedx.pipeline.runner INFO Processing case 366/925: patient_439
+2026-04-16 21:22:28,656 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:22:28,657 culturedx.pipeline.runner INFO Processing case 367/925: patient_44
+2026-04-16 21:22:35,336 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:22:35,336 culturedx.pipeline.runner INFO Processing case 368/925: patient_440
+2026-04-16 21:22:40,196 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:22:40,196 culturedx.pipeline.runner INFO Processing case 369/925: patient_441
+2026-04-16 21:22:45,179 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:22:45,179 culturedx.pipeline.runner INFO Processing case 370/925: patient_442
+2026-04-16 21:22:51,483 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:22:51,483 culturedx.pipeline.runner INFO Processing case 371/925: patient_443
+2026-04-16 21:22:55,967 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:22:55,968 culturedx.pipeline.runner INFO Processing case 372/925: patient_444
+2026-04-16 21:23:00,908 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:23:00,908 culturedx.pipeline.runner INFO Processing case 373/925: patient_445
+2026-04-16 21:23:07,852 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:23:07,852 culturedx.pipeline.runner INFO Processing case 374/925: patient_446
+2026-04-16 21:23:12,009 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:23:12,009 culturedx.pipeline.runner INFO Processing case 375/925: patient_447
+2026-04-16 21:23:17,431 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:23:17,432 culturedx.pipeline.runner INFO Processing case 376/925: patient_449
+2026-04-16 21:23:24,195 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:23:24,195 culturedx.pipeline.runner INFO Processing case 377/925: patient_45
+2026-04-16 21:23:28,429 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:23:28,429 culturedx.pipeline.runner INFO Processing case 378/925: patient_450
+2026-04-16 21:23:33,937 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:23:33,937 culturedx.pipeline.runner INFO Processing case 379/925: patient_451
+2026-04-16 21:23:40,201 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:23:40,202 culturedx.pipeline.runner INFO Processing case 380/925: patient_452
+2026-04-16 21:23:44,684 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:23:44,685 culturedx.pipeline.runner INFO Processing case 381/925: patient_453
+2026-04-16 21:23:49,952 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:23:49,953 culturedx.pipeline.runner INFO Processing case 382/925: patient_454
+2026-04-16 21:23:56,585 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:23:56,585 culturedx.pipeline.runner INFO Processing case 383/925: patient_455
+2026-04-16 21:24:00,520 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:24:00,521 culturedx.pipeline.runner INFO Processing case 384/925: patient_456
+2026-04-16 21:24:06,957 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:24:06,957 culturedx.pipeline.runner INFO Processing case 385/925: patient_458
+2026-04-16 21:24:12,608 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:24:12,609 culturedx.pipeline.runner INFO Processing case 386/925: patient_459
+2026-04-16 21:24:17,030 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:24:17,031 culturedx.pipeline.runner INFO Processing case 387/925: patient_46
+2026-04-16 21:24:22,961 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:24:22,961 culturedx.pipeline.runner INFO Processing case 388/925: patient_460
+2026-04-16 21:24:29,028 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:24:29,028 culturedx.pipeline.runner INFO Processing case 389/925: patient_461
+2026-04-16 21:24:33,147 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:24:33,147 culturedx.pipeline.runner INFO Processing case 390/925: patient_462
+2026-04-16 21:24:39,407 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:24:39,408 culturedx.pipeline.runner INFO Processing case 391/925: patient_463
+2026-04-16 21:24:45,135 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:24:45,135 culturedx.pipeline.runner INFO Processing case 392/925: patient_465
+2026-04-16 21:24:45,983 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:24:45,983 culturedx.pipeline.runner INFO Processing case 393/925: patient_467
+2026-04-16 21:24:55,177 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:24:55,178 culturedx.pipeline.runner INFO Processing case 394/925: patient_468
+2026-04-16 21:25:01,034 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:25:01,034 culturedx.pipeline.runner INFO Processing case 395/925: patient_469
+2026-04-16 21:25:05,250 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:25:05,250 culturedx.pipeline.runner INFO Processing case 396/925: patient_47
+2026-04-16 21:25:11,695 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:25:11,696 culturedx.pipeline.runner INFO Processing case 397/925: patient_472
+2026-04-16 21:25:17,624 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:25:17,624 culturedx.pipeline.runner INFO Processing case 398/925: patient_473
+2026-04-16 21:25:20,017 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:25:20,017 culturedx.pipeline.runner INFO Processing case 399/925: patient_474
+2026-04-16 21:25:28,207 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:25:28,208 culturedx.pipeline.runner INFO Processing case 400/925: patient_475
+2026-04-16 21:25:33,577 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:25:33,577 culturedx.pipeline.runner INFO Processing case 401/925: patient_476
+2026-04-16 21:25:37,519 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:25:37,520 culturedx.pipeline.runner INFO Processing case 402/925: patient_477
+2026-04-16 21:25:44,626 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:25:44,626 culturedx.pipeline.runner INFO Processing case 403/925: patient_478
+2026-04-16 21:25:49,362 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:25:49,362 culturedx.pipeline.runner INFO Processing case 404/925: patient_479
+2026-04-16 21:25:50,201 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:25:50,201 culturedx.pipeline.runner INFO Processing case 405/925: patient_48
+2026-04-16 21:26:01,399 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:26:01,400 culturedx.pipeline.runner INFO Processing case 406/925: patient_480
+2026-04-16 21:26:05,346 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:26:05,347 culturedx.pipeline.runner INFO Processing case 407/925: patient_481
+2026-04-16 21:26:09,517 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:26:09,517 culturedx.pipeline.runner INFO Processing case 408/925: patient_482
+2026-04-16 21:26:17,191 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:26:17,192 culturedx.pipeline.runner INFO Processing case 409/925: patient_483
+2026-04-16 21:26:21,593 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:26:21,593 culturedx.pipeline.runner INFO Processing case 410/925: patient_484
+2026-04-16 21:26:26,228 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:26:26,228 culturedx.pipeline.runner INFO Processing case 411/925: patient_485
+2026-04-16 21:26:33,162 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:26:33,162 culturedx.pipeline.runner INFO Processing case 412/925: patient_486
+2026-04-16 21:26:37,840 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:26:37,840 culturedx.pipeline.runner INFO Processing case 413/925: patient_487
+2026-04-16 21:26:43,136 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:26:43,136 culturedx.pipeline.runner INFO Processing case 414/925: patient_488
+2026-04-16 21:26:49,501 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:26:49,502 culturedx.pipeline.runner INFO Processing case 415/925: patient_489
+2026-04-16 21:26:53,849 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:26:53,850 culturedx.pipeline.runner INFO Processing case 416/925: patient_49
+2026-04-16 21:26:58,653 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:26:58,654 culturedx.pipeline.runner INFO Processing case 417/925: patient_491
+2026-04-16 21:27:05,516 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:27:05,517 culturedx.pipeline.runner INFO Processing case 418/925: patient_492
+2026-04-16 21:27:09,992 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:27:09,992 culturedx.pipeline.runner INFO Processing case 419/925: patient_493
+2026-04-16 21:27:14,166 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:27:14,166 culturedx.pipeline.runner INFO Processing case 420/925: patient_494
+2026-04-16 21:27:21,467 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:27:21,467 culturedx.pipeline.runner INFO Processing case 421/925: patient_495
+2026-04-16 21:27:26,013 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:27:26,014 culturedx.pipeline.runner INFO Processing case 422/925: patient_496
+2026-04-16 21:27:28,416 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:27:28,417 culturedx.pipeline.runner INFO Processing case 423/925: patient_497
+2026-04-16 21:27:37,440 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:27:37,441 culturedx.pipeline.runner INFO Processing case 424/925: patient_498
+2026-04-16 21:27:42,283 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:27:42,284 culturedx.pipeline.runner INFO Processing case 425/925: patient_499
+2026-04-16 21:27:42,303 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:27:42,303 culturedx.pipeline.runner INFO Processing case 426/925: patient_5
+2026-04-16 21:27:53,448 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:27:53,448 culturedx.pipeline.runner INFO Processing case 427/925: patient_50
+2026-04-16 21:27:57,487 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:27:57,487 culturedx.pipeline.runner INFO Processing case 428/925: patient_501
+2026-04-16 21:28:01,314 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:28:01,315 culturedx.pipeline.runner INFO Processing case 429/925: patient_502
+2026-04-16 21:28:09,480 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:28:09,481 culturedx.pipeline.runner INFO Processing case 430/925: patient_505
+2026-04-16 21:28:13,387 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:28:13,388 culturedx.pipeline.runner INFO Processing case 431/925: patient_506
+2026-04-16 21:28:15,792 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:28:15,792 culturedx.pipeline.runner INFO Processing case 432/925: patient_507
+2026-04-16 21:28:25,677 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:28:25,677 culturedx.pipeline.runner INFO Processing case 433/925: patient_508
+2026-04-16 21:28:28,799 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:28:28,799 culturedx.pipeline.runner INFO Processing case 434/925: patient_509
+2026-04-16 21:28:33,589 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:28:33,589 culturedx.pipeline.runner INFO Processing case 435/925: patient_51
+2026-04-16 21:28:41,981 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:28:41,982 culturedx.pipeline.runner INFO Processing case 436/925: patient_510
+2026-04-16 21:28:45,086 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:28:45,087 culturedx.pipeline.runner INFO Processing case 437/925: patient_511
+2026-04-16 21:28:49,785 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:28:49,785 culturedx.pipeline.runner INFO Processing case 438/925: patient_512
+2026-04-16 21:28:58,259 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:28:58,259 culturedx.pipeline.runner INFO Processing case 439/925: patient_514
+2026-04-16 21:29:02,215 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:29:02,215 culturedx.pipeline.runner INFO Processing case 440/925: patient_517
+2026-04-16 21:29:06,283 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:29:06,284 culturedx.pipeline.runner INFO Processing case 441/925: patient_518
+2026-04-16 21:29:14,522 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:29:14,523 culturedx.pipeline.runner INFO Processing case 442/925: patient_519
+2026-04-16 21:29:18,552 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:29:18,552 culturedx.pipeline.runner INFO Processing case 443/925: patient_52
+2026-04-16 21:29:20,254 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:29:20,255 culturedx.pipeline.runner INFO Processing case 444/925: patient_520
+2026-04-16 21:29:30,621 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:29:30,622 culturedx.pipeline.runner INFO Processing case 445/925: patient_521
+2026-04-16 21:29:34,780 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:29:34,780 culturedx.pipeline.runner INFO Processing case 446/925: patient_522
+2026-04-16 21:29:34,800 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:29:34,800 culturedx.pipeline.runner INFO Processing case 447/925: patient_523
+2026-04-16 21:29:46,721 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:29:46,721 culturedx.pipeline.runner INFO Processing case 448/925: patient_524
+2026-04-16 21:29:50,822 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:29:50,823 culturedx.pipeline.runner INFO Processing case 449/925: patient_525
+2026-04-16 21:29:55,274 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:29:55,274 culturedx.pipeline.runner INFO Processing case 450/925: patient_526
+2026-04-16 21:30:02,715 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:30:02,715 culturedx.pipeline.runner INFO Processing case 451/925: patient_527
+2026-04-16 21:30:07,455 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:30:07,456 culturedx.pipeline.runner INFO Processing case 452/925: patient_528
+2026-04-16 21:30:12,534 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:30:12,534 culturedx.pipeline.runner INFO Processing case 453/925: patient_529
+2026-04-16 21:30:19,630 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:30:19,630 culturedx.pipeline.runner INFO Processing case 454/925: patient_530
+2026-04-16 21:30:23,664 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:30:23,664 culturedx.pipeline.runner INFO Processing case 455/925: patient_531
+2026-04-16 21:30:27,957 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:30:27,958 culturedx.pipeline.runner INFO Processing case 456/925: patient_532
+2026-04-16 21:30:35,642 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:30:35,643 culturedx.pipeline.runner INFO Processing case 457/925: patient_533
+2026-04-16 21:30:35,662 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:30:35,663 culturedx.pipeline.runner INFO Processing case 458/925: patient_534
+2026-04-16 21:30:44,417 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:30:44,417 culturedx.pipeline.runner INFO Processing case 459/925: patient_535
+2026-04-16 21:30:51,244 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:30:51,245 culturedx.pipeline.runner INFO Processing case 460/925: patient_536
+2026-04-16 21:30:55,373 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:30:55,374 culturedx.pipeline.runner INFO Processing case 461/925: patient_537
+2026-04-16 21:31:00,242 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:31:00,242 culturedx.pipeline.runner INFO Processing case 462/925: patient_538
+2026-04-16 21:31:07,691 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:31:07,691 culturedx.pipeline.runner INFO Processing case 463/925: patient_539
+2026-04-16 21:31:11,702 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:31:11,703 culturedx.pipeline.runner INFO Processing case 464/925: patient_54
+2026-04-16 21:31:16,449 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:31:16,449 culturedx.pipeline.runner INFO Processing case 465/925: patient_540
+2026-04-16 21:31:23,864 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:31:23,864 culturedx.pipeline.runner INFO Processing case 466/925: patient_541
+2026-04-16 21:31:28,037 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:31:28,038 culturedx.pipeline.runner INFO Processing case 467/925: patient_542
+2026-04-16 21:31:33,049 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:31:33,049 culturedx.pipeline.runner INFO Processing case 468/925: patient_543
+2026-04-16 21:31:39,915 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:31:39,915 culturedx.pipeline.runner INFO Processing case 469/925: patient_544
+2026-04-16 21:31:44,061 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:31:44,061 culturedx.pipeline.runner INFO Processing case 470/925: patient_545
+2026-04-16 21:31:48,303 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:31:48,303 culturedx.pipeline.runner INFO Processing case 471/925: patient_546
+2026-04-16 21:31:55,998 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:31:55,999 culturedx.pipeline.runner INFO Processing case 472/925: patient_547
+2026-04-16 21:31:59,200 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:31:59,201 culturedx.pipeline.runner INFO Processing case 473/925: patient_548
+2026-04-16 21:32:04,325 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:32:04,326 culturedx.pipeline.runner INFO Processing case 474/925: patient_549
+2026-04-16 21:32:10,581 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:32:10,582 culturedx.pipeline.runner INFO Processing case 475/925: patient_55
+2026-04-16 21:32:15,448 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:32:15,448 culturedx.pipeline.runner INFO Processing case 476/925: patient_550
+2026-04-16 21:32:20,234 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:32:20,234 culturedx.pipeline.runner INFO Processing case 477/925: patient_551
+2026-04-16 21:32:26,993 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:32:26,994 culturedx.pipeline.runner INFO Processing case 478/925: patient_553
+2026-04-16 21:32:31,486 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:32:31,486 culturedx.pipeline.runner INFO Processing case 479/925: patient_555
+2026-04-16 21:32:36,211 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:32:36,211 culturedx.pipeline.runner INFO Processing case 480/925: patient_556
+2026-04-16 21:32:42,524 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:32:42,525 culturedx.pipeline.runner INFO Processing case 481/925: patient_557
+2026-04-16 21:32:46,925 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:32:46,926 culturedx.pipeline.runner INFO Processing case 482/925: patient_558
+2026-04-16 21:32:51,087 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:32:51,088 culturedx.pipeline.runner INFO Processing case 483/925: patient_559
+2026-04-16 21:32:57,786 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:32:57,787 culturedx.pipeline.runner INFO Processing case 484/925: patient_56
+2026-04-16 21:33:02,989 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:33:02,990 culturedx.pipeline.runner INFO Processing case 485/925: patient_561
+2026-04-16 21:33:08,501 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:33:08,501 culturedx.pipeline.runner INFO Processing case 486/925: patient_562
+2026-04-16 21:33:13,542 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:33:13,542 culturedx.pipeline.runner INFO Processing case 487/925: patient_563
+2026-04-16 21:33:19,538 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:33:19,538 culturedx.pipeline.runner INFO Processing case 488/925: patient_564
+2026-04-16 21:33:24,838 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:33:24,838 culturedx.pipeline.runner INFO Processing case 489/925: patient_565
+2026-04-16 21:33:29,470 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:33:29,470 culturedx.pipeline.runner INFO Processing case 490/925: patient_566
+2026-04-16 21:33:35,385 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:33:35,385 culturedx.pipeline.runner INFO Processing case 491/925: patient_567
+2026-04-16 21:33:40,260 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:33:40,260 culturedx.pipeline.runner INFO Processing case 492/925: patient_568
+2026-04-16 21:33:46,475 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:33:46,476 culturedx.pipeline.runner INFO Processing case 493/925: patient_569
+2026-04-16 21:33:51,669 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:33:51,670 culturedx.pipeline.runner INFO Processing case 494/925: patient_57
+2026-04-16 21:33:56,493 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:33:56,493 culturedx.pipeline.runner INFO Processing case 495/925: patient_570
+2026-04-16 21:34:03,197 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:34:03,198 culturedx.pipeline.runner INFO Processing case 496/925: patient_571
+2026-04-16 21:34:07,867 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:34:07,868 culturedx.pipeline.runner INFO Processing case 497/925: patient_572
+2026-04-16 21:34:09,548 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:34:09,549 culturedx.pipeline.runner INFO Processing case 498/925: patient_576
+2026-04-16 21:34:19,926 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:34:19,926 culturedx.pipeline.runner INFO Processing case 499/925: patient_577
+2026-04-16 21:34:24,032 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:34:24,033 culturedx.pipeline.runner INFO Processing case 500/925: patient_578
+2026-04-16 21:34:29,063 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:34:29,063 culturedx.pipeline.runner INFO Processing case 501/925: patient_579
+2026-04-16 21:34:35,670 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:34:35,670 culturedx.pipeline.runner INFO Processing case 502/925: patient_58
+2026-04-16 21:34:40,704 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:34:40,704 culturedx.pipeline.runner INFO Processing case 503/925: patient_580
+2026-04-16 21:34:44,693 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:34:44,693 culturedx.pipeline.runner INFO Processing case 504/925: patient_581
+2026-04-16 21:34:51,446 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:34:51,446 culturedx.pipeline.runner INFO Processing case 505/925: patient_582
+2026-04-16 21:34:57,020 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:34:57,021 culturedx.pipeline.runner INFO Processing case 506/925: patient_583
+2026-04-16 21:34:57,863 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:34:57,864 culturedx.pipeline.runner INFO Processing case 507/925: patient_584
+2026-04-16 21:35:06,998 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:35:06,999 culturedx.pipeline.runner INFO Processing case 508/925: patient_585
+2026-04-16 21:35:12,714 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:35:12,715 culturedx.pipeline.runner INFO Processing case 509/925: patient_586
+2026-04-16 21:35:16,867 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:35:16,867 culturedx.pipeline.runner INFO Processing case 510/925: patient_587
+2026-04-16 21:35:22,994 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:35:22,995 culturedx.pipeline.runner INFO Processing case 511/925: patient_588
+2026-04-16 21:35:29,160 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:35:29,160 culturedx.pipeline.runner INFO Processing case 512/925: patient_589
+2026-04-16 21:35:33,501 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:35:33,502 culturedx.pipeline.runner INFO Processing case 513/925: patient_59
+2026-04-16 21:35:39,390 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:35:39,391 culturedx.pipeline.runner INFO Processing case 514/925: patient_590
+2026-04-16 21:35:45,216 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:35:45,217 culturedx.pipeline.runner INFO Processing case 515/925: patient_591
+2026-04-16 21:35:49,539 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:35:49,540 culturedx.pipeline.runner INFO Processing case 516/925: patient_592
+2026-04-16 21:35:56,226 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:35:56,226 culturedx.pipeline.runner INFO Processing case 517/925: patient_593
+2026-04-16 21:36:01,622 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:36:01,622 culturedx.pipeline.runner INFO Processing case 518/925: patient_594
+2026-04-16 21:36:05,649 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:36:05,650 culturedx.pipeline.runner INFO Processing case 519/925: patient_595
+2026-04-16 21:36:12,609 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:36:12,609 culturedx.pipeline.runner INFO Processing case 520/925: patient_596
+2026-04-16 21:36:17,727 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:36:17,727 culturedx.pipeline.runner INFO Processing case 521/925: patient_597
+2026-04-16 21:36:23,676 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:36:23,676 culturedx.pipeline.runner INFO Processing case 522/925: patient_598
+2026-04-16 21:36:28,958 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:36:28,959 culturedx.pipeline.runner INFO Processing case 523/925: patient_599
+2026-04-16 21:36:33,352 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:36:33,352 culturedx.pipeline.runner INFO Processing case 524/925: patient_6
+2026-04-16 21:36:39,815 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:36:39,816 culturedx.pipeline.runner INFO Processing case 525/925: patient_60
+2026-04-16 21:36:44,620 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:36:44,630 culturedx.pipeline.runner INFO Processing case 526/925: patient_600
+2026-04-16 21:36:49,430 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:36:49,431 culturedx.pipeline.runner INFO Processing case 527/925: patient_601
+2026-04-16 21:36:56,699 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:36:56,700 culturedx.pipeline.runner INFO Processing case 528/925: patient_603
+2026-04-16 21:37:01,221 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:37:01,222 culturedx.pipeline.runner INFO Processing case 529/925: patient_604
+2026-04-16 21:37:06,033 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:37:06,034 culturedx.pipeline.runner INFO Processing case 530/925: patient_606
+2026-04-16 21:37:12,826 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:37:12,826 culturedx.pipeline.runner INFO Processing case 531/925: patient_608
+2026-04-16 21:37:17,885 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:37:17,885 culturedx.pipeline.runner INFO Processing case 532/925: patient_609
+2026-04-16 21:37:22,132 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:37:22,132 culturedx.pipeline.runner INFO Processing case 533/925: patient_61
+2026-04-16 21:37:28,760 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:37:28,760 culturedx.pipeline.runner INFO Processing case 534/925: patient_610
+2026-04-16 21:37:33,580 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:37:33,581 culturedx.pipeline.runner INFO Processing case 535/925: patient_611
+2026-04-16 21:37:37,607 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:37:37,662 culturedx.pipeline.runner INFO Processing case 536/925: patient_613
+2026-04-16 21:37:43,638 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:37:43,638 culturedx.pipeline.runner INFO Processing case 537/925: patient_614
+2026-04-16 21:37:48,621 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:37:48,622 culturedx.pipeline.runner INFO Processing case 538/925: patient_615
+2026-04-16 21:37:53,452 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:37:53,452 culturedx.pipeline.runner INFO Processing case 539/925: patient_616
+2026-04-16 21:38:00,074 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:38:00,074 culturedx.pipeline.runner INFO Processing case 540/925: patient_617
+2026-04-16 21:38:05,036 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:38:05,036 culturedx.pipeline.runner INFO Processing case 541/925: patient_618
+2026-04-16 21:38:10,135 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:38:10,135 culturedx.pipeline.runner INFO Processing case 542/925: patient_619
+2026-04-16 21:38:15,554 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:38:15,555 culturedx.pipeline.runner INFO Processing case 543/925: patient_62
+2026-04-16 21:38:21,337 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:38:21,337 culturedx.pipeline.runner INFO Processing case 544/925: patient_620
+2026-04-16 21:38:26,095 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:38:26,095 culturedx.pipeline.runner INFO Processing case 545/925: patient_621
+2026-04-16 21:38:30,984 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:38:30,985 culturedx.pipeline.runner INFO Processing case 546/925: patient_622
+2026-04-16 21:38:37,542 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:38:37,543 culturedx.pipeline.runner INFO Processing case 547/925: patient_623
+2026-04-16 21:38:42,320 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:38:42,320 culturedx.pipeline.runner INFO Processing case 548/925: patient_624
+2026-04-16 21:38:46,581 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:38:46,582 culturedx.pipeline.runner INFO Processing case 549/925: patient_625
+2026-04-16 21:38:53,596 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:38:53,596 culturedx.pipeline.runner INFO Processing case 550/925: patient_626
+2026-04-16 21:38:57,659 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:38:57,659 culturedx.pipeline.runner INFO Processing case 551/925: patient_627
+2026-04-16 21:38:59,329 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:38:59,329 culturedx.pipeline.runner INFO Processing case 552/925: patient_628
+2026-04-16 21:39:09,172 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:39:09,172 culturedx.pipeline.runner INFO Processing case 553/925: patient_629
+2026-04-16 21:39:13,628 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:39:13,628 culturedx.pipeline.runner INFO Processing case 554/925: patient_63
+2026-04-16 21:39:19,415 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:39:19,415 culturedx.pipeline.runner INFO Processing case 555/925: patient_630
+2026-04-16 21:39:25,539 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:39:25,539 culturedx.pipeline.runner INFO Processing case 556/925: patient_631
+2026-04-16 21:39:29,933 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:39:29,933 culturedx.pipeline.runner INFO Processing case 557/925: patient_632
+2026-04-16 21:39:34,779 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:39:34,779 culturedx.pipeline.runner INFO Processing case 558/925: patient_633
+2026-04-16 21:39:41,791 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:39:41,791 culturedx.pipeline.runner INFO Processing case 559/925: patient_634
+2026-04-16 21:39:46,466 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:39:46,467 culturedx.pipeline.runner INFO Processing case 560/925: patient_635
+2026-04-16 21:39:48,183 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:39:48,183 culturedx.pipeline.runner INFO Processing case 561/925: patient_636
+2026-04-16 21:39:57,851 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:39:57,851 culturedx.pipeline.runner INFO Processing case 562/925: patient_637
+2026-04-16 21:39:57,870 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:39:57,870 culturedx.pipeline.runner INFO Processing case 563/925: patient_638
+2026-04-16 21:40:06,204 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:40:06,204 culturedx.pipeline.runner INFO Processing case 564/925: patient_639
+2026-04-16 21:40:13,520 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:40:13,521 culturedx.pipeline.runner INFO Processing case 565/925: patient_64
+2026-04-16 21:40:16,994 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:40:16,994 culturedx.pipeline.runner INFO Processing case 566/925: patient_640
+2026-04-16 21:40:22,028 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:40:22,029 culturedx.pipeline.runner INFO Processing case 567/925: patient_641
+2026-04-16 21:40:27,839 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:40:27,840 culturedx.pipeline.runner INFO Processing case 568/925: patient_642
+2026-04-16 21:40:33,205 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:40:33,205 culturedx.pipeline.runner INFO Processing case 569/925: patient_643
+2026-04-16 21:40:38,759 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:40:38,759 culturedx.pipeline.runner INFO Processing case 570/925: patient_644
+2026-04-16 21:40:43,585 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:40:43,585 culturedx.pipeline.runner INFO Processing case 571/925: patient_646
+2026-04-16 21:40:50,113 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:40:50,114 culturedx.pipeline.runner INFO Processing case 572/925: patient_647
+2026-04-16 21:40:51,804 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:40:51,804 culturedx.pipeline.runner INFO Processing case 573/925: patient_649
+2026-04-16 21:40:59,949 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:40:59,950 culturedx.pipeline.runner INFO Processing case 574/925: patient_65
+2026-04-16 21:41:05,506 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:41:05,507 culturedx.pipeline.runner INFO Processing case 575/925: patient_650
+2026-04-16 21:41:10,200 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:41:10,200 culturedx.pipeline.runner INFO Processing case 576/925: patient_653
+2026-04-16 21:41:16,269 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:41:16,269 culturedx.pipeline.runner INFO Processing case 577/925: patient_654
+2026-04-16 21:41:21,599 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:41:21,600 culturedx.pipeline.runner INFO Processing case 578/925: patient_655
+2026-04-16 21:41:26,122 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:41:26,123 culturedx.pipeline.runner INFO Processing case 579/925: patient_656
+2026-04-16 21:41:31,901 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:41:31,901 culturedx.pipeline.runner INFO Processing case 580/925: patient_657
+2026-04-16 21:41:37,449 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:41:37,450 culturedx.pipeline.runner INFO Processing case 581/925: patient_658
+2026-04-16 21:41:42,187 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:41:42,187 culturedx.pipeline.runner INFO Processing case 582/925: patient_659
+2026-04-16 21:41:48,345 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:41:48,345 culturedx.pipeline.runner INFO Processing case 583/925: patient_66
+2026-04-16 21:41:53,437 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:41:53,437 culturedx.pipeline.runner INFO Processing case 584/925: patient_660
+2026-04-16 21:41:58,762 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:41:58,762 culturedx.pipeline.runner INFO Processing case 585/925: patient_661
+2026-04-16 21:42:04,339 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:42:04,339 culturedx.pipeline.runner INFO Processing case 586/925: patient_662
+2026-04-16 21:42:09,714 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:42:09,715 culturedx.pipeline.runner INFO Processing case 587/925: patient_663
+2026-04-16 21:42:14,598 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:42:14,598 culturedx.pipeline.runner INFO Processing case 588/925: patient_664
+2026-04-16 21:42:20,594 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:42:20,594 culturedx.pipeline.runner INFO Processing case 589/925: patient_666
+2026-04-16 21:42:25,716 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:42:25,716 culturedx.pipeline.runner INFO Processing case 590/925: patient_667
+2026-04-16 21:42:31,031 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:42:31,031 culturedx.pipeline.runner INFO Processing case 591/925: patient_668
+2026-04-16 21:42:36,632 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:42:36,633 culturedx.pipeline.runner INFO Processing case 592/925: patient_669
+2026-04-16 21:42:41,685 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:42:41,685 culturedx.pipeline.runner INFO Processing case 593/925: patient_67
+2026-04-16 21:42:47,198 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:42:47,198 culturedx.pipeline.runner INFO Processing case 594/925: patient_671
+2026-04-16 21:42:52,802 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:42:52,803 culturedx.pipeline.runner INFO Processing case 595/925: patient_672
+2026-04-16 21:42:57,759 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:42:57,760 culturedx.pipeline.runner INFO Processing case 596/925: patient_673
+2026-04-16 21:43:03,674 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:43:03,674 culturedx.pipeline.runner INFO Processing case 597/925: patient_674
+2026-04-16 21:43:08,955 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:43:08,956 culturedx.pipeline.runner INFO Processing case 598/925: patient_675
+2026-04-16 21:43:14,116 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:43:14,117 culturedx.pipeline.runner INFO Processing case 599/925: patient_678
+2026-04-16 21:43:19,334 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:43:19,334 culturedx.pipeline.runner INFO Processing case 600/925: patient_679
+2026-04-16 21:43:24,449 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:43:24,450 culturedx.pipeline.runner INFO Processing case 601/925: patient_68
+2026-04-16 21:43:30,388 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:43:30,389 culturedx.pipeline.runner INFO Processing case 602/925: patient_681
+2026-04-16 21:43:35,175 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:43:35,175 culturedx.pipeline.runner INFO Processing case 603/925: patient_682
+2026-04-16 21:43:41,072 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:43:41,072 culturedx.pipeline.runner INFO Processing case 604/925: patient_683
+2026-04-16 21:43:46,201 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:43:46,202 culturedx.pipeline.runner INFO Processing case 605/925: patient_684
+2026-04-16 21:43:51,351 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:43:51,351 culturedx.pipeline.runner INFO Processing case 606/925: patient_685
+2026-04-16 21:43:56,825 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:43:56,825 culturedx.pipeline.runner INFO Processing case 607/925: patient_686
+2026-04-16 21:44:02,281 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:44:02,281 culturedx.pipeline.runner INFO Processing case 608/925: patient_687
+2026-04-16 21:44:07,354 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:44:07,355 culturedx.pipeline.runner INFO Processing case 609/925: patient_688
+2026-04-16 21:44:13,746 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:44:13,747 culturedx.pipeline.runner INFO Processing case 610/925: patient_689
+2026-04-16 21:44:18,626 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:44:18,627 culturedx.pipeline.runner INFO Processing case 611/925: patient_69
+2026-04-16 21:44:23,248 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:44:23,249 culturedx.pipeline.runner INFO Processing case 612/925: patient_690
+2026-04-16 21:44:30,526 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:44:30,526 culturedx.pipeline.runner INFO Processing case 613/925: patient_691
+2026-04-16 21:44:34,436 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:44:34,437 culturedx.pipeline.runner INFO Processing case 614/925: patient_692
+2026-04-16 21:44:39,225 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:44:39,225 culturedx.pipeline.runner INFO Processing case 615/925: patient_693
+2026-04-16 21:44:46,606 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:44:46,607 culturedx.pipeline.runner INFO Processing case 616/925: patient_694
+2026-04-16 21:44:50,518 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:44:50,518 culturedx.pipeline.runner INFO Processing case 617/925: patient_695
+2026-04-16 21:44:55,215 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:44:55,215 culturedx.pipeline.runner INFO Processing case 618/925: patient_696
+2026-04-16 21:45:03,073 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:45:03,073 culturedx.pipeline.runner INFO Processing case 619/925: patient_697
+2026-04-16 21:45:03,932 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:45:03,932 culturedx.pipeline.runner INFO Processing case 620/925: patient_698
+2026-04-16 21:45:11,278 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:45:11,278 culturedx.pipeline.runner INFO Processing case 621/925: patient_699
+2026-04-16 21:45:19,565 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:45:19,565 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:45:19,566 culturedx.pipeline.runner INFO Processing case 622/925: patient_7
+2026-04-16 21:45:19,566 culturedx.pipeline.runner INFO Processing case 623/925: patient_70
+2026-04-16 21:45:27,776 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:45:27,777 culturedx.pipeline.runner INFO Processing case 624/925: patient_701
+2026-04-16 21:45:35,562 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:45:35,563 culturedx.pipeline.runner INFO Processing case 625/925: patient_702
+2026-04-16 21:45:40,036 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:45:40,037 culturedx.pipeline.runner INFO Processing case 626/925: patient_703
+2026-04-16 21:45:44,159 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:45:44,159 culturedx.pipeline.runner INFO Processing case 627/925: patient_704
+2026-04-16 21:45:51,847 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:45:51,847 culturedx.pipeline.runner INFO Processing case 628/925: patient_705
+2026-04-16 21:45:56,052 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:45:56,053 culturedx.pipeline.runner INFO Processing case 629/925: patient_706
+2026-04-16 21:46:00,379 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:46:00,380 culturedx.pipeline.runner INFO Processing case 630/925: patient_707
+2026-04-16 21:46:07,426 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:46:07,426 culturedx.pipeline.runner INFO Processing case 631/925: patient_708
+2026-04-16 21:46:12,586 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:46:12,586 culturedx.pipeline.runner INFO Processing case 632/925: patient_709
+2026-04-16 21:46:16,955 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:46:16,956 culturedx.pipeline.runner INFO Processing case 633/925: patient_71
+2026-04-16 21:46:23,375 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:46:23,375 culturedx.pipeline.runner INFO Processing case 634/925: patient_710
+2026-04-16 21:46:28,628 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:46:28,629 culturedx.pipeline.runner INFO Processing case 635/925: patient_711
+2026-04-16 21:46:32,778 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:46:32,779 culturedx.pipeline.runner INFO Processing case 636/925: patient_712
+2026-04-16 21:46:39,754 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:46:39,754 culturedx.pipeline.runner INFO Processing case 637/925: patient_713
+2026-04-16 21:46:44,561 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:46:44,562 culturedx.pipeline.runner INFO Processing case 638/925: patient_714
+2026-04-16 21:46:48,738 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:46:48,738 culturedx.pipeline.runner INFO Processing case 639/925: patient_715
+2026-04-16 21:46:56,074 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:46:56,076 culturedx.pipeline.runner INFO Processing case 640/925: patient_716
+2026-04-16 21:47:00,647 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:47:00,648 culturedx.pipeline.runner INFO Processing case 641/925: patient_717
+2026-04-16 21:47:04,641 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:47:04,641 culturedx.pipeline.runner INFO Processing case 642/925: patient_718
+2026-04-16 21:47:11,831 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:47:11,832 culturedx.pipeline.runner INFO Processing case 643/925: patient_719
+2026-04-16 21:47:16,481 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:47:16,481 culturedx.pipeline.runner INFO Processing case 644/925: patient_72
+2026-04-16 21:47:20,717 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:47:20,718 culturedx.pipeline.runner INFO Processing case 645/925: patient_720
+2026-04-16 21:47:26,970 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:47:26,970 culturedx.pipeline.runner INFO Processing case 646/925: patient_721
+2026-04-16 21:47:32,899 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:47:32,900 culturedx.pipeline.runner INFO Processing case 647/925: patient_722
+2026-04-16 21:47:36,974 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:47:36,975 culturedx.pipeline.runner INFO Processing case 648/925: patient_723
+2026-04-16 21:47:43,352 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:47:43,353 culturedx.pipeline.runner INFO Processing case 649/925: patient_724
+2026-04-16 21:47:49,286 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:47:49,286 culturedx.pipeline.runner INFO Processing case 650/925: patient_725
+2026-04-16 21:47:53,594 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:47:53,594 culturedx.pipeline.runner INFO Processing case 651/925: patient_726
+2026-04-16 21:47:59,283 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:47:59,283 culturedx.pipeline.runner INFO Processing case 652/925: patient_727
+2026-04-16 21:48:05,290 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:48:05,290 culturedx.pipeline.runner INFO Processing case 653/925: patient_728
+2026-04-16 21:48:09,668 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:48:09,668 culturedx.pipeline.runner INFO Processing case 654/925: patient_729
+2026-04-16 21:48:15,437 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:48:15,438 culturedx.pipeline.runner INFO Processing case 655/925: patient_73
+2026-04-16 21:48:21,643 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:48:21,643 culturedx.pipeline.runner INFO Processing case 656/925: patient_730
+2026-04-16 21:48:25,618 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:48:25,618 culturedx.pipeline.runner INFO Processing case 657/925: patient_731
+2026-04-16 21:48:32,285 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:48:32,286 culturedx.pipeline.runner INFO Processing case 658/925: patient_732
+2026-04-16 21:48:37,353 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:48:37,353 culturedx.pipeline.runner INFO Processing case 659/925: patient_733
+2026-04-16 21:48:41,319 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:48:41,319 culturedx.pipeline.runner INFO Processing case 660/925: patient_734
+2026-04-16 21:48:49,156 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:48:49,157 culturedx.pipeline.runner INFO Processing case 661/925: patient_735
+2026-04-16 21:48:53,689 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:48:53,689 culturedx.pipeline.runner INFO Processing case 662/925: patient_736
+2026-04-16 21:48:57,997 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:48:57,997 culturedx.pipeline.runner INFO Processing case 663/925: patient_737
+2026-04-16 21:49:05,445 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:49:05,445 culturedx.pipeline.runner INFO Processing case 664/925: patient_739
+2026-04-16 21:49:09,881 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:49:09,882 culturedx.pipeline.runner INFO Processing case 665/925: patient_74
+2026-04-16 21:49:14,351 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:49:14,351 culturedx.pipeline.runner INFO Processing case 666/925: patient_740
+2026-04-16 21:49:21,842 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:49:21,842 culturedx.pipeline.runner INFO Processing case 667/925: patient_741
+2026-04-16 21:49:25,887 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:49:25,887 culturedx.pipeline.runner INFO Processing case 668/925: patient_742
+2026-04-16 21:49:30,295 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:49:30,296 culturedx.pipeline.runner INFO Processing case 669/925: patient_743
+2026-04-16 21:49:37,021 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:49:37,021 culturedx.pipeline.runner INFO Processing case 670/925: patient_744
+2026-04-16 21:49:41,813 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:49:41,814 culturedx.pipeline.runner INFO Processing case 671/925: patient_745
+2026-04-16 21:49:46,091 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:49:46,092 culturedx.pipeline.runner INFO Processing case 672/925: patient_746
+2026-04-16 21:49:53,152 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:49:53,153 culturedx.pipeline.runner INFO Processing case 673/925: patient_747
+2026-04-16 21:49:58,052 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:49:58,052 culturedx.pipeline.runner INFO Processing case 674/925: patient_748
+2026-04-16 21:50:02,707 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:50:02,708 culturedx.pipeline.runner INFO Processing case 675/925: patient_749
+2026-04-16 21:50:09,260 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:50:09,261 culturedx.pipeline.runner INFO Processing case 676/925: patient_75
+2026-04-16 21:50:14,597 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:50:14,598 culturedx.pipeline.runner INFO Processing case 677/925: patient_750
+2026-04-16 21:50:19,213 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:50:19,214 culturedx.pipeline.runner INFO Processing case 678/925: patient_751
+2026-04-16 21:50:24,626 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:50:24,627 culturedx.pipeline.runner INFO Processing case 679/925: patient_753
+2026-04-16 21:50:30,648 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:50:30,649 culturedx.pipeline.runner INFO Processing case 680/925: patient_754
+2026-04-16 21:50:35,543 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:50:35,543 culturedx.pipeline.runner INFO Processing case 681/925: patient_755
+2026-04-16 21:50:41,736 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:50:41,736 culturedx.pipeline.runner INFO Processing case 682/925: patient_756
+2026-04-16 21:50:47,166 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:50:47,166 culturedx.pipeline.runner INFO Processing case 683/925: patient_757
+2026-04-16 21:50:51,365 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:50:51,365 culturedx.pipeline.runner INFO Processing case 684/925: patient_759
+2026-04-16 21:50:57,813 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:50:57,814 culturedx.pipeline.runner INFO Processing case 685/925: patient_76
+2026-04-16 21:51:03,488 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:51:03,488 culturedx.pipeline.runner INFO Processing case 686/925: patient_760
+2026-04-16 21:51:07,527 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:51:07,528 culturedx.pipeline.runner INFO Processing case 687/925: patient_761
+2026-04-16 21:51:13,891 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:51:13,891 culturedx.pipeline.runner INFO Processing case 688/925: patient_762
+2026-04-16 21:51:18,565 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:51:18,566 culturedx.pipeline.runner INFO Processing case 689/925: patient_763
+2026-04-16 21:51:23,263 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:51:23,263 culturedx.pipeline.runner INFO Processing case 690/925: patient_764
+2026-04-16 21:51:28,976 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:51:28,976 culturedx.pipeline.runner INFO Processing case 691/925: patient_765
+2026-04-16 21:51:34,007 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:51:34,008 culturedx.pipeline.runner INFO Processing case 692/925: patient_766
+2026-04-16 21:51:40,462 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:51:40,462 culturedx.pipeline.runner INFO Processing case 693/925: patient_767
+2026-04-16 21:51:44,902 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:51:44,903 culturedx.pipeline.runner INFO Processing case 694/925: patient_768
+2026-04-16 21:51:50,310 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:51:50,310 culturedx.pipeline.runner INFO Processing case 695/925: patient_769
+2026-04-16 21:51:56,247 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:51:56,247 culturedx.pipeline.runner INFO Processing case 696/925: patient_77
+2026-04-16 21:52:01,979 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:52:01,979 culturedx.pipeline.runner INFO Processing case 697/925: patient_770
+2026-04-16 21:52:06,327 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:52:06,327 culturedx.pipeline.runner INFO Processing case 698/925: patient_771
+2026-04-16 21:52:12,764 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:52:12,764 culturedx.pipeline.runner INFO Processing case 699/925: patient_772
+2026-04-16 21:52:17,761 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:52:17,761 culturedx.pipeline.runner INFO Processing case 700/925: patient_773
+2026-04-16 21:52:22,573 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:52:22,573 culturedx.pipeline.runner INFO Processing case 701/925: patient_774
+2026-04-16 21:52:28,845 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:52:28,845 culturedx.pipeline.runner INFO Processing case 702/925: patient_775
+2026-04-16 21:52:34,208 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:52:34,209 culturedx.pipeline.runner INFO Processing case 703/925: patient_776
+2026-04-16 21:52:38,700 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:52:38,701 culturedx.pipeline.runner INFO Processing case 704/925: patient_777
+2026-04-16 21:52:44,889 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:52:44,890 culturedx.pipeline.runner INFO Processing case 705/925: patient_779
+2026-04-16 21:52:50,352 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:52:50,352 culturedx.pipeline.runner INFO Processing case 706/925: patient_78
+2026-04-16 21:52:54,764 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:52:54,765 culturedx.pipeline.runner INFO Processing case 707/925: patient_780
+2026-04-16 21:53:01,169 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:53:01,169 culturedx.pipeline.runner INFO Processing case 708/925: patient_781
+2026-04-16 21:53:07,007 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:53:07,008 culturedx.pipeline.runner INFO Processing case 709/925: patient_783
+2026-04-16 21:53:10,930 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:53:10,930 culturedx.pipeline.runner INFO Processing case 710/925: patient_784
+2026-04-16 21:53:17,133 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:53:17,133 culturedx.pipeline.runner INFO Processing case 711/925: patient_785
+2026-04-16 21:53:23,593 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:53:23,593 culturedx.pipeline.runner INFO Processing case 712/925: patient_786
+2026-04-16 21:53:26,733 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:53:26,733 culturedx.pipeline.runner INFO Processing case 713/925: patient_787
+2026-04-16 21:53:33,551 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:53:33,552 culturedx.pipeline.runner INFO Processing case 714/925: patient_788
+2026-04-16 21:53:39,485 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:53:39,485 culturedx.pipeline.runner INFO Processing case 715/925: patient_789
+2026-04-16 21:53:42,624 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:53:42,625 culturedx.pipeline.runner INFO Processing case 716/925: patient_79
+2026-04-16 21:53:49,936 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:53:49,936 culturedx.pipeline.runner INFO Processing case 717/925: patient_790
+2026-04-16 21:53:55,261 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:53:55,261 culturedx.pipeline.runner INFO Processing case 718/925: patient_791
+2026-04-16 21:53:59,520 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:53:59,521 culturedx.pipeline.runner INFO Processing case 719/925: patient_792
+2026-04-16 21:54:05,849 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:54:05,850 culturedx.pipeline.runner INFO Processing case 720/925: patient_793
+2026-04-16 21:54:12,303 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:54:12,303 culturedx.pipeline.runner INFO Processing case 721/925: patient_794
+2026-04-16 21:54:16,273 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:54:16,274 culturedx.pipeline.runner INFO Processing case 722/925: patient_795
+2026-04-16 21:54:21,934 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:54:21,934 culturedx.pipeline.runner INFO Processing case 723/925: patient_796
+2026-04-16 21:54:28,755 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:54:28,755 culturedx.pipeline.runner INFO Processing case 724/925: patient_797
+2026-04-16 21:54:32,783 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:54:32,783 culturedx.pipeline.runner INFO Processing case 725/925: patient_798
+2026-04-16 21:54:38,117 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:54:38,117 culturedx.pipeline.runner INFO Processing case 726/925: patient_799
+2026-04-16 21:54:43,793 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:54:43,793 culturedx.pipeline.runner INFO Processing case 727/925: patient_8
+2026-04-16 21:54:47,774 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:54:47,774 culturedx.pipeline.runner INFO Processing case 728/925: patient_80
+2026-04-16 21:54:54,390 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:54:54,390 culturedx.pipeline.runner INFO Processing case 729/925: patient_800
+2026-04-16 21:55:00,384 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:55:00,385 culturedx.pipeline.runner INFO Processing case 730/925: patient_801
+2026-04-16 21:55:04,288 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:55:04,288 culturedx.pipeline.runner INFO Processing case 731/925: patient_802
+2026-04-16 21:55:10,570 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:55:10,570 culturedx.pipeline.runner INFO Processing case 732/925: patient_803
+2026-04-16 21:55:16,174 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:55:16,174 culturedx.pipeline.runner INFO Processing case 733/925: patient_804
+2026-04-16 21:55:20,361 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:55:20,362 culturedx.pipeline.runner INFO Processing case 734/925: patient_805
+2026-04-16 21:55:26,596 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:55:26,596 culturedx.pipeline.runner INFO Processing case 735/925: patient_806
+2026-04-16 21:55:32,825 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:55:32,825 culturedx.pipeline.runner INFO Processing case 736/925: patient_807
+2026-04-16 21:55:37,384 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:55:37,384 culturedx.pipeline.runner INFO Processing case 737/925: patient_808
+2026-04-16 21:55:42,508 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:55:42,509 culturedx.pipeline.runner INFO Processing case 738/925: patient_809
+2026-04-16 21:55:49,306 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:55:49,306 culturedx.pipeline.runner INFO Processing case 739/925: patient_81
+2026-04-16 21:55:53,556 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:55:53,556 culturedx.pipeline.runner INFO Processing case 740/925: patient_810
+2026-04-16 21:55:58,943 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:55:58,943 culturedx.pipeline.runner INFO Processing case 741/925: patient_811
+2026-04-16 21:56:05,429 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:56:05,430 culturedx.pipeline.runner INFO Processing case 742/925: patient_812
+2026-04-16 21:56:10,424 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:56:10,424 culturedx.pipeline.runner INFO Processing case 743/925: patient_813
+2026-04-16 21:56:15,425 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:56:15,426 culturedx.pipeline.runner INFO Processing case 744/925: patient_817
+2026-04-16 21:56:21,521 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:56:21,521 culturedx.pipeline.runner INFO Processing case 745/925: patient_818
+2026-04-16 21:56:26,470 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:56:26,471 culturedx.pipeline.runner INFO Processing case 746/925: patient_819
+2026-04-16 21:56:27,320 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:56:27,320 culturedx.pipeline.runner INFO Processing case 747/925: patient_82
+2026-04-16 21:56:38,105 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:56:38,105 culturedx.pipeline.runner INFO Processing case 748/925: patient_821
+2026-04-16 21:56:42,510 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:56:42,510 culturedx.pipeline.runner INFO Processing case 749/925: patient_823
+2026-04-16 21:56:46,869 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:56:46,870 culturedx.pipeline.runner INFO Processing case 750/925: patient_824
+2026-04-16 21:56:53,790 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:56:53,791 culturedx.pipeline.runner INFO Processing case 751/925: patient_825
+2026-04-16 21:56:58,506 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:56:58,506 culturedx.pipeline.runner INFO Processing case 752/925: patient_827
+2026-04-16 21:57:03,138 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:57:03,139 culturedx.pipeline.runner INFO Processing case 753/925: patient_829
+2026-04-16 21:57:09,491 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:57:09,492 culturedx.pipeline.runner INFO Processing case 754/925: patient_83
+2026-04-16 21:57:14,891 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:57:14,891 culturedx.pipeline.runner INFO Processing case 755/925: patient_830
+2026-04-16 21:57:19,312 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:57:19,312 culturedx.pipeline.runner INFO Processing case 756/925: patient_831
+2026-04-16 21:57:25,883 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:57:25,883 culturedx.pipeline.runner INFO Processing case 757/925: patient_832
+2026-04-16 21:57:31,537 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:57:31,538 culturedx.pipeline.runner INFO Processing case 758/925: patient_833
+2026-04-16 21:57:35,494 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:57:35,494 culturedx.pipeline.runner INFO Processing case 759/925: patient_835
+2026-04-16 21:57:41,896 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:57:41,896 culturedx.pipeline.runner INFO Processing case 760/925: patient_836
+2026-04-16 21:57:47,534 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:57:47,535 culturedx.pipeline.runner INFO Processing case 761/925: patient_837
+2026-04-16 21:57:51,493 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:57:51,494 culturedx.pipeline.runner INFO Processing case 762/925: patient_838
+2026-04-16 21:57:58,155 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:57:58,156 culturedx.pipeline.runner INFO Processing case 763/925: patient_839
+2026-04-16 21:58:02,692 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:58:02,692 culturedx.pipeline.runner INFO Processing case 764/925: patient_84
+2026-04-16 21:58:07,295 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:58:07,295 culturedx.pipeline.runner INFO Processing case 765/925: patient_840
+2026-04-16 21:58:13,297 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:58:13,297 culturedx.pipeline.runner INFO Processing case 766/925: patient_841
+2026-04-16 21:58:18,518 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:58:18,519 culturedx.pipeline.runner INFO Processing case 767/925: patient_842
+2026-04-16 21:58:24,207 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:58:24,207 culturedx.pipeline.runner INFO Processing case 768/925: patient_843
+2026-04-16 21:58:29,266 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:58:29,267 culturedx.pipeline.runner INFO Processing case 769/925: patient_844
+2026-04-16 21:58:34,797 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:58:34,797 culturedx.pipeline.runner INFO Processing case 770/925: patient_845
+2026-04-16 21:58:39,819 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:58:39,819 culturedx.pipeline.runner INFO Processing case 771/925: patient_846
+2026-04-16 21:58:45,165 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:58:45,166 culturedx.pipeline.runner INFO Processing case 772/925: patient_847
+2026-04-16 21:58:51,318 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:58:51,318 culturedx.pipeline.runner INFO Processing case 773/925: patient_848
+2026-04-16 21:58:56,864 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:58:56,864 culturedx.pipeline.runner INFO Processing case 774/925: patient_849
+2026-04-16 21:59:01,660 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:59:01,661 culturedx.pipeline.runner INFO Processing case 775/925: patient_85
+2026-04-16 21:59:07,150 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:59:07,150 culturedx.pipeline.runner INFO Processing case 776/925: patient_850
+2026-04-16 21:59:13,436 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:59:13,437 culturedx.pipeline.runner INFO Processing case 777/925: patient_851
+2026-04-16 21:59:18,341 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:59:18,341 culturedx.pipeline.runner INFO Processing case 778/925: patient_852
+2026-04-16 21:59:22,617 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:59:22,618 culturedx.pipeline.runner INFO Processing case 779/925: patient_853
+2026-04-16 21:59:29,192 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:59:29,193 culturedx.pipeline.runner INFO Processing case 780/925: patient_854
+2026-04-16 21:59:34,918 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:59:34,919 culturedx.pipeline.runner INFO Processing case 781/925: patient_855
+2026-04-16 21:59:38,925 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:59:38,925 culturedx.pipeline.runner INFO Processing case 782/925: patient_856
+2026-04-16 21:59:44,986 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:59:44,986 culturedx.pipeline.runner INFO Processing case 783/925: patient_857
+2026-04-16 21:59:50,994 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:59:50,995 culturedx.pipeline.runner INFO Processing case 784/925: patient_858
+2026-04-16 21:59:55,480 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 21:59:55,480 culturedx.pipeline.runner INFO Processing case 785/925: patient_859
+2026-04-16 22:00:01,196 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:00:01,196 culturedx.pipeline.runner INFO Processing case 786/925: patient_860
+2026-04-16 22:00:06,940 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:00:06,940 culturedx.pipeline.runner INFO Processing case 787/925: patient_861
+2026-04-16 22:00:11,579 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:00:11,579 culturedx.pipeline.runner INFO Processing case 788/925: patient_862
+2026-04-16 22:00:17,442 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:00:17,443 culturedx.pipeline.runner INFO Processing case 789/925: patient_863
+2026-04-16 22:00:23,729 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:00:23,729 culturedx.pipeline.runner INFO Processing case 790/925: patient_864
+2026-04-16 22:00:27,688 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:00:27,688 culturedx.pipeline.runner INFO Processing case 791/925: patient_865
+2026-04-16 22:00:33,604 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:00:33,604 culturedx.pipeline.runner INFO Processing case 792/925: patient_866
+2026-04-16 22:00:40,403 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:00:40,403 culturedx.pipeline.runner INFO Processing case 793/925: patient_867
+2026-04-16 22:00:44,469 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:00:44,469 culturedx.pipeline.runner INFO Processing case 794/925: patient_868
+2026-04-16 22:00:50,280 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:00:50,280 culturedx.pipeline.runner INFO Processing case 795/925: patient_869
+2026-04-16 22:00:56,843 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:00:56,843 culturedx.pipeline.runner INFO Processing case 796/925: patient_87
+2026-04-16 22:01:00,780 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:01:00,781 culturedx.pipeline.runner INFO Processing case 797/925: patient_870
+2026-04-16 22:01:06,447 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:01:06,448 culturedx.pipeline.runner INFO Processing case 798/925: patient_871
+2026-04-16 22:01:13,351 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:01:13,352 culturedx.pipeline.runner INFO Processing case 799/925: patient_872
+2026-04-16 22:01:17,371 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:01:17,372 culturedx.pipeline.runner INFO Processing case 800/925: patient_874
+2026-04-16 22:01:22,540 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:01:22,541 culturedx.pipeline.runner INFO Processing case 801/925: patient_876
+2026-04-16 22:01:29,677 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:01:29,677 culturedx.pipeline.runner INFO Processing case 802/925: patient_877
+2026-04-16 22:01:33,714 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:01:33,714 culturedx.pipeline.runner INFO Processing case 803/925: patient_878
+2026-04-16 22:01:38,812 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:01:38,813 culturedx.pipeline.runner INFO Processing case 804/925: patient_879
+2026-04-16 22:01:45,880 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:01:45,880 culturedx.pipeline.runner INFO Processing case 805/925: patient_88
+2026-04-16 22:01:50,018 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:01:50,019 culturedx.pipeline.runner INFO Processing case 806/925: patient_880
+2026-04-16 22:01:55,464 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:01:55,465 culturedx.pipeline.runner INFO Processing case 807/925: patient_881
+2026-04-16 22:02:02,369 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:02:02,370 culturedx.pipeline.runner INFO Processing case 808/925: patient_882
+2026-04-16 22:02:02,389 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:02:02,389 culturedx.pipeline.runner INFO Processing case 809/925: patient_883
+2026-04-16 22:02:12,080 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:02:12,080 culturedx.pipeline.runner INFO Processing case 810/925: patient_884
+2026-04-16 22:02:18,884 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:02:18,884 culturedx.pipeline.runner INFO Processing case 811/925: patient_885
+2026-04-16 22:02:22,847 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:02:22,848 culturedx.pipeline.runner INFO Processing case 812/925: patient_886
+2026-04-16 22:02:28,806 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:02:28,807 culturedx.pipeline.runner INFO Processing case 813/925: patient_887
+2026-04-16 22:02:34,825 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:02:34,825 culturedx.pipeline.runner INFO Processing case 814/925: patient_888
+2026-04-16 22:02:39,738 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:02:39,739 culturedx.pipeline.runner INFO Processing case 815/925: patient_89
+2026-04-16 22:02:45,601 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:02:45,602 culturedx.pipeline.runner INFO Processing case 816/925: patient_890
+2026-04-16 22:02:50,780 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:02:50,781 culturedx.pipeline.runner INFO Processing case 817/925: patient_891
+2026-04-16 22:02:55,925 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:02:55,925 culturedx.pipeline.runner INFO Processing case 818/925: patient_892
+2026-04-16 22:03:01,424 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:03:01,425 culturedx.pipeline.runner INFO Processing case 819/925: patient_893
+2026-04-16 22:03:06,971 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:03:06,971 culturedx.pipeline.runner INFO Processing case 820/925: patient_894
+2026-04-16 22:03:12,036 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:03:12,037 culturedx.pipeline.runner INFO Processing case 821/925: patient_895
+2026-04-16 22:03:17,635 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:03:17,636 culturedx.pipeline.runner INFO Processing case 822/925: patient_896
+2026-04-16 22:03:24,276 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:03:24,276 culturedx.pipeline.runner INFO Processing case 823/925: patient_897
+2026-04-16 22:03:30,226 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:03:30,226 culturedx.pipeline.runner INFO Processing case 824/925: patient_898
+2026-04-16 22:03:36,202 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:03:36,202 culturedx.pipeline.runner INFO Processing case 825/925: patient_899
+2026-04-16 22:03:41,542 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:03:41,543 culturedx.pipeline.runner INFO Processing case 826/925: patient_9
+2026-04-16 22:03:47,852 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:03:47,852 culturedx.pipeline.runner INFO Processing case 827/925: patient_901
+2026-04-16 22:03:52,951 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:03:52,952 culturedx.pipeline.runner INFO Processing case 828/925: patient_902
+2026-04-16 22:04:00,228 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:04:00,228 culturedx.pipeline.runner INFO Processing case 829/925: patient_903
+2026-04-16 22:04:05,443 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:04:05,443 culturedx.pipeline.runner INFO Processing case 830/925: patient_904
+2026-04-16 22:04:11,831 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:04:11,831 culturedx.pipeline.runner INFO Processing case 831/925: patient_905
+2026-04-16 22:04:18,282 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:04:18,282 culturedx.pipeline.runner INFO Processing case 832/925: patient_906
+2026-04-16 22:04:24,214 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:04:24,214 culturedx.pipeline.runner INFO Processing case 833/925: patient_907
+2026-04-16 22:04:30,111 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:04:30,111 culturedx.pipeline.runner INFO Processing case 834/925: patient_908
+2026-04-16 22:04:36,348 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:04:36,348 culturedx.pipeline.runner INFO Processing case 835/925: patient_909
+2026-04-16 22:04:41,419 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:04:41,420 culturedx.pipeline.runner INFO Processing case 836/925: patient_91
+2026-04-16 22:04:47,635 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:04:47,635 culturedx.pipeline.runner INFO Processing case 837/925: patient_910
+2026-04-16 22:04:52,417 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:04:52,418 culturedx.pipeline.runner INFO Processing case 838/925: patient_911
+2026-04-16 22:04:58,075 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:04:58,075 culturedx.pipeline.runner INFO Processing case 839/925: patient_913
+2026-04-16 22:05:04,242 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:05:04,243 culturedx.pipeline.runner INFO Processing case 840/925: patient_914
+2026-04-16 22:05:08,524 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:05:08,524 culturedx.pipeline.runner INFO Processing case 841/925: patient_915
+2026-04-16 22:05:14,808 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:05:14,808 culturedx.pipeline.runner INFO Processing case 842/925: patient_916
+2026-04-16 22:05:20,392 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:05:20,392 culturedx.pipeline.runner INFO Processing case 843/925: patient_917
+2026-04-16 22:05:24,622 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:05:24,622 culturedx.pipeline.runner INFO Processing case 844/925: patient_918
+2026-04-16 22:05:31,577 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:05:31,578 culturedx.pipeline.runner INFO Processing case 845/925: patient_92
+2026-04-16 22:05:36,637 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:05:36,638 culturedx.pipeline.runner INFO Processing case 846/925: patient_920
+2026-04-16 22:05:40,748 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:05:40,748 culturedx.pipeline.runner INFO Processing case 847/925: patient_921
+2026-04-16 22:05:47,671 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:05:47,672 culturedx.pipeline.runner INFO Processing case 848/925: patient_922
+2026-04-16 22:05:52,718 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:05:52,719 culturedx.pipeline.runner INFO Processing case 849/925: patient_923
+2026-04-16 22:05:56,011 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:05:56,011 culturedx.pipeline.runner INFO Processing case 850/925: patient_924
+2026-04-16 22:06:04,574 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:06:04,575 culturedx.pipeline.runner INFO Processing case 851/925: patient_925
+2026-04-16 22:06:08,984 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:06:08,985 culturedx.pipeline.runner INFO Processing case 852/925: patient_926
+2026-04-16 22:06:12,937 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:06:12,937 culturedx.pipeline.runner INFO Processing case 853/925: patient_927
+2026-04-16 22:06:20,378 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:06:20,379 culturedx.pipeline.runner INFO Processing case 854/925: patient_928
+2026-04-16 22:06:24,995 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:06:24,996 culturedx.pipeline.runner INFO Processing case 855/925: patient_929
+2026-04-16 22:06:29,784 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:06:29,784 culturedx.pipeline.runner INFO Processing case 856/925: patient_930
+2026-04-16 22:06:36,687 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:06:36,687 culturedx.pipeline.runner INFO Processing case 857/925: patient_931
+2026-04-16 22:06:41,050 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:06:41,050 culturedx.pipeline.runner INFO Processing case 858/925: patient_932
+2026-04-16 22:06:45,911 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:06:45,912 culturedx.pipeline.runner INFO Processing case 859/925: patient_933
+2026-04-16 22:06:52,675 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:06:52,676 culturedx.pipeline.runner INFO Processing case 860/925: patient_934
+2026-04-16 22:06:57,160 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:06:57,160 culturedx.pipeline.runner INFO Processing case 861/925: patient_935
+2026-04-16 22:07:01,345 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:07:01,345 culturedx.pipeline.runner INFO Processing case 862/925: patient_936
+2026-04-16 22:07:08,549 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:07:08,549 culturedx.pipeline.runner INFO Processing case 863/925: patient_937
+2026-04-16 22:07:13,866 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:07:13,867 culturedx.pipeline.runner INFO Processing case 864/925: patient_938
+2026-04-16 22:07:17,957 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:07:17,957 culturedx.pipeline.runner INFO Processing case 865/925: patient_939
+2026-04-16 22:07:24,727 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:07:24,728 culturedx.pipeline.runner INFO Processing case 866/925: patient_94
+2026-04-16 22:07:29,848 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:07:29,848 culturedx.pipeline.runner INFO Processing case 867/925: patient_940
+2026-04-16 22:07:33,925 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:07:33,925 culturedx.pipeline.runner INFO Processing case 868/925: patient_941
+2026-04-16 22:07:40,988 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:07:40,988 culturedx.pipeline.runner INFO Processing case 869/925: patient_942
+2026-04-16 22:07:46,188 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:07:46,189 culturedx.pipeline.runner INFO Processing case 870/925: patient_943
+2026-04-16 22:07:46,207 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:07:46,207 culturedx.pipeline.runner INFO Processing case 871/925: patient_944
+2026-04-16 22:07:57,229 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:07:57,229 culturedx.pipeline.runner INFO Processing case 872/925: patient_945
+2026-04-16 22:08:02,249 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:08:02,249 culturedx.pipeline.runner INFO Processing case 873/925: patient_946
+2026-04-16 22:08:06,289 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:08:06,290 culturedx.pipeline.runner INFO Processing case 874/925: patient_947
+2026-04-16 22:08:13,001 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:08:13,001 culturedx.pipeline.runner INFO Processing case 875/925: patient_948
+2026-04-16 22:08:18,956 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:08:18,957 culturedx.pipeline.runner INFO Processing case 876/925: patient_949
+2026-04-16 22:08:22,957 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:08:22,958 culturedx.pipeline.runner INFO Processing case 877/925: patient_95
+2026-04-16 22:08:29,565 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:08:29,566 culturedx.pipeline.runner INFO Processing case 878/925: patient_950
+2026-04-16 22:08:34,629 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:08:34,629 culturedx.pipeline.runner INFO Processing case 879/925: patient_951
+2026-04-16 22:08:38,862 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:08:38,862 culturedx.pipeline.runner INFO Processing case 880/925: patient_952
+2026-04-16 22:08:46,127 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:08:46,128 culturedx.pipeline.runner INFO Processing case 881/925: patient_953
+2026-04-16 22:08:50,317 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:08:50,317 culturedx.pipeline.runner INFO Processing case 882/925: patient_954
+2026-04-16 22:08:55,186 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:08:55,186 culturedx.pipeline.runner INFO Processing case 883/925: patient_955
+2026-04-16 22:09:02,250 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:09:02,251 culturedx.pipeline.runner INFO Processing case 884/925: patient_957
+2026-04-16 22:09:06,369 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:09:06,369 culturedx.pipeline.runner INFO Processing case 885/925: patient_958
+2026-04-16 22:09:11,841 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:09:11,842 culturedx.pipeline.runner INFO Processing case 886/925: patient_959
+2026-04-16 22:09:18,408 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:09:18,408 culturedx.pipeline.runner INFO Processing case 887/925: patient_96
+2026-04-16 22:09:22,448 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:09:22,449 culturedx.pipeline.runner INFO Processing case 888/925: patient_960
+2026-04-16 22:09:27,942 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:09:27,943 culturedx.pipeline.runner INFO Processing case 889/925: patient_961
+2026-04-16 22:09:34,552 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:09:34,552 culturedx.pipeline.runner INFO Processing case 890/925: patient_964
+2026-04-16 22:09:38,553 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:09:38,554 culturedx.pipeline.runner INFO Processing case 891/925: patient_965
+2026-04-16 22:09:44,476 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:09:44,476 culturedx.pipeline.runner INFO Processing case 892/925: patient_966
+2026-04-16 22:09:50,536 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:09:50,536 culturedx.pipeline.runner INFO Processing case 893/925: patient_967
+2026-04-16 22:09:54,860 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:09:54,861 culturedx.pipeline.runner INFO Processing case 894/925: patient_968
+2026-04-16 22:10:00,865 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:10:00,866 culturedx.pipeline.runner INFO Processing case 895/925: patient_969
+2026-04-16 22:10:06,226 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:10:06,226 culturedx.pipeline.runner INFO Processing case 896/925: patient_97
+2026-04-16 22:10:11,323 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:10:11,323 culturedx.pipeline.runner INFO Processing case 897/925: patient_970
+2026-04-16 22:10:16,764 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:10:16,765 culturedx.pipeline.runner INFO Processing case 898/925: patient_971
+2026-04-16 22:10:22,757 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:10:22,758 culturedx.pipeline.runner INFO Processing case 899/925: patient_972
+2026-04-16 22:10:28,058 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:10:28,059 culturedx.pipeline.runner INFO Processing case 900/925: patient_973
+2026-04-16 22:10:31,199 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:10:31,200 culturedx.pipeline.runner INFO Processing case 901/925: patient_974
+2026-04-16 22:10:39,382 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:10:39,383 culturedx.pipeline.runner INFO Processing case 902/925: patient_975
+2026-04-16 22:10:44,332 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:10:44,332 culturedx.pipeline.runner INFO Processing case 903/925: patient_977
+2026-04-16 22:10:48,811 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:10:48,811 culturedx.pipeline.runner INFO Processing case 904/925: patient_978
+2026-04-16 22:10:54,782 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:10:54,783 culturedx.pipeline.runner INFO Processing case 905/925: patient_979
+2026-04-16 22:11:00,727 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:11:00,728 culturedx.pipeline.runner INFO Processing case 906/925: patient_98
+2026-04-16 22:11:04,770 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:11:04,771 culturedx.pipeline.runner INFO Processing case 907/925: patient_980
+2026-04-16 22:11:11,412 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:11:11,413 culturedx.pipeline.runner INFO Processing case 908/925: patient_981
+2026-04-16 22:11:16,272 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:11:16,272 culturedx.pipeline.runner INFO Processing case 909/925: patient_982
+2026-04-16 22:11:21,205 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:11:21,205 culturedx.pipeline.runner INFO Processing case 910/925: patient_983
+2026-04-16 22:11:27,442 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:11:27,442 culturedx.pipeline.runner INFO Processing case 911/925: patient_984
+2026-04-16 22:11:32,596 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:11:32,596 culturedx.pipeline.runner INFO Processing case 912/925: patient_985
+2026-04-16 22:11:36,524 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:11:36,525 culturedx.pipeline.runner INFO Processing case 913/925: patient_986
+2026-04-16 22:11:44,552 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:11:44,552 culturedx.pipeline.runner INFO Processing case 914/925: patient_987
+2026-04-16 22:11:44,552 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:11:44,552 culturedx.pipeline.runner INFO Processing case 915/925: patient_988
+2026-04-16 22:11:53,151 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:11:53,152 culturedx.pipeline.runner INFO Processing case 916/925: patient_989
+2026-04-16 22:12:00,818 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:12:00,819 culturedx.pipeline.runner INFO Processing case 917/925: patient_99
+2026-04-16 22:12:05,529 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:12:05,529 culturedx.pipeline.runner INFO Processing case 918/925: patient_990
+2026-04-16 22:12:07,247 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:12:07,247 culturedx.pipeline.runner INFO Processing case 919/925: patient_992
+2026-04-16 22:12:17,184 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:12:17,184 culturedx.pipeline.runner INFO Processing case 920/925: patient_993
+2026-04-16 22:12:21,803 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:12:21,803 culturedx.pipeline.runner INFO Processing case 921/925: patient_994
+2026-04-16 22:12:26,045 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:12:26,045 culturedx.pipeline.runner INFO Processing case 922/925: patient_995
+2026-04-16 22:12:34,511 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:12:34,511 culturedx.pipeline.runner INFO Processing case 923/925: patient_996
+2026-04-16 22:12:34,532 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:12:34,532 culturedx.pipeline.runner INFO Processing case 924/925: patient_997
+2026-04-16 22:12:35,358 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:12:35,358 culturedx.pipeline.runner INFO Processing case 925/925: patient_998
+2026-04-16 22:12:50,119 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:12:54,023 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:12:59,115 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:13:06,116 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:13:10,716 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:13:15,915 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:13:21,829 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:13:26,604 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:13:32,244 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:13:37,718 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:13:43,183 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:13:48,954 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:13:54,560 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:13:56,058 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:13:58,301 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:13:58,653 httpx INFO HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 22:13:58,703 culturedx.pipeline.runner INFO Table 4 Overall: 0.4395
+Evaluation metrics: {'diagnosis': {'accuracy': 0.005405405405405406, 'top1_accuracy': 0.5232432432432432, 'top3_accuracy': 0.7621621621621621, 'macro_f1': 0.22525213822551737, 'weighted_f1': 0.4523524728239736, 'overall': 0.39368308437206034}, 'comorbidity': {'hamming_accuracy': 0.31113513513513513, 'subset_accuracy': 0.0075675675675675675, 'comorbidity_detection_f1': 0.15478615071283094, 'label_coverage': 0.757117117117117, 'label_precision': 0.3174774774774775, 'avg_predicted_labels': 2.597837837837838, 'avg_gold_labels': 1.0908108108108108}, 'table4': {'2class_Acc': 0.6384505021520803, '2class_F1_macro': 0.5771450916132876, '2class_F1_weighted': 0.5969570487977993, '4class_Acc': 0.2691891891891892, '4class_F1_macro': 0.27440146552306344, '4class_F1_weighted': 0.34458994646115315, '12class_Acc': 0.1881081081081081, '12class_Top1': 0.5362162162162162, '12class_Top3': 0.7167567567567568, '12class_F1_macro': 0.21011916642132686, '12class_F1_weighted': 0.4826551011226112, '2class_n': 697, '4class_n': 925, '12class_n': 925, 'Overall': 0.4395080538510538}}
+Predictions saved to results/external/mdd5k_single/predictions.jsonl
+Run complete.
