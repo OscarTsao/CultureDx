@@ -1,0 +1,74 @@
+{
+  "schema_version": "v1",
+  "run_id": "factorial_a_orig_evidence",
+  "dataset": "lingxidiag16k",
+  "num_cases": 1000,
+  "metrics": {
+    "comorbidity": {
+      "avg_gold_labels": 1.091,
+      "avg_predicted_labels": 1.365,
+      "comorbidity_detection_f1": 0.15077605321507762,
+      "hamming_accuracy": 0.34241666666666665,
+      "label_coverage": 0.44516666666666665,
+      "label_precision": 0.3595,
+      "subset_accuracy": 0.223
+    },
+    "diagnosis": {
+      "accuracy": 0.223,
+      "macro_f1": 0.19416290519393725,
+      "overall": 0.33799256774655617,
+      "top1_accuracy": 0.438,
+      "top3_accuracy": 0.466,
+      "weighted_f1": 0.36879993353884366
+    },
+    "four_class": {
+      "accuracy": 0.353,
+      "macro_f1": 0.19046238785369218,
+      "n_cases": 1000,
+      "weighted_f1": 0.2489053830227743
+    },
+    "table4": {
+      "12class_Acc": 0.223,
+      "12class_F1_macro": 0.17091675135736004,
+      "12class_F1_weighted": 0.3477356309135469,
+      "12class_Top1": 0.441,
+      "12class_Top3": 0.469,
+      "12class_n": 1000,
+      "2class_Acc": 0.7420718816067653,
+      "2class_F1_macro": 0.6752591380250955,
+      "2class_F1_weighted": 0.7579454192517032,
+      "2class_n": 473,
+      "4class_Acc": 0.446,
+      "4class_F1_macro": 0.3450741111244619,
+      "4class_F1_weighted": 0.36336700731097543,
+      "4class_n": 1000,
+      "Overall": 0.4528518126899917
+    }
+  },
+  "slice_metrics": [
+    {
+      "abstention_rate": 0.0,
+      "num_cases": 370,
+      "slice": "F32",
+      "top1_accuracy": 0.9027027027027027
+    },
+    {
+      "abstention_rate": 0.0,
+      "num_cases": 36,
+      "slice": "F42",
+      "top1_accuracy": 0.4444444444444444
+    },
+    {
+      "abstention_rate": 0.002004008016032064,
+      "num_cases": 998,
+      "slice": "somatized_expression",
+      "top1_accuracy": 0.437875751503006
+    },
+    {
+      "abstention_rate": 0.0,
+      "num_cases": 2,
+      "slice": "direct_expression",
+      "top1_accuracy": 0.5
+    }
+  ]
+}
