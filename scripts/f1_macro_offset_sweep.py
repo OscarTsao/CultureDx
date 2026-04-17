@@ -7,7 +7,7 @@ Pipeline (100 % CPU, no GPU):
     - dtv05        (met_ratio from raw_checker_outputs)
     - TF-IDF       (proba_scores aligned to ranked_codes)
 2.  RRF-fuse the three score vectors per case -> 12-dim score vector
-3.  Split validation 500 / 500 (seed=42): calibration / held-out
+3.  Split validation 500/500 (seed=42): calibration / held-out
 4.  Coordinate descent on calibration set:
     For each parent class, sweep offset in a grid; pick the offset that
     maximises F1_macro.  Repeat for up to 5 epochs until convergence.
@@ -22,7 +22,6 @@ from __future__ import annotations
 import json
 import logging
 import sys
-from copy import deepcopy
 from pathlib import Path
 
 import numpy as np
@@ -58,7 +57,7 @@ OUT_DIR = RESULTS_DIR / "t4_f1_opt"
 PARENT_CLASSES = list(PAPER_12_CLASSES)       # 12 classes
 CLASS_TO_IDX = {c: i for i, c in enumerate(PARENT_CLASSES)}
 
-# RRF k that was best for T2/T3
+# RRF k that was best for T3
 RRF_K = 30
 
 # ---------------------------------------------------------------------------
@@ -97,7 +96,6 @@ def load_dtv_scores(path: Path) -> dict[str, np.ndarray]:
                 continue
             vec = np.zeros(12, dtype=np.float64)
             rco = rec.get("decision_trace", {}).get("raw_checker_outputs", [])
-            # For sub-codes that map to the same parent, take the max met_ratio
             for item in rco:
                 if not isinstance(item, dict):
                     continue
@@ -143,14 +141,7 @@ def rrf_fuse_vectors(
     weights: list[float],
     k: int = 60,
 ) -> dict[str, np.ndarray]:
-    """RRF-fuse multiple per-case score vectors into one per-case vector.
-
-    For each system i and case c:
-      - Sort the 12 classes by score (descending) -> ranking
-      - For each class at rank r (1-indexed):
-            rrf_score[class] += weight_i / (k + r)
-    """
-    # Intersect case ids
+    """RRF-fuse multiple per-case score vectors into one per-case vector."""
     common = set(score_dicts[0].keys())
     for sd in score_dicts[1:]:
         common &= set(sd.keys())
@@ -160,8 +151,7 @@ def rrf_fuse_vectors(
         result = np.zeros(12, dtype=np.float64)
         for sd, w in zip(score_dicts, weights):
             vec = sd[cid]
-            # Rank: highest score gets rank 1
-            order = np.argsort(-vec)  # indices sorted by descending score
+            order = np.argsort(-vec)
             for rank_0, idx in enumerate(order):
                 rank_1 = rank_0 + 1
                 result[idx] += w / (k + rank_1)
@@ -249,21 +239,39 @@ def compute_full_table4(
 
 
 # ---------------------------------------------------------------------------
-# Coordinate descent
+# Coordinate descent (properly scaled)
 # ---------------------------------------------------------------------------
+
+def build_offset_grid(fused_scores: dict[str, np.ndarray]) -> list[float]:
+    """Build an offset grid calibrated to actual RRF score spreads.
+
+    The RRF scores live in a narrow band (~0.024 spread). The typical
+    rank1-rank2 gap is ~0.004. We need offsets comparable to this gap.
+    """
+    all_vecs = np.array(list(fused_scores.values()))  # (N, 12)
+    # Compute per-case spread (max - min)
+    spreads = all_vecs.max(axis=1) - all_vecs.min(axis=1)
+    median_spread = float(np.median(spreads))
+    # Grid: from -1x to +2x of median spread, in fine steps
+    # This allows us to fully suppress a class or strongly boost it
+    step = median_spread / 10
+    grid = [round(i * step, 8) for i in range(-12, 25)]
+    # Deduplicate and sort
+    grid = sorted(set(grid))
+    logger.info("Offset grid: %d values in [%.6f, %.6f], step=%.6f (median_spread=%.6f)",
+                len(grid), grid[0], grid[-1], step, median_spread)
+    return grid
+
 
 def coordinate_descent(
     case_ids: list[str],
     fused_scores: dict[str, np.ndarray],
     gold_map: dict[str, list[str]],
+    grid: list[float],
     max_epochs: int = 5,
-    grid: list[float] | None = None,
     max_labels: int = 1,
 ) -> tuple[np.ndarray, float, list[dict]]:
     """Coordinate descent to find per-class offsets maximising F1_macro."""
-    if grid is None:
-        grid = [-0.3, -0.2, -0.1, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
-
     offsets = np.zeros(12, dtype=np.float64)
     history: list[dict] = []
 
@@ -287,7 +295,7 @@ def coordinate_descent(
 
         epoch_f1 = compute_12class_f1_macro(case_ids, fused_scores, gold_map, offsets, max_labels)
         logger.info("Epoch %d: F1_macro=%.6f  offsets=%s", epoch, epoch_f1,
-                     [round(o, 2) for o in offsets.tolist()])
+                     [round(o, 5) for o in offsets.tolist()])
         history.append({"epoch": epoch, "f1_macro": epoch_f1, "offsets": offsets.tolist()})
 
         if not improved:
@@ -321,9 +329,8 @@ def main():
     logger.info("factorial_b: %d cases, dtv05: %d cases, tfidf: %d cases",
                 len(fb_scores), len(dtv_scores), len(tfidf_scores))
 
-    # 2. RRF-fuse (same weights/k as T3: equal weights, k=30, with TF-IDF boosted)
-    # T3 config: k=30 w=tfidf++ max=1  =>  tfidf gets higher weight
-    weights = [1.0, 1.0, 1.5]  # fb, dtv, tfidf (tfidf++)
+    # 2. RRF-fuse (T3 config: k=30, tfidf boosted)
+    weights = [1.0, 1.0, 1.5]  # fb, dtv, tfidf++
     fused = rrf_fuse_vectors([fb_scores, dtv_scores, tfidf_scores], weights, k=RRF_K)
     logger.info("RRF-fused %d cases (intersection)", len(fused))
 
@@ -336,7 +343,6 @@ def main():
         raw = str(ds.get("DiagnosisCode", "") or "")
         gold_map[cid] = gold_to_parent_list(raw)
 
-    # Only keep cases present in fused
     all_ids = sorted(fused.keys())
     logger.info("Total fused case_ids: %d", len(all_ids))
 
@@ -347,31 +353,32 @@ def main():
     held_ids = [all_ids[i] for i in perm[500:1000]]
     logger.info("Calibration: %d, Held-out: %d", len(calib_ids), len(held_ids))
 
-    # Baseline: no offsets
+    # Baselines
     baseline_calib_f1 = compute_12class_f1_macro(calib_ids, fused, gold_map, max_labels=1)
     baseline_held_f1 = compute_12class_f1_macro(held_ids, fused, gold_map, max_labels=1)
     baseline_full_f1 = compute_12class_f1_macro(all_ids, fused, gold_map, max_labels=1)
     logger.info("Baseline F1_macro => calib=%.4f held=%.4f full=%.4f",
                 baseline_calib_f1, baseline_held_f1, baseline_full_f1)
 
-    # Baseline full Table4
     baseline_table4 = compute_full_table4(all_ids, fused, dataset_cases, max_labels=1)
     logger.info("Baseline Overall (full): %.4f", baseline_table4.get("Overall", 0))
 
-    # 4. Coordinate descent on calibration set
+    # Build properly scaled offset grid
+    grid = build_offset_grid(fused)
+
+    # 4. Coordinate descent
     print(f"\n{'='*70}")
     print("T4-F1-OPT: Coordinate Descent on Calibration Set (N=500)")
     print(f"{'='*70}")
 
     offsets, calib_f1, history = coordinate_descent(
-        calib_ids, fused, gold_map,
-        max_epochs=5,
-        max_labels=1,
+        calib_ids, fused, gold_map, grid,
+        max_epochs=5, max_labels=1,
     )
 
     print(f"\nLearned offsets:")
     for i, cls in enumerate(PARENT_CLASSES):
-        print(f"  {cls:8s}: {offsets[i]:+.2f}")
+        print(f"  {cls:8s}: {offsets[i]:+.6f}")
     print(f"\nCalibration F1_macro: {baseline_calib_f1:.4f} -> {calib_f1:.4f} ({calib_f1 - baseline_calib_f1:+.4f})")
 
     # 5. Apply to held-out
@@ -408,7 +415,7 @@ def main():
 
     # Per-class breakdown
     print(f"\n{'='*70}")
-    print("Per-class F1 breakdown (full N=1000, with offsets)")
+    print("Per-class F1 breakdown (full N=1000)")
     print(f"{'='*70}")
     mlb = MultiLabelBinarizer(classes=PARENT_CLASSES)
     y_true_all, y_pred_all = [], []
@@ -419,29 +426,56 @@ def main():
     y_pred_bin = mlb.transform(y_pred_all)
     per_class_f1 = f1_score(y_true_bin, y_pred_bin, average=None, zero_division=0)
     for i, cls in enumerate(PARENT_CLASSES):
-        # Count support
         support = int(y_true_bin[:, i].sum())
         pred_count = int(y_pred_bin[:, i].sum())
-        print(f"  {cls:8s}: F1={per_class_f1[i]:.4f}  support={support:4d}  predicted={pred_count:4d}  offset={final_offsets[i]:+.2f}")
+        print(f"  {cls:8s}: F1={per_class_f1[i]:.4f}  support={support:4d}  predicted={pred_count:4d}  offset={final_offsets[i]:+.6f}")
+
+    # Also show what calibrated offsets WOULD do on full set regardless of threshold
+    if not apply_full:
+        print(f"\n{'='*70}")
+        print("What calibrated offsets WOULD do on full N=1000 (informational):")
+        print(f"{'='*70}")
+        full_f1_cal = compute_12class_f1_macro(all_ids, fused, gold_map, offsets, max_labels=1)
+        full_t4_cal = compute_full_table4(all_ids, fused, dataset_cases, offsets, max_labels=1)
+        print(f"  12class_F1_macro: {baseline_full_f1:.4f} -> {full_f1_cal:.4f} ({full_f1_cal - baseline_full_f1:+.4f})")
+        print(f"  Overall:          {baseline_table4.get('Overall', 0):.4f} -> {full_t4_cal.get('Overall', 0):.4f}")
+        for key, value in full_t4_cal.items():
+            if key.endswith("_n"):
+                continue
+            elif value is not None:
+                bl = baseline_table4.get(key, 0) or 0
+                print(f"  {key:25s}: {bl:.4f} -> {value:.4f} ({value-bl:+.4f})")
+
+        y_pred_cal = []
+        for cid in all_ids:
+            y_pred_cal.append(_predict_from_scores(fused[cid], offsets, max_labels=1))
+        y_pred_cal_bin = mlb.transform(y_pred_cal)
+        pcf_cal = f1_score(y_true_bin, y_pred_cal_bin, average=None, zero_division=0)
+        print(f"\n  Per-class F1 with offsets:")
+        for i, cls in enumerate(PARENT_CLASSES):
+            support = int(y_true_bin[:, i].sum())
+            pred_count = int(y_pred_cal_bin[:, i].sum())
+            print(f"    {cls:8s}: F1={pcf_cal[i]:.4f}  support={support:4d}  predicted={pred_count:4d}  offset={offsets[i]:+.6f}")
 
     # Save results
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Save predictions
+    # Save predictions (always save with calibrated offsets for reference)
     pred_out = OUT_DIR / "predictions.jsonl"
     with open(pred_out, "w", encoding="utf-8") as f:
         for cid in all_ids:
             pred = _predict_from_scores(fused[cid], final_offsets, max_labels=1)
-            ds = dataset_cases.get(cid, {})
+            pred_cal = _predict_from_scores(fused[cid], offsets, max_labels=1)
             rec = {
                 "case_id": cid,
                 "gold_diagnoses": gold_map.get(cid, []),
                 "primary_diagnosis": pred[0],
                 "comorbid_diagnoses": pred[1:],
+                "primary_diagnosis_calibrated": pred_cal[0],
                 "decision_trace": {
                     "fused_scores": {PARENT_CLASSES[j]: round(float(fused[cid][j]), 6) for j in range(12)},
-                    "offsets": {PARENT_CLASSES[j]: round(float(final_offsets[j]), 4) for j in range(12)},
-                    "adjusted_scores": {PARENT_CLASSES[j]: round(float(fused[cid][j] + final_offsets[j]), 6) for j in range(12)},
+                    "offsets": {PARENT_CLASSES[j]: round(float(offsets[j]), 6) for j in range(12)},
+                    "adjusted_scores": {PARENT_CLASSES[j]: round(float(fused[cid][j] + offsets[j]), 6) for j in range(12)},
                 },
             }
             f.write(json.dumps(rec, ensure_ascii=False) + "\n")
@@ -452,7 +486,8 @@ def main():
     result = {
         "table4": full_table4,
         "baseline_table4": baseline_table4,
-        "offsets": {PARENT_CLASSES[i]: round(float(final_offsets[i]), 4) for i in range(12)},
+        "offsets": {PARENT_CLASSES[i]: round(float(offsets[i]), 6) for i in range(12)},
+        "offsets_applied": apply_full,
         "calibration": {
             "baseline_f1_macro": baseline_calib_f1,
             "optimized_f1_macro": calib_f1,
@@ -465,10 +500,9 @@ def main():
         },
         "full": {
             "baseline_f1_macro": baseline_full_f1,
-            "optimized_f1_macro": full_f1,
-            "delta_pp": round((full_f1 - baseline_full_f1) * 100, 2),
+            "optimized_f1_macro": float(compute_12class_f1_macro(all_ids, fused, gold_map, offsets, max_labels=1)),
+            "delta_pp": round((compute_12class_f1_macro(all_ids, fused, gold_map, offsets, max_labels=1) - baseline_full_f1) * 100, 2),
         },
-        "applied_offsets": apply_full,
         "convergence_history": history,
         "ensemble_config": {
             "systems": ["factorial_b", "dtv05", "tfidf"],
@@ -476,6 +510,11 @@ def main():
             "rrf_k": RRF_K,
         },
         "per_class_f1": {PARENT_CLASSES[i]: round(float(per_class_f1[i]), 4) for i in range(12)},
+        "offset_grid": {
+            "n_values": len(grid),
+            "min": grid[0],
+            "max": grid[-1],
+        },
     }
     with open(metrics_out, "w", encoding="utf-8") as f:
         json.dump(result, f, indent=2, ensure_ascii=False)
@@ -489,10 +528,13 @@ def main():
     t3_f1_macro = 0.233
     new_overall = full_table4.get("Overall", 0)
     new_f1 = full_table4.get("12class_F1_macro", 0)
-    print(f"  T3-TFIDF-STACK baseline:  Overall={t3_overall:.3f}  F1_macro={t3_f1_macro:.3f}")
-    print(f"  T4-F1-OPT result:         Overall={new_overall:.4f}  F1_macro={new_f1:.4f}")
-    print(f"  Delta Overall:  {new_overall - t3_overall:+.4f}")
-    print(f"  Delta F1_macro: {new_f1 - t3_f1_macro:+.4f}")
+    print(f"  T3 reference:     Overall={t3_overall:.3f}  F1_macro={t3_f1_macro:.3f}")
+    print(f"  T4 RRF baseline:  Overall={baseline_table4.get('Overall',0):.4f}  F1_macro={baseline_full_f1:.4f}")
+    print(f"  T4-F1-OPT final:  Overall={new_overall:.4f}  F1_macro={new_f1:.4f}")
+    print(f"  Offsets applied:  {apply_full}")
+    cal_full_f1 = compute_12class_f1_macro(all_ids, fused, gold_map, offsets, max_labels=1)
+    cal_full_t4 = compute_full_table4(all_ids, fused, dataset_cases, offsets, max_labels=1)
+    print(f"  Calibrated full:  Overall={cal_full_t4.get('Overall',0):.4f}  F1_macro={cal_full_f1:.4f}")
     print(f"{'='*70}")
     print(f"\nResults saved to: {OUT_DIR}")
 
