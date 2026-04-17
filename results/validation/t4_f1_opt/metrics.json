@@ -1,0 +1,131 @@
+{
+  "table4": {
+    "2class_Acc": 0.7801268498942917,
+    "2class_F1_macro": 0.7740583554376659,
+    "2class_F1_weighted": 0.809568362671811,
+    "4class_Acc": 0.533,
+    "4class_F1_macro": 0.444538838864574,
+    "4class_F1_weighted": 0.46357058773792414,
+    "12class_Acc": 0.504,
+    "12class_Top1": 0.561,
+    "12class_Top3": 0.561,
+    "12class_F1_macro": 0.23197639135477569,
+    "12class_F1_weighted": 0.48833630708591,
+    "2class_n": 473,
+    "4class_n": 1000,
+    "12class_n": 1000,
+    "Overall": 0.5591977902769957
+  },
+  "baseline_table4": {
+    "2class_Acc": 0.7801268498942917,
+    "2class_F1_macro": 0.7740583554376659,
+    "2class_F1_weighted": 0.809568362671811,
+    "4class_Acc": 0.533,
+    "4class_F1_macro": 0.444538838864574,
+    "4class_F1_weighted": 0.46357058773792414,
+    "12class_Acc": 0.504,
+    "12class_Top1": 0.561,
+    "12class_Top3": 0.561,
+    "12class_F1_macro": 0.23197639135477569,
+    "12class_F1_weighted": 0.48833630708591,
+    "2class_n": 473,
+    "4class_n": 1000,
+    "12class_n": 1000,
+    "Overall": 0.5591977902769957
+  },
+  "offsets": {
+    "F20": 0.0,
+    "F31": 0.0,
+    "F32": 0.0,
+    "F39": 0.0,
+    "F41": 0.0,
+    "F42": 0.0,
+    "F43": 0.0,
+    "F45": 0.0,
+    "F51": 0.0,
+    "F98": 0.0,
+    "Z71": 0.0,
+    "Others": 0.0
+  },
+  "calibration": {
+    "baseline_f1_macro": 0.2209136904282852,
+    "optimized_f1_macro": 0.2209136904282852,
+    "delta_pp": 0.0
+  },
+  "held_out": {
+    "baseline_f1_macro": 0.24646919780086016,
+    "optimized_f1_macro": 0.24646919780086016,
+    "delta_pp": 0.0
+  },
+  "full": {
+    "baseline_f1_macro": 0.23197639135477569,
+    "optimized_f1_macro": 0.23197639135477569,
+    "delta_pp": 0.0
+  },
+  "applied_offsets": false,
+  "convergence_history": [
+    {
+      "epoch": 0,
+      "f1_macro": 0.2209136904282852,
+      "offsets": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "epoch": 1,
+      "f1_macro": 0.2209136904282852,
+      "offsets": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "ensemble_config": {
+    "systems": [
+      "factorial_b",
+      "dtv05",
+      "tfidf"
+    ],
+    "weights": [
+      1.0,
+      1.0,
+      1.5
+    ],
+    "rrf_k": 30
+  },
+  "per_class_f1": {
+    "F20": 0.24,
+    "F31": 0.0,
+    "F32": 0.692,
+    "F39": 0.4865,
+    "F41": 0.5545,
+    "F42": 0.3667,
+    "F43": 0.2353,
+    "F45": 0.0,
+    "F51": 0.04,
+    "F98": 0.1687,
+    "Z71": 0.0,
+    "Others": 0.0
+  }
+}
