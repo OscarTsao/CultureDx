@@ -1,0 +1,79 @@
+{
+  "pipeline_stages": [
+    "dtv_baseline",
+    "comorbid_cap",
+    "rrf_ensemble",
+    "f1_opt",
+    "top3_fix"
+  ],
+  "config": {
+    "comorbid_strategy": "drop_all",
+    "rrf_k": 30,
+    "rrf_weights": [
+      1.0,
+      0.7
+    ],
+    "f1_opt_mode": "fit"
+  },
+  "metrics_per_stage": {
+    "stage_1_dtv_baseline": {
+      "12class_Acc": 0.057,
+      "12class_Top1": 0.505,
+      "12class_Top3": 0.762,
+      "12class_F1_macro": 0.1904459622775502,
+      "12class_F1_weighted": 0.46182212745867535,
+      "12class_n": 1000,
+      "Overall_12c_only": 0.3952536179472451
+    },
+    "stage_2_comorbid_cap": {
+      "12class_Acc": 0.453,
+      "12class_Top1": 0.505,
+      "12class_Top3": 0.762,
+      "12class_F1_macro": 0.1792256540931927,
+      "12class_F1_weighted": 0.435865791590555,
+      "12class_n": 1000,
+      "Overall_12c_only": 0.4670182891367496
+    },
+    "stage_3_rrf_ensemble": {
+      "12class_Acc": 0.497,
+      "12class_Top1": 0.557,
+      "12class_Top3": 0.846,
+      "12class_F1_macro": 0.254621493516248,
+      "12class_F1_weighted": 0.4982358130841718,
+      "12class_n": 1000,
+      "Overall_12c_only": 0.5305714613200839
+    },
+    "stage_4_f1_opt": {
+      "12class_Acc": 0.492,
+      "12class_Top1": 0.552,
+      "12class_Top3": 0.841,
+      "12class_F1_macro": 0.30236967430628886,
+      "12class_F1_weighted": 0.4986705858807035,
+      "12class_n": 1000,
+      "Overall_12c_only": 0.5372080520373984
+    }
+  },
+  "table4": {
+    "12class_Acc": 0.492,
+    "12class_Top1": 0.552,
+    "12class_Top3": 0.841,
+    "12class_F1_macro": 0.30236967430628886,
+    "12class_F1_weighted": 0.4986705858807035,
+    "12class_n": 1000,
+    "Overall_12c_only": 0.5372080520373984
+  },
+  "offsets": {
+    "F20": 0.0,
+    "F31": 0.00227676,
+    "F32": 0.0,
+    "F39": 0.0,
+    "F41": 0.0,
+    "F42": 0.0,
+    "F43": 0.00227676,
+    "F45": 0.00227676,
+    "F51": 0.0,
+    "F98": 0.0,
+    "Z71": 0.00227676,
+    "Others": 0.0
+  }
+}
