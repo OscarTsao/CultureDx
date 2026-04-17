@@ -18,11 +18,11 @@ from scipy.optimize import minimize_scalar
 
 CATEGORY_DISORDERS: dict[str, list[str]] = {
     "mood": ["F31", "F32", "F33", "F39"],
-    "anxiety": ["F40", "F41.0", "F41.1", "F41.2", "F42"],
-    "stress": ["F43.1", "F43.2"],
-    "somatoform": ["F45"],
+    "anxiety": ["F40", "F41.0", "F41.1", "F41.2", "F41.9", "F42"],
+    "stress": ["F43.1", "F43.2", "F43.9"],
+    "somatoform": ["F45", "F45.9"],
     "psychotic": ["F20", "F22"],
-    "sleep": ["F51"],
+    "sleep": ["F51", "F51.9"],
     "behavioral": ["F98"],
     "counseling": ["Z71"],
 }

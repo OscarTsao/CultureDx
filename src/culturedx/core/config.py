@@ -40,6 +40,7 @@ class ModeConfig(BaseModel):
     evidence_verification: bool = False
     triage_metadata_fields: list[str] | None = None
     checker_prompt_variant: str | None = None  # None=same as prompt_variant  # None=all, []=none
+    per_disorder_checker_variants: dict[str, str] | None = None  # per-disorder prompt variant overrides
     prompt_variant: str = ""
     calibrator_mode: str = "heuristic-v2"  # "heuristic-v2" or "learned"
     calibrator_artifact_path: str | None = None

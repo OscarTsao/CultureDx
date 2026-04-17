@@ -1,0 +1,23 @@
+# T1-NOS: NOS routing — expand NOS subcodes, use NOS-aware diagnostician
+mode:
+  target_disorders:
+    - F20
+    - F31
+    - F32
+    - F39
+    - F41.0
+    - F41.1
+    - F41.2
+    - F41.9
+    - F42
+    - F43.1
+    - F43.2
+    - F43.9
+    - F45
+    - F45.9
+    - F51
+    - F51.9
+    - F98
+    - Z71
+  prompt_variant: v2_nos
+  checker_prompt_variant: v2

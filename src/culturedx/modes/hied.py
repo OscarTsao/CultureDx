@@ -64,6 +64,7 @@ class HiEDMode(BaseModeOrchestrator):
         triage_metadata_fields: list[str] | None = None,
         rag_output_level: int = 1,
         checker_prompt_variant: str | None = None,
+        per_disorder_checker_variants: dict[str, str] | None = None,
         ranker_weights_path: str | Path | None = None,
         prompt_variant: str = "",
         calibrator_mode: str = "heuristic-v2",
@@ -118,6 +119,7 @@ class HiEDMode(BaseModeOrchestrator):
         self.triage_metadata_fields = triage_metadata_fields
         self._rag_output_level = rag_output_level
         self._checker_prompt_variant = checker_prompt_variant
+        self._per_disorder_checker_variants = per_disorder_checker_variants or {}
         self.contrastive = None
         if self.contrastive_enabled:
             from culturedx.agents.contrastive_checker import ContrastiveCheckerAgent
@@ -517,6 +519,7 @@ class HiEDMode(BaseModeOrchestrator):
             evidence_map,
             lang,
             prompt_variant=self._effective_checker_variant,
+            per_disorder_variants=self._per_disorder_checker_variants,
             checker_llm_client=self.checker_llm,
         )
         stage_timings["checker_fanout"] = time.monotonic() - checker_start
@@ -1004,6 +1007,7 @@ class HiEDMode(BaseModeOrchestrator):
             evidence_map,
             lang,
             prompt_variant=self._effective_checker_variant,
+            per_disorder_variants=self._per_disorder_checker_variants,
             checker_llm_client=self.checker_llm,
         )
         stage_timings["checker_verify"] = time.monotonic() - checker_start

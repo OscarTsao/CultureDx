@@ -674,6 +674,126 @@
         "min_total": 2,
         "both_required": true
       }
+    },
+    "F41.9": {
+      "name": "Anxiety disorder, unspecified",
+      "name_zh": "未特指的焦虑障碍",
+      "category": "anxiety",
+      "criteria": {
+        "A": {
+          "text": "Anxiety symptoms present but insufficient for specific diagnosis",
+          "text_zh": "存在焦虑症状但不足以达到特定焦虑障碍的诊断标准",
+          "type": "core"
+        },
+        "B1": {
+          "text": "Motor tension (restlessness, muscle tension, trembling)",
+          "text_zh": "运动性紧张（坐立不安、肌肉紧张、颤抖）",
+          "type": "somatic"
+        },
+        "B2": {
+          "text": "Autonomic overactivity (palpitations, sweating, dry mouth)",
+          "text_zh": "自主神经过度活跃（心悸、出汗、口干）",
+          "type": "somatic"
+        },
+        "B3": {
+          "text": "Cognitive symptoms (worry, apprehension, difficulty concentrating)",
+          "text_zh": "认知症状（担忧、恐惧、注意力难以集中）",
+          "type": "cognitive"
+        },
+        "B4": {
+          "text": "Sleep disturbance related to anxiety",
+          "text_zh": "与焦虑相关的睡眠障碍",
+          "type": "somatic"
+        }
+      },
+      "threshold": {
+        "min_symptoms": 1
+      }
+    },
+    "F43.9": {
+      "name": "Reaction to severe stress, unspecified",
+      "name_zh": "未特指的严重应激反应",
+      "category": "stress",
+      "criteria": {
+        "A": {
+          "text": "Identifiable stressful event or life change",
+          "text_zh": "可识别的应激事件或生活变化",
+          "type": "core"
+        },
+        "B1": {
+          "text": "Emotional distress following stressor",
+          "text_zh": "应激后的情绪困扰",
+          "type": "additional"
+        },
+        "B2": {
+          "text": "Functional impairment related to stressor",
+          "text_zh": "与应激源相关的功能损害",
+          "type": "additional"
+        },
+        "B3": {
+          "text": "Symptoms insufficient for PTSD or adjustment disorder",
+          "text_zh": "症状不足以诊断PTSD或适应障碍",
+          "type": "additional"
+        }
+      },
+      "threshold": {
+        "min_total": 1
+      }
+    },
+    "F45.9": {
+      "name": "Somatoform disorder, unspecified",
+      "name_zh": "未特指的躯体形式障碍",
+      "category": "somatoform",
+      "criteria": {
+        "A": {
+          "text": "Somatic complaints not explained by medical condition",
+          "text_zh": "无法用器质性疾病解释的躯体主诉",
+          "type": "core"
+        },
+        "C1": {
+          "text": "Gastrointestinal complaints",
+          "text_zh": "胃肠道主诉",
+          "type": "somatic"
+        },
+        "C2": {
+          "text": "Pain symptoms (headache, back pain, etc.)",
+          "text_zh": "疼痛症状（头痛、背痛等）",
+          "type": "somatic"
+        },
+        "C3": {
+          "text": "Cardiovascular or respiratory complaints",
+          "text_zh": "心血管或呼吸系统主诉",
+          "type": "somatic"
+        }
+      },
+      "threshold": {
+        "min_symptoms": 1
+      }
+    },
+    "F51.9": {
+      "name": "Nonorganic sleep disorder, unspecified",
+      "name_zh": "未特指的非器质性睡眠障碍",
+      "category": "sleep",
+      "criteria": {
+        "A": {
+          "text": "Sleep disturbance as primary complaint",
+          "text_zh": "以睡眠障碍为主要主诉",
+          "type": "core"
+        },
+        "B": {
+          "text": "Distress or daytime impairment from sleep problem",
+          "text_zh": "睡眠问题导致困扰或日间功能损害",
+          "type": "additional"
+        },
+        "D": {
+          "text": "No organic or substance-related cause identified",
+          "text_zh": "未发现器质性或物质相关原因",
+          "type": "additional"
+        }
+      },
+      "threshold": {
+        "min_total": 1
+      }
     }
   }
 }

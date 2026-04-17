@@ -1,0 +1,5 @@
+# Enable post-checker evidence verification (rule-based, no LLM)
+# Checks for: fabrication, negation conflicts, criteria injection
+# Downgrades suspicious 'met' criteria to 'insufficient_evidence'
+mode:
+  evidence_verification: true

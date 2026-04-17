@@ -122,6 +122,18 @@ class DiagnosticLogicEngine:
         if threshold.get("both_required"):
             return self._eval_mixed(co.disorder, threshold, criteria_def, met_ids)
 
+        # NOS / unspecified: min_total only (no min_core)
+        if "min_total" in threshold and "min_core" not in threshold:
+            min_total = threshold["min_total"]
+            met_count = len(met_ids)
+            return LogicEngineResult(
+                disorder_code=co.disorder,
+                meets_threshold=met_count >= min_total,
+                met_count=met_count,
+                required_count=min_total,
+                rule_explanation=f"NOS min_total: {met_count}/{min_total} criteria met",
+            )
+
         # Fallback: generic count check
         total_criteria = len(criteria_def)
         met_count = len(met_ids)

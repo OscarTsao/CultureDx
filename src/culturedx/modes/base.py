@@ -228,6 +228,7 @@ class BaseModeOrchestrator(ABC):
         evidence_map: dict[str, str | dict[str, str]],
         lang: str,
         prompt_variant: str = "",
+        per_disorder_variants: dict[str, str] | None = None,
         checker_llm_client=None,
         max_workers: int | None = None,
     ) -> list:
@@ -274,13 +275,21 @@ class BaseModeOrchestrator(ABC):
                 checker_evidence["evidence_summary"] = evidence_summary
             if temporal_summary:
                 checker_evidence["temporal_summary"] = temporal_summary
+            # Per-disorder prompt variant override
+            effective_variant = prompt_variant
+            if per_disorder_variants:
+                parent_code = disorder_code.split(".")[0]
+                if disorder_code in per_disorder_variants:
+                    effective_variant = per_disorder_variants[disorder_code]
+                elif parent_code in per_disorder_variants:
+                    effective_variant = per_disorder_variants[parent_code]
             checker_input = AgentInput(
                 transcript_text=transcript_text,
                 evidence=checker_evidence or None,
                 language=lang,
                 extra={
                     "disorder_code": disorder_code,
-                    "prompt_variant": prompt_variant,
+                    "prompt_variant": effective_variant,
                 },
             )
             output = checker.run(checker_input)

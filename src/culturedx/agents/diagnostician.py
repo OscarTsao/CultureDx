@@ -36,6 +36,11 @@ DISORDER_DESCRIPTIONS: dict[str, str] = {
     "F43.1": "创伤后应激障碍：重大创伤后反复闪回、噩梦、回避、高警觉",
     "F43.2": "适应障碍：明确应激事件后出现情绪/行为困难，通常在事件后1个月内起病",
     "Z71": "心理咨询：主要寻求建议或指导，无明确精神障碍症状模式",
+
+    "F41.9": "未特指焦虑障碍：存在焦虑症状但不符合广泛性焦虑(F41.1)或惊恐障碍(F41.0)的完整标准",
+    "F43.9": "未特指严重应激反应：有应激源但症状不足以诊断PTSD(F43.1)或适应障碍(F43.2)",
+    "F45.9": "未特指躯体形式障碍：有躯体化症状但不符合具体躯体形式障碍亚型",
+    "F51.9": "未特指非器质性睡眠障碍：存在睡眠问题但不符合具体睡眠障碍亚型标准",
 }
 
 
@@ -77,7 +82,9 @@ class DiagnosticianAgent(BaseAgent):
         disorder_names = dict(extra.get("disorder_names", {}))
 
         prompt_variant = extra.get("prompt_variant", "")
-        if prompt_variant in ("v2", "v2diag") and input.language == "zh":
+        if prompt_variant == "v2_nos" and input.language == "zh":
+            template_name = "diagnostician_v2_nos_zh.jinja"
+        elif prompt_variant in ("v2", "v2diag") and input.language == "zh":
             template_name = "diagnostician_v2_zh.jinja"
         else:
             template_name = f"diagnostician_{input.language}.jinja"

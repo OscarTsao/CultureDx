@@ -1,0 +1,11 @@
+# Per-class checker calibration: strict for over-predicted, baseline for recall-sensitive
+# F32/F51/F39: v2_improved (strict) — reduce false positives
+# F41/F43: v2 (baseline) — preserve recall
+mode:
+  checker_prompt_variant: v2
+  per_disorder_checker_variants:
+    F32: v2_improved
+    F51: v2_improved
+    F39: v2_improved
+    F41: v2
+    F43: v2
