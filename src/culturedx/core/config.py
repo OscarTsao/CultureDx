@@ -45,6 +45,7 @@ class ModeConfig(BaseModel):
     calibrator_mode: str = "heuristic-v2"  # "heuristic-v2" or "learned"
     calibrator_artifact_path: str | None = None
     force_prediction: bool = False
+    stress_detection_enabled: bool = False
 
 
 class DatasetConfig(BaseModel):

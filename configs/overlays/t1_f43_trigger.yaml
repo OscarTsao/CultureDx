@@ -1,0 +1,3 @@
+# T1-F43TRIG: Enable stress event detection for F43 routing
+mode:
+  stress_detection_enabled: true

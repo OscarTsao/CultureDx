@@ -70,6 +70,7 @@ class HiEDMode(BaseModeOrchestrator):
         calibrator_mode: str = "heuristic-v2",
         calibrator_artifact_path: str | Path | None = None,
         force_prediction: bool = False,
+        stress_detection_enabled: bool = False,
         case_retriever=None,
     ) -> None:
         self.mode_name = "hied"
@@ -86,6 +87,13 @@ class HiEDMode(BaseModeOrchestrator):
         self.diagnose_then_verify = diagnose_then_verify
         self.prompt_variant = prompt_variant
         self.force_prediction = force_prediction
+
+        # Stage 0.5: Stress event detector (optional, T1-F43TRIG)
+        self.stress_detection_enabled = stress_detection_enabled
+        self._stress_detector = None
+        if self.stress_detection_enabled:
+            from culturedx.agents.stress_detector import StressEventDetector
+            self._stress_detector = StressEventDetector()
         if scope_policy not in SUPPORTED_SCOPE_POLICIES:
             raise ValueError(
                 f"Unsupported HiED scope_policy {scope_policy!r}; "
@@ -999,6 +1007,40 @@ class HiEDMode(BaseModeOrchestrator):
         )
 
         verify_codes = ranked_codes[:3]
+
+        # === T1-F43TRIG: Stress event force-injection ===
+        if self._stress_detector is not None:
+            stress_signal = self._stress_detector.detect(transcript_text)
+            decision_trace["stress_detector"] = {
+                "detected": stress_signal.detected,
+                "event_type": stress_signal.event_type,
+                "suggested_code": stress_signal.suggested_code,
+                "keywords_found": stress_signal.keywords_found,
+                "confidence": stress_signal.confidence,
+            }
+            if stress_signal.detected:
+                # Check if suggested F43.x is in candidates but not yet in verify set
+                f43_code = stress_signal.suggested_code
+                f43_in_candidates = f43_code in candidate_codes
+                f43_in_verify = f43_code in verify_codes
+                if f43_in_candidates and not f43_in_verify:
+                    verify_codes.append(f43_code)
+                    logger.info(
+                        "Case %s: StressDetector force-added %s to verify_codes "
+                        "(event=%s, confidence=%.2f, keywords=%s)",
+                        case.case_id,
+                        f43_code,
+                        stress_signal.event_type,
+                        stress_signal.confidence,
+                        stress_signal.keywords_found,
+                    )
+                elif not f43_in_candidates:
+                    logger.info(
+                        "Case %s: StressDetector detected %s but code not in candidates, skipping",
+                        case.case_id,
+                        f43_code,
+                    )
+
         checker_start = time.monotonic()
         checker_outputs = self._parallel_check_criteria(
             self.checker,

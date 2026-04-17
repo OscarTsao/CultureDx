@@ -153,6 +153,7 @@ def run(
             calibrator_mode=cfg.mode.calibrator_mode,
             calibrator_artifact_path=cfg.mode.calibrator_artifact_path,
             force_prediction=cfg.mode.force_prediction,
+            stress_detection_enabled=cfg.mode.stress_detection_enabled,
         )
         if checker_llm is not None:
             mode_kwargs["checker_llm_client"] = checker_llm
@@ -362,6 +363,7 @@ def sweep(
                 calibrator_mode=cfg.mode.calibrator_mode,
                 calibrator_artifact_path=cfg.mode.calibrator_artifact_path,
                 force_prediction=cfg.mode.force_prediction,
+                stress_detection_enabled=cfg.mode.stress_detection_enabled,
             )
             if checker_llm is not None:
                 mode_kwargs["checker_llm_client"] = checker_llm
