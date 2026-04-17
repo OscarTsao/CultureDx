@@ -1,0 +1,124 @@
+{
+  "timestamp": "2026-04-17T02:44:20.061382+00:00",
+  "git_hash": "1794f2c10ba404b5c7b848b282f1cec6b4620b36",
+  "mode": "hied",
+  "dataset": "lingxidiag16k",
+  "num_cases": 1000,
+  "config": {
+    "seed": 42,
+    "output_dir": "outputs/runs",
+    "cache_dir": "data/cache",
+    "log_level": "INFO",
+    "request_timeout_sec": 300,
+    "mode": {
+      "name": "hied",
+      "type": "hied",
+      "variants": null,
+      "target_disorders": [
+        "F20",
+        "F31",
+        "F32",
+        "F39",
+        "F41.0",
+        "F41.1",
+        "F42",
+        "F43.1",
+        "F43.2",
+        "F45",
+        "F51",
+        "F98",
+        "F41.2",
+        "Z71"
+      ],
+      "scope_policy": "manual",
+      "execution_mode": "benchmark_manual_scope",
+      "diagnose_then_verify": true,
+      "contrastive_enabled": false,
+      "evidence_verification": true,
+      "triage_metadata_fields": null,
+      "checker_prompt_variant": null,
+      "per_disorder_checker_variants": null,
+      "prompt_variant": "v2",
+      "calibrator_mode": "heuristic-v2",
+      "calibrator_artifact_path": null,
+      "force_prediction": true
+    },
+    "llm": {
+      "provider": "vllm",
+      "model_id": "Qwen/Qwen3-32B-AWQ",
+      "base_url": "http://localhost:8000",
+      "temperature": 0.0,
+      "top_k": 1,
+      "max_retries": 3,
+      "disable_thinking": true,
+      "max_concurrent": 16,
+      "max_tokens": 1536,
+      "context_window": null
+    },
+    "checker_llm": null,
+    "eval": {
+      "binary_threshold_phq8": 10,
+      "binary_threshold_hamd17": 8,
+      "bootstrap_resamples": 10000
+    },
+    "dataset": {
+      "name": "",
+      "language": "zh",
+      "coding_system": "icd10",
+      "transcript_format": "dialogue",
+      "data_path": "",
+      "split_strategy": "stratified"
+    },
+    "evidence": {
+      "enabled": true,
+      "scope_policy": "auto",
+      "retriever": {
+        "name": "mock",
+        "model_id": "",
+        "embedding_dim": 1024,
+        "max_length": 512,
+        "batch_size": 32,
+        "cache_dir": "data/cache/retriever",
+        "device": "auto",
+        "mode_weights": [
+          0.4,
+          0.2,
+          0.4
+        ]
+      },
+      "somatization": {
+        "enabled": true,
+        "mode": "ontology-only",
+        "llm_fallback": true
+      },
+      "negation_mode": "clause-rule",
+      "top_k_retrieval": 20,
+      "top_k_final": 10,
+      "min_confidence": 0.1,
+      "rerank_enabled": false,
+      "rerank_top_n": 5
+    },
+    "retrieval": {
+      "enabled": true,
+      "top_k": 5,
+      "balanced_per_class": true,
+      "level": 1,
+      "output_level": 1
+    }
+  },
+  "config_fingerprint": "1c9b62b2a082cc02",
+  "case_selection_fingerprint": "59173340f1fa156e",
+  "runtime_context": {
+    "config_paths": [
+      "configs/base.yaml",
+      "configs/vllm_awq.yaml",
+      "configs/v2.4_final.yaml",
+      "configs/overlays/verifier_on.yaml"
+    ],
+    "data_path": "data/raw/lingxidiag16k",
+    "split": null,
+    "limit": 1000,
+    "with_evidence": false,
+    "seed": 42
+  }
+}
