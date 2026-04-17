@@ -71,6 +71,8 @@ class HiEDMode(BaseModeOrchestrator):
         calibrator_artifact_path: str | Path | None = None,
         force_prediction: bool = False,
         stress_detection_enabled: bool = False,
+        contrastive_primary_enabled: bool = False,
+        contrastive_primary_prompt: str = "contrastive_primary_zh",
         case_retriever=None,
     ) -> None:
         self.mode_name = "hied"
@@ -90,6 +92,11 @@ class HiEDMode(BaseModeOrchestrator):
 
         # Stage 0.5: Stress event detector (optional, T1-F43TRIG)
         self.stress_detection_enabled = stress_detection_enabled
+        self._contrastive_primary_enabled = contrastive_primary_enabled
+        self._contrastive_primary_template = None
+        if self._contrastive_primary_enabled:
+            from culturedx.agents.contrastive_primary import load_prompt_template
+            self._contrastive_primary_template = load_prompt_template(contrastive_primary_prompt, self.prompts_dir)
         self._stress_detector = None
         if self.stress_detection_enabled:
             from culturedx.agents.stress_detector import StressEventDetector
@@ -1173,6 +1180,53 @@ class HiEDMode(BaseModeOrchestrator):
                 comorbid.append(rc)
                 if len(comorbid) >= 1:
                     break  # max 1 comorbid per paper protocol
+
+        # R4: Primary-level Contrastive Disambiguation
+        if self._contrastive_primary_enabled and self._contrastive_primary_template:
+            from culturedx.agents.contrastive_primary import apply_contrastive_primary
+            from culturedx.eval.lingxidiag_paper import to_paper_parent
+            
+            # Convert checker outputs to dicts for contrastive agent
+            rco_dicts = []
+            for co in all_checker_outputs:
+                rco_dicts.append({
+                    "disorder_code": co.disorder,
+                    "criteria_met_count": co.criteria_met_count,
+                    "criteria_required": co.criteria_required,
+                    "met_ratio": co.criteria_met_count / max(co.criteria_required, 1),
+                    "per_criterion": [
+                        {"criterion_id": cr.criterion_id, "status": cr.status,
+                         "evidence": cr.evidence, "confidence": cr.confidence}
+                        for cr in co.criteria
+                    ],
+                })
+            
+            contrastive_start = time.monotonic()
+            new_primary, new_ranked, contrastive_trace = apply_contrastive_primary(
+                logic_confirmed_codes=list(confirmed_set),
+                ranked_codes=list(top_ranked),
+                raw_checker_outputs=rco_dicts,
+                transcript_text=transcript_text,
+                current_primary=primary,
+                trigger_pairs=[tuple(["F32", "F41"])],
+                confidence_threshold=0.70,
+                llm_runtime=self.llm,
+                prompt_template=self._contrastive_primary_template,
+                llm_config={"temperature": 0.0, "max_tokens": 1024},
+                to_paper_parent_fn=to_paper_parent,
+            )
+            stage_timings["contrastive_primary"] = time.monotonic() - contrastive_start
+            decision_trace["contrastive_primary"] = contrastive_trace
+            
+            if contrastive_trace.get("overridden"):
+                primary = new_primary
+                # Rebuild comorbid from new ranking
+                comorbid = []
+                for rc in new_ranked:
+                    if rc != primary and rc in confirmed_set:
+                        comorbid.append(rc)
+                        if len(comorbid) >= 1:
+                            break
 
         if comorbid:
             confirmed_codes_list = [primary] + comorbid

@@ -1,0 +1,33 @@
+# R4: Primary-level Contrastive Disambiguation for F41/F32
+#
+# Triggers contrastive agent AFTER logic_engine when both F41 and F32 are
+# confirmed. Attacks the 160 F41→F32 ranking errors observed in t1_diag_topk
+# baseline (Q4 analysis finding).
+#
+# Expected impact on LingxiDiag val (N=1000):
+#   - Oracle upper bound: +18.3pp Top-1, +2.6pp F1_m, +10.9pp F1_w
+#   - Realistic (70% F41 accuracy): +9.0pp Top-1, +1.2pp F1_m, +4.9pp F1_w
+#
+# Risk: LLM contrastive agent may inherit Qwen3-32B's F32 bias → minimal gain.
+# This config is designed to stack with t1_diag_topk pipeline.
+
+mode:
+  contrastive_primary_enabled: true
+
+  # Pairs that trigger contrastive disambiguation
+  # Each pair: [disorder_a, disorder_b] (both parent codes)
+  contrastive_primary_trigger_pairs:
+    - ["F32", "F41"]
+
+  # Only override if contrastive agent confidence >= this threshold
+  # Lower = more aggressive (more overrides, more risk of wrong flip)
+  # Higher = more conservative (fewer flips, safer)
+  contrastive_primary_confidence_threshold: 0.70
+
+  # Prompt template name (file in prompts/agents/)
+  contrastive_primary_prompt: contrastive_primary_zh
+
+  # LLM settings specific to contrastive
+  contrastive_primary_llm:
+    temperature: 0.0
+    max_tokens: 1024

@@ -46,6 +46,8 @@ class ModeConfig(BaseModel):
     calibrator_artifact_path: str | None = None
     force_prediction: bool = False
     stress_detection_enabled: bool = False
+    contrastive_primary_enabled: bool = False
+    contrastive_primary_prompt: str = "contrastive_primary_zh"
 
 
 class DatasetConfig(BaseModel):
