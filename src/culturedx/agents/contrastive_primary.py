@@ -17,12 +17,12 @@ logger = logging.getLogger(__name__)
 
 def load_prompt_template(prompt_name: str, prompts_dir: Path) -> jinja2.Template:
     """Load a jinja2 template from prompts/agents/."""
-    template_path = prompts_dir / "agents" / f"{prompt_name}.jinja"
+    template_path = prompts_dir / f"{prompt_name}.jinja"
     if not template_path.exists():
         raise FileNotFoundError(f"Prompt template not found: {template_path}")
 
     env = jinja2.Environment(
-        loader=jinja2.FileSystemLoader(str(prompts_dir / "agents")),
+        loader=jinja2.FileSystemLoader(str(prompts_dir)),
         autoescape=False,
         trim_blocks=True,
         lstrip_blocks=True,
