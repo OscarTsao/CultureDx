@@ -1,0 +1,26 @@
+{
+  "note": "Post-hoc modified from t1_diag_topk with comorbid strategy: drop_all(None)",
+  "source_run": "t1_diag_topk",
+  "strategy": {
+    "name": "drop_all",
+    "param": null
+  },
+  "table4": {
+    "12class_Acc": 0.453,
+    "12class_Top1": 0.505,
+    "12class_Top3": 0.762,
+    "12class_F1_macro": 0.1792256540931927,
+    "12class_F1_weighted": 0.435865791590555,
+    "12class_n": 1000,
+    "2class_Acc": 0.7674418604651163,
+    "2class_F1_macro": 0.7658486707566462,
+    "2class_F1_weighted": 0.8075764060925995,
+    "4class_Acc": 0.454,
+    "4class_F1_macro": 0.42163188426238474,
+    "4class_F1_weighted": 0.4405013136172948,
+    "2class_n": 473,
+    "4class_n": 1000,
+    "Overall": 0.5447355982616172
+  },
+  "avg_predicted_labels": 1.0
+}
