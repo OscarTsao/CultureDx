@@ -37,6 +37,25 @@
     "2class_n": 473,
     "4class_n": 1000,
     "12class_n": 1000,
+    "Overall": 0.5237294086330739,
+    "12class_Top3_ranked": 0.699,
+    "12class_Top1_ranked": 0.531
+  },
+  "table4_primary_only": {
+    "2class_Acc": 0.8118393234672304,
+    "2class_F1_macro": 0.7949731020781714,
+    "2class_F1_weighted": 0.8284810985899101,
+    "4class_Acc": 0.436,
+    "4class_F1_macro": 0.4068729144587219,
+    "4class_F1_weighted": 0.4179889873957063,
+    "12class_Acc": 0.291,
+    "12class_Top1": 0.53,
+    "12class_Top3": 0.62,
+    "12class_F1_macro": 0.17317881260931298,
+    "12class_F1_weighted": 0.45068925636475915,
+    "2class_n": 473,
+    "4class_n": 1000,
+    "12class_n": 1000,
     "Overall": 0.5237294086330739
   }
 }
