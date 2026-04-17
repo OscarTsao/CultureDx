@@ -1,0 +1,20 @@
+{
+  "table4": {
+    "2class_Acc": 0.6724137931034483,
+    "2class_F1_macro": 0.6808622665469075,
+    "2class_F1_weighted": 0.6789879133589585,
+    "4class_Acc": 0.567,
+    "4class_F1_macro": 0.4191574701462386,
+    "4class_F1_weighted": 0.5443589033882169,
+    "12class_Acc": 0.491,
+    "12class_Top1": 0.547,
+    "12class_Top3": 0.547,
+    "12class_F1_macro": 0.2566321490954491,
+    "12class_F1_weighted": 0.47608827344326143,
+    "2class_n": 696,
+    "4class_n": 1000,
+    "12class_n": 1000,
+    "Overall": 0.5345909790074983
+  },
+  "boost_value": 0.002
+}
