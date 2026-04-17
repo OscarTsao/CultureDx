@@ -1,0 +1,17 @@
+{
+  "2class_Acc": 0.7124735729386892,
+  "2class_F1_macro": 0.7411899082877011,
+  "2class_F1_weighted": 0.7670970400057785,
+  "4class_Acc": 0.491,
+  "4class_F1_macro": 0.4820801097245185,
+  "4class_F1_weighted": 0.4787261662294047,
+  "12class_Acc": 0.053,
+  "12class_Top1": 0.61,
+  "12class_Top3": 0.829,
+  "12class_F1_macro": 0.3520672256564315,
+  "12class_F1_weighted": 0.5851426797551113,
+  "2class_n": 473,
+  "4class_n": 1000,
+  "12class_n": 1000,
+  "Overall": 0.5547069729634213
+}
