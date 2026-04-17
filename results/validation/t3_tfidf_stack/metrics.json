@@ -1,0 +1,20 @@
+{
+  "table4": {
+    "2class_Acc": 0.6795977011494253,
+    "2class_F1_macro": 0.6856660300919537,
+    "2class_F1_weighted": 0.6836562709714699,
+    "4class_Acc": 0.57,
+    "4class_F1_macro": 0.42122302781381865,
+    "4class_F1_weighted": 0.5477652957463455,
+    "12class_Acc": 0.492,
+    "12class_Top1": 0.55,
+    "12class_Top3": 0.55,
+    "12class_F1_macro": 0.23336528503972032,
+    "12class_F1_weighted": 0.4763535062960948,
+    "2class_n": 696,
+    "4class_n": 1000,
+    "12class_n": 1000,
+    "Overall": 0.5354206470098933
+  },
+  "config": "k=30 w=tfidf++ max=1"
+}
