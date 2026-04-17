@@ -1006,7 +1006,7 @@ class HiEDMode(BaseModeOrchestrator):
             ranked_codes[:2],
         )
 
-        verify_codes = ranked_codes[:3]
+        verify_codes = ranked_codes[:5]  # T1: expand top-3 -> top-5 for long-tail coverage
 
         # === T1-F43TRIG: Stress event force-injection ===
         if self._stress_detector is not None:
@@ -1109,51 +1109,70 @@ class HiEDMode(BaseModeOrchestrator):
                                    if co.disorder in set(c.disorder for c in checker_outputs)]
             stage_timings["evidence_verification"] = time.monotonic() - verify_start
 
-        top1_code = ranked_codes[0]
-        top2_code = ranked_codes[1] if len(ranked_codes) > 1 else None
-        top3_code = ranked_codes[2] if len(ranked_codes) > 2 else None
-
-        logic_output = self.logic_engine.evaluate(checker_outputs)
+        # T1: Primary selection expanded from top-3 to top-5 + fallback to all confirmed
+        top_ranked = ranked_codes[:5]  # up to top-5 from diagnostician
+        # T1: evaluate logic on ALL checker outputs (including remaining), not just top-3
+        logic_output = self.logic_engine.evaluate(all_checker_outputs)
         confirmed_set = set(logic_output.confirmed_codes)
 
-        primary = top1_code
+        # Compute met_ratios once, used by both primary selection and logging
+        met_ratios = {
+            co.disorder: (co.criteria_met_count / max(co.criteria_required, 1))
+            for co in all_checker_outputs
+        }
+
+        primary = None
         comorbid: list[str] = []
         confidence = 0.8
         veto_applied = False
+        primary_source = "top1"  # for logging
 
-        if top1_code in confirmed_set:
-            confidence = 0.9
-            # Add best confirmed comorbid (top-2 preferred, top-3 as fallback)
-            for tc in [top2_code, top3_code]:
-                if tc and tc in confirmed_set:
-                    comorbid.append(tc)
-            comorbid = comorbid[:1]  # cap to 1 comorbid (max 2 labels, per paper protocol)
-        elif top2_code and top2_code in confirmed_set:
-            logger.info(
-                "Case %s: DtV veto - top-1 %s not confirmed, promoting top-2 %s",
-                case.case_id,
-                top1_code,
-                top2_code,
+        # Pass 1: prefer diagnostician ordering - first confirmed in top-5
+        for idx, rc in enumerate(top_ranked):
+            if rc in confirmed_set:
+                primary = rc
+                if idx == 0:
+                    confidence = 0.9
+                    primary_source = "top1"
+                else:
+                    confidence = 0.85 - 0.05 * idx
+                    veto_applied = True
+                    primary_source = f"top{idx+1}"
+                break
+
+        # Pass 2: fallback - any confirmed (outside top-5), pick by met_ratio desc
+        if primary is None and confirmed_set:
+            confirmed_by_ratio = sorted(
+                confirmed_set,
+                key=lambda c: met_ratios.get(c, 0.0),
+                reverse=True,
             )
-            primary = top2_code
-            confidence = 0.7
+            primary = confirmed_by_ratio[0]
+            confidence = 0.65
             veto_applied = True
-            # top-3 can still be comorbid if confirmed
-            if top3_code and top3_code in confirmed_set:
-                comorbid = [top3_code]  # max 1 comorbid
-        elif top3_code and top3_code in confirmed_set:
+            primary_source = "remaining_confirmed"
+
+        # Pass 3: no confirmed at all - fall back to top-1
+        if primary is None:
+            primary = top_ranked[0]
+            confidence = 0.55
+            primary_source = "no_confirmed_fallback"
+
+        if primary_source != "top1":
             logger.info(
-                "Case %s: DtV veto - top-1 %s and top-2 %s not confirmed, promoting top-3 %s",
+                "Case %s: DtV primary from %s (top-1 %s -> primary %s)",
                 case.case_id,
-                top1_code,
-                top2_code,
-                top3_code,
+                primary_source,
+                top_ranked[0],
+                primary,
             )
-            primary = top3_code
-            confidence = 0.6
-            veto_applied = True
-        else:
-            confidence = 0.6
+
+        # Build comorbid list: prefer ranked order, must be confirmed and not primary
+        for rc in top_ranked:
+            if rc != primary and rc in confirmed_set:
+                comorbid.append(rc)
+                if len(comorbid) >= 1:
+                    break  # max 1 comorbid per paper protocol
 
         if comorbid:
             confirmed_codes_list = [primary] + comorbid
