@@ -1,0 +1,3 @@
+# T5b: Contrastive checker — disambiguate F32/F41 shared criteria
+mode:
+  contrastive_enabled: true
