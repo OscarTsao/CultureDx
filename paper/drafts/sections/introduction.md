@@ -1,22 +1,11 @@
 # 1. Introduction
 
-## Motivation
+Large language models now perform competitively on many medical QA and reasoning benchmarks, but psychiatric diagnosis remains a harder setting because the model must map open-ended narratives into formal diagnostic criteria. The problem becomes more acute in Chinese clinical interviews, where distress is frequently expressed through somatic idioms such as chest tightness, dizziness, stomach discomfort, generalized weakness, or sleep disturbance rather than through direct Western-style symptom labels. These expressions are clinically meaningful, but their diagnostic implications depend on context, duration, negation, and differential interpretation across closely related disorders.
 
-- LLMs have shown strong performance on medical reasoning benchmarks, but their parametric knowledge of non-Western clinical presentations remains weak
-- Chinese psychiatric interviews feature pervasive somatic idioms of distress that do not map directly to Western diagnostic criteria
-- Single-LLM approaches lack the structured reasoning needed for differential diagnosis and comorbidity detection
+Single-call prompting is poorly matched to this setting. It asks one model generation to simultaneously extract symptoms, normalize culturally specific expressions, rank diagnoses, enforce ICD-10 thresholds, and decide whether comorbid labels are compatible. The resulting output can look fluent while remaining hard to audit, easy to over-call, and brittle on borderline cases. In practice, this failure mode shows up clearly in Chinese psychiatric data: unconstrained generations tend to collapse onto common mood and anxiety disorders, while counseling-style and residual cases such as Z71/Others remain under-detected.
 
-## Research Gap
+CultureDx addresses this by turning diagnosis into a stage-shaped process. The system first builds an evidence view of the case, including symptom extraction, Chinese somatization normalization, temporal feature extraction, negation-aware matching, and retrieval of similar training cases. A diagnostician then ranks candidate disorders, criterion checkers verify the highest-priority diagnoses against ICD-10 criteria, and a deterministic logic engine converts those checker outputs into structured decisions. Confidence calibration and comorbidity resolution are applied explicitly instead of being left implicit inside a single LLM response.
 
-- Existing psychiatric NLP systems are predominantly English-centric and assume Western symptom presentation
-- Chinese somatization (e.g., "胸闷" chest tightness for anxiety, "头晕" dizziness for depression) requires explicit cultural mapping that LLMs cannot learn from limited training data
-- No existing system combines culture-aware evidence extraction with multi-agent diagnostic reasoning
+This draft intentionally limits headline claims to committed artifacts in this branch. All quantitative results reported here come from the LingxiDiag-16K validation split (N=1000) under paper-aligned manual-scope evaluation. Within that setting, the best diagnose-then-verify configuration reaches 0.527 Overall, improving over the internal zero-shot single baseline (0.482) by 0.045 absolute and ranking first among the committed LLM baselines in the paper comparison table.
 
-## Contributions
-
-1. **CultureDx**: A culture-adaptive multi-agent system that decomposes psychiatric diagnosis into specialized agent roles with deterministic ICD-10 logic
-2. **Somatization Ontology**: A 150-entry mapping from Chinese somatic expressions to ICD-10 diagnostic criteria
-3. **Evidence Pipeline**: 3-layer temporal extraction, scope-aware negation detection, and hybrid retrieval (dense + sparse + ColBERT)
-4. **Comprehensive Evaluation**: 5 MAS architectures compared across 2 Chinese psychiatric datasets (LingxiDiag-16K, MDD-5k) covering 15 ICD-10 disorders
-
-<!-- TODO: Write full introduction prose -->
+Our contributions are fourfold. First, we present a culture-adaptive diagnose-then-verify architecture for Chinese psychiatric differential diagnosis that separates ranking, verification, logic, calibration, and comorbidity control. Second, we implement a Chinese evidence pipeline centered on a 150-entry somatization ontology, temporal extraction, and scope-aware negation handling. Third, we preserve an auditable decision path through explicit checker outputs, deterministic ICD-10 rules, and machine-readable run artifacts. Fourth, we provide a paper-aligned validation study showing that structured verification consistently outperforms a single-model baseline and remains helpful across smaller backbones.

@@ -1,34 +1,9 @@
 # 7. Discussion
 
-## Clinical Implications
+The main lesson from the current validation slice is that structure matters. CultureDx does not win by making the LLM think longer in free form; it wins by assigning different responsibilities to different stages and forcing the model to verify candidate disorders against explicit criteria before deterministic logic and comorbidity rules are applied. That is a useful result for Chinese psychiatric NLP, where culturally specific somatic language and loosely structured narratives can easily push a single generation toward generic mood or anxiety labels.
 
-- Potential for culture-adaptive diagnostic support in Chinese psychiatric practice
-- Somatization mapping as a reusable resource for Chinese clinical NLP
-- Evidence-grounded reasoning improves transparency and auditability over black-box LLM diagnosis
+The evidence pipeline is equally important to the interpretation of the results. A 150-entry somatization ontology, temporal features, and negation-aware matching are not cosmetic add-ons; they are the mechanisms that connect colloquial Chinese symptom descriptions to formal ICD-10 reasoning. Even when exact per-component attribution is not isolated in a standalone artifact, the strong contrast between `Single + RAG` and `DtV + RAG` suggests that retrieval only becomes useful once the system has a reliable way to ground, filter, and audit what it retrieves.
 
-## Limitations
+Several limitations remain. First, the headline numbers in this branch are limited to one committed validation split of LingxiDiag-16K. The repository supports additional datasets, but those results are not claimed here. Second, the benchmark uses manual-scope semantics, so it does not measure open-set production behavior or triage quality. Third, Z71/Others remains largely unsolved; the corrected abstention analysis shows that threshold tuning alone is insufficient. Fourth, the ontology and exclusion rules are expert-shaped resources and may need further review for broader regional or institutional coverage. Finally, this is a research system, not a clinical device, and no clinician-facing deployment claim should be inferred from the benchmark.
 
-- **Dataset scope**: Evaluation limited to 2 Chinese psychiatric datasets; generalization to other languages/cultures not tested
-- **Model dependency**: Results tied to Qwen3 model family; transferability to other LLMs unknown
-- **Somatization ontology**: Current 150-entry mapping covers common presentations but is not exhaustive
-- **No clinical validation**: System is a research prototype; no real-world clinical trial conducted
-- **Comorbidity ground truth**: Multi-label ground truth is incomplete in some datasets
-- **Temporal criteria**: ICD-10 duration requirements (e.g., "symptoms for ≥2 weeks") are difficult to verify from single-session transcripts
-
-## Ethical Considerations
-
-- All diagnostic outputs are research artifacts, not clinical advice
-- Risk of over-reliance on automated diagnosis in resource-limited settings
-- Cultural sensitivity: somatization mapping must be maintained and validated by domain experts
-- Patient privacy: all datasets used are either publicly available or properly anonymized
-
-## Future Work
-
-- Expand somatization ontology to cover more disorders and regional Chinese dialects
-- Multi-lingual extension (Japanese, Korean psychiatric presentations)
-- Clinical validation study with practicing psychiatrists
-- Integration with electronic health record systems
-- Active learning for somatization ontology expansion
-- Longitudinal diagnosis tracking across multiple sessions
-
-<!-- TODO: Write full discussion prose -->
+These limitations suggest clear next steps. The most immediate gain is likely to come from a dedicated counseling/residual classifier that handles Z71/Others before or alongside disorder verification. A second priority is open-set evaluation that re-enables triage and measures how the system behaves when the scope is not manually fixed in advance. Beyond that, the architecture is a good candidate for cross-backbone and cross-dataset transfer studies, because the current partial results already show that smaller models benefit most from explicit decomposition.

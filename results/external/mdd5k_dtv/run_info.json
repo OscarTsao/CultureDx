@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-04-16T14:13:59.940474+00:00",
-  "git_hash": "1794f2c10ba404b5c7b848b282f1cec6b4620b36",
+  "timestamp": "2026-04-17T05:44:37.736016+00:00",
+  "git_hash": "6f0d533ecd18570a05ed09b6cb8d9e9fde31bad7",
   "mode": "hied",
   "dataset": "mdd5k_raw",
   "num_cases": 925,
@@ -41,7 +41,8 @@
       "prompt_variant": "v2",
       "calibrator_mode": "heuristic-v2",
       "calibrator_artifact_path": null,
-      "force_prediction": true
+      "force_prediction": true,
+      "stress_detection_enabled": false
     },
     "llm": {
       "provider": "vllm",
@@ -106,7 +107,7 @@
       "output_level": 1
     }
   },
-  "config_fingerprint": "11b8ce256f329cfd",
+  "config_fingerprint": "dc4f12b9572814c0",
   "case_selection_fingerprint": "87a7bee4e0b36bb9",
   "runtime_context": {
     "config_paths": [
