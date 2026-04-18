@@ -1,0 +1,74 @@
+{
+  "schema_version": "v1",
+  "run_id": "r4_contrastive_primary",
+  "dataset": "lingxidiag16k",
+  "num_cases": 1000,
+  "metrics": {
+    "comorbidity": {
+      "avg_gold_labels": 1.091,
+      "avg_predicted_labels": 1.849,
+      "comorbidity_detection_f1": 0.15828877005347594,
+      "hamming_accuracy": 0.33566666666666667,
+      "label_coverage": 0.6046666666666666,
+      "label_precision": 0.3455,
+      "subset_accuracy": 0.057
+    },
+    "diagnosis": {
+      "accuracy": 0.056,
+      "macro_f1": 0.18732545922491758,
+      "overall": 0.3516900662516976,
+      "top1_accuracy": 0.473,
+      "top3_accuracy": 0.626,
+      "weighted_f1": 0.4161248720335701
+    },
+    "four_class": {
+      "accuracy": 0.373,
+      "macro_f1": 0.2552912137444622,
+      "n_cases": 1000,
+      "weighted_f1": 0.32733659036152785
+    },
+    "table4": {
+      "12class_Acc": 0.054,
+      "12class_F1_macro": 0.1902518013828721,
+      "12class_F1_weighted": 0.45840696490439753,
+      "12class_Top1": 0.475,
+      "12class_Top3": 0.627,
+      "12class_n": 1000,
+      "2class_Acc": 0.758985200845666,
+      "2class_F1_macro": 0.7216104114074247,
+      "2class_F1_weighted": 0.7819462686921392,
+      "2class_n": 473,
+      "4class_Acc": 0.444,
+      "4class_F1_macro": 0.40919756303716526,
+      "4class_F1_weighted": 0.42766115659457654,
+      "4class_n": 1000,
+      "Overall": 0.4861872151694764
+    }
+  },
+  "slice_metrics": [
+    {
+      "abstention_rate": 0.062162162162162166,
+      "num_cases": 370,
+      "slice": "F32",
+      "top1_accuracy": 0.8756756756756757
+    },
+    {
+      "abstention_rate": 0.0,
+      "num_cases": 36,
+      "slice": "F42",
+      "top1_accuracy": 0.4444444444444444
+    },
+    {
+      "abstention_rate": 0.08517034068136273,
+      "num_cases": 998,
+      "slice": "somatized_expression",
+      "top1_accuracy": 0.4729458917835671
+    },
+    {
+      "abstention_rate": 0.5,
+      "num_cases": 2,
+      "slice": "direct_expression",
+      "top1_accuracy": 0.5
+    }
+  ]
+}
