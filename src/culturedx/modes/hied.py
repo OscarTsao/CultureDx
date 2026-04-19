@@ -1282,7 +1282,7 @@ class HiEDMode(BaseModeOrchestrator):
                 "diagnostician_reasoning": diag_reasoning,
                 "verify_codes": verify_codes,
                 "veto_applied": veto_applied,
-                "veto_from": top1_code if veto_applied else None,
+                "veto_from": top_ranked[0] if veto_applied and top_ranked else None,
                 "veto_to": primary if veto_applied else None,
                 "logic_engine_confirmed_codes": logic_output.confirmed_codes,
                 "raw_checker_outputs": [

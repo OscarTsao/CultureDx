@@ -1,0 +1,23 @@
+diff --git a/src/culturedx/core/config.py b/src/culturedx/core/config.py
+index cad998b..6d8c4be 100644
+--- a/src/culturedx/core/config.py
++++ b/src/culturedx/core/config.py
+@@ -10,6 +10,9 @@ from pydantic import BaseModel, ConfigDict
+ 
+ 
+ class LLMConfig(BaseModel):
++    """LLM config. Strict: unknown fields raise ValidationError to catch typos."""
++    model_config = ConfigDict(extra="forbid")
++
+     provider: str = "ollama"
+     model_id: str = "qwen3:14b"
+     base_url: str = "http://localhost:11434"
+@@ -107,7 +110,7 @@ class RetrievalConfig(BaseModel):
+ 
+ 
+ class CultureDxConfig(BaseModel):
+-    model_config = ConfigDict(extra="ignore")
++    model_config = ConfigDict(extra="forbid")
+ 
+     seed: int = 42
+     output_dir: str = "outputs/runs"
