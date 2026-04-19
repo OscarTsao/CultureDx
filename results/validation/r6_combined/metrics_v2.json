@@ -1,0 +1,43 @@
+{
+  "n_cases": 1000,
+  "n_cases_with_ranked_codes": 999,
+  "pct_with_ranked": 99.9,
+  "note": "Top-3 uses diagnostician's ranked_codes[:3] when available; all other metrics unchanged from metrics.json.",
+  "top3_primary_only_recomputed": 0.522,
+  "top3_ranked_recomputed": 0.781,
+  "top3_original_from_metrics_json": 0.522,
+  "table4_original": {
+    "2class_Acc": 0.8097251585623678,
+    "2class_F1_macro": 0.7904610492845787,
+    "2class_F1_weighted": 0.8293446536948589,
+    "4class_Acc": 0.453,
+    "4class_F1_macro": 0.35800463720676484,
+    "4class_F1_weighted": 0.36642757228587014,
+    "12class_Acc": 0.465,
+    "12class_Top1": 0.522,
+    "12class_Top3": 0.522,
+    "12class_F1_macro": 0.20001047671929548,
+    "12class_F1_weighted": 0.43600599642495685,
+    "2class_n": 473,
+    "4class_n": 1000,
+    "12class_n": 1000,
+    "Overall": 0.5229072312889721
+  },
+  "table4": {
+    "2class_Acc": 0.8097251585623678,
+    "2class_F1_macro": 0.7904610492845787,
+    "2class_F1_weighted": 0.8293446536948589,
+    "4class_Acc": 0.453,
+    "4class_F1_macro": 0.35800463720676484,
+    "4class_F1_weighted": 0.36642757228587014,
+    "12class_Acc": 0.465,
+    "12class_Top1": 0.522,
+    "12class_Top3": 0.781,
+    "12class_F1_macro": 0.20001047671929548,
+    "12class_F1_weighted": 0.43600599642495685,
+    "2class_n": 473,
+    "4class_n": 1000,
+    "12class_n": 1000,
+    "Overall": 0.5464526858344266
+  }
+}
