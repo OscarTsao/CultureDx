@@ -1,0 +1,4 @@
+# R13: Use Qwen3-8B-Instruct backbone
+# Requires vLLM serving Qwen3-8B on port 8000
+llm:
+  model: Qwen/Qwen3-8B-Instruct

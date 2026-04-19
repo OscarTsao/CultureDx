@@ -1,0 +1,10 @@
+--- a/tests/test_triage.py
++++ b/tests/test_triage.py
+@@ -72,6 +72,7 @@ class TestTriageAgent:
+             "F40",
+             "F41.0",
+             "F41.1",
+             "F41.2",
++            "F41.9",
+             "F42",
+         ]

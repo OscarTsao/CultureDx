@@ -1,0 +1,6 @@
+# R7: Expand triage candidate set from 5 to 8
+mode:
+  scope_policy: triage
+  execution_mode: auto
+  triage_metadata_fields: []
+  target_disorders: null

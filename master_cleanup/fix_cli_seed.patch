@@ -1,0 +1,47 @@
+--- a/src/culturedx/pipeline/cli.py
++++ b/src/culturedx/pipeline/cli.py
+@@ -47,6 +47,8 @@ from culturedx.pipeline.reproducibility import apply_global_seed
+ @click.option("--with-evidence", is_flag=True, help="Enable evidence extraction pipeline")
+ @click.option("--data-path", default=None, help="Override dataset path")
+ @click.option("--limit", "-n", default=None, type=int, help="Limit number of cases to process")
++@click.option("--seed", default=None, type=int, help="Override config seed (for sampling variance)")
++@click.option("--run-name", default=None, help="Override auto-generated run directory name")
+ def run(
+     config: tuple[str, ...],
+     dataset: str,
+@@ -55,6 +57,8 @@ def run(
+     with_evidence: bool,
+     data_path: str | None,
+     limit: int | None,
++    seed: int | None,
++    run_name: str | None,
+ ) -> None:
+     """Run an experiment with a given config and dataset."""
+     from culturedx.pipeline.runner import ExperimentRunner
+@@ -64,6 +68,10 @@ def run(
+         cfg = load_config(config[0])
+     else:
+         cfg = load_config(config[0], overrides=list(config[1:]))
++
++    # Apply CLI overrides to config
++    if seed is not None:
++        cfg.seed = seed
+     apply_global_seed(cfg.seed)
+ 
+     # 2. Load dataset
+@@ -182,8 +190,13 @@ def run(
+ 
+     # 6. Run experiment
+     base_output = output_dir or cfg.output_dir
+-    if output_dir:
+-        # Explicit output dir: use as-is
++    if run_name:
++        # --run-name takes precedence: create a named subdir under base output
++        run_dir = Path(base_output) / run_name
++        run_dir.mkdir(parents=True, exist_ok=True)
++        click.echo(f"Using --run-name override: run_dir={run_dir}")
++    elif output_dir:
++        # Explicit --output-dir: use as-is
+         run_dir = Path(output_dir)
+         run_dir.mkdir(parents=True, exist_ok=True)
+     else:

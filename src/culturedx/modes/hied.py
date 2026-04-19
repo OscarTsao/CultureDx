@@ -1119,7 +1119,26 @@ class HiEDMode(BaseModeOrchestrator):
         # T1: Primary selection expanded from top-3 to top-5 + fallback to all confirmed
         top_ranked = ranked_codes[:5]  # up to top-5 from diagnostician
         # T1: evaluate logic on ALL checker outputs (including remaining), not just top-3
-        logic_output = self.logic_engine.evaluate(all_checker_outputs)
+        # R16 ablation: optionally bypass logic engine (treat all with met_count>=1 as confirmed)
+        if getattr(self, "_bypass_logic_engine", False):
+            from culturedx.diagnosis.logic_engine import (
+                LogicEngineOutput,
+                LogicEngineResult,
+            )
+            confirmed = [
+                LogicEngineResult(
+                    disorder_code=co.disorder,
+                    meets_threshold=True,
+                    met_count=co.criteria_met_count,
+                    required_count=max(co.criteria_required, 1),
+                    rule_explanation="logic_engine_bypassed_for_R16_ablation",
+                )
+                for co in all_checker_outputs
+                if co.criteria_met_count >= 1
+            ]
+            logic_output = LogicEngineOutput(confirmed=confirmed, rejected=[])
+        else:
+            logic_output = self.logic_engine.evaluate(all_checker_outputs)
         confirmed_set = set(logic_output.confirmed_codes)
 
         # Compute met_ratios once, used by both primary selection and logging

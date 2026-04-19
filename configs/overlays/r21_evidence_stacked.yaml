@@ -1,0 +1,3 @@
+# R21: Evidence pipeline stacked on v2.4 final
+mode:
+  evidence_verification: true

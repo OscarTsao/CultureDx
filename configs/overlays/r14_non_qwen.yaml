@@ -1,0 +1,4 @@
+# R14: Non-Qwen backbone for F32 bias comparison
+# Requires manually setting model and restarting vLLM
+llm:
+  model: TBD

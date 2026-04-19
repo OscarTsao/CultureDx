@@ -48,6 +48,7 @@ class ModeConfig(BaseModel):
     stress_detection_enabled: bool = False
     contrastive_primary_enabled: bool = False
     contrastive_primary_prompt: str = "contrastive_primary_zh"
+    bypass_logic_engine: bool = False  # R16 ablation hook
 
 
 class DatasetConfig(BaseModel):

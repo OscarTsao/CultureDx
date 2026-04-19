@@ -1,0 +1,20 @@
+# R6': R6 somatization prompt + stress detection combined
+#
+# Rationale: v2.4_final.yaml doesn't set stress_detection_enabled.
+# Combining the two orthogonal interventions tests whether they stack.
+#
+# Prerequisites:
+#   prompts/agents/diagnostician_v2_somatization_zh.jinja must exist
+#   (from the queue package)
+#
+# Expected impact vs baseline t1_diag_topk:
+#   - F45 recall: +5 to +10pp (somatization prompt cues)
+#   - F98 recall: +3 to +5pp (childhood prompt cues)
+#   - F43 recall: +2 to +5pp (stress detection enabled)
+#   - F1_m: +2 to +4pp combined
+#
+# Does NOT affect F41/F32 axis (different bucket).
+
+mode:
+  prompt_variant: v2_somatization
+  stress_detection_enabled: true

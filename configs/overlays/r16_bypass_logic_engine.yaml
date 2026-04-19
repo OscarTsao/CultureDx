@@ -1,0 +1,20 @@
+# R16: Bypass logic engine for ablation
+#
+# Requires the r16_bypass_logic_engine.patch applied to hied.py and cli.py.
+#
+# What this changes:
+#   - Normally: logic_engine.evaluate() applies ICD-10 per-disorder thresholds
+#     to filter candidates to "confirmed" before ranking
+#   - With bypass: every disorder with criteria_met_count >= 1 is "confirmed"
+#     The diagnostician's ranking is then used directly, modulated only by
+#     comorbidity gate and calibrator
+#
+# Expected outcome (based on Q4 analysis):
+#   - Top-1 change: minimal (91.4% of cases, primary == diag rank-1)
+#   - Top-3: may improve slightly (more candidates pass to ranking)
+#   - F1_m: may drop (weaker filter on minority classes)
+#
+# This is an ablation for the paper Table 4, not expected to improve anything.
+
+mode:
+  bypass_logic_engine: true

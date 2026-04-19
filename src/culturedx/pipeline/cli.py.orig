@@ -170,9 +170,6 @@ def run(
         if case_retriever is not None:
             mode_kwargs["case_retriever"] = case_retriever
         mode = HiEDMode(**mode_kwargs)
-        # R16 ablation hook
-        if getattr(cfg.mode, "bypass_logic_engine", False):
-            mode._bypass_logic_engine = True
     else:
         from culturedx.modes.single import SingleModelMode
         mode_kwargs = dict(

@@ -78,7 +78,6 @@ class TestTriageAgent:
             "F41.0",
             "F41.1",
             "F41.2",
-            "F41.9",
             "F42",
         ]
 
