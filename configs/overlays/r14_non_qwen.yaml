@@ -1,4 +1,3 @@
-# R14: Non-Qwen backbone for F32 bias comparison
-# Requires manually setting model and restarting vLLM
+# R14: google/gemma-3-12b-it — non-Qwen backbone for F32 bias comparison
 llm:
-  model: TBD
+  model: google/gemma-3-12b-it

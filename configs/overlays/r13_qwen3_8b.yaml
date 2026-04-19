@@ -1,4 +1,3 @@
-# R13: Use Qwen3-8B-Instruct backbone
-# Requires vLLM serving Qwen3-8B on port 8000
+# R13: Qwen3-8B-AWQ backbone — tests if F32 bias is 32B-specific
 llm:
-  model: Qwen/Qwen3-8B-Instruct
+  model: Qwen/Qwen3-8B-AWQ
