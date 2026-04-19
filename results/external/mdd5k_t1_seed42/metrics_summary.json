@@ -1,0 +1,68 @@
+{
+  "schema_version": "v1",
+  "run_id": "mdd5k_t1_seed42",
+  "dataset": "mdd5k",
+  "num_cases": 925,
+  "metrics": {
+    "comorbidity": {
+      "avg_gold_labels": 1.0908108108108108,
+      "avg_predicted_labels": 1.8129729729729729,
+      "comorbidity_detection_f1": 0.1566265060240964,
+      "hamming_accuracy": 0.3954054054054054,
+      "label_coverage": 0.6938738738738739,
+      "label_precision": 0.40756756756756757,
+      "subset_accuracy": 0.08540540540540541
+    },
+    "diagnosis": {
+      "accuracy": 0.08108108108108109,
+      "macro_f1": 0.2322968449114237,
+      "overall": 0.4193024642010686,
+      "top1_accuracy": 0.5578378378378378,
+      "top3_accuracy": 0.7081081081081081,
+      "weighted_f1": 0.5171884490668923
+    },
+    "table4": {
+      "12class_Acc": 0.08864864864864865,
+      "12class_F1_macro": 0.23910940872157418,
+      "12class_F1_weighted": 0.5152621021001527,
+      "12class_Top1": 0.5675675675675675,
+      "12class_Top3": 0.7178378378378378,
+      "12class_n": 925,
+      "2class_Acc": 0.6829268292682927,
+      "2class_F1_macro": 0.6831934413429631,
+      "2class_F1_weighted": 0.6921014212495986,
+      "2class_n": 697,
+      "4class_Acc": 0.3210810810810811,
+      "4class_F1_macro": 0.32170421338859573,
+      "4class_F1_weighted": 0.4018855775796673,
+      "4class_n": 925,
+      "Overall": 0.4755743753441799
+    }
+  },
+  "slice_metrics": [
+    {
+      "abstention_rate": 0.06097560975609756,
+      "num_cases": 410,
+      "slice": "F32",
+      "top1_accuracy": 0.8585365853658536
+    },
+    {
+      "abstention_rate": 0.0,
+      "num_cases": 2,
+      "slice": "F33",
+      "top1_accuracy": 0.0
+    },
+    {
+      "abstention_rate": 0.14285714285714285,
+      "num_cases": 21,
+      "slice": "F42",
+      "top1_accuracy": 0.47619047619047616
+    },
+    {
+      "abstention_rate": 0.06486486486486487,
+      "num_cases": 925,
+      "slice": "somatized_expression",
+      "top1_accuracy": 0.5578378378378378
+    }
+  ]
+}
