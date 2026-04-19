@@ -1,0 +1,74 @@
+{
+  "schema_version": "v1",
+  "run_id": "r7_triage_top8",
+  "dataset": "lingxidiag16k",
+  "num_cases": 1000,
+  "metrics": {
+    "comorbidity": {
+      "avg_gold_labels": 1.091,
+      "avg_predicted_labels": 1.845,
+      "comorbidity_detection_f1": 0.15682062298603652,
+      "hamming_accuracy": 0.3469166666666667,
+      "label_coverage": 0.6216666666666666,
+      "label_precision": 0.3575,
+      "subset_accuracy": 0.062
+    },
+    "diagnosis": {
+      "accuracy": 0.062,
+      "macro_f1": 0.21027678519540682,
+      "overall": 0.37373876780619514,
+      "top1_accuracy": 0.496,
+      "top3_accuracy": 0.643,
+      "weighted_f1": 0.45741705383556874
+    },
+    "four_class": {
+      "accuracy": 0.343,
+      "macro_f1": 0.24358790934879285,
+      "n_cases": 1000,
+      "weighted_f1": 0.31463479751979845
+    },
+    "table4": {
+      "12class_Acc": 0.059,
+      "12class_F1_macro": 0.21695265697033128,
+      "12class_F1_weighted": 0.4588301864872591,
+      "12class_Top1": 0.495,
+      "12class_Top3": 0.642,
+      "12class_n": 1000,
+      "2class_Acc": 0.7357293868921776,
+      "2class_F1_macro": 0.7352487612498736,
+      "2class_F1_weighted": 0.7833289363948283,
+      "2class_n": 473,
+      "4class_Acc": 0.422,
+      "4class_F1_macro": 0.40288594935530864,
+      "4class_F1_weighted": 0.4216552188325277,
+      "4class_n": 1000,
+      "Overall": 0.4884210087438461
+    }
+  },
+  "slice_metrics": [
+    {
+      "abstention_rate": 0.06756756756756757,
+      "num_cases": 370,
+      "slice": "F32",
+      "top1_accuracy": 0.8081081081081081
+    },
+    {
+      "abstention_rate": 0.05555555555555555,
+      "num_cases": 36,
+      "slice": "F42",
+      "top1_accuracy": 0.5
+    },
+    {
+      "abstention_rate": 0.10020040080160321,
+      "num_cases": 998,
+      "slice": "somatized_expression",
+      "top1_accuracy": 0.49599198396793587
+    },
+    {
+      "abstention_rate": 0.5,
+      "num_cases": 2,
+      "slice": "direct_expression",
+      "top1_accuracy": 0.5
+    }
+  ]
+}
