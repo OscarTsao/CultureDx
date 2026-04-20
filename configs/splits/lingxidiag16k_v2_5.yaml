@@ -1,0 +1,45 @@
+# LingxiDiag-16K v2.5 three-way split manifest
+#
+# THIS FILE IS A PLACEHOLDER. Run `uv run python scripts/generate_splits.py`
+# on a machine with the LingxiDiag-16K parquet files to populate it.
+#
+# The real file is ~80 KB (one case_id per line × 3 splits = ~16,000 ids).
+# It is deterministic given random_state=20260420 and the upstream parquet
+# checksums, so any two generations will produce identical content.
+#
+# Why this is a placeholder in git:
+# We don't ship LingxiDiag-16K parquet in the repo (license + size), so the
+# container where this commit is authored cannot run `generate_splits.py`.
+# The first person to clone the repo on a machine with data should run the
+# generator once and replace this placeholder via:
+#
+#     uv run python scripts/generate_splits.py --force
+#     git add configs/splits/lingxidiag16k_v2_5.yaml
+#     git commit -m "data: populate v2.5 split manifest (ran generate_splits.py)"
+#
+# After that, every subsequent clone gets the canonical split.
+
+version: v2.5
+dataset: lingxidiag16k
+status: PLACEHOLDER
+note: "Run scripts/generate_splits.py --force to replace with the real manifest."
+created_at_seed: 20260420
+random_state: 20260420
+dev_hpo_size: 1000
+stratification: "primary parent class from DiagnosisCode (12-class paper schema)"
+splits:
+  rag_pool:
+    n_cases: 0
+    source: "train parquet minus dev_hpo"
+    sha256: "PLACEHOLDER"
+    case_ids: []
+  dev_hpo:
+    n_cases: 0
+    source: "train parquet, stratified sample"
+    sha256: "PLACEHOLDER"
+    case_ids: []
+  test_final:
+    n_cases: 0
+    source: "validation parquet (unchanged)"
+    sha256: "PLACEHOLDER"
+    case_ids: []

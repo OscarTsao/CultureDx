@@ -126,3 +126,57 @@ class TestPatientTurnDetection:
         patient_turns = case.patient_turns()
         assert len(patient_turns) == 2
         assert all(t.speaker == "patient" for t in patient_turns)
+
+
+class TestLogicalSplits:
+    """Tests for the v2.5 logical splits (rag_pool / dev_hpo / test_final)."""
+
+    def test_placeholder_manifest_raises_clear_error(self, tmp_path, monkeypatch):
+        """If the split yaml is still a placeholder, loading rag_pool or
+        dev_hpo must raise a clear RuntimeError pointing at generate_splits.py."""
+        # Build a fake repo layout that has only a placeholder manifest
+        configs = tmp_path / "configs" / "splits"
+        configs.mkdir(parents=True)
+        (configs / "lingxidiag16k_v2_5.yaml").write_text(
+            "version: v2.5\n"
+            "status: PLACEHOLDER\n"
+            "splits:\n"
+            "  dev_hpo: {n_cases: 0, case_ids: []}\n"
+            "  rag_pool: {n_cases: 0, case_ids: []}\n"
+            "  test_final: {n_cases: 0, case_ids: []}\n",
+            encoding="utf-8",
+        )
+
+        # Move the adapter module's __file__ view so _load_split_ids finds
+        # our temp manifest instead of the repo one.
+        from culturedx.data.adapters import lingxidiag16k as mod
+        fake_mod_path = tmp_path / "src" / "culturedx" / "data" / "adapters" / "dummy.py"
+        fake_mod_path.parent.mkdir(parents=True)
+        fake_mod_path.touch()
+        monkeypatch.setattr(mod, "__file__", str(fake_mod_path))
+
+        with pytest.raises(RuntimeError, match="placeholder"):
+            mod._load_split_ids("dev_hpo")
+
+    def test_missing_manifest_raises(self, tmp_path, monkeypatch):
+        """If the manifest doesn't exist at all, raise FileNotFoundError."""
+        from culturedx.data.adapters import lingxidiag16k as mod
+        # Point __file__ at a location with no ancestors containing configs/splits
+        fake = tmp_path / "isolated" / "dummy.py"
+        fake.parent.mkdir(parents=True)
+        fake.touch()
+        monkeypatch.setattr(mod, "__file__", str(fake))
+
+        with pytest.raises(FileNotFoundError, match="generate_splits"):
+            mod._load_split_ids("dev_hpo")
+
+    def test_test_final_alias_uses_validation_parquet(self, tmp_path):
+        """test_final must route to the native validation parquet.
+
+        Without real parquet in the temp dir, the adapter should raise
+        FileNotFoundError mentioning `validation`.
+        """
+        pytest.importorskip("pyarrow")
+        adapter = LingxiDiag16kAdapter(data_path=str(tmp_path))
+        with pytest.raises(FileNotFoundError, match="validation"):
+            adapter.load(split="test_final")
