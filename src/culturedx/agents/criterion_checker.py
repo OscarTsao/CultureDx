@@ -112,6 +112,8 @@ class CriterionCheckerAgent(BaseAgent):
         prompt_variant = (input.extra or {}).get("prompt_variant", "")
         if temporal_summary and disorder_code == "F41.1" and input.language == "zh":
             template_name = "criterion_checker_temporal_zh.jinja"
+        elif prompt_variant == "v2" and input.language == "zh":
+            template_name = "criterion_checker_v2_zh.jinja"
         elif prompt_variant == "cot" and input.language == "zh":
             template_name = "criterion_checker_cot_zh.jinja"
         else:

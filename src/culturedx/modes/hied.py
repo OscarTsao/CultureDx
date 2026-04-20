@@ -56,6 +56,7 @@ class HiEDMode(BaseModeOrchestrator):
         target_disorders: list[str] | None = None,
         scope_policy: str = "auto",
         execution_mode: str = "auto",
+        diagnose_then_verify: bool = False,
         abstain_threshold: float = 0.3,
         comorbid_threshold: float = 0.5,
         differential_threshold: float = 0.10,
@@ -65,9 +66,12 @@ class HiEDMode(BaseModeOrchestrator):
         prompt_variant: str = "",
         calibrator_mode: str = "heuristic-v2",
         calibrator_artifact_path: str | Path | None = None,
+        force_prediction: bool = False,
+        case_retriever=None,
     ) -> None:
         self.mode_name = "hied"
         self.llm = llm_client
+        self.case_retriever = case_retriever
         self.checker_llm = checker_llm_client or llm_client
         self.checker_model_name = (
             getattr(checker_llm_client, "model", None)
@@ -76,7 +80,9 @@ class HiEDMode(BaseModeOrchestrator):
         )
         self.prompts_dir = Path(prompts_dir)
         self.target_disorders = target_disorders
+        self.diagnose_then_verify = diagnose_then_verify
         self.prompt_variant = prompt_variant
+        self.force_prediction = force_prediction
         if scope_policy not in SUPPORTED_SCOPE_POLICIES:
             raise ValueError(
                 f"Unsupported HiED scope_policy {scope_policy!r}; "
@@ -92,6 +98,14 @@ class HiEDMode(BaseModeOrchestrator):
 
         # Stage 1: Triage
         self.triage = TriageAgent(llm_client, prompts_dir)
+
+        # Stage 1.5: Diagnostician (DtV path)
+        if self.diagnose_then_verify:
+            from culturedx.agents.diagnostician import DiagnosticianAgent
+
+            self.diagnostician = DiagnosticianAgent(llm_client, prompts_dir)
+        else:
+            self.diagnostician = None
 
         # Stage 2: Criterion Checkers (one per disorder, reuse single agent)
         self.checker = CriterionCheckerAgent(self.checker_llm, prompts_dir)
@@ -149,6 +163,276 @@ class HiEDMode(BaseModeOrchestrator):
                 else:
                     result["F41.1"] = {"temporal_summary": temporal_summary}
         return result
+
+    @staticmethod
+    def _build_raw_checker_outputs_trace(
+        checker_outputs: list[CheckerOutput],
+    ) -> list[dict[str, object]]:
+        """Serialize checker outputs into audit-friendly trace records."""
+        return [
+            {
+                "disorder_code": co.disorder,
+                "criteria_met_count": co.criteria_met_count,
+                "criteria_total_count": co.criteria_required,
+                "met_ratio": (
+                    co.criteria_met_count / co.criteria_required
+                    if co.criteria_required > 0
+                    else 0.0
+                ),
+                "per_criterion": [
+                    {
+                        "criterion_id": cr.criterion_id,
+                        "status": cr.status,
+                        "confidence": cr.confidence,
+                        "evidence": cr.evidence or "",
+                    }
+                    for cr in co.criteria
+                ],
+            }
+            for co in checker_outputs
+        ]
+
+    def _diagnose_then_verify(
+        self,
+        *,
+        case: ClinicalCase,
+        lang: str,
+        transcript_text: str,
+        evidence_map: dict[str, str | dict[str, str]],
+        candidate_codes: list[str],
+        routing_mode: str,
+        scope_policy: str,
+        decision_trace: dict[str, object],
+        stage_timings: dict[str, float],
+        failures: list[FailureInfo],
+        case_start: float,
+    ) -> DiagnosisResult:
+        """Run the historical DtV flow: diagnostician rank then checker verify."""
+        full_transcript = self._build_transcript_text(case, max_chars=20000)
+        disorder_names = {
+            code: get_disorder_name(code, lang) or code
+            for code in candidate_codes
+        }
+
+        diag_start = time.monotonic()
+        similar_cases = None
+        if self.case_retriever is not None:
+            try:
+                if hasattr(self.case_retriever, "retrieve_balanced"):
+                    similar_cases = self.case_retriever.retrieve_balanced(
+                        full_transcript,
+                        candidate_codes,
+                        top_per_class=1,
+                    )
+                else:
+                    similar_cases = self.case_retriever.retrieve(full_transcript, top_k=5)
+                similar_cases = [
+                    {
+                        "similarity": sc["similarity"],
+                        "diagnosis_code": (sc.get("diagnosis_codes") or ["?"])[0],
+                        "diagnosis_name": (sc.get("diagnosis_names") or [""])[0],
+                        "chief_complaint_summary": sc.get("transcript_preview", "")[:100],
+                        "key_evidence": sc.get("key_evidence", []),
+                    }
+                    for sc in (similar_cases or [])
+                ]
+            except Exception as exc:
+                logger.warning("CaseRetriever failed: %s", exc)
+                similar_cases = None
+
+        diag_input = AgentInput(
+            transcript_text=full_transcript,
+            language=lang,
+            extra={
+                "candidate_disorders": candidate_codes,
+                "disorder_names": disorder_names,
+                "similar_cases": similar_cases,
+                "prompt_variant": self.prompt_variant,
+            },
+        )
+        diag_output = self.diagnostician.run(diag_input)
+        stage_timings["diagnostician"] = time.monotonic() - diag_start
+
+        ranked_codes = []
+        diag_reasoning = []
+        if diag_output.parsed and diag_output.parsed.get("ranked_codes"):
+            ranked_codes = list(diag_output.parsed["ranked_codes"])
+            diag_reasoning = list(diag_output.parsed.get("reasoning", []))
+        if not ranked_codes:
+            logger.warning(
+                "Diagnostician returned no ranking for case %s, using candidate order",
+                case.case_id,
+            )
+            ranked_codes = list(candidate_codes)
+        top1_code = ranked_codes[0] if ranked_codes else None
+
+        decision_trace["diagnostician"] = {
+            "ranked_codes": ranked_codes,
+            "reasoning": diag_reasoning,
+            "used": bool(diag_output.parsed and diag_output.parsed.get("ranked_codes")),
+        }
+
+        verify_codes = ranked_codes[:5]
+        checker_start = time.monotonic()
+        checker_outputs = self._parallel_check_criteria(
+            self.checker,
+            verify_codes,
+            transcript_text,
+            evidence_map,
+            lang,
+            prompt_variant=self.prompt_variant,
+            checker_llm_client=self.checker_llm,
+        )
+        stage_timings["checker_verify"] = time.monotonic() - checker_start
+
+        remaining_codes = [code for code in candidate_codes if code not in verify_codes]
+        all_checker_outputs = list(checker_outputs)
+        if remaining_codes:
+            remaining_start = time.monotonic()
+            remaining_outputs = self._parallel_check_criteria(
+                self.checker,
+                remaining_codes,
+                transcript_text,
+                evidence_map,
+                lang,
+                prompt_variant=self.prompt_variant,
+                checker_llm_client=self.checker_llm,
+            )
+            stage_timings["checker_remaining"] = time.monotonic() - remaining_start
+            all_checker_outputs.extend(remaining_outputs)
+
+        if not all_checker_outputs:
+            stage_timings["total"] = time.monotonic() - case_start
+            return DiagnosisResult(
+                case_id=case.case_id,
+                primary_diagnosis=top1_code,
+                confidence=0.0,
+                decision="diagnosis",
+                criteria_results=[],
+                mode=self.mode_name,
+                model_name=self.llm.model,
+                checker_model_name=self.checker_model_name,
+                language_used=lang,
+                candidate_disorders=candidate_codes,
+                routing_mode=routing_mode,
+                scope_policy=scope_policy,
+                decision_trace={
+                    **decision_trace,
+                    "dtv_mode": True,
+                    "diagnostician_ranked": ranked_codes,
+                    "diagnostician_reasoning": diag_reasoning,
+                    "verify_codes": verify_codes,
+                    "veto_applied": False,
+                    "veto_from": None,
+                    "veto_to": None,
+                    "logic_engine_confirmed_codes": [],
+                    "raw_checker_outputs": [],
+                    "dtv_fallback": "no_checker_outputs",
+                },
+                stage_timings=stage_timings,
+                failures=failures,
+            )
+
+        logic_start = time.monotonic()
+        logic_output = self.logic_engine.evaluate(all_checker_outputs)
+        stage_timings["logic_engine"] = time.monotonic() - logic_start
+        confirmed_set = set(logic_output.confirmed_codes)
+        met_ratios = {
+            co.disorder: co.criteria_met_count / max(co.criteria_required, 1)
+            for co in all_checker_outputs
+        }
+
+        primary = None
+        comorbid: list[str] = []
+        confidence = 0.8
+        veto_applied = False
+        primary_source = "top1"
+
+        for idx, code in enumerate(ranked_codes[:5]):
+            if code in confirmed_set:
+                primary = code
+                if idx == 0:
+                    confidence = 0.9
+                else:
+                    confidence = max(0.65, 0.85 - 0.05 * idx)
+                    veto_applied = True
+                    primary_source = f"top{idx + 1}"
+                break
+
+        if primary is None and confirmed_set:
+            confirmed_by_ratio = sorted(
+                confirmed_set,
+                key=lambda code: met_ratios.get(code, 0.0),
+                reverse=True,
+            )
+            primary = confirmed_by_ratio[0]
+            confidence = 0.65
+            veto_applied = True
+            primary_source = "remaining_confirmed"
+
+        if primary is None:
+            primary = top1_code
+            confidence = 0.55
+            primary_source = "no_confirmed_fallback"
+
+        if primary_source != "top1":
+            logger.info(
+                "Case %s: DtV primary from %s (top-1 %s -> primary %s)",
+                case.case_id,
+                primary_source,
+                top1_code,
+                primary,
+            )
+
+        for code in ranked_codes[:5]:
+            if code != primary and code in confirmed_set:
+                comorbid.append(code)
+                break
+
+        if comorbid:
+            confirmed_codes_list = [primary] + comorbid
+            confidences = {primary: confidence}
+            for idx, code in enumerate(comorbid, start=1):
+                confidences[code] = confidence - 0.05 * idx
+            comorbidity_result = self.comorbidity_resolver.resolve(
+                confirmed=confirmed_codes_list,
+                confidences=confidences,
+            )
+            primary = comorbidity_result.primary
+            comorbid = comorbidity_result.comorbid
+
+        stage_timings["total"] = time.monotonic() - case_start
+        return DiagnosisResult(
+            case_id=case.case_id,
+            primary_diagnosis=primary,
+            comorbid_diagnoses=comorbid,
+            confidence=confidence,
+            decision="diagnosis",
+            criteria_results=all_checker_outputs,
+            mode=self.mode_name,
+            model_name=self.llm.model,
+            checker_model_name=self.checker_model_name,
+            language_used=lang,
+            candidate_disorders=candidate_codes,
+            routing_mode=routing_mode,
+            scope_policy=scope_policy,
+            decision_trace={
+                **decision_trace,
+                "dtv_mode": True,
+                "diagnostician_ranked": ranked_codes,
+                "diagnostician_reasoning": diag_reasoning,
+                "verify_codes": verify_codes,
+                "veto_applied": veto_applied,
+                "veto_from": top1_code if veto_applied else None,
+                "veto_to": primary if veto_applied else None,
+                "logic_engine_confirmed_codes": logic_output.confirmed_codes,
+                "raw_checker_outputs": self._build_raw_checker_outputs_trace(
+                    all_checker_outputs
+                ),
+            },
+            stage_timings=stage_timings,
+            failures=failures,
+        )
 
     def diagnose(
         self, case: ClinicalCase, evidence: EvidenceBrief | None = None
@@ -292,6 +576,21 @@ class HiEDMode(BaseModeOrchestrator):
 
         logger.info("Case %s: %d candidate disorders from triage", case.case_id, len(candidate_codes))
         decision_trace["candidate_disorders"] = candidate_codes
+
+        if self.diagnose_then_verify and self.diagnostician is not None:
+            return self._diagnose_then_verify(
+                case=case,
+                lang=lang,
+                transcript_text=transcript_text,
+                evidence_map=evidence_map,
+                candidate_codes=candidate_codes,
+                routing_mode=routing_mode,
+                scope_policy=scope_policy,
+                decision_trace=decision_trace,
+                stage_timings=stage_timings,
+                failures=failures,
+                case_start=case_start,
+            )
 
         # === Stage 2: Criterion Checkers (parallel) ===
         checker_start = time.monotonic()

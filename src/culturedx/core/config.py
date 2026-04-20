@@ -19,6 +19,7 @@ class LLMConfig(BaseModel):
     disable_thinking: bool = True
     max_concurrent: int = 4
     max_tokens: int = 2048
+    context_window: int | None = None
 
 
 class EvalConfig(BaseModel):
@@ -34,11 +35,13 @@ class ModeConfig(BaseModel):
     target_disorders: list[str] | None = None
     scope_policy: str = "auto"
     execution_mode: str = "auto"
+    diagnose_then_verify: bool = False
     contrastive_enabled: bool = False
     comorbid_min_ratio: float = 0.9
     prompt_variant: str = ""
     calibrator_mode: str = "heuristic-v2"  # "heuristic-v2" or "learned"
     calibrator_artifact_path: str | None = None
+    force_prediction: bool = False
 
 
 class DatasetConfig(BaseModel):
@@ -87,6 +90,15 @@ class EvidenceConfig(BaseModel):
     rerank_top_n: int = 5
 
 
+class RetrievalConfig(BaseModel):
+    """Case-level RAG settings for diagnostician grounding."""
+
+    enabled: bool = False
+    top_k: int = 5
+    balanced_per_class: bool = True
+    level: int = 1
+
+
 class CultureDxConfig(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
@@ -101,6 +113,7 @@ class CultureDxConfig(BaseModel):
     eval: EvalConfig = EvalConfig()
     dataset: DatasetConfig = DatasetConfig()
     evidence: EvidenceConfig = EvidenceConfig()
+    retrieval: RetrievalConfig = RetrievalConfig()
 
 
 def load_config(

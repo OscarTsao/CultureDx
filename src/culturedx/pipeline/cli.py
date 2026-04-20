@@ -27,6 +27,7 @@ def _create_configured_llm(cfg, llm_cfg):
         disable_thinking=getattr(llm_cfg, "disable_thinking", True),
         max_concurrent=getattr(llm_cfg, "max_concurrent", 4),
         seed=getattr(cfg, "seed", None),
+        context_window=getattr(llm_cfg, "context_window", None),
     )
 
 
@@ -46,6 +47,8 @@ def cli(verbose: bool) -> None:
 @click.option("--with-evidence", is_flag=True, help="Enable evidence extraction pipeline")
 @click.option("--data-path", default=None, help="Override dataset path")
 @click.option("--limit", "-n", default=None, type=int, help="Limit number of cases to process")
+@click.option("--seed", default=None, type=int, help="Override config seed")
+@click.option("--run-name", default=None, help="Override auto-generated run directory name")
 def run(
     config: tuple[str, ...],
     dataset: str,
@@ -54,6 +57,8 @@ def run(
     with_evidence: bool,
     data_path: str | None,
     limit: int | None,
+    seed: int | None,
+    run_name: str | None,
 ) -> None:
     """Run an experiment with a given config and dataset."""
     from culturedx.pipeline.runner import ExperimentRunner
@@ -63,6 +68,8 @@ def run(
         cfg = load_config(config[0])
     else:
         cfg = load_config(config[0], overrides=list(config[1:]))
+    if seed is not None:
+        cfg.seed = seed
     apply_global_seed(cfg.seed)
 
     # 2. Load dataset
@@ -117,6 +124,23 @@ def run(
     mode_type = cfg.mode.type
     click.echo(f"Mode: {mode_type}")
 
+    case_retriever = None
+    if getattr(cfg, "retrieval", None) is not None and cfg.retrieval.enabled:
+        case_index_path = Path("data/cache/train_case_index.faiss")
+        case_meta_path = Path("data/cache/train_case_metadata.json")
+        if case_index_path.exists() and case_meta_path.exists():
+            try:
+                from culturedx.retrieval.case_retriever import CaseRetriever
+
+                case_retriever = CaseRetriever(case_index_path, case_meta_path)
+                click.echo(f"RAG enabled: loaded {case_index_path}")
+            except ImportError:
+                click.echo("Warning: retrieval enabled but faiss/case_retriever not installed")
+            except Exception as exc:
+                click.echo(f"Warning: CaseRetriever failed to load: {exc}")
+        else:
+            click.echo("Warning: retrieval enabled but FAISS index not found")
+
     if mode_type == "hied":
         from culturedx.modes.hied import HiEDMode
         mode_kwargs = dict(
@@ -124,14 +148,18 @@ def run(
             target_disorders=cfg.mode.target_disorders,
             scope_policy=cfg.mode.scope_policy,
             execution_mode=cfg.mode.execution_mode,
+            diagnose_then_verify=getattr(cfg.mode, "diagnose_then_verify", False),
             contrastive_enabled=cfg.mode.contrastive_enabled,
             comorbid_min_ratio=cfg.mode.comorbid_min_ratio,
             prompt_variant=cfg.mode.prompt_variant,
             calibrator_mode=cfg.mode.calibrator_mode,
             calibrator_artifact_path=cfg.mode.calibrator_artifact_path,
+            force_prediction=getattr(cfg.mode, "force_prediction", False),
         )
         if checker_llm is not None:
             mode_kwargs["checker_llm_client"] = checker_llm
+        if case_retriever is not None:
+            mode_kwargs["case_retriever"] = case_retriever
         mode = HiEDMode(**mode_kwargs)
     elif mode_type == "psycot":
         from culturedx.modes.psycot import PsyCoTMode
@@ -173,7 +201,11 @@ def run(
 
     # 6. Run experiment
     base_output = output_dir or cfg.output_dir
-    if output_dir:
+    if run_name:
+        run_dir = Path(base_output) / run_name
+        run_dir.mkdir(parents=True, exist_ok=True)
+        click.echo(f"Using --run-name override: run_dir={run_dir}")
+    elif output_dir:
         # Explicit output dir: use as-is
         run_dir = Path(output_dir)
         run_dir.mkdir(parents=True, exist_ok=True)
@@ -181,10 +213,15 @@ def run(
         # Auto-generate timestamped run dir
         run_dir = ExperimentRunner.create_run_dir(base_output, cfg.mode.type, dataset)
 
+    max_cases_in_flight = 1
+    if cfg.llm.provider == "vllm":
+        max_cases_in_flight = max(getattr(cfg.llm, "max_concurrent", 1), 4)
+
     runner = ExperimentRunner(
         mode=mode,
         output_dir=run_dir,
         evidence_pipeline=evidence_pipeline,
+        max_cases_in_flight=max_cases_in_flight,
     )
 
     click.echo(f"Output directory: {run_dir}")

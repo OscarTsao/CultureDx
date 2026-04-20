@@ -1,0 +1,37 @@
+# CultureDx V2.4 Final Configuration
+# Paper-aligned DtV (Diagnose-then-Verify) pipeline
+
+mode:
+  name: hied
+  type: hied
+  diagnose_then_verify: true
+  force_prediction: true
+  prompt_variant: v2
+  scope_policy: manual
+  execution_mode: benchmark_manual_scope
+  calibrator_mode: heuristic-v2
+  target_disorders:
+    - F20
+    - F31
+    - F32
+    - F39
+    - F41.0
+    - F41.1
+    - F42
+    - F43.1
+    - F43.2
+    - F45
+    - F51
+    - F98
+    - F41.2
+    - Z71
+
+llm:
+  temperature: 0.0
+  max_tokens: 1536
+
+retrieval:
+  enabled: true
+  top_k: 5
+  balanced_per_class: true
+  level: 1

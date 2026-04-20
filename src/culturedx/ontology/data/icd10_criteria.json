@@ -211,6 +211,29 @@
         "A6": {"text": "Mixed emotional symptoms such as concurrent anxiety, low mood, or irritability", "text_zh": "伴混合性情绪症状，如焦虑、情绪低落或易激惹同时存在", "type": "additional"}
       },
       "threshold": {"min_total": 3}
+    },
+    "Z71": {
+      "name": "Counseling",
+      "name_zh": "咨询",
+      "category": "counseling",
+      "criteria": {
+        "A1": {"text": "Patient seeks advice or consultation without clear psychiatric symptoms", "text_zh": "患者寻求建议或咨询，无明确精神症状", "type": "core"},
+        "A2": {"text": "Primary concern is psychological well-being, life adjustment, or relationship issues", "text_zh": "主要关切为心理健康、生活适应或人际关系问题", "type": "core"},
+        "A3": {"text": "No symptom pattern meeting criteria for any specific psychiatric disorder", "text_zh": "无符合任何特定精神障碍标准的症状模式", "type": "exclusion"}
+      },
+      "threshold": {"min_total": 2, "exclusion_required": true}
+    },
+    "F41.2": {
+      "name": "Mixed anxiety and depressive disorder",
+      "name_zh": "混合性焦虑与抑郁障碍",
+      "category": "anxiety",
+      "criteria": {
+        "A": {"text": "Both anxiety and depressive symptoms present", "text_zh": "同时存在焦虑和抑郁症状", "type": "core"},
+        "B": {"text": "Neither severe enough to independently meet diagnostic criteria", "text_zh": "焦虑和抑郁均未严重到独立满足各自的诊断标准", "type": "core"},
+        "C": {"text": "Autonomic symptoms present", "text_zh": "存在自主神经症状（颤抖、心悸、口干、胃部不适）", "type": "additional"},
+        "D": {"text": "Duration at least several weeks", "text_zh": "持续至少数周", "type": "duration"}
+      },
+      "threshold": {"min_total": 2, "both_required": true}
     }
   }
 }

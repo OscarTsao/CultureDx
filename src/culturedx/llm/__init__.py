@@ -21,11 +21,12 @@ def create_llm_client(
     max_concurrent: int = 4,
     max_retries: int = 3,
     seed: int | None = None,
+    context_window: int | None = None,
 ) -> BaseLLMClient:
     """Create an LLM client based on provider config."""
     if provider == "vllm":
         from culturedx.llm.vllm_client import VLLMClient
-        return VLLMClient(
+        client = VLLMClient(
             base_url=base_url,
             model=model,
             temperature=temperature,
@@ -39,7 +40,10 @@ def create_llm_client(
             max_retries=max_retries,
             seed=seed,
         )
-    return OllamaClient(
+        if context_window is not None:
+            setattr(client, "context_window", context_window)
+        return client
+    client = OllamaClient(
         base_url=base_url,
         model=model,
         temperature=temperature,
@@ -52,6 +56,9 @@ def create_llm_client(
         max_concurrent=max_concurrent,
         seed=seed,
     )
+    if context_window is not None:
+        setattr(client, "context_window", context_window)
+    return client
 
 
 __all__ = [
