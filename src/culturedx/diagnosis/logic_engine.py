@@ -447,7 +447,10 @@ class DiagnosticLogicEngine:
         """Somatoform (F45): min somatic symptom groups + core criteria."""
         min_groups = threshold.get("min_somatic_groups", 2)
 
-        somatic_ids = {k for k, v in criteria.items() if v.get("type") == "somatic"}
+        # Fix: JSON uses "somatic_group" for F45 criteria, not "somatic".
+        # Without this, F45 is never confirmed by logic engine regardless of checker output.
+        somatic_ids = {k for k, v in criteria.items()
+                       if v.get("type") in ("somatic", "somatic_group")}
         core_ids = {k for k, v in criteria.items() if v.get("type") == "core"}
 
         somatic_met = len(met_ids & somatic_ids)

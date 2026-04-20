@@ -1,0 +1,45 @@
+# R17: bypass criterion checker — isolates checker's contribution to Top-1.
+#
+# Scientific motivation (from F41/F32 bias investigation):
+#   Checker-level co-confirmation data revealed:
+#     - In pure F41-gold cases (n=360): checker confirmed F32 criteria in 60.0%
+#     - In pure F32-gold cases (n=336): checker confirmed F41 criteria in 91.1%
+#     - Checker-level asymmetry: 0.66x (SLIGHT bias TOWARD F41)
+#     - Primary-level asymmetry: 6.40x (STRONG bias TOWARD F32)
+#
+#   The checker cannot disambiguate overlapping somatic criteria (sleep, energy,
+#   concentration) that appear in both F32 and F41.1 DSM-mapped criteria sets.
+#   It confirms both simultaneously in most cases.
+#
+#   The 6.40x primary-level F32 bias therefore does NOT come from the checker.
+#   It originates in the diagnostician's ranking priors (which favor F32 in
+#   75% of co-confirmed F41 cases).
+#
+# Hypothesis R17 tests:
+#   If checker is net-negative (its noise hurts more than it helps filter),
+#   then skipping it and trusting the diagnostician directly should improve Top-1.
+#   If checker is net-positive (its threshold gating catches diagnostician errors),
+#   then skipping it should degrade Top-1.
+#
+# Expected outcomes & their interpretation:
+#   R17 Top-1 > baseline 0.505   → checker is NET NEGATIVE
+#                                  (paper finding: "LLM criterion checking is unreliable
+#                                   for psychiatric DSM mapping due to symptom overlap;
+#                                   evidence-grounded architectures require either
+#                                   fine-tuned checkers or non-LLM verification.")
+#   R17 Top-1 ≈ baseline          → checker is neutral, only adds cost
+#   R17 Top-1 < baseline          → checker IS filtering correctly, retain it
+#
+# Implementation:
+#   - Skips the `_parallel_check_criteria` LLM fanout entirely
+#   - Synthesizes CheckerOutput for each candidate_code with ALL criteria "met"
+#   - Logic engine then trivially confirms every candidate
+#   - Primary selection falls through to diagnostician's top-1 ranking
+#   - Calibrator & comorbidity resolver still run normally
+#
+# Expected speedup: ~50% (checker is the dominant LLM call per case).
+#
+# Apply after configs/base.yaml + vllm_awq.yaml + v2.4_final.yaml.
+
+mode:
+  bypass_checker: true

@@ -173,6 +173,9 @@ def run(
         # R16 ablation hook
         if getattr(cfg.mode, "bypass_logic_engine", False):
             mode._bypass_logic_engine = True
+        # R17 ablation hook
+        if getattr(cfg.mode, "bypass_checker", False):
+            mode._bypass_checker = True
     else:
         from culturedx.modes.single import SingleModelMode
         mode_kwargs = dict(

@@ -284,3 +284,178 @@ git push origin main-v2.4-refactor
 
 3. **F39 remaining 47.6% gap**: Even with final_combined, F39 loses 48% to F32. An F41/F39/F32 triangle disambiguator (similar to R4 but handling 3 classes) might close this further.
 
+
+---
+
+## R17: bypass_checker ablation — rationale and implementation
+
+### Why R17 became essential (revised from previous "drop" recommendation)
+
+Earlier in this review I recommended dropping R17 because "we already know the checker works". The
+F41/F32 checker-level analysis reversed that conclusion:
+
+**Checker co-confirmation data (pure-gold cases, baseline run)**:
+
+| Gold class | N | Checker confirms F32 | Checker confirms F41 | Checker confirms both |
+|---|---:|---:|---:|---:|
+| F32 only | 336 | 90.5% ✓ | 91.1% ⚠️ | 91.1% |
+| F41 only | 360 | 60.0% ⚠️ | 92.5% ✓ | 60.0% |
+
+**Interpretation**: The checker hallucinates F41 criteria in 91% of F32-only cases, and hallucinates
+F32 criteria in 60% of F41-only cases. This happens because the ICD-10 criteria overlap on somatic
+symptoms (sleep, energy, concentration, fatigue). The LLM checker cannot attribute a given symptom
+to its actual disorder source — it just marks it "met" for every disorder whose criterion list
+contains something similar.
+
+**Checker-level bias direction**: 0.66x (slightly FAVORS F41 in confirm rate).
+**Primary-level bias direction**: 6.40x (STRONGLY FAVORS F32 in final output).
+
+The primary-level F32 bias therefore does NOT come from the checker. It emerges at primary
+selection, where the diagnostician's ranking determines which confirmed disorder wins. R17 tests
+this claim directly: if the checker is skipped, does Top-1 improve (checker noise is net-negative)
+or degrade (checker adds signal despite symptom overlap)?
+
+### R17 design
+
+**Core change**: replace the `_parallel_check_criteria` LLM fanout with synthetic
+`CheckerOutput` objects where every criterion for every candidate disorder is marked `status="met"`.
+
+```python
+# In hied.py Stage 2
+if getattr(self, "_bypass_checker", False):
+    checker_outputs = []
+    for code in candidate_codes:
+        criteria_def = get_disorder_criteria(code)
+        if not criteria_def:
+            continue
+        crit_ids = list(criteria_def.keys())
+        synthetic_results = [
+            CriterionResult(criterion_id=cid, status="met",
+                          evidence="[R17: checker_bypassed]", confidence=1.0)
+            for cid in crit_ids
+        ]
+        checker_outputs.append(
+            CheckerOutput(disorder=code, criteria=synthetic_results,
+                         criteria_met_count=len(crit_ids),
+                         criteria_required=len(crit_ids))
+        )
+else:
+    checker_outputs = self._parallel_check_criteria(...)  # normal path
+```
+
+**Effect**: Logic engine trivially confirms every candidate. Primary selection then follows the
+diagnostician's top-1 ranking directly. Calibrator and comorbidity resolver still run.
+
+**Expected speedup**: ~50% (the checker is the dominant LLM call per case, ~14 candidates × 1 call
+each vs. 1 diagnostician call).
+
+### Expected outcomes and interpretation
+
+| R17 Top-1 vs baseline 0.505 | Interpretation | Paper impact |
+|---|---|---|
+| R17 > baseline (+ meaningful) | Checker is net-negative — its symptom-overlap hallucination harms more than its threshold gating helps | **Strong finding**: "LLM criterion checkers require fine-tuning for psychiatric DSM mapping; zero-shot checkers are unreliable." |
+| R17 ≈ baseline (±2pp) | Checker is neutral — adds cost without adding signal | Still paper-worthy: "Zero-shot LLM criterion checkers are compute-expensive and do not measurably improve over skipping them entirely." |
+| R17 < baseline (significantly) | Checker IS net-positive despite noise | Revise narrative — but consistent with the idea that logic engine filters genuine noise. |
+
+### R17 configuration
+
+`configs/overlays/r17_bypass_checker.yaml`:
+```yaml
+mode:
+  bypass_checker: true
+```
+
+---
+
+## Bonus finding: F45 never confirmable by logic engine
+
+### Discovery context
+
+While verifying the R17 synthetic outputs, I ran this test:
+```python
+# Synthesize all-criteria-met for F45, check if logic engine confirms
+crit_ids = list(get_disorder_criteria('F45').keys())  # ['A', 'B', 'C1', 'C2', 'C3']
+all_met = [CriterionResult(status="met", ...) for cid in crit_ids]
+logic_engine.evaluate([CheckerOutput('F45', all_met, 5, 5)])
+# → NOT CONFIRMED ❌
+```
+
+### Root cause
+
+`src/culturedx/diagnosis/logic_engine.py` line 450 (`_eval_somatoform`):
+```python
+somatic_ids = {k for k, v in criteria.items() if v.get("type") == "somatic"}
+```
+
+But `icd10_criteria.json` defines F45 criteria as:
+```json
+"C1": {"type": "somatic_group", ...}
+"C2": {"type": "somatic_group", ...}
+"C3": {"type": "somatic_group", ...}
+```
+
+The type name is `"somatic_group"`, not `"somatic"`. So `somatic_ids` is always empty for F45,
+and `somatic_met >= min_groups` (2) is always False. F45 is **unconfirmable regardless of checker
+output**.
+
+### Empirical evidence from baseline run (t1_diag_topk, N=1000)
+
+- F45 checker called: **914 times** (~8% of total checker compute budget)
+- F45 had 4+ criteria met: 5 cases
+- **F45 confirmed by logic engine: 0 cases**
+
+Even when the checker confirmed all 5 F45 criteria, logic engine rejected it due to the type
+mismatch. The F45 recall of 0-12.5% across runs (depending on overlay) is caused by this
+architectural bug, not by model limitations.
+
+### Fix
+
+```python
+# Before:
+somatic_ids = {k for k, v in criteria.items() if v.get("type") == "somatic"}
+# After:
+somatic_ids = {k for k, v in criteria.items()
+               if v.get("type") in ("somatic", "somatic_group")}
+```
+
+Post-fix verification: `F45 confirmed with all criteria met: True, Somatic groups: 3/2`
+
+### Impact on prior results
+
+All baseline numbers, R6, R7, R16, R20 results had F45 structurally capped at 0% via logic
+engine rejection. After this fix:
+- Baseline F45 recall should rise from 0% toward its actual LLM-limited ceiling
+- `final_combined` F45 jump from 0% to 18.8% would have been 0% → (0% + LLM_ceiling) combined
+  with TF-IDF — meaning the supervised stack's F45 contribution is independent of this bug
+
+### Recommendation
+
+Apply the F45 fix. Re-run baseline (4 hr) to establish corrected pre-overlay numbers. This is a
+small but real correction to the paper's baseline metrics.
+
+---
+
+## Updated deliverables summary
+
+All artifacts in `queue_fixes/` tarball:
+
+| File | Purpose | Lines |
+|---|---|---:|
+| `QUEUE_RESULTS_COMPLETE.md` | This document (analysis + findings + action plan) | ~420 |
+| `apply_all_fixes.sh` | One-shot applier for all 5 fixes | ~140 |
+| `fix_top1_code_nameerror.patch` | Bug 1: undefined variable in veto trace | ~12 |
+| `fix_f45_somatic_group.patch` | Bug 4: F45 type name mismatch (standalone, also in r17 patch) | ~10 |
+| `r17_bypass_checker.patch` | R17 ablation + F45 fix (combined) | ~137 |
+| `configs_fix/strict_config_validation.patch` | Prevent future silent YAML typos | ~20 |
+| `configs_fix/vllm_qwen3_8b.yaml` | R13 config (was: wrong field names → fell back to ollama) | ~30 |
+| `configs_fix/r14_non_qwen.yaml` | R14 config with Yi-1.5-34B-Chat-AWQ | ~40 |
+| `configs_fix/r17_bypass_checker.yaml` | R17 overlay | ~50 |
+
+Apply with:
+```bash
+cd ~/CultureDx
+tar xzf ~/Downloads/culturedx_queue_fixes.tar.gz
+./queue_fixes/apply_all_fixes.sh
+git add -A && git commit -m "fix: queue bugs + R17 ablation + F45 logic engine"
+git push origin fix/queue-runtime-bugs-and-r17
+```

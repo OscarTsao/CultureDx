@@ -52,6 +52,7 @@ class ModeConfig(BaseModel):
     contrastive_primary_enabled: bool = False
     contrastive_primary_prompt: str = "contrastive_primary_zh"
     bypass_logic_engine: bool = False  # R16 ablation hook
+    bypass_checker: bool = False  # R17 ablation: skip criterion checker entirely
 
 
 class DatasetConfig(BaseModel):

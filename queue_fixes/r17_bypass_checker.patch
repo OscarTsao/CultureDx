@@ -1,0 +1,109 @@
+diff --git a/src/culturedx/core/config.py b/src/culturedx/core/config.py
+index 6d8c4be..1449d5c 100644
+--- a/src/culturedx/core/config.py
++++ b/src/culturedx/core/config.py
+@@ -52,6 +52,7 @@ class ModeConfig(BaseModel):
+     contrastive_primary_enabled: bool = False
+     contrastive_primary_prompt: str = "contrastive_primary_zh"
+     bypass_logic_engine: bool = False  # R16 ablation hook
++    bypass_checker: bool = False  # R17 ablation: skip criterion checker entirely
+ 
+ 
+ class DatasetConfig(BaseModel):
+diff --git a/src/culturedx/diagnosis/logic_engine.py b/src/culturedx/diagnosis/logic_engine.py
+index b24c8ac..893d4b2 100644
+--- a/src/culturedx/diagnosis/logic_engine.py
++++ b/src/culturedx/diagnosis/logic_engine.py
+@@ -447,7 +447,10 @@ class DiagnosticLogicEngine:
+         """Somatoform (F45): min somatic symptom groups + core criteria."""
+         min_groups = threshold.get("min_somatic_groups", 2)
+ 
+-        somatic_ids = {k for k, v in criteria.items() if v.get("type") == "somatic"}
++        # Fix: JSON uses "somatic_group" for F45 criteria, not "somatic".
++        # Without this, F45 is never confirmed by logic engine regardless of checker output.
++        somatic_ids = {k for k, v in criteria.items()
++                       if v.get("type") in ("somatic", "somatic_group")}
+         core_ids = {k for k, v in criteria.items() if v.get("type") == "core"}
+ 
+         somatic_met = len(met_ids & somatic_ids)
+diff --git a/src/culturedx/modes/hied.py b/src/culturedx/modes/hied.py
+index ec86535..57fb25e 100644
+--- a/src/culturedx/modes/hied.py
++++ b/src/culturedx/modes/hied.py
+@@ -527,16 +527,52 @@ class HiEDMode(BaseModeOrchestrator):
+ 
+         # === Stage 2: Criterion Checkers (parallel) ===
+         checker_start = time.monotonic()
+-        checker_outputs = self._parallel_check_criteria(
+-            self.checker,
+-            candidate_codes,
+-            transcript_text,
+-            evidence_map,
+-            lang,
+-            prompt_variant=self._effective_checker_variant,
+-            per_disorder_variants=self._per_disorder_checker_variants,
+-            checker_llm_client=self.checker_llm,
+-        )
++        # R17 ablation: skip checker entirely — synthesize "all criteria met"
++        # outputs so the logic engine trivially confirms every candidate.
++        # This isolates the checker's contribution: if Top-1 improves, the
++        # checker is subtracting value through symptom-overlap hallucination
++        # (confirming both F32 and F41 criteria in cases that are pure one or
++        # the other). If Top-1 degrades, the checker is net-positive despite
++        # its noise.
++        if getattr(self, "_bypass_checker", False):
++            from culturedx.core.models import CriterionResult
++            from culturedx.ontology.icd10 import get_disorder_criteria
++
++            checker_outputs = []
++            for code in candidate_codes:
++                criteria_def = get_disorder_criteria(code)
++                if not criteria_def:
++                    # Unknown disorder — skip (same behavior as real checker)
++                    continue
++                crit_ids = list(criteria_def.keys())
++                synthetic_results = [
++                    CriterionResult(
++                        criterion_id=cid,
++                        status="met",
++                        evidence="[R17: checker_bypassed]",
++                        confidence=1.0,
++                    )
++                    for cid in crit_ids
++                ]
++                checker_outputs.append(
++                    CheckerOutput(
++                        disorder=code,
++                        criteria=synthetic_results,
++                        criteria_met_count=len(crit_ids),
++                        criteria_required=len(crit_ids),
++                    )
++                )
++        else:
++            checker_outputs = self._parallel_check_criteria(
++                self.checker,
++                candidate_codes,
++                transcript_text,
++                evidence_map,
++                lang,
++                prompt_variant=self._effective_checker_variant,
++                per_disorder_variants=self._per_disorder_checker_variants,
++                checker_llm_client=self.checker_llm,
++            )
+         stage_timings["checker_fanout"] = time.monotonic() - checker_start
+ 
+         if not checker_outputs:
+diff --git a/src/culturedx/pipeline/cli.py b/src/culturedx/pipeline/cli.py
+index 8f194cb..e26919d 100644
+--- a/src/culturedx/pipeline/cli.py
++++ b/src/culturedx/pipeline/cli.py
+@@ -173,6 +173,9 @@ def run(
+         # R16 ablation hook
+         if getattr(cfg.mode, "bypass_logic_engine", False):
+             mode._bypass_logic_engine = True
++        # R17 ablation hook
++        if getattr(cfg.mode, "bypass_checker", False):
++            mode._bypass_checker = True
+     else:
+         from culturedx.modes.single import SingleModelMode
+         mode_kwargs = dict(

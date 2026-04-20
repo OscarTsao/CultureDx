@@ -527,16 +527,52 @@ class HiEDMode(BaseModeOrchestrator):
 
         # === Stage 2: Criterion Checkers (parallel) ===
         checker_start = time.monotonic()
-        checker_outputs = self._parallel_check_criteria(
-            self.checker,
-            candidate_codes,
-            transcript_text,
-            evidence_map,
-            lang,
-            prompt_variant=self._effective_checker_variant,
-            per_disorder_variants=self._per_disorder_checker_variants,
-            checker_llm_client=self.checker_llm,
-        )
+        # R17 ablation: skip checker entirely — synthesize "all criteria met"
+        # outputs so the logic engine trivially confirms every candidate.
+        # This isolates the checker's contribution: if Top-1 improves, the
+        # checker is subtracting value through symptom-overlap hallucination
+        # (confirming both F32 and F41 criteria in cases that are pure one or
+        # the other). If Top-1 degrades, the checker is net-positive despite
+        # its noise.
+        if getattr(self, "_bypass_checker", False):
+            from culturedx.core.models import CriterionResult
+            from culturedx.ontology.icd10 import get_disorder_criteria
+
+            checker_outputs = []
+            for code in candidate_codes:
+                criteria_def = get_disorder_criteria(code)
+                if not criteria_def:
+                    # Unknown disorder — skip (same behavior as real checker)
+                    continue
+                crit_ids = list(criteria_def.keys())
+                synthetic_results = [
+                    CriterionResult(
+                        criterion_id=cid,
+                        status="met",
+                        evidence="[R17: checker_bypassed]",
+                        confidence=1.0,
+                    )
+                    for cid in crit_ids
+                ]
+                checker_outputs.append(
+                    CheckerOutput(
+                        disorder=code,
+                        criteria=synthetic_results,
+                        criteria_met_count=len(crit_ids),
+                        criteria_required=len(crit_ids),
+                    )
+                )
+        else:
+            checker_outputs = self._parallel_check_criteria(
+                self.checker,
+                candidate_codes,
+                transcript_text,
+                evidence_map,
+                lang,
+                prompt_variant=self._effective_checker_variant,
+                per_disorder_variants=self._per_disorder_checker_variants,
+                checker_llm_client=self.checker_llm,
+            )
         stage_timings["checker_fanout"] = time.monotonic() - checker_start
 
         if not checker_outputs:
