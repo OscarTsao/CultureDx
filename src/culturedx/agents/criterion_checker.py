@@ -120,7 +120,19 @@ class CriterionCheckerAgent(BaseAgent):
             template_name = "criterion_checker_cot_zh.jinja"
         else:
             template_name = f"criterion_checker_{input.language}.jinja"
-        template = self._env.get_template(template_name)
+
+        # Graceful fallback: if the selected template isn't available,
+        # fall back to the best available variant instead of raising
+        # TemplateNotFound and losing all criteria for this disorder.
+        try:
+            template = self._env.get_template(template_name)
+        except Exception as e:
+            logger.warning(
+                "Template %s not found for %s (%s): falling back to v2_zh",
+                template_name, disorder_code, e,
+            )
+            template_name = "criterion_checker_v2_zh.jinja" if input.language == "zh" else f"criterion_checker_{input.language}.jinja"
+            template = self._env.get_template(template_name)
         prompt = template.render(
             disorder_code=disorder_code,
             disorder_name=disorder_name,
