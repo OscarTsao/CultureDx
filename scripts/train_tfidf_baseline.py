@@ -278,14 +278,18 @@ def main() -> None:
         row = eval_df.iloc[idx]
         case_dicts.append({
             "case_id": str(row["patient_id"]),
+            "DiagnosisCode": str(row["DiagnosisCode"]),
             "diagnoses": [str(row["DiagnosisCode"])],
             "diagnosis_code_full": str(row["DiagnosisCode"]),
             "four_class_label": row.get("four_class_label"),
         })
 
     pred_map = {r["case_id"]: r for r in records}
-    def get_prediction(case_id: str) -> dict | None:
-        return pred_map.get(case_id)
+    def get_prediction(case: dict) -> list[str]:
+        rec = pred_map.get(case["case_id"])
+        if rec is None:
+            return []
+        return [rec["primary_diagnosis"]] + rec.get("comorbid_diagnoses", [])
 
     table4 = compute_table4_metrics(case_dicts, get_prediction)
     metrics_path = out_dir / "metrics.json"

@@ -1,0 +1,23 @@
+{
+  "eval_split": "test_final",
+  "n_train": 13000,
+  "n_eval": 1000,
+  "random_state": 20260420,
+  "table4": {
+    "2class_Acc": 0.7103594080338267,
+    "2class_F1_macro": 0.73944953105931,
+    "2class_F1_weighted": 0.763757614699546,
+    "4class_Acc": 0.486,
+    "4class_F1_macro": 0.47786278391929643,
+    "4class_F1_weighted": 0.4739623544014004,
+    "12class_Acc": 0.049,
+    "12class_Top1": 0.611,
+    "12class_Top3": 0.831,
+    "12class_F1_macro": 0.34825068314575097,
+    "12class_F1_weighted": 0.584012845772994,
+    "2class_n": 473,
+    "4class_n": 1000,
+    "12class_n": 1000,
+    "Overall": 0.5522413837301932
+  }
+}

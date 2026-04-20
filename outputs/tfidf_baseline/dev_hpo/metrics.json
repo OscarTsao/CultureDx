@@ -1,0 +1,23 @@
+{
+  "eval_split": "dev_hpo",
+  "n_train": 13000,
+  "n_eval": 1000,
+  "random_state": 20260420,
+  "table4": {
+    "2class_Acc": 0.6818181818181818,
+    "2class_F1_macro": 0.7239232746247733,
+    "2class_F1_weighted": 0.7493546190061404,
+    "4class_Acc": 0.521,
+    "4class_F1_macro": 0.5147694266416268,
+    "4class_F1_weighted": 0.5052131658728103,
+    "12class_Acc": 0.063,
+    "12class_Top1": 0.614,
+    "12class_Top3": 0.843,
+    "12class_F1_macro": 0.40402500164532557,
+    "12class_F1_weighted": 0.5894035168911081,
+    "2class_n": 484,
+    "4class_n": 1000,
+    "12class_n": 1000,
+    "Overall": 0.5645006533181788
+  }
+}
