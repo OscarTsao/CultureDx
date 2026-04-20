@@ -1,0 +1,190 @@
+diff --git a/src/culturedx/modes/hied.py b/src/culturedx/modes/hied.py
+index 57fb25e..4b66f1a 100644
+--- a/src/culturedx/modes/hied.py
++++ b/src/culturedx/modes/hied.py
+@@ -526,53 +526,15 @@ class HiEDMode(BaseModeOrchestrator):
+             )
+ 
+         # === Stage 2: Criterion Checkers (parallel) ===
++        # R17 ablation check happens inside _run_checker_or_bypass.
+         checker_start = time.monotonic()
+-        # R17 ablation: skip checker entirely — synthesize "all criteria met"
+-        # outputs so the logic engine trivially confirms every candidate.
+-        # This isolates the checker's contribution: if Top-1 improves, the
+-        # checker is subtracting value through symptom-overlap hallucination
+-        # (confirming both F32 and F41 criteria in cases that are pure one or
+-        # the other). If Top-1 degrades, the checker is net-positive despite
+-        # its noise.
+-        if getattr(self, "_bypass_checker", False):
+-            from culturedx.core.models import CriterionResult
+-            from culturedx.ontology.icd10 import get_disorder_criteria
+-
+-            checker_outputs = []
+-            for code in candidate_codes:
+-                criteria_def = get_disorder_criteria(code)
+-                if not criteria_def:
+-                    # Unknown disorder — skip (same behavior as real checker)
+-                    continue
+-                crit_ids = list(criteria_def.keys())
+-                synthetic_results = [
+-                    CriterionResult(
+-                        criterion_id=cid,
+-                        status="met",
+-                        evidence="[R17: checker_bypassed]",
+-                        confidence=1.0,
+-                    )
+-                    for cid in crit_ids
+-                ]
+-                checker_outputs.append(
+-                    CheckerOutput(
+-                        disorder=code,
+-                        criteria=synthetic_results,
+-                        criteria_met_count=len(crit_ids),
+-                        criteria_required=len(crit_ids),
+-                    )
+-                )
+-        else:
+-            checker_outputs = self._parallel_check_criteria(
+-                self.checker,
+-                candidate_codes,
+-                transcript_text,
+-                evidence_map,
+-                lang,
+-                prompt_variant=self._effective_checker_variant,
+-                per_disorder_variants=self._per_disorder_checker_variants,
+-                checker_llm_client=self.checker_llm,
+-            )
++        checker_outputs = self._run_checker_or_bypass(
++            codes=candidate_codes,
++            transcript_text=transcript_text,
++            evidence_map=evidence_map,
++            lang=lang,
++            include_per_disorder_variants=True,
++        )
+         stage_timings["checker_fanout"] = time.monotonic() - checker_start
+ 
+         if not checker_outputs:
+@@ -1085,29 +1047,24 @@ class HiEDMode(BaseModeOrchestrator):
+                     )
+ 
+         checker_start = time.monotonic()
+-        checker_outputs = self._parallel_check_criteria(
+-            self.checker,
+-            verify_codes,
+-            transcript_text,
+-            evidence_map,
+-            lang,
+-            prompt_variant=self._effective_checker_variant,
+-            per_disorder_variants=self._per_disorder_checker_variants,
+-            checker_llm_client=self.checker_llm,
++        checker_outputs = self._run_checker_or_bypass(
++            codes=verify_codes,
++            transcript_text=transcript_text,
++            evidence_map=evidence_map,
++            lang=lang,
++            include_per_disorder_variants=True,
+         )
+         stage_timings["checker_verify"] = time.monotonic() - checker_start
+ 
+         remaining_codes = [code for code in candidate_codes if code not in verify_codes]
+         if remaining_codes:
+             remaining_start = time.monotonic()
+-            remaining_outputs = self._parallel_check_criteria(
+-                self.checker,
+-                remaining_codes,
+-                transcript_text,
+-                evidence_map,
+-                lang,
+-                prompt_variant=self._effective_checker_variant,
+-                checker_llm_client=self.checker_llm,
++            remaining_outputs = self._run_checker_or_bypass(
++                codes=remaining_codes,
++                transcript_text=transcript_text,
++                evidence_map=evidence_map,
++                lang=lang,
++                include_per_disorder_variants=False,
+             )
+             stage_timings["checker_remaining"] = time.monotonic() - remaining_start
+             all_checker_outputs = checker_outputs + remaining_outputs
+@@ -1382,6 +1339,81 @@ class HiEDMode(BaseModeOrchestrator):
+ 
+         return execution_mode, scope_policy
+ 
++
++    def _run_checker_or_bypass(
++        self,
++        codes: list[str],
++        transcript_text: str,
++        evidence_map,
++        lang: str,
++        include_per_disorder_variants: bool,
++    ) -> list[CheckerOutput]:
++        """Route to real checker OR synthesize all-criteria-met CheckerOutputs.
++
++        R17 ablation: when self._bypass_checker is True, skip the LLM checker
++        entirely. Synthesize CheckerOutput objects with every criterion marked
++        status="met" so the logic engine trivially confirms every candidate.
++
++        This makes primary selection fall through to the diagnostician's top-1
++        ranking — isolating the checker's contribution to Top-1 accuracy.
++        Used by both non-DtV (Stage 2) and DtV (verify + remaining) code paths.
++        """
++        if getattr(self, "_bypass_checker", False):
++            from culturedx.core.models import CriterionResult
++            from culturedx.ontology.icd10 import get_disorder_criteria
++
++            outputs = []
++            for code in codes:
++                criteria_def = get_disorder_criteria(code)
++                if not criteria_def:
++                    continue
++                crit_ids = list(criteria_def.keys())
++                synthetic = [
++                    CriterionResult(
++                        criterion_id=cid,
++                        status="met",
++                        evidence="[R17: checker_bypassed]",
++                        confidence=1.0,
++                    )
++                    for cid in crit_ids
++                ]
++                outputs.append(
++                    CheckerOutput(
++                        disorder=code,
++                        criteria=synthetic,
++                        criteria_met_count=len(crit_ids),
++                        criteria_required=len(crit_ids),
++                    )
++                )
++            return outputs
++
++        # Normal path: invoke real LLM checker
++        kwargs = dict(
++            checker=self.checker,
++            codes=codes,
++            transcript_text=transcript_text,
++            evidence_map=evidence_map,
++            lang=lang,
++            prompt_variant=self._effective_checker_variant,
++            checker_llm_client=self.checker_llm,
++        )
++        # The non-DtV and DtV-verify paths pass per_disorder_variants;
++        # the DtV-remaining path does not.
++        call_args = [
++            self.checker,
++            codes,
++            transcript_text,
++            evidence_map,
++            lang,
++        ]
++        call_kwargs = {
++            "prompt_variant": self._effective_checker_variant,
++            "checker_llm_client": self.checker_llm,
++        }
++        if include_per_disorder_variants:
++            call_kwargs["per_disorder_variants"] = self._per_disorder_checker_variants
++        return self._parallel_check_criteria(*call_args, **call_kwargs)
++
+     def _run_contrastive(
+         self,
+         checker_outputs: list[CheckerOutput],
