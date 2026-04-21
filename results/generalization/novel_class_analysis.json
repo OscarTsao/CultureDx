@@ -1,0 +1,92 @@
+{
+  "generated_at": "2026-04-21T22:11:17.232638+00:00",
+  "baseline_predictions": "results/external/mdd5k_t1_seed42/predictions.jsonl",
+  "expanded_predictions": "results/generalization/mdd5k_novel_expanded/predictions.jsonl",
+  "novel_classes": {
+    "G47": {
+      "gold_cases": 17,
+      "before": {
+        "cases": 17,
+        "hits": 0,
+        "recall": 0.0
+      },
+      "after": {
+        "cases": 17,
+        "hits": 0,
+        "recall": 0.0
+      },
+      "delta_recall": 0.0
+    },
+    "F50": {
+      "gold_cases": 8,
+      "before": {
+        "cases": 8,
+        "hits": 0,
+        "recall": 0.0
+      },
+      "after": {
+        "cases": 8,
+        "hits": 0,
+        "recall": 0.0
+      },
+      "delta_recall": 0.0
+    },
+    "F34": {
+      "gold_cases": 7,
+      "before": {
+        "cases": 7,
+        "hits": 0,
+        "recall": 0.0
+      },
+      "after": {
+        "cases": 7,
+        "hits": 0,
+        "recall": 0.0
+      },
+      "delta_recall": 0.0
+    },
+    "F30": {
+      "gold_cases": 4,
+      "before": {
+        "cases": 4,
+        "hits": 0,
+        "recall": 0.0
+      },
+      "after": {
+        "cases": 4,
+        "hits": 0,
+        "recall": 0.0
+      },
+      "delta_recall": 0.0
+    },
+    "F90": {
+      "gold_cases": 6,
+      "before": {
+        "cases": 6,
+        "hits": 0,
+        "recall": 0.0
+      },
+      "after": {
+        "cases": 6,
+        "hits": 0,
+        "recall": 0.0
+      },
+      "delta_recall": 0.0
+    }
+  },
+  "existing_scope_top1": {
+    "eligible_case_count": 849,
+    "before_accuracy": 0.5959952885747939,
+    "after_accuracy": 0.6007067137809188,
+    "before_correct": 506,
+    "after_correct": 510,
+    "delta_accuracy": 0.004711425206124886,
+    "not_regressed": true
+  },
+  "case_alignment": {
+    "baseline_only_case_ids": [],
+    "expanded_only_case_ids": [],
+    "gold_mismatch_case_ids": [],
+    "common_case_count": 925
+  }
+}

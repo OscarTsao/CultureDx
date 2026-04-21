@@ -1,0 +1,22 @@
+# Expand the v2.4 manual target set with 5 additional MDD-5k classes.
+mode:
+  target_disorders:
+    - F20
+    - F31
+    - F32
+    - F39
+    - F41.0
+    - F41.1
+    - F42
+    - F43.1
+    - F43.2
+    - F45
+    - F51
+    - F98
+    - F41.2
+    - Z71
+    - G47
+    - F50
+    - F34
+    - F30
+    - F90

@@ -80,6 +80,32 @@
         "duration_months": 3
       }
     },
+    "F30": {
+      "name": "Manic episode",
+      "name_zh": "躁狂發作",
+      "category": "mood",
+      "criteria": {
+        "A": {
+          "text": "Sustained elevated, expansive, or irritable mood clearly different from the person's usual state",
+          "text_zh": "情緒持續高昂、誇大或易怒，且程度明顯異於個體平時狀態",
+          "type": "core"
+        },
+        "B": {
+          "text": "Marked increase in activity or energy with symptoms such as talkativeness, reduced need for sleep, distractibility, or flight of ideas",
+          "text_zh": "活動量或精力明顯增加，伴言語增多、睡眠需求減少、注意力分散或思緒奔逸等表現",
+          "type": "additional"
+        },
+        "C": {
+          "text": "Behavior leads to impaired judgment, social or occupational dysfunction, or need for clinical supervision",
+          "text_zh": "行為已造成判斷力受損、社會或職業功能失調，或嚴重到需要臨床監護與介入",
+          "type": "additional"
+        }
+      },
+      "threshold": {
+        "core_required": true,
+        "min_additional": 1
+      }
+    },
     "F31": {
       "name": "Bipolar affective disorder",
       "name_zh": "双相情感障碍",
@@ -263,6 +289,32 @@
         "min_core": 2,
         "min_total": 4,
         "recurrence_required": true
+      }
+    },
+    "F34": {
+      "name": "Persistent mood disorders",
+      "name_zh": "持續性心境障礙",
+      "category": "mood",
+      "criteria": {
+        "A": {
+          "text": "Long-standing mood disturbance that persists for years rather than a single discrete episode",
+          "text_zh": "心境異常長期持續存在，通常延續數年，而非單一次明確發作",
+          "type": "core"
+        },
+        "B": {
+          "text": "Chronic depressed mood or alternating low mood and mild elation that does not meet full criteria for severe depressive or manic episodes",
+          "text_zh": "長期情緒低落，或在低落與輕度高昂之間反覆波動，但不足以符合完整重鬱或躁狂發作標準",
+          "type": "core"
+        },
+        "C": {
+          "text": "The persistent mood pattern causes continuing distress or impairment in social, academic, or occupational functioning",
+          "text_zh": "此種持續性的心境變化造成長期主觀痛苦，或影響社交、學業或職業功能",
+          "type": "additional"
+        }
+      },
+      "threshold": {
+        "min_core": 1,
+        "min_total": 2
       }
     },
     "F39": {
@@ -547,6 +599,32 @@
         "duration_years": 2
       }
     },
+    "F50": {
+      "name": "Eating disorders",
+      "name_zh": "進食障礙",
+      "category": "eating",
+      "criteria": {
+        "A": {
+          "text": "Persistent disturbance of eating or weight-control behavior such as restriction, binge eating, vomiting, or other compensatory behavior",
+          "text_zh": "持續存在異常進食或控制體重的行為，例如嚴格限制飲食、暴食、催吐或其他代償行為",
+          "type": "core"
+        },
+        "B": {
+          "text": "Excessive concern about body weight or shape, or intense fear of gaining weight",
+          "text_zh": "對體重或體型過度在意，或強烈害怕發胖",
+          "type": "core"
+        },
+        "C": {
+          "text": "Eating disturbance causes marked weight change, nutritional compromise, or clinically significant psychosocial impairment",
+          "text_zh": "進食異常已導致明顯體重改變、營養受損，或造成臨床顯著的心理社會功能損害",
+          "type": "additional"
+        }
+      },
+      "threshold": {
+        "min_core": 1,
+        "min_total": 2
+      }
+    },
     "F51": {
       "name": "Nonorganic sleep disorders",
       "name_zh": "非器质性睡眠障碍",
@@ -793,6 +871,57 @@
       },
       "threshold": {
         "min_total": 1
+      }
+    },
+    "G47": {
+      "name": "Organic sleep disorders",
+      "name_zh": "器質性睡眠障礙",
+      "category": "sleep",
+      "criteria": {
+        "A": {
+          "text": "Persistent disturbance of sleep quantity, quality, timing, or the sleep-wake cycle as a primary complaint",
+          "text_zh": "以睡眠量、睡眠品質、睡眠時相或睡眠－覺醒節律的持續異常作為主要困擾",
+          "type": "core"
+        },
+        "B": {
+          "text": "Sleep problem results in daytime sleepiness, fatigue, cognitive difficulty, or social or occupational impairment",
+          "text_zh": "睡眠問題導致日間嗜睡、疲倦、認知困難，或造成社會與職業功能受損",
+          "type": "additional"
+        },
+        "C": {
+          "text": "Clinical presentation suggests an organic or physiological basis and is not better explained by a nonorganic sleep disorder alone",
+          "text_zh": "臨床表現提示具有器質性或生理性基礎，且不能僅以非器質性睡眠障礙充分解釋",
+          "type": "additional"
+        }
+      },
+      "threshold": {
+        "min_total": 2
+      }
+    },
+    "F90": {
+      "name": "Hyperkinetic disorders",
+      "name_zh": "過動性障礙（ADHD）",
+      "category": "behavioral",
+      "criteria": {
+        "A": {
+          "text": "Symptoms begin in childhood and are evident across more than one setting",
+          "text_zh": "症狀自兒童期起病，且在家庭、學校或其他情境中均可見",
+          "type": "core"
+        },
+        "B": {
+          "text": "Marked inattention and distractibility interfere with sustained tasks or organized activity",
+          "text_zh": "明顯注意力不集中且易受干擾，影響持續專注與有組織的任務表現",
+          "type": "core"
+        },
+        "C": {
+          "text": "Excessive activity, restlessness, or impulsive behavior is inconsistent with developmental level",
+          "text_zh": "過度活動、坐立不安或衝動行為，與其發展年齡明顯不相稱",
+          "type": "core"
+        }
+      },
+      "threshold": {
+        "min_core": 2,
+        "min_total": 2
       }
     }
   }
