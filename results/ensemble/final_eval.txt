@@ -1,0 +1,9 @@
+Final test evaluation
+========================================================================================
+Selected rule: tfidf_only
+TF-IDF only
+MAS alone    : top1=0.5340 f1_macro=0.1997 f1_weighted=0.4572
+TF-IDF alone : top1=0.6080 f1_macro=0.2963 f1_weighted=0.5536
+Ensemble     : top1=0.6080 f1_macro=0.2963 f1_weighted=0.5536
+McNemar vs TF-IDF: p=1.000000 (ensemble_only=0, tfidf_only=0)
+McNemar vs MAS   : p=0.002100 (ensemble_only=87, mas_only=50)

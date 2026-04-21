@@ -1,0 +1,40 @@
+{
+  "selected_rule_name": "tfidf_only",
+  "selected_rule_description": "TF-IDF only",
+  "mas_alone": {
+    "n": 500,
+    "top1": 0.534,
+    "f1_macro": 0.1997278736188619,
+    "f1_weighted": 0.45716938086417386
+  },
+  "tfidf_alone": {
+    "n": 500,
+    "top1": 0.608,
+    "f1_macro": 0.2962954967238543,
+    "f1_weighted": 0.553622796986434
+  },
+  "ensemble": {
+    "n": 500,
+    "top1": 0.608,
+    "f1_macro": 0.2962954967238543,
+    "f1_weighted": 0.553622796986434
+  },
+  "mcnemar": {
+    "ensemble_vs_tfidf": {
+      "p_value": 1.0,
+      "statistic": 0.0,
+      "n_both_correct": 304,
+      "n_ensemble_only": 0,
+      "n_tfidf_only": 0,
+      "n_both_wrong": 196
+    },
+    "ensemble_vs_mas": {
+      "p_value": 0.0021001778601761603,
+      "statistic": 9.459854014598541,
+      "n_both_correct": 217,
+      "n_ensemble_only": 87,
+      "n_mas_only": 50,
+      "n_both_wrong": 146
+    }
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "results": [
+    {
+      "name": "mas_only",
+      "description": "MAS only",
+      "config": null,
+      "dev": {
+        "n": 500,
+        "top1": 0.52,
+        "f1_macro": 0.251092,
+        "f1_weighted": 0.44955
+      },
+      "test": {
+        "n": 500,
+        "top1": 0.534,
+        "f1_macro": 0.199728,
+        "f1_weighted": 0.457169
+      }
+    },
+    {
+      "name": "tfidf_only",
+      "description": "TF-IDF only",
+      "config": null,
+      "dev": {
+        "n": 500,
+        "top1": 0.586,
+        "f1_macro": 0.330454,
+        "f1_weighted": 0.539763
+      },
+      "test": {
+        "n": 500,
+        "top1": 0.608,
+        "f1_macro": 0.296295,
+        "f1_weighted": 0.553623
+      }
+    },
+    {
+      "name": "v1_f32",
+      "description": "MAS on {F32}, TF-IDF otherwise",
+      "config": {
+        "rule": "v1_class_based",
+        "mas_strong_classes": [
+          "F32"
+        ],
+        "tfidf_threshold_high": 0.4
+      },
+      "dev": {
+        "n": 500,
+        "top1": 0.528,
+        "f1_macro": 0.277135,
+        "f1_weighted": 0.476585
+      },
+      "test": {
+        "n": 500,
+        "top1": 0.554,
+        "f1_macro": 0.207477,
+        "f1_weighted": 0.492122
+      }
+    },
+    {
+      "name": "v1_f32_f41",
+      "description": "MAS on {F32,F41}, TF-IDF otherwise",
+      "config": {
+        "rule": "v1_class_based",
+        "mas_strong_classes": [
+          "F32",
+          "F41"
+        ],
+        "tfidf_threshold_high": 0.4
+      },
+      "dev": {
+        "n": 500,
+        "top1": 0.526,
+        "f1_macro": 0.243507,
+        "f1_weighted": 0.448213
+      },
+      "test": {
+        "n": 500,
+        "top1": 0.55,
+        "f1_macro": 0.215683,
+        "f1_weighted": 0.467866
+      }
+    },
+    {
+      "name": "v1_f32_f41_f45",
+      "description": "MAS on {F32,F41,F45}, TF-IDF otherwise",
+      "config": {
+        "rule": "v1_class_based",
+        "mas_strong_classes": [
+          "F32",
+          "F41",
+          "F45"
+        ],
+        "tfidf_threshold_high": 0.4
+      },
+      "dev": {
+        "n": 500,
+        "top1": 0.528,
+        "f1_macro": 0.254604,
+        "f1_weighted": 0.447741
+      },
+      "test": {
+        "n": 500,
+        "top1": 0.55,
+        "f1_macro": 0.212725,
+        "f1_weighted": 0.467174
+      }
+    },
+    {
+      "name": "v1_f32_f41_f42",
+      "description": "MAS on {F32,F41,F42}, TF-IDF otherwise",
+      "config": {
+        "rule": "v1_class_based",
+        "mas_strong_classes": [
+          "F32",
+          "F41",
+          "F42"
+        ],
+        "tfidf_threshold_high": 0.4
+      },
+      "dev": {
+        "n": 500,
+        "top1": 0.522,
+        "f1_macro": 0.241395,
+        "f1_weighted": 0.446581
+      },
+      "test": {
+        "n": 500,
+        "top1": 0.544,
+        "f1_macro": 0.21113,
+        "f1_weighted": 0.464709
+      }
+    },
+    {
+      "name": "v1_f32_f41_f42_f45",
+      "description": "MAS on {F32,F41,F42,F45}, TF-IDF otherwise",
+      "config": {
+        "rule": "v1_class_based",
+        "mas_strong_classes": [
+          "F32",
+          "F41",
+          "F42",
+          "F45"
+        ],
+        "tfidf_threshold_high": 0.4
+      },
+      "dev": {
+        "n": 500,
+        "top1": 0.524,
+        "f1_macro": 0.252489,
+        "f1_weighted": 0.446101
+      },
+      "test": {
+        "n": 500,
+        "top1": 0.544,
+        "f1_macro": 0.2084,
+        "f1_weighted": 0.464097
+      }
+    }
+  ],
+  "winner": {
+    "name": "tfidf_only",
+    "description": "TF-IDF only",
+    "config": null,
+    "dev": {
+      "n": 500,
+      "top1": 0.586,
+      "f1_macro": 0.330454,
+      "f1_weighted": 0.539763
+    },
+    "test": {
+      "n": 500,
+      "top1": 0.608,
+      "f1_macro": 0.296295,
+      "f1_weighted": 0.553623
+    }
+  },
+  "gate_status": "G1 pass"
+}
