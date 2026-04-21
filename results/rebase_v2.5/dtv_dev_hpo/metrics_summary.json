@@ -1,0 +1,57 @@
+{
+  "schema_version": "v1",
+  "run_id": "dtv_dev_hpo",
+  "dataset": "lingxidiag16k",
+  "num_cases": 1000,
+  "metrics": {
+    "comorbidity": {
+      "avg_gold_labels": 1.12348401323043,
+      "avg_predicted_labels": 1.8180815876515988,
+      "comorbidity_detection_f1": 0.1927144535840188,
+      "hamming_accuracy": 0.395350973906652,
+      "label_coverage": 0.6844909959573686,
+      "label_precision": 0.42061742006615216,
+      "subset_accuracy": 0.08820286659316427
+    },
+    "diagnosis": {
+      "accuracy": 0.5997794928335171,
+      "macro_f1": 0.28991685388576377,
+      "overall": 0.5520494327436143,
+      "top1_accuracy": 0.5997794928335171,
+      "top3_accuracy": 0.7078280044101434,
+      "weighted_f1": 0.5629433197551307
+    },
+    "four_class": {
+      "accuracy": 0.358,
+      "macro_f1": 0.2535578698400951,
+      "n_cases": 1000,
+      "weighted_f1": 0.32528248955928735
+    }
+  },
+  "slice_metrics": [
+    {
+      "abstention_rate": 0.0,
+      "num_cases": 385,
+      "slice": "F32",
+      "top1_accuracy": 0.8545454545454545
+    },
+    {
+      "abstention_rate": 0.0,
+      "num_cases": 34,
+      "slice": "F42",
+      "top1_accuracy": 0.5882352941176471
+    },
+    {
+      "abstention_rate": 0.0,
+      "num_cases": 999,
+      "slice": "somatized_expression",
+      "top1_accuracy": 0.5993377483443708
+    },
+    {
+      "abstention_rate": 0.0,
+      "num_cases": 1,
+      "slice": "direct_expression",
+      "top1_accuracy": 1.0
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "diagnosis": {
+    "accuracy": 0.545755237045204,
+    "top1_accuracy": 0.545755237045204,
+    "top3_accuracy": 0.6780595369349504,
+    "macro_f1": 0.21805351469829815,
+    "weighted_f1": 0.5021214715712992,
+    "overall": 0.49794899945899107
+  },
+  "comorbidity": {
+    "hamming_accuracy": 0.3710951855935318,
+    "subset_accuracy": 0.07497243660418963,
+    "comorbidity_detection_f1": 0.1625441696113074,
+    "label_coverage": 0.6530687247335539,
+    "label_precision": 0.3914002205071665,
+    "avg_predicted_labels": 1.8357221609702314,
+    "avg_gold_labels": 1.1003307607497244
+  },
+  "four_class": {
+    "accuracy": 0.357,
+    "macro_f1": 0.25184838296557566,
+    "weighted_f1": 0.3168835681369626,
+    "n_cases": 1000
+  }
+}
