@@ -106,7 +106,6 @@ def train_lr(X: np.ndarray, y_enc: np.ndarray) -> LogisticRegression:
         solver="lbfgs",
         class_weight="balanced",
         max_iter=5000,
-        multi_class="auto",
         random_state=RANDOM_STATE,
     )
     clf.fit(X, y_enc)

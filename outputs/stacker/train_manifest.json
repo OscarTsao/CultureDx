@@ -1,0 +1,26 @@
+{
+  "random_state": 20260420,
+  "n_train": 1000,
+  "n_features": 31,
+  "feature_names_sha256": "50b4eeccf7664d7030b777338b97d875379126004cbfee5cb5f52c58eb193dfd",
+  "training_data_sha256": "e7c637c72c07d1cdd5345dd7f54a5dca0565d4a4a6c220f0d060228253230d6b",
+  "models_trained": [
+    "lr",
+    "lgbm"
+  ],
+  "class_order": [
+    "F20",
+    "F31",
+    "F32",
+    "F39",
+    "F41",
+    "F42",
+    "F43",
+    "F45",
+    "F51",
+    "F98",
+    "Z71",
+    "Others"
+  ],
+  "lr_train_accuracy": 0.576
+}
