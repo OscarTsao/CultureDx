@@ -1,0 +1,404 @@
+{
+  "meta": {
+    "schema_version": "v1",
+    "source_standard": "ICD-10",
+    "target_standard": "DSM-5",
+    "paper_class_count": 12,
+    "subcode_count": 20,
+    "review_status": "NOT_CLINICALLY_VALIDATED",
+    "notes": [
+      "Research-only post-hoc translation table. This mapping does not re-diagnose cases.",
+      "Family-level placeholders such as 296.xx, 296.2x, 296.3x, 309.xx, 327.3x, and Z71.x indicate DSM-5 families or unresolved specifiers.",
+      "Explicitly lossy rows use null DSM-5 codes with fallback_codes for human review."
+    ]
+  },
+  "mappings": {
+    "F20": {
+      "icd10_name_en": "Schizophrenia",
+      "icd10_name_zh": "思覺失調症",
+      "dsm5_code": "295.90",
+      "dsm5_name_en": "Schizophrenia",
+      "dsm5_name_zh": "思覺失調症",
+      "dsm5_category": "Schizophrenia Spectrum and Other Psychotic Disorders",
+      "is_lossy": false,
+      "note": "Direct post-hoc family mapping.",
+      "fallback_codes": []
+    },
+    "F31": {
+      "icd10_name_en": "Bipolar Affective Disorder",
+      "icd10_name_zh": "雙相情感障礙",
+      "dsm5_code": "296.xx",
+      "dsm5_name_en": "Bipolar Disorder",
+      "dsm5_name_zh": "雙相情感障礙",
+      "dsm5_category": "Bipolar and Related Disorders",
+      "is_lossy": false,
+      "note": "Family-level DSM-5 mapping; polarity, remission, and episode specifiers remain unresolved.",
+      "fallback_codes": []
+    },
+    "F32": {
+      "icd10_name_en": "Depressive Episode",
+      "icd10_name_zh": "憂鬱發作",
+      "dsm5_code": "296.2x",
+      "dsm5_name_en": "Major Depressive Disorder, Single Episode",
+      "dsm5_name_zh": "重度憂鬱症單次發作",
+      "dsm5_category": "Depressive Disorders",
+      "is_lossy": false,
+      "note": "Family-level DSM-5 mapping used when episode severity or psychotic specifiers are unavailable.",
+      "fallback_codes": [
+        "296.20",
+        "296.21",
+        "296.22",
+        "296.23",
+        "296.24"
+      ]
+    },
+    "F32.0": {
+      "icd10_name_en": "Mild Depressive Episode",
+      "icd10_name_zh": "輕度憂鬱發作",
+      "dsm5_code": "296.21",
+      "dsm5_name_en": "Major Depressive Disorder, Single Episode, Mild",
+      "dsm5_name_zh": "重度憂鬱症單次發作，輕度",
+      "dsm5_category": "Depressive Disorders",
+      "is_lossy": false,
+      "note": "Severity-matched post-hoc mapping.",
+      "fallback_codes": []
+    },
+    "F32.1": {
+      "icd10_name_en": "Moderate Depressive Episode",
+      "icd10_name_zh": "中度憂鬱發作",
+      "dsm5_code": "296.22",
+      "dsm5_name_en": "Major Depressive Disorder, Single Episode, Moderate",
+      "dsm5_name_zh": "重度憂鬱症單次發作，中度",
+      "dsm5_category": "Depressive Disorders",
+      "is_lossy": false,
+      "note": "Severity-matched post-hoc mapping.",
+      "fallback_codes": []
+    },
+    "F32.2": {
+      "icd10_name_en": "Severe Depressive Episode Without Psychotic Symptoms",
+      "icd10_name_zh": "重度憂鬱發作，無精神病症狀",
+      "dsm5_code": "296.23",
+      "dsm5_name_en": "Major Depressive Disorder, Single Episode, Severe",
+      "dsm5_name_zh": "重度憂鬱症單次發作，重度",
+      "dsm5_category": "Depressive Disorders",
+      "is_lossy": false,
+      "note": "Severity-matched post-hoc mapping.",
+      "fallback_codes": []
+    },
+    "F32.3": {
+      "icd10_name_en": "Severe Depressive Episode With Psychotic Symptoms",
+      "icd10_name_zh": "重度憂鬱發作，具精神病症狀",
+      "dsm5_code": "296.24",
+      "dsm5_name_en": "Major Depressive Disorder, Single Episode, Severe With Psychotic Features",
+      "dsm5_name_zh": "重度憂鬱症單次發作，重度且具精神病特徵",
+      "dsm5_category": "Depressive Disorders",
+      "is_lossy": false,
+      "note": "Severity-matched post-hoc mapping.",
+      "fallback_codes": []
+    },
+    "F32.9": {
+      "icd10_name_en": "Depressive Episode, Unspecified",
+      "icd10_name_zh": "未特定的憂鬱發作",
+      "dsm5_code": "296.20",
+      "dsm5_name_en": "Major Depressive Disorder, Single Episode, Unspecified",
+      "dsm5_name_zh": "重度憂鬱症單次發作，未特定",
+      "dsm5_category": "Depressive Disorders",
+      "is_lossy": false,
+      "note": "Unspecified-episode post-hoc mapping.",
+      "fallback_codes": []
+    },
+    "F33": {
+      "icd10_name_en": "Recurrent Depressive Disorder",
+      "icd10_name_zh": "復發性憂鬱症",
+      "dsm5_code": "296.3x",
+      "dsm5_name_en": "Major Depressive Disorder, Recurrent",
+      "dsm5_name_zh": "重度憂鬱症復發",
+      "dsm5_category": "Depressive Disorders",
+      "is_lossy": false,
+      "note": "Family-level DSM-5 mapping; recurrence is preserved but severity/remission specifiers remain unresolved.",
+      "fallback_codes": []
+    },
+    "F39": {
+      "icd10_name_en": "Unspecified Mood [Affective] Disorder",
+      "icd10_name_zh": "未特定的情感性障礙",
+      "dsm5_code": "311",
+      "dsm5_name_en": "Unspecified Depressive Disorder",
+      "dsm5_name_zh": "未分類的憂鬱症",
+      "dsm5_category": "Depressive Disorders",
+      "is_lossy": false,
+      "note": "Post-hoc mapping follows the paper-class depressive interpretation rather than the broader ICD mood umbrella.",
+      "fallback_codes": []
+    },
+    "F41": {
+      "icd10_name_en": "Other Anxiety Disorders",
+      "icd10_name_zh": "其他焦慮障礙",
+      "dsm5_code": null,
+      "dsm5_name_en": "Anxiety Disorder Family (Subtype Review Required)",
+      "dsm5_name_zh": "焦慮障礙家族（需人工判定亞型）",
+      "dsm5_category": "Anxiety Disorders",
+      "is_lossy": true,
+      "note": "The parent ICD-10 code is broader than any single DSM-5 diagnosis; review the available F41 subcodes or case narrative.",
+      "fallback_codes": [
+        "300.01",
+        "300.02",
+        "300.09",
+        "300.00",
+        "311"
+      ]
+    },
+    "F41.0": {
+      "icd10_name_en": "Panic Disorder [Episodic Paroxysmal Anxiety]",
+      "icd10_name_zh": "恐慌症",
+      "dsm5_code": "300.01",
+      "dsm5_name_en": "Panic Disorder",
+      "dsm5_name_zh": "恐慌症",
+      "dsm5_category": "Anxiety Disorders",
+      "is_lossy": false,
+      "note": "Direct subcode mapping.",
+      "fallback_codes": []
+    },
+    "F41.1": {
+      "icd10_name_en": "Generalized Anxiety Disorder",
+      "icd10_name_zh": "廣泛性焦慮症",
+      "dsm5_code": "300.02",
+      "dsm5_name_en": "Generalized Anxiety Disorder",
+      "dsm5_name_zh": "廣泛性焦慮症",
+      "dsm5_category": "Anxiety Disorders",
+      "is_lossy": false,
+      "note": "Direct subcode mapping.",
+      "fallback_codes": []
+    },
+    "F41.2": {
+      "icd10_name_en": "Mixed Anxiety and Depressive Disorder",
+      "icd10_name_zh": "混合性焦慮與憂鬱障礙",
+      "dsm5_code": null,
+      "dsm5_name_en": "No Direct DSM-5 Equivalent",
+      "dsm5_name_zh": "DSM-5 無直接對應診斷",
+      "dsm5_category": "Anxiety Disorders / Depressive Disorders",
+      "is_lossy": true,
+      "note": "DSM-5 does not define a direct equivalent for ICD-10 mixed anxiety and depressive disorder; human review should consider a dual-label fallback.",
+      "fallback_codes": [
+        "300.00",
+        "311"
+      ]
+    },
+    "F41.8": {
+      "icd10_name_en": "Other Specified Anxiety Disorders",
+      "icd10_name_zh": "其他特定的焦慮障礙",
+      "dsm5_code": "300.09",
+      "dsm5_name_en": "Other Specified Anxiety Disorder",
+      "dsm5_name_zh": "其他特定的焦慮障礙",
+      "dsm5_category": "Anxiety Disorders",
+      "is_lossy": false,
+      "note": "Direct subcode mapping.",
+      "fallback_codes": []
+    },
+    "F41.9": {
+      "icd10_name_en": "Anxiety Disorder, Unspecified",
+      "icd10_name_zh": "未特定的焦慮障礙",
+      "dsm5_code": "300.00",
+      "dsm5_name_en": "Unspecified Anxiety Disorder",
+      "dsm5_name_zh": "未特定的焦慮障礙",
+      "dsm5_category": "Anxiety Disorders",
+      "is_lossy": false,
+      "note": "Direct subcode mapping.",
+      "fallback_codes": []
+    },
+    "F42": {
+      "icd10_name_en": "Obsessive-Compulsive Disorder",
+      "icd10_name_zh": "強迫症",
+      "dsm5_code": "300.3",
+      "dsm5_name_en": "Obsessive-Compulsive Disorder",
+      "dsm5_name_zh": "強迫症",
+      "dsm5_category": "Obsessive-Compulsive and Related Disorders",
+      "is_lossy": false,
+      "note": "Direct post-hoc family mapping.",
+      "fallback_codes": []
+    },
+    "F43": {
+      "icd10_name_en": "Reaction to Severe Stress, and Adjustment Disorders",
+      "icd10_name_zh": "嚴重壓力反應及適應障礙",
+      "dsm5_code": null,
+      "dsm5_name_en": "Trauma- and Stressor-Related Disorder Family",
+      "dsm5_name_zh": "創傷與壓力相關障礙家族",
+      "dsm5_category": "Trauma- and Stressor-Related Disorders",
+      "is_lossy": true,
+      "note": "The parent ICD-10 code spans acute stress, PTSD, and adjustment-disorder presentations; subtype review is required.",
+      "fallback_codes": [
+        "308.3",
+        "309.81",
+        "309.xx"
+      ]
+    },
+    "F43.0": {
+      "icd10_name_en": "Acute Stress Reaction",
+      "icd10_name_zh": "急性壓力反應",
+      "dsm5_code": "308.3",
+      "dsm5_name_en": "Acute Stress Disorder",
+      "dsm5_name_zh": "急性壓力症",
+      "dsm5_category": "Trauma- and Stressor-Related Disorders",
+      "is_lossy": false,
+      "note": "Direct subcode mapping.",
+      "fallback_codes": []
+    },
+    "F43.1": {
+      "icd10_name_en": "Post-Traumatic Stress Disorder",
+      "icd10_name_zh": "創傷後壓力症候群",
+      "dsm5_code": "309.81",
+      "dsm5_name_en": "Posttraumatic Stress Disorder",
+      "dsm5_name_zh": "創傷後壓力症",
+      "dsm5_category": "Trauma- and Stressor-Related Disorders",
+      "is_lossy": false,
+      "note": "Direct subcode mapping.",
+      "fallback_codes": []
+    },
+    "F43.2": {
+      "icd10_name_en": "Adjustment Disorders",
+      "icd10_name_zh": "適應障礙",
+      "dsm5_code": "309.xx",
+      "dsm5_name_en": "Adjustment Disorder",
+      "dsm5_name_zh": "適應障礙",
+      "dsm5_category": "Trauma- and Stressor-Related Disorders",
+      "is_lossy": true,
+      "note": "DSM-5 requires subtype selection for adjustment disorder; this translator preserves only the family-level mapping.",
+      "fallback_codes": [
+        "309.0",
+        "309.24",
+        "309.28",
+        "309.3",
+        "309.4",
+        "309.9"
+      ]
+    },
+    "F45": {
+      "icd10_name_en": "Somatoform Disorders",
+      "icd10_name_zh": "身體化障礙",
+      "dsm5_code": "300.82",
+      "dsm5_name_en": "Somatic Symptom Disorder",
+      "dsm5_name_zh": "身體症狀障礙",
+      "dsm5_category": "Somatic Symptom and Related Disorders",
+      "is_lossy": true,
+      "note": "DSM-5 restructured the older somatoform chapter; this is a concept-level post-hoc mapping rather than a strict one-to-one code conversion.",
+      "fallback_codes": []
+    },
+    "F51": {
+      "icd10_name_en": "Nonorganic Sleep Disorders",
+      "icd10_name_zh": "非器質性睡眠障礙",
+      "dsm5_code": null,
+      "dsm5_name_en": "Sleep-Wake Disorder Family",
+      "dsm5_name_zh": "睡眠-覺醒障礙家族",
+      "dsm5_category": "Sleep-Wake Disorders",
+      "is_lossy": true,
+      "note": "The parent ICD-10 code spans several DSM-5 sleep-wake disorders and requires a subtype review.",
+      "fallback_codes": [
+        "780.52",
+        "780.54",
+        "327.3x",
+        "307.47"
+      ]
+    },
+    "F51.0": {
+      "icd10_name_en": "Nonorganic Insomnia",
+      "icd10_name_zh": "非器質性失眠",
+      "dsm5_code": "780.52",
+      "dsm5_name_en": "Insomnia Disorder",
+      "dsm5_name_zh": "失眠障礙",
+      "dsm5_category": "Sleep-Wake Disorders",
+      "is_lossy": false,
+      "note": "Direct subcode mapping.",
+      "fallback_codes": []
+    },
+    "F51.1": {
+      "icd10_name_en": "Nonorganic Hypersomnia",
+      "icd10_name_zh": "非器質性嗜睡",
+      "dsm5_code": "780.54",
+      "dsm5_name_en": "Hypersomnolence Disorder",
+      "dsm5_name_zh": "嗜睡障礙",
+      "dsm5_category": "Sleep-Wake Disorders",
+      "is_lossy": false,
+      "note": "Direct subcode mapping.",
+      "fallback_codes": []
+    },
+    "F51.2": {
+      "icd10_name_en": "Nonorganic Disorder of the Sleep-Wake Schedule",
+      "icd10_name_zh": "非器質性睡眠-覺醒時程障礙",
+      "dsm5_code": "327.3x",
+      "dsm5_name_en": "Circadian Rhythm Sleep-Wake Disorder",
+      "dsm5_name_zh": "晝夜節律睡眠-覺醒障礙",
+      "dsm5_category": "Sleep-Wake Disorders",
+      "is_lossy": true,
+      "note": "DSM-5 keeps this as a subtype family; the exact circadian subtype remains unresolved.",
+      "fallback_codes": []
+    },
+    "F51.5": {
+      "icd10_name_en": "Nightmares",
+      "icd10_name_zh": "惡夢",
+      "dsm5_code": "307.47",
+      "dsm5_name_en": "Nightmare Disorder",
+      "dsm5_name_zh": "惡夢障礙",
+      "dsm5_category": "Sleep-Wake Disorders",
+      "is_lossy": false,
+      "note": "Direct subcode mapping.",
+      "fallback_codes": []
+    },
+    "F98": {
+      "icd10_name_en": "Behavioural and Emotional Disorders with Onset Usually Occurring in Childhood and Adolescence",
+      "icd10_name_zh": "通常發生於兒童及青少年期的行為與情緒障礙",
+      "dsm5_code": null,
+      "dsm5_name_en": "No Single DSM-5 Equivalent",
+      "dsm5_name_zh": "DSM-5 無單一對應類別",
+      "dsm5_category": "Cross-Chapter DSM-5 Pediatric Conditions",
+      "is_lossy": true,
+      "note": "ICD-10 F98 disperses across multiple DSM-5 chapters; use a reviewed subcode-specific fallback instead of a single translated diagnosis.",
+      "fallback_codes": [
+        "307.6",
+        "307.7",
+        "315.35"
+      ]
+    },
+    "F98.0": {
+      "icd10_name_en": "Nonorganic Enuresis",
+      "icd10_name_zh": "非器質性遺尿",
+      "dsm5_code": "307.6",
+      "dsm5_name_en": "Enuresis",
+      "dsm5_name_zh": "遺尿症",
+      "dsm5_category": "Elimination Disorders",
+      "is_lossy": false,
+      "note": "Direct subcode mapping.",
+      "fallback_codes": []
+    },
+    "F98.1": {
+      "icd10_name_en": "Nonorganic Encopresis",
+      "icd10_name_zh": "非器質性遺糞",
+      "dsm5_code": "307.7",
+      "dsm5_name_en": "Encopresis",
+      "dsm5_name_zh": "遺糞症",
+      "dsm5_category": "Elimination Disorders",
+      "is_lossy": false,
+      "note": "Direct subcode mapping.",
+      "fallback_codes": []
+    },
+    "F98.5": {
+      "icd10_name_en": "Stuttering",
+      "icd10_name_zh": "口吃",
+      "dsm5_code": "315.35",
+      "dsm5_name_en": "Childhood-Onset Fluency Disorder (Stuttering)",
+      "dsm5_name_zh": "兒童期起病語暢症（口吃）",
+      "dsm5_category": "Communication Disorders",
+      "is_lossy": false,
+      "note": "Direct subcode mapping.",
+      "fallback_codes": []
+    },
+    "Z71": {
+      "icd10_name_en": "Persons Encountering Health Services for Other Counseling and Medical Advice, Not Elsewhere Classified",
+      "icd10_name_zh": "因其他未另分類之諮詢與醫療建議而就醫",
+      "dsm5_code": "Z71.x",
+      "dsm5_name_en": "Counseling / Life-Management Problem",
+      "dsm5_name_zh": "諮詢或生活管理問題",
+      "dsm5_category": "Other Conditions That May Be a Focus of Clinical Attention",
+      "is_lossy": false,
+      "note": "DSM-5 keeps related Z-codes as contextual conditions rather than mental-disorder diagnoses.",
+      "fallback_codes": []
+    }
+  }
+}
