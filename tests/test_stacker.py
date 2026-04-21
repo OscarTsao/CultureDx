@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import pickle
 import subprocess
 import sys
 from pathlib import Path
@@ -163,3 +164,82 @@ def test_train_stacker_refuses_test_final_features(tmp_path):
     )
     assert result.returncode != 0, "trainer did not refuse test_final features"
     assert "SAFETY STOP" in (result.stderr + result.stdout)
+
+
+def test_eval_stacker_accepts_label_encoder_order_and_writes_metrics(tmp_path):
+    from sklearn.dummy import DummyClassifier
+    from sklearn.preprocessing import LabelEncoder
+
+    from culturedx.eval.lingxidiag_paper import PAPER_12_CLASSES
+
+    features_path = tmp_path / "features.jsonl"
+    model_path = tmp_path / "stacker_lr.pkl"
+    tfidf_path = tmp_path / "tfidf.jsonl"
+    dtv_path = tmp_path / "dtv.jsonl"
+    out_dir = tmp_path / "eval_out"
+
+    feature_names = ["f0"]
+    feature_rows = [
+        {
+            "case_id": "c1",
+            "eval_split": "test_final",
+            "features": [0.0],
+            "feature_names": feature_names,
+            "gold_parents": ["F32"],
+        },
+        {
+            "case_id": "c2",
+            "eval_split": "test_final",
+            "features": [1.0],
+            "feature_names": feature_names,
+            "gold_parents": ["F41"],
+        },
+    ]
+    with features_path.open("w", encoding="utf-8") as f:
+        for rec in feature_rows:
+            f.write(json.dumps(rec) + "\n")
+
+    le = LabelEncoder()
+    le.fit(PAPER_12_CLASSES)
+    y_train = le.transform(PAPER_12_CLASSES)
+    model = DummyClassifier(strategy="uniform", random_state=0)
+    model.fit([[float(i)] for i in range(len(PAPER_12_CLASSES))], y_train)
+    with model_path.open("wb") as f:
+        pickle.dump({"model": model, "label_encoder": le}, f)
+
+    baseline_rows = [
+        {"case_id": "c1", "primary_diagnosis": "F32"},
+        {"case_id": "c2", "primary_diagnosis": "F41"},
+    ]
+    for path in [tfidf_path, dtv_path]:
+        with path.open("w", encoding="utf-8") as f:
+            for rec in baseline_rows:
+                f.write(json.dumps(rec) + "\n")
+
+    script = ROOT / "scripts" / "stacker" / "eval_stacker.py"
+    env = {"PYTHONPATH": str(ROOT / "src")}
+    import os
+    env.update({k: v for k, v in os.environ.items() if k not in env})
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(script),
+            "--features", str(features_path),
+            "--model", str(model_path),
+            "--tfidf-pred", str(tfidf_path),
+            "--dtv-pred", str(dtv_path),
+            "--out-dir", str(out_dir),
+        ],
+        capture_output=True,
+        text=True,
+        env=env,
+    )
+    if result.returncode != 0:
+        print("STDOUT:", result.stdout, file=sys.stderr)
+        print("STDERR:", result.stderr, file=sys.stderr)
+    assert result.returncode == 0, result.stderr
+
+    metrics = json.loads((out_dir / "metrics.json").read_text(encoding="utf-8"))
+    assert metrics["split"] == "test_final"
+    assert metrics["n"] == 2
+    assert metrics["table4"]["12class_n"] == 2

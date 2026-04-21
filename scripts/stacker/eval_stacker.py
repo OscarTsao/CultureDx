@@ -85,7 +85,7 @@ def _predict_with_model(model_bundle: dict, X: np.ndarray) -> tuple[np.ndarray, 
     """Return (proba 2d array shape (n,12), class_order)."""
     model = model_bundle["model"]
     le = model_bundle["label_encoder"]
-    class_order = list(le.classes_)
+    class_order = [str(label) for label in le.classes_]
 
     # LR or LGBM?
     if hasattr(model, "predict_proba"):
@@ -188,9 +188,11 @@ def main() -> None:
 
     logger.info("Running stacker inference...")
     proba, class_order = _predict_with_model(bundle, X)
-    assert class_order == PAPER_12_CLASSES, (
-        f"class_order mismatch: {class_order} vs PAPER_12_CLASSES"
-    )
+    if set(class_order) != set(PAPER_12_CLASSES):
+        raise RuntimeError(
+            "Model class set mismatch: "
+            f"{class_order} vs expected {PAPER_12_CLASSES}"
+        )
 
     # Per-case prediction records
     stacker_preds: dict[str, dict] = {}
@@ -221,12 +223,16 @@ def main() -> None:
         gold = gold_map[cid]
         case_dicts.append({
             "case_id": cid,
+            "DiagnosisCode": ",".join(gold),
             "diagnoses": gold,
             "diagnosis_code_full": ",".join(gold),
             "four_class_label": None,
         })
-    def get_stacker_pred(cid: str) -> dict | None:
-        return stacker_preds.get(cid)
+    def get_stacker_pred(case: dict) -> list[str]:
+        rec = stacker_preds.get(case["case_id"])
+        if rec is None:
+            return []
+        return [rec["primary_diagnosis"]] + rec.get("comorbid_diagnoses", [])
 
     logger.info("Computing Table-4 metrics...")
     table4 = compute_table4_metrics(case_dicts, get_stacker_pred)

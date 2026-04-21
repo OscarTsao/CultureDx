@@ -1,0 +1,100 @@
+{
+  "split": "test_final",
+  "n": 1000,
+  "stacker_model": "outputs/stacker/stacker_lr.pkl",
+  "table4": {
+    "2class_Acc": 0.5545977011494253,
+    "2class_F1_macro": 0.6437030148895885,
+    "2class_F1_weighted": 0.6421719845792062,
+    "4class_Acc": 0.614,
+    "4class_F1_macro": 0.4738914545703339,
+    "4class_F1_weighted": 0.6056890804597701,
+    "12class_Acc": 0.438,
+    "12class_Top1": 0.538,
+    "12class_Top3": 0.581,
+    "12class_F1_macro": 0.3596150726394971,
+    "12class_F1_weighted": 0.5578932897453961,
+    "2class_n": 696,
+    "4class_n": 1000,
+    "12class_n": 1000,
+    "Overall": 0.5462328725484743
+  },
+  "top1_stacker": {
+    "mean": 0.538,
+    "ci95": [
+      0.506,
+      0.567
+    ]
+  },
+  "top3_stacker": {
+    "mean": 0.887,
+    "ci95": [
+      0.866,
+      0.906
+    ]
+  },
+  "top1_tfidf_baseline": {
+    "mean": 0.611,
+    "ci95": [
+      0.579,
+      0.638
+    ]
+  },
+  "top1_dtv_baseline": {
+    "mean": 0.339,
+    "ci95": [
+      0.309,
+      0.369
+    ]
+  },
+  "mcnemar_stacker_vs_tfidf_p": 4.910627932872281e-07,
+  "mcnemar_stacker_vs_dtv_p": 9.848660117439946e-26,
+  "bootstrap_config": {
+    "n_resamples": 1000,
+    "seed": 20260420
+  },
+  "feature_importance": {
+    "top10_influential_features": [
+      {
+        "name": "tfidf_p__F39",
+        "summed_abs_coef": 15.8749
+      },
+      {
+        "name": "tfidf_p__Others",
+        "summed_abs_coef": 15.0555
+      },
+      {
+        "name": "tfidf_p__F98",
+        "summed_abs_coef": 14.8592
+      },
+      {
+        "name": "tfidf_p__F32",
+        "summed_abs_coef": 13.076
+      },
+      {
+        "name": "tfidf_p__F43",
+        "summed_abs_coef": 12.5309
+      },
+      {
+        "name": "tfidf_p__F42",
+        "summed_abs_coef": 11.4797
+      },
+      {
+        "name": "tfidf_p__F31",
+        "summed_abs_coef": 10.743
+      },
+      {
+        "name": "dtv_checker_mr__F20",
+        "summed_abs_coef": 10.1695
+      },
+      {
+        "name": "tfidf_p__F45",
+        "summed_abs_coef": 9.793
+      },
+      {
+        "name": "tfidf_p__F41",
+        "summed_abs_coef": 9.661
+      }
+    ]
+  }
+}

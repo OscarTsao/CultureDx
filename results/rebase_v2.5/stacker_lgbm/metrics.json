@@ -1,0 +1,56 @@
+{
+  "split": "test_final",
+  "n": 1000,
+  "stacker_model": "outputs/stacker/stacker_lgbm.pkl",
+  "table4": {
+    "2class_Acc": 0.6853448275862069,
+    "2class_F1_macro": 0.6970933000501821,
+    "2class_F1_weighted": 0.6964659132404796,
+    "4class_Acc": 0.649,
+    "4class_F1_macro": 0.5178095757222705,
+    "4class_F1_weighted": 0.6516908543277516,
+    "12class_Acc": 0.535,
+    "12class_Top1": 0.612,
+    "12class_Top3": 0.642,
+    "12class_F1_macro": 0.33441714656398963,
+    "12class_F1_weighted": 0.5726872501765499,
+    "2class_n": 696,
+    "4class_n": 1000,
+    "12class_n": 1000,
+    "Overall": 0.5994098970606755
+  },
+  "top1_stacker": {
+    "mean": 0.612,
+    "ci95": [
+      0.58195,
+      0.640025
+    ]
+  },
+  "top3_stacker": {
+    "mean": 0.925,
+    "ci95": [
+      0.908,
+      0.941
+    ]
+  },
+  "top1_tfidf_baseline": {
+    "mean": 0.611,
+    "ci95": [
+      0.579,
+      0.638
+    ]
+  },
+  "top1_dtv_baseline": {
+    "mean": 0.339,
+    "ci95": [
+      0.309,
+      0.369
+    ]
+  },
+  "mcnemar_stacker_vs_tfidf_p": 0.9999999999999999,
+  "mcnemar_stacker_vs_dtv_p": 2.5006226741024746e-45,
+  "bootstrap_config": {
+    "n_resamples": 1000,
+    "seed": 20260420
+  }
+}
