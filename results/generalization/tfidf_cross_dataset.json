@@ -1,0 +1,243 @@
+{
+  "paper_classes": [
+    "F20",
+    "F31",
+    "F32",
+    "F39",
+    "F41",
+    "F42",
+    "F43",
+    "F45",
+    "F51",
+    "F98",
+    "Z71",
+    "Others"
+  ],
+  "model": {
+    "tfidf": {
+      "max_features": 10000,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "min_df": 2,
+      "max_df": 0.95,
+      "analyzer": "char_wb",
+      "sublinear_tf": true
+    },
+    "classifier": {
+      "type": "OneVsRestClassifier(LogisticRegression)",
+      "class_weight": "balanced",
+      "max_iter": 2000,
+      "solver": "lbfgs",
+      "comorbid_threshold": 0.3
+    }
+  },
+  "split_notes": {
+    "lingxidiag16k": {
+      "train_split": "data/raw/lingxidiag16k/data/train-00000-of-00001.parquet",
+      "test_split": "data/raw/lingxidiag16k/data/validation-00000-of-00001.parquet"
+    },
+    "mdd5k": {
+      "source_root": "data/raw/mdd5k_repo",
+      "strategy": "deterministic_stratified_primary_parent",
+      "seed": 42,
+      "test_size": 0.2,
+      "stratify_label": "gold_labels[0]"
+    }
+  },
+  "datasets": {
+    "lingxidiag16k_train": {
+      "size": 14000,
+      "label_counts": {
+        "F20": 68,
+        "F31": 123,
+        "F32": 5301,
+        "F39": 884,
+        "F41": 5607,
+        "F42": 488,
+        "F43": 191,
+        "F45": 188,
+        "F51": 759,
+        "F98": 577,
+        "Z71": 138,
+        "Others": 1163
+      }
+    },
+    "lingxidiag16k_test": {
+      "size": 1000,
+      "label_counts": {
+        "F20": 5,
+        "F31": 9,
+        "F32": 370,
+        "F39": 63,
+        "F41": 394,
+        "F42": 36,
+        "F43": 15,
+        "F45": 16,
+        "F51": 43,
+        "F98": 47,
+        "Z71": 8,
+        "Others": 85
+      }
+    },
+    "mdd5k_train": {
+      "size": 740,
+      "label_counts": {
+        "F20": 2,
+        "F31": 9,
+        "F32": 328,
+        "F39": 52,
+        "F41": 274,
+        "F42": 17,
+        "F43": 8,
+        "F45": 8,
+        "F51": 21,
+        "F98": 24,
+        "Z71": 6,
+        "Others": 38
+      }
+    },
+    "mdd5k_test": {
+      "size": 185,
+      "label_counts": {
+        "F20": 1,
+        "F31": 2,
+        "F32": 82,
+        "F39": 13,
+        "F41": 65,
+        "F42": 4,
+        "F43": 1,
+        "F45": 1,
+        "F51": 7,
+        "F98": 6,
+        "Z71": 2,
+        "Others": 9
+      }
+    }
+  },
+  "results": {
+    "lingxidiag16k__lingxidiag16k": {
+      "train_dataset": "lingxidiag16k",
+      "test_dataset": "lingxidiag16k",
+      "metrics": {
+        "2class_Acc": 0.7124735729386892,
+        "2class_F1_macro": 0.7411899082877011,
+        "2class_F1_weighted": 0.7670970400057785,
+        "4class_Acc": 0.491,
+        "4class_F1_macro": 0.4820801097245185,
+        "4class_F1_weighted": 0.4787261662294047,
+        "12class_Acc": 0.053,
+        "12class_Top1": 0.61,
+        "12class_Top3": 0.829,
+        "12class_F1_macro": 0.3520672256564315,
+        "12class_F1_weighted": 0.5851426797551113,
+        "2class_n": 473,
+        "4class_n": 1000,
+        "12class_n": 1000,
+        "Overall": 0.5547069729634213
+      },
+      "predictions_path": "results/generalization/tfidf/train_lingxidiag16k_test_lingxidiag16k/predictions.jsonl"
+    },
+    "lingxidiag16k__mdd5k": {
+      "train_dataset": "lingxidiag16k",
+      "test_dataset": "mdd5k",
+      "metrics": {
+        "2class_Acc": 0.0,
+        "2class_F1_macro": 0.0,
+        "2class_F1_weighted": 0.0,
+        "4class_Acc": 0.21621621621621623,
+        "4class_F1_macro": 0.08888888888888889,
+        "4class_F1_weighted": 0.07687687687687689,
+        "12class_Acc": 0.0,
+        "12class_Top1": 0.04864864864864865,
+        "12class_Top3": 0.08108108108108109,
+        "12class_F1_macro": 0.0223991789095588,
+        "12class_F1_weighted": 0.013059057840648803,
+        "2class_n": 102,
+        "4class_n": 185,
+        "12class_n": 185,
+        "Overall": 0.04974272258744721
+      },
+      "predictions_path": "results/generalization/tfidf/train_lingxidiag16k_test_mdd5k/predictions.jsonl"
+    },
+    "mdd5k__lingxidiag16k": {
+      "train_dataset": "mdd5k",
+      "test_dataset": "lingxidiag16k",
+      "metrics": {
+        "2class_Acc": 0.642706131078224,
+        "2class_F1_macro": 0.6357941834451901,
+        "2class_F1_weighted": 0.6789013909975359,
+        "4class_Acc": 0.356,
+        "4class_F1_macro": 0.3492996927542782,
+        "4class_F1_weighted": 0.3577548757951103,
+        "12class_Acc": 0.017,
+        "12class_Top1": 0.485,
+        "12class_Top3": 0.695,
+        "12class_F1_macro": 0.14077082174797984,
+        "12class_F1_weighted": 0.4327649590658937,
+        "2class_n": 473,
+        "4class_n": 1000,
+        "12class_n": 1000,
+        "Overall": 0.4355447322622011
+      },
+      "predictions_path": "results/generalization/tfidf/train_mdd5k_test_lingxidiag16k/predictions.jsonl"
+    },
+    "mdd5k__mdd5k": {
+      "train_dataset": "mdd5k",
+      "test_dataset": "mdd5k",
+      "metrics": {
+        "2class_Acc": 0.8431372549019608,
+        "2class_F1_macro": 0.8126159554730983,
+        "2class_F1_weighted": 0.8611444577831132,
+        "4class_Acc": 0.4810810810810811,
+        "4class_F1_macro": 0.49095430016482644,
+        "4class_F1_weighted": 0.4810365333836173,
+        "12class_Acc": 0.016216216216216217,
+        "12class_Top1": 0.6918918918918919,
+        "12class_Top3": 0.8864864864864865,
+        "12class_F1_macro": 0.30088083429131923,
+        "12class_F1_weighted": 0.5861561527194753,
+        "2class_n": 102,
+        "4class_n": 185,
+        "12class_n": 185,
+        "Overall": 0.5865091967630078
+      },
+      "predictions_path": "results/generalization/tfidf/train_mdd5k_test_mdd5k/predictions.jsonl"
+    }
+  },
+  "matrix_overall": {
+    "lingxidiag16k": {
+      "lingxidiag16k": 0.5547069729634213,
+      "mdd5k": 0.04974272258744721
+    },
+    "mdd5k": {
+      "lingxidiag16k": 0.4355447322622011,
+      "mdd5k": 0.5865091967630078
+    }
+  },
+  "matrix_12class_top1": {
+    "lingxidiag16k": {
+      "lingxidiag16k": 0.61,
+      "mdd5k": 0.04864864864864865
+    },
+    "mdd5k": {
+      "lingxidiag16k": 0.485,
+      "mdd5k": 0.6918918918918919
+    }
+  },
+  "matrix_12class_f1_macro": {
+    "lingxidiag16k": {
+      "lingxidiag16k": 0.3520672256564315,
+      "mdd5k": 0.0223991789095588
+    },
+    "mdd5k": {
+      "lingxidiag16k": 0.14077082174797984,
+      "mdd5k": 0.30088083429131923
+    }
+  },
+  "degradation_overall": {
+    "lingxidiag16k_in_to_mdd5k_out_overall_drop": 0.5049642503759741,
+    "mdd5k_in_to_lingxidiag16k_out_overall_drop": 0.15096446450080675
+  }
+}
