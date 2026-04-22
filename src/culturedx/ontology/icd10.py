@@ -1,50 +1,50 @@
 """ICD-10 diagnostic criteria definitions and lookup."""
 from __future__ import annotations
 
-import copy
-import json
-from pathlib import Path
+from typing import Any
 
-_CRITERIA_PATH = Path(__file__).parent / "data" / "icd10_criteria.json"
-_CACHE: dict | None = None
+from culturedx.ontology.standards import (
+    DiagnosticStandard,
+    _clear_cache as _clear_standard_cache,
+    _load_standard_blob,
+    get_disorder_criteria as _get_disorder_entry,
+    get_disorder_name as _get_disorder_name,
+    get_disorder_threshold as _get_disorder_threshold,
+    list_disorders as _list_disorders,
+    load_criteria as _load_criteria,
+)
 
 
-def _load() -> dict:
-    global _CACHE
-    if _CACHE is None:
-        with open(_CRITERIA_PATH, encoding="utf-8") as f:
-            _CACHE = json.load(f)
-    return _CACHE
+def _load() -> dict[str, Any]:
+    return _load_standard_blob(DiagnosticStandard.ICD10)
 
 
 def load_criteria() -> dict:
     """Return the full disorder-keyed criteria dict (deep copy for safety)."""
-    return copy.deepcopy(_load()["disorders"])
+    return _load_criteria(DiagnosticStandard.ICD10)
 
 
 def list_disorders() -> list[str]:
     """Return all disorder codes."""
-    return list(_load()["disorders"].keys())
+    return _list_disorders(DiagnosticStandard.ICD10)
 
 
 def get_disorder_criteria(disorder_code: str) -> dict | None:
     """Return criteria dict for a disorder, or None if not found."""
-    disorders = _load()["disorders"]
-    disorder = disorders.get(disorder_code)
+    disorder = _get_disorder_entry(disorder_code, DiagnosticStandard.ICD10)
     if disorder is None:
         return None
-    return copy.deepcopy(disorder.get("criteria"))
+    criteria = disorder.get("criteria")
+    if criteria is None:
+        return None
+    return criteria
 
 
 def get_criterion_text(
     disorder_code: str, criterion_id: str, language: str = "en"
 ) -> str | None:
     """Return criterion text in the specified language, or None."""
-    disorders = _load()["disorders"]
-    disorder = disorders.get(disorder_code)
-    if disorder is None:
-        return None
-    criteria = disorder.get("criteria")
+    criteria = get_disorder_criteria(disorder_code)
     if criteria is None or criterion_id not in criteria:
         return None
     key = "text_zh" if language == "zh" else "text"
@@ -53,23 +53,18 @@ def get_criterion_text(
 
 def get_disorder_name(disorder_code: str, language: str = "en") -> str | None:
     """Return disorder name in the specified language, or None."""
-    disorders = _load()["disorders"]
-    if disorder_code not in disorders:
-        return None
-    key = "name_zh" if language == "zh" else "name"
-    return disorders[disorder_code].get(key)
+    return _get_disorder_name(
+        disorder_code,
+        DiagnosticStandard.ICD10,
+        lang=language,
+    )
 
 
 def get_disorder_threshold(disorder_code: str) -> dict:
     """Return the threshold dict for a disorder, or {} if not found."""
-    disorders = _load()["disorders"]
-    disorder = disorders.get(disorder_code)
-    if disorder is None:
-        return {}
-    return copy.deepcopy(disorder.get("threshold", {}))
+    return _get_disorder_threshold(disorder_code, DiagnosticStandard.ICD10)
 
 
 def _clear_cache() -> None:
     """Clear module cache (for testing only)."""
-    global _CACHE
-    _CACHE = None
+    _clear_standard_cache()
