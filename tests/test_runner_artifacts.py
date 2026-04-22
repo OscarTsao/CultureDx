@@ -104,6 +104,12 @@ class TestRunnerArtifacts:
         prediction = json.loads((tmp_path / "run" / "predictions.jsonl").read_text(encoding="utf-8").splitlines()[0])
         assert prediction["schema_version"] == "v1"
         assert prediction["case_id"] == "runner-001"
+        assert prediction["reasoning_standard"] == "icd10"
+        assert prediction["dsm5_criteria_version"] is None
+        assert prediction["primary_diagnosis"] == "F32"
+        assert prediction["primary_diagnosis_icd10"] == "F32"
+        assert prediction["primary_diagnosis_dsm5"] is None
+        assert prediction["dual_standard_meta"] is None
         assert prediction["candidate_disorders"] == ["F32", "F41.1"]
         assert "diagnosis_total" in prediction["stage_timings"]
 

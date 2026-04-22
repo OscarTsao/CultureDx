@@ -71,6 +71,11 @@ class PredictionRecord:
     dataset: str = ""
     gold_diagnoses: list[str] = field(default_factory=list)
     primary_diagnosis: str | None = None
+    reasoning_standard: str | None = None
+    dsm5_criteria_version: str | None = None
+    primary_diagnosis_icd10: str | None = None
+    primary_diagnosis_dsm5: str | None = None
+    dual_standard_meta: dict[str, Any] | None = None
     comorbid_diagnoses: list[str] = field(default_factory=list)
     confidence: float = 0.0
     decision: str = ""
@@ -140,6 +145,11 @@ def build_prediction_record(
         dataset=case.dataset,
         gold_diagnoses=list(case.diagnoses),
         primary_diagnosis=result.primary_diagnosis,
+        reasoning_standard=getattr(result, "reasoning_standard", None) or "icd10",
+        dsm5_criteria_version=getattr(result, "dsm5_criteria_version", None),
+        primary_diagnosis_icd10=result.primary_diagnosis,
+        primary_diagnosis_dsm5=getattr(result, "primary_diagnosis_dsm5", None),
+        dual_standard_meta=getattr(result, "dual_standard_meta", None),
         comorbid_diagnoses=list(result.comorbid_diagnoses),
         confidence=result.confidence,
         decision=result.decision,
