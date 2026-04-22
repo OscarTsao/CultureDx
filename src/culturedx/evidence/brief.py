@@ -7,14 +7,23 @@ from culturedx.core.models import (
     EvidenceBrief,
     SymptomSpan,
 )
-from culturedx.ontology.icd10 import get_disorder_name
+from culturedx.ontology.standards import (
+    DiagnosticStandard,
+    get_disorder_name,
+    normalize_standard,
+)
 
 
 class EvidenceBriefAssembler:
     """Assemble an EvidenceBrief from matched evidence."""
 
-    def __init__(self, min_confidence: float = 0.1) -> None:
+    def __init__(
+        self,
+        min_confidence: float = 0.1,
+        standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
+    ) -> None:
         self.min_confidence = min_confidence
+        self.standard = normalize_standard(standard)
 
     def assemble(
         self,
@@ -55,7 +64,10 @@ class EvidenceBriefAssembler:
                         s.mapping_source for s in ce.spans
                         if s.mapping_source is not None
                     ]
-                name = get_disorder_name(disorder_code, language) or disorder_code
+                name = (
+                    get_disorder_name(disorder_code, self.standard, lang=language)
+                    or disorder_code
+                )
                 disorder_evidence.append(
                     DisorderEvidence(
                         disorder_code=disorder_code,

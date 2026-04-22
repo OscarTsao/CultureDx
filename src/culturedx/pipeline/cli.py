@@ -112,6 +112,7 @@ def run(
             llm_client=llm,
             retriever=retriever,
             target_disorders=cfg.mode.target_disorders,
+            reasoning_standard=cfg.mode.reasoning_standard,
             scope_policy=evidence_scope_policy,
             somatization_enabled=cfg.evidence.somatization.enabled,
             somatization_mode=cfg.evidence.somatization.mode,
@@ -148,6 +149,7 @@ def run(
         mode_kwargs = dict(
             llm_client=llm,
             target_disorders=cfg.mode.target_disorders,
+            reasoning_standard=cfg.mode.reasoning_standard,
             scope_policy=cfg.mode.scope_policy,
             execution_mode=cfg.mode.execution_mode,
             diagnose_then_verify=cfg.mode.diagnose_then_verify,
@@ -371,6 +373,7 @@ def sweep(
             mode_kwargs = dict(
                 llm_client=llm,
                 target_disorders=condition.target_disorders,
+                reasoning_standard=cfg.mode.reasoning_standard,
                 scope_policy=cfg.mode.scope_policy,
                 execution_mode=cfg.mode.execution_mode,
                 diagnose_then_verify=cfg.mode.diagnose_then_verify,
@@ -413,6 +416,7 @@ def sweep(
                 llm_client=llm,
                 retriever=shared_retriever,
                 target_disorders=condition.target_disorders or cfg.mode.target_disorders,
+                reasoning_standard=cfg.mode.reasoning_standard,
                 scope_policy=evidence_scope_policy,
                 somatization_enabled=condition.with_somatization,
                 somatization_mode=cfg.evidence.somatization.mode,

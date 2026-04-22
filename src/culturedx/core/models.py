@@ -172,6 +172,11 @@ class DiagnosisResult:
     routing_mode: ExecutionMode | str = "auto"
     scope_policy: ScopePolicy | str = "auto"
     candidate_disorders: list[str] = field(default_factory=list)
+    reasoning_standard: str | None = None
+    dsm5_criteria_version: str | None = None
+    primary_diagnosis_dsm5: str | None = None
+    dsm5_evidence_trace: dict[str, Any] | None = None
+    dual_standard_meta: dict[str, Any] | None = None
     decision_trace: dict[str, Any] | None = None
     stage_timings: dict[str, float] = field(default_factory=dict)
     failure: FailureInfo | None = None

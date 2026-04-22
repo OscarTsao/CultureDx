@@ -1,4 +1,4 @@
-"""Triage agent: classifies cases into broad ICD-10 categories."""
+"""Triage agent: classifies cases into broad diagnostic categories."""
 from __future__ import annotations
 
 import logging
@@ -7,24 +7,26 @@ from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
 
 from culturedx.agents.base import AgentInput, AgentOutput, BaseAgent
-from culturedx.llm.json_utils import extract_json_from_response
 from culturedx.agents.triage_routing import (
     CATEGORY_DISORDERS,
     load_calibration_artifact,
     normalize_triage_categories,
     route_triage_categories,
 )
+from culturedx.llm.json_utils import extract_json_from_response
+from culturedx.ontology.standards import DiagnosticStandard, normalize_standard
 
 logger = logging.getLogger(__name__)
 
 
 class TriageAgent(BaseAgent):
-    """Classifies cases into broad ICD-10 chapter F categories."""
+    """Classifies cases into broad chapter-F categories."""
 
     def __init__(
         self,
         llm_client,
         prompts_dir: str | Path = "prompts/agents",
+        standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
         confidence_threshold: float = 0.7,
         max_categories: int = 3,
         activation_threshold: float = 0.2,
@@ -32,6 +34,7 @@ class TriageAgent(BaseAgent):
     ) -> None:
         self.llm = llm_client
         self.prompts_dir = Path(prompts_dir)
+        self.standard = normalize_standard(standard)
         self._env = Environment(
             loader=FileSystemLoader(str(self.prompts_dir)),
             keep_trailing_newline=True,
@@ -60,6 +63,26 @@ class TriageAgent(BaseAgent):
                 self._calibration_fallback_reason,
             )
 
+    def _resolve_standard(self, input: AgentInput) -> DiagnosticStandard:
+        extra = input.extra or {}
+        return normalize_standard(extra.get("standard", self.standard))
+
+    def _select_template_name(
+        self,
+        template_name: str,
+        standard: DiagnosticStandard,
+        language: str,
+    ) -> str:
+        if standard != DiagnosticStandard.DSM5 or language != "zh":
+            return template_name
+        suffix = "_zh.jinja"
+        if not template_name.endswith(suffix):
+            return template_name
+        candidate = f"{template_name[:-len(suffix)]}_dsm5{suffix}"
+        if (self.prompts_dir / candidate).exists():
+            return candidate
+        return template_name
+
     def run(self, input: AgentInput) -> AgentOutput:
         """Classify case into broad categories.
 
@@ -73,6 +96,7 @@ class TriageAgent(BaseAgent):
             evidence_summary = input.evidence.get("evidence_summary")
 
         # Render prompt (with optional CoT variant)
+        standard = self._resolve_standard(input)
         prompt_variant = (input.extra or {}).get("prompt_variant", "")
         if prompt_variant == "v2" and input.language == "zh":
             template_name = "triage_v2_cot_zh.jinja"
@@ -80,6 +104,7 @@ class TriageAgent(BaseAgent):
             template_name = "triage_cot_zh.jinja"
         else:
             template_name = f"triage_{input.language}.jinja"
+        template_name = self._select_template_name(template_name, standard, input.language)
         template = self._env.get_template(template_name)
         # Pass demographic/chief complaint info if available in extra
         extra = input.extra or {}

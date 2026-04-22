@@ -1,4 +1,4 @@
-"""Criterion checker agent: evaluates ICD-10 criteria for a single disorder."""
+"""Criterion checker agent: evaluates criteria for a single disorder."""
 from __future__ import annotations
 
 import logging
@@ -9,7 +9,13 @@ from jinja2 import Environment, FileSystemLoader
 from culturedx.agents.base import AgentInput, AgentOutput, BaseAgent
 from culturedx.core.models import CriterionResult
 from culturedx.llm.json_utils import extract_json_from_response
-from culturedx.ontology.icd10 import get_disorder_criteria, get_disorder_name, get_disorder_threshold
+from culturedx.ontology.standards import (
+    DiagnosticStandard,
+    get_disorder_criteria,
+    get_disorder_name,
+    get_disorder_threshold,
+    normalize_standard,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -65,9 +71,9 @@ CHECKER_JSON_SCHEMA = {
 
 
 class CriterionCheckerAgent(BaseAgent):
-    """Per-disorder ICD-10 criterion evaluation agent.
+    """Per-disorder criterion evaluation agent.
 
-    Evaluates whether a clinical transcript meets the ICD-10 diagnostic criteria
+    Evaluates whether a clinical transcript meets the active diagnostic criteria
     for a specific disorder, producing structured CheckerOutput with criterion-level
     met/unmet decisions and confidence scores.
     """
@@ -76,13 +82,51 @@ class CriterionCheckerAgent(BaseAgent):
         self,
         llm_client,
         prompts_dir: str | Path = "prompts/agents",
+        standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
     ) -> None:
         self.llm = llm_client
         self.prompts_dir = Path(prompts_dir)
+        self.standard = normalize_standard(standard)
         self._env = Environment(
             loader=FileSystemLoader(str(self.prompts_dir)),
             keep_trailing_newline=True,
         )
+
+    def _resolve_standard(self, input: AgentInput) -> DiagnosticStandard:
+        extra = input.extra or {}
+        return normalize_standard(extra.get("standard", self.standard))
+
+    def _select_template_name(
+        self,
+        template_name: str,
+        standard: DiagnosticStandard,
+        language: str,
+    ) -> str:
+        if standard != DiagnosticStandard.DSM5 or language != "zh":
+            return template_name
+        suffix = "_zh.jinja"
+        if not template_name.endswith(suffix):
+            return template_name
+        candidate = f"{template_name[:-len(suffix)]}_dsm5{suffix}"
+        if (self.prompts_dir / candidate).exists():
+            return candidate
+        return template_name
+
+    @staticmethod
+    def _clip_text_middle(text: str, max_chars: int) -> str:
+        """Head/tail trim already-formatted transcript text to a char budget."""
+        if len(text) <= max_chars:
+            return text
+        head_budget = int(max_chars * 0.6)
+        tail_budget = max_chars - head_budget
+        marker = "\n[...对话中间部分省略 / middle turns omitted...]\n"
+        return text[:head_budget] + marker + text[-tail_budget:]
+
+    def _max_prompt_chars(self) -> int:
+        context_window = int(getattr(self.llm, "context_window", None) or 16384)
+        max_tokens = int(getattr(self.llm, "max_tokens", 2048) or 2048)
+        input_budget_tokens = max(768, context_window - max_tokens - 512)
+        return int(input_budget_tokens * 1.8)
 
     def run(self, input: AgentInput) -> AgentOutput:
         """Evaluate criteria for a disorder specified in input.extra['disorder_code']."""
@@ -91,12 +135,18 @@ class CriterionCheckerAgent(BaseAgent):
             logger.error("No disorder_code in input.extra")
             return AgentOutput(raw_response="", parsed=None)
 
-        criteria = get_disorder_criteria(disorder_code)
+        standard = self._resolve_standard(input)
+        disorder = get_disorder_criteria(disorder_code, standard)
+        criteria = disorder.get("criteria") if disorder else None
         if criteria is None:
             logger.warning("Unknown disorder code: %s", disorder_code)
             return AgentOutput(raw_response="", parsed=None)
 
-        disorder_name = get_disorder_name(disorder_code, input.language) or disorder_code
+        disorder_name = get_disorder_name(
+            disorder_code,
+            standard,
+            lang=input.language,
+        ) or disorder_code
 
         # Build evidence summary from input.evidence if provided
         evidence_summary = None
@@ -120,6 +170,7 @@ class CriterionCheckerAgent(BaseAgent):
             template_name = "criterion_checker_cot_zh.jinja"
         else:
             template_name = f"criterion_checker_{input.language}.jinja"
+        template_name = self._select_template_name(template_name, standard, input.language)
 
         # Graceful fallback: if the selected template isn't available,
         # fall back to the best available variant instead of raising
@@ -131,16 +182,35 @@ class CriterionCheckerAgent(BaseAgent):
                 "Template %s not found for %s (%s): falling back to v2_zh",
                 template_name, disorder_code, e,
             )
-            template_name = "criterion_checker_v2_zh.jinja" if input.language == "zh" else f"criterion_checker_{input.language}.jinja"
+            template_name = (
+                "criterion_checker_v2_zh.jinja"
+                if input.language == "zh"
+                else f"criterion_checker_{input.language}.jinja"
+            )
+            template_name = self._select_template_name(template_name, standard, input.language)
             template = self._env.get_template(template_name)
+        transcript_text = input.transcript_text
         prompt = template.render(
             disorder_code=disorder_code,
             disorder_name=disorder_name,
             criteria=criteria,
-            transcript_text=input.transcript_text,
+            transcript_text=transcript_text,
             evidence_summary=evidence_summary,
             temporal_summary=temporal_summary,
         )
+        max_prompt_chars = self._max_prompt_chars()
+        if len(prompt) > max_prompt_chars:
+            overflow = len(prompt) - max_prompt_chars
+            clipped_chars = max(1400, len(transcript_text) - overflow - 256)
+            transcript_text = self._clip_text_middle(transcript_text, clipped_chars)
+            prompt = template.render(
+                disorder_code=disorder_code,
+                disorder_name=disorder_name,
+                criteria=criteria,
+                transcript_text=transcript_text,
+                evidence_summary=evidence_summary,
+                temporal_summary=temporal_summary,
+            )
 
         source, _, _ = self._env.loader.get_source(self._env, template_name)
         prompt_hash = self.llm.compute_prompt_hash(source)
@@ -158,7 +228,12 @@ class CriterionCheckerAgent(BaseAgent):
 
         # Parse response
         parsed = extract_json_from_response(raw)
-        checker_output = self._parse_checker_output(disorder_code, criteria, parsed)
+        checker_output = self._parse_checker_output(
+            disorder_code,
+            criteria,
+            parsed,
+            standard=standard,
+        )
 
         return AgentOutput(
             raw_response=raw,
@@ -168,7 +243,11 @@ class CriterionCheckerAgent(BaseAgent):
         )
 
     def _parse_checker_output(
-        self, disorder_code: str, criteria: dict, parsed: dict | list | None
+        self,
+        disorder_code: str,
+        criteria: dict,
+        parsed: dict | list | None,
+        standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
     ) -> dict:
         """Parse LLM JSON response into CheckerOutput-compatible dict."""
         results = []
@@ -201,7 +280,7 @@ class CriterionCheckerAgent(BaseAgent):
         met_count = sum(1 for r in results if r.status == "met")
 
         # Get threshold info for criteria_required
-        threshold = get_disorder_threshold(disorder_code)
+        threshold = get_disorder_threshold(disorder_code, standard)
         required = _compute_required(disorder_code, criteria, threshold)
 
         return {

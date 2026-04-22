@@ -31,12 +31,21 @@ from culturedx.diagnosis.calibrator import ConfidenceCalibrator
 from culturedx.diagnosis.comorbidity import ComorbidityResolver
 from culturedx.diagnosis.logic_engine import DiagnosticLogicEngine
 from culturedx.modes.base import BaseModeOrchestrator
-from culturedx.ontology.icd10 import get_disorder_name
+from culturedx.ontology.standards import (
+    DiagnosticStandard,
+    get_disorder_criteria,
+    get_disorder_name,
+    get_standard_version,
+    list_disorders,
+    normalize_standard,
+    paper_parent_icd10,
+)
 
 logger = logging.getLogger(__name__)
 
 SUPPORTED_SCOPE_POLICIES = frozenset({"auto", "manual", "triage", "all_supported"})
 SUPPORTED_EXECUTION_MODES = frozenset({"auto", "benchmark_manual_scope", "production_open_set"})
+SUPPORTED_REASONING_STANDARDS = frozenset({"icd10", "dsm5", "both"})
 
 
 class HiEDMode(BaseModeOrchestrator):
@@ -53,6 +62,7 @@ class HiEDMode(BaseModeOrchestrator):
         prompts_dir: str | Path = "prompts/agents",
         checker_llm_client=None,
         target_disorders: list[str] | None = None,
+        reasoning_standard: str = "icd10",
         scope_policy: str = "auto",
         execution_mode: str = "auto",
         diagnose_then_verify: bool = False,
@@ -89,6 +99,27 @@ class HiEDMode(BaseModeOrchestrator):
         self.diagnose_then_verify = diagnose_then_verify
         self.prompt_variant = prompt_variant
         self.force_prediction = force_prediction
+        normalized_reasoning_standard = str(reasoning_standard).strip().lower()
+        if normalized_reasoning_standard not in SUPPORTED_REASONING_STANDARDS:
+            raise ValueError(
+                f"Unsupported reasoning_standard {reasoning_standard!r}; "
+                f"expected one of {sorted(SUPPORTED_REASONING_STANDARDS)}"
+            )
+        self.reasoning_standard = normalized_reasoning_standard
+        if self.reasoning_standard == "both":
+            self._standards = [
+                DiagnosticStandard.ICD10,
+                DiagnosticStandard.DSM5,
+            ]
+        else:
+            self._standards = [normalize_standard(self.reasoning_standard)]
+        self._primary_standard = self._standards[0]
+        if DiagnosticStandard.DSM5 in self._standards:
+            logger.warning(
+                "DSM-5 reasoning is enabled with unverified criteria draft %s; "
+                "supplementary outputs should be treated as experimental.",
+                get_standard_version(DiagnosticStandard.DSM5),
+            )
 
         # Stage 0.5: Stress event detector (optional, T1-F43TRIG)
         self.stress_detection_enabled = stress_detection_enabled
@@ -115,18 +146,30 @@ class HiEDMode(BaseModeOrchestrator):
         self.execution_mode = execution_mode
 
         # Stage 1: Triage
-        self.triage = TriageAgent(llm_client, prompts_dir)
+        self.triage = TriageAgent(
+            llm_client,
+            prompts_dir,
+            standard=self._primary_standard,
+        )
 
         # Stage 1.5: Diagnostician (optional DtV path)
         if self.diagnose_then_verify:
             from culturedx.agents.diagnostician import DiagnosticianAgent
 
-            self.diagnostician = DiagnosticianAgent(llm_client, prompts_dir)
+            self.diagnostician = DiagnosticianAgent(
+                llm_client,
+                prompts_dir,
+                standard=self._primary_standard,
+            )
         else:
             self.diagnostician = None
 
         # Stage 2: Criterion Checkers (one per disorder, reuse single agent)
-        self.checker = CriterionCheckerAgent(self.checker_llm, prompts_dir)
+        self.checker = CriterionCheckerAgent(
+            self.checker_llm,
+            prompts_dir,
+            standard=self._primary_standard,
+        )
 
         # Stage 2.5: Contrastive disambiguation (optional)
         self.contrastive_enabled = contrastive_enabled
@@ -141,12 +184,13 @@ class HiEDMode(BaseModeOrchestrator):
             self.contrastive = ContrastiveCheckerAgent(llm_client, prompts_dir)
 
         # Stage 3: Logic Engine (deterministic)
-        self.logic_engine = DiagnosticLogicEngine()
+        self.logic_engine = DiagnosticLogicEngine(standard=self._primary_standard)
 
         # Stage 4: Calibrator (statistical)
         self.calibrator = ConfidenceCalibrator(
             abstain_threshold=abstain_threshold,
             comorbid_threshold=comorbid_threshold,
+            standard=self._primary_standard,
             mode=calibrator_mode,
             artifact_path=calibrator_artifact_path,
             force_prediction=force_prediction,
@@ -170,6 +214,86 @@ class HiEDMode(BaseModeOrchestrator):
     def _effective_checker_variant(self) -> str:
         """Return checker prompt variant, falling back to main prompt_variant."""
         return self._checker_prompt_variant or self.prompt_variant
+
+    @staticmethod
+    def _build_dsm5_evidence_trace(result: DiagnosisResult) -> dict[str, object]:
+        """Extract a compact DSM-5 supplementary trace for dual-standard outputs."""
+        return {
+            "decision": result.decision,
+            "candidate_disorders": list(result.candidate_disorders),
+            "decision_trace": result.decision_trace or {},
+            "stage_timings": dict(result.stage_timings),
+            "failures": [
+                {
+                    "code": failure.code,
+                    "stage": failure.stage,
+                    "message": failure.message,
+                    "recoverable": failure.recoverable,
+                    "details": dict(failure.details),
+                }
+                for failure in result.failures
+            ],
+        }
+
+    def _annotate_reasoning_result(
+        self,
+        result: DiagnosisResult,
+        standard: DiagnosticStandard,
+    ) -> DiagnosisResult:
+        """Populate standard-specific metadata on a result object."""
+        result.reasoning_standard = standard.value
+        if standard == DiagnosticStandard.DSM5:
+            result.dsm5_criteria_version = get_standard_version(standard)
+            result.primary_diagnosis_dsm5 = result.primary_diagnosis
+            result.dsm5_evidence_trace = self._build_dsm5_evidence_trace(result)
+        return result
+
+    def _merge_dual_standard_results(
+        self,
+        icd10_result: DiagnosisResult,
+        dsm5_result: DiagnosisResult,
+    ) -> DiagnosisResult:
+        """Attach DSM-5 supplementary outputs onto the ICD-10 primary result."""
+        icd10_parent = paper_parent_icd10(icd10_result.primary_diagnosis)
+        dsm5_parent = paper_parent_icd10(dsm5_result.primary_diagnosis)
+        agreement = (
+            None
+            if icd10_parent is None or dsm5_parent is None
+            else icd10_parent == dsm5_parent
+        )
+        icd10_result.reasoning_standard = "both"
+        icd10_result.dsm5_criteria_version = get_standard_version(DiagnosticStandard.DSM5)
+        icd10_result.primary_diagnosis_dsm5 = dsm5_result.primary_diagnosis
+        icd10_result.dsm5_evidence_trace = self._build_dsm5_evidence_trace(dsm5_result)
+        icd10_result.dual_standard_meta = {
+            "icd10": {
+                "primary_diagnosis": icd10_result.primary_diagnosis,
+                "comorbid_diagnoses": list(icd10_result.comorbid_diagnoses),
+                "decision": icd10_result.decision,
+                "paper_parent": icd10_parent,
+            },
+            "dsm5": {
+                "primary_diagnosis": dsm5_result.primary_diagnosis,
+                "comorbid_diagnoses": list(dsm5_result.comorbid_diagnoses),
+                "decision": dsm5_result.decision,
+                "paper_parent": dsm5_parent,
+                "confidence": dsm5_result.confidence,
+                "criteria_version": dsm5_result.dsm5_criteria_version,
+            },
+            "paper_parent_agreement": agreement,
+        }
+        icd10_result.decision_trace = {
+            **(icd10_result.decision_trace or {}),
+            "dual_standard": {
+                "dsm5_primary_diagnosis": dsm5_result.primary_diagnosis,
+                "paper_parent_agreement": agreement,
+            },
+        }
+        icd10_result.stage_timings = {
+            **icd10_result.stage_timings,
+            "dual_standard_dsm5_total": dsm5_result.stage_timings.get("total", 0.0),
+        }
+        return icd10_result
 
     def _build_triage_extra(self, case, prompt_variant: str) -> dict:
         """Build triage extra dict, gated by triage_metadata_fields config."""
@@ -215,6 +339,7 @@ class HiEDMode(BaseModeOrchestrator):
         *,
         case: ClinicalCase,
         lang: str,
+        standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
         checker_outputs: list[CheckerOutput],
         evidence: EvidenceBrief | None,
         candidate_codes: list[str],
@@ -238,6 +363,7 @@ class HiEDMode(BaseModeOrchestrator):
                 checker_outputs=checker_outputs,
                 evidence=evidence,
                 scale_scores=case.scale_scores,
+                standard=standard,
             )
             if cal_output.primary is not None:
                 all_calibrated = [cal_output.primary] + cal_output.comorbid
@@ -357,12 +483,46 @@ class HiEDMode(BaseModeOrchestrator):
     def diagnose(
         self, case: ClinicalCase, evidence: EvidenceBrief | None = None
     ) -> DiagnosisResult:
+        """Execute the configured reasoning standard(s) for one case."""
+        if self.reasoning_standard == "both":
+            icd10_result = self._annotate_reasoning_result(
+                self._diagnose_single_standard(
+                    case,
+                    evidence=evidence,
+                    standard=DiagnosticStandard.ICD10,
+                ),
+                DiagnosticStandard.ICD10,
+            )
+            dsm5_result = self._annotate_reasoning_result(
+                self._diagnose_single_standard(
+                    case,
+                    evidence=evidence,
+                    standard=DiagnosticStandard.DSM5,
+                ),
+                DiagnosticStandard.DSM5,
+            )
+            return self._merge_dual_standard_results(icd10_result, dsm5_result)
+
+        standard = self._primary_standard
+        return self._annotate_reasoning_result(
+            self._diagnose_single_standard(case, evidence=evidence, standard=standard),
+            standard,
+        )
+
+    def _diagnose_single_standard(
+        self,
+        case: ClinicalCase,
+        evidence: EvidenceBrief | None = None,
+        *,
+        standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
+    ) -> DiagnosisResult:
         """Execute one case through the staged HiED pipeline.
 
         The method keeps stage timings, routing semantics, candidate disorder
         scope, and failure reasons visible in the returned ``DiagnosisResult``
         so downstream evaluation and review tooling can audit the path taken.
         """
+        resolved_standard = normalize_standard(standard)
         case_start = time.monotonic()
         stage_timings: dict[str, float] = {}
         try:
@@ -422,9 +582,7 @@ class HiEDMode(BaseModeOrchestrator):
                 "HiED manual scope mode: using %d target disorders", len(candidate_codes)
             )
         elif scope_policy == "all_supported":
-            from culturedx.ontology.icd10 import list_disorders
-
-            candidate_codes = list_disorders()
+            candidate_codes = list_disorders(resolved_standard)
             decision_trace["triage"] = {
                 "used": False,
                 "reason": "all_supported_scope",
@@ -438,7 +596,10 @@ class HiEDMode(BaseModeOrchestrator):
                 transcript_text=transcript_text,
                 evidence={"evidence_summary": self._build_global_evidence_summary(evidence)} if evidence else None,
                 language=lang,
-                extra=self._build_triage_extra(case, self.prompt_variant),
+                extra={
+                    **self._build_triage_extra(case, self.prompt_variant),
+                    "standard": resolved_standard.value,
+                },
             )
             triage_output = self.triage.run(triage_input)
             stage_timings["triage"] = time.monotonic() - triage_start
@@ -483,6 +644,7 @@ class HiEDMode(BaseModeOrchestrator):
                 return self._force_prediction_result(
                     case=case,
                     lang=lang,
+                    standard=resolved_standard,
                     checker_outputs=[],
                     evidence=evidence,
                     candidate_codes=[],
@@ -517,6 +679,7 @@ class HiEDMode(BaseModeOrchestrator):
                 evidence=evidence,
                 evidence_map=evidence_map,
                 candidate_codes=candidate_codes,
+                standard=resolved_standard,
                 routing_mode=routing_mode,
                 scope_policy=scope_policy,
                 decision_trace=decision_trace,
@@ -533,6 +696,7 @@ class HiEDMode(BaseModeOrchestrator):
             transcript_text=transcript_text,
             evidence_map=evidence_map,
             lang=lang,
+            standard=resolved_standard,
             include_per_disorder_variants=True,
         )
         stage_timings["checker_fanout"] = time.monotonic() - checker_start
@@ -547,6 +711,7 @@ class HiEDMode(BaseModeOrchestrator):
                 return self._force_prediction_result(
                     case=case,
                     lang=lang,
+                    standard=resolved_standard,
                     checker_outputs=[],
                     evidence=evidence,
                     candidate_codes=candidate_codes,
@@ -575,7 +740,10 @@ class HiEDMode(BaseModeOrchestrator):
         if self.contrastive_enabled and self.contrastive is not None:
             contrastive_start = time.monotonic()
             checker_outputs = self._run_contrastive(
-                checker_outputs, transcript_text, lang,
+                checker_outputs,
+                transcript_text,
+                lang,
+                standard=resolved_standard,
             )
             stage_timings["contrastive"] = time.monotonic() - contrastive_start
 
@@ -627,7 +795,10 @@ class HiEDMode(BaseModeOrchestrator):
 
         # === Stage 3: Logic Engine (deterministic) ===
         logic_start = time.monotonic()
-        logic_output = self.logic_engine.evaluate(checker_outputs)
+        logic_output = self.logic_engine.evaluate(
+            checker_outputs,
+            standard=resolved_standard,
+        )
         stage_timings["logic_engine"] = time.monotonic() - logic_start
 
         if not logic_output.confirmed:
@@ -642,6 +813,7 @@ class HiEDMode(BaseModeOrchestrator):
                 return self._force_prediction_result(
                     case=case,
                     lang=lang,
+                    standard=resolved_standard,
                     checker_outputs=checker_outputs,
                     evidence=evidence,
                     candidate_codes=candidate_codes,
@@ -691,6 +863,7 @@ class HiEDMode(BaseModeOrchestrator):
             evidence=evidence,
             confirmation_types=confirmation_types,
             scale_scores=case.scale_scores,
+            standard=resolved_standard,
         )
         stage_timings["calibrator"] = time.monotonic() - calibrator_start
 
@@ -704,6 +877,7 @@ class HiEDMode(BaseModeOrchestrator):
                 return self._force_prediction_result(
                     case=case,
                     lang=lang,
+                    standard=resolved_standard,
                     checker_outputs=checker_outputs,
                     evidence=evidence,
                     candidate_codes=candidate_codes,
@@ -768,7 +942,12 @@ class HiEDMode(BaseModeOrchestrator):
                     case.case_id, gap, self.differential_threshold,
                 )
                 diff_result = self._run_differential(
-                    case, checker_outputs, logic_output, lang, transcript_text,
+                    case,
+                    checker_outputs,
+                    logic_output,
+                    lang,
+                    transcript_text,
+                    standard=resolved_standard,
                 )
                 stage_timings["differential"] = time.monotonic() - differential_start
                 if diff_result is not None:
@@ -911,6 +1090,7 @@ class HiEDMode(BaseModeOrchestrator):
         evidence: EvidenceBrief | None,
         evidence_map: dict,
         candidate_codes: list[str],
+        standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
         routing_mode: str,
         scope_policy: str,
         decision_trace: dict[str, object],
@@ -919,6 +1099,7 @@ class HiEDMode(BaseModeOrchestrator):
         case_start: float,
     ) -> DiagnosisResult:
         """Diagnose-then-Verify: holistic ranking followed by checker verification."""
+        resolved_standard = normalize_standard(standard)
         full_transcript = self._build_transcript_text(
             case,
             max_chars=self._default_transcript_char_budget(
@@ -927,7 +1108,7 @@ class HiEDMode(BaseModeOrchestrator):
             ),
         )
         disorder_names = {
-            code: get_disorder_name(code, lang) or code
+            code: get_disorder_name(code, resolved_standard, lang=lang) or code
             for code in candidate_codes
         }
 
@@ -980,6 +1161,7 @@ class HiEDMode(BaseModeOrchestrator):
                 "disorder_names": disorder_names,
                 "similar_cases": similar_cases,
                 "prompt_variant": self.prompt_variant,
+                "standard": resolved_standard.value,
             },
         )
         diag_output = self.diagnostician.run(diag_input)
@@ -1052,6 +1234,7 @@ class HiEDMode(BaseModeOrchestrator):
             transcript_text=transcript_text,
             evidence_map=evidence_map,
             lang=lang,
+            standard=resolved_standard,
             include_per_disorder_variants=True,
         )
         stage_timings["checker_verify"] = time.monotonic() - checker_start
@@ -1064,6 +1247,7 @@ class HiEDMode(BaseModeOrchestrator):
                 transcript_text=transcript_text,
                 evidence_map=evidence_map,
                 lang=lang,
+                standard=resolved_standard,
                 include_per_disorder_variants=False,
             )
             stage_timings["checker_remaining"] = time.monotonic() - remaining_start
@@ -1131,7 +1315,10 @@ class HiEDMode(BaseModeOrchestrator):
             ]
             logic_output = LogicEngineOutput(confirmed=confirmed, rejected=[])
         else:
-            logic_output = self.logic_engine.evaluate(all_checker_outputs)
+            logic_output = self.logic_engine.evaluate(
+                all_checker_outputs,
+                standard=resolved_standard,
+            )
         confirmed_set = set(logic_output.confirmed_codes)
 
         # Compute met_ratios once, used by both primary selection and logging
@@ -1347,6 +1534,7 @@ class HiEDMode(BaseModeOrchestrator):
         evidence_map,
         lang: str,
         include_per_disorder_variants: bool,
+        standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
     ) -> list[CheckerOutput]:
         """Route to real checker OR synthesize all-criteria-met CheckerOutputs.
 
@@ -1358,13 +1546,14 @@ class HiEDMode(BaseModeOrchestrator):
         ranking — isolating the checker's contribution to Top-1 accuracy.
         Used by both non-DtV (Stage 2) and DtV (verify + remaining) code paths.
         """
+        resolved_standard = normalize_standard(standard)
         if getattr(self, "_bypass_checker", False):
             from culturedx.core.models import CriterionResult
-            from culturedx.ontology.icd10 import get_disorder_criteria
 
             outputs = []
             for code in codes:
-                criteria_def = get_disorder_criteria(code)
+                disorder = get_disorder_criteria(code, resolved_standard)
+                criteria_def = disorder.get("criteria") if disorder else None
                 if not criteria_def:
                     continue
                 crit_ids = list(criteria_def.keys())
@@ -1405,6 +1594,7 @@ class HiEDMode(BaseModeOrchestrator):
             transcript_text,
             evidence_map,
             lang,
+            resolved_standard.value,
         ]
         call_kwargs = {
             "prompt_variant": self._effective_checker_variant,
@@ -1419,6 +1609,7 @@ class HiEDMode(BaseModeOrchestrator):
         checker_outputs: list[CheckerOutput],
         transcript_text: str,
         lang: str,
+        standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
     ) -> list[CheckerOutput]:
         """Stage 2.5: Contrastive disambiguation of shared criteria."""
         from itertools import combinations
@@ -1470,11 +1661,14 @@ class HiEDMode(BaseModeOrchestrator):
             return checker_outputs
 
         # Collect disorder names for prompt
+        resolved_standard = normalize_standard(standard)
         disorder_names = {}
         for pair in all_shared_pairs:
             for code in (pair.disorder_a, pair.disorder_b):
                 if code not in disorder_names:
-                    disorder_names[code] = get_disorder_name(code, lang) or code
+                    disorder_names[code] = (
+                        get_disorder_name(code, resolved_standard, lang=lang) or code
+                    )
 
         # Call contrastive agent
         agent_input = AgentInput(
@@ -1537,14 +1731,16 @@ class HiEDMode(BaseModeOrchestrator):
         logic_output,
         lang: str,
         transcript_text: str,
+        standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
     ) -> DiagnosisResult | None:
         """Run differential diagnosis to disambiguate close-confidence disorders."""
+        resolved_standard = normalize_standard(standard)
         confirmed_set = set(logic_output.confirmed_codes)
         confirmed_checker_outputs = [
             co for co in checker_outputs if co.disorder in confirmed_set
         ]
         disorder_names = {
-            code: get_disorder_name(code, lang) or code
+            code: get_disorder_name(code, resolved_standard, lang=lang) or code
             for code in confirmed_set
         }
         diff_input = AgentInput(

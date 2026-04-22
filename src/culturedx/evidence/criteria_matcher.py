@@ -16,7 +16,12 @@ from culturedx.evidence.normalization import (
 from culturedx.evidence.retriever import BaseRetriever, RetrievalResult
 from culturedx.evidence.somatization import resolve_symptom_concept
 from culturedx.evidence.negation import NegationDetector
-from culturedx.ontology.icd10 import get_disorder_criteria, get_criterion_text
+from culturedx.ontology.standards import (
+    DiagnosticStandard,
+    get_criterion_text,
+    get_disorder_criteria,
+    normalize_standard,
+)
 
 _SOMATIZATION_BOOST = 0.15
 _CONTRADICTION_NEGATION_PENALTY = 0.20
@@ -129,6 +134,7 @@ class CriteriaMatcher:
     def __init__(
         self,
         retriever: BaseRetriever,
+        standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
         top_k: int = 10,
         min_score: float = 0.1,
         reranker: EvidenceReranker | None = None,
@@ -136,6 +142,7 @@ class CriteriaMatcher:
         negation_mode: str = "clause-rule",
     ) -> None:
         self.retriever = retriever
+        self.standard = normalize_standard(standard)
         self.top_k = top_k
         self.min_score = min_score
         self.reranker = reranker
@@ -175,7 +182,8 @@ class CriteriaMatcher:
         somatization_map: dict[str, list[str]] | None = None,
     ) -> list[CriterionEvidence]:
         """Match all criteria for a disorder. Returns list of CriterionEvidence."""
-        criteria = get_disorder_criteria(disorder_code)
+        disorder = get_disorder_criteria(disorder_code, self.standard)
+        criteria = disorder.get("criteria") if disorder else None
         if criteria is None:
             return []
 
@@ -183,7 +191,10 @@ class CriteriaMatcher:
         for crit_id in criteria:
             full_id = f"{disorder_code}.{crit_id}"
             crit_text = get_criterion_text(
-                disorder_code, crit_id, language=language
+                disorder_code,
+                crit_id,
+                self.standard,
+                language=language,
             )
             if crit_text is None:
                 continue
@@ -214,12 +225,18 @@ class CriteriaMatcher:
         """Match all criteria for multiple disorders with batch retrieval."""
         query_infos: list[tuple[str, str, str, dict]] = []
         for dc in disorder_codes:
-            criteria = get_disorder_criteria(dc)
+            disorder = get_disorder_criteria(dc, self.standard)
+            criteria = disorder.get("criteria") if disorder else None
             if criteria is None:
                 continue
             for crit_id in criteria:
                 full_id = f"{dc}.{crit_id}"
-                crit_text = get_criterion_text(dc, crit_id, language=language)
+                crit_text = get_criterion_text(
+                    dc,
+                    crit_id,
+                    self.standard,
+                    language=language,
+                )
                 if crit_text:
                     query_infos.append((dc, full_id, crit_text, criteria.get(crit_id, {})))
 

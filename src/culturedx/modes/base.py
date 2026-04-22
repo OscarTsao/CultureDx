@@ -227,6 +227,7 @@ class BaseModeOrchestrator(ABC):
         transcript_text: str,
         evidence_map: dict[str, str | dict[str, str]],
         lang: str,
+        standard: str = "icd10",
         prompt_variant: str = "",
         per_disorder_variants: dict[str, str] | None = None,
         checker_llm_client=None,
@@ -245,7 +246,6 @@ class BaseModeOrchestrator(ABC):
 
         from culturedx.agents.base import AgentInput
         from culturedx.core.models import CheckerOutput
-        from culturedx.ontology.icd10 import get_disorder_name
 
         active_checker_llm = (
             checker_llm_client
@@ -289,6 +289,7 @@ class BaseModeOrchestrator(ABC):
                 language=lang,
                 extra={
                     "disorder_code": disorder_code,
+                    "standard": standard,
                     "prompt_variant": effective_variant,
                 },
             )

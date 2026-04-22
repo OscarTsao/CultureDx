@@ -40,6 +40,7 @@ class EvidenceBriefCache:
         somatization_enabled: bool,
         scope_policy: str,
         retriever_type: str = "",
+        reasoning_standard: str = "icd10",
     ) -> str:
         """Compute hash of evidence config for cache key."""
         key_data = {
@@ -47,6 +48,7 @@ class EvidenceBriefCache:
             "somatization": somatization_enabled,
             "scope": scope_policy,
             "retriever": retriever_type,
+            "reasoning_standard": reasoning_standard,
         }
         raw = json.dumps(key_data, sort_keys=True)
         return hashlib.sha256(raw.encode()).hexdigest()[:16]

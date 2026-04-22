@@ -17,6 +17,7 @@ from culturedx.evidence.extractor import SymptomExtractor
 from culturedx.evidence.retriever import BaseRetriever
 from culturedx.evidence.somatization import SomatizationMapper
 from culturedx.evidence.temporal import TemporalFeatures, extract_temporal_features
+from culturedx.ontology.standards import DiagnosticStandard, list_disorders, normalize_standard
 
 logger = logging.getLogger(__name__)
 
@@ -37,6 +38,7 @@ class EvidencePipeline:
         llm_client,
         retriever: BaseRetriever,
         target_disorders: list[str] | None = None,
+        reasoning_standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
         scope_policy: str = "auto",
         extractor_enabled: bool = True,
         somatization_enabled: bool = True,
@@ -53,6 +55,7 @@ class EvidencePipeline:
         self.llm = llm_client
         self.retriever = retriever
         self.target_disorders = list(target_disorders) if target_disorders is not None else None
+        self.standard = normalize_standard(reasoning_standard)
         if scope_policy not in SUPPORTED_SCOPE_POLICIES:
             raise ValueError(
                 f"Unsupported evidence scope policy {scope_policy!r}; "
@@ -85,6 +88,7 @@ class EvidencePipeline:
 
         self._matcher = CriteriaMatcher(
             retriever=retriever,
+            standard=self.standard,
             top_k=top_k,
             min_score=min_confidence,
             reranker=ConceptOverlapReranker() if rerank_enabled else None,
@@ -92,7 +96,8 @@ class EvidencePipeline:
             negation_mode=negation_mode,
         )
         self._assembler = EvidenceBriefAssembler(
-            min_confidence=min_confidence
+            min_confidence=min_confidence,
+            standard=self.standard,
         )
         self._brief_cache = brief_cache
         self._brief_cache_cfg_hash = ""
@@ -103,6 +108,7 @@ class EvidencePipeline:
                 somatization_enabled=somatization_enabled,
                 scope_policy=scope_policy,
                 retriever_type=type(retriever).__name__,
+                reasoning_standard=self.standard.value,
             )
 
     def extract(
@@ -354,9 +360,7 @@ class EvidencePipeline:
             return scope_policy, self._dedupe_codes(configured)
 
         if scope_policy == "all_supported":
-            from culturedx.ontology.icd10 import list_disorders
-
-            return scope_policy, self._dedupe_codes(list_disorders())
+            return scope_policy, self._dedupe_codes(list_disorders(self.standard))
 
         raise ValueError(f"unsupported evidence scope policy {scope_policy!r}")
 

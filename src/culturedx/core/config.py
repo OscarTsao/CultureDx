@@ -36,6 +36,7 @@ class ModeConfig(BaseModel):
     type: str = "single"
     variants: list[str] | None = None
     target_disorders: list[str] | None = None
+    reasoning_standard: str = "icd10"
     scope_policy: str = "auto"
     execution_mode: str = "auto"
     diagnose_then_verify: bool = False

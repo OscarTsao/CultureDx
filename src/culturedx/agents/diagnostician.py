@@ -8,6 +8,11 @@ from jinja2 import Environment, FileSystemLoader
 
 from culturedx.agents.base import AgentInput, AgentOutput, BaseAgent
 from culturedx.llm.json_utils import extract_json_from_response
+from culturedx.ontology.standards import (
+    DiagnosticStandard,
+    get_disorder_criteria,
+    normalize_standard,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -51,13 +56,65 @@ class DiagnosticianAgent(BaseAgent):
         self,
         llm_client,
         prompts_dir: str | Path = "prompts/agents",
+        standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
     ) -> None:
         self.llm = llm_client
         self.prompts_dir = Path(prompts_dir)
+        self.standard = normalize_standard(standard)
         self._env = Environment(
             loader=FileSystemLoader(str(self.prompts_dir)),
             keep_trailing_newline=True,
         )
+
+    def _resolve_standard(self, input: AgentInput) -> DiagnosticStandard:
+        extra = input.extra or {}
+        return normalize_standard(extra.get("standard", self.standard))
+
+    def _select_template_name(
+        self,
+        template_name: str,
+        standard: DiagnosticStandard,
+        language: str,
+    ) -> str:
+        if standard != DiagnosticStandard.DSM5 or language != "zh":
+            return template_name
+        suffix = "_zh.jinja"
+        if not template_name.endswith(suffix):
+            return template_name
+        candidate = f"{template_name[:-len(suffix)]}_dsm5{suffix}"
+        if (self.prompts_dir / candidate).exists():
+            return candidate
+        return template_name
+
+    @staticmethod
+    def _build_disorder_descriptions(
+        candidate_disorders: list[str],
+        standard: DiagnosticStandard,
+        language: str,
+    ) -> dict[str, str]:
+        if standard == DiagnosticStandard.ICD10:
+            return DISORDER_DESCRIPTIONS
+
+        descriptions: dict[str, str] = {}
+        zh = language == "zh"
+        for code in candidate_disorders:
+            disorder = get_disorder_criteria(code, standard)
+            if disorder is None:
+                continue
+            if zh:
+                description = (
+                    disorder.get("source_note_zh")
+                    or disorder.get("dsm5_reasoning_fallback_zh")
+                    or disorder.get("name_zh")
+                )
+            else:
+                description = (
+                    disorder.get("source_note")
+                    or disorder.get("dsm5_reasoning_fallback")
+                    or disorder.get("name")
+                )
+            descriptions[code] = str(description or code)
+        return descriptions
 
     @staticmethod
     def _clip_text_middle(text: str, max_chars: int) -> str:
@@ -80,6 +137,7 @@ class DiagnosticianAgent(BaseAgent):
         extra = input.extra or {}
         candidate_disorders = list(extra.get("candidate_disorders", []))
         disorder_names = dict(extra.get("disorder_names", {}))
+        standard = self._resolve_standard(input)
 
         prompt_variant = extra.get("prompt_variant", "")
         if prompt_variant == "v2_somatization" and input.language == "zh":
@@ -90,15 +148,21 @@ class DiagnosticianAgent(BaseAgent):
             template_name = "diagnostician_v2_zh.jinja"
         else:
             template_name = f"diagnostician_{input.language}.jinja"
+        template_name = self._select_template_name(template_name, standard, input.language)
         template = self._env.get_template(template_name)
         # Pass similar cases if available (from CaseRetriever)
         similar_cases = extra.get("similar_cases", None)
+        disorder_descriptions = self._build_disorder_descriptions(
+            candidate_disorders,
+            standard,
+            input.language,
+        )
         transcript_text = input.transcript_text
         prompt = template.render(
             transcript_text=transcript_text,
             candidate_disorders=candidate_disorders,
             disorder_names=disorder_names,
-            disorder_descriptions=DISORDER_DESCRIPTIONS,
+            disorder_descriptions=disorder_descriptions,
             similar_cases=similar_cases,
         )
         max_prompt_chars = self._max_prompt_chars()
@@ -110,7 +174,7 @@ class DiagnosticianAgent(BaseAgent):
                 transcript_text=transcript_text,
                 candidate_disorders=candidate_disorders,
                 disorder_names=disorder_names,
-                disorder_descriptions=DISORDER_DESCRIPTIONS,
+                disorder_descriptions=disorder_descriptions,
                 similar_cases=similar_cases,
             )
 

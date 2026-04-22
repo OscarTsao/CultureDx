@@ -1,7 +1,7 @@
 """Deterministic Diagnostic Logic Engine — no LLM.
 
-Applies ICD-10 threshold rules to CheckerOutput to determine
-which disorders meet diagnostic criteria.
+Applies diagnostic-standard threshold rules to CheckerOutput to determine
+which disorders meet criteria.
 """
 from __future__ import annotations
 
@@ -9,7 +9,12 @@ import logging
 from dataclasses import dataclass, field
 
 from culturedx.core.models import CheckerOutput, CriterionResult
-from culturedx.ontology.icd10 import get_disorder_criteria, get_disorder_threshold
+from culturedx.ontology.standards import (
+    DiagnosticStandard,
+    get_disorder_criteria,
+    get_disorder_threshold,
+    normalize_standard,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -37,19 +42,30 @@ class LogicEngineOutput:
 
 
 class DiagnosticLogicEngine:
-    """Deterministic ICD-10 diagnostic threshold checker.
+    """Deterministic diagnostic threshold checker.
     
     No LLM involved. Takes CheckerOutput from criterion checkers
-    and applies threshold rules from the ICD-10 ontology.
+    and applies threshold rules from the selected ontology.
     """
 
-    def evaluate(self, checker_outputs: list[CheckerOutput]) -> LogicEngineOutput:
-        """Evaluate all checker outputs against ICD-10 thresholds."""
+    def __init__(
+        self,
+        standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
+    ) -> None:
+        self.standard = normalize_standard(standard)
+
+    def evaluate(
+        self,
+        checker_outputs: list[CheckerOutput],
+        standard: DiagnosticStandard | str | None = None,
+    ) -> LogicEngineOutput:
+        """Evaluate all checker outputs against the selected thresholds."""
+        resolved_standard = normalize_standard(standard or self.standard)
         confirmed = []
         rejected = []
 
         for co in checker_outputs:
-            result = self._evaluate_disorder(co)
+            result = self._evaluate_disorder(co, resolved_standard)
             if result.meets_threshold:
                 confirmed.append(result)
             else:
@@ -68,10 +84,15 @@ class DiagnosticLogicEngine:
 
         return LogicEngineOutput(confirmed=confirmed, rejected=rejected)
 
-    def _evaluate_disorder(self, co: CheckerOutput) -> LogicEngineResult:
+    def _evaluate_disorder(
+        self,
+        co: CheckerOutput,
+        standard: DiagnosticStandard | str,
+    ) -> LogicEngineResult:
         """Evaluate a single disorder against its threshold rules."""
-        threshold = get_disorder_threshold(co.disorder)
-        criteria_def = get_disorder_criteria(co.disorder)
+        threshold = get_disorder_threshold(co.disorder, standard)
+        disorder = get_disorder_criteria(co.disorder, standard)
+        criteria_def = disorder.get("criteria") if disorder else None
 
         if not threshold or not criteria_def:
             logger.warning("No threshold/criteria for %s, rejecting", co.disorder)

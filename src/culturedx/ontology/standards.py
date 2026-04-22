@@ -37,6 +37,13 @@ def _normalize_standard(
     raise ValueError(f"Unsupported diagnostic standard: {standard!r}")
 
 
+def normalize_standard(
+    standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
+) -> DiagnosticStandard:
+    """Normalize string or enum inputs into a DiagnosticStandard."""
+    return _normalize_standard(standard)
+
+
 def _normalize_icd_code(code: str | None) -> str | None:
     if code is None:
         return None
@@ -79,20 +86,22 @@ def _load_mapping() -> dict[str, Any]:
 
 
 def load_criteria(
-    standard: DiagnosticStandard | str,
+    standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
 ) -> dict[str, dict[str, Any]]:
     """Return a deep copy of the disorder-keyed criteria mapping."""
     return copy.deepcopy(_load_standard_blob(standard)["disorders"])
 
 
-def list_disorders(standard: DiagnosticStandard | str) -> list[str]:
+def list_disorders(
+    standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
+) -> list[str]:
     """Return all disorder codes for a standard."""
     return list(_load_standard_blob(standard)["disorders"].keys())
 
 
 def get_disorder_criteria(
     disorder_code: str,
-    standard: DiagnosticStandard | str,
+    standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
 ) -> dict[str, Any] | None:
     """Return a deep copy of one disorder definition, or None."""
     normalized_code = _normalize_icd_code(disorder_code)
@@ -106,7 +115,7 @@ def get_disorder_criteria(
 
 def get_disorder_name(
     disorder_code: str,
-    standard: DiagnosticStandard | str,
+    standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
     lang: str = "en",
 ) -> str | None:
     """Return the disorder display name in the requested language."""
@@ -119,13 +128,37 @@ def get_disorder_name(
 
 def get_disorder_threshold(
     disorder_code: str,
-    standard: DiagnosticStandard | str,
+    standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
 ) -> dict[str, Any]:
     """Return a deep copy of a disorder threshold dict, or {}."""
     disorder = get_disorder_criteria(disorder_code, standard)
     if disorder is None:
         return {}
     return copy.deepcopy(disorder.get("threshold", {}))
+
+
+def get_criterion_text(
+    disorder_code: str,
+    criterion_id: str,
+    standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
+    language: str = "en",
+) -> str | None:
+    """Return one criterion text in the requested language, or None."""
+    disorder = get_disorder_criteria(disorder_code, standard)
+    if disorder is None:
+        return None
+    criteria = disorder.get("criteria", {})
+    if criterion_id not in criteria:
+        return None
+    key = "text_zh" if str(language).lower().startswith("zh") else "text"
+    return criteria[criterion_id].get(key)
+
+
+def get_standard_version(
+    standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
+) -> str | None:
+    """Return the ontology version string for a diagnostic standard."""
+    return _load_standard_blob(standard).get("version")
 
 
 def paper_parent_icd10(code: str | None) -> str | None:
@@ -185,11 +218,14 @@ def _clear_cache() -> None:
 __all__ = [
     "DiagnosticStandard",
     "dsm5_to_icd10",
+    "get_criterion_text",
     "get_disorder_criteria",
     "get_disorder_name",
     "get_disorder_threshold",
+    "get_standard_version",
     "icd10_to_dsm5",
     "list_disorders",
     "load_criteria",
+    "normalize_standard",
     "paper_parent_icd10",
 ]

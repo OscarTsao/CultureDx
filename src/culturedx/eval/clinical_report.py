@@ -19,10 +19,12 @@ from pathlib import Path
 from typing import Any
 
 from culturedx.core.models import CheckerOutput, DiagnosisResult
-from culturedx.ontology.icd10 import (
+from culturedx.ontology.standards import (
+    DiagnosticStandard,
     get_disorder_criteria,
     get_disorder_name,
     get_disorder_threshold,
+    normalize_standard,
 )
 
 logger = logging.getLogger(__name__)
@@ -104,17 +106,25 @@ class ClinicalReportGenerator:
     """Generates clinical diagnostic reports from DiagnosisResult."""
 
     @staticmethod
+    def _resolve_standard(result: DiagnosisResult) -> DiagnosticStandard:
+        reasoning_standard = (result.reasoning_standard or "icd10").strip().lower()
+        if reasoning_standard == "both":
+            return DiagnosticStandard.ICD10
+        return normalize_standard(reasoning_standard)
+
+    @staticmethod
     def generate(result: DiagnosisResult, language: str = "zh") -> ClinicalReport:
         """Build a ClinicalReport from a DiagnosisResult."""
         lang = language if language in ("zh", "en") else "en"
         status_labels = STATUS_LABELS[lang]
         decision_labels = DECISION_LABELS[lang]
+        standard = ClinicalReportGenerator._resolve_standard(result)
 
         # Build disorder sections from criteria_results
         disorder_sections: dict[str, DisorderSection] = {}
         for checker_out in result.criteria_results:
             section = ClinicalReportGenerator._build_disorder_section(
-                checker_out, lang, status_labels
+                checker_out, lang, status_labels, standard
             )
             disorder_sections[checker_out.disorder] = section
 
@@ -127,7 +137,10 @@ class ClinicalReportGenerator:
             primary = disorder_sections[result.primary_diagnosis]
         elif result.primary_diagnosis:
             primary = ClinicalReportGenerator._make_minimal_section(
-                result.primary_diagnosis, lang, meets=True
+                result.primary_diagnosis,
+                lang,
+                meets=True,
+                standard=standard,
             )
 
         for code in result.comorbid_diagnoses:
@@ -135,7 +148,12 @@ class ClinicalReportGenerator:
                 comorbid.append(disorder_sections[code])
             else:
                 comorbid.append(
-                    ClinicalReportGenerator._make_minimal_section(code, lang, meets=True)
+                    ClinicalReportGenerator._make_minimal_section(
+                        code,
+                        lang,
+                        meets=True,
+                        standard=standard,
+                    )
                 )
 
         diagnosed_codes = set()
@@ -167,12 +185,14 @@ class ClinicalReportGenerator:
         checker_out: CheckerOutput,
         lang: str,
         status_labels: dict[str, str],
+        standard: DiagnosticStandard = DiagnosticStandard.ICD10,
     ) -> DisorderSection:
         code = checker_out.disorder
-        name = get_disorder_name(code, "en") or code
-        name_zh = get_disorder_name(code, "zh") or code
-        threshold = get_disorder_threshold(code)
-        ontology_criteria = get_disorder_criteria(code) or {}
+        name = get_disorder_name(code, standard, lang="en") or code
+        name_zh = get_disorder_name(code, standard, lang="zh") or code
+        threshold = get_disorder_threshold(code, standard)
+        disorder = get_disorder_criteria(code, standard)
+        ontology_criteria = disorder.get("criteria", {}) if disorder else {}
 
         criteria_details = []
         for cr in checker_out.criteria:
@@ -217,12 +237,15 @@ class ClinicalReportGenerator:
 
     @staticmethod
     def _make_minimal_section(
-        code: str, lang: str, meets: bool
+        code: str,
+        lang: str,
+        meets: bool,
+        standard: DiagnosticStandard = DiagnosticStandard.ICD10,
     ) -> DisorderSection:
         return DisorderSection(
             disorder_code=code,
-            disorder_name=get_disorder_name(code, "en") or code,
-            disorder_name_zh=get_disorder_name(code, "zh") or code,
+            disorder_name=get_disorder_name(code, standard, lang="en") or code,
+            disorder_name_zh=get_disorder_name(code, standard, lang="zh") or code,
             meets_threshold=meets,
             met_count=0,
             total_criteria=0,

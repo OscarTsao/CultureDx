@@ -18,6 +18,12 @@ from pathlib import Path
 from typing import Any, Sequence
 
 from culturedx.core.models import CheckerOutput, EvidenceBrief, ScaleScore
+from culturedx.ontology.standards import (
+    DiagnosticStandard,
+    get_disorder_criteria,
+    get_disorder_threshold,
+    normalize_standard,
+)
 
 CALIBRATOR_ARTIFACT_SCHEMA_VERSION = 1
 DEFAULT_CALIBRATOR_FEATURE_NAMES = (
@@ -155,6 +161,7 @@ class ConfidenceCalibrator:
         self,
         abstain_threshold: float = 0.3,
         comorbid_threshold: float = 0.5,
+        standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
         version: int = 2,
         mode: str = "heuristic-v2",
         artifact_path: str | Path | None = None,
@@ -175,6 +182,7 @@ class ConfidenceCalibrator:
 
         self.abstain_threshold = abstain_threshold
         self.comorbid_threshold = comorbid_threshold
+        self.standard = normalize_standard(standard)
         self.version = version
         self.mode = mode
         self.force_prediction = force_prediction
@@ -236,6 +244,7 @@ class ConfidenceCalibrator:
         evidence: EvidenceBrief | None = None,
         confirmation_types: dict[str, str] | None = None,
         scale_scores: list[ScaleScore] | None = None,
+        standard: DiagnosticStandard | str | None = None,
     ) -> CalibrationOutput:
         """Calibrate confidence for logic-confirmed disorders.
 
@@ -244,6 +253,7 @@ class ConfidenceCalibrator:
         the final primary/comorbid/abstain/rejected split while preserving the
         feature-level reasoning used for that decision.
         """
+        resolved_standard = normalize_standard(standard or self.standard)
         checker_map = {co.disorder: co for co in checker_outputs}
 
         # Get confirmed checker outputs for cross-disorder comparison
@@ -263,6 +273,7 @@ class ConfidenceCalibrator:
                 confirmed_outputs,
                 evidence,
                 scale_scores,
+                resolved_standard,
             )
             scored.append(cal)
 
@@ -368,6 +379,7 @@ class ConfidenceCalibrator:
         all_confirmed_outputs: list[CheckerOutput],
         evidence: EvidenceBrief | None,
         scale_scores: list[ScaleScore] | None,
+        standard: DiagnosticStandard | str,
     ) -> CalibratedDiagnosis:
         """Score one confirmed disorder with either artifact or heuristic path."""
         if self.artifact is not None:
@@ -377,6 +389,7 @@ class ConfidenceCalibrator:
                 all_confirmed_outputs,
                 evidence,
                 scale_scores,
+                standard=standard,
             )
         if self.version >= 2:
             return self._compute_calibrated_v2(
@@ -385,8 +398,14 @@ class ConfidenceCalibrator:
                 all_confirmed_outputs,
                 evidence,
                 scale_scores,
+                standard=standard,
             )
-        return self._compute_calibrated(disorder_code, checker_output, evidence)
+        return self._compute_calibrated(
+            disorder_code,
+            checker_output,
+            evidence,
+            standard=standard,
+        )
 
     def _compute_calibrated_artifact(
         self,
@@ -395,6 +414,7 @@ class ConfidenceCalibrator:
         all_confirmed_outputs: list[CheckerOutput],
         evidence: EvidenceBrief | None,
         scale_scores: list[ScaleScore] | None = None,
+        standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
     ) -> CalibratedDiagnosis:
         """Score a disorder using a learned linear calibration artifact."""
         feature_map = self._extract_feature_map(
@@ -403,6 +423,7 @@ class ConfidenceCalibrator:
             all_confirmed_outputs=all_confirmed_outputs,
             evidence=evidence,
             scale_scores=scale_scores,
+            standard=standard,
         )
         score = self._linear_score(feature_map, self.artifact)
         confidence = self._sigmoid(score)
@@ -462,6 +483,7 @@ class ConfidenceCalibrator:
         all_confirmed_outputs: list[CheckerOutput],
         evidence: EvidenceBrief | None,
         scale_scores: list[ScaleScore] | None = None,
+        standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
     ) -> dict[str, float]:
         """Build a stable feature map for both heuristic and learned calibration."""
         met_criteria = [cr for cr in checker_output.criteria if cr.status == "met"]
@@ -471,10 +493,9 @@ class ConfidenceCalibrator:
             else 0.0
         )
 
-        from culturedx.ontology.icd10 import get_disorder_threshold
-        threshold = get_disorder_threshold(disorder_code)
+        threshold = get_disorder_threshold(disorder_code, standard)
         required = self._compute_required_from_threshold(
-            threshold, checker_output, disorder_code
+            threshold, checker_output, disorder_code, standard=standard
         )
         threshold_ratio = (
             min(1.0, checker_output.criteria_met_count / required)
@@ -485,7 +506,11 @@ class ConfidenceCalibrator:
         evidence_coverage = self._compute_evidence_coverage(
             disorder_code, checker_output, evidence
         )
-        core_score = self._compute_core_score(checker_output, disorder_code)
+        core_score = self._compute_core_score(
+            checker_output,
+            disorder_code,
+            standard=standard,
+        )
         uniqueness = self._compute_evidence_uniqueness(
             disorder_code, checker_output, all_confirmed_outputs
         )
@@ -606,6 +631,7 @@ class ConfidenceCalibrator:
         disorder_code: str,
         checker_output: CheckerOutput,
         evidence: EvidenceBrief | None,
+        standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
     ) -> CalibratedDiagnosis:
         """Compute calibrated confidence for a single disorder."""
         # 1. Average criterion confidence (for met criteria)
@@ -619,10 +645,9 @@ class ConfidenceCalibrator:
         )
 
         # 2. Threshold satisfaction ratio (use ICD-10 ontology required count)
-        from culturedx.ontology.icd10 import get_disorder_threshold
-        threshold = get_disorder_threshold(disorder_code)
+        threshold = get_disorder_threshold(disorder_code, standard)
         required = self._compute_required_from_threshold(
-            threshold, checker_output, disorder_code
+            threshold, checker_output, disorder_code, standard=standard
         )
 
         if required > 0:
@@ -676,6 +701,7 @@ class ConfidenceCalibrator:
         all_confirmed_outputs: list[CheckerOutput],
         evidence: EvidenceBrief | None,
         scale_scores: list[ScaleScore] | None = None,
+        standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
     ) -> CalibratedDiagnosis:
         """V2 calibration with weighted signals for disorder differentiation."""
         # Existing signals
@@ -685,10 +711,9 @@ class ConfidenceCalibrator:
             if met_criteria else 0.0
         )
 
-        from culturedx.ontology.icd10 import get_disorder_threshold
-        threshold = get_disorder_threshold(disorder_code)
+        threshold = get_disorder_threshold(disorder_code, standard)
         required = self._compute_required_from_threshold(
-            threshold, checker_output, disorder_code
+            threshold, checker_output, disorder_code, standard=standard
         )
         threshold_ratio = (
             min(1.0, checker_output.criteria_met_count / required)
@@ -701,7 +726,11 @@ class ConfidenceCalibrator:
         )
 
         # NEW V2 signals
-        core_score = self._compute_core_score(checker_output, disorder_code)
+        core_score = self._compute_core_score(
+            checker_output,
+            disorder_code,
+            standard=standard,
+        )
         uniqueness = self._compute_evidence_uniqueness(
             disorder_code, checker_output, all_confirmed_outputs
         )
@@ -826,10 +855,14 @@ class ConfidenceCalibrator:
         return 0.5
 
     @staticmethod
-    def _compute_core_score(checker_output: CheckerOutput, disorder_code: str) -> float:
+    def _compute_core_score(
+        checker_output: CheckerOutput,
+        disorder_code: str,
+        standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
+    ) -> float:
         """Weighted criterion score: core criteria count 1.5x, duration 1.3x, others 1.0x."""
-        from culturedx.ontology.icd10 import get_disorder_criteria
-        criteria_def = get_disorder_criteria(disorder_code) or {}
+        disorder = get_disorder_criteria(disorder_code, standard)
+        criteria_def = disorder.get("criteria", {}) if disorder else {}
 
         TYPE_WEIGHTS = {
             "core": 1.5,
@@ -990,9 +1023,12 @@ class ConfidenceCalibrator:
 
     @staticmethod
     def _compute_required_from_threshold(
-        threshold: dict, checker_output: CheckerOutput, disorder_code: str
+        threshold: dict,
+        checker_output: CheckerOutput,
+        disorder_code: str,
+        standard: DiagnosticStandard | str = DiagnosticStandard.ICD10,
     ) -> int:
-        """Compute the effective required criterion count from ICD-10 threshold.
+        """Compute the effective required criterion count from a threshold blob.
 
         Handles all threshold schemas to ensure fair confidence comparison
         across disorders with different threshold types.
@@ -1010,8 +1046,8 @@ class ConfidenceCalibrator:
 
         # Schema: all_required (F22)
         if threshold.get("all_required"):
-            from culturedx.ontology.icd10 import get_disorder_criteria
-            criteria = get_disorder_criteria(disorder_code)
+            disorder = get_disorder_criteria(disorder_code, standard)
+            criteria = disorder.get("criteria") if disorder else None
             return len(criteria) if criteria else checker_output.criteria_required
 
         # Schema: min_first_rank + min_other (F20)
@@ -1021,8 +1057,8 @@ class ConfidenceCalibrator:
 
         # Schema: core_required + min_additional (F40)
         if "min_additional" in threshold:
-            from culturedx.ontology.icd10 import get_disorder_criteria
-            criteria = get_disorder_criteria(disorder_code) or {}
+            disorder = get_disorder_criteria(disorder_code, standard)
+            criteria = disorder.get("criteria", {}) if disorder else {}
             core_count = sum(
                 1 for v in criteria.values() if v.get("type") == "core"
             )
@@ -1030,8 +1066,8 @@ class ConfidenceCalibrator:
 
         # Schema: attacks_per_month + min_symptoms_per_attack (F41.0)
         if "min_symptoms_per_attack" in threshold:
-            from culturedx.ontology.icd10 import get_disorder_criteria
-            criteria = get_disorder_criteria(disorder_code) or {}
+            disorder = get_disorder_criteria(disorder_code, standard)
+            criteria = disorder.get("criteria", {}) if disorder else {}
             core_count = sum(
                 1 for v in criteria.values() if v.get("type") == "core"
             )
@@ -1051,8 +1087,8 @@ class ConfidenceCalibrator:
 
         # Schema: trauma_required (F43.1 PTSD)
         if "trauma_required" in threshold:
-            from culturedx.ontology.icd10 import get_disorder_criteria
-            criteria = get_disorder_criteria(disorder_code) or {}
+            disorder = get_disorder_criteria(disorder_code, standard)
+            criteria = disorder.get("criteria", {}) if disorder else {}
             return len(criteria) if criteria else 3
 
         # Schema: min_somatic_groups (F45)
@@ -1060,9 +1096,9 @@ class ConfidenceCalibrator:
             return threshold["min_somatic_groups"] + 1  # groups + core
 
         # Schema: onset_within_month (F43.2 adjustment)
-        if "onset_within_month" in threshold:
-            from culturedx.ontology.icd10 import get_disorder_criteria
-            criteria = get_disorder_criteria(disorder_code) or {}
+        if "onset_within_month" in threshold or "onset_within_months" in threshold:
+            disorder = get_disorder_criteria(disorder_code, standard)
+            criteria = disorder.get("criteria", {}) if disorder else {}
             return len(criteria) if criteria else 2
 
         # Fallback
