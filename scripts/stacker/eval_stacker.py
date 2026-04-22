@@ -36,6 +36,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from culturedx.eval.lingxidiag_paper import (  # noqa: E402
     PAPER_12_CLASSES,
     compute_table4_metrics,
+    to_paper_parent,
 )
 
 logging.basicConfig(
@@ -260,7 +261,8 @@ def main() -> None:
             if not p:
                 out.append(0)  # treat missing as wrong
                 continue
-            out.append(1 if _top1_correct(p.get("primary_diagnosis", ""),
+            pred_parent = to_paper_parent(p.get("primary_diagnosis", ""))
+            out.append(1 if _top1_correct(pred_parent,
                                           gold_map[cid]) else 0)
         return out
 
