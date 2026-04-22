@@ -1,0 +1,933 @@
+{
+  "version": "0.1-DRAFT",
+  "coding_system": "dsm5",
+  "source_note": "LLM-drafted v0 based on DSM-5-TR concepts. UNVERIFIED.",
+  "source_note_zh": "基於 DSM-5-TR 概念所草擬的 LLM v0 版本，尚未驗證。",
+  "disorders": {
+    "F20": {
+      "dsm5_code": "295.90",
+      "name": "Schizophrenia",
+      "name_zh": "思覺失調症",
+      "icd10_equivalent": "F20",
+      "category": "psychotic",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": false,
+      "source_note": "Derived from the DSM-5 schizophrenia concept using paraphrased symptom clusters only.",
+      "source_note_zh": "依 DSM-5 思覺失調症概念草擬，僅保留轉述後的症狀群組。",
+      "criteria": {
+        "A": {
+          "text": "At least two prominent psychotic symptoms are present, and one is delusions, hallucinations, or disorganized speech.",
+          "text_zh": "至少出現兩項明顯的精神病性症狀，且其中一項需為妄想、幻覺或言語解組。",
+          "type": "core"
+        },
+        "B": {
+          "text": "Work, social life, or self-care is meaningfully worse than the person's usual baseline.",
+          "text_zh": "工作、社交或自我照護功能較其原有水準明顯下降。",
+          "type": "impairment"
+        },
+        "C": {
+          "text": "The disturbance persists over months, including an active symptomatic period.",
+          "text_zh": "整體病程持續數月，且包含明顯活躍症狀期。",
+          "type": "duration"
+        },
+        "D": {
+          "text": "Mood episodes, substances, and medical causes do not better explain the presentation.",
+          "text_zh": "此表現不能由情緒發作、物質使用或其他醫療原因更佳解釋。",
+          "type": "exclusion"
+        }
+      },
+      "threshold": {
+        "min_core": 2,
+        "requires_positive_symptom": true,
+        "duration_months": 6,
+        "active_phase_months": 1
+      }
+    },
+    "F22": {
+      "dsm5_code": "297.1",
+      "name": "Delusional Disorder",
+      "name_zh": "妄想症",
+      "icd10_equivalent": "F22",
+      "category": "psychotic",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": false,
+      "source_note": "Mapped to the DSM-5 delusional disorder concept with concise paraphrased criteria.",
+      "source_note_zh": "對應至 DSM-5 妄想症概念，並以簡要轉述方式描述準則。",
+      "criteria": {
+        "A": {
+          "text": "One or more fixed delusional beliefs are present.",
+          "text_zh": "存在一項或多項固定的妄想信念。",
+          "type": "core"
+        },
+        "B": {
+          "text": "The delusional presentation lasts at least one month.",
+          "text_zh": "妄想型表現至少持續一個月。",
+          "type": "duration"
+        },
+        "C": {
+          "text": "Outside the delusional theme, functioning is not as globally disorganized as in schizophrenia.",
+          "text_zh": "除妄想主題外，其整體功能未達思覺失調症那樣全面性解組。",
+          "type": "differential"
+        },
+        "D": {
+          "text": "Substances, mood syndromes, and medical disorders do not better account for the symptoms.",
+          "text_zh": "症狀不能由物質、情緒症候群或其他醫療疾病更佳解釋。",
+          "type": "exclusion"
+        }
+      },
+      "threshold": {
+        "all_required": true,
+        "duration_months": 1
+      }
+    },
+    "F30": {
+      "dsm5_code": "296.4x",
+      "name": "Bipolar I Disorder, Current or Most Recent Episode Manic",
+      "name_zh": "第一型雙相情緒障礙，目前或最近一次為躁期",
+      "icd10_equivalent": "F30",
+      "category": "bipolar",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": true,
+      "source_note": "ICD-10 manic episode is approximated with the DSM-5 manic-episode coding lane within Bipolar I Disorder.",
+      "source_note_zh": "ICD-10 的躁狂發作在此近似對應為 DSM-5 第一型雙相情緒障礙中的躁期編碼路徑。",
+      "criteria": {
+        "A": {
+          "text": "A distinct period of elevated, expansive, or markedly irritable mood occurs with increased activity or energy.",
+          "text_zh": "出現一段明顯高昂、誇大或顯著易怒的情緒，並伴隨活動量或精力增加。",
+          "type": "core"
+        },
+        "B": {
+          "text": "Several manic features cluster together, such as decreased sleep need, pressured speech, racing ideas, risky behavior, or grandiosity.",
+          "text_zh": "多項躁期特徵同時聚集，例如睡眠需求下降、語速增快、思緒奔逸、冒險行為或自大感。",
+          "type": "additional"
+        },
+        "C": {
+          "text": "The episode causes marked impairment, requires hospitalization, or includes psychotic features.",
+          "text_zh": "該發作已造成明顯失能、需要住院，或伴隨精神病性特徵。",
+          "type": "severity"
+        },
+        "D": {
+          "text": "The episode is not better explained by substances or another medical condition.",
+          "text_zh": "此發作不能由物質使用或其他醫療狀況更佳解釋。",
+          "type": "exclusion"
+        }
+      },
+      "threshold": {
+        "core_required": true,
+        "min_additional": 3,
+        "hospitalization_or_psychosis_override": true
+      }
+    },
+    "F31": {
+      "dsm5_code": "296.xx",
+      "name": "Bipolar Disorder Spectrum",
+      "name_zh": "雙相情緒障礙光譜",
+      "icd10_equivalent": "F31",
+      "category": "bipolar",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": false,
+      "source_note": "Family-level DSM-5 concept covering bipolar I, bipolar II, and unresolved course or remission specifiers.",
+      "source_note_zh": "以 DSM-5 家族層級概念表示雙相第一型、第二型，以及尚未釐清的病程或緩解特徵。",
+      "criteria": {
+        "A": {
+          "text": "The lifetime course includes manic, hypomanic, or major depressive episodes in a bipolar pattern.",
+          "text_zh": "終生病程中出現躁期、輕躁期或重度憂鬱發作，並呈現雙相型態。",
+          "type": "core"
+        },
+        "B": {
+          "text": "At least one elevated or irritable high-energy episode is clinically meaningful for diagnosis.",
+          "text_zh": "至少曾有一次高能量的高昂或易怒發作，且在臨床上具有診斷意義。",
+          "type": "history"
+        },
+        "C": {
+          "text": "The course is not better explained by psychotic disorders, substances, or a medical condition.",
+          "text_zh": "整體病程不能由精神病性障礙、物質使用或其他醫療狀況更佳解釋。",
+          "type": "exclusion"
+        }
+      },
+      "threshold": {
+        "requires_bipolar_episode_history": true,
+        "min_distinct_episode_types": 1
+      }
+    },
+    "F32": {
+      "dsm5_code": "296.2x",
+      "name": "Major Depressive Disorder, Single Episode",
+      "name_zh": "重度憂鬱症，單次發作",
+      "icd10_equivalent": "F32",
+      "category": "depressive",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": false,
+      "source_note": "Drafted from the DSM-5 single-episode major depression concept without copying manual language.",
+      "source_note_zh": "依 DSM-5 單次重度憂鬱概念草擬，未直接轉錄手冊原文。",
+      "criteria": {
+        "A": {
+          "text": "For at least two weeks, mood is persistently depressed or usual interest and pleasure are markedly reduced.",
+          "text_zh": "至少連續兩週出現持續低落情緒，或平常的興趣與愉悅感明顯下降。",
+          "type": "core"
+        },
+        "B": {
+          "text": "Several additional cognitive, sleep, appetite, energy, guilt, concentration, or suicidal symptoms accompany the mood change.",
+          "text_zh": "除情緒改變外，還伴隨多項認知、睡眠、食慾、精力、罪惡感、注意力或自殺意念相關症狀。",
+          "type": "additional"
+        },
+        "C": {
+          "text": "The episode causes clinically meaningful distress or functional impairment.",
+          "text_zh": "該發作造成臨床上顯著的痛苦或功能受損。",
+          "type": "impairment"
+        },
+        "D": {
+          "text": "Manic explanations, substances, bereavement-only reactions, and medical causes require exclusion review.",
+          "text_zh": "需排除躁期解釋、物質因素、僅限喪慟反應，以及其他醫療原因。",
+          "type": "exclusion"
+        }
+      },
+      "threshold": {
+        "min_total": 5,
+        "min_core": 1,
+        "duration_weeks": 2
+      }
+    },
+    "F33": {
+      "dsm5_code": "296.3x",
+      "name": "Major Depressive Disorder, Recurrent",
+      "name_zh": "重度憂鬱症，復發型",
+      "icd10_equivalent": "F33",
+      "category": "depressive",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": false,
+      "source_note": "Uses the DSM-5 recurrent major depressive concept while keeping severity and remission specifiers unresolved.",
+      "source_note_zh": "採用 DSM-5 復發性重度憂鬱概念，但未細分嚴重度與緩解特徵。",
+      "criteria": {
+        "A": {
+          "text": "A major depressive syndrome is currently present or well documented in the person's history.",
+          "text_zh": "目前存在或病史中已有明確記載的重度憂鬱症候群。",
+          "type": "core"
+        },
+        "B": {
+          "text": "The depressive pattern recurs across separate episodes rather than representing a single isolated episode.",
+          "text_zh": "憂鬱型態跨越多次彼此分開的發作，而非僅有單一孤立發作。",
+          "type": "recurrence"
+        },
+        "C": {
+          "text": "Functional burden is clinically meaningful during episodes.",
+          "text_zh": "每次發作期間皆造成臨床上顯著的功能負擔。",
+          "type": "impairment"
+        },
+        "D": {
+          "text": "Bipolar explanations, substances, and medical causes require exclusion review.",
+          "text_zh": "需排除雙相病程、物質因素與其他醫療原因。",
+          "type": "exclusion"
+        }
+      },
+      "threshold": {
+        "min_total": 5,
+        "min_core": 1,
+        "duration_weeks": 2,
+        "recurrence_required": true
+      }
+    },
+    "F34": {
+      "dsm5_code": "301.13/300.4",
+      "name": "Persistent Depressive or Cyclothymic Disorder",
+      "name_zh": "持續性憂鬱障礙或循環性情緒障礙",
+      "icd10_equivalent": "F34",
+      "category": "depressive",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": true,
+      "source_note": "ICD-10 persistent mood disorders span more than one DSM-5 entity, mainly persistent depressive disorder and cyclothymic disorder.",
+      "source_note_zh": "ICD-10 的持續性心境障礙跨越多個 DSM-5 實體，主要包括持續性憂鬱障礙與循環性情緒障礙。",
+      "criteria": {
+        "A": {
+          "text": "A chronic mood disturbance persists over long periods rather than appearing only as brief discrete episodes.",
+          "text_zh": "情緒困擾長期持續，而非僅以短暫且明確分隔的發作出現。",
+          "type": "core"
+        },
+        "B": {
+          "text": "Symptoms remain present for years, with only brief symptom-free intervals if any.",
+          "text_zh": "症狀持續多年，即使有無症狀期也通常相當短暫。",
+          "type": "duration"
+        },
+        "C": {
+          "text": "The course produces relational, occupational, or emotional burden.",
+          "text_zh": "此病程在關係、工作或情緒調節上造成負擔。",
+          "type": "impairment"
+        },
+        "D": {
+          "text": "Final subtype selection requires deciding whether the chronic pattern is depressive, bipolar-leaning, or another condition.",
+          "text_zh": "最終亞型需判定其長期型態較接近持續性憂鬱、雙相傾向或其他狀況。",
+          "type": "specifier"
+        }
+      },
+      "threshold": {
+        "duration_years": 2,
+        "chronic_course_required": true
+      }
+    },
+    "F39": {
+      "dsm5_code": "311",
+      "name": "Unspecified Depressive Disorder",
+      "name_zh": "未特定憂鬱障礙",
+      "icd10_equivalent": "F39",
+      "category": "depressive",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": false,
+      "source_note": "Uses the DSM-5 unspecified depressive concept for clinically relevant depressive symptoms lacking enough detail for a narrower label.",
+      "source_note_zh": "採用 DSM-5 未特定憂鬱障礙概念，用於臨床上具意義但資訊不足以細分的憂鬱症狀。",
+      "criteria": {
+        "A": {
+          "text": "Depressive symptoms are clinically meaningful.",
+          "text_zh": "憂鬱症狀在臨床上具有明顯意義。",
+          "type": "core"
+        },
+        "B": {
+          "text": "The symptoms create distress or interfere with functioning.",
+          "text_zh": "症狀造成痛苦或干擾功能。",
+          "type": "impairment"
+        },
+        "C": {
+          "text": "The available information does not justify a more specific depressive diagnosis.",
+          "text_zh": "現有資訊不足以支持更明確的憂鬱類診斷。",
+          "type": "specifier"
+        }
+      },
+      "threshold": {
+        "min_total": 2
+      }
+    },
+    "F40": {
+      "dsm5_code": "300.22/300.23/300.29",
+      "name": "Phobia Disorder Family",
+      "name_zh": "畏懼症家族",
+      "icd10_equivalent": "F40",
+      "category": "anxiety",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": true,
+      "source_note": "ICD-10 phobic anxiety disorders are represented as a DSM-5 phobia family spanning agoraphobia, social anxiety disorder, and specific phobia.",
+      "source_note_zh": "ICD-10 的恐懼性焦慮障礙在此以 DSM-5 畏懼症家族表示，涵蓋廣場恐懼症、社交焦慮症與特定畏懼症。",
+      "criteria": {
+        "A": {
+          "text": "Fear is tied to a circumscribed object, situation, performance setting, or exposed environment.",
+          "text_zh": "恐懼與特定物件、情境、表現場合或暴露環境緊密相關。",
+          "type": "core"
+        },
+        "B": {
+          "text": "Exposure tends to trigger rapid anxiety and leads to avoidance or endurance with intense distress.",
+          "text_zh": "接觸相關刺激時通常迅速引發焦慮，並導致逃避，或在高度痛苦下勉強忍受。",
+          "type": "response"
+        },
+        "C": {
+          "text": "The fear is disproportionate, persistent, and not limited to culturally expected caution.",
+          "text_zh": "此恐懼程度不成比例、持續存在，且超出文化上可預期的謹慎反應。",
+          "type": "persistence"
+        },
+        "D": {
+          "text": "Symptoms limit daily activities, social participation, or role performance.",
+          "text_zh": "症狀已限制日常活動、社交參與或角色功能表現。",
+          "type": "impairment"
+        }
+      },
+      "threshold": {
+        "all_required": true,
+        "duration_months": 6
+      }
+    },
+    "F41.0": {
+      "dsm5_code": "300.01",
+      "name": "Panic Disorder",
+      "name_zh": "恐慌症",
+      "icd10_equivalent": "F41.0",
+      "category": "anxiety",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": false,
+      "source_note": "Mapped to the DSM-5 panic disorder concept using paraphrased attack and aftermath features.",
+      "source_note_zh": "對應至 DSM-5 恐慌症概念，並以轉述方式描述發作與後續影響。",
+      "criteria": {
+        "A": {
+          "text": "The person experiences recurrent panic surges that reach a peak quickly.",
+          "text_zh": "當事人反覆出現快速達到高峰的恐慌性發作。",
+          "type": "core"
+        },
+        "B": {
+          "text": "Each attack involves multiple bodily and cognitive alarm symptoms, such as palpitations, breathlessness, dizziness, or fear of losing control.",
+          "text_zh": "每次發作伴隨多項身體與認知警訊症狀，例如心悸、呼吸困難、暈眩或害怕失控。",
+          "type": "attack_features"
+        },
+        "C": {
+          "text": "After the attacks, there is ongoing worry about future episodes or behavior changes aimed at preventing them.",
+          "text_zh": "發作之後，持續擔憂未來再發，或出現明顯改變行為以避免再次發作。",
+          "type": "aftermath"
+        },
+        "D": {
+          "text": "The panic pattern is not better explained by substances, medical illness, or another anxiety condition alone.",
+          "text_zh": "此恐慌型態不能單由物質、醫療疾病或其他焦慮狀況更佳解釋。",
+          "type": "exclusion"
+        }
+      },
+      "threshold": {
+        "recurrent_required": true,
+        "min_symptoms_per_attack": 4,
+        "followup_months": 1
+      }
+    },
+    "F41.1": {
+      "dsm5_code": "300.02",
+      "name": "Generalized Anxiety Disorder",
+      "name_zh": "廣泛性焦慮症",
+      "icd10_equivalent": "F41.1",
+      "category": "anxiety",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": false,
+      "source_note": "Mapped to the DSM-5 generalized anxiety concept using summary wording only.",
+      "source_note_zh": "對應至 DSM-5 廣泛性焦慮概念，僅使用概括性轉述文字。",
+      "criteria": {
+        "A": {
+          "text": "Worry is excessive, broad in scope, and difficult to control across many everyday topics.",
+          "text_zh": "擔憂過度、範圍廣泛，且在多個日常主題上都難以控制。",
+          "type": "core"
+        },
+        "B": {
+          "text": "The anxious state persists for months rather than only brief spikes.",
+          "text_zh": "焦慮狀態持續數月，而非僅短暫高峰。",
+          "type": "duration"
+        },
+        "C": {
+          "text": "The worry is accompanied by several tension, restlessness, concentration, irritability, sleep, or fatigue symptoms.",
+          "text_zh": "此擔憂伴隨多項緊繃、坐立不安、專注困難、易怒、睡眠或疲倦症狀。",
+          "type": "additional"
+        },
+        "D": {
+          "text": "The pattern creates distress or impairment and is not better accounted for by substances or another condition.",
+          "text_zh": "此型態造成痛苦或功能受損，且不能由物質或其他狀況更佳解釋。",
+          "type": "impairment"
+        }
+      },
+      "threshold": {
+        "duration_months": 6,
+        "min_associated_symptoms": 3
+      }
+    },
+    "F42": {
+      "dsm5_code": "300.3",
+      "name": "Obsessive-Compulsive Disorder",
+      "name_zh": "強迫症",
+      "icd10_equivalent": "F42",
+      "category": "ocd_related",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": false,
+      "source_note": "Mapped to the DSM-5 OCD concept while keeping insight specifiers out of scope for this draft.",
+      "source_note_zh": "對應至 DSM-5 強迫症概念，暫不細分洞察力等特徵註記。",
+      "criteria": {
+        "A": {
+          "text": "Obsessions, compulsions, or both are present.",
+          "text_zh": "存在強迫思考、強迫行為，或兩者同時存在。",
+          "type": "core"
+        },
+        "B": {
+          "text": "The symptoms are time-consuming or cause marked distress or interference.",
+          "text_zh": "症狀耗費大量時間，或造成顯著痛苦與干擾。",
+          "type": "severity"
+        },
+        "C": {
+          "text": "The person experiences the symptoms as intrusive, unwanted, or driven rather than simply pleasurable habits.",
+          "text_zh": "當事人將症狀經驗為侵入、不受歡迎，或被某種驅力推動，而非單純愉悅的習慣。",
+          "type": "experience"
+        },
+        "D": {
+          "text": "The pattern is not better explained by substances, another medical condition, or another primary disorder.",
+          "text_zh": "此型態不能由物質、其他醫療狀況或另一個主要障礙更佳解釋。",
+          "type": "exclusion"
+        }
+      },
+      "threshold": {
+        "all_required": true,
+        "time_per_day_hours": 1
+      }
+    },
+    "F43.1": {
+      "dsm5_code": "309.81",
+      "name": "Posttraumatic Stress Disorder",
+      "name_zh": "創傷後壓力症",
+      "icd10_equivalent": "F43.1",
+      "category": "trauma_stressor",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": false,
+      "source_note": "Drafted from the DSM-5 PTSD concept using broad trauma, intrusion, avoidance, and arousal clusters.",
+      "source_note_zh": "依 DSM-5 創傷後壓力症概念草擬，以創傷、侵入、逃避與喚起等廣泛症狀群組表示。",
+      "criteria": {
+        "A": {
+          "text": "The person was exposed to a traumatic event involving serious threat, injury, or violence.",
+          "text_zh": "當事人曾暴露於涉及重大威脅、傷害或暴力的創傷事件。",
+          "type": "trauma"
+        },
+        "B": {
+          "text": "The trauma is persistently re-experienced through memories, dreams, flashback-like states, or strong distress at reminders.",
+          "text_zh": "創傷持續以記憶、夢境、類閃回狀態，或對提醒物的強烈痛苦重新被經驗。",
+          "type": "intrusion"
+        },
+        "C": {
+          "text": "Avoidance, negative shifts in mood or thinking, and heightened threat reactivity develop after the trauma.",
+          "text_zh": "創傷後出現逃避、負向情緒或認知轉變，以及威脅警覺性升高。",
+          "type": "clusters"
+        },
+        "D": {
+          "text": "Symptoms persist beyond the immediate aftermath and cause functional harm.",
+          "text_zh": "症狀超出事件後的短暫急性反應期，並造成功能損害。",
+          "type": "duration"
+        }
+      },
+      "threshold": {
+        "trauma_required": true,
+        "min_clusters": 4,
+        "duration_months": 1
+      }
+    },
+    "F43.2": {
+      "dsm5_code": "309.xx",
+      "name": "Adjustment Disorder",
+      "name_zh": "適應障礙",
+      "icd10_equivalent": "F43.2",
+      "category": "trauma_stressor",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": true,
+      "source_note": "DSM-5 adjustment disorder requires a stressor-linked response, but final subtype and specifier selection remains unresolved here.",
+      "source_note_zh": "DSM-5 適應障礙強調與壓力源相關的反應，但此處尚未細分最終亞型與特徵註記。",
+      "criteria": {
+        "A": {
+          "text": "Emotional or behavioral symptoms develop in response to an identifiable stressor.",
+          "text_zh": "情緒或行為症狀是在可辨識的壓力源之後出現。",
+          "type": "stressor"
+        },
+        "B": {
+          "text": "The response is disproportionate to the stressor's context or it clearly impairs functioning.",
+          "text_zh": "此反應相對於壓力情境顯得過度，或已明顯損害功能。",
+          "type": "severity"
+        },
+        "C": {
+          "text": "The pattern is not better explained by another full disorder or ordinary bereavement alone.",
+          "text_zh": "此型態不能由另一個完整障礙或單純喪慟反應更佳解釋。",
+          "type": "differential"
+        },
+        "D": {
+          "text": "Once the stressor or its consequences resolve, the symptoms should not persist indefinitely.",
+          "text_zh": "當壓力源或其後果消退後，症狀不應無限期持續。",
+          "type": "course"
+        }
+      },
+      "threshold": {
+        "stressor_required": true,
+        "onset_within_months": 3,
+        "duration_after_stressor_months": 6
+      }
+    },
+    "F45": {
+      "dsm5_code": "300.82",
+      "name": "Somatic Symptom Disorder",
+      "name_zh": "身體症狀障礙",
+      "icd10_equivalent": "F45",
+      "category": "somatic",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": true,
+      "source_note": "ICD-10 somatoform disorders were restructured in DSM-5, so this draft uses the broader somatic symptom disorder concept.",
+      "source_note_zh": "ICD-10 的躯體形式障礙在 DSM-5 中已重構，因此此草稿採用較廣義的身體症狀障礙概念。",
+      "criteria": {
+        "A": {
+          "text": "One or more somatic symptoms are distressing or disruptive in daily life.",
+          "text_zh": "一項或多項身體症狀令人痛苦，或已干擾日常生活。",
+          "type": "core"
+        },
+        "B": {
+          "text": "The person shows excessive worry, health anxiety, or time and energy devoted to the symptoms.",
+          "text_zh": "當事人對症狀表現出過度擔憂、健康焦慮，或投入大量時間與精力。",
+          "type": "focus"
+        },
+        "C": {
+          "text": "The symptomatic state is persistent even if a specific symptom shifts over time.",
+          "text_zh": "即使個別身體症狀隨時間變動，整體症狀狀態仍持續存在。",
+          "type": "duration"
+        }
+      },
+      "threshold": {
+        "min_focus_features": 1,
+        "duration_months": 6
+      }
+    },
+    "F50": {
+      "dsm5_code": "307.1/307.51/307.59",
+      "name": "Feeding and Eating Disorder Family",
+      "name_zh": "餵食與飲食障礙家族",
+      "icd10_equivalent": "F50",
+      "category": "eating",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": true,
+      "source_note": "ICD-10 eating disorders map onto several DSM-5 conditions, including anorexia nervosa, bulimia nervosa, binge-eating disorder, and related feeding conditions.",
+      "source_note_zh": "ICD-10 的進食障礙對應到多個 DSM-5 狀況，包括神經性厭食症、暴食症、嗜食症與相關餵食障礙。",
+      "criteria": {
+        "A": {
+          "text": "Eating behavior, weight-control behavior, or food intake becomes clinically dysregulated.",
+          "text_zh": "進食行為、體重控制行為或食物攝取在臨床上明顯失調。",
+          "type": "core"
+        },
+        "B": {
+          "text": "Body-weight concerns, binge episodes, compensatory behaviors, or restrictive intake patterns are prominent.",
+          "text_zh": "體重體型關切、暴食發作、補償行為，或限制型攝食模式表現明顯。",
+          "type": "pattern"
+        },
+        "C": {
+          "text": "The disturbance produces medical risk, nutritional compromise, or psychosocial impairment.",
+          "text_zh": "此困擾已造成醫療風險、營養受損，或社會心理功能受影響。",
+          "type": "impact"
+        },
+        "D": {
+          "text": "A clinician must still choose the final DSM-5 subtype from the broader eating-disorder family.",
+          "text_zh": "仍需由臨床人員自較廣泛的飲食障礙家族中選定最終 DSM-5 亞型。",
+          "type": "specifier"
+        }
+      },
+      "threshold": {
+        "min_total": 2,
+        "subtype_review_required": true
+      }
+    },
+    "F51": {
+      "dsm5_code": "780.52/780.54/327.3x/307.47",
+      "name": "Sleep-Wake Disorder Family",
+      "name_zh": "睡眠覺醒障礙家族",
+      "icd10_equivalent": "F51",
+      "category": "sleep",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": true,
+      "source_note": "ICD-10 nonorganic sleep disorders disperse across several DSM-5 sleep-wake diagnoses, so this draft preserves only a family-level abstraction.",
+      "source_note_zh": "ICD-10 的非器質性睡眠障礙在 DSM-5 中分散為多種睡眠覺醒診斷，因此此草稿僅保留家族層級抽象。",
+      "criteria": {
+        "A": {
+          "text": "A prominent complaint involves sleep quantity, quality, timing, or related nighttime phenomena.",
+          "text_zh": "主要抱怨涉及睡眠量、睡眠品質、睡眠時序，或相關夜間現象。",
+          "type": "core"
+        },
+        "B": {
+          "text": "The problem recurs over time rather than representing a single poor night of sleep.",
+          "text_zh": "問題會反覆出現，而非單一次睡不好的夜晚。",
+          "type": "persistence"
+        },
+        "C": {
+          "text": "Daytime fatigue, cognitive impairment, emotional burden, or safety risk results from the sleep disturbance.",
+          "text_zh": "睡眠困擾導致日間疲倦、認知受損、情緒負擔或安全風險。",
+          "type": "impact"
+        },
+        "D": {
+          "text": "Subtype selection still requires distinguishing insomnia, hypersomnolence, circadian, nightmare, and other sleep-wake conditions.",
+          "text_zh": "仍需區分失眠、嗜睡、晝夜節律、惡夢與其他睡眠覺醒狀況的最終亞型。",
+          "type": "specifier"
+        }
+      },
+      "threshold": {
+        "frequency_per_week": 3,
+        "duration_months": 3,
+        "subtype_review_required": true
+      }
+    },
+    "F98": {
+      "dsm5_code": null,
+      "name": "Other Childhood-Onset Behavioral or Emotional Condition",
+      "name_zh": "其他兒童期起始的行為或情緒狀況",
+      "icd10_equivalent": "F98",
+      "category": "neurodevelopmental",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": true,
+      "source_note": "This ICD-10 grouping is dispersed across multiple DSM-5 chapters, so no single faithful DSM-5 code is assigned in this draft.",
+      "source_note_zh": "此 ICD-10 群組在 DSM-5 中分散於多個章節，因此本草稿不指定單一且忠實的 DSM-5 代碼。",
+      "criteria": {
+        "A": {
+          "text": "Behavioral or emotional symptoms emerge in childhood or adolescence and are clinically notable.",
+          "text_zh": "行為或情緒症狀於兒童或青少年期出現，且具有臨床重要性。",
+          "type": "core"
+        },
+        "B": {
+          "text": "The presentation creates impairment, caregiver burden, or developmental concern.",
+          "text_zh": "此表現造成失能、照顧者負擔，或引發發展上的顧慮。",
+          "type": "impact"
+        },
+        "C": {
+          "text": "Final DSM-5 placement may fall under elimination, feeding, tic, stereotypic, or other specified childhood conditions.",
+          "text_zh": "最終 DSM-5 歸類可能落在排泄、餵食、抽動、刻板行為，或其他特定兒童期狀況之下。",
+          "type": "specifier"
+        }
+      },
+      "threshold": {
+        "min_total": 2,
+        "subtype_review_required": true
+      }
+    },
+    "Z71": {
+      "dsm5_code": "Z71.x",
+      "name": "Counseling or Life-Management Problem",
+      "name_zh": "諮商或生活管理問題",
+      "icd10_equivalent": "Z71",
+      "category": "counseling",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": false,
+      "source_note": "Retained as a counseling and psychosocial-services style Z-code rather than a DSM mental-disorder diagnosis.",
+      "source_note_zh": "此項保留為諮商與心理社會服務型 Z 代碼，而非 DSM 精神疾患診斷。",
+      "criteria": {
+        "A": {
+          "text": "The person seeks guidance, psychoeducation, coping support, or service linkage.",
+          "text_zh": "當事人尋求指導、心理教育、因應支持或服務轉介。",
+          "type": "service_need"
+        },
+        "B": {
+          "text": "The immediate focus is a health, stress, or life-management problem rather than a fully specified psychiatric syndrome.",
+          "text_zh": "當前重點是健康、壓力或生活管理問題，而非一個已完整界定的精神症候群。",
+          "type": "focus"
+        },
+        "C": {
+          "text": "Support may be appropriate with or without a separate mental-disorder diagnosis.",
+          "text_zh": "無論是否合併其他精神疾患診斷，都可能適合提供支持服務。",
+          "type": "context"
+        }
+      },
+      "threshold": {
+        "min_total": 1
+      }
+    },
+    "F41.2": {
+      "dsm5_code": null,
+      "name": "No Single DSM-5 Equivalent for Mixed Anxiety and Depression",
+      "name_zh": "混合性焦慮與憂鬱狀態在 DSM-5 中無單一對應",
+      "icd10_equivalent": "F41.2",
+      "category": "anxiety_depressive_overlap",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": true,
+      "source_note": "DSM-5 does not define a direct single-code counterpart for ICD-10 mixed anxiety and depressive disorder.",
+      "source_note_zh": "DSM-5 並未為 ICD-10 的混合性焦慮與憂鬱障礙提供單一直接對應代碼。",
+      "dsm5_reasoning_fallback": "Review for Unspecified Anxiety Disorder (300.00), Unspecified Depressive Disorder (311), or whichever full syndrome is actually met once the case is clarified.",
+      "dsm5_reasoning_fallback_zh": "待個案資訊更清楚後，可回頭檢視是否較符合未特定焦慮障礙（300.00）、未特定憂鬱障礙（311），或其實已達成某一完整症候群。",
+      "fallback_codes": [
+        "300.00",
+        "311"
+      ],
+      "criteria": {
+        "A": {
+          "text": "Clinically meaningful anxiety and depressive symptoms are both present.",
+          "text_zh": "臨床上有意義的焦慮與憂鬱症狀同時存在。",
+          "type": "overlap"
+        },
+        "B": {
+          "text": "The available information does not cleanly support one single DSM-5 diagnosis or a clearly dominant syndrome.",
+          "text_zh": "現有資訊無法清楚支持單一 DSM-5 診斷，或無明確占優勢的症候群。",
+          "type": "uncertainty"
+        },
+        "C": {
+          "text": "The symptom mix still causes distress or functional burden.",
+          "text_zh": "此症狀組合仍造成痛苦或功能負擔。",
+          "type": "impact"
+        },
+        "D": {
+          "text": "A dual-review fallback is required rather than a direct one-to-one code conversion.",
+          "text_zh": "此情況需要雙軌審查式的替代判讀，而非直接一對一代碼轉換。",
+          "type": "fallback"
+        }
+      },
+      "threshold": {
+        "both_required": true,
+        "min_total": 2,
+        "direct_equivalent_available": false
+      }
+    },
+    "F41.9": {
+      "dsm5_code": "300.00",
+      "name": "Unspecified Anxiety Disorder",
+      "name_zh": "未特定焦慮障礙",
+      "icd10_equivalent": "F41.9",
+      "category": "anxiety",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": false,
+      "source_note": "Uses the DSM-5 unspecified anxiety concept when anxiety is clinically meaningful but insufficiently detailed for a narrower label.",
+      "source_note_zh": "採用 DSM-5 未特定焦慮障礙概念，用於焦慮具臨床意義但細節不足以窄化診斷的情況。",
+      "criteria": {
+        "A": {
+          "text": "Anxiety symptoms are prominent and clinically important.",
+          "text_zh": "焦慮症狀明顯，且在臨床上具有重要性。",
+          "type": "core"
+        },
+        "B": {
+          "text": "The symptoms create distress or impairment.",
+          "text_zh": "症狀造成痛苦或功能受損。",
+          "type": "impact"
+        },
+        "C": {
+          "text": "The available data are insufficient for a more specific anxiety diagnosis.",
+          "text_zh": "現有資料不足以支持更明確的焦慮類診斷。",
+          "type": "specifier"
+        }
+      },
+      "threshold": {
+        "min_total": 1
+      }
+    },
+    "F43.9": {
+      "dsm5_code": null,
+      "name": "Unspecified Trauma- and Stressor-Related Disorder",
+      "name_zh": "未特定創傷與壓力相關障礙",
+      "icd10_equivalent": "F43.9",
+      "category": "trauma_stressor",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": true,
+      "source_note": "Used as a lossy placeholder when stressor-linked symptoms are evident but the record cannot support a more specific DSM-5 trauma-related diagnosis.",
+      "source_note_zh": "當可見與壓力源相關的症狀，但紀錄不足以支持更特定的 DSM-5 創傷相關診斷時，作為失真性的暫置標籤使用。",
+      "criteria": {
+        "A": {
+          "text": "Symptoms are linked to a severe stressor or trauma-related context.",
+          "text_zh": "症狀與嚴重壓力源或創傷脈絡相關。",
+          "type": "context"
+        },
+        "B": {
+          "text": "The presentation causes clinically meaningful distress or impairment.",
+          "text_zh": "此表現造成臨床上顯著的痛苦或功能受損。",
+          "type": "impact"
+        },
+        "C": {
+          "text": "Available details are insufficient to confidently subtype the condition.",
+          "text_zh": "現有細節不足以有信心地將其細分為特定亞型。",
+          "type": "uncertainty"
+        }
+      },
+      "threshold": {
+        "min_total": 1,
+        "subtype_review_required": true
+      }
+    },
+    "F45.9": {
+      "dsm5_code": "300.82",
+      "name": "Somatic Symptom Disorder, Unspecified Draft Mapping",
+      "name_zh": "身體症狀障礙，未特定草擬對應",
+      "icd10_equivalent": "F45.9",
+      "category": "somatic",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": true,
+      "source_note": "Uses the broader DSM-5 somatic symptom disorder frame because ICD-10 unspecified somatoform presentations do not translate one-to-one.",
+      "source_note_zh": "因 ICD-10 未特定躯體形式表現無法一對一轉譯，此處採用較廣泛的 DSM-5 身體症狀障礙框架。",
+      "criteria": {
+        "A": {
+          "text": "A somatic complaint or health concern is clinically prominent.",
+          "text_zh": "身體抱怨或健康憂慮在臨床上相當突出。",
+          "type": "core"
+        },
+        "B": {
+          "text": "The concern is associated with distress, care-seeking, or functional disruption.",
+          "text_zh": "此憂慮伴隨痛苦、反覆求醫，或造成功能干擾。",
+          "type": "impact"
+        },
+        "C": {
+          "text": "The record does not support a more precisely specified somatic presentation.",
+          "text_zh": "現有紀錄不足以支持更精確界定的身體症狀表現。",
+          "type": "uncertainty"
+        }
+      },
+      "threshold": {
+        "min_total": 1
+      }
+    },
+    "F51.9": {
+      "dsm5_code": null,
+      "name": "Unspecified Sleep-Wake Disorder",
+      "name_zh": "未特定睡眠覺醒障礙",
+      "icd10_equivalent": "F51.9",
+      "category": "sleep",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": true,
+      "source_note": "Used when a clinically important sleep complaint is present but the subtype cannot be assigned from the available record.",
+      "source_note_zh": "當存在臨床上重要的睡眠抱怨，但無法從現有紀錄分派具體亞型時使用此標籤。",
+      "criteria": {
+        "A": {
+          "text": "A clinically relevant complaint about sleep is present.",
+          "text_zh": "存在臨床上具有意義的睡眠抱怨。",
+          "type": "core"
+        },
+        "B": {
+          "text": "The complaint is linked to daytime burden, safety concern, or emotional distress.",
+          "text_zh": "此抱怨與日間負擔、安全顧慮或情緒痛苦相關。",
+          "type": "impact"
+        },
+        "C": {
+          "text": "Subtype information is insufficient for a narrower sleep-wake diagnosis.",
+          "text_zh": "亞型資訊不足，無法收斂至更狹義的睡眠覺醒診斷。",
+          "type": "uncertainty"
+        }
+      },
+      "threshold": {
+        "min_total": 1
+      }
+    },
+    "G47": {
+      "dsm5_code": null,
+      "name": "Sleep-Wake Disorder Due to Another Medical Condition",
+      "name_zh": "因其他醫療狀況所致的睡眠覺醒障礙",
+      "icd10_equivalent": "G47",
+      "category": "sleep",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": true,
+      "source_note": "DSM-5 coding for organic sleep conditions depends on the symptom pattern and underlying medical etiology, so this entry remains a conceptual draft only.",
+      "source_note_zh": "DSM-5 對器質性睡眠狀況的編碼取決於症狀型態與基礎醫療病因，因此此條目僅作概念性草稿。",
+      "criteria": {
+        "A": {
+          "text": "A prominent sleep-wake disturbance is present.",
+          "text_zh": "存在明顯的睡眠覺醒困擾。",
+          "type": "core"
+        },
+        "B": {
+          "text": "Clinical evidence suggests that a medical or neurological condition contributes materially to the disturbance.",
+          "text_zh": "臨床證據顯示某項醫療或神經系統狀況對此困擾有實質貢獻。",
+          "type": "medical_cause"
+        },
+        "C": {
+          "text": "The sleep problem is clinically significant enough to warrant diagnosis or treatment planning.",
+          "text_zh": "睡眠問題已達需要診斷或治療規劃的臨床重要程度。",
+          "type": "impact"
+        }
+      },
+      "threshold": {
+        "all_required": true,
+        "medical_cause_required": true
+      }
+    },
+    "F90": {
+      "dsm5_code": "314.0x",
+      "name": "Attention-Deficit/Hyperactivity Disorder",
+      "name_zh": "注意力不足過動症",
+      "icd10_equivalent": "F90",
+      "category": "neurodevelopmental",
+      "verification_status": "UNVERIFIED_LLM_DRAFT",
+      "is_lossy_reasoning": false,
+      "source_note": "Mapped to the DSM-5 ADHD concept using broad developmental and cross-setting requirements.",
+      "source_note_zh": "對應至 DSM-5 注意力不足過動症概念，採用廣義的發展期與跨情境要求。",
+      "criteria": {
+        "A": {
+          "text": "A persistent pattern of inattention, hyperactivity-impulsivity, or both is present.",
+          "text_zh": "存在持續性的注意力不足、過動衝動，或兩者並存的型態。",
+          "type": "core"
+        },
+        "B": {
+          "text": "Several symptoms were already evident during childhood rather than first emerging only in adulthood.",
+          "text_zh": "部分症狀在兒童期就已可見，而非僅在成年後首次出現。",
+          "type": "development"
+        },
+        "C": {
+          "text": "The pattern interferes with functioning across more than one setting.",
+          "text_zh": "此型態在超過一種情境中造成干擾與功能受損。",
+          "type": "cross_setting"
+        },
+        "D": {
+          "text": "Alternative explanations such as mood episodes, psychosis, or another disorder require exclusion review.",
+          "text_zh": "需排除情緒發作、精神病性狀態或其他障礙等替代解釋。",
+          "type": "exclusion"
+        }
+      },
+      "threshold": {
+        "min_domains": 1,
+        "onset_before_age": 12,
+        "cross_setting_required": true
+      }
+    }
+  }
+}

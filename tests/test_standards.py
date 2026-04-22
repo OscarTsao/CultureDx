@@ -82,6 +82,7 @@ class TestDSM5Backend:
         data = load_criteria(DiagnosticStandard.DSM5)
         assert data
         assert "F20" in data
+        assert len(data) == 26
 
     def test_verification_status_check(self) -> None:
         _require_dsm5_file()
@@ -116,3 +117,32 @@ class TestTranslationHelpers:
         assert dsm5_to_icd10("296.22") == ["F32.1"]
         assert dsm5_to_icd10("300.01") == ["F41.0"]
         assert dsm5_to_icd10("not-a-code") == []
+
+
+class TestDSM5CriteriaCompleteness:
+    def test_all_disorders_unverified(self) -> None:
+        _require_dsm5_file()
+        data = load_criteria(DiagnosticStandard.DSM5)
+        assert len(data) == 26
+        assert all(
+            disorder["verification_status"] == "UNVERIFIED_LLM_DRAFT"
+            for disorder in data.values()
+        )
+
+    def test_lossy_cases_flagged(self) -> None:
+        _require_dsm5_file()
+        data = load_criteria(DiagnosticStandard.DSM5)
+        required_lossy = {"F41.2", "F43.2", "F45", "F51", "F98"}
+        flagged = {
+            code
+            for code, disorder in data.items()
+            if disorder.get("is_lossy_reasoning") is True
+        }
+        assert required_lossy <= flagged
+
+    def test_f412_has_fallback(self) -> None:
+        _require_dsm5_file()
+        disorder = get_disorder_criteria("F41.2", DiagnosticStandard.DSM5)
+        assert disorder is not None
+        assert disorder["is_lossy_reasoning"] is True
+        assert disorder["dsm5_reasoning_fallback"]
