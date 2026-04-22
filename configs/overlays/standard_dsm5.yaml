@@ -1,0 +1,4 @@
+# DSM-5-only reasoning mode (v0_unverified criteria).
+mode:
+  reasoning_standard: dsm5
+  dsm5_criteria_version: v0_unverified

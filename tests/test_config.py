@@ -61,6 +61,14 @@ class TestLoadConfig:
         assert cfg.llm.provider == "vllm"
         assert cfg.llm.model_id == "Qwen/Qwen3-32B-AWQ"
 
+    def test_load_with_dual_standard_overlay(self):
+        cfg = load_config(
+            CONFIGS_DIR / "base.yaml",
+            overrides=[CONFIGS_DIR / "overlays" / "standard_dsm5.yaml"],
+        )
+        assert cfg.mode.reasoning_standard == "dsm5"
+        assert cfg.mode.dsm5_criteria_version == "v0_unverified"
+
 
 class TestEvidenceConfig:
     def test_evidence_config_defaults(self):

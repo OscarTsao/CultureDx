@@ -37,6 +37,7 @@ class ModeConfig(BaseModel):
     variants: list[str] | None = None
     target_disorders: list[str] | None = None
     reasoning_standard: str = "icd10"
+    dsm5_criteria_version: str | None = None
     scope_policy: str = "auto"
     execution_mode: str = "auto"
     diagnose_then_verify: bool = False

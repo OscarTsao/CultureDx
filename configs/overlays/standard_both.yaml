@@ -1,0 +1,4 @@
+# Dual-standard mode: ICD-10 primary + DSM-5 supplementary.
+mode:
+  reasoning_standard: both
+  dsm5_criteria_version: v0_unverified

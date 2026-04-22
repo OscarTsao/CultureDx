@@ -1,0 +1,3 @@
+# Explicit ICD-10-only reasoning (current default behavior).
+mode:
+  reasoning_standard: icd10
