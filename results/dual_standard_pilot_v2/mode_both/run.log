@@ -1,0 +1,1261 @@
+Loading dataset 'lingxidiag16k' from data/raw/lingxidiag16k...
+Loaded 100 cases.
+Mode: hied
+2026-04-24 13:59:50,920 faiss.loader INFO Loading faiss with AVX2 support.
+2026-04-24 13:59:50,928 faiss.loader INFO Successfully loaded faiss with AVX2 support.
+2026-04-24 13:59:50,930 culturedx.retrieval.case_retriever INFO Loading FAISS index from data/cache/train_case_index.faiss
+2026-04-24 13:59:51,012 culturedx.retrieval.case_retriever INFO CaseRetriever ready: 14000 cases indexed
+RAG enabled: loaded data/cache/train_case_index.faiss
+2026-04-24 13:59:51,019 culturedx.modes.hied WARNING DSM-5 reasoning is enabled with unverified criteria draft 0.1-DRAFT; supplementary outputs should be treated as experimental.
+Target disorders: F20, F31, F32, F39, F41.0, F41.1, F42, F43.1, F43.2, F45, F51, F98, F41.2, Z71
+HiED scope policy: manual
+HiED execution mode: benchmark_manual_scope
+Using --run-name override: run_dir=/home/user/YuNing/CultureDx/results/dual_standard_pilot_v2/mode_both/pilot_both
+Output directory: /home/user/YuNing/CultureDx/results/dual_standard_pilot_v2/mode_both/pilot_both
+Running CultureDx mode=hied on 100 cases...
+2026-04-24 13:59:51,021 culturedx.pipeline.runner INFO Processing case 1/100: 344699340
+2026-04-24 13:59:51,021 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 13:59:51,021 culturedx.modes.hied INFO Case 344699340: 14 candidate disorders from triage
+2026-04-24 13:59:51,022 culturedx.pipeline.runner INFO Processing case 2/100: 374577341
+2026-04-24 13:59:51,022 culturedx.pipeline.runner INFO Processing case 3/100: 350352506
+2026-04-24 13:59:51,023 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 13:59:51,023 culturedx.modes.hied INFO Case 350352506: 14 candidate disorders from triage
+2026-04-24 13:59:51,022 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 13:59:51,024 culturedx.modes.hied INFO Case 374577341: 14 candidate disorders from triage
+2026-04-24 13:59:51,023 culturedx.pipeline.runner INFO Processing case 4/100: 318518739
+2026-04-24 13:59:51,025 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 13:59:51,025 culturedx.modes.hied INFO Case 318518739: 14 candidate disorders from triage
+2026-04-24 13:59:51,024 culturedx.pipeline.runner INFO Processing case 5/100: 341328894
+2026-04-24 13:59:51,025 culturedx.pipeline.runner INFO Processing case 6/100: 337522433
+2026-04-24 13:59:51,025 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 13:59:51,025 culturedx.pipeline.runner INFO Processing case 7/100: 300493869
+2026-04-24 13:59:51,026 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 13:59:51,025 culturedx.pipeline.runner INFO Processing case 8/100: 347729413
+2026-04-24 13:59:51,026 culturedx.pipeline.runner INFO Processing case 9/100: 377662897
+2026-04-24 13:59:51,026 culturedx.pipeline.runner INFO Processing case 10/100: 303364596
+2026-04-24 13:59:51,026 culturedx.modes.hied INFO Case 341328894: 14 candidate disorders from triage
+2026-04-24 13:59:51,026 culturedx.modes.hied INFO Case 300493869: 14 candidate disorders from triage
+2026-04-24 13:59:51,025 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 13:59:51,027 culturedx.modes.hied INFO Case 337522433: 14 candidate disorders from triage
+2026-04-24 13:59:51,026 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 13:59:51,026 culturedx.pipeline.runner INFO Processing case 11/100: 327826586
+2026-04-24 13:59:51,027 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 13:59:51,027 culturedx.pipeline.runner INFO Processing case 12/100: 371726537
+2026-04-24 13:59:51,027 culturedx.pipeline.runner INFO Processing case 13/100: 388559461
+2026-04-24 13:59:51,028 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 13:59:51,028 culturedx.modes.hied INFO Case 388559461: 14 candidate disorders from triage
+2026-04-24 13:59:51,027 culturedx.modes.hied INFO Case 377662897: 14 candidate disorders from triage
+2026-04-24 13:59:51,027 culturedx.pipeline.runner INFO Processing case 15/100: 324224056
+2026-04-24 13:59:51,029 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 13:59:51,028 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 13:59:51,028 culturedx.modes.hied INFO Case 303364596: 14 candidate disorders from triage
+2026-04-24 13:59:51,028 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 13:59:51,029 culturedx.modes.hied INFO Case 371726537: 14 candidate disorders from triage
+2026-04-24 13:59:51,027 culturedx.pipeline.runner INFO Processing case 14/100: 341042297
+2026-04-24 13:59:51,029 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 13:59:51,029 culturedx.modes.hied INFO Case 324224056: 14 candidate disorders from triage
+2026-04-24 13:59:51,029 culturedx.modes.hied INFO Case 327826586: 14 candidate disorders from triage
+2026-04-24 13:59:51,026 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 13:59:51,028 culturedx.pipeline.runner INFO Processing case 16/100: 368679677
+2026-04-24 13:59:51,029 culturedx.modes.hied INFO Case 341042297: 14 candidate disorders from triage
+2026-04-24 13:59:51,030 culturedx.modes.hied INFO Case 347729413: 14 candidate disorders from triage
+2026-04-24 13:59:51,030 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 13:59:51,031 culturedx.modes.hied INFO Case 368679677: 14 candidate disorders from triage
+2026-04-24 13:59:52,497 culturedx.retrieval.case_retriever INFO Loading BGE-M3 encoder (first call)...
+2026-04-24 13:59:52,775 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-24 13:59:52,786 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/modules.json "HTTP/1.1 200 OK"
+2026-04-24 13:59:52,986 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-24 13:59:52,997 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-04-24 13:59:52,997 sentence_transformers.base.model INFO Loading SentenceTransformer model from BAAI/bge-m3.
+2026-04-24 13:59:53,203 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-24 13:59:53,214 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-04-24 13:59:53,415 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-24 13:59:53,426 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/README.md "HTTP/1.1 200 OK"
+2026-04-24 13:59:53,627 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-24 13:59:53,638 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/modules.json "HTTP/1.1 200 OK"
+2026-04-24 13:59:53,841 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-24 13:59:53,851 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-04-24 13:59:54,054 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-04-24 13:59:54,262 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-24 13:59:54,273 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config.json "HTTP/1.1 200 OK"
+2026-04-24 13:59:54,500 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 391/391 [00:00<00:00, 85353.02it/s]
+2026-04-24 13:59:54,706 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-04-24 13:59:54,794 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-04-24 13:59:54,933 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/commits/main "HTTP/1.1 200 OK"
+2026-04-24 13:59:54,995 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-04-24 13:59:55,166 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/discussions?p=0 "HTTP/1.1 200 OK"
+2026-04-24 13:59:55,209 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-04-24 13:59:55,396 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/commits/refs%2Fpr%2F130 "HTTP/1.1 200 OK"
+2026-04-24 13:59:55,422 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-04-24 13:59:55,608 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/refs%2Fpr%2F130/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-04-24 13:59:55,624 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-24 13:59:55,635 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-24 13:59:55,830 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/refs%2Fpr%2F130/model.safetensors "HTTP/1.1 302 Found"
+2026-04-24 13:59:55,844 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-24 13:59:55,856 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config.json "HTTP/1.1 200 OK"
+2026-04-24 13:59:56,058 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-24 13:59:56,068 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/config.json "HTTP/1.1 200 OK"
+2026-04-24 13:59:56,275 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-24 13:59:56,286 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-24 13:59:56,498 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-24 13:59:56,713 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-24 13:59:57,948 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-04-24 13:59:58,158 httpx INFO HTTP Request: HEAD https://huggingface.co/BAAI/bge-m3/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-24 13:59:58,170 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-04-24 13:59:58,376 httpx INFO HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-m3 "HTTP/1.1 200 OK"
+2026-04-24 13:59:58,378 culturedx.retrieval.case_retriever INFO BGE-M3 encoder loaded.
+2026-04-24 14:00:07,066 culturedx.modes.hied INFO Case 347729413: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:07,077 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:07,083 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:07,083 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:07,084 culturedx.modes.hied INFO Case 347729413: 14 candidate disorders from triage
+2026-04-24 14:00:08,201 culturedx.modes.hied INFO Case 377662897: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:00:08,207 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:08,213 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:08,213 culturedx.modes.hied INFO Case 377662897: DtV primary from top2 (top-1 F32 -> primary F41.1)
+2026-04-24 14:00:08,214 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:08,214 culturedx.modes.hied INFO Case 377662897: 14 candidate disorders from triage
+2026-04-24 14:00:08,906 culturedx.modes.hied INFO Case 300493869: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F45']
+2026-04-24 14:00:08,928 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:08,939 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:08,940 culturedx.modes.hied INFO Case 300493869: DtV primary from top3 (top-1 F41.1 -> primary F41.2)
+2026-04-24 14:00:08,940 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:08,940 culturedx.modes.hied INFO Case 300493869: 14 candidate disorders from triage
+2026-04-24 14:00:10,202 culturedx.modes.hied INFO Case 327826586: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:00:10,207 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:10,240 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:10,240 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:10,240 culturedx.modes.hied INFO Case 327826586: 14 candidate disorders from triage
+2026-04-24 14:00:10,444 culturedx.modes.hied INFO Case 388559461: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:10,452 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:10,456 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:10,457 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:10,457 culturedx.modes.hied INFO Case 388559461: 14 candidate disorders from triage
+2026-04-24 14:00:10,682 culturedx.modes.hied INFO Case 303364596: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:00:10,688 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:10,693 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:10,694 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:10,694 culturedx.modes.hied INFO Case 303364596: 14 candidate disorders from triage
+2026-04-24 14:00:11,087 culturedx.modes.hied INFO Case 350352506: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.2']
+2026-04-24 14:00:11,117 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:11,127 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:11,127 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:11,128 culturedx.modes.hied INFO Case 350352506: 14 candidate disorders from triage
+2026-04-24 14:00:11,291 culturedx.modes.hied INFO Case 341042297: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:11,303 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:11,309 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:11,310 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:11,310 culturedx.modes.hied INFO Case 341042297: 14 candidate disorders from triage
+2026-04-24 14:00:11,528 culturedx.modes.hied INFO Case 324224056: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:00:11,547 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:11,562 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:11,563 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:11,563 culturedx.modes.hied INFO Case 324224056: 14 candidate disorders from triage
+2026-04-24 14:00:12,226 culturedx.modes.hied INFO Case 368679677: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:12,233 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:12,251 culturedx.modes.hied INFO Case 374577341: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F42']
+2026-04-24 14:00:12,294 culturedx.modes.base INFO Checker timing: 9 disorders in 0.1s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:12,297 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:12,297 culturedx.modes.hied INFO Case 368679677: 14 candidate disorders from triage
+2026-04-24 14:00:12,301 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:12,343 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:12,344 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:12,344 culturedx.modes.hied INFO Case 374577341: 14 candidate disorders from triage
+2026-04-24 14:00:12,496 culturedx.modes.hied INFO Case 337522433: Diagnostician ranked 5 disorders, top-2: ['F39', 'F41.1']
+2026-04-24 14:00:12,501 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:12,546 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:12,547 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:12,547 culturedx.modes.hied INFO Case 337522433: 14 candidate disorders from triage
+2026-04-24 14:00:12,737 culturedx.modes.hied INFO Case 318518739: Diagnostician ranked 5 disorders, top-2: ['F32', 'F51']
+2026-04-24 14:00:12,744 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:12,790 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:12,791 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:12,791 culturedx.modes.hied INFO Case 318518739: 14 candidate disorders from triage
+2026-04-24 14:00:13,110 culturedx.modes.hied INFO Case 344699340: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:13,118 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:13,135 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:13,135 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:13,135 culturedx.modes.hied INFO Case 344699340: 14 candidate disorders from triage
+2026-04-24 14:00:14,528 culturedx.modes.hied INFO Case 341328894: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:00:14,548 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:14,580 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:14,581 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:14,581 culturedx.modes.hied INFO Case 341328894: 14 candidate disorders from triage
+2026-04-24 14:00:15,503 culturedx.modes.hied INFO Case 371726537: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:15,509 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:15,532 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:15,533 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:15,533 culturedx.modes.hied INFO Case 371726537: 14 candidate disorders from triage
+2026-04-24 14:00:15,937 culturedx.modes.hied INFO Case 347729413: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:15,946 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:16,022 culturedx.modes.base INFO Checker timing: 9 disorders in 0.1s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:16,023 culturedx.modes.hied INFO Case 347729413: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:00:16,023 culturedx.pipeline.runner INFO Processing case 17/100: 332278660
+2026-04-24 14:00:16,023 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:16,023 culturedx.modes.hied INFO Case 332278660: 14 candidate disorders from triage
+2026-04-24 14:00:17,623 culturedx.modes.hied INFO Case 377662897: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:00:17,658 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:17,664 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:17,665 culturedx.modes.hied INFO Case 377662897: DtV primary from top2 (top-1 F32 -> primary F41.1)
+2026-04-24 14:00:17,665 culturedx.pipeline.runner INFO Processing case 18/100: 312389408
+2026-04-24 14:00:17,665 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:17,665 culturedx.modes.hied INFO Case 312389408: 14 candidate disorders from triage
+2026-04-24 14:00:19,797 culturedx.modes.hied INFO Case 300493869: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:00:19,830 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:19,836 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:19,836 culturedx.modes.hied INFO Case 300493869: DtV primary from top3 (top-1 F41.1 -> primary F45)
+2026-04-24 14:00:19,836 culturedx.pipeline.runner INFO Processing case 19/100: 380913193
+2026-04-24 14:00:19,836 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:19,836 culturedx.modes.hied INFO Case 380913193: 14 candidate disorders from triage
+2026-04-24 14:00:21,894 culturedx.modes.hied INFO Case 327826586: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:00:21,901 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:21,928 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:21,928 culturedx.modes.hied INFO Case 327826586: DtV primary from top3 (top-1 F32 -> primary F51)
+2026-04-24 14:00:21,929 culturedx.pipeline.runner INFO Processing case 20/100: 393761475
+2026-04-24 14:00:21,929 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:21,929 culturedx.modes.hied INFO Case 393761475: 14 candidate disorders from triage
+2026-04-24 14:00:22,841 culturedx.modes.hied INFO Case 388559461: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:22,909 culturedx.modes.base INFO Checker timing: 5 disorders in 0.1s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:22,933 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:22,933 culturedx.modes.hied INFO Case 388559461: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:00:22,934 culturedx.pipeline.runner INFO Processing case 21/100: 369682855
+2026-04-24 14:00:22,934 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:22,934 culturedx.modes.hied INFO Case 369682855: 14 candidate disorders from triage
+2026-04-24 14:00:22,971 culturedx.modes.hied INFO Case 341042297: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:00:22,977 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:23,004 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:23,005 culturedx.modes.hied INFO Case 341042297: DtV primary from top4 (top-1 F32 -> primary F51)
+2026-04-24 14:00:23,005 culturedx.pipeline.runner INFO Processing case 22/100: 329606499
+2026-04-24 14:00:23,005 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:23,005 culturedx.modes.hied INFO Case 329606499: 14 candidate disorders from triage
+2026-04-24 14:00:23,855 culturedx.modes.hied INFO Case 324224056: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:00:23,859 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:23,889 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:23,889 culturedx.modes.hied INFO Case 324224056: DtV primary from top4 (top-1 F41.1 -> primary F51)
+2026-04-24 14:00:23,889 culturedx.pipeline.runner INFO Processing case 23/100: 305328637
+2026-04-24 14:00:23,892 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:23,892 culturedx.modes.hied INFO Case 305328637: 14 candidate disorders from triage
+2026-04-24 14:00:23,983 culturedx.modes.hied INFO Case 303364596: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:00:23,994 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:24,006 culturedx.modes.hied INFO Case 350352506: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:00:24,018 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:24,025 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:24,026 culturedx.modes.hied INFO Case 350352506: DtV primary from top2 (top-1 F32 -> primary F41.1)
+2026-04-24 14:00:24,026 culturedx.pipeline.runner INFO Processing case 24/100: 376197379
+2026-04-24 14:00:24,026 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:24,026 culturedx.modes.hied INFO Case 376197379: 14 candidate disorders from triage
+2026-04-24 14:00:24,047 culturedx.modes.base INFO Checker timing: 9 disorders in 0.1s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:24,048 culturedx.modes.hied INFO Case 303364596: DtV primary from top2 (top-1 F32 -> primary F41.1)
+2026-04-24 14:00:24,048 culturedx.pipeline.runner INFO Processing case 25/100: 303895252
+2026-04-24 14:00:24,048 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:24,048 culturedx.modes.hied INFO Case 303895252: 14 candidate disorders from triage
+2026-04-24 14:00:25,318 culturedx.modes.hied INFO Case 368679677: Diagnostician ranked 5 disorders, top-2: ['F32', 'F43.2']
+2026-04-24 14:00:25,325 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:25,357 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:25,357 culturedx.modes.hied INFO Case 368679677: DtV primary from top4 (top-1 F32 -> primary F98)
+2026-04-24 14:00:25,358 culturedx.pipeline.runner INFO Processing case 26/100: 358313639
+2026-04-24 14:00:25,358 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:25,358 culturedx.modes.hied INFO Case 358313639: 14 candidate disorders from triage
+2026-04-24 14:00:26,330 culturedx.modes.hied INFO Case 318518739: Diagnostician ranked 5 disorders, top-2: ['F32', 'F51']
+2026-04-24 14:00:26,338 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:26,356 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:26,357 culturedx.modes.hied INFO Case 318518739: DtV primary from top2 (top-1 F32 -> primary F51)
+2026-04-24 14:00:26,357 culturedx.pipeline.runner INFO Processing case 27/100: 368998951
+2026-04-24 14:00:26,357 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:26,357 culturedx.modes.hied INFO Case 368998951: 14 candidate disorders from triage
+2026-04-24 14:00:26,394 culturedx.modes.hied INFO Case 374577341: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F39']
+2026-04-24 14:00:26,419 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:26,433 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:26,433 culturedx.pipeline.runner INFO Processing case 28/100: 355727279
+2026-04-24 14:00:26,433 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:26,433 culturedx.modes.hied INFO Case 355727279: 14 candidate disorders from triage
+2026-04-24 14:00:27,488 culturedx.modes.hied INFO Case 337522433: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:00:27,493 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:27,507 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:27,508 culturedx.modes.hied INFO Case 337522433: DtV primary from top3 (top-1 F32 -> primary F39)
+2026-04-24 14:00:27,508 culturedx.pipeline.runner INFO Processing case 29/100: 397700349
+2026-04-24 14:00:27,508 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:27,508 culturedx.modes.hied INFO Case 397700349: 14 candidate disorders from triage
+2026-04-24 14:00:27,873 culturedx.modes.hied INFO Case 312389408: Diagnostician ranked 5 disorders, top-2: ['F51', 'F39']
+2026-04-24 14:00:27,877 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:27,889 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:27,889 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:27,890 culturedx.modes.hied INFO Case 312389408: 14 candidate disorders from triage
+2026-04-24 14:00:28,221 culturedx.modes.hied INFO Case 332278660: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:28,243 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:28,253 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:28,253 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:28,253 culturedx.modes.hied INFO Case 332278660: 14 candidate disorders from triage
+2026-04-24 14:00:28,793 culturedx.modes.hied INFO Case 344699340: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:28,832 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:28,898 culturedx.modes.base INFO Checker timing: 9 disorders in 0.1s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:28,899 culturedx.modes.hied INFO Case 344699340: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:00:28,899 culturedx.pipeline.runner INFO Processing case 30/100: 381110368
+2026-04-24 14:00:28,899 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:28,899 culturedx.modes.hied INFO Case 381110368: 14 candidate disorders from triage
+2026-04-24 14:00:30,572 culturedx.modes.hied INFO Case 380913193: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:00:30,587 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:30,662 culturedx.modes.base INFO Checker timing: 9 disorders in 0.1s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:30,663 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:30,663 culturedx.modes.hied INFO Case 380913193: 14 candidate disorders from triage
+2026-04-24 14:00:31,100 culturedx.modes.hied INFO Case 341328894: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:00:31,110 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:31,117 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:31,118 culturedx.pipeline.runner INFO Processing case 31/100: 309444601
+2026-04-24 14:00:31,118 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:31,118 culturedx.modes.hied INFO Case 309444601: 14 candidate disorders from triage
+2026-04-24 14:00:32,183 culturedx.modes.hied INFO Case 371726537: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:32,191 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:32,197 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:32,197 culturedx.modes.hied INFO Case 371726537: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:00:32,197 culturedx.pipeline.runner INFO Processing case 32/100: 335985565
+2026-04-24 14:00:32,198 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:32,198 culturedx.modes.hied INFO Case 335985565: 14 candidate disorders from triage
+2026-04-24 14:00:33,833 culturedx.modes.hied INFO Case 305328637: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:00:33,843 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:33,903 culturedx.modes.base INFO Checker timing: 9 disorders in 0.1s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:33,904 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:33,904 culturedx.modes.hied INFO Case 305328637: 14 candidate disorders from triage
+2026-04-24 14:00:34,201 culturedx.modes.hied INFO Case 303895252: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:00:34,204 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:34,254 culturedx.modes.base INFO Checker timing: 9 disorders in 0.1s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:34,255 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:34,255 culturedx.modes.hied INFO Case 303895252: 14 candidate disorders from triage
+2026-04-24 14:00:35,570 culturedx.modes.hied INFO Case 358313639: Diagnostician ranked 5 disorders, top-2: ['F32', 'F51']
+2026-04-24 14:00:35,583 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:35,599 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:35,599 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:35,600 culturedx.modes.hied INFO Case 358313639: 14 candidate disorders from triage
+2026-04-24 14:00:35,713 culturedx.modes.hied INFO Case 369682855: Diagnostician ranked 5 disorders, top-2: ['F20', 'F32']
+2026-04-24 14:00:35,753 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:35,762 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:35,762 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:35,762 culturedx.modes.hied INFO Case 369682855: 14 candidate disorders from triage
+2026-04-24 14:00:35,775 culturedx.modes.hied INFO Case 329606499: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:35,794 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:35,801 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:35,801 culturedx.modes.hied INFO Case 329606499: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:00:35,801 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:35,801 culturedx.modes.hied INFO Case 329606499: 14 candidate disorders from triage
+2026-04-24 14:00:36,087 culturedx.modes.hied INFO Case 393761475: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:00:36,096 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:36,118 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:36,119 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:36,119 culturedx.modes.hied INFO Case 393761475: 14 candidate disorders from triage
+2026-04-24 14:00:38,196 culturedx.modes.hied INFO Case 312389408: Diagnostician ranked 5 disorders, top-2: ['F39', 'F51']
+2026-04-24 14:00:38,203 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:38,245 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:38,246 culturedx.pipeline.runner INFO Processing case 33/100: 321077019
+2026-04-24 14:00:38,246 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:38,246 culturedx.modes.hied INFO Case 321077019: 14 candidate disorders from triage
+2026-04-24 14:00:38,701 culturedx.modes.hied INFO Case 376197379: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:00:38,709 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:38,748 culturedx.modes.hied INFO Case 355727279: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:38,753 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:38,754 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:38,754 culturedx.modes.hied INFO Case 376197379: 14 candidate disorders from triage
+2026-04-24 14:00:38,761 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:38,769 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:38,770 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:38,770 culturedx.modes.hied INFO Case 355727279: 14 candidate disorders from triage
+2026-04-24 14:00:39,682 culturedx.modes.hied INFO Case 368998951: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:39,690 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:39,714 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:39,715 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:39,715 culturedx.modes.hied INFO Case 368998951: 14 candidate disorders from triage
+2026-04-24 14:00:39,860 culturedx.modes.hied INFO Case 332278660: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:39,869 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:39,962 culturedx.modes.base INFO Checker timing: 9 disorders in 0.1s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:39,962 culturedx.modes.hied INFO Case 332278660: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:00:39,962 culturedx.pipeline.runner INFO Processing case 34/100: 346998154
+2026-04-24 14:00:39,962 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:39,963 culturedx.modes.hied INFO Case 346998154: 14 candidate disorders from triage
+2026-04-24 14:00:40,174 culturedx.modes.hied INFO Case 397700349: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:40,177 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:40,182 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:40,183 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:40,183 culturedx.modes.hied INFO Case 397700349: 14 candidate disorders from triage
+2026-04-24 14:00:40,688 culturedx.modes.hied INFO Case 309444601: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.2']
+2026-04-24 14:00:40,715 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:40,739 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:40,740 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:40,740 culturedx.modes.hied INFO Case 309444601: 14 candidate disorders from triage
+2026-04-24 14:00:41,241 culturedx.modes.hied INFO Case 380913193: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:00:41,248 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:41,261 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:41,271 culturedx.modes.hied INFO Case 380913193: DtV primary from top4 (top-1 F41.1 -> primary F39)
+2026-04-24 14:00:41,272 culturedx.pipeline.runner INFO Processing case 35/100: 359213312
+2026-04-24 14:00:41,272 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:41,272 culturedx.modes.hied INFO Case 359213312: 14 candidate disorders from triage
+2026-04-24 14:00:41,489 culturedx.modes.hied INFO Case 381110368: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.2']
+2026-04-24 14:00:41,525 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:41,538 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:41,538 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:41,539 culturedx.modes.hied INFO Case 381110368: 14 candidate disorders from triage
+2026-04-24 14:00:43,324 culturedx.modes.hied INFO Case 335985565: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:43,327 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:43,373 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:43,374 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:43,374 culturedx.modes.hied INFO Case 335985565: 14 candidate disorders from triage
+2026-04-24 14:00:43,765 culturedx.modes.hied INFO Case 305328637: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:00:43,767 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:43,784 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:43,785 culturedx.pipeline.runner INFO Processing case 36/100: 367615981
+2026-04-24 14:00:43,785 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:43,785 culturedx.modes.hied INFO Case 367615981: 14 candidate disorders from triage
+2026-04-24 14:00:44,816 culturedx.modes.hied INFO Case 303895252: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:00:44,852 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:44,897 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:44,898 culturedx.modes.hied INFO Case 303895252: DtV primary from top3 (top-1 F32 -> primary F39)
+2026-04-24 14:00:44,898 culturedx.pipeline.runner INFO Processing case 37/100: 383925853
+2026-04-24 14:00:44,898 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:44,899 culturedx.modes.hied INFO Case 383925853: 14 candidate disorders from triage
+2026-04-24 14:00:45,675 culturedx.modes.hied INFO Case 358313639: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:00:45,686 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:45,748 culturedx.modes.base INFO Checker timing: 9 disorders in 0.1s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:45,749 culturedx.modes.hied INFO Case 358313639: DtV primary from top3 (top-1 F32 -> primary F51)
+2026-04-24 14:00:45,749 culturedx.pipeline.runner INFO Processing case 38/100: 349524800
+2026-04-24 14:00:45,749 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:45,749 culturedx.modes.hied INFO Case 349524800: 14 candidate disorders from triage
+2026-04-24 14:00:48,258 culturedx.modes.hied INFO Case 321077019: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:00:48,264 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:48,268 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:48,268 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:48,268 culturedx.modes.hied INFO Case 321077019: 14 candidate disorders from triage
+2026-04-24 14:00:48,409 culturedx.modes.hied INFO Case 329606499: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:00:48,413 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:48,438 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:48,438 culturedx.modes.hied INFO Case 329606499: DtV primary from top2 (top-1 F32 -> primary F41.1)
+2026-04-24 14:00:48,438 culturedx.pipeline.runner INFO Processing case 39/100: 339178683
+2026-04-24 14:00:48,441 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:48,441 culturedx.modes.hied INFO Case 339178683: 14 candidate disorders from triage
+2026-04-24 14:00:49,065 culturedx.modes.hied INFO Case 369682855: Diagnostician ranked 5 disorders, top-2: ['F20', 'F32']
+2026-04-24 14:00:49,074 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:49,078 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:49,079 culturedx.modes.hied INFO Case 369682855: DtV primary from no_confirmed_fallback (top-1 F20 -> primary F20)
+2026-04-24 14:00:49,079 culturedx.pipeline.runner INFO Processing case 40/100: 365148198
+2026-04-24 14:00:49,079 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:49,079 culturedx.modes.hied INFO Case 365148198: 14 candidate disorders from triage
+2026-04-24 14:00:49,989 culturedx.modes.hied INFO Case 309444601: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:00:49,992 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:50,012 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:50,013 culturedx.modes.hied INFO Case 309444601: DtV primary from top3 (top-1 F32 -> primary F39)
+2026-04-24 14:00:50,013 culturedx.pipeline.runner INFO Processing case 41/100: 354219828
+2026-04-24 14:00:50,013 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:50,013 culturedx.modes.hied INFO Case 354219828: 14 candidate disorders from triage
+2026-04-24 14:00:50,465 culturedx.modes.hied INFO Case 393761475: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F39']
+2026-04-24 14:00:50,479 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:50,496 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:50,496 culturedx.modes.hied INFO Case 393761475: DtV primary from top2 (top-1 F41.1 -> primary F39)
+2026-04-24 14:00:50,496 culturedx.pipeline.runner INFO Processing case 42/100: 329547625
+2026-04-24 14:00:50,496 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:50,497 culturedx.modes.hied INFO Case 329547625: 14 candidate disorders from triage
+2026-04-24 14:00:50,772 culturedx.modes.hied INFO Case 355727279: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:50,776 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:50,780 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:50,781 culturedx.modes.hied INFO Case 355727279: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:00:50,781 culturedx.pipeline.runner INFO Processing case 43/100: 369867441
+2026-04-24 14:00:50,781 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:50,781 culturedx.modes.hied INFO Case 369867441: 14 candidate disorders from triage
+2026-04-24 14:00:51,264 culturedx.modes.hied INFO Case 346998154: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:51,274 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:51,283 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:51,283 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:51,283 culturedx.modes.hied INFO Case 346998154: 14 candidate disorders from triage
+2026-04-24 14:00:52,156 culturedx.modes.hied INFO Case 397700349: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:52,159 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:52,175 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:52,176 culturedx.modes.hied INFO Case 397700349: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:00:52,176 culturedx.pipeline.runner INFO Processing case 44/100: 327456260
+2026-04-24 14:00:52,176 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:52,176 culturedx.modes.hied INFO Case 327456260: 14 candidate disorders from triage
+2026-04-24 14:00:52,819 culturedx.modes.hied INFO Case 359213312: Diagnostician ranked 5 disorders, top-2: ['F51', 'F41.1']
+2026-04-24 14:00:52,852 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:52,857 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:52,857 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:52,857 culturedx.modes.hied INFO Case 359213312: 14 candidate disorders from triage
+2026-04-24 14:00:53,143 culturedx.modes.hied INFO Case 368998951: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:53,146 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:53,152 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:53,153 culturedx.modes.hied INFO Case 368998951: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:00:53,153 culturedx.pipeline.runner INFO Processing case 45/100: 331016450
+2026-04-24 14:00:53,153 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:53,153 culturedx.modes.hied INFO Case 331016450: 14 candidate disorders from triage
+2026-04-24 14:00:53,341 culturedx.modes.hied INFO Case 376197379: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:00:53,359 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:53,376 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:53,377 culturedx.pipeline.runner INFO Processing case 46/100: 314631661
+2026-04-24 14:00:53,381 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:53,381 culturedx.modes.hied INFO Case 314631661: 14 candidate disorders from triage
+2026-04-24 14:00:53,540 culturedx.modes.hied INFO Case 381110368: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:53,549 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:53,556 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:53,557 culturedx.modes.hied INFO Case 381110368: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:00:53,557 culturedx.pipeline.runner INFO Processing case 47/100: 395541834
+2026-04-24 14:00:53,557 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:53,557 culturedx.modes.hied INFO Case 395541834: 14 candidate disorders from triage
+2026-04-24 14:00:53,737 culturedx.modes.hied INFO Case 335985565: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:53,763 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:53,785 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:53,786 culturedx.modes.hied INFO Case 335985565: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:00:53,786 culturedx.pipeline.runner INFO Processing case 48/100: 349034373
+2026-04-24 14:00:53,786 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:53,786 culturedx.modes.hied INFO Case 349034373: 14 candidate disorders from triage
+2026-04-24 14:00:54,495 culturedx.modes.hied INFO Case 367615981: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:54,529 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:54,537 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:54,537 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:54,537 culturedx.modes.hied INFO Case 367615981: 14 candidate disorders from triage
+2026-04-24 14:00:54,610 culturedx.modes.hied INFO Case 349524800: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:00:54,613 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:54,617 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:54,618 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:54,618 culturedx.modes.hied INFO Case 349524800: 14 candidate disorders from triage
+2026-04-24 14:00:56,805 culturedx.modes.hied INFO Case 321077019: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:00:56,830 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:56,835 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:56,835 culturedx.modes.hied INFO Case 321077019: DtV primary from top3 (top-1 F32 -> primary F39)
+2026-04-24 14:00:56,835 culturedx.pipeline.runner INFO Processing case 49/100: 372632464
+2026-04-24 14:00:56,835 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:56,835 culturedx.modes.hied INFO Case 372632464: 14 candidate disorders from triage
+2026-04-24 14:00:59,696 culturedx.modes.hied INFO Case 365148198: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:00:59,702 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:59,713 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:59,714 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:59,714 culturedx.modes.hied INFO Case 365148198: 14 candidate disorders from triage
+2026-04-24 14:00:59,833 culturedx.modes.hied INFO Case 369867441: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:00:59,839 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:00:59,849 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:00:59,849 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:00:59,849 culturedx.modes.hied INFO Case 369867441: 14 candidate disorders from triage
+2026-04-24 14:01:01,383 culturedx.modes.hied INFO Case 339178683: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F42']
+2026-04-24 14:01:01,385 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:01,390 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:01,390 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:01,390 culturedx.modes.hied INFO Case 339178683: 14 candidate disorders from triage
+2026-04-24 14:01:01,538 culturedx.modes.hied INFO Case 383925853: Diagnostician ranked 5 disorders, top-2: ['F20', 'F39']
+2026-04-24 14:01:01,541 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:01,546 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:01,547 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:01,547 culturedx.modes.hied INFO Case 383925853: 14 candidate disorders from triage
+2026-04-24 14:01:02,192 culturedx.modes.hied INFO Case 354219828: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F51']
+2026-04-24 14:01:02,254 culturedx.modes.base INFO Checker timing: 5 disorders in 0.1s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:02,259 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:02,260 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:02,260 culturedx.modes.hied INFO Case 354219828: 14 candidate disorders from triage
+2026-04-24 14:01:02,866 culturedx.modes.hied INFO Case 346998154: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:01:02,916 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:02,967 culturedx.modes.base INFO Checker timing: 9 disorders in 0.1s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:02,968 culturedx.modes.hied INFO Case 346998154: DtV primary from top3 (top-1 F32 -> primary F39)
+2026-04-24 14:01:02,968 culturedx.pipeline.runner INFO Processing case 50/100: 320669626
+2026-04-24 14:01:02,968 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:02,968 culturedx.modes.hied INFO Case 320669626: 14 candidate disorders from triage
+2026-04-24 14:01:03,016 culturedx.modes.hied INFO Case 327456260: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:03,019 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:03,033 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:03,034 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:03,034 culturedx.modes.hied INFO Case 327456260: 14 candidate disorders from triage
+2026-04-24 14:01:03,236 culturedx.modes.hied INFO Case 331016450: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:03,249 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:03,264 culturedx.modes.hied INFO Case 349034373: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:01:03,273 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:03,310 culturedx.modes.base INFO Checker timing: 9 disorders in 0.1s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:03,311 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:03,311 culturedx.modes.hied INFO Case 331016450: 14 candidate disorders from triage
+2026-04-24 14:01:03,354 culturedx.modes.base INFO Checker timing: 9 disorders in 0.1s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:03,354 culturedx.modes.hied INFO Case 349034373: DtV primary from top2 (top-1 F32 -> primary F41.1)
+2026-04-24 14:01:03,354 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:03,354 culturedx.modes.hied INFO Case 349034373: 14 candidate disorders from triage
+2026-04-24 14:01:03,562 culturedx.modes.hied INFO Case 349524800: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:01:03,598 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:03,636 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:03,636 culturedx.modes.hied INFO Case 349524800: DtV primary from top4 (top-1 F32 -> primary F51)
+2026-04-24 14:01:03,636 culturedx.pipeline.runner INFO Processing case 51/100: 342949614
+2026-04-24 14:01:03,637 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:03,637 culturedx.modes.hied INFO Case 342949614: 14 candidate disorders from triage
+2026-04-24 14:01:03,792 culturedx.modes.hied INFO Case 329547625: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:01:03,798 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:03,811 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:03,811 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:03,811 culturedx.modes.hied INFO Case 329547625: 14 candidate disorders from triage
+2026-04-24 14:01:04,153 culturedx.modes.hied INFO Case 367615981: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:04,224 culturedx.modes.base INFO Checker timing: 5 disorders in 0.1s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:04,236 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:04,237 culturedx.modes.hied INFO Case 367615981: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:01:04,237 culturedx.pipeline.runner INFO Processing case 52/100: 356498183
+2026-04-24 14:01:04,237 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:04,237 culturedx.modes.hied INFO Case 356498183: 14 candidate disorders from triage
+2026-04-24 14:01:04,290 culturedx.modes.hied INFO Case 395541834: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:04,293 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:04,297 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:04,298 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:04,298 culturedx.modes.hied INFO Case 395541834: 14 candidate disorders from triage
+2026-04-24 14:01:04,977 culturedx.modes.hied INFO Case 359213312: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:01:04,980 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:04,985 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:04,985 culturedx.modes.hied INFO Case 359213312: DtV primary from top3 (top-1 F41.1 -> primary F51)
+2026-04-24 14:01:04,985 culturedx.pipeline.runner INFO Processing case 53/100: 300639126
+2026-04-24 14:01:04,985 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:04,985 culturedx.modes.hied INFO Case 300639126: 14 candidate disorders from triage
+2026-04-24 14:01:05,840 culturedx.modes.hied INFO Case 314631661: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:05,867 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:05,900 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:05,901 culturedx.modes.hied INFO Case 314631661: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:01:05,901 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:05,901 culturedx.modes.hied INFO Case 314631661: 14 candidate disorders from triage
+2026-04-24 14:01:09,804 culturedx.modes.hied INFO Case 365148198: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:09,835 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:09,850 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:09,851 culturedx.modes.hied INFO Case 365148198: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:01:09,851 culturedx.pipeline.runner INFO Processing case 54/100: 344013412
+2026-04-24 14:01:09,851 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:09,851 culturedx.modes.hied INFO Case 344013412: 14 candidate disorders from triage
+2026-04-24 14:01:10,131 culturedx.modes.hied INFO Case 369867441: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:10,135 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:10,152 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:10,153 culturedx.modes.hied INFO Case 369867441: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:01:10,153 culturedx.pipeline.runner INFO Processing case 55/100: 348839819
+2026-04-24 14:01:10,153 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:10,153 culturedx.modes.hied INFO Case 348839819: 14 candidate disorders from triage
+2026-04-24 14:01:10,162 culturedx.modes.hied INFO Case 372632464: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:01:10,186 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:10,233 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:10,234 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:10,234 culturedx.modes.hied INFO Case 372632464: 14 candidate disorders from triage
+2026-04-24 14:01:12,947 culturedx.modes.hied INFO Case 349034373: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:12,952 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:12,979 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:12,980 culturedx.modes.hied INFO Case 349034373: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:01:12,980 culturedx.pipeline.runner INFO Processing case 56/100: 379652943
+2026-04-24 14:01:12,980 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:12,980 culturedx.modes.hied INFO Case 379652943: 14 candidate disorders from triage
+2026-04-24 14:01:13,178 culturedx.modes.hied INFO Case 331016450: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:13,216 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:13,277 culturedx.modes.base INFO Checker timing: 9 disorders in 0.1s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:13,277 culturedx.modes.hied INFO Case 331016450: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:01:13,277 culturedx.pipeline.runner INFO Processing case 57/100: 345082346
+2026-04-24 14:01:13,277 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:13,277 culturedx.modes.hied INFO Case 345082346: 14 candidate disorders from triage
+2026-04-24 14:01:13,835 culturedx.modes.hied INFO Case 354219828: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:01:13,838 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:13,852 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:13,853 culturedx.modes.hied INFO Case 354219828: DtV primary from top3 (top-1 F41.1 -> primary F51)
+2026-04-24 14:01:13,853 culturedx.pipeline.runner INFO Processing case 58/100: 381931431
+2026-04-24 14:01:13,855 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:13,855 culturedx.modes.hied INFO Case 381931431: 14 candidate disorders from triage
+2026-04-24 14:01:13,956 culturedx.modes.hied INFO Case 327456260: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:13,982 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:13,988 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:13,988 culturedx.modes.hied INFO Case 327456260: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:01:13,988 culturedx.pipeline.runner INFO Processing case 59/100: 304891732
+2026-04-24 14:01:13,988 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:13,989 culturedx.modes.hied INFO Case 304891732: 14 candidate disorders from triage
+2026-04-24 14:01:14,266 culturedx.modes.hied INFO Case 339178683: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F42']
+2026-04-24 14:01:14,273 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:14,287 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:14,287 culturedx.modes.hied INFO Case 339178683: DtV primary from top3 (top-1 F41.1 -> primary F39)
+2026-04-24 14:01:14,287 culturedx.pipeline.runner INFO Processing case 60/100: 314878848
+2026-04-24 14:01:14,287 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:14,287 culturedx.modes.hied INFO Case 314878848: 14 candidate disorders from triage
+2026-04-24 14:01:14,918 culturedx.modes.hied INFO Case 300639126: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:14,975 culturedx.modes.base INFO Checker timing: 5 disorders in 0.1s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:14,986 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:14,987 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:14,987 culturedx.modes.hied INFO Case 300639126: 14 candidate disorders from triage
+2026-04-24 14:01:15,474 culturedx.modes.hied INFO Case 356498183: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:01:15,477 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:15,491 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:15,492 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:15,492 culturedx.modes.hied INFO Case 356498183: 14 candidate disorders from triage
+2026-04-24 14:01:15,865 culturedx.modes.hied INFO Case 342949614: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:15,869 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:15,882 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:15,883 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:15,883 culturedx.modes.hied INFO Case 342949614: 14 candidate disorders from triage
+2026-04-24 14:01:15,990 culturedx.modes.hied INFO Case 320669626: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:15,999 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:16,030 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:16,030 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:16,030 culturedx.modes.hied INFO Case 320669626: 14 candidate disorders from triage
+2026-04-24 14:01:16,599 culturedx.modes.hied INFO Case 395541834: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:16,616 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:16,627 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:16,627 culturedx.modes.hied INFO Case 395541834: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:01:16,627 culturedx.pipeline.runner INFO Processing case 61/100: 388730013
+2026-04-24 14:01:16,628 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:16,628 culturedx.modes.hied INFO Case 388730013: 14 candidate disorders from triage
+2026-04-24 14:01:17,345 culturedx.modes.hied INFO Case 329547625: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:01:17,371 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:17,384 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:17,384 culturedx.modes.hied INFO Case 329547625: DtV primary from top3 (top-1 F41.1 -> primary F39)
+2026-04-24 14:01:17,384 culturedx.pipeline.runner INFO Processing case 62/100: 374056166
+2026-04-24 14:01:17,385 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:17,385 culturedx.modes.hied INFO Case 374056166: 14 candidate disorders from triage
+2026-04-24 14:01:18,092 culturedx.modes.hied INFO Case 314631661: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:18,125 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:18,152 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:18,152 culturedx.modes.hied INFO Case 314631661: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:01:18,152 culturedx.pipeline.runner INFO Processing case 63/100: 387302774
+2026-04-24 14:01:18,152 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:18,152 culturedx.modes.hied INFO Case 387302774: 14 candidate disorders from triage
+2026-04-24 14:01:18,531 culturedx.modes.hied INFO Case 383925853: Diagnostician ranked 5 disorders, top-2: ['F20', 'F39']
+2026-04-24 14:01:18,548 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:18,574 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:18,574 culturedx.modes.hied INFO Case 383925853: DtV primary from top2 (top-1 F20 -> primary F39)
+2026-04-24 14:01:18,574 culturedx.pipeline.runner INFO Processing case 64/100: 333010865
+2026-04-24 14:01:18,574 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:18,574 culturedx.modes.hied INFO Case 333010865: 14 candidate disorders from triage
+2026-04-24 14:01:19,072 culturedx.modes.hied INFO Case 348839819: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:19,085 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:19,103 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:19,103 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:19,103 culturedx.modes.hied INFO Case 348839819: 14 candidate disorders from triage
+2026-04-24 14:01:21,328 culturedx.agents.diagnostician WARNING Diagnostician returned unknown code F32.0, skipping
+2026-04-24 14:01:21,328 culturedx.agents.diagnostician WARNING Diagnostician returned unknown code F51.0, skipping
+2026-04-24 14:01:21,328 culturedx.agents.diagnostician WARNING Diagnostician returned unknown code F39.9, skipping
+2026-04-24 14:01:21,328 culturedx.agents.diagnostician WARNING Diagnostician returned unknown code F98.9, skipping
+2026-04-24 14:01:21,328 culturedx.modes.hied INFO Case 344013412: Diagnostician ranked 1 disorders, top-2: ['F41.1']
+2026-04-24 14:01:21,329 culturedx.modes.base INFO Checker timing: 1 disorders in 0.0s (0.0s/disorder, 1 workers)
+2026-04-24 14:01:21,345 culturedx.modes.base INFO Checker timing: 13 disorders in 0.0s (0.0s/disorder, 13 workers)
+2026-04-24 14:01:21,346 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:21,346 culturedx.modes.hied INFO Case 344013412: 14 candidate disorders from triage
+2026-04-24 14:01:22,870 culturedx.modes.hied INFO Case 379652943: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:01:22,875 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:22,884 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:22,884 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:22,884 culturedx.modes.hied INFO Case 379652943: 14 candidate disorders from triage
+2026-04-24 14:01:23,629 culturedx.modes.hied INFO Case 345082346: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:01:23,640 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:23,646 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:23,647 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:23,647 culturedx.modes.hied INFO Case 345082346: 14 candidate disorders from triage
+2026-04-24 14:01:24,174 culturedx.modes.hied INFO Case 314878848: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:01:24,181 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:24,201 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:24,202 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:24,202 culturedx.modes.hied INFO Case 314878848: 14 candidate disorders from triage
+2026-04-24 14:01:24,220 culturedx.modes.hied INFO Case 381931431: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F41.2']
+2026-04-24 14:01:24,232 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:24,240 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:24,241 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:24,241 culturedx.modes.hied INFO Case 381931431: 14 candidate disorders from triage
+2026-04-24 14:01:24,299 culturedx.modes.hied INFO Case 372632464: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:24,303 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:24,329 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:24,330 culturedx.modes.hied INFO Case 372632464: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:01:24,330 culturedx.pipeline.runner INFO Processing case 65/100: 340563038
+2026-04-24 14:01:24,330 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:24,330 culturedx.modes.hied INFO Case 340563038: 14 candidate disorders from triage
+2026-04-24 14:01:24,581 culturedx.modes.hied INFO Case 300639126: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:24,588 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:24,592 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:24,593 culturedx.modes.hied INFO Case 300639126: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:01:24,593 culturedx.pipeline.runner INFO Processing case 66/100: 354496307
+2026-04-24 14:01:24,596 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:24,599 culturedx.modes.hied INFO Case 354496307: 14 candidate disorders from triage
+2026-04-24 14:01:25,315 culturedx.modes.hied INFO Case 304891732: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:25,323 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:25,329 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:25,330 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:25,330 culturedx.modes.hied INFO Case 304891732: 14 candidate disorders from triage
+2026-04-24 14:01:26,415 culturedx.modes.hied INFO Case 356498183: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:01:26,420 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:26,425 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:26,425 culturedx.modes.hied INFO Case 356498183: DtV primary from top3 (top-1 F32 -> primary F39)
+2026-04-24 14:01:26,425 culturedx.pipeline.runner INFO Processing case 67/100: 354203641
+2026-04-24 14:01:26,425 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:26,425 culturedx.modes.hied INFO Case 354203641: 14 candidate disorders from triage
+2026-04-24 14:01:27,417 culturedx.modes.hied INFO Case 388730013: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:01:27,423 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:27,428 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:27,428 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:27,428 culturedx.modes.hied INFO Case 388730013: 14 candidate disorders from triage
+2026-04-24 14:01:27,487 culturedx.modes.hied INFO Case 374056166: Diagnostician ranked 5 disorders, top-2: ['F32', 'F45']
+2026-04-24 14:01:27,490 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:27,508 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:27,509 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:27,509 culturedx.modes.hied INFO Case 374056166: 14 candidate disorders from triage
+2026-04-24 14:01:27,639 culturedx.modes.hied INFO Case 320669626: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:27,684 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:27,740 culturedx.modes.base INFO Checker timing: 9 disorders in 0.1s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:27,740 culturedx.modes.hied INFO Case 320669626: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:01:27,741 culturedx.pipeline.runner INFO Processing case 68/100: 381222225
+2026-04-24 14:01:27,741 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:27,741 culturedx.modes.hied INFO Case 381222225: 14 candidate disorders from triage
+2026-04-24 14:01:27,971 culturedx.modes.hied INFO Case 342949614: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:27,973 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:27,983 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:27,995 culturedx.modes.hied INFO Case 342949614: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:01:27,995 culturedx.pipeline.runner INFO Processing case 69/100: 329923484
+2026-04-24 14:01:27,996 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:27,996 culturedx.modes.hied INFO Case 329923484: 14 candidate disorders from triage
+2026-04-24 14:01:28,770 culturedx.modes.hied INFO Case 348839819: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:01:28,793 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:28,824 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:28,824 culturedx.modes.hied INFO Case 348839819: DtV primary from top2 (top-1 F32 -> primary F41.1)
+2026-04-24 14:01:28,825 culturedx.pipeline.runner INFO Processing case 70/100: 317090766
+2026-04-24 14:01:28,825 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:28,825 culturedx.modes.hied INFO Case 317090766: 14 candidate disorders from triage
+2026-04-24 14:01:29,593 culturedx.modes.hied INFO Case 387302774: Diagnostician ranked 5 disorders, top-2: ['F42', 'F41.1']
+2026-04-24 14:01:29,603 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:29,649 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:29,649 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:29,649 culturedx.modes.hied INFO Case 387302774: 14 candidate disorders from triage
+2026-04-24 14:01:29,875 culturedx.modes.hied INFO Case 333010865: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:29,893 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:29,900 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:29,901 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:29,901 culturedx.modes.hied INFO Case 333010865: 14 candidate disorders from triage
+2026-04-24 14:01:32,606 culturedx.modes.hied INFO Case 344013412: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:01:32,620 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:32,626 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:32,627 culturedx.modes.hied INFO Case 344013412: DtV primary from top3 (top-1 F41.1 -> primary F39)
+2026-04-24 14:01:32,627 culturedx.pipeline.runner INFO Processing case 71/100: 305956530
+2026-04-24 14:01:32,627 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:32,627 culturedx.modes.hied INFO Case 305956530: 14 candidate disorders from triage
+2026-04-24 14:01:32,651 culturedx.modes.hied INFO Case 379652943: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:01:32,658 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:32,699 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:32,700 culturedx.modes.hied INFO Case 379652943: DtV primary from top2 (top-1 F32 -> primary F41.1)
+2026-04-24 14:01:32,700 culturedx.pipeline.runner INFO Processing case 72/100: 334814081
+2026-04-24 14:01:32,700 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:32,700 culturedx.modes.hied INFO Case 334814081: 14 candidate disorders from triage
+2026-04-24 14:01:33,558 culturedx.modes.hied INFO Case 354496307: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:01:33,566 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:33,582 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:33,582 culturedx.modes.hied INFO Case 354496307: DtV primary from top3 (top-1 F41.1 -> primary F39)
+2026-04-24 14:01:33,582 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:33,582 culturedx.modes.hied INFO Case 354496307: 14 candidate disorders from triage
+2026-04-24 14:01:33,798 culturedx.modes.hied INFO Case 345082346: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:01:33,803 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:33,815 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:33,816 culturedx.pipeline.runner INFO Processing case 73/100: 382615327
+2026-04-24 14:01:33,816 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:33,816 culturedx.modes.hied INFO Case 382615327: 14 candidate disorders from triage
+2026-04-24 14:01:34,286 culturedx.modes.hied INFO Case 314878848: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:01:34,290 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:34,354 culturedx.modes.base INFO Checker timing: 9 disorders in 0.1s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:34,355 culturedx.modes.hied INFO Case 314878848: DtV primary from top2 (top-1 F32 -> primary F41.1)
+2026-04-24 14:01:34,355 culturedx.pipeline.runner INFO Processing case 74/100: 344046891
+2026-04-24 14:01:34,355 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:34,355 culturedx.modes.hied INFO Case 344046891: 14 candidate disorders from triage
+2026-04-24 14:01:34,840 culturedx.modes.hied INFO Case 340563038: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:01:34,855 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:34,917 culturedx.modes.base INFO Checker timing: 9 disorders in 0.1s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:34,918 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:34,918 culturedx.modes.hied INFO Case 340563038: 14 candidate disorders from triage
+2026-04-24 14:01:35,079 culturedx.modes.hied INFO Case 381931431: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:01:35,119 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:35,140 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:35,141 culturedx.pipeline.runner INFO Processing case 75/100: 351228828
+2026-04-24 14:01:35,141 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:35,141 culturedx.modes.hied INFO Case 351228828: 14 candidate disorders from triage
+2026-04-24 14:01:37,000 culturedx.modes.hied INFO Case 304891732: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:37,060 culturedx.modes.base INFO Checker timing: 5 disorders in 0.1s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:37,113 culturedx.modes.base INFO Checker timing: 9 disorders in 0.1s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:37,114 culturedx.modes.hied INFO Case 304891732: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:01:37,114 culturedx.pipeline.runner INFO Processing case 76/100: 368042020
+2026-04-24 14:01:37,114 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:37,114 culturedx.modes.hied INFO Case 368042020: 14 candidate disorders from triage
+2026-04-24 14:01:37,518 culturedx.modes.hied INFO Case 374056166: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:01:37,526 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:37,559 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:37,559 culturedx.modes.hied INFO Case 374056166: DtV primary from top3 (top-1 F32 -> primary F45)
+2026-04-24 14:01:37,559 culturedx.pipeline.runner INFO Processing case 77/100: 334085925
+2026-04-24 14:01:37,559 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:37,559 culturedx.modes.hied INFO Case 334085925: 14 candidate disorders from triage
+2026-04-24 14:01:37,835 culturedx.modes.hied INFO Case 388730013: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:01:37,838 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:37,846 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:37,847 culturedx.pipeline.runner INFO Processing case 78/100: 378819190
+2026-04-24 14:01:37,847 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:37,847 culturedx.modes.hied INFO Case 378819190: 14 candidate disorders from triage
+2026-04-24 14:01:38,646 culturedx.modes.hied INFO Case 329923484: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:38,655 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:38,661 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:38,662 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:38,662 culturedx.modes.hied INFO Case 329923484: 14 candidate disorders from triage
+2026-04-24 14:01:39,720 culturedx.modes.hied INFO Case 354203641: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:39,723 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:39,736 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:39,736 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:39,736 culturedx.modes.hied INFO Case 354203641: 14 candidate disorders from triage
+2026-04-24 14:01:40,661 culturedx.modes.hied INFO Case 317090766: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:01:40,666 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:40,688 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:40,689 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:40,689 culturedx.modes.hied INFO Case 317090766: 14 candidate disorders from triage
+2026-04-24 14:01:41,347 culturedx.modes.hied INFO Case 387302774: Diagnostician ranked 5 disorders, top-2: ['F20', 'F42']
+2026-04-24 14:01:41,352 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:41,360 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:41,360 culturedx.modes.hied INFO Case 387302774: DtV primary from top4 (top-1 F20 -> primary F39)
+2026-04-24 14:01:41,361 culturedx.pipeline.runner INFO Processing case 79/100: 386951485
+2026-04-24 14:01:41,361 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:41,361 culturedx.modes.hied INFO Case 386951485: 14 candidate disorders from triage
+2026-04-24 14:01:41,541 culturedx.modes.hied INFO Case 381222225: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:41,543 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:41,553 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:41,554 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:41,554 culturedx.modes.hied INFO Case 381222225: 14 candidate disorders from triage
+2026-04-24 14:01:41,835 culturedx.modes.hied INFO Case 333010865: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:41,856 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:41,871 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:41,873 culturedx.modes.hied INFO Case 333010865: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:01:41,873 culturedx.pipeline.runner INFO Processing case 80/100: 383579251
+2026-04-24 14:01:41,873 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:41,873 culturedx.modes.hied INFO Case 383579251: 14 candidate disorders from triage
+2026-04-24 14:01:42,376 culturedx.modes.hied INFO Case 334814081: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:01:42,394 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:42,431 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:42,431 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:42,431 culturedx.modes.hied INFO Case 334814081: 14 candidate disorders from triage
+2026-04-24 14:01:42,610 culturedx.modes.hied INFO Case 354496307: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F39']
+2026-04-24 14:01:42,620 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:42,627 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:42,629 culturedx.pipeline.runner INFO Processing case 81/100: 300484187
+2026-04-24 14:01:42,630 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:42,630 culturedx.modes.hied INFO Case 300484187: 14 candidate disorders from triage
+2026-04-24 14:01:45,593 culturedx.modes.hied INFO Case 340563038: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:01:45,595 culturedx.modes.hied INFO Case 305956530: Diagnostician ranked 5 disorders, top-2: ['F45', 'F42']
+2026-04-24 14:01:45,631 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:45,673 culturedx.modes.base INFO Checker timing: 5 disorders in 0.1s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:45,675 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:45,675 culturedx.modes.hied INFO Case 305956530: DtV primary from top3 (top-1 F45 -> primary F41.2)
+2026-04-24 14:01:45,675 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:45,675 culturedx.modes.hied INFO Case 305956530: 14 candidate disorders from triage
+2026-04-24 14:01:45,694 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:45,695 culturedx.modes.hied INFO Case 340563038: DtV primary from top4 (top-1 F41.1 -> primary F51)
+2026-04-24 14:01:45,695 culturedx.pipeline.runner INFO Processing case 82/100: 372982359
+2026-04-24 14:01:45,695 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:45,695 culturedx.modes.hied INFO Case 372982359: 14 candidate disorders from triage
+2026-04-24 14:01:46,001 culturedx.modes.hied INFO Case 344046891: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:46,049 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:46,059 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:46,060 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:46,060 culturedx.modes.hied INFO Case 344046891: 14 candidate disorders from triage
+2026-04-24 14:01:47,680 culturedx.modes.hied INFO Case 368042020: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:01:47,738 culturedx.modes.base INFO Checker timing: 5 disorders in 0.1s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:47,807 culturedx.modes.base INFO Checker timing: 9 disorders in 0.1s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:47,808 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:47,808 culturedx.modes.hied INFO Case 368042020: 14 candidate disorders from triage
+2026-04-24 14:01:48,136 culturedx.modes.hied INFO Case 334085925: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.2']
+2026-04-24 14:01:48,147 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:48,152 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:48,153 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:48,153 culturedx.modes.hied INFO Case 334085925: 14 candidate disorders from triage
+2026-04-24 14:01:48,411 culturedx.modes.hied INFO Case 351228828: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:48,454 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:48,495 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:48,496 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:48,496 culturedx.modes.hied INFO Case 351228828: 14 candidate disorders from triage
+2026-04-24 14:01:48,765 culturedx.modes.hied INFO Case 378819190: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:01:48,772 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:48,802 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:48,803 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:48,803 culturedx.modes.hied INFO Case 378819190: 14 candidate disorders from triage
+2026-04-24 14:01:49,221 culturedx.modes.hied INFO Case 382615327: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:01:49,225 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:49,252 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:49,253 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:49,253 culturedx.modes.hied INFO Case 382615327: 14 candidate disorders from triage
+2026-04-24 14:01:50,454 culturedx.modes.hied INFO Case 329923484: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:50,465 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:50,497 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:50,497 culturedx.modes.hied INFO Case 329923484: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:01:50,497 culturedx.pipeline.runner INFO Processing case 83/100: 338463663
+2026-04-24 14:01:50,497 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:50,497 culturedx.modes.hied INFO Case 338463663: 14 candidate disorders from triage
+2026-04-24 14:01:52,019 culturedx.modes.hied INFO Case 334814081: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:52,028 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:52,057 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:52,058 culturedx.modes.hied INFO Case 334814081: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:01:52,059 culturedx.pipeline.runner INFO Processing case 84/100: 319673363
+2026-04-24 14:01:52,059 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:52,059 culturedx.modes.hied INFO Case 319673363: 14 candidate disorders from triage
+2026-04-24 14:01:52,712 culturedx.modes.hied INFO Case 300484187: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:01:52,717 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:52,722 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:52,722 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:52,723 culturedx.modes.hied INFO Case 300484187: 14 candidate disorders from triage
+2026-04-24 14:01:52,948 culturedx.modes.hied INFO Case 317090766: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:01:52,954 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:52,970 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:52,970 culturedx.pipeline.runner INFO Processing case 85/100: 378781794
+2026-04-24 14:01:52,970 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:52,971 culturedx.modes.hied INFO Case 378781794: 14 candidate disorders from triage
+2026-04-24 14:01:53,307 culturedx.modes.hied INFO Case 354203641: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:53,312 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:53,316 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:53,317 culturedx.modes.hied INFO Case 354203641: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:01:53,317 culturedx.pipeline.runner INFO Processing case 86/100: 380136533
+2026-04-24 14:01:53,317 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:53,317 culturedx.modes.hied INFO Case 380136533: 14 candidate disorders from triage
+2026-04-24 14:01:54,806 culturedx.modes.hied INFO Case 381222225: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:01:54,809 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:54,838 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:54,839 culturedx.modes.hied INFO Case 381222225: DtV primary from top2 (top-1 F32 -> primary F41.1)
+2026-04-24 14:01:54,839 culturedx.pipeline.runner INFO Processing case 87/100: 391945652
+2026-04-24 14:01:54,839 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:54,839 culturedx.modes.hied INFO Case 391945652: 14 candidate disorders from triage
+2026-04-24 14:01:57,351 culturedx.modes.hied INFO Case 386951485: Diagnostician ranked 5 disorders, top-2: ['F42', 'F32']
+2026-04-24 14:01:57,379 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:57,392 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:57,393 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:57,393 culturedx.modes.hied INFO Case 386951485: 14 candidate disorders from triage
+2026-04-24 14:01:57,841 culturedx.modes.hied INFO Case 344046891: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:57,867 culturedx.modes.hied INFO Case 368042020: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:01:57,882 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:57,998 culturedx.modes.base INFO Checker timing: 5 disorders in 0.1s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:58,041 culturedx.modes.base INFO Checker timing: 9 disorders in 0.2s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:58,056 culturedx.modes.hied INFO Case 344046891: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:01:58,056 culturedx.pipeline.runner INFO Processing case 88/100: 311456028
+2026-04-24 14:01:58,056 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:58,056 culturedx.modes.hied INFO Case 311456028: 14 candidate disorders from triage
+2026-04-24 14:01:58,068 culturedx.modes.base INFO Checker timing: 9 disorders in 0.1s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:58,069 culturedx.modes.hied INFO Case 368042020: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:01:58,069 culturedx.pipeline.runner INFO Processing case 89/100: 396857182
+2026-04-24 14:01:58,069 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:58,069 culturedx.modes.hied INFO Case 396857182: 14 candidate disorders from triage
+2026-04-24 14:01:58,579 culturedx.modes.hied INFO Case 334085925: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:01:58,592 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:58,625 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:58,626 culturedx.modes.hied INFO Case 334085925: DtV primary from top2 (top-1 F32 -> primary F41.1)
+2026-04-24 14:01:58,626 culturedx.pipeline.runner INFO Processing case 90/100: 309460138
+2026-04-24 14:01:58,626 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:58,626 culturedx.modes.hied INFO Case 309460138: 14 candidate disorders from triage
+2026-04-24 14:01:58,632 culturedx.modes.hied INFO Case 383579251: Diagnostician ranked 5 disorders, top-2: ['F39', 'F41.1']
+2026-04-24 14:01:58,646 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:58,659 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:58,660 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:58,660 culturedx.modes.hied INFO Case 383579251: 14 candidate disorders from triage
+2026-04-24 14:01:59,186 culturedx.modes.hied INFO Case 305956530: Diagnostician ranked 5 disorders, top-2: ['F45', 'F32']
+2026-04-24 14:01:59,195 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:59,213 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:59,214 culturedx.modes.hied INFO Case 305956530: DtV primary from remaining_confirmed (top-1 F45 -> primary Z71)
+2026-04-24 14:01:59,214 culturedx.pipeline.runner INFO Processing case 91/100: 377956208
+2026-04-24 14:01:59,214 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:59,214 culturedx.modes.hied INFO Case 377956208: 14 candidate disorders from triage
+2026-04-24 14:01:59,639 culturedx.modes.hied INFO Case 372982359: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:01:59,648 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:01:59,663 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:01:59,664 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:01:59,664 culturedx.modes.hied INFO Case 372982359: 14 candidate disorders from triage
+2026-04-24 14:02:00,004 culturedx.modes.hied INFO Case 378819190: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:02:00,045 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:00,050 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:00,051 culturedx.modes.hied INFO Case 378819190: DtV primary from top3 (top-1 F41.1 -> primary F39)
+2026-04-24 14:02:00,051 culturedx.pipeline.runner INFO Processing case 92/100: 395764568
+2026-04-24 14:02:00,051 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:00,051 culturedx.modes.hied INFO Case 395764568: 14 candidate disorders from triage
+2026-04-24 14:02:01,021 culturedx.modes.hied INFO Case 338463663: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:02:01,029 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:01,037 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:01,038 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:01,038 culturedx.modes.hied INFO Case 338463663: 14 candidate disorders from triage
+2026-04-24 14:02:01,289 culturedx.modes.hied INFO Case 378781794: Diagnostician ranked 5 disorders, top-2: ['F32', 'F43.2']
+2026-04-24 14:02:01,308 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:01,322 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:01,322 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:01,322 culturedx.modes.hied INFO Case 378781794: 14 candidate disorders from triage
+2026-04-24 14:02:01,834 culturedx.modes.hied INFO Case 319673363: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:02:01,846 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:01,851 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:01,852 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:01,852 culturedx.modes.hied INFO Case 319673363: 14 candidate disorders from triage
+2026-04-24 14:02:02,188 culturedx.modes.hied INFO Case 300484187: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:02:02,214 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:02,225 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:02,226 culturedx.modes.hied INFO Case 300484187: DtV primary from top2 (top-1 F32 -> primary F41.1)
+2026-04-24 14:02:02,226 culturedx.pipeline.runner INFO Processing case 93/100: 371125111
+2026-04-24 14:02:02,226 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:02,226 culturedx.modes.hied INFO Case 371125111: 14 candidate disorders from triage
+2026-04-24 14:02:02,248 culturedx.modes.hied INFO Case 351228828: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:02:02,254 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:02,269 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:02,270 culturedx.modes.hied INFO Case 351228828: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:02:02,270 culturedx.pipeline.runner INFO Processing case 94/100: 385347193
+2026-04-24 14:02:02,270 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:02,270 culturedx.modes.hied INFO Case 385347193: 14 candidate disorders from triage
+2026-04-24 14:02:03,153 culturedx.modes.hied INFO Case 380136533: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:02:03,163 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:03,207 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:03,207 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:03,207 culturedx.modes.hied INFO Case 380136533: 14 candidate disorders from triage
+2026-04-24 14:02:04,872 culturedx.modes.hied INFO Case 382615327: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:02:04,884 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:04,921 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:04,921 culturedx.pipeline.runner INFO Processing case 95/100: 373854208
+2026-04-24 14:02:04,921 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:04,921 culturedx.modes.hied INFO Case 373854208: 14 candidate disorders from triage
+2026-04-24 14:02:06,040 culturedx.modes.hied INFO Case 391945652: Diagnostician ranked 5 disorders, top-2: ['F32', 'F51']
+2026-04-24 14:02:06,074 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:06,081 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:06,081 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:06,081 culturedx.modes.hied INFO Case 391945652: 14 candidate disorders from triage
+2026-04-24 14:02:08,322 culturedx.modes.hied INFO Case 396857182: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F51']
+2026-04-24 14:02:08,330 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:08,342 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:08,343 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:08,343 culturedx.modes.hied INFO Case 396857182: 14 candidate disorders from triage
+2026-04-24 14:02:09,027 culturedx.modes.hied INFO Case 311456028: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:02:09,072 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:09,077 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:09,077 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:09,077 culturedx.modes.hied INFO Case 311456028: 14 candidate disorders from triage
+2026-04-24 14:02:09,709 culturedx.modes.hied INFO Case 395764568: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:02:09,713 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:09,719 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:09,719 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:09,719 culturedx.modes.hied INFO Case 395764568: 14 candidate disorders from triage
+2026-04-24 14:02:10,092 culturedx.modes.hied INFO Case 378781794: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:02:10,095 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:10,124 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:10,124 culturedx.modes.hied INFO Case 378781794: DtV primary from top4 (top-1 F32 -> primary F51)
+2026-04-24 14:02:10,124 culturedx.pipeline.runner INFO Processing case 96/100: 308086484
+2026-04-24 14:02:10,125 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:10,125 culturedx.modes.hied INFO Case 308086484: 14 candidate disorders from triage
+2026-04-24 14:02:11,250 culturedx.modes.hied INFO Case 309460138: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:02:11,258 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:11,271 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:11,272 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:11,272 culturedx.modes.hied INFO Case 309460138: 14 candidate disorders from triage
+2026-04-24 14:02:11,322 culturedx.modes.hied INFO Case 371125111: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:02:11,337 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:11,352 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:11,352 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:11,352 culturedx.modes.hied INFO Case 371125111: 14 candidate disorders from triage
+2026-04-24 14:02:11,651 culturedx.modes.hied INFO Case 338463663: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:02:11,664 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:11,671 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:11,672 culturedx.modes.hied INFO Case 338463663: DtV primary from top3 (top-1 F32 -> primary F39)
+2026-04-24 14:02:11,672 culturedx.pipeline.runner INFO Processing case 97/100: 381267396
+2026-04-24 14:02:11,672 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:11,672 culturedx.modes.hied INFO Case 381267396: 14 candidate disorders from triage
+2026-04-24 14:02:12,185 culturedx.modes.hied INFO Case 319673363: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:02:12,201 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:12,239 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:12,240 culturedx.pipeline.runner INFO Processing case 98/100: 391104352
+2026-04-24 14:02:12,240 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:12,240 culturedx.modes.hied INFO Case 391104352: 14 candidate disorders from triage
+2026-04-24 14:02:12,601 culturedx.modes.hied INFO Case 372982359: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:02:12,606 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:12,702 culturedx.modes.base INFO Checker timing: 9 disorders in 0.1s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:12,703 culturedx.modes.hied INFO Case 372982359: DtV primary from top2 (top-1 F32 -> primary F41.1)
+2026-04-24 14:02:12,703 culturedx.pipeline.runner INFO Processing case 99/100: 378984052
+2026-04-24 14:02:12,703 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:12,703 culturedx.modes.hied INFO Case 378984052: 14 candidate disorders from triage
+2026-04-24 14:02:12,709 culturedx.modes.hied INFO Case 380136533: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:02:12,715 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:12,770 culturedx.modes.base INFO Checker timing: 9 disorders in 0.1s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:12,770 culturedx.modes.hied INFO Case 380136533: DtV primary from top3 (top-1 F41.1 -> primary F39)
+2026-04-24 14:02:12,773 culturedx.pipeline.runner INFO Processing case 100/100: 319680008
+2026-04-24 14:02:12,773 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:12,773 culturedx.modes.hied INFO Case 319680008: 14 candidate disorders from triage
+2026-04-24 14:02:13,447 culturedx.modes.hied INFO Case 377956208: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:02:13,459 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:13,527 culturedx.modes.base INFO Checker timing: 9 disorders in 0.1s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:13,528 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:13,528 culturedx.modes.hied INFO Case 377956208: 14 candidate disorders from triage
+2026-04-24 14:02:13,548 culturedx.modes.hied INFO Case 386951485: Diagnostician ranked 5 disorders, top-2: ['F42', 'F32']
+2026-04-24 14:02:13,551 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:13,561 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:13,562 culturedx.modes.hied INFO Case 386951485: DtV primary from top4 (top-1 F42 -> primary F39)
+2026-04-24 14:02:14,758 culturedx.modes.hied INFO Case 383579251: Diagnostician ranked 5 disorders, top-2: ['F39', 'F41.1']
+2026-04-24 14:02:14,767 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:14,785 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:15,644 culturedx.modes.hied INFO Case 373854208: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:02:15,646 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:15,651 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:15,651 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:15,651 culturedx.modes.hied INFO Case 373854208: 14 candidate disorders from triage
+2026-04-24 14:02:16,740 culturedx.modes.hied INFO Case 385347193: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:02:16,776 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:16,782 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:16,783 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:16,783 culturedx.modes.hied INFO Case 385347193: 14 candidate disorders from triage
+2026-04-24 14:02:17,516 culturedx.modes.hied INFO Case 391945652: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:02:17,541 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:17,568 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:17,569 culturedx.modes.hied INFO Case 391945652: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:02:17,863 culturedx.modes.hied INFO Case 396857182: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F39']
+2026-04-24 14:02:17,867 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:17,872 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:17,872 culturedx.modes.hied INFO Case 396857182: DtV primary from top2 (top-1 F41.1 -> primary F39)
+2026-04-24 14:02:18,522 culturedx.modes.hied INFO Case 395764568: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:02:18,526 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:18,554 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:18,554 culturedx.modes.hied INFO Case 395764568: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:02:18,948 culturedx.modes.hied INFO Case 311456028: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:02:18,960 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:18,991 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:18,991 culturedx.modes.hied INFO Case 311456028: DtV primary from top2 (top-1 F32 -> primary F41.1)
+2026-04-24 14:02:19,170 culturedx.modes.hied INFO Case 308086484: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:02:19,178 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:19,194 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:19,195 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:19,195 culturedx.modes.hied INFO Case 308086484: 14 candidate disorders from triage
+2026-04-24 14:02:19,840 culturedx.modes.hied INFO Case 371125111: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:02:19,845 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:19,855 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:19,856 culturedx.modes.hied INFO Case 371125111: DtV primary from top2 (top-1 F32 -> primary F41.1)
+2026-04-24 14:02:20,257 culturedx.modes.hied INFO Case 381267396: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:02:20,260 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:20,274 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:20,274 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:20,274 culturedx.modes.hied INFO Case 381267396: 14 candidate disorders from triage
+2026-04-24 14:02:20,999 culturedx.modes.hied INFO Case 309460138: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:02:21,003 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:21,013 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:21,013 culturedx.modes.hied INFO Case 309460138: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:02:21,333 culturedx.modes.hied INFO Case 378984052: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:02:21,343 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:21,352 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:21,352 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:21,352 culturedx.modes.hied INFO Case 378984052: 14 candidate disorders from triage
+2026-04-24 14:02:21,384 culturedx.modes.hied INFO Case 391104352: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:02:21,390 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:21,409 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:21,410 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:21,410 culturedx.modes.hied INFO Case 391104352: 14 candidate disorders from triage
+2026-04-24 14:02:22,577 culturedx.modes.hied INFO Case 319680008: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:02:22,584 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:22,592 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:22,593 culturedx.modes.hied INFO HiED manual scope mode: using 14 target disorders
+2026-04-24 14:02:22,593 culturedx.modes.hied INFO Case 319680008: 14 candidate disorders from triage
+2026-04-24 14:02:22,841 culturedx.modes.hied INFO Case 373854208: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:02:22,846 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:22,861 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:22,862 culturedx.modes.hied INFO Case 373854208: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:02:23,022 culturedx.modes.hied INFO Case 377956208: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:02:23,027 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:23,038 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:24,503 culturedx.modes.hied INFO Case 308086484: Diagnostician ranked 5 disorders, top-2: ['F41.1', 'F32']
+2026-04-24 14:02:24,509 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:24,528 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:24,871 culturedx.modes.hied INFO Case 385347193: Diagnostician ranked 5 disorders, top-2: ['F32', 'F41.1']
+2026-04-24 14:02:24,876 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:24,903 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:24,903 culturedx.modes.hied INFO Case 385347193: DtV primary from top3 (top-1 F32 -> primary F39)
+2026-04-24 14:02:25,070 culturedx.modes.hied INFO Case 381267396: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:02:25,084 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:25,097 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:25,098 culturedx.modes.hied INFO Case 381267396: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:02:25,682 culturedx.modes.hied INFO Case 391104352: Diagnostician ranked 5 disorders, top-2: ['F32', 'F45']
+2026-04-24 14:02:25,687 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:25,696 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:25,697 culturedx.modes.hied INFO Case 391104352: DtV primary from top2 (top-1 F32 -> primary F45)
+2026-04-24 14:02:25,743 culturedx.modes.hied INFO Case 378984052: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:02:25,747 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:25,752 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:25,752 culturedx.modes.hied INFO Case 378984052: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:02:26,120 culturedx.modes.hied INFO Case 319680008: Diagnostician ranked 5 disorders, top-2: ['F32', 'F39']
+2026-04-24 14:02:26,123 culturedx.modes.base INFO Checker timing: 5 disorders in 0.0s (0.0s/disorder, 5 workers)
+2026-04-24 14:02:26,127 culturedx.modes.base INFO Checker timing: 9 disorders in 0.0s (0.0s/disorder, 9 workers)
+2026-04-24 14:02:26,127 culturedx.modes.hied INFO Case 319680008: DtV primary from top2 (top-1 F32 -> primary F39)
+2026-04-24 14:02:26,263 culturedx.pipeline.runner INFO Table 4 Overall: 0.4990
+Evaluation metrics: {'diagnosis': {'accuracy': 0.09, 'top1_accuracy': 0.52, 'top3_accuracy': 0.67, 'macro_f1': 0.1710654936461388, 'weighted_f1': 0.4617204301075269, 'overall': 0.38255718475073314}, 'comorbidity': {'hamming_accuracy': 0.3666666666666667, 'subset_accuracy': 0.09, 'comorbidity_detection_f1': 0.2, 'label_coverage': 0.63, 'label_precision': 0.38, 'avg_predicted_labels': 1.89, 'avg_gold_labels': 1.11}, 'four_class': {'accuracy': 0.37, 'macro_f1': 0.22559494420855142, 'weighted_f1': 0.3189523057173892, 'n_cases': 100}, 'table4': {'2class_Acc': 0.7708333333333334, '2class_F1_macro': 0.7329192546583851, '2class_F1_weighted': 0.7795031055900621, '4class_Acc': 0.44, '4class_F1_macro': 0.38908034594309104, '4class_F1_weighted': 0.4241635967518321, '12class_Acc': 0.09, '12class_Top1': 0.52, '12class_Top3': 0.67, '12class_F1_macro': 0.20202020202020202, '12class_F1_weighted': 0.4703976703976704, '2class_n': 48, '4class_n': 100, '12class_n': 100, 'Overall': 0.498992500790416}}
+Predictions saved to /home/user/YuNing/CultureDx/results/dual_standard_pilot_v2/mode_both/pilot_both/predictions.jsonl
+Run complete.

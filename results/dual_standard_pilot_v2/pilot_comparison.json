@@ -1,0 +1,1056 @@
+{
+  "dataset": "lingxidiag16k",
+  "data_path": "data/raw/lingxidiag16k",
+  "n": 100,
+  "seed": 42,
+  "modes": {
+    "icd10": {
+      "overlay_path": "/home/user/YuNing/CultureDx/configs/overlays/standard_icd10.yaml",
+      "run_dir": "/home/user/YuNing/CultureDx/results/dual_standard_pilot_v2/mode_icd10/pilot_icd10",
+      "predictions_path": "/home/user/YuNing/CultureDx/results/dual_standard_pilot_v2/mode_icd10/pilot_icd10/predictions.jsonl",
+      "case_selection_path": "/home/user/YuNing/CultureDx/results/dual_standard_pilot_v2/mode_icd10/pilot_icd10/case_selection.json",
+      "metrics_summary_path": "/home/user/YuNing/CultureDx/results/dual_standard_pilot_v2/mode_icd10/pilot_icd10/metrics_summary.json",
+      "log_path": "/home/user/YuNing/CultureDx/results/dual_standard_pilot_v2/mode_icd10/run.log",
+      "exit_code": 0
+    },
+    "dsm5": {
+      "overlay_path": "/home/user/YuNing/CultureDx/configs/overlays/standard_dsm5.yaml",
+      "run_dir": "/home/user/YuNing/CultureDx/results/dual_standard_pilot_v2/mode_dsm5/pilot_dsm5",
+      "predictions_path": "/home/user/YuNing/CultureDx/results/dual_standard_pilot_v2/mode_dsm5/pilot_dsm5/predictions.jsonl",
+      "case_selection_path": "/home/user/YuNing/CultureDx/results/dual_standard_pilot_v2/mode_dsm5/pilot_dsm5/case_selection.json",
+      "metrics_summary_path": "/home/user/YuNing/CultureDx/results/dual_standard_pilot_v2/mode_dsm5/pilot_dsm5/metrics_summary.json",
+      "log_path": "/home/user/YuNing/CultureDx/results/dual_standard_pilot_v2/mode_dsm5/run.log",
+      "exit_code": 0
+    },
+    "both": {
+      "overlay_path": "/home/user/YuNing/CultureDx/configs/overlays/standard_both.yaml",
+      "run_dir": "/home/user/YuNing/CultureDx/results/dual_standard_pilot_v2/mode_both/pilot_both",
+      "predictions_path": "/home/user/YuNing/CultureDx/results/dual_standard_pilot_v2/mode_both/pilot_both/predictions.jsonl",
+      "case_selection_path": "/home/user/YuNing/CultureDx/results/dual_standard_pilot_v2/mode_both/pilot_both/case_selection.json",
+      "metrics_summary_path": "/home/user/YuNing/CultureDx/results/dual_standard_pilot_v2/mode_both/pilot_both/metrics_summary.json",
+      "log_path": "/home/user/YuNing/CultureDx/results/dual_standard_pilot_v2/mode_both/run.log",
+      "exit_code": 0
+    }
+  },
+  "per_mode_metrics": {
+    "icd10": {
+      "mode": "icd10",
+      "top1": 0.52,
+      "n": 100,
+      "correct": 52,
+      "abstain_count": 0,
+      "abstain_rate": 0.0,
+      "distinct_primary_classes": [
+        "F20",
+        "F32",
+        "F39",
+        "F41",
+        "F42",
+        "F51"
+      ],
+      "distinct_primary_class_count": 6,
+      "per_class": {
+        "F20": {
+          "correct": 1,
+          "total": 1,
+          "recall": 1.0
+        },
+        "F31": {
+          "correct": 0,
+          "total": 1,
+          "recall": 0.0
+        },
+        "F32": {
+          "correct": 34,
+          "total": 37,
+          "recall": 0.919
+        },
+        "F39": {
+          "correct": 0,
+          "total": 5,
+          "recall": 0.0
+        },
+        "F41": {
+          "correct": 17,
+          "total": 38,
+          "recall": 0.447
+        },
+        "F42": {
+          "correct": 0,
+          "total": 1,
+          "recall": 0.0
+        },
+        "F43": {
+          "correct": 0,
+          "total": 1,
+          "recall": 0.0
+        },
+        "F45": {
+          "correct": 0,
+          "total": 1,
+          "recall": 0.0
+        },
+        "F51": {
+          "correct": 0,
+          "total": 3,
+          "recall": 0.0
+        },
+        "F98": {
+          "correct": 0,
+          "total": 1,
+          "recall": 0.0
+        },
+        "Z71": {
+          "correct": 0,
+          "total": 1,
+          "recall": 0.0
+        },
+        "Others": {
+          "correct": 0,
+          "total": 10,
+          "recall": 0.0
+        }
+      }
+    },
+    "dsm5": {
+      "mode": "dsm5",
+      "top1": 0.19,
+      "n": 100,
+      "correct": 19,
+      "abstain_count": 0,
+      "abstain_rate": 0.0,
+      "distinct_primary_classes": [
+        "F20",
+        "F39",
+        "F41",
+        "F45",
+        "F51",
+        "F98",
+        "Z71"
+      ],
+      "distinct_primary_class_count": 7,
+      "per_class": {
+        "F20": {
+          "correct": 1,
+          "total": 1,
+          "recall": 1.0
+        },
+        "F31": {
+          "correct": 0,
+          "total": 1,
+          "recall": 0.0
+        },
+        "F32": {
+          "correct": 0,
+          "total": 37,
+          "recall": 0.0
+        },
+        "F39": {
+          "correct": 1,
+          "total": 5,
+          "recall": 0.2
+        },
+        "F41": {
+          "correct": 17,
+          "total": 38,
+          "recall": 0.447
+        },
+        "F42": {
+          "correct": 0,
+          "total": 1,
+          "recall": 0.0
+        },
+        "F43": {
+          "correct": 0,
+          "total": 1,
+          "recall": 0.0
+        },
+        "F45": {
+          "correct": 0,
+          "total": 1,
+          "recall": 0.0
+        },
+        "F51": {
+          "correct": 0,
+          "total": 3,
+          "recall": 0.0
+        },
+        "F98": {
+          "correct": 0,
+          "total": 1,
+          "recall": 0.0
+        },
+        "Z71": {
+          "correct": 0,
+          "total": 1,
+          "recall": 0.0
+        },
+        "Others": {
+          "correct": 0,
+          "total": 10,
+          "recall": 0.0
+        }
+      }
+    },
+    "both": {
+      "mode": "both",
+      "top1": 0.52,
+      "n": 100,
+      "correct": 52,
+      "abstain_count": 0,
+      "abstain_rate": 0.0,
+      "distinct_primary_classes": [
+        "F20",
+        "F32",
+        "F39",
+        "F41",
+        "F42",
+        "F51"
+      ],
+      "distinct_primary_class_count": 6,
+      "per_class": {
+        "F20": {
+          "correct": 1,
+          "total": 1,
+          "recall": 1.0
+        },
+        "F31": {
+          "correct": 0,
+          "total": 1,
+          "recall": 0.0
+        },
+        "F32": {
+          "correct": 34,
+          "total": 37,
+          "recall": 0.919
+        },
+        "F39": {
+          "correct": 0,
+          "total": 5,
+          "recall": 0.0
+        },
+        "F41": {
+          "correct": 17,
+          "total": 38,
+          "recall": 0.447
+        },
+        "F42": {
+          "correct": 0,
+          "total": 1,
+          "recall": 0.0
+        },
+        "F43": {
+          "correct": 0,
+          "total": 1,
+          "recall": 0.0
+        },
+        "F45": {
+          "correct": 0,
+          "total": 1,
+          "recall": 0.0
+        },
+        "F51": {
+          "correct": 0,
+          "total": 3,
+          "recall": 0.0
+        },
+        "F98": {
+          "correct": 0,
+          "total": 1,
+          "recall": 0.0
+        },
+        "Z71": {
+          "correct": 0,
+          "total": 1,
+          "recall": 0.0
+        },
+        "Others": {
+          "correct": 0,
+          "total": 10,
+          "recall": 0.0
+        }
+      }
+    }
+  },
+  "pairwise_agreement": [
+    {
+      "pair": "icd10_vs_dsm5",
+      "mode_a": "icd10",
+      "mode_b": "dsm5",
+      "common_cases": 100,
+      "agree": 15,
+      "disagree": 85,
+      "rate": 0.15
+    },
+    {
+      "pair": "icd10_vs_both",
+      "mode_a": "icd10",
+      "mode_b": "both",
+      "common_cases": 100,
+      "agree": 100,
+      "disagree": 0,
+      "rate": 1.0
+    },
+    {
+      "pair": "dsm5_vs_both",
+      "mode_a": "dsm5",
+      "mode_b": "both",
+      "common_cases": 100,
+      "agree": 15,
+      "disagree": 85,
+      "rate": 0.15
+    }
+  ],
+  "disagreement_examples": [
+    {
+      "case_id": "344699340",
+      "gold_parent": "Z71",
+      "distinct_predictions": [
+        "F32",
+        "F39"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F39",
+          "primary_diagnosis": "F39",
+          "primary_diagnosis_dsm5": "F39",
+          "decision": "diagnosis",
+          "confidence": 0.7999999999999999
+        },
+        "both": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F39",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "350352506",
+      "gold_parent": "F32",
+      "distinct_predictions": [
+        "F32",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F41.1",
+          "decision": "diagnosis",
+          "confidence": 0.7999999999999999
+        },
+        "both": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F41.1",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "318518739",
+      "gold_parent": "F41",
+      "distinct_predictions": [
+        "F32",
+        "F51"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F51",
+          "primary_diagnosis": "F51",
+          "primary_diagnosis_dsm5": "F51",
+          "decision": "diagnosis",
+          "confidence": 0.7999999999999999
+        },
+        "both": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F51",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "341328894",
+      "gold_parent": "F41",
+      "distinct_predictions": [
+        "F32",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F41.1",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "both": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F41.1",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "300493869",
+      "gold_parent": "F41",
+      "distinct_predictions": [
+        "F41",
+        "F45"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.2",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.75
+        },
+        "dsm5": {
+          "paper_parent": "F45",
+          "primary_diagnosis": "F45",
+          "primary_diagnosis_dsm5": "F45",
+          "decision": "diagnosis",
+          "confidence": 0.75
+        },
+        "both": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.2",
+          "primary_diagnosis_dsm5": "F45",
+          "decision": "diagnosis",
+          "confidence": 0.75
+        }
+      }
+    },
+    {
+      "case_id": "347729413",
+      "gold_parent": "Others",
+      "distinct_predictions": [
+        "F32",
+        "F39"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F39",
+          "primary_diagnosis": "F39",
+          "primary_diagnosis_dsm5": "F39",
+          "decision": "diagnosis",
+          "confidence": 0.7999999999999999
+        },
+        "both": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F39",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "303364596",
+      "gold_parent": "F32",
+      "distinct_predictions": [
+        "F32",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F41.1",
+          "decision": "diagnosis",
+          "confidence": 0.7999999999999999
+        },
+        "both": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F41.1",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "327826586",
+      "gold_parent": "F39",
+      "distinct_predictions": [
+        "F41",
+        "F51"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F51",
+          "primary_diagnosis": "F51",
+          "primary_diagnosis_dsm5": "F51",
+          "decision": "diagnosis",
+          "confidence": 0.75
+        },
+        "both": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F51",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "371726537",
+      "gold_parent": "Others",
+      "distinct_predictions": [
+        "F32",
+        "F39"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F39",
+          "primary_diagnosis": "F39",
+          "primary_diagnosis_dsm5": "F39",
+          "decision": "diagnosis",
+          "confidence": 0.7999999999999999
+        },
+        "both": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F39",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "388559461",
+      "gold_parent": "F32",
+      "distinct_predictions": [
+        "F32",
+        "F39"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F39",
+          "primary_diagnosis": "F39",
+          "primary_diagnosis_dsm5": "F39",
+          "decision": "diagnosis",
+          "confidence": 0.7999999999999999
+        },
+        "both": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F39",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "341042297",
+      "gold_parent": "F32",
+      "distinct_predictions": [
+        "F32",
+        "F51"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F51",
+          "primary_diagnosis": "F51",
+          "primary_diagnosis_dsm5": "F51",
+          "decision": "diagnosis",
+          "confidence": 0.7
+        },
+        "both": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F51",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "324224056",
+      "gold_parent": "F41",
+      "distinct_predictions": [
+        "F41",
+        "F51"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F51",
+          "primary_diagnosis": "F51",
+          "primary_diagnosis_dsm5": "F51",
+          "decision": "diagnosis",
+          "confidence": 0.7
+        },
+        "both": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F51",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "368679677",
+      "gold_parent": "F39",
+      "distinct_predictions": [
+        "F32",
+        "F98"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F98",
+          "primary_diagnosis": "F98",
+          "primary_diagnosis_dsm5": "F98",
+          "decision": "diagnosis",
+          "confidence": 0.7
+        },
+        "both": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F98",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "332278660",
+      "gold_parent": "F32",
+      "distinct_predictions": [
+        "F32",
+        "F39"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F39",
+          "primary_diagnosis": "F39",
+          "primary_diagnosis_dsm5": "F39",
+          "decision": "diagnosis",
+          "confidence": 0.7999999999999999
+        },
+        "both": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F39",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "312389408",
+      "gold_parent": "F32",
+      "distinct_predictions": [
+        "F39",
+        "F51"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F51",
+          "primary_diagnosis": "F51",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F39",
+          "primary_diagnosis": "F39",
+          "primary_diagnosis_dsm5": "F39",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "both": {
+          "paper_parent": "F51",
+          "primary_diagnosis": "F51",
+          "primary_diagnosis_dsm5": "F39",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "380913193",
+      "gold_parent": "F41",
+      "distinct_predictions": [
+        "F39",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F39",
+          "primary_diagnosis": "F39",
+          "primary_diagnosis_dsm5": "F39",
+          "decision": "diagnosis",
+          "confidence": 0.7
+        },
+        "both": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F39",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "393761475",
+      "gold_parent": "F41",
+      "distinct_predictions": [
+        "F39",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F39",
+          "primary_diagnosis": "F39",
+          "primary_diagnosis_dsm5": "F39",
+          "decision": "diagnosis",
+          "confidence": 0.7999999999999999
+        },
+        "both": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F39",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "329606499",
+      "gold_parent": "F41",
+      "distinct_predictions": [
+        "F39",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F39",
+          "primary_diagnosis": "F39",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.7999999999999999
+        },
+        "dsm5": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F41.1",
+          "decision": "diagnosis",
+          "confidence": 0.7999999999999999
+        },
+        "both": {
+          "paper_parent": "F39",
+          "primary_diagnosis": "F39",
+          "primary_diagnosis_dsm5": "F41.1",
+          "decision": "diagnosis",
+          "confidence": 0.7999999999999999
+        }
+      }
+    },
+    {
+      "case_id": "303895252",
+      "gold_parent": "F32",
+      "distinct_predictions": [
+        "F32",
+        "F39"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F39",
+          "primary_diagnosis": "F39",
+          "primary_diagnosis_dsm5": "F39",
+          "decision": "diagnosis",
+          "confidence": 0.75
+        },
+        "both": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F39",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "358313639",
+      "gold_parent": "F32",
+      "distinct_predictions": [
+        "F32",
+        "F51"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F51",
+          "primary_diagnosis": "F51",
+          "primary_diagnosis_dsm5": "F51",
+          "decision": "diagnosis",
+          "confidence": 0.75
+        },
+        "both": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F51",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    }
+  ],
+  "sanity_assertions": {
+    "same_case_selection": {
+      "passed": true,
+      "reference_mode": "icd10",
+      "mismatches": []
+    },
+    "all_passed": false,
+    "per_mode": {
+      "icd10": {
+        "passed": true,
+        "checks": {
+          "top1_gt_0_20": true,
+          "abstain_le_0_50": true,
+          "distinct_primary_classes_ge_3": true
+        },
+        "observed": {
+          "top1": 0.52,
+          "abstain_rate": 0.0,
+          "distinct_primary_class_count": 6
+        }
+      },
+      "dsm5": {
+        "passed": false,
+        "checks": {
+          "top1_gt_0_20": false,
+          "abstain_le_0_50": true,
+          "distinct_primary_classes_ge_3": true
+        },
+        "observed": {
+          "top1": 0.19,
+          "abstain_rate": 0.0,
+          "distinct_primary_class_count": 7
+        }
+      },
+      "both": {
+        "passed": true,
+        "checks": {
+          "top1_gt_0_20": true,
+          "abstain_le_0_50": true,
+          "distinct_primary_classes_ge_3": true
+        },
+        "observed": {
+          "top1": 0.52,
+          "abstain_rate": 0.0,
+          "distinct_primary_class_count": 6
+        }
+      }
+    }
+  },
+  "failures": []
+}
