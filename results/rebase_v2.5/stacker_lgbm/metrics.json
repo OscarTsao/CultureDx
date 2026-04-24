@@ -41,14 +41,14 @@
     ]
   },
   "top1_dtv_baseline": {
-    "mean": 0.339,
+    "mean": 0.516,
     "ci95": [
-      0.309,
-      0.369
+      0.486,
+      0.547
     ]
   },
   "mcnemar_stacker_vs_tfidf_p": 0.9999999999999999,
-  "mcnemar_stacker_vs_dtv_p": 2.5006226741024746e-45,
+  "mcnemar_stacker_vs_dtv_p": 9.899589570965435e-09,
   "bootstrap_config": {
     "n_resamples": 1000,
     "seed": 20260420
