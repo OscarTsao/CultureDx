@@ -183,7 +183,7 @@
         }
       },
       "threshold": {
-        "min_total": 5,
+        "min_total": 3,
         "min_core": 1,
         "duration_weeks": 2
       }
@@ -221,7 +221,7 @@
         }
       },
       "threshold": {
-        "min_total": 5,
+        "min_total": 3,
         "min_core": 1,
         "duration_weeks": 2,
         "recurrence_required": true
