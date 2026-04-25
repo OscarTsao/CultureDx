@@ -6,6 +6,8 @@ github.com/Lingxi-mental-health/LingxiDiagBench/evaluation/static/
 from __future__ import annotations
 
 import re
+import warnings
+from pathlib import Path
 from typing import Callable, Optional
 
 import numpy as np
@@ -32,9 +34,11 @@ PAPER_2_CLASSES: list[str] = ["Depression", "Anxiety"]
 PAPER_4_CLASSES: list[str] = ["Depression", "Anxiety", "Mixed", "Others"]
 
 
-def to_paper_parent(code: str) -> str:
+def to_paper_parent(code: object | None) -> str:
     """Collapse any ICD-10 code to the paper's parent-level label set."""
-    normalized = code.strip().upper()
+    if code is None:
+        return "Others"
+    normalized = str(code).strip().upper()
     if not normalized:
         return "Others"
 
@@ -219,7 +223,17 @@ def compute_table4_metrics(
     cases: list[dict],
     get_prediction: Callable[[dict], list[str]],
 ) -> dict[str, float | int | None]:
-    """Compute all 11 Table 4 metrics plus the paper-style overall score."""
+    """DEPRECATED. Use compute_table4_metrics_v2 with explicit prediction views.
+
+    This legacy contract uses one prediction list for Top-3, exact match, F1,
+    and 4-class mixed detection. New evaluation code must use v2 so each metric
+    reads the intended prediction source.
+    """
+    warnings.warn(
+        "compute_table4_metrics is deprecated; use compute_table4_metrics_v2",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     gold_12_all: list[list[str]] = []
     pred_12_all: list[list[str]] = []
     gold_2_all: list[str] = []
@@ -287,6 +301,177 @@ def compute_table4_metrics(
     return table4
 
 
+def compute_table4_metrics_v2(
+    cases: list[dict],
+    get_primary_prediction: Callable[[dict], str],
+    get_ranked_prediction: Callable[[dict], list[str]],
+    get_multilabel_prediction: Callable[[dict], list[str]],
+    get_raw_gold_code: Callable[[dict], str],
+    get_raw_pred_codes: Callable[[dict], list[str]] | None = None,
+) -> dict[str, float | int | None]:
+    """Compute Table 4 metrics with explicit prediction-source contracts.
+
+    Top-1/2c/4c primary use the primary prediction. Top-3 uses ranked
+    predictions, canonicalized as ``[primary] + (ranked - {primary})[:2]`` so
+    Top-1 is always contained in Top-3. Exact match and F1 use the multilabel
+    prediction view, and 2c/4c gold labels use raw DiagnosisCode strings so
+    F41.2 remains visible.
+    """
+    gold_12_all: list[list[str]] = []
+    pred_12_top1: list[str] = []
+    pred_12_ranked: list[list[str]] = []
+    pred_12_multilabel: list[list[str]] = []
+
+    gold_2_all: list[str] = []
+    pred_2_all: list[str] = []
+
+    gold_4_all: list[str] = []
+    pred_4_all: list[str] = []
+
+    for case in cases:
+        raw_gold = str(get_raw_gold_code(case) or "")
+        gold_parents = gold_to_parent_list(raw_gold)
+
+        primary_pred = to_paper_parent(get_primary_prediction(case))
+        ranked_pred = [to_paper_parent(code) for code in get_ranked_prediction(case)]
+        multilabel_pred = [
+            to_paper_parent(code)
+            for code in get_multilabel_prediction(case)
+        ]
+        if not multilabel_pred:
+            multilabel_pred = ["Others"]
+
+        ranked_canonical = [primary_pred] + [
+            code for code in ranked_pred if code != primary_pred
+        ]
+        if not ranked_canonical:
+            ranked_canonical = [primary_pred]
+        ranked_canonical = ranked_canonical[:3]
+
+        gold_12_all.append(gold_parents)
+        pred_12_top1.append(primary_pred)
+        pred_12_ranked.append(ranked_canonical)
+        pred_12_multilabel.append(multilabel_pred)
+
+        gold_4 = classify_4class_from_raw(raw_gold)
+        raw_pred_codes = (
+            get_raw_pred_codes(case)
+            if get_raw_pred_codes is not None
+            else multilabel_pred
+        )
+        has_pred_f41_2 = any("F41.2" in str(c) for c in raw_pred_codes)
+        pred_parent_set = set(multilabel_pred)
+        if has_pred_f41_2 or ("F32" in pred_parent_set and "F41" in pred_parent_set):
+            pred_4 = "Mixed"
+        elif primary_pred == "F32":
+            pred_4 = "Depression"
+        elif primary_pred == "F41":
+            pred_4 = "Anxiety"
+        else:
+            pred_4 = "Others"
+        gold_4_all.append(gold_4)
+        pred_4_all.append(pred_4)
+
+        gold_2 = classify_2class_from_raw(raw_gold)
+        if gold_2 is not None:
+            pred_2 = classify_2class_prediction(primary_pred)
+            gold_2_all.append(gold_2)
+            pred_2_all.append(pred_2)
+
+    m2 = compute_singlelabel_metrics(gold_2_all, pred_2_all, PAPER_2_CLASSES) if gold_2_all else {}
+    m4 = compute_singlelabel_metrics(gold_4_all, pred_4_all, PAPER_4_CLASSES)
+    m12_ml = compute_multilabel_metrics(
+        gold_12_all,
+        pred_12_multilabel,
+        PAPER_12_CLASSES,
+    )
+
+    n12 = len(gold_12_all)
+    top1_correct = sum(
+        1
+        for gold, pred in zip(gold_12_all, pred_12_top1)
+        if pred and gold and pred in set(gold)
+    )
+    top3_correct = sum(
+        1
+        for gold, pred_list in zip(gold_12_all, pred_12_ranked)
+        if gold and (set(pred_list) & set(gold))
+    )
+
+    table4 = {
+        "2class_Acc": m2.get("accuracy"),
+        "2class_F1_macro": m2.get("macro_f1"),
+        "2class_F1_weighted": m2.get("weighted_f1"),
+        "4class_Acc": m4.get("accuracy"),
+        "4class_F1_macro": m4.get("macro_f1"),
+        "4class_F1_weighted": m4.get("weighted_f1"),
+        "12class_Acc": m12_ml.get("accuracy"),
+        "12class_Top1": top1_correct / n12 if n12 else None,
+        "12class_Top3": top3_correct / n12 if n12 else None,
+        "12class_F1_macro": m12_ml.get("macro_f1"),
+        "12class_F1_weighted": m12_ml.get("weighted_f1"),
+        "2class_n": m2.get("n", 0),
+        "4class_n": m4.get("n", 0),
+        "12class_n": n12,
+    }
+    metric_values = [
+        float(value)
+        for key, value in table4.items()
+        if not key.endswith("_n") and value is not None
+    ]
+    table4["Overall"] = float(np.mean(metric_values)) if metric_values else None
+    return table4
+
+
+def verify_evaluation_contract(metrics_path: Path | str) -> None:
+    """Fail loudly if a regenerated metrics.json violates the v2 contract."""
+    import json
+
+    path = Path(metrics_path)
+    with path.open(encoding="utf-8") as f:
+        metrics = json.load(f)
+
+    issues: list[str] = []
+    table4 = metrics.get("table4", {})
+    if not isinstance(table4, dict):
+        raise RuntimeError(f"Evaluation contract violation: no table4 block in {path}")
+
+    top1 = table4.get("12class_Top1")
+    top3 = table4.get("12class_Top3")
+    if top1 is not None and top3 is not None and top3 < top1 - 1e-6:
+        issues.append(
+            f"Top-3 ({top3}) < Top-1 ({top1}) - primary not in canonical ranked view"
+        )
+
+    top3_stacker = metrics.get("top3_stacker")
+    if isinstance(top3_stacker, dict) and "mean" in top3_stacker and top3 is not None:
+        diff = abs(float(top3_stacker["mean"]) - float(top3))
+        if diff > 0.005:
+            issues.append(
+                f"table4 Top-3 ({top3}) vs bootstrap ({top3_stacker['mean']}) "
+                f"differ by {diff:.3f}"
+            )
+
+    n2 = table4.get("2class_n")
+    if n2 == 696:
+        issues.append(
+            "2class_n=696 indicates F41.2 was kept in 2-class gold; "
+            "expected raw-code F41.2 exclusion"
+        )
+
+    if issues:
+        raise RuntimeError("Evaluation contract violation:\n  " + "\n  ".join(issues))
+
+    def _fmt(value: object) -> str:
+        return f"{float(value):.3f}" if isinstance(value, (int, float)) else "n/a"
+
+    print(
+        "Evaluation contract OK: "
+        f"Top-1={_fmt(top1)} Top-3={_fmt(top3)} "
+        f"F1_m={_fmt(table4.get('12class_F1_macro'))} 2c_n={n2}"
+    )
+
+
 __all__ = [
     "PAPER_12_CLASSES",
     "PAPER_2_CLASSES",
@@ -298,7 +483,9 @@ __all__ = [
     "compute_multilabel_metrics",
     "compute_singlelabel_metrics",
     "compute_table4_metrics",
+    "compute_table4_metrics_v2",
     "gold_to_parent_list",
     "pred_to_parent_list",
     "to_paper_parent",
+    "verify_evaluation_contract",
 ]

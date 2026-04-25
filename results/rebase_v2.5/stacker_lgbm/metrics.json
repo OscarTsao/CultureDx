@@ -3,21 +3,21 @@
   "n": 1000,
   "stacker_model": "outputs/stacker/stacker_lgbm.pkl",
   "table4": {
-    "2class_Acc": 0.6853448275862069,
-    "2class_F1_macro": 0.6970933000501821,
-    "2class_F1_weighted": 0.6964659132404796,
-    "4class_Acc": 0.649,
-    "4class_F1_macro": 0.5178095757222705,
-    "4class_F1_weighted": 0.6516908543277516,
+    "2class_Acc": 0.7526427061310782,
+    "2class_F1_macro": 0.7377612173641148,
+    "2class_F1_weighted": 0.7740054340946082,
+    "4class_Acc": 0.546,
+    "4class_F1_macro": 0.48438631820770683,
+    "4class_F1_weighted": 0.5087121773555644,
     "12class_Acc": 0.535,
     "12class_Top1": 0.612,
-    "12class_Top3": 0.642,
+    "12class_Top3": 0.925,
     "12class_F1_macro": 0.33441714656398963,
     "12class_F1_weighted": 0.5726872501765499,
-    "2class_n": 696,
+    "2class_n": 473,
     "4class_n": 1000,
     "12class_n": 1000,
-    "Overall": 0.5994098970606755
+    "Overall": 0.616601113626692
   },
   "top1_stacker": {
     "mean": 0.612,
@@ -52,5 +52,14 @@
   "bootstrap_config": {
     "n_resamples": 1000,
     "seed": 20260420
+  },
+  "metric_definitions": {
+    "12class_Top1_source": "primary_diagnosis (paper-parent)",
+    "12class_Top3_source": "[primary] + (ranked_codes - {primary})[:2] (paper-parent)",
+    "12class_F1_source": "primary + threshold-gated comorbid_diagnoses (paper-parent multilabel)",
+    "2class_gold_source": "raw DiagnosisCode (F41.2 excluded)",
+    "4class_gold_source": "raw DiagnosisCode (F41.2 -> Mixed)",
+    "Overall_source": "mean(non-_n metrics)",
+    "post_fix_version": "v4 (eval_contract_repair_2026_04_25)"
   }
 }
