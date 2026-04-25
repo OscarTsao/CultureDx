@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-04-25T13:48:10.216850+00:00",
+  "generated_at": "2026-04-25T19:08:53.864654+00:00",
   "fix_summary": "P0 evaluation contract repair v4: separate primary/ranked/multilabel/raw-code views",
   "commits": {
     "main_parent_before_report_commit": "f8adb4a38e428b3dfe28b7c1bf6ae7f79c99511a",
@@ -75,6 +75,42 @@
       "F1_macro": 0.1987295149587962,
       "F1_weighted": 0.4572187836891283,
       "Overall": 0.5144560658491817
+    },
+    "mdd5k_dual_standard_icd10": {
+      "Top1": 0.5967567567567568,
+      "Top3": 0.8529729729729729,
+      "F1_macro": 0.19739677707476846,
+      "F1_weighted": 0.5136484188164044,
+      "2class_Acc": 0.889795918367347,
+      "4class_Acc": 0.44432432432432434,
+      "2class_n": 490,
+      "4class_n": 925,
+      "12class_n": 925,
+      "Overall": 0.5657906139089197
+    },
+    "mdd5k_dual_standard_dsm5": {
+      "Top1": 0.5805405405405405,
+      "Top3": 0.8421621621621621,
+      "F1_macro": 0.23033801554597297,
+      "F1_weighted": 0.5263744597177696,
+      "2class_Acc": 0.9122448979591836,
+      "4class_Acc": 0.52,
+      "2class_n": 490,
+      "4class_n": 925,
+      "12class_n": 925,
+      "Overall": 0.5836338681933398
+    },
+    "mdd5k_dual_standard_both": {
+      "Top1": 0.5967567567567568,
+      "Top3": 0.8529729729729729,
+      "F1_macro": 0.19739677707476846,
+      "F1_weighted": 0.5136484188164044,
+      "2class_Acc": 0.889795918367347,
+      "4class_Acc": 0.44432432432432434,
+      "2class_n": 490,
+      "4class_n": 925,
+      "12class_n": 925,
+      "Overall": 0.5657906139089197
     }
   },
   "deprecated_values": [
@@ -119,6 +155,30 @@
       "old": 0.605,
       "new": 0.612,
       "reason": "audit used over-strict single-label; canonical is paper-aligned multilabel"
+    },
+    {
+      "metric": "mdd5k_dual_standard_icd10.table4.12class_Top3",
+      "old": 0.7513513513513513,
+      "new": 0.8529729729729729,
+      "reason": "Top-3 now uses the v2 primary-first ranked prediction view"
+    },
+    {
+      "metric": "mdd5k_dual_standard_dsm5.table4.12class_Top3",
+      "old": 0.7340540540540541,
+      "new": 0.8421621621621621,
+      "reason": "Top-3 now uses the v2 primary-first ranked prediction view"
+    },
+    {
+      "metric": "mdd5k_dual_standard.table4.2class_n",
+      "old": 697,
+      "new": 490,
+      "reason": "v2 uses MDD-5k raw ICD_Code labels so F41.2 mixed anxiety-depression remains visible and is excluded from 2-class gold"
+    },
+    {
+      "metric": "mdd5k_dual_standard_both.table4",
+      "old": null,
+      "new": "present",
+      "reason": "mode_both metrics.json had not been post-processed with Table 4 before v2 regeneration"
     }
   ],
   "sanity_checks_passed": [
@@ -126,10 +186,36 @@
     "Stacker table4 Top-3 matches bootstrap top3_stacker within 0.005 for LGBM and LR",
     "2class_n = 473 for all regenerated metrics (F41.2 excluded)",
     "Raw DiagnosisCode coverage 1000/1000 for dual-standard LingxiDiag cases",
-    "Unit tests: uv run pytest tests/test_evaluation_contract.py -v (15 passed on both branches)"
+    "Unit tests: uv run pytest tests/test_evaluation_contract.py -v (15 passed on both branches)",
+    "MDD-5k raw ICD_Code coverage 925/925 across dual-standard modes",
+    "MDD-5k 2class_n = 490 for all regenerated metrics (F41.2 excluded)",
+    "MDD-5k Top-1 subset of Top-3 invariant verified for mode_icd10, mode_dsm5, mode_both",
+    "MDD-5k audits: audit_run.py clean for mode_icd10, mode_dsm5, mode_both"
   ],
   "known_execution_notes": [
-    "MDD-5k results directory was not read or modified during this repair.",
-    "data/raw/lingxidiag16k/test_final.parquet is absent in this checkout; the explicit raw source used was data/raw/lingxidiag16k/data/validation-00000-of-00001.parquet, matching the adapter split used for test_final."
-  ]
+    "data/raw/lingxidiag16k/test_final.parquet is absent in this checkout; the explicit raw source used was data/raw/lingxidiag16k/data/validation-00000-of-00001.parquet, matching the adapter split used for test_final.",
+    "MDD-5k v2 metrics were regenerated from data/raw/mdd5k_repo/Label/patient_*_label.json raw ICD_Code labels, not from parent-collapsed prediction gold_diagnoses.",
+    "MDD-5k DSM-5 and both-standard runs use dsm5_criteria_version=v0_unverified as recorded in run manifests."
+  ],
+  "mdd5k_case_manifest": {
+    "n": 925,
+    "dual_standard_n_per_mode": {
+      "icd10": 925,
+      "dsm5": 925,
+      "both": 925
+    },
+    "case_id_overlap_across_modes": 925,
+    "case_order_fingerprint": "87a7bee4e0b36bb9",
+    "case_ids_sha256": "72512b5448eb8a93245be1f619114eda8c9cd8f1db7f3b5a9cd2e180844a75de",
+    "source": "results/dual_standard_full/mdd5k/mode_icd10/pilot_icd10/case_selection.json"
+  },
+  "mdd5k_raw_code_contract": {
+    "raw_label_dir": "data/raw/mdd5k_repo/Label",
+    "raw_code_coverage": "925/925",
+    "missing_label_files": [],
+    "f41_2_count_in_gold": 209,
+    "two_class_n": 490,
+    "f41_2_excluded_from_2class": true,
+    "no_parent_gold_fallback": true
+  }
 }

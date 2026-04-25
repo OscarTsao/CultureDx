@@ -1,0 +1,1065 @@
+{
+  "dataset": "mdd5k_raw",
+  "data_path": "data/raw/mdd5k_repo",
+  "n": 925,
+  "seed": 42,
+  "modes": {
+    "icd10": {
+      "overlay_path": "/home/user/YuNing/CultureDx/configs/overlays/standard_icd10.yaml",
+      "run_dir": "/home/user/YuNing/CultureDx/results/dual_standard_full/mdd5k/mode_icd10/pilot_icd10",
+      "predictions_path": "/home/user/YuNing/CultureDx/results/dual_standard_full/mdd5k/mode_icd10/pilot_icd10/predictions.jsonl",
+      "case_selection_path": "/home/user/YuNing/CultureDx/results/dual_standard_full/mdd5k/mode_icd10/pilot_icd10/case_selection.json",
+      "metrics_summary_path": "/home/user/YuNing/CultureDx/results/dual_standard_full/mdd5k/mode_icd10/pilot_icd10/metrics_summary.json",
+      "log_path": "/home/user/YuNing/CultureDx/results/dual_standard_full/mdd5k/mode_icd10/run.log",
+      "exit_code": 0
+    },
+    "dsm5": {
+      "overlay_path": "/home/user/YuNing/CultureDx/configs/overlays/standard_dsm5.yaml",
+      "run_dir": "/home/user/YuNing/CultureDx/results/dual_standard_full/mdd5k/mode_dsm5/pilot_dsm5",
+      "predictions_path": "/home/user/YuNing/CultureDx/results/dual_standard_full/mdd5k/mode_dsm5/pilot_dsm5/predictions.jsonl",
+      "case_selection_path": "/home/user/YuNing/CultureDx/results/dual_standard_full/mdd5k/mode_dsm5/pilot_dsm5/case_selection.json",
+      "metrics_summary_path": "/home/user/YuNing/CultureDx/results/dual_standard_full/mdd5k/mode_dsm5/pilot_dsm5/metrics_summary.json",
+      "log_path": "/home/user/YuNing/CultureDx/results/dual_standard_full/mdd5k/mode_dsm5/run.log",
+      "exit_code": 0
+    },
+    "both": {
+      "overlay_path": "/home/user/YuNing/CultureDx/configs/overlays/standard_both.yaml",
+      "run_dir": "/home/user/YuNing/CultureDx/results/dual_standard_full/mdd5k/mode_both/pilot_both",
+      "predictions_path": "/home/user/YuNing/CultureDx/results/dual_standard_full/mdd5k/mode_both/pilot_both/predictions.jsonl",
+      "case_selection_path": "/home/user/YuNing/CultureDx/results/dual_standard_full/mdd5k/mode_both/pilot_both/case_selection.json",
+      "metrics_summary_path": "/home/user/YuNing/CultureDx/results/dual_standard_full/mdd5k/mode_both/pilot_both/metrics_summary.json",
+      "log_path": "/home/user/YuNing/CultureDx/results/dual_standard_full/mdd5k/mode_both/run.log",
+      "exit_code": 0
+    }
+  },
+  "per_mode_metrics": {
+    "icd10": {
+      "mode": "icd10",
+      "top1": 0.5849,
+      "n": 925,
+      "correct": 541,
+      "abstain_count": 0,
+      "abstain_rate": 0.0,
+      "distinct_primary_classes": [
+        "F20",
+        "F31",
+        "F32",
+        "F39",
+        "F41",
+        "F42",
+        "F43",
+        "F51",
+        "F98"
+      ],
+      "distinct_primary_class_count": 9,
+      "per_class": {
+        "F20": {
+          "correct": 1,
+          "total": 3,
+          "recall": 0.333
+        },
+        "F31": {
+          "correct": 3,
+          "total": 11,
+          "recall": 0.273
+        },
+        "F32": {
+          "correct": 360,
+          "total": 408,
+          "recall": 0.882
+        },
+        "F39": {
+          "correct": 5,
+          "total": 64,
+          "recall": 0.078
+        },
+        "F41": {
+          "correct": 167,
+          "total": 308,
+          "recall": 0.542
+        },
+        "F42": {
+          "correct": 5,
+          "total": 13,
+          "recall": 0.385
+        },
+        "F43": {
+          "correct": 0,
+          "total": 7,
+          "recall": 0.0
+        },
+        "F45": {
+          "correct": 0,
+          "total": 7,
+          "recall": 0.0
+        },
+        "F51": {
+          "correct": 0,
+          "total": 18,
+          "recall": 0.0
+        },
+        "F98": {
+          "correct": 0,
+          "total": 20,
+          "recall": 0.0
+        },
+        "Z71": {
+          "correct": 0,
+          "total": 8,
+          "recall": 0.0
+        },
+        "Others": {
+          "correct": 0,
+          "total": 58,
+          "recall": 0.0
+        }
+      }
+    },
+    "dsm5": {
+      "mode": "dsm5",
+      "top1": 0.5708,
+      "n": 925,
+      "correct": 528,
+      "abstain_count": 0,
+      "abstain_rate": 0.0,
+      "distinct_primary_classes": [
+        "F20",
+        "F31",
+        "F32",
+        "F39",
+        "F41",
+        "F42",
+        "F43",
+        "F45",
+        "F51",
+        "Z71"
+      ],
+      "distinct_primary_class_count": 10,
+      "per_class": {
+        "F20": {
+          "correct": 1,
+          "total": 3,
+          "recall": 0.333
+        },
+        "F31": {
+          "correct": 0,
+          "total": 11,
+          "recall": 0.0
+        },
+        "F32": {
+          "correct": 380,
+          "total": 408,
+          "recall": 0.931
+        },
+        "F39": {
+          "correct": 0,
+          "total": 64,
+          "recall": 0.0
+        },
+        "F41": {
+          "correct": 141,
+          "total": 308,
+          "recall": 0.458
+        },
+        "F42": {
+          "correct": 2,
+          "total": 13,
+          "recall": 0.154
+        },
+        "F43": {
+          "correct": 0,
+          "total": 7,
+          "recall": 0.0
+        },
+        "F45": {
+          "correct": 1,
+          "total": 7,
+          "recall": 0.143
+        },
+        "F51": {
+          "correct": 2,
+          "total": 18,
+          "recall": 0.111
+        },
+        "F98": {
+          "correct": 0,
+          "total": 20,
+          "recall": 0.0
+        },
+        "Z71": {
+          "correct": 1,
+          "total": 8,
+          "recall": 0.125
+        },
+        "Others": {
+          "correct": 0,
+          "total": 58,
+          "recall": 0.0
+        }
+      }
+    },
+    "both": {
+      "mode": "both",
+      "top1": 0.5849,
+      "n": 925,
+      "correct": 541,
+      "abstain_count": 0,
+      "abstain_rate": 0.0,
+      "distinct_primary_classes": [
+        "F20",
+        "F31",
+        "F32",
+        "F39",
+        "F41",
+        "F42",
+        "F43",
+        "F51",
+        "F98"
+      ],
+      "distinct_primary_class_count": 9,
+      "per_class": {
+        "F20": {
+          "correct": 1,
+          "total": 3,
+          "recall": 0.333
+        },
+        "F31": {
+          "correct": 3,
+          "total": 11,
+          "recall": 0.273
+        },
+        "F32": {
+          "correct": 360,
+          "total": 408,
+          "recall": 0.882
+        },
+        "F39": {
+          "correct": 5,
+          "total": 64,
+          "recall": 0.078
+        },
+        "F41": {
+          "correct": 167,
+          "total": 308,
+          "recall": 0.542
+        },
+        "F42": {
+          "correct": 5,
+          "total": 13,
+          "recall": 0.385
+        },
+        "F43": {
+          "correct": 0,
+          "total": 7,
+          "recall": 0.0
+        },
+        "F45": {
+          "correct": 0,
+          "total": 7,
+          "recall": 0.0
+        },
+        "F51": {
+          "correct": 0,
+          "total": 18,
+          "recall": 0.0
+        },
+        "F98": {
+          "correct": 0,
+          "total": 20,
+          "recall": 0.0
+        },
+        "Z71": {
+          "correct": 0,
+          "total": 8,
+          "recall": 0.0
+        },
+        "Others": {
+          "correct": 0,
+          "total": 58,
+          "recall": 0.0
+        }
+      }
+    }
+  },
+  "pairwise_agreement": [
+    {
+      "pair": "icd10_vs_dsm5",
+      "mode_a": "icd10",
+      "mode_b": "dsm5",
+      "common_cases": 925,
+      "agree": 733,
+      "disagree": 192,
+      "rate": 0.7924
+    },
+    {
+      "pair": "icd10_vs_both",
+      "mode_a": "icd10",
+      "mode_b": "both",
+      "common_cases": 925,
+      "agree": 925,
+      "disagree": 0,
+      "rate": 1.0
+    },
+    {
+      "pair": "dsm5_vs_both",
+      "mode_a": "dsm5",
+      "mode_b": "both",
+      "common_cases": 925,
+      "agree": 733,
+      "disagree": 192,
+      "rate": 0.7924
+    }
+  ],
+  "disagreement_examples": [
+    {
+      "case_id": "patient_1002",
+      "gold_parent": "F32",
+      "distinct_predictions": [
+        "F32",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F41.1",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "both": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F41.1",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "patient_1013",
+      "gold_parent": "F41",
+      "distinct_predictions": [
+        "F32",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "both": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "patient_1017",
+      "gold_parent": "F32",
+      "distinct_predictions": [
+        "F32",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.2",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.7999999999999999
+        },
+        "dsm5": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "both": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.2",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.7999999999999999
+        }
+      }
+    },
+    {
+      "case_id": "patient_1024",
+      "gold_parent": "F98",
+      "distinct_predictions": [
+        "F32",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F41.1",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "both": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F41.1",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "patient_107",
+      "gold_parent": "F39",
+      "distinct_predictions": [
+        "F32",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.7999999999999999
+        },
+        "both": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "patient_11",
+      "gold_parent": "F32",
+      "distinct_predictions": [
+        "F32",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "both": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "patient_111",
+      "gold_parent": "F32",
+      "distinct_predictions": [
+        "F32",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.2",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "both": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.2",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "patient_113",
+      "gold_parent": "F41",
+      "distinct_predictions": [
+        "F32",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "both": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "patient_114",
+      "gold_parent": "F32",
+      "distinct_predictions": [
+        "F32",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F41.1",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "both": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F41.1",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "patient_118",
+      "gold_parent": "F42",
+      "distinct_predictions": [
+        "F32",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.7999999999999999
+        },
+        "dsm5": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F41.1",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "both": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F41.1",
+          "decision": "diagnosis",
+          "confidence": 0.7999999999999999
+        }
+      }
+    },
+    {
+      "case_id": "patient_124",
+      "gold_parent": "Others",
+      "distinct_predictions": [
+        "F31",
+        "F32"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F31",
+          "primary_diagnosis": "F31",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "both": {
+          "paper_parent": "F31",
+          "primary_diagnosis": "F31",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "patient_125",
+      "gold_parent": "F98",
+      "distinct_predictions": [
+        "F32",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "both": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "patient_128",
+      "gold_parent": "F32",
+      "distinct_predictions": [
+        "F32",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "both": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "patient_132",
+      "gold_parent": "F41",
+      "distinct_predictions": [
+        "F32",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "both": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "patient_138",
+      "gold_parent": "F32",
+      "distinct_predictions": [
+        "F32",
+        "F39"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F39",
+          "primary_diagnosis": "F39",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.75
+        },
+        "dsm5": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "both": {
+          "paper_parent": "F39",
+          "primary_diagnosis": "F39",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.75
+        }
+      }
+    },
+    {
+      "case_id": "patient_14",
+      "gold_parent": "F32",
+      "distinct_predictions": [
+        "F32",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F41.1",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "both": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F41.1",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "patient_144",
+      "gold_parent": "Others",
+      "distinct_predictions": [
+        "F41",
+        "F51"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F51",
+          "primary_diagnosis": "F51",
+          "primary_diagnosis_dsm5": "F51",
+          "decision": "diagnosis",
+          "confidence": 0.75
+        },
+        "both": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F51",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "patient_149",
+      "gold_parent": "F32",
+      "distinct_predictions": [
+        "F32",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "both": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "patient_152",
+      "gold_parent": "F51",
+      "distinct_predictions": [
+        "F39",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F39",
+          "primary_diagnosis": "F39",
+          "primary_diagnosis_dsm5": "F39",
+          "decision": "diagnosis",
+          "confidence": 0.7999999999999999
+        },
+        "both": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F39",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "patient_157",
+      "gold_parent": "F32",
+      "distinct_predictions": [
+        "F32",
+        "F41"
+      ],
+      "disagreement_pairs": [
+        "icd10_vs_dsm5",
+        "dsm5_vs_both"
+      ],
+      "predictions": {
+        "icd10": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": null,
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "dsm5": {
+          "paper_parent": "F32",
+          "primary_diagnosis": "F32",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        },
+        "both": {
+          "paper_parent": "F41",
+          "primary_diagnosis": "F41.1",
+          "primary_diagnosis_dsm5": "F32",
+          "decision": "diagnosis",
+          "confidence": 0.9
+        }
+      }
+    }
+  ],
+  "sanity_assertions": {
+    "same_case_selection": {
+      "passed": true,
+      "reference_mode": "icd10",
+      "mismatches": []
+    },
+    "all_passed": true,
+    "per_mode": {
+      "icd10": {
+        "passed": true,
+        "checks": {
+          "top1_gt_0_20": true,
+          "abstain_le_0_50": true,
+          "distinct_primary_classes_ge_3": true
+        },
+        "observed": {
+          "top1": 0.5849,
+          "abstain_rate": 0.0,
+          "distinct_primary_class_count": 9
+        }
+      },
+      "dsm5": {
+        "passed": true,
+        "checks": {
+          "top1_gt_0_20": true,
+          "abstain_le_0_50": true,
+          "distinct_primary_classes_ge_3": true
+        },
+        "observed": {
+          "top1": 0.5708,
+          "abstain_rate": 0.0,
+          "distinct_primary_class_count": 10
+        }
+      },
+      "both": {
+        "passed": true,
+        "checks": {
+          "top1_gt_0_20": true,
+          "abstain_le_0_50": true,
+          "distinct_primary_classes_ge_3": true
+        },
+        "observed": {
+          "top1": 0.5849,
+          "abstain_rate": 0.0,
+          "distinct_primary_class_count": 9
+        }
+      }
+    }
+  },
+  "failures": []
+}
