@@ -19,7 +19,7 @@ from typing import Any
 from culturedx.core.models import ClinicalCase, DiagnosisResult, FailureInfo
 from culturedx.eval.code_mapping import map_code_list
 from culturedx.eval.metrics import compute_comorbidity_metrics, compute_diagnosis_metrics
-from culturedx.eval.lingxidiag_paper import compute_table4_metrics, pred_to_parent_list
+from culturedx.eval.lingxidiag_paper import compute_table4_metrics_v2, to_paper_parent
 from culturedx.evidence.pipeline import EvidencePipeline
 from culturedx.modes.base import BaseModeOrchestrator, case_execution_context
 from culturedx.ontology.symptom_map import load_somatization_map
@@ -287,35 +287,90 @@ class ExperimentRunner:
         # giving every config a consistent cross-branch score.
         try:
             table4_cases = []
+            has_raw_table4_source = any(
+                bool((case.metadata or {}).get("diagnosis_code_full"))
+                for case in cases
+            )
+            if cases and not has_raw_table4_source and all(
+                case.dataset == "lingxidiag16k" for case in cases
+            ):
+                raise RuntimeError(
+                    "diagnosis_code_full missing for LingxiDiag cases. "
+                    "Required for F41.2 raw-code evaluation contract."
+                )
             for r, c in zip(results, cases):
                 raw_code = (c.metadata or {}).get("diagnosis_code_full", "")
                 if not raw_code:
-                    # Fall back to joining diagnoses list
-                    raw_code = ",".join(c.diagnoses) if c.diagnoses else ""
-                pred_codes = []
-                if r.primary_diagnosis:
-                    pred_codes.append(r.primary_diagnosis)
-                pred_codes.extend(r.comorbid_diagnoses)
+                    if has_raw_table4_source:
+                        raise RuntimeError(
+                            f"diagnosis_code_full missing for case {c.case_id}. "
+                            "Required for F41.2 raw-code evaluation contract."
+                        )
+                    continue
+                decision_trace = r.decision_trace or {}
+                diagnostician_trace = decision_trace.get("diagnostician", {})
+                ranked = (
+                    decision_trace.get("diagnostician_ranked")
+                    or (
+                        diagnostician_trace.get("ranked_codes")
+                        if isinstance(diagnostician_trace, dict)
+                        else None
+                    )
+                    or list(r.candidate_disorders or [])
+                    or ([r.primary_diagnosis] if r.primary_diagnosis else [])
+                )
                 table4_cases.append({
-                    "DiagnosisCode": raw_code,
-                    "_pred_codes": pred_codes,
+                    "case_id": c.case_id,
+                    "raw_gold_code": raw_code,
+                    "primary_diagnosis": r.primary_diagnosis,
+                    "ranked_codes": ranked,
+                    "comorbid_diagnoses": list(r.comorbid_diagnoses or []),
                 })
             if table4_cases:
-                def _get_pred(case: dict) -> list[str]:
-                    return pred_to_parent_list(case["_pred_codes"])
-                metrics["table4"] = compute_table4_metrics(table4_cases, _get_pred)
+                def _primary(case: dict) -> str:
+                    return to_paper_parent(case["primary_diagnosis"])
+
+                def _ranked(case: dict) -> list[str]:
+                    return [to_paper_parent(code) for code in case["ranked_codes"]]
+
+                def _multilabel(case: dict) -> list[str]:
+                    codes = [case["primary_diagnosis"]]
+                    codes.extend(case["comorbid_diagnoses"])
+                    return [to_paper_parent(code) for code in codes if code]
+
+                def _raw_gold(case: dict) -> str:
+                    return case["raw_gold_code"]
+
+                def _raw_pred(case: dict) -> list[str]:
+                    codes = [case["primary_diagnosis"]]
+                    codes.extend(case["comorbid_diagnoses"])
+                    return [code for code in codes if code]
+
+                metrics["table4"] = compute_table4_metrics_v2(
+                    cases=table4_cases,
+                    get_primary_prediction=_primary,
+                    get_ranked_prediction=_ranked,
+                    get_multilabel_prediction=_multilabel,
+                    get_raw_gold_code=_raw_gold,
+                    get_raw_pred_codes=_raw_pred,
+                )
                 logger.info(
-                    "Table 4 Overall: %.4f",
+                    "Table 4 (contract v2): Top-1=%.3f Top-3=%.3f F1_m=%.3f Overall=%.4f",
+                    metrics["table4"].get("12class_Top1", 0),
+                    metrics["table4"].get("12class_Top3", 0),
+                    metrics["table4"].get("12class_F1_macro", 0),
                     metrics["table4"].get("Overall", float("nan")),
                 )
         except Exception:
             logger.warning("Table 4 computation failed", exc_info=True)
+            raise
         slice_metrics = self._compute_slice_metrics(results, cases)
+        summary_metrics = self._build_metrics_summary_payload(metrics)
         summary = MetricsSummary(
             run_id=self.run_id,
             dataset=cases[0].dataset if cases else "",
             num_cases=len(cases),
-            metrics=metrics,
+            metrics=summary_metrics,
             slice_metrics=slice_metrics,
         )
         self._save_metrics(metrics, summary)
@@ -360,6 +415,38 @@ class ExperimentRunner:
             self.output_dir / "metrics_summary.json",
             serialize_dataclass(summary),
         )
+
+    @staticmethod
+    def _build_metrics_summary_payload(metrics: dict[str, Any]) -> dict[str, Any]:
+        """Build naming-aware canonical metrics_summary payload.
+
+        ``metrics.json`` remains legacy-compatible. ``metrics_summary.json``
+        separates paper-canonical Table 4 values from internal diagnostics so
+        similarly named Top-1 fields are not treated as interchangeable.
+        """
+        payload: dict[str, Any] = {}
+        table4 = metrics.get("table4")
+        if isinstance(table4, dict):
+            payload["table4"] = table4
+
+        diagnostics = {
+            name: value
+            for name, value in metrics.items()
+            if name != "table4"
+        }
+        if diagnostics:
+            payload["diagnostics_internal"] = diagnostics
+
+        payload["metric_definitions"] = {
+            "paper_canonical_top1": "table4.12class_Top1 (multi-label paper alignment)",
+            "diagnostics_internal.diagnosis.top1_accuracy": (
+                "primary == first gold (single-label, deprecated for paper citation)"
+            ),
+            "diagnostics_internal.pilot_comparison_top1": (
+                "parent(primary) == parent(first gold) (single-label parent)"
+            ),
+        }
+        return payload
 
     def _save_summary_markdown(self, summary: MetricsSummary) -> None:
         """Write a short reviewer-friendly run summary."""

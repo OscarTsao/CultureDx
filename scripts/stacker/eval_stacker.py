@@ -35,8 +35,9 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from culturedx.eval.lingxidiag_paper import (  # noqa: E402
     PAPER_12_CLASSES,
-    compute_table4_metrics,
+    compute_table4_metrics_v2,
     to_paper_parent,
+    verify_evaluation_contract,
 )
 
 logging.basicConfig(
@@ -80,6 +81,58 @@ def _load_pred_jsonl(path: Path) -> dict[str, dict]:
             if cid:
                 out[cid] = r
     return out
+
+
+def _resolve_raw_parquet(raw_parquet: Path | None) -> Path:
+    """Resolve the raw DiagnosisCode parquet used by test_final evaluation."""
+    if raw_parquet is not None:
+        if not raw_parquet.exists():
+            raise RuntimeError(
+                f"Raw gold parquet not found: {raw_parquet}. "
+                "Required for F41.2 raw-code 2c/4c contract."
+            )
+        return raw_parquet
+
+    canonical = ROOT / "data" / "raw" / "lingxidiag16k" / "test_final.parquet"
+    if canonical.exists():
+        return canonical
+
+    validation_files = sorted(
+        (ROOT / "data" / "raw" / "lingxidiag16k" / "data").glob("validation-*.parquet")
+    )
+    if len(validation_files) == 1:
+        logger.warning(
+            "Using %s as raw test_final parquet because this repo layout stores "
+            "LingxiDiag test_final as the validation parquet.",
+            validation_files[0],
+        )
+        return validation_files[0]
+
+    raise RuntimeError(
+        f"Raw gold parquet not found: {canonical}. Required for F41.2 raw-code "
+        "2c/4c contract. Pass --raw-parquet explicitly; no parent-gold fallback is allowed."
+    )
+
+
+def _load_raw_codes(raw_parquet: Path) -> dict[str, str]:
+    """Load raw DiagnosisCode by patient_id, failing if required columns are absent."""
+    import pyarrow.parquet as pq
+
+    raw_table = pq.read_table(raw_parquet)
+    required = {"patient_id", "DiagnosisCode"}
+    missing_columns = required - set(raw_table.column_names)
+    if missing_columns:
+        raise RuntimeError(
+            f"Raw parquet {raw_parquet} missing columns {sorted(missing_columns)}. "
+            "Required for F41.2 raw-code evaluation contract."
+        )
+
+    raw_codes_by_id: dict[str, str] = {}
+    for row_idx in range(raw_table.num_rows):
+        cid = str(raw_table["patient_id"][row_idx].as_py())
+        raw_code = raw_table["DiagnosisCode"][row_idx].as_py() or ""
+        raw_codes_by_id[cid] = str(raw_code)
+    return raw_codes_by_id
 
 
 def _predict_with_model(model_bundle: dict, X: np.ndarray) -> tuple[np.ndarray, list[str]]:
@@ -169,6 +222,8 @@ def main() -> None:
                         help="TF-IDF predictions on the same split (for McNemar)")
     parser.add_argument("--dtv-pred", type=Path, required=True,
                         help="DtV predictions on the same split (for McNemar)")
+    parser.add_argument("--raw-parquet", type=Path, default=None,
+                        help="Raw LingxiDiag parquet with patient_id and DiagnosisCode")
     parser.add_argument("--out-dir", type=Path, required=True)
     args = parser.parse_args()
 
@@ -184,8 +239,8 @@ def main() -> None:
 
     # Feature matrix
     X = np.array([r["features"] for r in feats], dtype=np.float64)
-    case_ids = [r["case_id"] for r in feats]
-    gold_map = {r["case_id"]: r["gold_parents"] for r in feats}
+    case_ids = [str(r["case_id"]) for r in feats]
+    gold_map = {str(r["case_id"]): r["gold_parents"] for r in feats}
 
     logger.info("Running stacker inference...")
     proba, class_order = _predict_with_model(bundle, X)
@@ -218,25 +273,55 @@ def main() -> None:
     logger.info("Wrote predictions -> %s", pred_path)
 
     # --------------------------- Aggregate metrics -------------------------- #
-    # Build compute_table4_metrics inputs
+    raw_parquet = _resolve_raw_parquet(args.raw_parquet)
+    logger.info("Loading raw DiagnosisCode parquet: %s", raw_parquet)
+    raw_codes_by_id = _load_raw_codes(raw_parquet)
+    missing_raw = [cid for cid in case_ids if cid not in raw_codes_by_id]
+    if missing_raw:
+        raise RuntimeError(
+            f"Raw DiagnosisCode missing for {len(missing_raw)} cases: {missing_raw[:5]}... "
+            "NO silent fallback to parent-collapsed gold."
+        )
+
     case_dicts = []
     for cid in case_ids:
-        gold = gold_map[cid]
+        rec = stacker_preds[cid]
         case_dicts.append({
             "case_id": cid,
-            "DiagnosisCode": ",".join(gold),
-            "diagnoses": gold,
-            "diagnosis_code_full": ",".join(gold),
-            "four_class_label": None,
+            "raw_gold_code": raw_codes_by_id[cid],
+            "primary_diagnosis": rec["primary_diagnosis"],
+            "ranked_codes": rec.get("ranked_codes", []),
+            "comorbid_diagnoses": rec.get("comorbid_diagnoses", []),
         })
-    def get_stacker_pred(case: dict) -> list[str]:
-        rec = stacker_preds.get(case["case_id"])
-        if rec is None:
-            return []
-        return [rec["primary_diagnosis"]] + rec.get("comorbid_diagnoses", [])
+
+    def _primary(case: dict) -> str:
+        return to_paper_parent(case["primary_diagnosis"])
+
+    def _ranked(case: dict) -> list[str]:
+        return [to_paper_parent(code) for code in case["ranked_codes"]]
+
+    def _multilabel(case: dict) -> list[str]:
+        codes = [case["primary_diagnosis"]]
+        codes.extend(case["comorbid_diagnoses"])
+        return [to_paper_parent(code) for code in codes if code]
+
+    def _raw_gold(case: dict) -> str:
+        return case["raw_gold_code"]
+
+    def _raw_pred(case: dict) -> list[str]:
+        codes = [case["primary_diagnosis"]]
+        codes.extend(case["comorbid_diagnoses"])
+        return [code for code in codes if code]
 
     logger.info("Computing Table-4 metrics...")
-    table4 = compute_table4_metrics(case_dicts, get_stacker_pred)
+    table4 = compute_table4_metrics_v2(
+        cases=case_dicts,
+        get_primary_prediction=_primary,
+        get_ranked_prediction=_ranked,
+        get_multilabel_prediction=_multilabel,
+        get_raw_gold_code=_raw_gold,
+        get_raw_pred_codes=_raw_pred,
+    )
 
     # Top-1 correctness per case (for bootstrap + McNemar)
     stacker_correct = [
@@ -315,6 +400,15 @@ def main() -> None:
             "n_resamples": BOOTSTRAP_N,
             "seed": BOOTSTRAP_SEED,
         },
+        "metric_definitions": {
+            "12class_Top1_source": "primary_diagnosis (paper-parent)",
+            "12class_Top3_source": "[primary] + (ranked_codes - {primary})[:2] (paper-parent)",
+            "12class_F1_source": "primary + threshold-gated comorbid_diagnoses (paper-parent multilabel)",
+            "2class_gold_source": "raw DiagnosisCode (F41.2 excluded)",
+            "4class_gold_source": "raw DiagnosisCode (F41.2 -> Mixed)",
+            "Overall_source": "mean(non-_n metrics)",
+            "post_fix_version": "v4 (eval_contract_repair_2026_04_25)",
+        },
     }
     if feature_analysis:
         summary["feature_importance"] = feature_analysis
@@ -322,6 +416,7 @@ def main() -> None:
     summary_path = args.out_dir / "metrics.json"
     summary_path.write_text(json.dumps(summary, indent=2, ensure_ascii=False),
                             encoding="utf-8")
+    verify_evaluation_contract(summary_path)
 
     # Human-readable report
     print("\n" + "=" * 72)

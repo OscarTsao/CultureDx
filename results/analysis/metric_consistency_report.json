@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-04-25T13:48:10.216850+00:00",
+  "fix_summary": "P0 evaluation contract repair v4: separate primary/ranked/multilabel/raw-code views",
+  "commits": {
+    "main_parent_before_report_commit": "f8adb4a38e428b3dfe28b7c1bf6ae7f79c99511a",
+    "stacker_contract_commit": "914381bc0ab5509b5e717b98e77a531481716f42",
+    "main_report_commit": "see git commit containing this file"
+  },
+  "case_manifest": {
+    "n": 1000,
+    "stacker_test_final_n": 1000,
+    "dual_standard_n": 1000,
+    "case_id_overlap_dual_vs_stacker": 1000,
+    "raw_code_overlap_dual": 1000,
+    "fingerprint": "59173340f1fa156e",
+    "case_ids_sha256": "2c07267cecbb66a3d1e02394f547f973de5e6f13f5ff014fe244052150245d90",
+    "source": "results/dual_standard_full/lingxidiag16k/mode_icd10/pilot_icd10/case_selection.json"
+  },
+  "raw_code_contract": {
+    "raw_parquet": "data/raw/lingxidiag16k/data/validation-00000-of-00001.parquet",
+    "raw_code_coverage": "1000/1000",
+    "f41_2_count_in_gold": 228,
+    "two_class_n": 473,
+    "f41_2_excluded_from_2class": true,
+    "no_parent_gold_fallback": true
+  },
+  "metric_sources": {
+    "12c_top1": "primary_diagnosis -> to_paper_parent",
+    "12c_top3": "[primary] + (ranked_codes - {primary})[:2] -> to_paper_parent",
+    "12c_f1_macro": "primary + threshold-gated comorbid_diagnoses (paper-parent multilabel)",
+    "12c_exact_match": "same as F1 (multilabel)",
+    "2c_gold": "raw DiagnosisCode -> classify_2class_from_raw (F41.2 excluded)",
+    "2c_pred": "primary_diagnosis (paper-parent)",
+    "4c_gold": "raw DiagnosisCode -> classify_4class_from_raw (F41.2 -> Mixed)",
+    "4c_pred": "primary + raw_pred_codes for F41.2 detection",
+    "Overall": "mean(non-_n metrics)"
+  },
+  "canonical_values": {
+    "stacker_lgbm": {
+      "Top1": 0.612,
+      "Top3": 0.925,
+      "F1_macro": 0.33441714656398963,
+      "F1_weighted": 0.5726872501765499,
+      "2class_Acc": 0.7526427061310782,
+      "4class_Acc": 0.546,
+      "Overall": 0.616601113626692
+    },
+    "stacker_lr": {
+      "Top1": 0.538,
+      "Top3": 0.887,
+      "F1_macro": 0.3596150726394971,
+      "F1_weighted": 0.5578932897453961,
+      "2class_Acc": 0.6194503171247357,
+      "4class_Acc": 0.538,
+      "Overall": 0.5721689094994958
+    },
+    "dual_standard_icd10": {
+      "Top1": 0.507,
+      "Top3": 0.8,
+      "F1_macro": 0.1987295149587962,
+      "F1_weighted": 0.4572187836891283,
+      "Overall": 0.5144560658491817
+    },
+    "dual_standard_dsm5": {
+      "Top1": 0.471,
+      "Top3": 0.803,
+      "F1_macro": 0.1882046929435117,
+      "F1_weighted": 0.4210396722639921,
+      "Overall": 0.5064840815690179
+    },
+    "dual_standard_both": {
+      "Top1": 0.507,
+      "Top3": 0.8,
+      "F1_macro": 0.1987295149587962,
+      "F1_weighted": 0.4572187836891283,
+      "Overall": 0.5144560658491817
+    }
+  },
+  "deprecated_values": [
+    {
+      "metric": "stacker_lgbm.table4.12class_Top3",
+      "old": 0.642,
+      "new": 0.925,
+      "reason": "old table4 used thresholded multilabel predictions; v2 uses ranked_codes for Top-3"
+    },
+    {
+      "metric": "stacker_lr.table4.12class_Top3",
+      "old": 0.581,
+      "new": 0.887,
+      "reason": "old table4 used thresholded multilabel predictions; v2 uses ranked_codes for Top-3"
+    },
+    {
+      "metric": "stacker.table4.2class_n",
+      "old": 696,
+      "new": 473,
+      "reason": "F41.2 was lost during parent-code gold conversion; v2 uses raw DiagnosisCode"
+    },
+    {
+      "metric": "dual_standard_icd10.table4.12class_Top3",
+      "old": 0.644,
+      "new": 0.8,
+      "reason": "Top-3 now uses primary-first ranked prediction view"
+    },
+    {
+      "metric": "dual_standard_dsm5.table4.12class_Top3",
+      "old": 0.589,
+      "new": 0.803,
+      "reason": "Top-3 now uses primary-first ranked prediction view"
+    },
+    {
+      "metric": "dual_standard_both.table4.12class_Top3",
+      "old": 0.644,
+      "new": 0.8,
+      "reason": "Top-3 now uses primary-first ranked prediction view"
+    },
+    {
+      "metric": "audit_report.stacker_lgbm.Top1",
+      "old": 0.605,
+      "new": 0.612,
+      "reason": "audit used over-strict single-label; canonical is paper-aligned multilabel"
+    }
+  ],
+  "sanity_checks_passed": [
+    "Top-1 subset of Top-3 invariant verified for stacker_lgbm, stacker_lr, dual_standard_icd10, dual_standard_dsm5, dual_standard_both",
+    "Stacker table4 Top-3 matches bootstrap top3_stacker within 0.005 for LGBM and LR",
+    "2class_n = 473 for all regenerated metrics (F41.2 excluded)",
+    "Raw DiagnosisCode coverage 1000/1000 for dual-standard LingxiDiag cases",
+    "Unit tests: uv run pytest tests/test_evaluation_contract.py -v (15 passed on both branches)"
+  ],
+  "known_execution_notes": [
+    "MDD-5k results directory was not read or modified during this repair.",
+    "data/raw/lingxidiag16k/test_final.parquet is absent in this checkout; the explicit raw source used was data/raw/lingxidiag16k/data/validation-00000-of-00001.parquet, matching the adapter split used for test_final."
+  ]
+}
