@@ -14,9 +14,9 @@
 >
 > First, **disagreement-driven clinician triage**: supervised-hybrid model discordance flags 26.4% of cases and enriches deployed-model error rate by 2.06x on LingxiDiag-16K (N=1000). The signal is not redundant with confidence-quantile triage (Jaccard 0.357); a two-stage union policy captures 58% of system errors at 38.9% flag rate. Diagnostic-standard discordance (ICD-10 vs DSM-5) provides a complementary triage signal at 25.1% flag rate on LingxiDiag and 20.8% on MDD-5k.
 >
-> Second, **cross-dataset bias robustness**: under MDD-5k synthetic distribution shift, a single-LLM baseline exhibits 189x F32/F41 asymmetric collapse; the multi-agent pipeline bounds this to 8.94x (a 21x improvement), and a somatization-aware prompt mitigation further reduces asymmetry to 5.58x.
+> Second, **cross-dataset bias robustness**: under MDD-5k synthetic distribution shift, a single-LLM baseline exhibits 189x F32/F41 asymmetric collapse; the multi-agent pipeline bounds this to 8.94x, somatization-aware prompt mitigation reduces it to 5.58x, and infrastructure / evaluation-contract repair brings the MAS ICD-10 v4 system to 3.97x - a 47.7x cumulative reduction. DSM-5 v0 reasoning partially reverses this gain, raising MDD-5k asymmetry to 7.24x (paired bootstrap 95% CI excludes 0 on both datasets). Provenance: `results/analysis/mdd5k_f32_f41_asymmetry_v4.json` and `docs/analysis/MDD5K_F32_F41_ASYMMETRY_V4.md`.
 >
-> Third, **dual-standard audit**: CultureDx supports parallel ICD-10 and DSM-5 reasoning with both-mode preserving ICD-10 primary decisions (1925/1925 ICD-10/Both match across LingxiDiag and MDD-5k). Dual-standard evaluation showed dataset-dependent metric trade-offs: DSM-5 v0 was weaker than ICD-10 on Top-1 in both datasets and weaker on Top-3 on MDD-5k, but achieved higher F1_macro, weighted-F1, binary accuracy, four-class accuracy, and Overall on MDD-5k. We interpret this as standard-sensitive diagnostic structure under distribution shift, not as DSM-5 clinical validation.
+> Third, **dual-standard audit**: CultureDx supports parallel ICD-10 and DSM-5 reasoning with both-mode preserving ICD-10 primary decisions (1925/1925 ICD-10/Both match across LingxiDiag and MDD-5k). Dual-standard evaluation showed dataset-dependent metric trade-offs: DSM-5 v0 was weaker than ICD-10 on Top-1 in both datasets and weaker on Top-3 on MDD-5k, but achieved higher F1_macro, weighted-F1, binary accuracy, four-class accuracy, and Overall on MDD-5k. **However, DSM-5 v0 simultaneously amplifies F32/F41 bias asymmetry by approximately +83% relative to ICD-10 (paired bootstrap 95% CI excludes 0).** We therefore frame DSM-5 v0 as a dual-standard audit trade-off, not as improved bias robustness or clinical validity.
 >
 > The Stacker LGBM achieves Top-1 = 0.612, Top-3 = 0.925, F1_macro = 0.334, Overall = 0.617 on LingxiDiag-16K test_final, matching our reproduced TF-IDF baseline (Top-1 = 0.610) within the pre-specified +/-5pp non-inferiority margin (McNemar p approximately 1.0). MAS features contribute 11.9% of stacker decision weight; supervised features contribute 88.1%. We report this decomposition transparently to inform deployment trade-offs: accuracy-only deployments may use TF-IDF; deployments requiring auditability, bias control, or dual-standard reasoning require the MAS architecture.
 >
@@ -59,8 +59,29 @@ dual-standard reasoning while supervised features carry most top-line accuracy.
 ### 5.3 Cross-Dataset Bias Robustness
 
 Under MDD-5k synthetic distribution shift, the single-LLM baseline exhibits
-189x F32/F41 asymmetric collapse. MAS reduces this to 8.94x, and R6v2
-somatization-aware prompting reduces it further to 5.58x.
+189x F32/F41 asymmetric collapse. The cross-architecture mitigation cascade
+under v4 evaluation contract:
+
+| Step | System | Asymmetry | Cumulative improvement |
+|---|---|---:|---:|
+| 0 | Single LLM (Qwen3-32B-AWQ) | 189x | baseline |
+| 1 | MAS architecture (T1) | 8.94x | 21x |
+| 2 | + Somatization-aware prompting (R6v2) | 5.58x | 33x |
+| 3 | + Infrastructure / evaluation-contract repair | 3.97x | **47.7x** |
+
+The current best asymmetry (3.97x, 95% CI [2.82, 6.08]) is achieved by the
+MAS ICD-10 v4 pipeline. R6v2 somatization-aware prompting (5.58x) remains an
+intermediate result demonstrating that targeted prompt-level mitigation
+transfers across datasets; we report both R6v2 and MAS ICD-10 v4 because
+they reflect different mitigation mechanisms.
+
+DSM-5 v0 reasoning partially reverses this gain, increasing MDD-5k asymmetry
+from 3.97x (ICD-10) to 7.24x (DSM-5). Paired bootstrap (DSM-5 - ICD-10) 95%
+CI excludes 0 on both LingxiDiag (Delta ratio +3.13, [+1.12, +7.21]) and
+MDD-5k (Delta ratio +3.24, [+1.12, +6.89]). See
+`results/analysis/mdd5k_f32_f41_asymmetry_v4.json` and
+`docs/analysis/MDD5K_F32_F41_ASYMMETRY_V4.md` for full provenance and
+analysis.
 
 ### 5.4 Dual-Standard Reasoning
 
@@ -156,16 +177,35 @@ analysis.
 
 ### 6.2 Diagnostic-Standard Discordance Audit
 
-LingxiDiag (N=1000): ICD-10 vs DSM-5 disagree on 25.1% of cases. Deployed
-ICD-10 accuracy in the disagreement subset is 0.382 vs 0.549 in the agreement
-subset. Error enrichment: 1.37x.
+We extend disagreement-based triage to ICD-10 vs DSM-5 standard-level
+discordance across both datasets. Full table:
 
-MDD-5k (N=925): ICD-10 vs DSM-5 disagree on 20.8% of cases (192/925). A formal
-MDD-5k error-enrichment triage table remains a next zero-GPU analysis, so the
-current paper claim is limited to disagreement rate.
+| Dataset | Deployed | N | Flag rate | Acc unflagged | Acc flagged | Enrichment | Error recall |
+|---|---|---:|---:|---:|---:|---:|---:|
+| LingxiDiag | ICD-10 | 1000 | 25.1% | 0.549 | 0.382 | 1.37x | 31.4% |
+| LingxiDiag | DSM-5  | 1000 | 25.1% | 0.549 | 0.239 | 1.69x | 36.1% |
+| MDD-5k | ICD-10 | 925 | 20.8% | 0.656 | 0.370 | 1.83x | 32.4% |
+| MDD-5k | DSM-5  | 925 | 20.8% | 0.656 | 0.292 | 2.06x | 35.1% |
 
-These signals are complementary to model discordance: they identify cases where
-reasoning standards conflict, not only cases where one model is uncertain.
+On MDD-5k, ICD-10/DSM-5 discordance flags 20.8% of cases and yields 1.83x
+error enrichment when ICD-10 is deployed, or 2.06x when DSM-5 is deployed.
+The signal magnitude is comparable in magnitude to the in-domain
+TF-IDF/Stacker model-discordance triage on LingxiDiag (2.06x). This suggests
+diagnostic-standard discordance may become more informative under
+distribution shift, but cross-dataset enrichment ratios should be
+interpreted cautiously because they involve different deployed models,
+datasets, and baseline error rates.
+
+Both deployment perspectives are reported to avoid cherry-picking. The
+higher enrichment under DSM-5 deployment reflects DSM-5's lower baseline
+accuracy on MDD-5k, not DSM-5-specific triage value.
+
+These signals are complementary to model discordance: they identify cases
+where reasoning standards conflict (potential ambiguous presentations),
+not only cases where one model is uncertain.
+
+See `docs/analysis/DISAGREEMENT_AS_TRIAGE.md` for the full analysis
+including bootstrap CI for the disagreement-vs-confidence triage edge.
 
 ---
 

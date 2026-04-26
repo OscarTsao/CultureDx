@@ -2,7 +2,12 @@
 
 **Date**: 2026-04-26
 **Analyst**: zero-GPU post-hoc analysis on existing predictions
-**Source predictions**: `results/dual_standard_full/mdd5k/mode_*/pilot_*/predictions.jsonl` (commit `f8adb4a` for v4 modes; `bias_transfer_analysis.json` for pre-v4 baselines)
+**Source predictions**:
+- LingxiDiag full benchmark: commit `f8adb4a`
+- MDD-5k full benchmark: commit `3a2d6d5`
+- Pre-v4 baselines: `results/generalization/bias_transfer_analysis.json`
+
+**Machine-readable artifact**: `results/analysis/mdd5k_f32_f41_asymmetry_v4.json`
 **Methodology**: paper-parent taxonomy (F33 → Others, F41.x → F41, F32.x → F32); bootstrap 1000 resamples, seed=20260420
 **GPT round 10 directive**: "做 MDD-5k F32/F41 asymmetry under v4 + bootstrap CI"
 
@@ -86,7 +91,7 @@ The within-dataset CIs OVERLAP between ICD-10 and DSM-5 (e.g., LingxiDiag ICD CI
 
 ## Why MAS ICD-10 v4 is better than R6v2 (3.97× vs 5.58×)
 
-R6v2 was committed at git `2308358` on 2026-04-21. v4 ICD-10 was committed at git `f8adb4a` on 2026-04-25. Between these, the following infrastructure fixes landed:
+R6v2 prompt implementation lives in commits `086829f` (somatization with working checker, 2026-04-21) and `0201b97` (bias transfer cross-dataset + analysis, 2026-04-21). v4 dual-standard runs landed in `f8adb4a` (LingxiDiag, 2026-04-25) and `3a2d6d5` (MDD-5k, 2026-04-25). Between R6v2 and v4 dual-standard, the following infrastructure fixes landed:
 
 - `cf96a1f`: F32/F33 DSM-5 threshold corrected (min_total 5 → 3)
 - `dc2314e`: ICD-10-only guidance blocks removed from DSM-5 checker template
@@ -176,8 +181,12 @@ Both = ICD-10 architectural pass-through is now confirmed across:
 
 ## Provenance
 
-- **Predictions used**: `results/dual_standard_full/{lingxidiag16k,mdd5k}/mode_{icd10,dsm5,both}/pilot_*/predictions.jsonl`
+- **Predictions used**:
+  - LingxiDiag full benchmark: `results/dual_standard_full/lingxidiag16k/mode_{icd10,dsm5,both}/pilot_*/predictions.jsonl` (commit `f8adb4a`)
+  - MDD-5k full benchmark: `results/dual_standard_full/mdd5k/mode_{icd10,dsm5,both}/pilot_*/predictions.jsonl` (commit `3a2d6d5`)
+- **Machine-readable artifact**: `results/analysis/mdd5k_f32_f41_asymmetry_v4.json`
 - **Pre-v4 baselines**: `results/generalization/bias_transfer_analysis.json`
+- **R6v2 implementation**: commits `086829f` (somatization) + `0201b97` (bias-transfer)
 - **Compute**: `scripts/analysis/compute_f32_f41_asymmetry_v4.py` (to be added in B commit)
 - **Output**: `results/analysis/mdd5k_f32_f41_asymmetry_v4.json`
 - **Random seed**: 20260420 (reproducible)
