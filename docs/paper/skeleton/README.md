@@ -12,9 +12,10 @@
 >
 > **"If you want parallelism: You or Codex: tiny sync commit. Claude: skeleton only, no full prose. After sync commit: Section 5.1 prose can start."**
 
-This skeleton is the parallel work. It does NOT depend on the sync commit because:
+Sync commit landed. Use `NARRATIVE_REFRAME.md`, `metric_consistency_report.json`, `DISAGREEMENT_AS_TRIAGE.md`, and `MDD5K_F32_F41_ASYMMETRY_V4.md` as current sources.
+
+This skeleton is the parallel work. It now tracks the current source set:
 - Skeleton lists section structure, source paths, allowed/forbidden wording, reviewer responses
-- It does NOT contain prose that references stale narrative
 - Final numbers come from `metric_consistency_report.json` which is already canonical
 
 ---
@@ -41,7 +42,7 @@ culturedx_section_5_6_skeleton/
 | 5.3 | Bias robustness | 400 | 189× → 3.97× cascade (47.7× cumulative) |
 | 5.4 | Dual-standard audit | 600 | DSM-5 v0 = trade-off, NOT bias robustness |
 | 5.5 | TF-IDF reproduction gap | 150 | Disclosed limitation |
-| 5.6 | Class coverage | 200 | Hard ceiling on Top-1, F42 collapse |
+| 5.6 | Confidence-gated ensemble null result | 200 | Dev-tuned gating selected TF-IDF-only; no ensemble gain |
 
 ### Section 6 — Disagreement-as-Triage (~650 words + 2 tables)
 | Subsection | Topic | Length | Key claim |
@@ -86,7 +87,7 @@ Section 5.6 prose (200 words, 30 min)
 Section 5.3 prose (400 words, 90 min)        ← cascade requires careful wording
 Section 5.4 prose (600 words, 120 min)       ← THE BIG ONE
 Section 6.1 prose (350 words, 60 min)
-Section 6.2 prose (300 words, 60 min)        ← needs sync commit landed
+Section 6.2 prose (300 words, 60 min)        ← source sync landed
 Section 7 prose (1,080 words, 180 min)
     ↓
 Round 16-18: GPT review of full §5/6/7 prose
@@ -116,8 +117,8 @@ Each subsection's Allowed/Forbidden lists are pre-locked guard rails. Writing pr
 
 ## Pre-prose checklist (before writing §5.1)
 
-- [ ] Sync commit lands (NARRATIVE_REFRAME §5.3, §6.2 + abstract + F32/F41 doc provenance)
-- [ ] GPT round 14 review of this skeleton
+- [x] Sync commit landed (NARRATIVE_REFRAME §5.3, §6.2 + abstract + F32/F41 doc provenance)
+- [x] GPT round 14 review of this skeleton
 - [ ] All canonical numbers re-verified against `metric_consistency_report.json`
 - [ ] User confirms section order
 - [ ] User confirms paragraph budget per subsection
@@ -130,7 +131,7 @@ After all 5 boxes checked: §5.1 prose begins.
 
 - **Section 1-4**: introduction, related work, dataset, methods — separate skeletons needed
 - **Section 8**: ethics, broader impact, conflicts — separate skeleton needed
-- **Abstract**: not yet skeletonized (waiting for sync commit's abstract update)
+- **Abstract**: not yet skeletonized
 - **Acknowledgments + references**: bibliography format depends on venue
 
 This skeleton focuses on **the empirically-grounded sections** (5/6/7) where the most overclaim risk lives. Sections 1-4 are introduction/methods (lower overclaim risk; mostly description of pipeline architecture and data).
@@ -172,6 +173,6 @@ This list is NOT exhaustive. PI review and AIDA-Path results will likely reveal 
 - ✅ Source artifact paths: documented
 - ✅ Reviewer attack/response: 6 covered
 - ✅ Length budget: total ~3,480 words
-- ⏳ Sync commit: pending user execution
-- ⏳ Round 14 review: pending
-- ⏳ Section 5.1 prose: pending sync + round 14
+- ✅ Sync commit: landed
+- ✅ Round 14 review: micro-fixes applied
+- ⏳ Section 5.1 prose: pending user go-ahead

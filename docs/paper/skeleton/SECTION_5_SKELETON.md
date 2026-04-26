@@ -1,8 +1,8 @@
 # CultureDx Paper — Section 5 Skeleton
 
 **Format**: (b) section-by-section with paste markers + Allowed/Forbidden wording guards
-**Status**: skeleton ONLY (no prose). Pre-sync version — final values pending sync commit.
-**Per GPT round 10–13**: format-(b) skeleton greenlit; full prose AFTER sync commit lands.
+**Status**: skeleton ONLY (no prose). Sync commit landed. Use `NARRATIVE_REFRAME.md`, `metric_consistency_report.json`, `DISAGREEMENT_AS_TRIAGE.md`, and `MDD5K_F32_F41_ASYMMETRY_V4.md` as current sources.
+**Per GPT round 10–14**: format-(b) skeleton greenlit; full prose may proceed from current sources.
 
 ---
 
@@ -20,15 +20,17 @@
 5.3 Bias robustness (47.7× cascade)
 5.4 Dual-standard audit (trade-off, not robustness)
 5.5 TF-IDF reproduction gap (limitation, transparently disclosed)
-5.6 Class coverage (rare-class limitation)
+5.6 Confidence-gated ensemble (null result)
 ```
+
+Class coverage limitations moved to §7.4.
 
 ---
 
 ## §5.1 — Main Benchmark
 
 ### Source artifacts
-- `docs/paper/NARRATIVE_REFRAME.md` Section 5.1 (after sync commit lands)
+- `docs/paper/NARRATIVE_REFRAME.md` Section 5.1
 - `results/analysis/metric_consistency_report.json` canonical values
 - `results/rebase_v2.5/stacker_lgbm/metrics.json` (Stacker LGBM canonical)
 - `results/validation/tfidf_baseline/metrics.json` (TF-IDF v4 canonical)
@@ -52,11 +54,12 @@
 2. Stacker LGBM exceeds Paper TF-IDF by +11.6pp Top-1 and +28.0pp Top-3
 3. Stacker LGBM exceeds Paper best LLM by +12.5pp Top-1 and +35.1pp Top-3
 4. MAS-only (DtV) underperforms TF-IDF on Top-1 (-9.4pp) but stronger on 2-class (+9pp)
-5. Both Stacker variants pass non-inferiority margin (±5pp pre-specified)
+5. Stacker LGBM passes the pre-specified ±5pp non-inferiority margin against our reproduced TF-IDF baseline. Stacker LR is retained as a macro-F1-oriented comparator, not as the deployed accuracy model.
 
 ### Allowed wording
 
 - ✅ "matches our reproduced TF-IDF baseline within ±5pp non-inferiority margin"
+- ✅ "Stacker LGBM passes ±5pp non-inferiority margin; LR does not and is retained as a macro-F1-oriented comparator"
 - ✅ "exceeds published paper baselines"
 - ✅ "achieves accuracy parity with our stronger reproduced TF-IDF"
 - ✅ "the supervised features carry most of the Top-1 accuracy weight"
@@ -71,6 +74,9 @@
 - ❌ "best published" (without "while remaining tied with our reproduced TF-IDF")
 - ❌ "MAS architecture is more accurate"
 - ❌ "improvement of 11.6pp" (without disclosing TF-IDF reproduction gap)
+- ❌ "LR and LGBM both satisfy the ±5pp margin"
+- ❌ "Stacker LR is non-inferior to TF-IDF"
+- ❌ "Stacker LR achieves accuracy parity"
 
 ### Reviewer attacks + responses
 
@@ -81,7 +87,7 @@
 **A**: See Sections 5.3 (bias robustness), 5.4 (dual-standard audit), and 6 (disagreement triage). MAS architecture provides deployment properties unavailable to TF-IDF, not Top-1 improvement.
 
 **Q3**: "Is McNemar p ≈ 1.0 evidence of equivalence?"
-**A**: It is failure to reject the null at α=0.05 with our 1000 cases, consistent with parity within our pre-specified ±5pp margin. We do not claim formal equivalence — we claim non-inferiority.
+**A**: It is failure to reject the null at α=0.05 with our 1000 cases, consistent with Stacker LGBM parity within our pre-specified ±5pp margin. We do not claim formal equivalence — we claim non-inferiority for Stacker LGBM.
 
 ### Length target
 
@@ -130,7 +136,7 @@
 ### Source artifacts
 - `docs/analysis/MDD5K_F32_F41_ASYMMETRY_V4.md` (canonical post-sync)
 - `results/analysis/mdd5k_f32_f41_asymmetry_v4.json` (numerical source)
-- `docs/paper/NARRATIVE_REFRAME.md` Section 5.3 (after sync commit)
+- `docs/paper/NARRATIVE_REFRAME.md` Section 5.3
 
 ### Cascade table placeholder
 
@@ -165,11 +171,13 @@
 - ❌ Drop R6v2 from narrative entirely (it's still cascade evidence)
 - ❌ "MAS solves bias" (it bounds, doesn't eliminate)
 - ❌ "Asymmetry is now resolved" (3.97× is still asymmetric)
+- ❌ "A specific repair caused the full cascade" (without ablation evidence)
+- ❌ "Each step represents the isolated effect of a single repair"
 
 ### Reviewer attack + response
 
 **Q1**: "Did v4 evaluator repair improve scores artificially?"
-**A**: v4 changed prediction-source contract per metric family (Top-K from ranked, F1 from multilabel, 2-class from raw codes), not the scoring formula. The asymmetry metric (F41→F32 / F32→F41) is unchanged. The improvement reflects real model behavior changes from F32/F33 threshold fix and DSM-5 checker template fix, not metric reconfiguration.
+**A**: The asymmetry metric itself is unchanged: F41→F32 divided by F32→F41. The v4 value is reported under the current paper evaluation contract and current pipeline state. We present the cascade descriptively rather than attributing the full change to any single repair.
 
 **Q2**: "Why include R6v2 if MAS ICD-10 v4 is better?"
 **A**: R6v2 demonstrates that prompt-level mitigation transfers across datasets. MAS ICD-10 v4 demonstrates that infrastructure repair compounds with prompt mitigation. Both are evidence of the cascade.
@@ -186,7 +194,7 @@
 ## §5.4 — Dual-Standard Audit (LOCKED to Trade-off Framing)
 
 ### Source artifacts
-- `docs/paper/NARRATIVE_REFRAME.md` Section 5.4 (after sync)
+- `docs/paper/NARRATIVE_REFRAME.md` Section 5.4
 - `docs/analysis/MDD5K_F32_F41_ASYMMETRY_V4.md` (asymmetry findings)
 - `results/dual_standard_full/{lingxidiag16k,mdd5k}/mode_*/pilot_*/metrics.json`
 
@@ -290,30 +298,28 @@
 
 ---
 
-## §5.6 — Class Coverage Limitations
+## §5.6 — Confidence-Gated Ensemble Null Result
 
-### Source artifacts
-- Per-class recall from `pilot_comparison.json`
-- Class-specific F1 from `metrics.json`
+### Source artifact
+- `results/ensemble/final_metrics.json` (commit `6ba6e02`)
 
-### Key claims
+### Locked claim
 
-1. F31, F43, F98, Z71 near-zero recall on both datasets in both modes (~14% of cases)
-2. F42 OCD: 40pp collapse in DSM-5 mode (LingxiDiag) and 23pp (MDD-5k)
-3. These are hard ceilings on aggregate Top-1
-4. F42 collapse mechanism documented in `docs/limitations/F42_DSM5_COLLAPSE_2026_04_25.md`
+Dev-tuned confidence gating selected TF-IDF-only; no ensemble gain.
 
 ### Allowed wording
 
-- ✅ "Hard ceiling on aggregate Top-1"
-- ✅ "Documented limitation, not patched (avoid test-set tuning)"
-- ✅ "Conservative evidence policy" (for F42)
+- ✅ "Per-class routing did not improve F1_macro over TF-IDF alone"
+- ✅ "Selected rule on dev: TF-IDF only; ensemble collapses to baseline"
 
 ### Forbidden wording
 
-- ❌ "F42 limitation is solvable" (without clinician validation)
-- ❌ "Near-zero recall is acceptable" (it isn't, just documented)
-- ❌ "Conservative policy is clinically appropriate" (round 9 correction — needs clinician validation)
+- ❌ "Ensemble improves accuracy"
+- ❌ "Confidence gate yields meaningful gains"
+
+### Pointer
+
+Class coverage limitations moved to §7.4.
 
 ### Length target
 

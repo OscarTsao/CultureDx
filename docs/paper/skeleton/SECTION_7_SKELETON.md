@@ -1,7 +1,7 @@
 # CultureDx Paper — Section 7 Skeleton (Limitations)
 
 **Format**: (b) section-by-section with paste markers + Allowed/Forbidden wording guards
-**Status**: skeleton ONLY (no prose). Pre-sync version.
+**Status**: skeleton ONLY (no prose). Sync commit landed. Use `NARRATIVE_REFRAME.md`, `metric_consistency_report.json`, `DISAGREEMENT_AS_TRIAGE.md`, and `MDD5K_F32_F41_ASYMMETRY_V4.md` as current sources.
 
 ---
 
@@ -17,7 +17,7 @@
 7.1 Synthetic data limitation
 7.2 DSM-5 v0 stubs are LLM-drafted (UNVERIFIED_LLM_DRAFT)
 7.3 TF-IDF reproduction gap (link to §5.5)
-7.4 Class coverage limitations (link to §5.6)
+7.4 Class coverage limitations
 7.5 F32/F41 asymmetry (3.97× still asymmetric, not zero)
 7.6 F42 OCD collapse mechanism
 7.7 Statistical caveats (bootstrap CI, non-equivalence framing)

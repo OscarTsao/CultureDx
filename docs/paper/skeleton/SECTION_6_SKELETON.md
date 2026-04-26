@@ -1,8 +1,8 @@
 # CultureDx Paper — Section 6 Skeleton (Disagreement-as-Triage)
 
 **Format**: (b) section-by-section with paste markers + Allowed/Forbidden wording guards
-**Per GPT round 10–13**: skeleton greenlit; prose AFTER sync commit
-**Note**: §6.2 source NARRATIVE_REFRAME currently STALE — wait for sync commit before writing prose
+**Per GPT round 10–14**: skeleton greenlit; prose may proceed from current sources.
+**Note**: Sync commit landed. Use `NARRATIVE_REFRAME.md`, `metric_consistency_report.json`, `DISAGREEMENT_AS_TRIAGE.md`, and `MDD5K_F32_F41_ASYMMETRY_V4.md` as current sources.
 
 ---
 
@@ -90,7 +90,7 @@ Jaccard overlap (disagreement ∩ confidence flag sets): 0.360
 
 ### Source artifacts
 - `docs/analysis/DISAGREEMENT_AS_TRIAGE.md` (cross-dataset section)
-- `docs/paper/NARRATIVE_REFRAME.md` Section 6.2 (post-sync — currently STALE)
+- `docs/paper/NARRATIVE_REFRAME.md` Section 6.2
 
 ### Table 7 placeholder
 
@@ -151,9 +151,6 @@ Jaccard overlap (disagreement ∩ confidence flag sets): 0.360
 
 ---
 
-## §6 SOURCE-DEPENDENCY NOTE
+## §6 SOURCE STATUS
 
-Before writing §6.2 prose, NARRATIVE_REFRAME.md §6.2 must be sync'd from `DISAGREEMENT_AS_TRIAGE.md`. Currently NARRATIVE still says:
-> "A formal MDD-5k error-enrichment triage table remains a next zero-GPU analysis."
-
-This will be fixed in the round-13 sync commit. Skeleton is safe to write now (it doesn't depend on stale narrative); prose drafting waits for sync.
+Sync commit landed. Use `NARRATIVE_REFRAME.md`, `metric_consistency_report.json`, `DISAGREEMENT_AS_TRIAGE.md`, and `MDD5K_F32_F41_ASYMMETRY_V4.md` as current sources.
