@@ -6,7 +6,7 @@
 
 ---
 
-## ITEM 1 — §5.3 source artifact verification (all 5 confirmed exist)
+## ITEM 1 — §5.3 source artifact verification (all 7 confirmed exist)
 
 | Artifact | Path | Status | Role |
 |---|---|:---:|---|
@@ -15,6 +15,8 @@
 | Canonical metric registry | `results/analysis/metric_consistency_report.json` | ✓ exists | Cross-check authority |
 | Pre-v4 bias baselines | `results/generalization/bias_transfer_analysis.json` | ✓ exists | Single LLM (189×), MAS T1 (8.94×), R6v2 (5.58×) |
 | v4 dual-standard CI registry | `results/analysis/mdd5k_f32_f41_asymmetry_v4.json` | ✓ exists | 3.97× CI [2.82, 6.08]; paired bootstrap |
+| Feature-ablation source | `docs/analysis/MAS_vs_LGBM_CONTRIBUTION.md` | ✓ exists | Source for 88.1% TF-IDF / 11.9% MAS feature-importance connector (Connector E) |
+| Committed §5.2 prose | `docs/paper/drafts/SECTION_5_2.md` | ✓ exists | Paper-facing wording for the feature-ablation connector |
 
 ### Canonical numbers locked for §5.3
 
@@ -40,8 +42,10 @@
 ### Cumulative improvement chain (from NARRATIVE §5.3)
 
 ```
-189× → 8.94× → 5.58× → 3.97× → 47.7× cumulative reduction
-                                       ^^^^^^
+189× → 8.94× → 5.58× → 3.97×
+
+47.7-fold lower asymmetry ratio relative to the single-LLM baseline
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                               headline bias-robustness result
 ```
 
@@ -66,11 +70,11 @@ Per round 19 lesson: explicit narrative connectors at section ends prevent impli
 
 ### Connector C — to §7.5 limitation (preempts "you call 3.97× robust?")
 
-> "We note that 3.97× remains an asymmetric error pattern, not a resolved one. The 47.7× reduction is from a catastrophic single-LLM baseline (189×); F41→F32 misclassification remains the dominant error mode under MDD-5k distribution shift, and we document this residual asymmetry as a limitation in §7.5."
+> "We note that 3.97× remains an asymmetric error pattern, not a resolved one. The 47.7-fold reduction in the asymmetry ratio is relative to a catastrophic single-LLM baseline (189 F41→F32 errors versus 1 F32→F41 error); F41→F32 misclassification remains the dominant error mode under MDD-5k distribution shift, and we document this residual asymmetry as a limitation in §7.5."
 
 ### Connector D — to §5.3.1 framing of the cascade
 
-> "We present the cascade descriptively rather than attributing the 5.58× → 3.97× change to any single repair, since per-fix ablation evidence is not provided. Each row reflects pipeline state at a specific commit; we report all milestones because they jointly support the claim that architectural and infrastructural changes compound."
+> "We present the cascade descriptively rather than attributing the 5.58× → 3.97× change to any single repair, since per-fix ablation evidence is not provided. Each row reflects the observed asymmetry under a specific pipeline state and paper artifact. We report the milestones descriptively because they show a progressive reduction in the measured F32/F41 asymmetry ratio under successive pipeline states, without attributing the full change to any single repair."
 
 ### Connector E — to §5.2 feature-importance interpretation
 
@@ -100,11 +104,12 @@ These are §5.3-specific failure modes I must avoid. Skeleton already has the un
 ### Trap 2 — Claiming asymmetry resolved
 **Trap**: Calling 3.97× "robust" or "solved" because it's 47× better than 189×
 **Why dangerous**: 3.97× is still asymmetric; F41→F32 ≈ 4× more frequent than F32→F41
-**Locked language**: "47.7× cumulative reduction" not "asymmetry resolved"
+**Locked language**: "47.7-fold lower asymmetry ratio relative to the single-LLM baseline" not "asymmetry resolved"
 **Required disclosure**: residual asymmetry pointer to §7.5
 **Allowed**:
-- ✅ "47.7× cumulative reduction"
-- ✅ "189× → 3.97× is a substantial reduction"
+- ✅ "47.7-fold lower asymmetry ratio relative to the single-LLM baseline"
+- ✅ "47.7-fold reduction in the asymmetry ratio"
+- ✅ "189× → 3.97× is a substantial reduction in the asymmetry ratio"
 - ✅ "asymmetry persists at 3.97×"
 **Forbidden**:
 - ❌ "asymmetry resolved"
@@ -177,6 +182,33 @@ These are §5.3-specific failure modes I must avoid. Skeleton already has the un
 - ❌ Reporting asymmetry ratios without raw F41→F32 / F32→F41 counts.
 - ❌ "The full 189× → 3.97× cascade is statistically significant."
 
+### Trap 8 — Ratio instability when denominator is small (round 21 addition)
+**Trap**: Reporting "189× collapse" without explaining the denominator-of-1 instability
+**Why dangerous**: Single-LLM baseline has F32→F41 = 1; the ratio is mathematically unstable. Hostile reviewers can dismiss the headline cascade by attacking ratio computation rather than the substantive asymmetry.
+**Required disclosure**: Always pair the 189× ratio with the raw 189/1 counts in the same sentence or the immediately adjacent table caption.
+**Allowed**:
+- ✅ "The single-LLM ratio is extreme partly because F32→F41 occurs only once; therefore we report raw directional counts together with ratios."
+- ✅ "189 F41→F32 errors versus 1 F32→F41 error"
+- ✅ "The raw counts still indicate collapse: 189 F41→F32 versus 1 F32→F41."
+**Forbidden**:
+- ❌ "189× alone proves robustness failure."
+- ❌ Reporting the 189× ratio without the 189/1 counts in the same sentence or adjacent caption.
+- ❌ Citing the 189× cascade endpoint without disclosing the denominator-of-1 caveat at least once in §5.3.
+
+### Trap 9 — "Improvement" causal framing on cumulative cascade (round 21 addition)
+**Trap**: Writing "47.7× improvement" suggests a controlled intervention effect
+**Why dangerous**: The cascade is descriptive across pipeline states (per Connector D and Trap 1); "improvement" is a causal-intervention noun. Reviewers will ask for the controlled comparison.
+**Required wording**: "47.7-fold lower asymmetry ratio relative to the single-LLM baseline" OR "47.7-fold reduction in the asymmetry ratio relative to the single-LLM baseline"
+**Allowed**:
+- ✅ "47.7-fold lower asymmetry ratio relative to the single-LLM baseline"
+- ✅ "a 47.7-fold reduction in the asymmetry ratio relative to the single-LLM baseline"
+- ✅ "47.7-fold reduction in the asymmetry ratio"
+**Forbidden**:
+- ❌ "47.7× improvement"
+- ❌ "47.7× improvement over single-LLM"
+- ❌ "47.7-fold improvement"
+- ❌ "MAS achieves 47.7× improvement" (combines causal verb + improvement noun)
+
 ---
 
 ## ITEM 4 — Do NOT write §5.3 prose yet
@@ -201,7 +233,7 @@ Per GPT round 20 verbatim:
 - I commit to this exact framing.
 - §5.3 prose will open with single LLM 189× collapse on MDD-5k under distribution shift.
 - Build cascade descriptively (4 rows: 189× → 8.94× → 5.58× → 3.97×).
-- Headline = MAS ICD-10 v4 (3.97×, 95% CI [2.82, 6.08]), 47.7× cumulative.
+- Headline = MAS ICD-10 v4 (3.97×, 95% CI [2.82, 6.08]), 47.7-fold lower asymmetry ratio relative to single-LLM baseline.
 - R6v2 (5.58×) explicitly framed as cascade step.
 - DSM-5 v0 (7.24×) explicitly excluded from bias-robustness claim with paired-bootstrap evidence.
 - Both = ICD-10 pass-through noted.
