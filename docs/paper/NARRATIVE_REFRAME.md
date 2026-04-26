@@ -18,7 +18,7 @@
 >
 > Third, **dual-standard audit**: CultureDx supports parallel ICD-10 and DSM-5 reasoning with both-mode preserving ICD-10 primary decisions (1925/1925 ICD-10/Both match across LingxiDiag and MDD-5k). Dual-standard evaluation showed dataset-dependent metric trade-offs: DSM-5 v0 was weaker than ICD-10 on Top-1 in both datasets and weaker on Top-3 on MDD-5k, but achieved higher F1_macro, weighted-F1, binary accuracy, four-class accuracy, and Overall on MDD-5k. We interpret this as standard-sensitive diagnostic structure under distribution shift, not as DSM-5 clinical validation.
 >
-> The Stacker LGBM achieves Top-1 = 0.612, Top-3 = 0.925, F1_macro = 0.334, Overall = 0.617 on LingxiDiag-16K test_final, matching our reproduced TF-IDF baseline (Top-1 = 0.611) within the pre-specified +/-5pp non-inferiority margin (McNemar p approximately 1.0). MAS features contribute 11.9% of stacker decision weight; supervised features contribute 88.1%. We report this decomposition transparently to inform deployment trade-offs: accuracy-only deployments may use TF-IDF; deployments requiring auditability, bias control, or dual-standard reasoning require the MAS architecture.
+> The Stacker LGBM achieves Top-1 = 0.612, Top-3 = 0.925, F1_macro = 0.334, Overall = 0.617 on LingxiDiag-16K test_final, matching our reproduced TF-IDF baseline (Top-1 = 0.610) within the pre-specified +/-5pp non-inferiority margin (McNemar p approximately 1.0). MAS features contribute 11.9% of stacker decision weight; supervised features contribute 88.1%. We report this decomposition transparently to inform deployment trade-offs: accuracy-only deployments may use TF-IDF; deployments requiring auditability, bias control, or dual-standard reasoning require the MAS architecture.
 >
 > All experiments are on synthetic Chinese clinical dialogues. DSM-5 v0 criteria are LLM-drafted (`UNVERIFIED_LLM_DRAFT`); AIDA-Path structural alignment and Chang Gung Memorial Hospital clinical review are pending. Class-specific limitations (F31, F43, F98, Z71 near-zero recall on both datasets; F42 OCD recall reduced 40pp in DSM-5 mode under conservative all-required exclusion semantics) are documented openly.
 
@@ -34,16 +34,20 @@
 |---|---:|---:|---:|---:|---:|---:|---:|
 | Paper TF-IDF | .753 | .476 | .496 | .645 | .295 | .520 | .533 |
 | Paper best LLM | .841 | .470 | .487 | .574 | .197 | .439 | .521 |
-| Our TF-IDF | not v4-finalized | not v4-finalized | .611 | not v4-finalized | .373 | .602 | not v4-finalized |
-| MAS-only (DtV) | not v4-finalized | not v4-finalized | .516 | not v4-finalized | .171 | .447 | not v4-finalized |
+| Our TF-IDF | .713 | .491 | .610 | .829 | .352 | .585 | .555 |
+| MAS-only (DtV) | .803 | .419 | .516 | .796 | .179 | .440 | .513 |
 | **Stacker LGBM** | .753 | .546 | **.612** | **.925** | .334 | .573 | **.617** |
 | **Stacker LR** | .619 | .538 | .538 | .887 | **.360** | .558 | .572 |
 
-Stacker LGBM matches our reproduced TF-IDF on Top-1 (delta +0.001,
+Stacker LGBM matches our reproduced TF-IDF on Top-1 (delta +0.002,
 McNemar p approximately 1.0) within the pre-specified +/-5pp
 non-inferiority margin. It exceeds the published paper TF-IDF baseline
-(+11.6pp Top-1) and the published best LLM (+12.5pp). We disclose that our
-reproduced TF-IDF is stronger than the paper's reported value; see Section 5.5.
+(+11.6pp Top-1, +8.4pp Overall) and the published best LLM (+12.5pp
+Top-1, +9.6pp Overall). MAS-only (DtV) underperforms TF-IDF on Top-1
+(.516 vs .610), confirming that supervised features carry most of the
+accuracy weight. The MAS architecture's value comes from deployment
+properties (Section 6 disagreement triage, Section 5.4 dual-standard,
+Section 5.6 confidence-gated ensemble), not Top-1 accuracy improvement.
 
 ### 5.2 Feature Ablation
 

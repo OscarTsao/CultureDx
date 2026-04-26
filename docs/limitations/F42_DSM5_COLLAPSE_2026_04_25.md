@@ -1,6 +1,6 @@
 # F42 OCD Collapse in DSM-5 Mode — Trace Analysis
 
-**File**: target `docs/analysis/F42_DSM5_COLLAPSE_TRACE.md`
+**File**: `docs/limitations/F42_DSM5_COLLAPSE_2026_04_25.md`
 **Source**: full LingxiDiag benchmark (commit `f8adb4a`), 25 F42-gold cases
 **GPT round 4 verdict**: "Don't auto-assume threshold/schema bug — trace first"
 
@@ -90,7 +90,7 @@ In a clinical transcript:
 - Medical comorbidities may not be ruled out within a single conversation
 - Differential diagnosis with other conditions requires extended workup
 
-LLM correctly outputs `insufficient_evidence` for D in 80% of cases — it's clinically appropriate to mark uncertain rather than assume "no exclusion = excluded".
+The DSM-5 checker frequently marks D as `insufficient_evidence` (80% of F42-gold cases). This represents a conservative evidence policy: the checker prefers explicit uncertainty over assuming "no exclusion criterion observed = exclusion satisfied". Whether this conservative policy is clinically appropriate requires clinician validation, which is pending (Section 7.2 limitations).
 
 This is the **same type of clinical phenomenon** that motivated the F32/F33 fix (`min_total: 5 → 3`), but it manifests through `all_required: true` instead.
 
