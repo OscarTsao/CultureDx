@@ -1,189 +1,263 @@
-# Paper Narrative Reframe (v4) — Post-Audit, Pre-Regenerated-Metrics
+# Paper Narrative Reframe (v5) - Canonical
 
-**Status**: 🟡 NARRATIVE READY, NUMBERS CANDIDATE. All `[P0]` markers replace with commit-hash-backed values after `02_REGENERATE_AND_RECONCILE.md` Step 5 completes.
-
-**v4 changes from v3**:
-- All Stacker LGBM Top-1 `0.612` reverted to audit canonical `0.605` (Δ2)
-- "Independent decision paths" → "supervised-hybrid model discordance" / "diagnostic-standard discordance" (Δ3)
-- All Overall values marked `[P0]` (Δ10)
-- Confidence triage baseline added to Section 6 (Δ11)
-- F42 wording: "checker frequently marks D as insufficient_evidence" (not "correctly identifies", per round 4)
+**Status**: Numbers are commit-backed and paper-ready.
+**P0 commits**: `914381b` (clean/v2.5) + `c7f8fa0` (main-v2.4)
+**MDD-5k commit**: `3a2d6d5` (main-v2.4)
+**Source of truth**: `results/analysis/metric_consistency_report.json`
+**Canonical reconciliation**: `docs/audit/AUDIT_RECONCILIATION_2026_04_25.md`
 
 ---
 
-## Abstract draft
+## Abstract Draft
 
 > CultureDx is a Chinese psychiatric multi-agent diagnosis system for ICD-10 and DSM-5 reasoning over clinical transcripts. We report deployment-oriented capabilities not provided by pure supervised baselines, while documenting accuracy parity rather than improvement.
 >
-> First, **disagreement-driven clinician triage**: supervised–hybrid model discordance flags 26.4% of cases and enriches deployed-model error rate by 2.06× (LingxiDiag-16K, N=1000). The signal is not redundant with confidence-quantile triage (Jaccard 0.357); a two-stage union policy captures 58% of system errors at 38.9% flag rate. Diagnostic-standard discordance (ICD-10 vs DSM-5) provides a complementary triage signal at 25.1% flag rate.
+> First, **disagreement-driven clinician triage**: supervised-hybrid model discordance flags 26.4% of cases and enriches deployed-model error rate by 2.06x on LingxiDiag-16K (N=1000). The signal is not redundant with confidence-quantile triage (Jaccard 0.357); a two-stage union policy captures 58% of system errors at 38.9% flag rate. Diagnostic-standard discordance (ICD-10 vs DSM-5) provides a complementary triage signal at 25.1% flag rate on LingxiDiag and 20.8% on MDD-5k.
 >
-> Second, **cross-dataset bias robustness**: under MDD-5k synthetic distribution shift, a single-LLM baseline exhibits 189× F32/F41 asymmetric collapse; the multi-agent pipeline bounds this to 8.94× (a 21× improvement), and a somatization-aware prompt mitigation further reduces asymmetry to 5.58×.
+> Second, **cross-dataset bias robustness**: under MDD-5k synthetic distribution shift, a single-LLM baseline exhibits 189x F32/F41 asymmetric collapse; the multi-agent pipeline bounds this to 8.94x (a 21x improvement), and a somatization-aware prompt mitigation further reduces asymmetry to 5.58x.
 >
-> Third, **dual-standard audit**: CultureDx supports parallel ICD-10 and DSM-5 reasoning. Both-mode output preserves ICD-10 primary decision and surfaces DSM-5 sidecar evidence; this is an audit feature, not an ensemble. We measure 25.1% standard-level disagreement on N=1000.
+> Third, **dual-standard audit**: CultureDx supports parallel ICD-10 and DSM-5 reasoning with both-mode preserving ICD-10 primary decisions (1925/1925 ICD-10/Both match across LingxiDiag and MDD-5k). Dual-standard evaluation showed dataset-dependent metric trade-offs: DSM-5 v0 was weaker than ICD-10 on Top-1 in both datasets and weaker on Top-3 on MDD-5k, but achieved higher F1_macro, weighted-F1, binary accuracy, four-class accuracy, and Overall on MDD-5k. We interpret this as standard-sensitive diagnostic structure under distribution shift, not as DSM-5 clinical validation.
 >
-> The Stacker LGBM achieves Top-1 [P0] (audit canonical 0.605 pre-revision; expected 0.612 post-evaluation-contract repair), matching our reproduced TF-IDF baseline (0.611) within ±5pp pre-specified non-inferiority margin (McNemar p ≈ 1.0). MAS features contribute 12% of stacker decision weight; supervised features contribute 88%. We report this decomposition transparently to inform deployment trade-offs: accuracy-only deployments may use TF-IDF; deployments requiring auditability, bias control, or dual-standard reasoning require the MAS architecture.
+> The Stacker LGBM achieves Top-1 = 0.612, Top-3 = 0.925, F1_macro = 0.334, Overall = 0.617 on LingxiDiag-16K test_final, matching our reproduced TF-IDF baseline (Top-1 = 0.611) within the pre-specified +/-5pp non-inferiority margin (McNemar p approximately 1.0). MAS features contribute 11.9% of stacker decision weight; supervised features contribute 88.1%. We report this decomposition transparently to inform deployment trade-offs: accuracy-only deployments may use TF-IDF; deployments requiring auditability, bias control, or dual-standard reasoning require the MAS architecture.
 >
-> All experiments are on synthetic Chinese clinical dialogues. DSM-5 v0 criteria are LLM-drafted; AIDA-Path structural alignment and Chang Gung Memorial Hospital clinical review are pending. Class-specific limitations (F31, F43, F98, Z71 near-zero recall; F42 OCD recall reduced 40pp in DSM-5 mode under conservative all-required exclusion semantics) are documented openly.
+> All experiments are on synthetic Chinese clinical dialogues. DSM-5 v0 criteria are LLM-drafted (`UNVERIFIED_LLM_DRAFT`); AIDA-Path structural alignment and Chang Gung Memorial Hospital clinical review are pending. Class-specific limitations (F31, F43, F98, Z71 near-zero recall on both datasets; F42 OCD recall reduced 40pp in DSM-5 mode under conservative all-required exclusion semantics) are documented openly.
 
 ---
 
-## Section 5 (architecture results) — UPDATED
+## Section 5 - Architecture Results
 
-### 5.1 Main benchmark — CANDIDATE values pending P0
+### 5.1 Main Benchmark
 
-[Table 5 — paper-aligned multilabel evaluation, post evaluation contract repair]
+[Table 5 - paper-aligned multilabel evaluation]
 
 | System | 2c Acc | 4c Acc | 12c Top-1 | 12c Top-3 | F1_macro | F1_w | Overall |
 |---|---:|---:|---:|---:|---:|---:|---:|
 | Paper TF-IDF | .753 | .476 | .496 | .645 | .295 | .520 | .533 |
 | Paper best LLM | .841 | .470 | .487 | .574 | .197 | .439 | .521 |
-| Our TF-IDF | [P0] | [P0] | .604 | [P0] | .373 | .602 | [P0] |
-| MAS-only (DtV) | [P0] | [P0] | .516 | [P0] | .171 | .447 | [P0] |
-| **Stacker LGBM** | [P0] | [P0] | [P0] | [P0] | [P0] | [P0] | [P0] |
-| **Stacker LR** | [P0] | [P0] | [P0] | [P0] | [P0] | [P0] | [P0] |
+| Our TF-IDF | not v4-finalized | not v4-finalized | .611 | not v4-finalized | .373 | .602 | not v4-finalized |
+| MAS-only (DtV) | not v4-finalized | not v4-finalized | .516 | not v4-finalized | .171 | .447 | not v4-finalized |
+| **Stacker LGBM** | .753 | .546 | **.612** | **.925** | .334 | .573 | **.617** |
+| **Stacker LR** | .619 | .538 | .538 | .887 | **.360** | .558 | .572 |
 
-`[P0]` denotes a candidate value awaiting evaluation contract repair commit. Values verified post-commit will replace all `[P0]` markers with commit-hash-backed canonical values (see `metric_consistency_report.json`).
+Stacker LGBM matches our reproduced TF-IDF on Top-1 (delta +0.001,
+McNemar p approximately 1.0) within the pre-specified +/-5pp
+non-inferiority margin. It exceeds the published paper TF-IDF baseline
+(+11.6pp Top-1) and the published best LLM (+12.5pp). We disclose that our
+reproduced TF-IDF is stronger than the paper's reported value; see Section 5.5.
 
-> Stacker LGBM matches our reproduced TF-IDF on Top-1 within ±5pp pre-specified non-inferiority margin (McNemar p ≈ 1.0). It exceeds the published paper TF-IDF and the published best LLM. We openly disclose that our reproduced TF-IDF is 10.6pp stronger than the paper's reported value — cause not fully identified, see Section 5.5.
+### 5.2 Feature Ablation
 
-### 5.2 Feature ablation (MAS contribution)
+Stacker LGBM feature importance: TF-IDF 88.1%, MAS 11.9%. The evidence is best
+framed as MAS-as-deployment-substrate rather than MAS-as-accuracy-improver:
+the architecture enables auditability, disagreement triage, bias control, and
+dual-standard reasoning while supervised features carry most top-line accuracy.
 
-> Stacker LGBM feature importance: TF-IDF 88.1%, MAS 11.9%. MAS adds [P0] macro-F1 over TF-IDF-alone (concentrated in rare classes) but no measurable Top-1 improvement.
->
-> We report this candidly: MAS architecture justifies its computational cost via the deployment properties (Section 6 disagreement triage, Section 5.4 dual-standard, Section 5.6 bias robustness), not via accuracy improvement.
+### 5.3 Cross-Dataset Bias Robustness
 
-### 5.3 Cross-dataset bias robustness
+Under MDD-5k synthetic distribution shift, the single-LLM baseline exhibits
+189x F32/F41 asymmetric collapse. MAS reduces this to 8.94x, and R6v2
+somatization-aware prompting reduces it further to 5.58x.
 
-> [Existing R6v2 result text — unchanged]
+### 5.4 Dual-Standard Reasoning
 
-### 5.4 Dual-standard reasoning
+We evaluate three reasoning configurations on the same cases: ICD-10-only,
+DSM-5-only, and both-mode (ICD-10 primary + DSM-5 sidecar evidence).
 
-> Three reasoning configurations on the same case: ICD-10-only, DSM-5-only, both-mode. On LingxiDiag N=1000:
->
-> | Mode | 12c Top-1 | 12c F1_macro |
-> |---|---:|---:|
-> | ICD-10 | 0.507 | 0.199 |
-> | DSM-5 | 0.471 | 0.188 |
-> | Both | 0.507 | 0.199 |
->
-> ICD-10 and DSM-5 predictions agree on 74.9% of cases at the paper-parent level. Both-mode predictions are identical to ICD-10 mode (1000/1000 match), reflecting our current ensemble policy of preserving ICD-10 primary decision (billing-compatible) and emitting DSM-5 reasoning as sidecar evidence. We frame Both mode as a **dual-standard audit mechanism**, not an ensemble improvement.
->
-> DSM-5 mode is usable but weaker than ICD-10 mode in aggregate, with **class-specific trade-offs**: improved F32 recall (+4.1pp), reduced F41 recall (-11.5pp), and substantially reduced F42 recall (-40.0pp). Section 7.2 traces F42 to a known limitation: under `all_required: true` schema, criterion D (exclusion) requires ruling out substance/medical/other-disorder explanations from a single transcript, which the checker frequently marks as `insufficient_evidence` in 80% of F42-gold cases.
->
-> **Caveat**: DSM-5 v0 criteria are LLM-drafted (`UNVERIFIED_LLM_DRAFT`). Structural alignment against AIDA-Path machine-actionable DSM-5 criteria (Strasser-Kirchweger et al. 2026) and clinical review at Chang Gung Memorial Hospital are pending and not part of the current submission.
+Both-mode is not an ensemble. Across both datasets:
 
-### 5.5 TF-IDF reproduction gap (honest disclosure)
+- LingxiDiag (N=1000): ICD-10 vs Both 1000/1000 match
+- MDD-5k (N=925): ICD-10 vs Both 925/925 match
 
-> Our reproduced TF-IDF: 0.604 Top-1. Paper TF-IDF: 0.496. Gap: 10.6pp unexplained. Candidate causes documented in Appendix B.
->
-> Parity claim is qualified: against our (stronger) reproduced baseline. We report both comparisons rather than choosing the more flattering one.
+Both mode preserves the ICD-10 primary decision for billing compatibility and
+emits DSM-5 reasoning as sidecar audit evidence.
 
-### 5.6 Confidence-gated ensemble (transparent negative result)
+**LingxiDiag results** (in-domain):
 
-> A confidence-gated rule for combining MAS and TF-IDF predictions, tuned on dev_hpo and evaluated on the held-out 500-case split, selected `tfidf_only` (McNemar p = 1.0, ensemble-only = 0, tfidf-only = 0). Confidence-based ensembling does not provide reliable case-level override signal over the supervised baseline. We report this as a transparent negative finding rather than concealing it.
+| Mode | Top-1 | Top-3 | F1_m | F1_w | 2c | 4c | Overall |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| ICD-10 | 0.507 | 0.800 | 0.199 | 0.457 | 0.778 | 0.447 | 0.5145 |
+| DSM-5 | 0.471 | 0.803 | 0.188 | 0.421 | 0.767 | 0.476 | 0.5065 |
+| Both | 0.507 | 0.800 | 0.199 | 0.457 | 0.778 | 0.447 | 0.5145 |
 
----
+ICD-10 vs DSM-5 paper-parent agreement: 0.749. DSM-5 is weaker on Top-1
+(-3.6pp) and most aggregate metrics, but slightly higher on Top-3 (+0.3pp).
 
-## Section 6 (Disagreement-as-Triage) — NEW with v4 corrections
+**MDD-5k results** (synthetic distribution shift):
 
-### 6.1 Model discordance triage
+| Mode | Top-1 | Top-3 | F1_m | F1_w | 2c | 4c | Overall |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| ICD-10 | **0.597** | **0.853** | 0.197 | 0.514 | 0.890 | 0.444 | 0.566 |
+| DSM-5 | 0.581 | 0.842 | **0.230** | **0.526** | **0.912** | **0.520** | **0.584** |
+| Both | 0.597 | 0.853 | 0.197 | 0.514 | 0.890 | 0.444 | 0.566 |
 
-> Hybrid systems naturally produce multiple decision paths. We evaluate disagreement between paths as clinician-triage routing rather than accuracy improvement.
->
-> **Setup**: On LingxiDiag-16K test_final (N=1000), supervised TF-IDF predictions and the deployed Stacker LGBM predictions are compared by case_id. Cases are partitioned into "agreement" (same paper-parent class) and "disagreement" (different classes).
->
-> **Note**: TF-IDF vs Stacker is **supervised-hybrid model discordance**, not "independent decision paths" — Stacker incorporates TF-IDF features. We use the more precise term throughout.
->
-> **Results**: Disagreement rate is 26.4%. In the disagreement subset, deployed Stacker accuracy drops from 69.7% (agreement subset) to 37.5%, corresponding to **2.06× error rate enrichment**. The signal captures **42.5% of all deployed-model errors** at 26.4% flag rate, a 1.61× sensitivity gain over uniform-random review of the same 26.4% of cases.
->
-> **Comparison to confidence-quantile triage**: Flagging the lowest 26.4% of cases by Stacker primary-class probability gives 1.92× error enrichment and 40.7% recall. Disagreement edges out by +0.14× enrichment and +1.8pp recall. Disagreement and confidence flag overlapping but distinct populations (Jaccard 0.357), confirming they are complementary signals rather than equivalent.
->
-> **Two-stage policy**: Combining the signals as "flag if either disagreement OR low confidence" gives **2.17× enrichment and 58.0% error recall at 38.9% flag rate** — the strongest configuration. We propose this as a clinical deployment recommendation: 40% review burden captures 58% of system errors.
->
-> **Practical advantages of disagreement triage** over confidence triage:
-> 1. Architecturally free — already computed in any hybrid system
-> 2. Interpretable to clinicians ("two methods disagree on this case")
-> 3. Requires no probability calibration
+ICD-10 vs DSM-5 paper-parent agreement: 0.792. Dual-standard evaluation showed
+dataset-dependent metric trade-offs: DSM-5 v0 was weaker than ICD-10 on Top-1
+in both datasets and weaker on Top-3 on MDD-5k, but achieved higher F1_macro,
+weighted-F1, binary accuracy, four-class accuracy, and Overall on MDD-5k. We
+interpret this as standard-sensitive diagnostic structure under distribution
+shift, not as DSM-5 clinical validation.
 
-### 6.2 Diagnostic-standard discordance audit
+All DSM-5 stubs are `UNVERIFIED_LLM_DRAFT`. The MDD-5k aggregate metric pattern
+may reflect v0 criteria choices that align with MDD-5k label distribution, not
+validated clinical superiority. AIDA-Path structural alignment for 5 overlapping
+disorders is pending.
 
-> CultureDx supports parallel ICD-10 and DSM-5 reasoning over the same case. On N=1000, the two reasoning modes disagree on **25.1% of cases** at the paper-parent level. In this disagreement subset, deployed ICD-10 accuracy drops from 54.9% to 38.2% (**1.37× error enrichment**).
->
-> This is a **complementary signal** to model discordance: it identifies cases where the diagnostic standards genuinely conflict, not just where one model is uncertain. Paper-relevant differences include F32-vs-F41 boundary cases (mood-anxiety differential) and F42-vs-F41-vs-F39 boundary cases (OCD-vs-anxiety-vs-unspecified).
->
-> We do not propose this as an ensemble rule. Both mode in our current implementation preserves the ICD-10 primary decision (1000/1000 match with ICD-10 mode) and emits DSM-5 reasoning as sidecar evidence. The disagreement rate quantifies how often the two standards point to different diagnoses, providing an explicit audit signal for cases requiring clinician judgment.
+Per-class trade-off pattern:
 
----
+- DSM-5 higher on F32 recall: LingxiDiag +4.1pp, MDD-5k +5.0pp
+- DSM-5 lower on F41 recall: LingxiDiag -11.5pp, MDD-5k -8.4pp
+- DSM-5 lower on F42 recall: LingxiDiag -40pp, MDD-5k -23pp
+- F31, F39, F43, F98, and Z71 near-zero recall in both modes on both datasets
 
-## Section 7 (Limitations) — UPDATED
+The F42 collapse is documented in
+`docs/limitations/F42_DSM5_COLLAPSE_2026_04_25.md`: under `all_required: true`
+schema, DSM-5 F42 criterion D exclusion is marked `insufficient_evidence` in
+80% of F42-gold cases. We do not adjust F42 threshold for the current
+submission to avoid test-set tuning.
 
-### 7.1 Synthetic-only evaluation
-> Both LingxiDiag-16K and MDD-5k are synthetic. Real-world clinical validation at Chang Gung Memorial Hospital is pending IRB approval.
+### 5.5 TF-IDF Reproduction Gap
 
-### 7.2 DSM-5 v0 criteria
-> All DSM-5 criteria are LLM-drafted with `UNVERIFIED_LLM_DRAFT` status. AIDA-Path structural alignment for 5 overlapping disorders is pending. Clinical review at Chang Gung is pending IRB.
-> 
-> Specific known weakness: F42 OCD recall in DSM-5 mode is 12% versus 52% in ICD-10 mode. Trace analysis shows `all_required: true` + criterion D (exclusion) being marked `insufficient_evidence` in 80% of F42-gold cases — a conservative evidence policy under limited transcript information that prevents F42 confirmation. **We do not adjust this threshold for the current submission to avoid test-set tuning.** Phase W will refine evidence-extraction strategies for exclusion criteria across all disorders.
+Our reproduced TF-IDF: 0.604 to 0.611 Top-1 depending on the frozen evaluation
+artifact. Paper TF-IDF: 0.496. The gap is disclosed as a limitation. Parity is
+claimed against our stronger reproduced baseline, not only against the paper
+number.
 
-### 7.3 Class coverage
-> Five classes (F31, F43, F98, Z71, Others) show near-zero recall in both reasoning modes, representing 14.3% of test_final cases and placing a hard ceiling on aggregate Top-1. Phase W will prioritize criterion refinement for rare classes.
+### 5.6 Confidence-Gated Ensemble
 
-### 7.4 Both-mode is not an ensemble
-> Both mode preserves ICD-10 primary decision (1000/1000 match); DSM-5 outputs are sidecar evidence. We do not claim ensemble accuracy improvement. Voting ensembles allowing DSM-5 to override ICD-10 in specific conditions are future work.
-
-### 7.5 Retracted experiments
-> WS-C Exp 1 and Exp 2 retracted (`docs/RETRACTION_NOTICE_2026_04_22.md`). Documented as transparent negative findings.
-
-### 7.6 Evaluation contract repair history
-> Pre-2026-04-25 metric values are deprecated. The current paper values are post-evaluation-contract repair (commit [P0]). See `AUDIT_RECONCILIATION_2026_04_25.md` and `metric_consistency_report.json` for change trail. This is presented as evidence of methodological transparency, not as an apology — modern hybrid systems require explicit evaluation contracts and we document ours openly.
+A confidence-gated rule for combining MAS and TF-IDF predictions selected
+`tfidf_only` on the held-out evaluation split (McNemar p = 1.0). Confidence
+ensembling does not provide reliable case-level override signal over the
+supervised baseline. This is reported as a negative result.
 
 ---
 
-## Discussion key points
+## Section 6 - Disagreement-as-Triage
 
-1. **MAS-as-substrate, not MAS-as-classifier**: We do not claim MAS improves accuracy — verified by 4 independent measurements (feature ablation 12% MAS, ensemble null result, dual-standard ICD-10 = MAS-only Top-1, both-mode pass-through). We claim MAS enables deployment properties (auditability, dual-standard, disagreement triage, bias control) unavailable without it. Trade-off explicit, not hidden.
+### 6.1 Model Discordance Triage
 
-2. **Reproducibility-first frame**: Evaluation contract documented (Appendix A), pre-specified non-inferiority margin (±5pp), case manifest SHA256, unit tests for paper-parent normalization, TF-IDF gap disclosed, deprecated values tracked. Positioned as a contribution to clinical NLP reproducibility practice.
+On LingxiDiag-16K test_final (N=1000), supervised-hybrid model discordance
+(TF-IDF vs Stacker LGBM) flags 26.4% of cases. Within the disagreement subset,
+deployed Stacker accuracy drops from 0.697 (agreement) to 0.375
+(disagreement), a 2.06x error-rate enrichment. The signal captures 42.5% of
+all deployed-model errors at 26.4% flag rate.
 
-3. **Honest negative findings**: ensemble null, novel-class retraction, F42 limitation, F33 not in taxonomy. All reported. Costs nothing, gains substantial reviewer trust.
+Comparison to confidence-quantile triage: flagging the lowest 26.4% by Stacker
+primary-class probability gives 1.92x error enrichment and 40.7% recall.
+Disagreement edges out by +0.14x enrichment and +1.8pp recall. Disagreement and
+confidence flag overlapping but distinct populations (Jaccard 0.357).
 
-4. **Disagreement triage > confidence triage** (slightly but consistently): empirically verified; complementary in two-stage policy; architecturally free. Not just a "we built another classifier" claim.
+Two-stage policy: union of disagreement OR low confidence flags 38.9% of cases
+at 2.17x enrichment and 58.0% error recall, the strongest configuration in the
+analysis.
+
+### 6.2 Diagnostic-Standard Discordance Audit
+
+LingxiDiag (N=1000): ICD-10 vs DSM-5 disagree on 25.1% of cases. Deployed
+ICD-10 accuracy in the disagreement subset is 0.382 vs 0.549 in the agreement
+subset. Error enrichment: 1.37x.
+
+MDD-5k (N=925): ICD-10 vs DSM-5 disagree on 20.8% of cases (192/925). A formal
+MDD-5k error-enrichment triage table remains a next zero-GPU analysis, so the
+current paper claim is limited to disagreement rate.
+
+These signals are complementary to model discordance: they identify cases where
+reasoning standards conflict, not only cases where one model is uncertain.
 
 ---
 
-## What this narrative survives
+## Section 7 - Limitations
 
-| Reviewer attack | Defense |
-|---|---|
-| "Just TF-IDF + LLM features" | Yes — we say so explicitly. Contribution is deployment, not accuracy. |
-| "MAS doesn't improve accuracy" | We report this finding ourselves. |
-| "DSM-5 LLM-drafted, unvalidated" | Three layers: AIDA-Path planned, clinician review planned, F42 limitation documented openly. |
-| "Both mode is hollow" | Reframed as audit feature. We measure 25.1% disagreement; not zero contribution. |
-| "Numbers don't match between artifacts" | Evaluation contract documented, sanity checks committed, all artifacts reconciled (`AUDIT_RECONCILIATION_2026_04_25.md`). |
-| "Synthetic-only" | Stated upfront in abstract. Phase W planned. |
-| "Disagreement just proxy for confidence" | Empirical comparison: 2.06× vs 1.92×, Jaccard 0.357 → complementary not equivalent. Two-stage union > either alone. |
-| "Edit history shows numbers changed" | `AUDIT_RECONCILIATION_2026_04_25.md` documents WHY they changed (evaluation contract repair). Methodological transparency, not bug history. |
+### 7.1 Synthetic-Only Datasets
+
+LingxiDiag-16K and MDD-5k are synthetic. Real-world clinical validation at
+Chang Gung Memorial Hospital is pending IRB.
+
+### 7.2 DSM-5 v0 Criteria
+
+All DSM-5 stubs are LLM-drafted (`UNVERIFIED_LLM_DRAFT`). MDD-5k aggregate
+metrics for F1, 2-class, 4-class, and Overall may reflect v0 criteria
+distribution alignment with MDD-5k labels, not clinical validity. AIDA-Path
+structural alignment and clinician review are pending.
+
+### 7.3 F42 OCD Collapse
+
+DSM-5 F42 recall: LingxiDiag 12% vs ICD-10 52% (-40pp); MDD-5k 15% vs ICD-10
+38% (-23pp). Trace shows criterion D exclusion marked `insufficient_evidence`
+in 80% of F42-gold cases. Documented limitation, not patched. See
+`docs/limitations/F42_DSM5_COLLAPSE_2026_04_25.md`.
+
+### 7.4 Class Coverage
+
+F31, F43, F98, and Z71 have near-zero recall in both modes across both datasets,
+with F39 also weak in dual-standard slices. This creates a hard ceiling on
+aggregate Top-1.
+
+### 7.5 Both-Mode Is Not an Ensemble
+
+Both = ICD-10 primary on 1925/1925 cases (LingxiDiag + MDD-5k). DSM-5 is
+sidecar evidence.
+
+### 7.6 Stacker Feature Contribution
+
+TF-IDF 88.1% / MAS 11.9% (LGBM importance). Accuracy comes primarily from
+supervised features.
+
+### 7.7 Confidence-Gated Ensemble Is Null
+
+Selected rule = `tfidf_only`. McNemar p = 1.0. Reported transparently.
+
+### 7.8 Per-Class Slice Taxonomy
+
+Per-class results in Section 5.4 use `pilot_comparison.per_class_metrics`
+(paper-parent class total). `metrics_summary.slice_metrics` use a different
+slice definition; these are not directly comparable. We report only the
+paper-parent source for class-level claims.
+
+### 7.9 TF-IDF Reproduction Gap
+
+Our TF-IDF Top-1 is materially above the paper's reported TF-IDF Top-1. Cause
+is not fully identified; candidate causes include tokenization, feature
+engineering, logistic-regression hyperparameters, and split differences.
+
+### 7.10 Evaluation Contract Repair History
+
+Pre-2026-04-25 metric values are deprecated. Current values are post evaluation
+contract repair (commits `914381b` and `c7f8fa0`). See
+`docs/audit/AUDIT_RECONCILIATION_2026_04_25.md` for the change trail.
 
 ---
 
-## What this narrative does NOT claim
+## Discussion Key Points
 
-- ❌ Outperforms TF-IDF on accuracy
-- ❌ Disagreement captures all errors
-- ❌ DSM-5 mode is clinically validated
-- ❌ Both-mode improves over single-standard
-- ❌ Ensemble produces gains
-- ❌ Novel class detection works
-- ❌ Real-world deployment validated
-- ❌ AIDA-Path validation completed (pending)
+1. **MAS-as-substrate, not MAS-as-classifier**: We do not claim MAS improves
+   accuracy. We claim MAS enables deployment properties unavailable without it:
+   auditability, dual-standard reasoning, disagreement triage, and bias control.
+2. **Reproducibility-first frame**: Evaluation contract documented, case
+   manifest SHA256 recorded, paper-parent normalization tested, and deprecated
+   values reconciled.
+3. **Honest negative findings**: ensemble null, novel-class retraction, F42
+   limitation, and F33 taxonomy handling are all reported.
+4. **Disagreement triage and confidence triage are complementary**: 2.06x vs
+   1.92x enrichment, Jaccard 0.357, and union policy strongest.
 
-All defended in advance.
+---
+
+## What This Narrative Does Not Claim
+
+- Outperforms TF-IDF on accuracy.
+- Disagreement captures all errors.
+- DSM-5 mode is clinically validated.
+- Both-mode improves over single-standard accuracy.
+- Confidence ensemble produces gains.
+- Novel class detection works.
+- Real-world deployment is validated.
+- AIDA-Path validation is completed.
 
 ---
 
 ## Status
 
-**Narrative**: ✅ Reviewer-safe, can begin drafting paper sections
-**Numbers**: 🟡 Candidate, replace `[P0]` markers after evaluation contract repair commit
-
-**Next milestone**: Replace all `[P0]` markers with commit-hash-backed values from `metric_consistency_report.json`.
+**Narrative**: reviewer-safe source for paper Section 5/6 drafting.
+**Numbers**: canonical for the cleanup scope, backed by
+`results/analysis/metric_consistency_report.json` and reconciled in
+`docs/audit/AUDIT_RECONCILIATION_2026_04_25.md`.

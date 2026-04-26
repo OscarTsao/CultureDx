@@ -1,300 +1,307 @@
-# Evaluation Provenance — CultureDx Paper Submission (v4)
+# Evaluation Provenance - CultureDx Paper Submission (v5)
 
-**Status**: 🟡 CANDIDATE VALUES until P0 metric regeneration commits land. Will become canonical after Step 2 of `02_REGENERATE_AND_RECONCILE.md` passes.
-
-**Target location**: `docs/analysis/EVALUATION_PROVENANCE.md`
-
-**Versioning rule**: Any value labeled "candidate" must be replaced with commit-hash-backed canonical value before paper submission.
+**Status**: CANONICAL as of P0 commits `914381b` (clean/v2.5) and `c7f8fa0` (main-v2.4).
+**Source of truth**: `results/analysis/metric_consistency_report.json`
+**Audit reconciliation**: `docs/audit/AUDIT_RECONCILIATION_2026_04_25.md`
 
 ---
 
-## 1. Datasets and splits
+## 1. Datasets and Splits
 
-### 1.1 LingxiDiag-16K — primary benchmark
+### 1.1 LingxiDiag-16K - Primary Benchmark
 
-- **Source**: [TODO: publication, doi, URL]
-- **Total**: 16,000 synthetic Chinese psychiatric dialogues
-- **Splits**:
-  - `train`: [TODO]
-  - `dev_hpo`: [TODO] (stacker hyperparameter tuning)
-  - `test_final`: **N=1000**, all main metrics
-- **Manifest source-of-truth**: `results/dual_standard_full/lingxidiag16k/mode_icd10/pilot_icd10/case_selection.json`
+- **Source**: LingxiDiag-16K local checkout at `data/raw/lingxidiag16k`; upstream references are listed in `README.md`.
+- **Local raw files**:
+  - `train`: `data/raw/lingxidiag16k/data/train-00000-of-00001.parquet`, N=14000.
+  - `test_final`: `data/raw/lingxidiag16k/data/validation-00000-of-00001.parquet`, N=1000.
+  - `dev_hpo`: stacker tuning split described by `results/ensemble/split.json` when present; final paper metrics below use held-out `test_final` only.
+- **Manifest source of truth**: `results/dual_standard_full/lingxidiag16k/mode_icd10/pilot_icd10/case_selection.json`
 - **Manifest fingerprint**: `59173340f1fa156e`
-- **case_ids SHA256**: [TODO from consistency report]
-- **Stacker test_final overlap**: 1000/1000 with dual-standard (verified)
+- **case_ids SHA256**: `2c07267cecbb66a3d1e02394f547f973de5e6f13f5ff014fe244052150245d90`
+- **Stacker test_final overlap**: 1000/1000 with dual-standard cases.
 
-### 1.2 MDD-5k — external validation
+### 1.2 MDD-5k - External Validation
 
-N=925 (post-filtering). Manifest: [TODO]
+- **Source**: local raw label directory `data/raw/mdd5k_repo/Label`.
+- **Post-filtering N**: 925.
+- **Manifest source of truth**: `results/dual_standard_full/mdd5k/mode_icd10/pilot_icd10/case_selection.json`
+- **Case order fingerprint**: `87a7bee4e0b36bb9`
+- **case_ids SHA256**: `72512b5448eb8a93245be1f619114eda8c9cd8f1db7f3b5a9cd2e180844a75de`
+- **Raw ICD_Code coverage**: 925/925 across all dual-standard modes.
 
 ---
 
-## 2. Label taxonomy (FIXED)
+## 2. Label Taxonomy
 
 ```python
 PAPER_12_CLASSES = ["F20", "F31", "F32", "F39", "F41", "F42", "F43",
                     "F45", "F51", "F98", "Z71", "Others"]
 ```
 
-**F33 NOT included**. F33 collapses to "Others" via `to_paper_parent`. This is paper-original taxonomy; not negotiable.
+F33 is not included. F33 collapses to `Others` via `to_paper_parent`. This is
+the paper-original taxonomy and is locked by `tests/test_evaluation_contract.py`.
+DSM-5 ontology keeps an F33 stub for system extensibility, but it is not a
+12-class evaluation label. F33 cases: 0/1000 in LingxiDiag, 2/925 in MDD-5k.
 
-DSM-5 ontology maintains F33 stub for system extensibility, but it does not appear in 12-class evaluation. F33 cases: 0/1000 in LingxiDiag, 2/925 in MDD-5k.
-
-### 2.1 Paper-parent collapse rules (verified by `tests/test_evaluation_contract.py`)
+### 2.1 Paper-Parent Collapse Rules
 
 | Input | Output |
 |---|---|
 | F32, F32.x | F32 |
-| **F33, F33.x** | **Others** (NOT in PAPER_12_CLASSES) |
+| F33, F33.x | Others |
 | F41, F41.x including F41.2 | F41 |
 | F43, F43.x | F43 |
 | Z71.x | Z71 |
-| F34, F70, F90, G47 | Others (parents not in 12-class) |
+| F34, F70, F90, G47 | Others |
 | `""`, None | Others |
-
-Note: `to_paper_parent(None)` requires explicit None handling — verify before unit test runs.
 
 ---
 
-## 3. Metric contract (CANONICAL — locked by `compute_table4_metrics_v2`)
+## 3. Metric Contract
 
-Per GPT round 5 review, evaluation uses FOUR separate prediction views per metric family:
+Evaluation uses four separate prediction views per metric family through
+`compute_table4_metrics_v2`.
 
-### 3.1 Top-1 (12-class)
+### 3.1 Top-1 (12-Class)
 
-```python
-top1 = sum(1 for gold, primary_pred in zip(gold_multilabel, primary_predictions)
-           if primary_pred and primary_pred in gold) / n
-```
+- **Prediction source**: `primary_diagnosis` normalized to paper-parent.
+- **Gold source**: multilabel paper-parent gold set.
+- **Canonical field**: `metrics.json -> table4 -> 12class_Top1`.
 
-- **Prediction source**: `primary_diagnosis` (paper-parent normalized)
-- **Gold source**: multilabel parent set
-- **Canonical field**: `metrics.json → table4 → 12class_Top1`
+### 3.2 Top-3 (12-Class)
 
-### 3.2 Top-3 (12-class)
+Top-3 uses the ranked diagnostic view, canonicalized as:
 
 ```python
-# CRITICAL: ensures Top-1 ⊆ Top-3 invariant
 canonical_top3 = [primary] + [c for c in ranked if c != primary]
 canonical_top3 = canonical_top3[:3]
-
-top3 = sum(1 for gold, top3_list in zip(gold_multilabel, canonical_top3_lists)
-           if set(top3_list) & set(gold)) / n
 ```
 
-- **Prediction source**: `[primary_diagnosis] + (ranked_codes - {primary})[:2]` (paper-parent)
-- **Gold source**: multilabel parent set
-- **NOT** `[primary] + comorbid_diagnoses` — that list is threshold-gated and typically length 1
+- **Prediction source**: `[primary_diagnosis] + (ranked_codes - {primary})[:2]`.
+- **Gold source**: multilabel paper-parent gold set.
+- **Important exclusion**: not `[primary] + comorbid_diagnoses`, which is threshold-gated and usually too short.
 
-### 3.3 F1 / Exact Match (12-class multilabel)
+### 3.3 F1 / Exact Match (12-Class Multilabel)
 
-```python
-# Multilabel F1 over PAPER_12_CLASSES
-mlb = MultiLabelBinarizer(classes=PAPER_12_CLASSES)
-y_true = mlb.fit_transform(gold_multilabel)
-y_pred = mlb.transform(multilabel_predictions)
-```
+- **Prediction source**: `primary + threshold-gated comorbid_diagnoses`.
+- **Gold source**: multilabel paper-parent gold set.
+- **Important exclusion**: not ranked Top-3, because that would predict all shortlist entries.
 
-- **Prediction source**: `[primary] + [comorbid where conf >= 0.3]` (paper-parent multilabel)
-- **NOT** ranked top-3 (would predict all classes, breaks F1)
+### 3.4 2-Class
 
-### 3.4 2-class
+- **Gold source**: raw `DiagnosisCode` or raw MDD-5k `ICD_Code`, preserving F41.2.
+- **Pred source**: primary diagnosis.
+- **LingxiDiag expected n**: 473 after F41.2 and mixed F32/F41 exclusion.
+- **MDD-5k expected n**: 490 after F41.2 and mixed F32/F41 exclusion.
 
-```python
-gold_2c = classify_2class_from_raw(diagnosis_code_full)
-# F41.2 → None (excluded)
-# F32 + F41 (comorbid) → None (excluded)
-pred_2c = classify_2class_prediction(primary_diagnosis)
-```
+### 3.5 4-Class
 
-- **Gold source**: raw `DiagnosisCode` (preserves F41.2 for exclusion)
-- **Pred source**: primary diagnosis
-- **Expected n**: **473** (after F41.2 + comorbid exclusion). NOT 696 (parent-collapsed gold bug).
-
-### 3.5 4-class
-
-```python
-gold_4c = classify_4class_from_raw(diagnosis_code_full)
-# F41.2 → "Mixed"
-# F32 + F41 comorbid → "Mixed"
-# Pure F32 → "Depression"
-# Pure F41 → "Anxiety"
-# Other → "Others"
-```
-
-- **Gold source**: raw `DiagnosisCode`
-- **Pred source**: primary + raw_pred_codes for F41.2 detection
+- **Gold source**: raw code.
+- **Pred source**: primary plus raw predicted codes for F41.2 detection.
+- **Mapping**:
+  - F41.2 or F32+F41 comorbid -> Mixed
+  - Pure F32 -> Depression
+  - Pure F41 -> Anxiety
+  - Other -> Others
 
 ### 3.6 Overall
 
-```python
-Overall = mean(non-_n metric values from table4)
-```
+`Overall` is the mean of all non-`_n` Table 4 metric values and must be
+recomputed after any metric changes.
 
-**MUST be recomputed after any other metric changes**. v3 mistake: mixed post-fix Top-3 with pre-fix Overall.
-
-### 3.7 Top-1 naming hierarchy
-
-Multiple Top-1 fields exist for different semantic purposes:
+### 3.7 Top-1 Naming Hierarchy
 
 | Field | Semantics | Use in paper? |
 |---|---|---|
-| **`table4.12class_Top1`** | **paper-canonical multilabel** | **YES — only this value** |
-| `diagnostics_internal.diagnosis.top1_accuracy` | legacy internal metric | NO |
-| `diagnostics_internal.pilot_comparison_top1` | parent-vs-first-gold | NO |
+| `table4.12class_Top1` | paper-canonical multilabel | Yes |
+| `diagnostics_internal.diagnosis.top1_accuracy` | legacy internal metric | No |
+| `diagnostics_internal.pilot_comparison_top1` | parent-vs-first-gold | No |
 
-Sanity check enforces: `paper_canonical_top1 == table4.12class_Top1`. **Does NOT** force all Top-1 fields to match (they have different semantics).
+### 3.8 Non-Inferiority Margin
 
-### 3.8 Non-inferiority margin
-
-Pre-specified before metric regeneration: **±0.05 absolute (5pp)**.
-
-Parity claim is supported iff 95% bootstrap CI of (our_metric − baseline_metric) ⊆ [−0.05, +0.05].
+Pre-specified margin: +/-0.05 absolute (5pp). Parity is supported when the
+95% bootstrap CI of `our_metric - baseline_metric` lies within that margin.
 
 ---
 
-## 4. Bootstrap and tests
+## 4. Bootstrap and Tests
 
-- 1000 resamples, seed 20260420, 95% percentile interval
-- McNemar with continuity correction, p < 0.05 threshold
-- Bias asymmetry: ratio with `max(., 1)` denominator protection
+- Bootstrap: 1000 resamples, seed 20260420, 95% percentile interval.
+- McNemar: continuity correction, p < 0.05 threshold.
+- Bias asymmetry: ratio with `max(., 1)` denominator protection.
+- Contract tests: `uv run pytest tests/test_evaluation_contract.py -v`.
 
 ---
 
-## 5. Systems compared
+## 5. Systems Compared
 
 | System | Branch | Architecture |
 |---|---|---|
-| TF-IDF+LR (paper) | — | published |
-| TF-IDF+LR (ours) | clean/v2.5 | reproduced — 0.604 vs paper 0.496, 10.6pp gap unexplained |
+| TF-IDF+LR (paper) | external | published baseline |
+| TF-IDF+LR (ours) | clean/v2.5 | reproduced baseline |
 | Single LLM | main-v2.4 | Qwen3-32B-AWQ direct |
 | MAS-only (DtV) | main-v2.4 | HiED multi-agent |
-| Stacker LR | clean/v2.5 | MAS+TFIDF → LR |
-| Stacker LGBM | clean/v2.5 | MAS+TFIDF → LGBM |
+| Stacker LR | clean/v2.5 | MAS + TF-IDF -> LR |
+| Stacker LGBM | clean/v2.5 | MAS + TF-IDF -> LGBM |
 | ICD-10 mode | main-v2.4 | HiED with ICD-10 reasoning |
 | DSM-5 mode | main-v2.4 | HiED with DSM-5 v0 reasoning |
 | Both mode | main-v2.4 | ICD-10 primary + DSM-5 sidecar |
 
-### 5.1 TF-IDF reproduction gap (DOCUMENTED CAVEAT)
+### 5.1 TF-IDF Reproduction Gap
 
-Our TF-IDF: 0.604. Paper TF-IDF: 0.496. Gap: 10.6pp unexplained. Candidate causes [TODO investigate]: tokenization, n-gram, min_df/max_df, sublinear_tf, LR hyperparameters.
-
-Paper claim qualified accordingly: parity is against our (stronger) reproduced TF-IDF, not paper's.
+Our reproduced TF-IDF Top-1 is 0.604 to 0.611 depending on the frozen stacker
+evaluation artifact; the paper TF-IDF Top-1 is 0.496. The gap is disclosed.
+Candidate drivers are tokenization, char n-grams, `min_df`/`max_df`,
+`sublinear_tf`, logistic-regression hyperparameters, and split differences.
+Appendix B should cite `scripts/train_tfidf_baseline.py` and
+`docs/analysis/AUDIT_REPORT_2026_04_22.md`.
 
 ---
 
-## 6. Canonical results (CANDIDATE — finalized after P0 commits)
+## 6. Canonical Results
 
-### 6.1 LingxiDiag-16K test_final (N=1000)
+### 6.1 LingxiDiag-16K `test_final` (N=1000)
 
 | System | 2c Acc | 4c Acc | 12c Top-1 | 12c Top-3 | F1_m | F1_w | Overall |
 |---|---:|---:|---:|---:|---:|---:|---:|
 | Paper TF-IDF | .753 | .476 | .496 | .645 | .295 | .520 | .533 |
 | Paper best LLM | .841 | .470 | .487 | .574 | .197 | .439 | .521 |
-| Our TF-IDF | [P0] | [P0] | .604 | [P0] | .373 | .602 | [P0] |
-| MAS-only | [P0] | [P0] | .516 | [P0] | .171 | .447 | [P0] |
-| **Stacker LGBM** | [P0] | [P0] | [P0] | [P0] | [P0] | [P0] | [P0] |
-| **Stacker LR** | [P0] | [P0] | [P0] | [P0] | [P0] | [P0] | [P0] |
+| Our TF-IDF | not v4-finalized | not v4-finalized | .604-.611 | not v4-finalized | .373 | .602 | not v4-finalized |
+| MAS-only | not v4-finalized | not v4-finalized | .516 | not v4-finalized | .171 | .447 | not v4-finalized |
+| **Stacker LGBM** | **.753** | **.546** | **.612** | **.925** | **.334** | **.573** | **.6166** |
+| **Stacker LR** | **.619** | **.538** | **.538** | **.887** | **.360** | **.558** | **.5722** |
 
-`[P0]` = candidate value, finalized after evaluation contract repair commit.
+Stacker LGBM matches our reproduced TF-IDF on Top-1 within the pre-specified
++/-5pp non-inferiority margin. MAS-only and TF-IDF rows are retained for
+context but are not the commit-backed v4 Table 4 source rows.
 
-**Pre-P0 candidate values (NOT to be cited yet)**:
-- Stacker LGBM: Top-1 candidate 0.612, Top-3 candidate 0.925, F1_m candidate 0.334
-- Stacker LR: Top-1 candidate 0.538, Top-3 candidate 0.887, F1_m candidate 0.360
-- 2-class n MUST become 473 (F41.2 excluded)
+### 6.2 MDD-5k Bias Robustness (N=925)
 
-**Pre-P0 audit values (DEPRECATED after P0)**:
-- Stacker LGBM Top-1 0.605 (single-label, audit) → 0.612 (multilabel, post-P0)
-
-### 6.2 MDD-5k (N=925) — UNCHANGED
-
-| System | Top-1 | F41→F32 | F32→F41 | Asymmetry |
+| System | Top-1 | F41 -> F32 | F32 -> F41 | Asymmetry |
 |---|---:|---:|---:|---:|
-| Single LLM | .523 | 189 | 1 | 189× |
-| MAS (T1) | .558 | 152 | 17 | 8.94× |
-| MAS + R6v2 | .571 | 145 | 26 | 5.58× |
+| Single LLM | .523 | 189 | 1 | 189x |
+| MAS (T1) | .558 | 152 | 17 | 8.94x |
+| MAS + R6v2 | .571 | 145 | 26 | 5.58x |
 
-### 6.3 Dual-standard (N=1000)
+### 6.3 Dual-Standard LingxiDiag (N=1000) - Post-v4 Contract
 
-| Mode | Top-1 | Top-3 | F1_m | F1_w | Overall |
-|---|---:|---:|---:|---:|---:|
-| ICD-10 | 0.507 | [P0] (candidate 0.799) | 0.199 | 0.457 | [P0] |
-| DSM-5 | 0.471 | [P0] | 0.188 | 0.421 | [P0] |
-| Both | 0.507 | [P0] (= ICD-10) | 0.199 | 0.457 | [P0] |
+| Mode | 12c Top-1 | 12c Top-3 | F1_m | F1_w | 2c Acc | 4c Acc | Overall |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| ICD-10 | 0.507 | 0.800 | 0.199 | 0.457 | 0.778 | 0.447 | 0.5145 |
+| DSM-5 | 0.471 | 0.803 | 0.188 | 0.421 | 0.767 | 0.476 | 0.5065 |
+| Both | 0.507 | 0.800 | 0.199 | 0.457 | 0.778 | 0.447 | 0.5145 |
 
 Pairwise agreement (paper-parent):
+
 - ICD-10 vs DSM-5: 0.749 (251 disagree)
-- ICD-10 vs Both: 1.000 (Both = ICD-10 by architecture)
+- ICD-10 vs Both: 1.000 (Both = ICD-10 by architecture, 1000/1000 match)
 - DSM-5 vs Both: 0.749
 
-### 6.4 Disagreement-as-triage
+### 6.4 Dual-Standard MDD-5k (N=925) - Post-v4 Contract
 
-See `docs/analysis/DISAGREEMENT_AS_TRIAGE_2026_04_25.md`.
+| Mode | 12c Top-1 | 12c Top-3 | F1_m | F1_w | 2c Acc | 4c Acc | Overall |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| ICD-10 | 0.597 | 0.853 | 0.197 | 0.514 | 0.890 | 0.444 | 0.566 |
+| DSM-5 | 0.581 | 0.842 | 0.230 | 0.526 | 0.912 | 0.520 | 0.584 |
+| Both | 0.597 | 0.853 | 0.197 | 0.514 | 0.890 | 0.444 | 0.566 |
+
+Dual-standard evaluation showed dataset-dependent metric trade-offs: DSM-5 v0
+was weaker than ICD-10 on Top-1 in both datasets and weaker on Top-3 on MDD-5k,
+but achieved higher F1_macro, weighted-F1, binary accuracy, four-class accuracy,
+and Overall on MDD-5k. We interpret this as standard-sensitive diagnostic
+structure under distribution shift, not as DSM-5 clinical validation.
+
+Both = ICD-10 is confirmed at MDD-5k scale (925/925 match). 2class_n = 490.
+
+### 6.5 Disagreement-as-Triage
+
+Canonical analysis: `docs/analysis/DISAGREEMENT_AS_TRIAGE_2026_04_25.md` when
+present, with fallback narrative in `docs/analysis/DISAGREEMENT_AS_TRIAGE.md`.
 
 ---
 
-## 7. Reproducibility checklist
+## 7. Reproducibility Checklist
 
 - [x] PAPER_12_CLASSES tested in `test_evaluation_contract.py::TestPaperTaxonomy`
-- [x] to_paper_parent unit tests including F33 → Others
+- [x] `to_paper_parent` unit tests include F33 -> Others
 - [x] F41.2 exclusion test
-- [x] Top-1 ⊆ Top-3 invariant test
-- [ ] Case manifest SHA256 in consistency report [POST-P0]
+- [x] Top-1 subset of Top-3 invariant test
+- [x] Case manifest SHA256 in `metric_consistency_report.json`: `2c07267cecbb66a3d1e02394f547f973de5e6f13f5ff014fe244052150245d90`
+- [x] MDD-5k case manifest SHA256 in `metric_consistency_report.json`: `72512b5448eb8a93245be1f619114eda8c9cd8f1db7f3b5a9cd2e180844a75de`
 - [x] Top-K source documented (ranked vs threshold-gated)
 - [x] F1 source documented (multilabel)
 - [x] 2-class source documented (raw codes)
 - [x] Bootstrap config documented
-- [ ] TF-IDF preprocessing documented [TODO Appendix B]
-- [x] Non-inferiority margin pre-specified (±5pp)
-- [ ] All sanity checks committed [POST-P0]
-- [ ] metric_consistency_report.json committed [POST-P0]
-- [ ] AUDIT_RECONCILIATION_2026_04_25.md committed [POST-P0]
+- [x] TF-IDF preprocessing documented in `scripts/train_tfidf_baseline.py` and audit notes
+- [x] Non-inferiority margin pre-specified (+/-5pp)
+- [x] All v4 sanity checks committed in `results/analysis/metric_consistency_report.json`
+- [x] `metric_consistency_report.json` committed
+- [x] `docs/audit/AUDIT_RECONCILIATION_2026_04_25.md` added by artifact cleanup v6.1
 
 ---
 
-## 8. Known limitations
+## 8. Known Limitations
 
-### 8.1 Synthetic-only datasets
-LingxiDiag and MDD-5k are synthetic. Chang Gung clinical validation pending IRB.
+### 8.1 Synthetic-Only Datasets
 
-### 8.2 DSM-5 v0 criteria (UNVERIFIED_LLM_DRAFT)
-All DSM-5 stubs LLM-drafted. AIDA-Path structural alignment for 5 overlapping disorders pending. Clinician review pending IRB.
+LingxiDiag and MDD-5k are synthetic. Chang Gung clinical validation is pending
+IRB.
 
-### 8.3 F42 collapse in DSM-5 mode
-Recall 12% vs ICD-10 52%. Trace shows `all_required: true` + criterion D (exclusion) marked `insufficient_evidence` in 80% of F42-gold cases. Documented in `docs/analysis/F42_DSM5_COLLAPSE_TRACE.md`. **Not fixed for current submission to avoid test-set tuning.**
+### 8.2 DSM-5 v0 Criteria
 
-### 8.4 Class coverage limits
-F31, F43, Z71, F98, Others all near-zero recall in both modes (14.3% of test_final). Hard ceiling on aggregate Top-1.
+All DSM-5 stubs are LLM-drafted with `UNVERIFIED_LLM_DRAFT` status. AIDA-Path
+structural alignment for 5 overlapping disorders and clinician review are
+pending.
 
-### 8.5 Both-mode is not an ensemble
-Both = ICD-10 primary (1000/1000 match with ICD-10 mode). DSM-5 is sidecar evidence.
+### 8.3 F42 Collapse in DSM-5 Mode
 
-### 8.6 Stacker feature contribution
-TF-IDF 88% / MAS 12% (LGBM importance). Accuracy from supervised features.
+Recall is 12% vs ICD-10 52% on LingxiDiag. Trace shows `all_required: true`
+plus criterion D exclusion marked `insufficient_evidence` in 80% of F42-gold
+cases. Documented in `docs/limitations/F42_DSM5_COLLAPSE_2026_04_25.md`. This
+is not fixed for the current submission to avoid test-set tuning.
 
-### 8.7 Confidence-gated ensemble = null
-Selected rule = tfidf_only. McNemar p=1.0. Reported transparently.
+### 8.4 Class Coverage Limits
 
-### 8.8 Retracted experiments
-WS-C Exp 1, Exp 2 documented in `docs/RETRACTION_NOTICE_2026_04_22.md`.
+F31, F43, Z71, F98, and Others have near-zero recall in both modes on
+LingxiDiag test_final, representing 14.3% of cases and placing a hard ceiling
+on aggregate Top-1.
 
-### 8.9 Evaluation contract repair history
-This document supersedes pre-2026-04-25 metric values. See `AUDIT_RECONCILIATION_2026_04_25.md` for change trail.
+### 8.5 Both-Mode Is Not an Ensemble
+
+Both = ICD-10 primary on 1925/1925 cases across LingxiDiag and MDD-5k. DSM-5 is
+sidecar evidence.
+
+### 8.6 Stacker Feature Contribution
+
+TF-IDF contributes 88.1% and MAS contributes 11.9% by LGBM importance. Accuracy
+mostly comes from supervised features.
+
+### 8.7 Confidence-Gated Ensemble Is Null
+
+Selected rule = `tfidf_only`. McNemar p = 1.0. This is reported as a negative
+result.
+
+### 8.8 Retracted Experiments
+
+WS-C Exp 1 and Exp 2 are documented in `docs/RETRACTION_NOTICE_2026_04_22.md`.
+
+### 8.9 Evaluation Contract Repair History
+
+This document supersedes pre-2026-04-25 metric values. See
+`docs/audit/AUDIT_RECONCILIATION_2026_04_25.md` for the change trail.
 
 ---
 
-## 9. Version control
+## 9. Version Control
 
-- v1 audit (2026-04-22): captured then-current numbers
-- v2-v3 GPT review rounds: identified contract bugs
-- v4 P0 fix (this commit, [TODO hash]): refactored to compute_table4_metrics_v2
-- This document v4: locks contract semantics
-
-After P0 commits land, this document becomes canonical reference for paper.
+- v1 audit (2026-04-22): captured then-current numbers.
+- v2-v3 GPT review rounds: identified contract bugs.
+- v4 P0 fix: refactored to `compute_table4_metrics_v2`.
+- v5 cleanup: removes candidate placeholders, fixes F42 path, and links audit reconciliation.
 
 ---
 
-**Last updated**: 2026-04-25 (pre-P0 candidate)
-**Authors**: YuNing
-**Reviewed by**: GPT-5.5-pro rounds 1-5
-**Next milestone**: Replace [P0] markers with commit-hash-backed values
+**Last updated**: 2026-04-26 (post-P0 canonical)
+**P0 commits**: `914381b` (clean/v2.5) + `c7f8fa0` (main-v2.4)
+**MDD-5k benchmark commit**: `3a2d6d5` (main-v2.4)
+**Cleanup**: artifact cleanup v6.1

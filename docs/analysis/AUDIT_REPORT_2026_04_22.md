@@ -1,3 +1,21 @@
+# POST-V2-CONTRACT REVISION
+
+**This audit report represents canonical numbers as of 2026-04-22.**
+
+After GPT-5.5-pro evaluation contract review (rounds 1-6), several values in
+this report are superseded by post-fix canonical values.
+
+**For current paper claims, use:**
+
+- `docs/audit/AUDIT_RECONCILIATION_2026_04_25.md` (change trail)
+- `results/analysis/metric_consistency_report.json` (canonical values)
+
+**This file is preserved for methodology and historical context.**
+
+---
+
+(original audit content below)
+
 # CultureDx — Full Repo Audit (2026-04-22)
 
 This is a comprehensive audit of all committed results on both branches

@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
-"""Compute paper-official Table 4 metrics (2c/4c/12c + Overall) from predictions.
+"""Compute paper-official Table 4 metrics using the v4 evaluation contract.
 
-Reads predictions.jsonl from a completed run directory and the original dataset,
-then computes the 11-metric Table 4 using the paper-aligned evaluation module.
-Saves table4_metrics.json alongside the existing metrics.json.
-
-This gives every ablation config the same 11-metric Overall formula used by the
-research branch (0.527), ensuring cross-branch consistency.
+Reads predictions.jsonl from a completed run directory, joins the raw
+DiagnosisCode from the source parquet, and computes the 11-metric Table 4 with
+explicit prediction-source contracts via compute_table4_metrics_v2.
 
 Usage:
-    uv run python scripts/compute_table4.py --run-dir outputs/eval/ablation_02_hied_dtv_1000
-    uv run python scripts/compute_table4.py --run-dir outputs/eval/single_1000 --data-path data/raw/lingxidiag16k
+    uv run python scripts/compute_table4.py \
+        --run-dir outputs/eval/ablation_02_hied_dtv_1000 \
+        --raw-parquet data/raw/lingxidiag16k/data/validation-00000-of-00001.parquet
 """
 from __future__ import annotations
 
@@ -19,13 +17,14 @@ import json
 import logging
 import sys
 from pathlib import Path
+from typing import Any
 
-# Ensure src/ is importable when running as a script
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
 
-from culturedx.eval.lingxidiag_paper import (
-    compute_table4_metrics,
-    pred_to_parent_list,
+from culturedx.eval.lingxidiag_paper import (  # noqa: E402
+    compute_table4_metrics_v2,
+    to_paper_parent,
 )
 
 logger = logging.getLogger(__name__)
@@ -35,99 +34,145 @@ logging.basicConfig(
 )
 
 
-def load_predictions(run_dir: Path) -> list[dict]:
-    """Load prediction records from predictions.jsonl."""
-    pred_path = run_dir / "predictions.jsonl"
-    if not pred_path.exists():
-        raise FileNotFoundError(f"No predictions.jsonl in {run_dir}")
+def _load_jsonl(path: Path) -> list[dict[str, Any]]:
+    if not path.exists():
+        raise FileNotFoundError(f"predictions.jsonl not found: {path}")
 
-    records = []
-    with open(pred_path, encoding="utf-8") as f:
-        for line in f:
+    records: list[dict[str, Any]] = []
+    with path.open(encoding="utf-8") as handle:
+        for line in handle:
             line = line.strip()
             if line:
                 records.append(json.loads(line))
-    logger.info("Loaded %d prediction records from %s", len(records), pred_path)
     return records
 
 
-def load_dataset_cases(data_path: Path) -> dict[str, dict]:
-    """Load original dataset to get raw DiagnosisCode per case.
+def _resolve_raw_parquet(raw_parquet: Path | None, data_path: Path | None) -> Path:
+    if raw_parquet is not None:
+        return raw_parquet
 
-    Returns a dict mapping case_id -> row dict with at least DiagnosisCode.
-    """
-    import pyarrow.parquet as pq
+    if data_path is None:
+        data_path = Path("data/raw/lingxidiag16k")
 
-    data_dir = data_path
-    if (data_dir / "data").is_dir():
-        data_dir = data_dir / "data"
-
+    data_dir = data_path / "data" if (data_path / "data").is_dir() else data_path
     parquet_files = sorted(data_dir.glob("validation-*.parquet"))
     if not parquet_files:
-        raise FileNotFoundError(f"No parquet files found in {data_dir}")
+        raise FileNotFoundError(
+            f"No validation parquet found under {data_dir}. Pass --raw-parquet "
+            "explicitly so raw DiagnosisCode values are available."
+        )
+    return parquet_files[0]
 
-    table = pq.read_table(parquet_files)
-    cases = {}
-    for i in range(table.num_rows):
-        row = {col: table.column(col)[i].as_py() for col in table.column_names}
-        patient_id = str(row.get("patient_id", ""))
-        if patient_id:
-            cases[patient_id] = row
-    logger.info("Loaded %d dataset cases from %s", len(cases), data_dir)
+
+def _load_raw_codes(path: Path) -> dict[str, str]:
+    if not path.exists():
+        raise FileNotFoundError(
+            f"Raw parquet not found: {path}. Required for F41.2 raw-code "
+            "2c/4c contract. No parent-gold fallback is allowed."
+        )
+
+    import pyarrow.parquet as pq
+
+    table = pq.read_table(path)
+    required = {"patient_id", "DiagnosisCode"}
+    missing = required - set(table.column_names)
+    if missing:
+        raise RuntimeError(
+            f"Raw parquet {path} missing columns {sorted(missing)}. "
+            "Required for Table 4 raw-code evaluation."
+        )
+
+    raw_codes_by_id: dict[str, str] = {}
+    for row_idx in range(table.num_rows):
+        case_id = str(table["patient_id"][row_idx].as_py())
+        raw_code = table["DiagnosisCode"][row_idx].as_py() or ""
+        raw_codes_by_id[case_id] = str(raw_code)
+    return raw_codes_by_id
+
+
+def _extract_ranked(prediction: dict[str, Any]) -> list[str]:
+    trace = prediction.get("decision_trace") or {}
+    diagnostician = trace.get("diagnostician") or {}
+    ranked = (
+        trace.get("diagnostician_ranked")
+        or (
+            diagnostician.get("ranked_codes")
+            if isinstance(diagnostician, dict)
+            else None
+        )
+        or trace.get("ranked_codes")
+        or prediction.get("ranked_codes")
+        or prediction.get("candidate_disorders")
+        or []
+    )
+    if not ranked and prediction.get("primary_diagnosis"):
+        ranked = [prediction["primary_diagnosis"]]
+    return [str(code) for code in ranked if code]
+
+
+def _build_cases(
+    predictions: list[dict[str, Any]],
+    raw_codes_by_id: dict[str, str],
+) -> list[dict[str, Any]]:
+    missing = [
+        str(prediction.get("case_id"))
+        for prediction in predictions
+        if str(prediction.get("case_id")) not in raw_codes_by_id
+    ]
+    if missing:
+        raise RuntimeError(
+            f"Raw DiagnosisCode missing for {len(missing)} cases: {missing[:5]}... "
+            "NO silent fallback to parent-collapsed gold."
+        )
+
+    cases: list[dict[str, Any]] = []
+    for prediction in predictions:
+        case_id = str(prediction["case_id"])
+        cases.append(
+            {
+                "case_id": case_id,
+                "raw_gold_code": raw_codes_by_id[case_id],
+                "primary_diagnosis": prediction.get("primary_diagnosis"),
+                "ranked_codes": _extract_ranked(prediction),
+                "comorbid_diagnoses": list(
+                    prediction.get("comorbid_diagnoses") or []
+                ),
+            }
+        )
     return cases
 
 
-def build_table4_cases(
-    predictions: list[dict],
-    dataset_cases: dict[str, dict],
-) -> list[dict]:
-    """Join predictions with dataset cases for Table 4 evaluation.
+def _compute_table4(cases: list[dict[str, Any]]) -> dict[str, float | int | None]:
+    def _primary(case: dict[str, Any]) -> str:
+        return to_paper_parent(case["primary_diagnosis"])
 
-    Returns a list of dicts with DiagnosisCode (from dataset) and predicted
-    codes (from predictions.jsonl), suitable for compute_table4_metrics.
-    """
-    joined = []
-    skipped = 0
-    for pred in predictions:
-        case_id = pred.get("case_id", "")
-        dataset_row = dataset_cases.get(case_id)
-        if dataset_row is None:
-            skipped += 1
-            continue
+    def _ranked(case: dict[str, Any]) -> list[str]:
+        return [to_paper_parent(code) for code in case["ranked_codes"]]
 
-        # Build the joined case dict that compute_table4_metrics expects
-        case = {
-            "case_id": case_id,
-            "DiagnosisCode": dataset_row.get("DiagnosisCode", ""),
-            # Store prediction info for the getter function
-            "_primary_diagnosis": pred.get("primary_diagnosis"),
-            "_comorbid_diagnoses": pred.get("comorbid_diagnoses", []),
-        }
-        joined.append(case)
+    def _multilabel(case: dict[str, Any]) -> list[str]:
+        codes = [case["primary_diagnosis"]]
+        codes.extend(case["comorbid_diagnoses"])
+        return [to_paper_parent(code) for code in codes if code]
 
-    if skipped:
-        logger.warning(
-            "Skipped %d predictions with no matching dataset case", skipped
-        )
-    logger.info("Joined %d cases for Table 4 evaluation", len(joined))
-    return joined
+    def _raw_gold(case: dict[str, Any]) -> str:
+        return str(case["raw_gold_code"])
+
+    def _raw_pred(case: dict[str, Any]) -> list[str]:
+        codes = [case["primary_diagnosis"]]
+        codes.extend(case["comorbid_diagnoses"])
+        return [str(code) for code in codes if code]
+
+    return compute_table4_metrics_v2(
+        cases=cases,
+        get_primary_prediction=_primary,
+        get_ranked_prediction=_ranked,
+        get_multilabel_prediction=_multilabel,
+        get_raw_gold_code=_raw_gold,
+        get_raw_pred_codes=_raw_pred,
+    )
 
 
-def get_prediction(case: dict) -> list[str]:
-    """Extract parent-level predictions from a joined case dict.
-
-    This is the callback for compute_table4_metrics.
-    """
-    primary = case.get("_primary_diagnosis")
-    comorbid = case.get("_comorbid_diagnoses", [])
-    codes = []
-    if primary:
-        codes.append(primary)
-    codes.extend(comorbid)
-    return pred_to_parent_list(codes)
-
-
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(
         description="Compute Table 4 metrics from predictions.jsonl"
     )
@@ -135,59 +180,50 @@ def main():
         "--run-dir",
         type=Path,
         required=True,
-        help="Path to the run output directory containing predictions.jsonl",
+        help="Run output directory containing predictions.jsonl",
+    )
+    parser.add_argument(
+        "--raw-parquet",
+        type=Path,
+        default=None,
+        help="Parquet file with patient_id and DiagnosisCode columns",
     )
     parser.add_argument(
         "--data-path",
         type=Path,
-        default=Path("data/raw/lingxidiag16k"),
-        help="Path to the original dataset directory",
+        default=None,
+        help="Backward-compatible dataset root; validation parquet is resolved from it",
+    )
+    parser.add_argument(
+        "--out-name",
+        default="table4_metrics.json",
+        help="Output filename inside --run-dir",
     )
     args = parser.parse_args()
 
-    # Load predictions and dataset
-    predictions = load_predictions(args.run_dir)
-    dataset_cases = load_dataset_cases(args.data_path)
+    predictions = _load_jsonl(args.run_dir / "predictions.jsonl")
+    raw_parquet = _resolve_raw_parquet(args.raw_parquet, args.data_path)
+    raw_codes_by_id = _load_raw_codes(raw_parquet)
+    cases = _build_cases(predictions, raw_codes_by_id)
+    table4 = _compute_table4(cases)
 
-    # Join and compute
-    joined = build_table4_cases(predictions, dataset_cases)
-    if not joined:
-        logger.error("No cases to evaluate after joining. Exiting.")
-        sys.exit(1)
+    out_path = args.run_dir / args.out_name
+    out_path.write_text(
+        json.dumps({"table4": table4}, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
 
-    table4 = compute_table4_metrics(joined, get_prediction)
-
-    # Save
-    out_path = args.run_dir / "table4_metrics.json"
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(table4, f, indent=2, ensure_ascii=False)
-
-    # Also update existing metrics.json to include table4
-    metrics_path = args.run_dir / "metrics.json"
-    if metrics_path.exists():
-        with open(metrics_path, encoding="utf-8") as f:
-            metrics = json.load(f)
-        metrics["table4"] = table4
-        with open(metrics_path, "w", encoding="utf-8") as f:
-            json.dump(metrics, f, indent=2, ensure_ascii=False)
-        logger.info("Updated metrics.json with table4 block")
-
-    # Print summary
-    print(f"\n{'='*60}")
-    print(f"Table 4 Metrics: {args.run_dir.name}")
-    print(f"{'='*60}")
-    for key, value in table4.items():
-        if key.endswith("_n"):
-            print(f"  {key:25s}: {value}")
-        elif value is not None:
-            print(f"  {key:25s}: {value:.4f}")
-        else:
-            print(f"  {key:25s}: None")
-    print(f"{'='*60}")
-    overall = table4.get("Overall")
-    if overall is not None:
-        print(f"  Overall (11-metric avg) : {overall:.4f}")
-    print()
+    logger.info("Loaded %d predictions from %s", len(predictions), args.run_dir)
+    logger.info("Loaded %d raw codes from %s", len(raw_codes_by_id), raw_parquet)
+    logger.info("Wrote %s", out_path)
+    logger.info(
+        "Top-1: %.3f  Top-3: %.3f  F1_m: %.3f  2c_n: %s  Overall: %.4f",
+        table4["12class_Top1"],
+        table4["12class_Top3"],
+        table4["12class_F1_macro"],
+        table4["2class_n"],
+        table4["Overall"],
+    )
 
 
 if __name__ == "__main__":
