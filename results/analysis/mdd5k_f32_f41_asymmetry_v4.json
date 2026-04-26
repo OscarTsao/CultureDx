@@ -1,0 +1,181 @@
+{
+  "generated_at": "2026-04-26",
+  "metric_definition": {
+    "asymmetry_ratio": "(F41 gold predicted as F32) / (F32 gold predicted as F41)",
+    "asymmetric_excess": "(F41 gold predicted as F32) - (F32 gold predicted as F41)",
+    "taxonomy": "paper-parent (F33 -> Others, F41.x -> F41, F32.x -> F32)",
+    "bootstrap": "1000 resamples, seed=20260420"
+  },
+  "systems": {
+    "lingxidiag16k_v4_mas_icd10": {
+      "dataset": "lingxidiag16k",
+      "system": "MAS ICD10 (v4 dual-standard)",
+      "n_cases": 1000,
+      "f41_to_f32": 188,
+      "f32_to_f41": 36,
+      "f41_n": 394,
+      "f32_n": 370,
+      "asymmetry_ratio": 5.222222222222222,
+      "asymmetric_excess": 152,
+      "asymmetry_ci95": [
+        3.75,
+        7.791666666666667
+      ],
+      "excess_ci95": [
+        124,
+        180
+      ]
+    },
+    "lingxidiag16k_v4_mas_dsm5": {
+      "dataset": "lingxidiag16k",
+      "system": "MAS DSM5 (v4 dual-standard)",
+      "n_cases": 1000,
+      "f41_to_f32": 218,
+      "f32_to_f41": 26,
+      "f41_n": 394,
+      "f32_n": 370,
+      "asymmetry_ratio": 8.384615384615385,
+      "asymmetric_excess": 192,
+      "asymmetry_ci95": [
+        5.702702702702703,
+        13.555555555555555
+      ],
+      "excess_ci95": [
+        166,
+        219
+      ]
+    },
+    "lingxidiag16k_v4_mas_both": {
+      "dataset": "lingxidiag16k",
+      "system": "MAS BOTH (v4 dual-standard)",
+      "n_cases": 1000,
+      "f41_to_f32": 188,
+      "f32_to_f41": 36,
+      "f41_n": 394,
+      "f32_n": 370,
+      "asymmetry_ratio": 5.222222222222222,
+      "asymmetric_excess": 152,
+      "asymmetry_ci95": [
+        3.75,
+        7.791666666666667
+      ],
+      "excess_ci95": [
+        124,
+        180
+      ]
+    },
+    "mdd5k_v4_mas_icd10": {
+      "dataset": "mdd5k",
+      "system": "MAS ICD10 (v4 dual-standard)",
+      "n_cases": 925,
+      "f41_to_f32": 151,
+      "f32_to_f41": 38,
+      "f41_n": 339,
+      "f32_n": 410,
+      "asymmetry_ratio": 3.973684210526316,
+      "asymmetric_excess": 113,
+      "asymmetry_ci95": [
+        2.816326530612245,
+        6.076923076923077
+      ],
+      "excess_ci95": [
+        87,
+        139
+      ]
+    },
+    "mdd5k_v4_mas_dsm5": {
+      "dataset": "mdd5k",
+      "system": "MAS DSM5 (v4 dual-standard)",
+      "n_cases": 925,
+      "f41_to_f32": 181,
+      "f32_to_f41": 25,
+      "f41_n": 339,
+      "f32_n": 410,
+      "asymmetry_ratio": 7.24,
+      "asymmetric_excess": 156,
+      "asymmetry_ci95": [
+        5.03125,
+        11.375
+      ],
+      "excess_ci95": [
+        131,
+        183
+      ]
+    },
+    "mdd5k_v4_mas_both": {
+      "dataset": "mdd5k",
+      "system": "MAS BOTH (v4 dual-standard)",
+      "n_cases": 925,
+      "f41_to_f32": 151,
+      "f32_to_f41": 38,
+      "f41_n": 339,
+      "f32_n": 410,
+      "asymmetry_ratio": 3.973684210526316,
+      "asymmetric_excess": 113,
+      "asymmetry_ci95": [
+        2.816326530612245,
+        6.076923076923077
+      ],
+      "excess_ci95": [
+        87,
+        139
+      ]
+    },
+    "mdd5k_baseline_mdd_5k_t1_baseline": {
+      "dataset": "mdd5k",
+      "system": "MDD-5k T1 baseline",
+      "n_cases": 925,
+      "f41_to_f32": 152,
+      "f32_to_f41": 17,
+      "asymmetry_ratio": 8.941176470588236,
+      "asymmetric_excess": 135,
+      "note": "pre-v4 baseline (from bias_transfer_analysis.json)"
+    },
+    "mdd5k_baseline_mdd_5k_single_baseline": {
+      "dataset": "mdd5k",
+      "system": "MDD-5k single baseline",
+      "n_cases": 925,
+      "f41_to_f32": 189,
+      "f32_to_f41": 1,
+      "asymmetry_ratio": 189.0,
+      "asymmetric_excess": 188,
+      "note": "pre-v4 baseline (from bias_transfer_analysis.json)"
+    },
+    "mdd5k_baseline_mdd_5k_r6v2": {
+      "dataset": "mdd5k",
+      "system": "MDD-5k R6v2",
+      "n_cases": 925,
+      "f41_to_f32": 145,
+      "f32_to_f41": 26,
+      "asymmetry_ratio": 5.576923076923077,
+      "asymmetric_excess": 119,
+      "note": "pre-v4 baseline (from bias_transfer_analysis.json)"
+    }
+  },
+  "paired_comparisons": {
+    "lingxidiag16k_dsm5_minus_icd10": {
+      "description": "Paired bootstrap of (DSM-5 - ICD-10) asymmetry on lingxidiag16k",
+      "n_paired_cases": 1000,
+      "diff_ratio_median": 3.12875,
+      "diff_ratio_ci95_low": 1.1226104152933427,
+      "diff_ratio_ci95_high": 7.208333333333334,
+      "diff_excess_median": 41,
+      "diff_excess_ci95_low": 22,
+      "diff_excess_ci95_high": 58,
+      "ratio_diff_significant_at_alpha_0.05": true,
+      "excess_diff_significant_at_alpha_0.05": true
+    },
+    "mdd5k_dsm5_minus_icd10": {
+      "description": "Paired bootstrap of (DSM-5 - ICD-10) asymmetry on mdd5k",
+      "n_paired_cases": 925,
+      "diff_ratio_median": 3.239583333333333,
+      "diff_ratio_ci95_low": 1.1160714285714288,
+      "diff_ratio_ci95_high": 6.889526542324248,
+      "diff_excess_median": 43,
+      "diff_excess_ci95_low": 24,
+      "diff_excess_ci95_high": 63,
+      "ratio_diff_significant_at_alpha_0.05": true,
+      "excess_diff_significant_at_alpha_0.05": true
+    }
+  }
+}
