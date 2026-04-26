@@ -80,7 +80,7 @@ Per round 19 lesson: explicit narrative connectors at section ends prevent impli
 
 **Connector E: §5.3 → §5.2** — The small MAS feature-importance share in the stacker does not imply the MAS pipeline has no value. §5.2 evaluates MAS as a feature block for in-domain Top-1; §5.3 evaluates MAS as an independent reasoning pipeline under cross-dataset F32/F41 error asymmetry. These are different claims.
 
-- ✅ Allowed: "The 11.9% feature-importance share explains why MAS does not drive stacker Top-1 gains, but does not eliminate its value as an auditable reasoning pipeline for cross-dataset bias analysis."
+- ✅ Allowed: "The 11.9% feature-importance share is consistent with MAS having limited measured split utility for stacker Top-1; it does not negate MAS's role as an auditable reasoning pipeline for cross-dataset bias analysis." (round 23 sync to prose)
 - ❌ Forbidden: "The 11.9% feature importance proves MAS robustness."
 - ❌ Forbidden: "Feature importance and bias robustness measure the same thing."
 
