@@ -23,9 +23,9 @@
 
 | Connector | References | Source (already in list above) |
 |---|---|---|
-| §5.4 → §5.1 (parity) | §5.1 ICD-10 deployed model | committed `SECTION_5_1.md` (in `docs/paper/drafts/`) |
+| §5.4 → §5.1 (parity) | §5.1 primary ICD-10-labelled hybrid stacker benchmark | committed `SECTION_5_1.md` (in `docs/paper/drafts/`) |
 | §5.4 → §5.3 (DSM-5 NOT in bias claim) | 7.24× MDD-5k DSM-5 asymmetry | mdd5k_f32_f41_asymmetry_v4.json ✓ |
-| §5.4 → §6.2 (disagreement triage) | 2.06×/35.1% recall on MDD-5k DSM-5 deployed | DISAGREEMENT_AS_TRIAGE.md ✓ |
+| §5.4 → §6.2 (disagreement triage) | 2.06×/35.1% recall when DSM-5 v0 is the primary-output model on MDD-5k | DISAGREEMENT_AS_TRIAGE.md ✓ |
 | §5.4 → §7.6 (F42 limitation) | -40pp DSM-5 F42 recall | F42_DSM5_COLLAPSE_2026_04_25.md ✓ |
 | §5.4 → §7.2 (v0 unverified) | DSM-5 v0 = `0.1-DRAFT, UNVERIFIED` | dsm5_criteria.json ✓ |
 
@@ -87,7 +87,7 @@ Per round 20 lesson — connector inventory must use 4-tier matrix.
 ### Tier 1 (mandatory): foundational/setup section
 
 #### Connector A — to §5.1 parity narrative
-> "The §5.1 main benchmark uses the ICD-10 deployed model. §5.4 reports DSM-5 v0 audit observations — the DSM-5-only mode metrics and the Both-mode sidecar audit evidence — as an audit study and does not reframe the deployed-model claim of §5.1."
+> "§5.1 reports the primary ICD-10-labelled hybrid stacker benchmark. §5.4 evaluates standard-specific MAS reasoning modes as audit outputs and does not reframe the §5.1 primary-model claim. DSM-5-only mode provides metric-specific trade-off measurements; Both mode preserves ICD-10 primary output and exposes DSM-5 sidecar audit evidence."
 
 ### Tier 2 (mandatory): adjacent quantitative claims
 
@@ -95,7 +95,7 @@ Per round 20 lesson — connector inventory must use 4-tier matrix.
 > "The §5.3 bias-robustness claim is scoped to MAS ICD-10 v4 (3.97×). DSM-5 v0 increases MDD-5k F32/F41 asymmetry to 7.24× (paired bootstrap (DSM-5 − ICD-10) 95% CI excludes 0); §5.4 reports DSM-5 v0 evaluation including this trade-off rather than as a robustness improvement."
 
 #### Connector C — to §6.2 disagreement triage
-> "Diagnostic-standard discordance — disagreement between ICD-10-mode and DSM-5-mode predictions on the same case — is reported in §6.2 as an audit triage signal (MDD-5k: 2.06× error enrichment / 35.1% recall when DSM-5 v0 is the deployed model; 1.83× / 32.4% when ICD-10 is deployed). §5.4 establishes the metric-level dual-standard structure that §6.2 uses."
+> "Diagnostic-standard discordance — disagreement between ICD-10-mode and DSM-5-mode predictions on the same case — is reported in §6.2 as an audit triage signal (MDD-5k: 2.06× error enrichment / 35.1% recall when DSM-5 v0 is treated as the primary-output model; 1.83× / 32.4% when ICD-10 is the primary-output model). §5.4 establishes the metric-level dual-standard structure that §6.2 uses."
 
 ### Tier 3 (mandatory): limitation pointers
 
@@ -130,7 +130,7 @@ Per round 20 lesson — connector inventory must use 4-tier matrix.
 ### Connectors / scope
 - ✅ "DSM-5 v0 is reported as an audit observation, not a clinically validated diagnostic standard."
 - ✅ "DSM-5 v0 is excluded from the §5.3 bias-robustness headline (paired-bootstrap (DSM-5 − ICD-10) CI excludes 0)."
-- ✅ "F42 recall collapse from 52% to 12% under DSM-5 mode is a v0 schema limitation, documented in §7.6."
+- ✅ "On LingxiDiag paper-parent per-class analysis, F42/OCD recall decreases from 52% under ICD-10 to 12% under DSM-5; v4 slice metrics and MDD-5k show the same direction but different magnitudes. We treat F42 as a v0 schema limitation and defer exact definition-specific magnitudes to §7.6."
 
 ### CI / statistical
 - ✅ "statistically detectable under paired bootstrap" (per round 22e)
@@ -220,7 +220,7 @@ Per stem-aware grep before commit:
 ### Trap 10 — F42 recall numbers without context
 - ❌ "F42 recall is 12%" (without ICD-10 baseline 52% + v0 caveat + §7.6 pointer)
 - ❌ "DSM-5 F42 collapse" without "v0 schema limitation" qualifier
-- ✅ Allowed: "DSM-5 mode F42 (OCD) recall collapses from 52% (ICD-10) to 12% (DSM-5), a 40pp drop attributable to the v0 schema's criterion-D exclusion structure (§7.6)"
+- ✅ Allowed: "On LingxiDiag paper-parent per-class analysis (n=25), DSM-5 mode F42/OCD recall decreases from 52% (ICD-10) to 12% (DSM-5), a 40pp drop attributable to the v0 schema's criterion-D exclusion structure; v4 slice metrics and MDD-5k show the same direction with smaller magnitudes (see Trap 12 and §7.6)"
 
 ### Trap 11 — "Comparable" used loosely
 - ❌ "DSM-5 Top-3 is comparable to ICD-10" (without numerical bound)
@@ -274,7 +274,7 @@ A single "−40pp" claim is inaccurate for MDD-5k and conflates definitions. Say
 
 | ¶ | Topic | Length |
 |---|---|---:|
-| 1 | Setup: ICD-10 deployed; DSM-5 v0 + Both as audit modes; v0 unverified caveat | ~80w |
+| 1 | Setup: §5.1 primary ICD-10-labelled hybrid stacker benchmark; §5.4 standard-specific MAS audit modes; DSM-5 v0 unverified caveat | ~80w |
 | 2 | LingxiDiag-16K table 5.4a + descriptive trade-off (DSM-5 worse on most metrics in-domain) | ~100w |
 | 3 | MDD-5k table 5.4b + descriptive trade-off (DSM-5 mixed: better on F1-macro/F1-weighted/Overall, worse on Top-1/Top-3) | ~100w |
 | 4 | Both = ICD-10 pass-through verified (table 5.4d); not ensemble | ~70w |
