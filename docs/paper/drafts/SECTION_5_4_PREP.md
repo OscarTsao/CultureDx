@@ -14,7 +14,7 @@
 | LingxiDiag dual-standard metrics | `results/dual_standard_full/lingxidiag16k/mode_{icd10,dsm5,both}/pilot_*/metrics_summary.json` | ✓ | Mode comparison N=1000 |
 | MDD-5k dual-standard metrics | `results/dual_standard_full/mdd5k/mode_{icd10,dsm5,both}/pilot_*/metrics_summary.json` | ✓ | Mode comparison N=925 |
 | Pilot comparison + agreement | `results/dual_standard_full/{lingxidiag16k,mdd5k}/pilot_comparison.json` | ✓ | Agreement / pass-through registry |
-| F42 limitation doc | `docs/limitations/F42_DSM5_COLLAPSE_2026_04_25.md` | ✓ | F42 OCD recall collapse 52% → 12% under DSM-5 |
+| F42 limitation doc | `docs/limitations/F42_DSM5_COLLAPSE_2026_04_25.md` | ✓ | LingxiDiag paper-parent F42/OCD decrease 52%→12% under DSM-5; definition-specific details for §7.6 |
 | F32/F41 asymmetry registry | `docs/analysis/MDD5K_F32_F41_ASYMMETRY_V4.md` + `results/analysis/mdd5k_f32_f41_asymmetry_v4.json` | ✓ | DSM-5 worsens F32/F41 (already used in §5.3) |
 | Disagreement triage analysis | `docs/analysis/DISAGREEMENT_AS_TRIAGE.md` | ✓ | Diagnostic-standard discordance numbers (for §6.2 connector) |
 | DSM-5 v0 unverified marker | `src/culturedx/ontology/data/dsm5_criteria.json` | ✓ | version `0.1-DRAFT`, source_note: "UNVERIFIED" |
@@ -100,7 +100,7 @@ Per round 20 lesson — connector inventory must use 4-tier matrix.
 ### Tier 3 (mandatory): limitation pointers
 
 #### Connector D — to §7.6 F42 limitation
-> "The DSM-5 v0 schema produces F42 (OCD) recall collapse from 52% (ICD-10) to 12% (DSM-5) on LingxiDiag-16K. We document this in §7.6 as a limitation of the v0 DSM-5 criterion-D exclusion structure, not as evidence against dual-standard auditing in general."
+> "On LingxiDiag paper-parent per-class analysis (n=25), DSM-5 v0 F42/OCD recall decreases from 52% under ICD-10 to 12% under DSM-5. We document this in §7.6 as a limitation of the v0 DSM-5 criterion-D exclusion structure, not as evidence against dual-standard auditing in general."
 
 ### Tier 4 (mandatory): scope conflict / unverified claims
 
