@@ -25,6 +25,6 @@ We therefore exclude DSM-5 v0 from this bias-robustness claim and report it as a
 
 ## Relation to other findings
 
-This bias-robustness result does not contradict the §5.1 accuracy-parity result: Top-1 parity and F32/F41 error asymmetry measure different deployment properties, and the MAS pipeline is retained for the second, not the first. The 11.9% MAS feature-importance share documented in §5.2 is consistent with MAS having limited measured split utility for stacker Top-1; it does not negate MAS's role as an auditable reasoning pipeline for cross-dataset bias analysis.
+This bias-robustness result does not contradict the §5.1 accuracy-parity result: Top-1 parity and F32/F41 error asymmetry measure different system properties, and the MAS pipeline is retained for the second, not the first. The 11.9% MAS feature-importance share documented in §5.2 is consistent with MAS having limited measured split utility for stacker Top-1; it does not negate MAS's role as an auditable reasoning pipeline for cross-dataset bias analysis.
 
 Finally, 3.97× remains an asymmetric error pattern, not a resolved one — F41→F32 misclassification remains the dominant direction within this F32/F41 error pair under MDD-5k shift — and we document this residual asymmetry as a limitation in §7.5.
