@@ -26,7 +26,7 @@
 | §5.4 → §5.1 (parity) | §5.1 primary ICD-10-labelled hybrid stacker benchmark | committed `SECTION_5_1.md` (in `docs/paper/drafts/`) |
 | §5.4 → §5.3 (DSM-5 NOT in bias claim) | 7.24× MDD-5k DSM-5 asymmetry | mdd5k_f32_f41_asymmetry_v4.json ✓ |
 | §5.4 → §6.2 (disagreement triage) | 2.06×/35.1% recall when DSM-5 v0 is the primary-output model on MDD-5k | DISAGREEMENT_AS_TRIAGE.md ✓ |
-| §5.4 → §7.6 (F42 limitation) | -40pp DSM-5 F42 recall | F42_DSM5_COLLAPSE_2026_04_25.md ✓ |
+| §5.4 → §7.6 (F42 limitation) | definition-aware F42/OCD decrease under DSM-5 v0; exact magnitudes in §7.6 | F42_DSM5_COLLAPSE_2026_04_25.md ✓ |
 | §5.4 → §7.2 (v0 unverified) | DSM-5 v0 = `0.1-DRAFT, UNVERIFIED` | dsm5_criteria.json ✓ |
 
 ---
