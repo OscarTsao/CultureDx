@@ -71,7 +71,7 @@ Two-stage policy ("flag if either signal fires") increases recall to 58.0% at th
 | MDD-5k | ICD-10 | 925 | 20.8% | 0.656 | 0.370 | 1.83× | 32.4% |
 | MDD-5k | DSM-5 v0 | 925 | 20.8% | 0.656 | 0.292 | 2.06× | 35.1% |
 
-Enrichment range across the four configurations: 1.37× to 2.06×. Cross-dataset comparison should be interpreted cautiously because of different primary-output models, baseline error rates, and diagnostic-distribution concentration.
+Enrichment range across the four configurations: 1.37× to 2.06×. Cross-dataset comparison should be interpreted cautiously because of different datasets, primary-output perspectives, baseline error rates, and diagnostic-distribution concentration.
 
 ---
 
@@ -93,7 +93,7 @@ Enrichment range across the four configurations: 1.37× to 2.06×. Cross-dataset
 
 ### Connector D — §6 → §7 (limitations / scope)
 
-> "Triage results in §6 are observed on synthetic / curated test data (LingxiDiag-16K test_final and MDD-5k); we do not claim deployment readiness. The diagnostic-standard discordance analysis uses DSM-5 v0 (LLM-drafted, unverified per `dsm5_criteria.json`); we document this scope limitation in §7.2. Cross-dataset enrichment comparisons in §6.2 are descriptive only because the two datasets involve different primary-output models and baseline error rates."
+> "Triage results in §6 are observed on synthetic / curated test data (LingxiDiag-16K test_final and MDD-5k); we do not claim deployment readiness. The diagnostic-standard discordance analysis uses DSM-5 v0 (LLM-drafted, unverified per `dsm5_criteria.json`); we document this scope limitation in §7.2. Cross-dataset enrichment comparisons in §6.2 are descriptive only because the comparisons involve different datasets, primary-output perspectives, and baseline error rates."
 
 ---
 
@@ -123,7 +123,7 @@ Enrichment range across the four configurations: 1.37× to 2.06×. Cross-dataset
 - ✅ "comparable in magnitude" (with the caveat that datasets differ)
 - ✅ "enrichment ratios range from 1.37× to 2.06× across the four configurations"
 - ✅ "the higher enrichment under the DSM-5 primary-output perspective reflects lower DSM-5 accuracy within flagged ICD-10/DSM-5 disagreement cases, not DSM-5-specific triage value"
-- ✅ "more informative under distribution shift" — only with the caveat that cross-dataset comparison involves different primary-output models and baselines
+- ✅ "more informative under distribution shift" — only with the caveat that the comparisons involve different datasets, primary-output perspectives, and baselines
 
 ### Operating-point reporting
 
@@ -217,14 +217,14 @@ Enrichment range across the four configurations: 1.37× to 2.06×. Cross-dataset
 ### Trap 7 — Cross-dataset enrichment ranking
 
 **Trap**: Treating MDD-5k enrichment > LingxiDiag enrichment as a meaningful comparison.
-**Why dangerous**: The two datasets involve different primary-output models, baseline error rates, and diagnostic-distribution concentration. MDD-5k has more concentrated F32+F41 distribution (77% vs 72% in LingxiDiag), so the 20.8% disagreement subset is enriched for harder cases — this is a structural difference, not a robustness claim.
+**Why dangerous**: The comparisons involve different datasets, primary-output perspectives, baseline error rates, and diagnostic-distribution concentration. MDD-5k has more concentrated F32+F41 distribution (77% vs 72% in LingxiDiag), so the 20.8% disagreement subset is enriched for harder cases — this is a structural difference, not a robustness claim.
 **Forbidden**:
 - ❌ "MDD-5k > LingxiDiag" (or any direct ranking)
 - ❌ "diagnostic-standard discordance generalizes better to MDD-5k"
 - ❌ "the signal strengthens under distribution shift" (without "may", "appears", and the caveat)
 **Allowed**:
 - ✅ "enrichment ratios range from 1.37× to 2.06× across the four configurations"
-- ✅ "the signal magnitude appears stronger on MDD-5k, but cross-dataset enrichment ratios should be interpreted with caution because they involve different primary-output models, datasets, and baseline error rates"
+- ✅ "the signal magnitude appears stronger on MDD-5k, but cross-dataset enrichment ratios should be interpreted with caution because they involve different datasets, primary-output perspectives, and baseline error rates"
 - ✅ "MDD-5k disagreement rate is 20.8% versus LingxiDiag's 25.1%; this likely reflects MDD-5k's more concentrated diagnostic distribution"
 
 ### Trap 8 — Aggressive mechanism verbs (cumulative round 18 / 22)
