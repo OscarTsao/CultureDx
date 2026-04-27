@@ -36,6 +36,8 @@ All 7 confirmed exist on remote `ee8e3c3`.
 
 ### Table 6.1a — Model-discordance vs confidence baseline (LingxiDiag-16K test_final, N = 1000)
 
+*Primary-output model for §6.1 = Stacker LGBM. Acc unflagged / Acc flagged / Error enrichment / Error recall are computed against the Stacker LGBM Top-1 predictions and gold labels.*
+
 | Triage rule | Flag rate | Acc unflagged | Acc flagged | Error enrichment | Error recall |
 |---|---:|---:|---:|---:|---:|
 | TF-IDF/Stacker disagreement | 26.4% | 0.697 | 0.375 | 2.06× | 42.5% |
@@ -81,7 +83,9 @@ Enrichment range across the four configurations: 1.37× to 2.06×. Cross-dataset
 
 ### Connector B — §6.1 → §5.2 (MAS small importance ≠ no audit value)
 
-> "The §5.2 stacker importance analysis assigns MAS reasoning an aggregate share of 11.9% across feature blocks; this is a marginal contribution to Top-1 prediction. §6.1 demonstrates that the same MAS reasoning, when paired with TF-IDF, produces a model-discordance signal that flags 26.4% of cases at 2.06× error enrichment. Aggregate feature importance and case-level audit value are different evaluation properties."
+> "The §5.2 stacker importance analysis assigns MAS reasoning an aggregate share of 11.9% across feature blocks; this is a marginal contribution to Top-1 prediction.
+> The hybrid stacker output, which includes MAS-derived features, can be compared with TF-IDF predictions to expose a model-discordance signal that flags 26.4% of cases at 2.06× error enrichment in §6.1; this does not imply that the MAS feature block alone causes the disagreement.
+> Aggregate feature importance and case-level audit value are different evaluation properties."
 
 ### Connector C — §6.2 → §5.4 (standard trade-offs become triage signal)
 
@@ -297,17 +301,18 @@ Per stem-aware grep before commit:
 **Response**: Different populations, complementary policy.
 > "Bootstrap CI on the disagreement-vs-confidence advantage includes zero, so we do not claim statistical superiority. However, Jaccard 0.357 indicates partially complementary flagged populations, and a union policy captures 58.0% of errors at 38.9% flag rate — strictly more than either signal alone."
 
-### Attack 3: "Higher DSM-5-deployment enrichment proves DSM-5 is better"
+### Attack 3: "Higher enrichment under the DSM-5 primary-output perspective proves DSM-5 is better"
 
 **Response**: Lower baseline accuracy mechanism.
-> "The higher enrichment under the DSM-5 primary-output perspective (1.69× / 2.06×) versus the ICD-10 primary-output perspective (1.37× / 1.83×) reflects DSM-5's lower baseline accuracy on the unflagged set, not DSM-5-specific triage value. Section 5.4 documents that DSM-5-only mode underperforms ICD-10 mode on Top-1 / weighted-F1 / Overall on LingxiDiag, and worsens F32/F41 asymmetry on both datasets."
+> "The higher enrichment under the DSM-5 primary-output perspective (1.69× / 2.06×) versus the ICD-10 primary-output perspective (1.37× / 1.83×) reflects lower DSM-5 accuracy within the flagged disagreement subset (LingxiDiag flagged accuracy 0.239 DSM-5 vs 0.382 ICD-10; MDD-5k flagged accuracy 0.292 DSM-5 vs 0.370 ICD-10), not DSM-5-specific triage value or DSM-5 superiority.
+> Section 5.4 documents that DSM-5-only mode underperforms ICD-10 mode on Top-1 / weighted-F1 / Overall on LingxiDiag and worsens F32/F41 asymmetry on both datasets."
 
 ### Attack 4: "MDD-5k disagreement rate is lower (20.8%) — does the signal weaken under shift?"
 
 **Response**: Separate flag rate from signal strength; explain via diagnostic concentration.
 > "Flag rate measures how often the two modes disagree, while enrichment measures how concentrated errors are in the disagreement subset.
-> MDD-5k disagreement rate (20.8%) is lower than LingxiDiag (25.1%) because MDD-5k has a more concentrated diagnostic distribution (77% F32+F41 vs 72% in LingxiDiag), so the modes agree on the majority cases more often.
-> The 20.8% disagreement subset is therefore enriched for harder cases, consistent with the higher enrichment ratio (2.06× vs 1.37×).
+> MDD-5k disagreement rate (20.8%) is lower than LingxiDiag (25.1%); this may partly reflect MDD-5k's more concentrated diagnostic distribution (77% F32+F41 vs 72% in LingxiDiag), under which the two modes can be expected to agree on the majority cases more often.
+> The 20.8% disagreement subset is nevertheless enriched for harder cases, consistent with the higher enrichment ratio (2.06× vs 1.37×).
 > Cross-dataset enrichment comparisons remain caveated."
 
 ### Attack 5: "Why not also report a confidence baseline for §6.2?"
