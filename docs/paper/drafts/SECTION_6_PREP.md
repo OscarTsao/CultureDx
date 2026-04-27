@@ -122,7 +122,7 @@ Enrichment range across the four configurations: 1.37× to 2.06×. Cross-dataset
 
 - ✅ "comparable in magnitude" (with the caveat that datasets differ)
 - ✅ "enrichment ratios range from 1.37× to 2.06× across the four configurations"
-- ✅ "the higher enrichment under DSM-5 primary-output perspective reflects DSM-5's lower baseline accuracy rather than DSM-5-specific triage value"
+- ✅ "the higher enrichment under the DSM-5 primary-output perspective reflects lower DSM-5 accuracy within flagged ICD-10/DSM-5 disagreement cases, not DSM-5-specific triage value"
 - ✅ "more informative under distribution shift" — only with the caveat that cross-dataset comparison involves different primary-output models and baselines
 
 ### Operating-point reporting
@@ -194,14 +194,14 @@ Enrichment range across the four configurations: 1.37× to 2.06×. Cross-dataset
 ### Trap 5 — DSM-5 superiority via diagnostic-standard discordance
 
 **Trap**: Inferring DSM-5 quality from higher diagnostic-standard discordance enrichment under the DSM-5 primary-output perspective.
-**Why dangerous**: Higher enrichment under the DSM-5 primary-output perspective reflects DSM-5's lower baseline accuracy (more errors in the unflagged set), not DSM-5-specific triage value.
+**Why dangerous**: Higher enrichment under the DSM-5 primary-output perspective reflects lower DSM-5 accuracy within flagged ICD-10/DSM-5 disagreement cases (Table 6.2a: LingxiDiag flagged 0.239 DSM-5 vs 0.382 ICD-10; MDD-5k flagged 0.292 DSM-5 vs 0.370 ICD-10), not DSM-5-specific triage value. Within-dataset unflagged accuracy is identical between perspectives, so the mechanism is not a baseline-accuracy gap.
 **Forbidden**:
 - ❌ "DSM-5 has stronger triage"
 - ❌ "DSM-5 generalizes better"
 - ❌ "diagnostic-standard discordance validates DSM-5"
 - ❌ "DSM-5 enrichment indicates DSM-5 superiority"
 **Allowed**:
-- ✅ "the higher enrichment under DSM-5 primary-output perspective reflects DSM-5's lower baseline accuracy rather than DSM-5-specific triage value"
+- ✅ "the higher enrichment under the DSM-5 primary-output perspective reflects lower DSM-5 accuracy within flagged ICD-10/DSM-5 disagreement cases, not DSM-5-specific triage value"
 - ✅ "we report both perspectives because both correspond to legitimate audit configurations under §5.4"
 
 ### Trap 6 — Both mode ensemble (cumulative §5.4 carry-forward)
@@ -303,7 +303,7 @@ Per stem-aware grep before commit:
 
 ### Attack 3: "Higher enrichment under the DSM-5 primary-output perspective proves DSM-5 is better"
 
-**Response**: Lower baseline accuracy mechanism.
+**Response**: Flagged-subset accuracy mechanism.
 > "The higher enrichment under the DSM-5 primary-output perspective (1.69× / 2.06×) versus the ICD-10 primary-output perspective (1.37× / 1.83×) reflects lower DSM-5 accuracy within the flagged disagreement subset (LingxiDiag flagged accuracy 0.239 DSM-5 vs 0.382 ICD-10; MDD-5k flagged accuracy 0.292 DSM-5 vs 0.370 ICD-10), not DSM-5-specific triage value or DSM-5 superiority.
 > Section 5.4 documents that DSM-5-only mode underperforms ICD-10 mode on Top-1 / weighted-F1 / Overall on LingxiDiag and worsens F32/F41 asymmetry on both datasets."
 
@@ -361,7 +361,7 @@ When authorized, structure (~600-800 words across §6.1 + §6.2 + 3 tables):
 >
 > §6.2 reframes the §5.4 dual-standard metric trade-off as a case-level diagnostic-standard discordance signal.
 > ICD-10/DSM-5 mode disagreement flags 25.1% of LingxiDiag cases (1.37× / 31.4% under ICD-10 primary-output perspective, 1.69× / 36.1% under DSM-5 primary-output perspective) and 20.8% of MDD-5k cases (1.83× / 32.4% under ICD-10, 2.06× / 35.1% under DSM-5).
-> The higher enrichment under DSM-5 primary-output perspective reflects DSM-5's lower baseline accuracy, not DSM-5-specific triage value.
+> The higher enrichment under the DSM-5 primary-output perspective reflects lower DSM-5 accuracy within flagged ICD-10/DSM-5 disagreement cases (per Table 6.2a flagged-subset accuracy), not DSM-5-specific triage value.
 >
 > All §6 numbers are observed on synthetic / curated test data; we do not claim deployment readiness."
 
