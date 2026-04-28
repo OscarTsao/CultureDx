@@ -1,6 +1,6 @@
 # Section 5.1 — Main Benchmark Results
 
-We evaluate four candidate systems on LingxiDiag-16K test_final (N=1000) against two reference baselines from the original LingxiDiag report [CITE LingxiDiag paper]: its TF-IDF baseline and its best reported LLM baseline.
+We evaluate four candidate systems on LingxiDiag-16K test_final (N=1000) against two reference baselines from the original LingxiDiag report [CITE — verify: LingxiDiag]: its TF-IDF baseline and its best reported LLM baseline.
 Our selected Stacker LGBM achieves Top-1 = 0.612, Top-3 = 0.925, and Overall = 0.617, exceeding the published TF-IDF baseline by 11.6 percentage points on Top-1, 28.0 on Top-3, and 8.4 on Overall, and the published best LLM baseline by 12.5, 35.1, and 9.6 points on the same metrics.
 Because this model combines supervised TF-IDF-derived features with MAS outputs, we treat this as a hybrid-system comparison rather than an LLM-only result.
 
@@ -8,8 +8,8 @@ Because this model combines supervised TF-IDF-derived features with MAS outputs,
 
 | System | 2-class | 4-class | Top-1 | Top-3 | macro-F1 | weighted-F1 | Overall |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Published TF-IDF [CITE LingxiDiag paper] | — | — | .496 | — | — | — | — |
-| Published best LLM [CITE LingxiDiag paper] | — | — | — | — | — | — | — |
+| Published TF-IDF [CITE — verify: LingxiDiag] | — | — | .496 | — | — | — | — |
+| Published best LLM [CITE — verify: LingxiDiag] | — | — | — | — | — | — | — |
 | Reproduced TF-IDF (ours) | .712 | .491 | .610 | .829 | .352 | .585 | .555 |
 | MAS-only DtV | .803 | — | .516 | — | — | — | — |
 | **Stacker LGBM (ours, primary)** | **.753** | **.546** | **.612** | **.925** | **.334** | **.573** | **.617** |

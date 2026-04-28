@@ -1,0 +1,243 @@
+% CultureDx — bibliography
+% Generated during Phase 2 Step 5b citation apply-pass at HEAD bca33ce.
+%
+% Verification policy:
+%   - Every entry below was directly fetched from a primary source page
+%     (DOI / arXiv / journal landing / proceedings / official organization)
+%     during this apply-pass. No training-data recall was used.
+%   - Per Citation Pass Plan v1.1 §8: arXiv-only / model-card / software-resource
+%     identifiers are recorded as such; no DOI is invented for entries that do
+%     not have one.
+%   - Sources that could not be uniquely identified during this apply-pass
+%     are NOT included here; they remain as [CITE — verify] markers in the
+%     prose with explicit rationale in CITATION_LEDGER.md.
+
+% =============================================================================
+% Bucket A — Paper / dataset
+% =============================================================================
+%
+% LingxiDiag and MDD-5k papers are NOT in this bibliography:
+%   - LingxiDiag: User has direct access to the paper artifact in the project;
+%     marked [CITE — verify: LingxiDiag] in prose. Apply-pass deferred to
+%     manual user verification per Citation Pass Plan v1.1 §8.4.
+%   - MDD-5k: Could not be uniquely identified during apply-pass; multiple
+%     candidate datasets exist with similar names.
+%     Marked [CITE — verify: MDD-5k].
+
+% =============================================================================
+% Bucket B — Standards / formal criteria
+% =============================================================================
+
+@book{who1992icd10,
+  author    = {{World Health Organization}},
+  title     = {The {ICD-10} Classification of Mental and Behavioural Disorders: Clinical Descriptions and Diagnostic Guidelines},
+  year      = {1992},
+  publisher = {World Health Organization},
+  address   = {Geneva},
+  note      = {ICD-10 international standard reference; the F-chapter parent codes used as paper-parent classes throughout this work derive from this standard.}
+}
+
+@book{apa2022dsm5tr,
+  author    = {{American Psychiatric Association}},
+  title     = {Diagnostic and Statistical Manual of Mental Disorders, Fifth Edition, Text Revision ({DSM-5-TR})},
+  year      = {2022},
+  publisher = {American Psychiatric Association Publishing},
+  address   = {Washington, DC},
+  doi       = {10.1176/appi.books.9780890425787},
+  url       = {https://dsm.psychiatryonline.org/doi/book/10.1176/appi.books.9780890425787},
+  note      = {DSM-5-TR standard reference. CultureDx uses an LLM-drafted v0 formalization of DSM-5-TR concepts (\texttt{dsm5\_criteria.json}, version \texttt{0.1-DRAFT}, source-note \texttt{UNVERIFIED}); this citation does not imply clinician validation of the CultureDx schema.}
+}
+
+@article{strasser2026machine,
+  author    = {Strasser-Kirchweger, Barbara and Kutil, Raoul Hugo and Zimmermann, Georg and Borgelt, Christian and Trutschnig, Wolfgang and Hutzler, Florian},
+  title     = {Machine-actionable criteria chart the symptom space of mental disorders},
+  journal   = {npj Digital Medicine},
+  volume    = {9},
+  number    = {271},
+  year      = {2026},
+  month     = feb,
+  doi       = {10.1038/s41746-026-02451-6},
+  url       = {https://www.nature.com/articles/s41746-026-02451-6},
+  note      = {AIDA-Path is the associated code/data resource name; this paper is the formal article describing the symptom-space framework. CultureDx treats this work as a pending external structural-alignment anchor; no AIDA-Path overlap result is presented as part of CultureDx's evidence (see Section 7.8).}
+}
+
+% =============================================================================
+% Bucket C — Clinical / psychiatric LLM caution
+% =============================================================================
+
+@article{chen2026llm,
+  author    = {Chen, Sully F. and Alyakin, Anton and Seas, Andreas and others},
+  title     = {{LLM}-assisted systematic review of large language models in clinical medicine},
+  journal   = {Nature Medicine},
+  volume    = {32},
+  pages     = {1152--1159},
+  year      = {2026},
+  doi       = {10.1038/s41591-026-04229-5},
+  url       = {https://www.nature.com/articles/s41591-026-04229-5},
+  note      = {Used to support the §2.2 claim that clinical LLM evaluations remain heavily benchmark / simulated / retrospective. Nature Medicine citation line: "Chen, S.F., Alyakin, A., Seas, A. et al."; full first names verified directly from the article landing page.}
+}
+
+@article{hager2024evaluation,
+  author    = {Hager, Paul and Jungmann, Friederike and Holland, Robbie and Bhagat, Kunal and Hubrecht, Inga and Knauer, Manuel and Vielhauer, Jakob and Makowski, Marcus and Braren, Rickmer and Kaissis, Georgios and Rueckert, Daniel},
+  title     = {Evaluation and mitigation of the limitations of large language models in clinical decision-making},
+  journal   = {Nature Medicine},
+  volume    = {30},
+  pages     = {2613--2622},
+  year      = {2024},
+  month     = sep,
+  doi       = {10.1038/s41591-024-03097-1},
+  url       = {https://www.nature.com/articles/s41591-024-03097-1},
+  note      = {Demonstrates substantial pitfalls of current LLMs for autonomous clinical decision-making in a realistic simulated environment. Cited in §2.2 as evidence that clinical LLM benchmarks fail to assess deployment-ready skills.}
+}
+
+@article{omar2024applications,
+  author    = {Omar, Mahmud and Soffer, Shelly and Charney, Alexander W. and Landi, Isotta and Nadkarni, Girish N. and Klang, Eyal},
+  title     = {Applications of large language models in psychiatry: a systematic review},
+  journal   = {Frontiers in Psychiatry},
+  volume    = {15},
+  pages     = {1422807},
+  year      = {2024},
+  month     = jun,
+  doi       = {10.3389/fpsyt.2024.1422807},
+  url       = {https://www.frontiersin.org/journals/psychiatry/articles/10.3389/fpsyt.2024.1422807/full},
+  note      = {Systematic review of LLM applications in psychiatry. Cited in §2.2 as the psychiatry-specific complement to general clinical LLM caution.}
+}
+
+% =============================================================================
+% Bucket D — Multi-agent clinical reasoning
+% =============================================================================
+
+@inproceedings{tang2024medagents,
+  author    = {Tang, Xiangru and Zou, Anni and Zhang, Zhuosheng and Li, Ziming and Zhao, Yilun and Zhang, Xingyao and Cohan, Arman and Gerstein, Mark},
+  title     = {{MedAgents}: Large Language Models as Collaborators for Zero-shot Medical Reasoning},
+  booktitle = {Findings of the Association for Computational Linguistics: ACL 2024},
+  pages     = {599--621},
+  year      = {2024},
+  month     = aug,
+  address   = {Bangkok, Thailand},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2024.findings-acl.33/},
+  archivePrefix = {arXiv},
+  eprint    = {2311.10537},
+  note      = {Multi-disciplinary collaboration framework for LLM-based medical reasoning. Cited in §2.3 as one of several modular multi-agent approaches in clinical reasoning.}
+}
+
+@inproceedings{kim2024mdagents,
+  author    = {Kim, Yubin and Park, Chanwoo and Jeong, Hyewon and Chan, Yik Siu and Xu, Xuhai and McDuff, Daniel and Lee, Hyeonhoon and Ghassemi, Marzyeh and Breazeal, Cynthia and Park, Hae Won},
+  title     = {{MDAgents}: An Adaptive Collaboration of {LLMs} for Medical Decision-Making},
+  booktitle = {Advances in Neural Information Processing Systems},
+  volume    = {37},
+  year      = {2024},
+  url       = {https://openreview.net/forum?id=EKdk4vxKO4},
+  archivePrefix = {arXiv},
+  eprint    = {2404.15155},
+  note      = {Accepted as oral at NeurIPS 2024. Adaptive collaboration framework for LLM-based medical decision-making. Cited in §2.3.}
+}
+
+@article{chen2025enhancing,
+  author    = {Chen, Xi and Yi, Huahui and You, Mingke and Liu, WeiZhi and Wang, Li and Li, Hairui and Zhang, Xue and Guo, Yingman and Fan, Lei and Chen, Gang and Lao, Qicheng and Fu, Weili and Li, Kang and Li, Jian},
+  title     = {Enhancing diagnostic capability with multi-agents conversational large language models},
+  journal   = {npj Digital Medicine},
+  volume    = {8},
+  number    = {159},
+  year      = {2025},
+  month     = mar,
+  doi       = {10.1038/s41746-025-01550-0},
+  url       = {https://www.nature.com/articles/s41746-025-01550-0},
+  note      = {Multi-Agent Conversation (MAC) framework for disease diagnosis on rare disease cases. Cited in §2.3 alongside MedAgents and MDAgents as part of the multi-agent clinical reasoning literature.}
+}
+
+% =============================================================================
+% Bucket E — Classical clinical NLP / TF-IDF baselines
+% =============================================================================
+%
+% Bucket E entries are NOT in this bibliography:
+%   - PLOS One 2024 clinical NLP coding: placeholder name too vague to
+%     uniquely identify; multiple candidate papers match "PLOS One 2024
+%     clinical NLP coding". Marked [CITE — verify: PLOS One 2024].
+%   - JMIR AI 2024 BOW vs Bio-Clinical-BERT: similarly ambiguous; needs
+%     manual identification. Marked [CITE — verify: JMIR AI 2024].
+%   - Wang 2019 BMC clinical text classification: ambiguous; multiple
+%     candidate Wang 2019 BMC papers exist on this topic. Marked
+%     [CITE — verify: Wang 2019 BMC].
+
+% =============================================================================
+% Bucket F — Methods / tools
+% =============================================================================
+
+@misc{yang2025qwen3,
+  author    = {{Qwen Team}},
+  title     = {{Qwen3} Technical Report},
+  year      = {2025},
+  month     = may,
+  archivePrefix = {arXiv},
+  eprint    = {2505.09388},
+  primaryClass = {cs.CL},
+  url       = {https://arxiv.org/abs/2505.09388},
+  note      = {Qwen3 technical report. Lead author An Yang; full author list available on the arXiv landing page (60+ contributors). Cited in §4.1 as the inference backbone (Qwen3-32B-AWQ). The model is served via vLLM in this work.}
+}
+
+@inproceedings{kwon2023efficient,
+  author    = {Kwon, Woosuk and Li, Zhuohan and Zhuang, Siyuan and Sheng, Ying and Zheng, Lianmin and Yu, Cody Hao and Gonzalez, Joseph E. and Zhang, Hao and Stoica, Ion},
+  title     = {Efficient Memory Management for Large Language Model Serving with {PagedAttention}},
+  booktitle = {Proceedings of the 29th Symposium on Operating Systems Principles ({SOSP} '23)},
+  year      = {2023},
+  month     = oct,
+  publisher = {ACM},
+  archivePrefix = {arXiv},
+  eprint    = {2309.06180},
+  url       = {https://arxiv.org/abs/2309.06180},
+  note      = {The vLLM serving system paper. Cited in §4.1 as the inference infrastructure used to serve Qwen3-32B-AWQ.}
+}
+
+@misc{chen2024bgem3,
+  author    = {Chen, Jianlv and Xiao, Shitao and Zhang, Peitian and Luo, Kun and Lian, Defu and Liu, Zheng},
+  title     = {{BGE M3-Embedding}: Multi-Lingual, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation},
+  year      = {2024},
+  month     = feb,
+  archivePrefix = {arXiv},
+  eprint    = {2402.03216},
+  primaryClass = {cs.CL},
+  url       = {https://arxiv.org/abs/2402.03216},
+  note      = {BGE-M3 retrieval embedding model from BAAI / University of Science and Technology of China. Cited in §4.1 as the retrieval utility used in the broader CultureDx system. Per §4.1: reported benchmark metrics do not depend on a retrieval ablation.}
+}
+
+@inproceedings{ke2017lightgbm,
+  author    = {Ke, Guolin and Meng, Qi and Finley, Thomas and Wang, Taifeng and Chen, Wei and Ma, Weidong and Ye, Qiwei and Liu, Tie-Yan},
+  title     = {{LightGBM}: A Highly Efficient Gradient Boosting Decision Tree},
+  booktitle = {Advances in Neural Information Processing Systems 30 ({NIPS} 2017)},
+  pages     = {3146--3154},
+  year      = {2017},
+  publisher = {Curran Associates, Inc.},
+  url       = {https://papers.nips.cc/paper/6907-lightgbm-a-highly-efficient-gradient-boosting-decision-tree},
+  note      = {LightGBM paper. Cited in §4.2 as the tree booster used in the Stacker LGBM hybrid system. NIPS 2017 has no formal DOI; the Curran Associates / NIPS proceedings URL is the canonical archival reference.}
+}
+
+@article{mcnemar1947note,
+  author    = {McNemar, Quinn},
+  title     = {Note on the Sampling Error of the Difference Between Correlated Proportions or Percentages},
+  journal   = {Psychometrika},
+  volume    = {12},
+  number    = {2},
+  pages     = {153--157},
+  year      = {1947},
+  month     = jun,
+  doi       = {10.1007/BF02295996},
+  url       = {https://link.springer.com/article/10.1007/BF02295996},
+  note      = {The original McNemar test reference. Cited in §4.5 for paired-discordance testing on Top-1 comparisons.}
+}
+
+@article{efron1979bootstrap,
+  author    = {Efron, Bradley},
+  title     = {Bootstrap Methods: Another Look at the Jackknife},
+  journal   = {The Annals of Statistics},
+  volume    = {7},
+  number    = {1},
+  pages     = {1--26},
+  year      = {1979},
+  month     = jan,
+  publisher = {Institute of Mathematical Statistics},
+  doi       = {10.1214/aos/1176344552},
+  url       = {https://projecteuclid.org/journals/annals-of-statistics/volume-7/issue-1/Bootstrap-Methods-Another-Look-at-the-Jackknife/10.1214/aos/1176344552.full},
+  note      = {Original bootstrap resampling paper. Cited in §4.5 for percentile bootstrap confidence intervals on asymmetry ratios (§5.3) and disagreement-triage advantage analysis (§6.1).}
+}

@@ -7,13 +7,13 @@ The architecture is designed to expose audit traces in addition to benchmark per
 
 The agent pipeline consists of a Triage agent that selects a candidate disorder shortlist, a Criterion Checker that evaluates per-disorder ICD-10 or DSM-5 criteria against transcript evidence, a Logic Engine that resolves criterion-level decisions into per-disorder eligibility, a Calibrator that adjusts confidences using held-out development data, a Comorbidity Gate that decides whether multiple disorders should be reported jointly, and a Diagnostician that produces the final ranked output.
 A Direct-to-Verdict (DtV) configuration of the Diagnostician is also retained as a comparator: it bypasses the criterion-checking pipeline and emits a ranked output directly from the LLM, and it serves as the MAS-only baseline reported in §5.1.
-The LLM backbone is Qwen3-32B-AWQ served via vLLM. BGE-M3 supports retrieval utilities in the broader system, but the reported benchmark metrics do not depend on a retrieval ablation.
+The LLM backbone is Qwen3-32B-AWQ [CITE yang2025qwen3] served via vLLM [CITE kwon2023efficient]. BGE-M3 [CITE chen2024bgem3] supports retrieval utilities in the broader system, but the reported benchmark metrics do not depend on a retrieval ablation.
 We make no claim that criterion traces are clinically faithful; the agents are LLM-backed and have not been clinically validated.
 
 ## 4.2 Baselines and stacker
 
 We compare our system against two LingxiDiag report reference baselines (the published TF-IDF baseline and the published best LLM baseline) and against four candidate systems of our own.
-Our selected primary system is **Stacker LGBM**, a hybrid supervised-plus-MAS stacker built on a LightGBM tree booster.
+Our selected primary system is **Stacker LGBM**, a hybrid supervised-plus-MAS stacker built on a LightGBM [CITE ke2017lightgbm] tree booster.
 The remaining three candidate systems are: a **reproduced TF-IDF baseline** (logistic regression on character / word TF-IDF features); a **MAS-only DtV** comparator (Direct-to-Verdict diagnostician without supervised features); and **Stacker LR**, an alternative hybrid stacker built on logistic regression.
 
 The stacker uses 31 total features partitioned into a TF-IDF block and an MAS block.
@@ -62,7 +62,7 @@ Pre-v4 audit numbers used parent-collapsed 2-class gold and reported n = 696, wh
 
 ## 4.5 Statistical analysis
 
-Statistical claims throughout §5 and §6 use procedures defined in the post-v4 evaluation contract: paired McNemar tests for paired Top-1 comparisons, percentile bootstrap confidence intervals for asymmetry ratios and metric differences, and a ±5 percentage-point non-inferiority margin on Top-1.
+Statistical claims throughout §5 and §6 use procedures defined in the post-v4 evaluation contract: paired McNemar [CITE mcnemar1947note] tests for paired Top-1 comparisons, percentile bootstrap [CITE efron1979bootstrap] confidence intervals for asymmetry ratios and metric differences, and a ±5 percentage-point non-inferiority margin on Top-1.
 McNemar uses continuity correction with a p < 0.05 threshold.
 Bootstrap CIs use 1000 resamples with seed 20260420 and the 95% percentile interval.
 Paired bootstrap is used for the F32/F41 asymmetry comparison between DSM-5 and ICD-10 modes (§5.3) and for the disagreement-triage advantage analysis (§6.1).
