@@ -8,6 +8,10 @@ We pair the ratio with raw counts because a denominator of 1 makes the ratio mat
 
 The MDD-5k F32/F41 asymmetry observed under successive pipeline states is reported descriptively below. Each row corresponds to the asymmetry measured under a specific pipeline configuration and paper artifact; we do not provide per-fix ablation evidence, so we do not attribute the change between any two adjacent rows to a single repair.
 
+**Table 3 — Cross-dataset F32/F41 asymmetry cascade on MDD-5k.**
+Rows report F41→F32 and F32→F41 directional errors and the resulting asymmetry ratio across successive pipeline states.
+The historical cascade is descriptive; only the current MAS ICD-10 v4 endpoint is reported with the post-v4 bootstrap confidence interval.
+
 | System                        | F41→F32 | F32→F41 |  Ratio |
 | ----------------------------- | ------: | ------: | -----: |
 | Single LLM (Qwen3-32B-AWQ)    |     189 |       1 |   189× |
@@ -15,7 +19,9 @@ The MDD-5k F32/F41 asymmetry observed under successive pipeline states is report
 | MAS R6v2 (somatization-aware) |     145 |      26 |  5.58× |
 | MAS ICD-10 v4 (current)       |     151 |      38 |  3.97× |
 
-The current paper-contract result is **MAS ICD-10 v4: 151/38 = 3.97× (95% bootstrap CI [2.82, 6.08])**, a 47.7-fold reduction in the asymmetry ratio relative to the single-LLM baseline. The bootstrap CI is reported only for the v4 ICD-10 endpoint; the historical cascade is reported descriptively across system states because pre-v4 baselines were not re-bootstrapped under the current evaluation contract. R6v2 (5.58×) is retained as a cascade step documenting the somatization-aware prompt-mitigation checkpoint; MAS ICD-10 v4 is the current best asymmetry result, not R6v2.
+The current paper-contract result is **MAS ICD-10 v4: 151/38 = 3.97× (95% bootstrap CI [2.82, 6.08])**, a 47.7-fold reduction in the asymmetry ratio relative to the single-LLM baseline.
+The bootstrap CI is reported only for the v4 ICD-10 endpoint; the historical cascade is reported descriptively across system states because pre-v4 baselines were not re-bootstrapped under the current evaluation contract.
+R6v2 (5.58×) is retained as a cascade step documenting the somatization-aware prompt-mitigation checkpoint; MAS ICD-10 v4 is the current best asymmetry result, not R6v2.
 
 ## DSM-5 v0 explicitly excluded from this claim
 

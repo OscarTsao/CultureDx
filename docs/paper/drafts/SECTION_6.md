@@ -6,19 +6,20 @@ Section 5.1 reports the primary ICD-10-labelled hybrid stacker benchmark on aggr
 Section 6.1 examines whether the same primary outputs have uneven error concentration across cases.
 The primary-output model for §6.1 = Stacker LGBM; all accuracy, enrichment, and recall figures below are computed against Stacker LGBM Top-1 predictions and gold labels on LingxiDiag-16K test_final (N = 1000).
 
-**Table 6.1a — Model-discordance vs confidence baseline (LingxiDiag-16K test_final, N = 1000).**
+**Table 5 — Model-discordance and confidence-based triage on LingxiDiag-16K (N = 1000).**
+Disagreement and confidence are compared at the same 26.4% review budget; the union policy is reported as a higher-recall operating point at 38.9% review burden.
 
 | Triage rule | Flag rate | Acc unflagged | Acc flagged | Error enrichment | Error recall |
 |------|--------:|-------:|-------:|-------:|-------:|
 | TF-IDF/Stacker disagreement | 26.4% | 0.697 | 0.375 | 2.06× | 42.5% |
 | Lowest 26.4% Stacker confidence | 26.4% | 0.688 | 0.402 | 1.92× | 40.7% |
 
-We compare two case-level triage signals at a fixed 26.4% review budget: TF-IDF/Stacker model-discordance flags cases where the supervised TF-IDF baseline and the Stacker LGBM disagree on the predicted label, and the confidence-quantile baseline flags the lowest 26.4% of cases by Stacker probability.
+We compare two case-level triage signals at the same 26.4% review budget: TF-IDF/Stacker model-discordance flags cases where the supervised TF-IDF baseline and the Stacker LGBM disagree on the predicted label, and the confidence-quantile baseline flags the lowest 26.4% of cases by Stacker probability.
 At equal 26.4% review budget, model-discordance flags cases at 2.06× the unflagged error rate and recovers 42.5% of all Stacker errors; the confidence-quantile baseline reaches 1.92× enrichment and 40.7% recall.
 A paired bootstrap (1000 resamples, seed 20260420) on the disagreement-vs-confidence advantage gives Δ enrichment 95% CI [−0.204, +0.473] and Δ recall 95% CI [−0.043, +0.073]; both intervals include zero.
 At equal review budget, model-discordance shows no statistically detectable advantage over confidence by paired bootstrap.
 
-**Table 6.1b — Union policy (model-discordance OR low-confidence).**
+*Union policy continued from Table 5:*
 
 | Policy | Flag rate | Error enrichment | Error recall | Jaccard with model-discordance |
 |------|--------:|--------:|--------:|-------:|
@@ -41,7 +42,9 @@ Section 6.2 asks whether per-case ICD-10/DSM-5 mode disagreement — the diagnos
 On LingxiDiag-16K (N = 1000), ICD-10 mode and DSM-5-only mode disagree on the predicted label in 25.1% of cases.
 Under the ICD-10 primary-output perspective, the flagged 25.1% have 1.37× the unflagged error rate and recover 31.4% of all errors; under the DSM-5 v0 primary-output perspective, the flagged subset reaches 1.69× enrichment and 36.1% recall.
 
-**Table 6.2a — Diagnostic-standard discordance across datasets.**
+**Table 6 — ICD-10 / DSM-5 diagnostic-standard discordance across datasets.**
+Rows report whether ICD-10 / DSM-5 mode disagreement identifies error-enriched case subsets under each primary-output perspective.
+Cross-dataset enrichment ratios are descriptive because datasets, primary-output perspectives, baseline error rates, and diagnostic distributions differ.
 
 | Dataset | Primary-output | N | Flag rate | Acc unflagged | Acc flagged | Error enrichment | Error recall |
 |------|------|---:|--------:|-------:|-------:|-------:|-------:|
@@ -52,7 +55,7 @@ Under the ICD-10 primary-output perspective, the flagged 25.1% have 1.37× the u
 
 On MDD-5k (N = 925), ICD-10 mode and DSM-5-only mode disagree on 20.8% of cases.
 The flagged subset has 1.83× enrichment and 32.4% recall under the ICD-10 primary-output perspective and 2.06× enrichment and 35.1% recall under the DSM-5 v0 primary-output perspective.
-The higher enrichment under the DSM-5 primary-output perspective reflects lower DSM-5 accuracy within flagged ICD-10/DSM-5 disagreement cases (Table 6.2a flagged-subset accuracy: LingxiDiag 0.239 DSM-5 vs 0.382 ICD-10; MDD-5k 0.292 DSM-5 vs 0.370 ICD-10), not DSM-5-specific triage value.
+The higher enrichment under the DSM-5 primary-output perspective reflects lower DSM-5 accuracy within flagged ICD-10/DSM-5 disagreement cases (Table 6 flagged-subset accuracy: LingxiDiag 0.239 DSM-5 vs 0.382 ICD-10; MDD-5k 0.292 DSM-5 vs 0.370 ICD-10), not DSM-5-specific triage value.
 Within-dataset unflagged accuracy is identical between perspectives on the same gold labels (LingxiDiag 0.549, MDD-5k 0.656), so the higher DSM-5-perspective enrichment is not a baseline-accuracy gap.
 
 Diagnostic-standard discordance functions as an audit signal that complements the §5.4 metric-level trade-off, not as evidence that DSM-5 is superior.

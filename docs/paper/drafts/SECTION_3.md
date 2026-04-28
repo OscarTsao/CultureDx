@@ -9,6 +9,15 @@ We frame the task throughout as a benchmark differential diagnosis task, not as 
 
 ## 3.2 Datasets
 
+**Table 1 — Datasets used in the present study.**
+
+| Dataset | Role | N | Language | Source type | Used for |
+|---|---|---:|---|---|---|
+| LingxiDiag-16K (test_final) | in-domain benchmark | 1000 | Chinese | synthetic / curated dialogue | main benchmark, stacker, dual-standard, model-discordance triage |
+| MDD-5k | external synthetic distribution-shift evaluation | 925 | Chinese | synthetic vignette / dialogue | bias-asymmetry, dual-standard, diagnostic-standard discordance |
+
+Both datasets are synthetic or curated rather than clinician-adjudicated real-world clinical transcripts; benchmark-level results are not equivalent to clinical validation (§7.1).
+
 ### 3.2.1 LingxiDiag-16K
 
 LingxiDiag-16K is the primary in-domain benchmark, consisting of synthetic / curated Chinese psychiatric clinical dialogues released by the original LingxiDiag report [CITE LingxiDiag paper].

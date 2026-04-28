@@ -30,7 +30,7 @@ Our reproduced TF-IDF baseline reaches a stronger Top-1 than the LingxiDiag-publ
 The MAS architecture supports three paper-facing standard configurations: **ICD-10 mode** (MAS reasoning under the ICD-10 standard), **DSM-5-only mode** (the same MAS architecture under v0 DSM-5 templates), and **Both mode** (ICD-10 reasoning produces the primary output, with DSM-5 reasoning attached as sidecar audit evidence on the same case).
 For paper readability we describe these as standard configurations; in implementation they are standard-dispatch settings (`DiagnosticStandard.{ICD10, DSM5, BOTH}`) within the HiED pipeline mode rather than separate top-level code modes — the actual code-level pipeline modes are `hied` and `single`, where `single` is the DtV-only baseline used in §4.2.
 
-Both mode is an architectural pass-through, not an ensemble: pairwise agreement with ICD-10 mode is 1000 / 1000 on LingxiDiag-16K and 925 / 925 on MDD-5k, with 0 / 15 metric-key differences on both datasets (Table 5.4c).
+Both mode is an architectural pass-through, not an ensemble: pairwise agreement with ICD-10 mode is 1000 / 1000 on LingxiDiag-16K and 925 / 925 on MDD-5k, with 0 / 15 metric-key differences on both datasets (Table 4 Panel C).
 We do not claim accuracy gain from combining ICD-10 and DSM-5 reasoning; the value of Both mode lies in the case-level DSM-5 sidecar audit evidence it exposes alongside the unchanged ICD-10 primary output.
 
 The DSM-5 templates used in DSM-5-only mode and as the Both-mode sidecar are LLM-drafted v0 formalizations stored in `src/culturedx/ontology/data/dsm5_criteria.json`, with version `0.1-DRAFT` and source-note `LLM-drafted v0 based on DSM-5-TR concepts. UNVERIFIED.`.
@@ -43,6 +43,8 @@ Earlier paper-number artifacts are retained for provenance; current paper claims
 
 Each metric family in the contract uses an explicit prediction view and an explicit gold view, listed below.
 
+**Box 1 — CultureDx v4 evaluation contract.**
+
 | Metric family | Prediction source | Gold source |
 |---|---|---|
 | 12-class Top-1 | `primary_diagnosis` paper-parent normalized | multilabel paper-parent gold |
@@ -50,7 +52,7 @@ Each metric family in the contract uses an explicit prediction view and an expli
 | 12-class F1 / Exact Match | primary plus threshold-gated comorbid_diagnoses | multilabel paper-parent gold |
 | 2-class | primary mapped to binary category | raw `DiagnosisCode`; F41.2 excluded |
 | 4-class | predicted label set mapped to four-class category | raw `DiagnosisCode`; F41.2 → Mixed |
-| Overall | mean of all non-`_n` Table 4 metric values | (composite) |
+| Overall | mean of all non-`_n` metric values in the contract above | (composite) |
 
 Two clarifications follow directly from this contract.
 First, raw `DiagnosisCode` is used to construct 2-class / 4-class gold labels; predictions are mapped from model outputs to the corresponding binary or four-class category, not read from raw `DiagnosisCode`.

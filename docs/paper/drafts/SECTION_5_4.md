@@ -10,7 +10,11 @@ We compare the three modes on LingxiDiag-16K (in-domain, N = 1000) and MDD-5k (a
 
 ## In-domain trade-off on LingxiDiag-16K
 
-**Table 5.4a — LingxiDiag-16K mode comparison (N = 1000).**
+**Table 4 — Dual-standard ICD-10 / DSM-5 audit results.**
+DSM-5-only mode is evaluated as an experimental v0 audit formalization (`dsm5_criteria.json` version 0.1-DRAFT, source-note UNVERIFIED); Both mode preserves the ICD-10 primary output and exposes DSM-5 sidecar audit evidence on the same case, and is therefore an architectural pass-through, not an ensemble.
+Class-level differences are descriptive; per-class sample sizes are too small for inferential primary claims.
+
+*Panel A — LingxiDiag-16K mode comparison (N = 1000).*
 
 | Mode | 2-class | 4-class | Top-1 | Top-3 | macro-F1 | weighted-F1 | Overall |
 |------|--------:|--------:|------:|------:|---------:|------------:|--------:|
@@ -23,7 +27,7 @@ We report these metric deltas descriptively and reserve inferential claims in §
 
 ## Distribution-shift trade-off on MDD-5k
 
-**Table 5.4b — MDD-5k mode comparison (N = 925).**
+*Panel B — MDD-5k mode comparison (N = 925).*
 
 | Mode | 2-class | 4-class | Top-1 | Top-3 | macro-F1 | weighted-F1 | Overall |
 |------|--------:|--------:|------:|------:|---------:|------------:|--------:|
@@ -37,7 +41,7 @@ The DSM-5-only vs ICD-10 pattern is dataset-dependent and metric-specific.
 
 ## Both mode is an ICD-10 architectural pass-through
 
-**Table 5.4c — Both vs ICD-10 agreement.**
+*Panel C — Both-mode pass-through verification (Both vs ICD-10 agreement).*
 
 | Pair | LingxiDiag-16K | MDD-5k |
 |------|---------------:|-------:|
