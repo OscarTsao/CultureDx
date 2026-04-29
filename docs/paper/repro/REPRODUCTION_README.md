@@ -12,10 +12,12 @@
 |---|---|
 | Repository | `OscarTsao/CultureDx` |
 | Branch | `main-v2.4-refactor` |
+| Reproduction README commit | `38f9073` |
+| Abstract commit | `ccadc20` |
+| Final manuscript sweep commit | `63a7f73` |
 | Empirical table-integration commit | `eea8cf1` (Step 5d-apply: table renumbering) |
 | Citation closure commit | `2b17aa3` (Step 5b-mini: unresolved-source mini-pass) |
 | AIDA-Path slot decision commit | `57e4b02` (Step 5c: Path B locked) |
-| This README commit | recorded at git push time |
 
 Reviewers should use `main-v2.4-refactor` exclusively. The `main` branch may not yet reflect post-v4 evaluation contract changes; do not use `main` for review.
 
@@ -296,8 +298,11 @@ Allowed scoping language:
 ✓ Phase 2 Step 5b-apply: citation apply-pass v1.2                    (d4992cc)
 ✓ Phase 2 Step 5b-mini: unresolved-source mini-pass v1.1             (2b17aa3)
 ✓ Phase 2 Step 5c: AIDA-Path slot decision (Path B)                  (57e4b02)
-✓ Phase 2 Step 5e: this README                                       ← this commit
-□ Phase 2 Step 5f: Abstract drafting (LAST)
+✓ Step 5e reproduction README closed                                 (38f9073)
+✓ Step 5f-prep abstract claim framing                                (273f78a)
+✓ Step 5f-apply abstract drafted                                      (ccadc20)
+✓ Step 5g final manuscript sweep                                      (63a7f73)
+← current: tagging paper-integration-v0.1
 □ Phase 2 Step 6: PI / advisor review
 ```
 
