@@ -4,6 +4,11 @@
 **Per GPT round 84 trigger**: "Go run MAS gain + full-pipeline gap plan." Plan-only artifact, NOT execution.
 **Artifact location**: `docs/paper/integration/MAS_GAIN_AND_FULL_PIPELINE_GAP_PLAN.md`
 **Status**: Planning document only. NO §1-§7 prose modified. NO Abstract modified. NO new metrics computed in this commit. Stage 0 audit + Stage 1 CPU-only metric recomputation deferred to later trigger after this plan is approved.
+**v1.2 update (2026-04-29)**: §2.1 / §2.3 / §4.4 / §4.4.1 / §11 reframed per Stage 0 audit §3 findings.
+The Full HiED ICD-10 LingxiDiag 2-class / 4-class values are present DIRECTLY in `mode_icd10/pilot_icd10/metrics.json` `table4` block (.7780127 / .447).
+The bit-identical Both-mode match is a symptom of architectural pass-through, NOT the source.
+Source artifacts are complete; only `metric_consistency_report.json` `canonical_values` mirror is incomplete.
+All round-85-v1.1 guardrails preserved (G1 r17_bypass_checker rejection, G2 conditional-manuscript-update gate, G3 NO-hyperparameter-tuning, G4 Gap-C-out-of-scope).
 
 This document plans a metric-attribution and pipeline-clarification analysis on the existing CultureDx artifacts at HEAD `b8bda4b` / tag `paper-integration-v0.1`. The goal is to fill two specific evidence gaps identified during round 81-83 PI-review preparation: (a) which Stacker LGBM metric gains are attributable to MAS-derived features vs the LightGBM stacker itself, and (b) which results in the manuscript correspond to the full HiED checker pipeline vs the checker-bypassed DtV comparator.
 
@@ -34,7 +39,7 @@ These three facts together produce the round 84 conclusion: the paper's parity-p
 | Reproduced TF-IDF (LingxiDiag) | (training script + prediction view) | 1000 | ✓ all 7 in `metric_consistency_report.json` |
 | Stacker LGBM (LingxiDiag) | `canonical_values.stacker_lgbm` | 1000 | ✓ all 7 |
 | Stacker LR (LingxiDiag) | `canonical_values.stacker_lr` | 1000 | ✓ all 7 |
-| Full HiED ICD-10 (LingxiDiag) | `results/dual_standard_full/lingxidiag16k/mode_icd10/pilot_icd10/predictions.jsonl` | 1000 | △ **5 of 7 in canonical**: Top1=.507, Top3=.800, F1_macro=.199, F1_weighted=.457, Overall=.514. **2-class and 4-class missing from canonical_values** but appear in §5.4 Panel A as .778 / .447 — provenance must be confirmed |
+| Full HiED ICD-10 (LingxiDiag) | `results/dual_standard_full/lingxidiag16k/mode_icd10/pilot_icd10/predictions.jsonl` | 1000 | ✓ **All 7 metrics direct from source**: Top1=.507, Top3=.800, F1_macro=.199, F1_weighted=.457, Overall=.514, 2-class=.7780127 (n=473), 4-class=.447 (n=1000) — DIRECT from `mode_icd10/pilot_icd10/metrics.json` `table4` per Stage 0 audit §3; `canonical_values` mirror is incomplete |
 | Full HiED ICD-10 (MDD-5k) | `results/dual_standard_full/mdd5k/mode_icd10/pilot_icd10/predictions.jsonl` | 925 | ✓ all 7 in `canonical_values.mdd5k_dual_standard_icd10` |
 | Full HiED DSM-5 v0 (LingxiDiag, MDD-5k) | `results/dual_standard_full/.../mode_dsm5/pilot_dsm5/predictions.jsonl` | 1000 / 925 | ✓ all reported in §5.4 Panel B |
 | Full HiED Both mode (LingxiDiag, MDD-5k) | `results/dual_standard_full/.../mode_both/pilot_both/predictions.jsonl` | 1000 / 925 | ✓ pass-through verification §5.4 Panel C |
@@ -58,14 +63,16 @@ stacker_lgbm canonical_values:
 ### 2.3 Existing Full HiED ICD-10 LingxiDiag canonical values
 
 ```
-dual_standard_icd10 canonical_values:
+dual_standard_icd10 canonical_values (in central index mirror):
   Top1:           0.507
   Top3:           0.800
   F1_macro:       0.199
   F1_weighted:    0.457
   Overall:        0.514
-  2class_Acc:     [missing from canonical_values — sourced from results/dual_standard_full/lingxidiag16k/mode_both/pilot_both/metrics.json as .7780126849894292]
-  4class_Acc:     [missing from canonical_values — §5.4 Panel A reports .447, source must be located in Stage 0]
+
+Direct from ICD-10 mode `metrics.json` `table4` block (Stage 0 audit §3 confirmed):
+  2class_Acc:     0.7780127 (n=473)   # missing from canonical_values mirror; present DIRECT in mode_icd10/pilot_icd10/metrics.json
+  4class_Acc:     0.447     (n=1000)  # missing from canonical_values mirror; present DIRECT in mode_icd10/pilot_icd10/metrics.json
 ```
 
 ### 2.4 Existing Full HiED ICD-10 MDD-5k canonical values
@@ -213,9 +220,9 @@ Each occurrence labeled with its referent (a / b / c per §4.1 above). Output to
 Two paths:
 
 **Path B1 — Add full HiED ICD-10 row to §5.1 Table 2 using existing canonical values** (CPU-only)
-- LingxiDiag full HiED ICD-10 metrics: Top1=.507, Top3=.800, F1_macro=.199, F1_weighted=.457, Overall=.514 (existing canonical_values.dual_standard_icd10) plus 2-class=.778 / 4-class=.447 (existing in Both-mode metrics.json, traced via Both-mode pass-through equivalence)
-- This requires verifying the 2-class .778 and 4-class .447 are correctly attributable to ICD-10 mode (via pass-through), and recomputing them directly from the ICD-10 mode prediction file via `compute_table4_metrics_v2` to confirm
-- Output: 7-cell row added to §5.1 Table 2
+- LingxiDiag full HiED ICD-10 metrics: Top1=.507, Top3=.800, F1_macro=.199, F1_weighted=.457, Overall=.514 (existing `canonical_values.dual_standard_icd10`) plus 2-class=.7780127 / 4-class=.447 DIRECT from ICD-10 mode `metrics.json` `table4` block (Stage 0 audit §3 confirmed). The bit-identical Both-mode match is a SYMPTOM of architectural pass-through, NOT the source
+- Source artifacts are complete; the central canonical index mirror (`metric_consistency_report.json` `canonical_values`) is incomplete for 2-class / 4-class. Path B1 may publish all 7 metrics in §5.1 Table 2 from the existing ICD-10 mode `metrics.json` source without recompute
+- Output: 7-cell row added to §5.1 Table 2 (subject to §4.4.1 conditional manuscript-update gate)
 
 **Path B2 — Recompute MAS-only DtV all 7 metrics under v4 contract** (CPU-only)
 - Locate canonical LingxiDiag DtV prediction file (Stage 0 audit point)
@@ -230,7 +237,7 @@ Two paths:
 The Full HiED ICD-10 row is a **candidate manuscript update, NOT automatic**. It can be added to §5.1 Table 2 only if all of the following gates pass:
 
 1. all 7 v4 metrics are recomputed from the verified Full HiED ICD-10 prediction files (`results/dual_standard_full/lingxidiag16k/mode_icd10/pilot_icd10/predictions.jsonl` for LingxiDiag; `results/dual_standard_full/mdd5k/mode_icd10/pilot_icd10/predictions.jsonl` for MDD-5k) using `compute_table4_metrics_v2`
-2. LingxiDiag 2-class / 4-class provenance gap is resolved from direct ICD-10-mode source artifacts, NOT relied upon Both-mode pass-through equivalence (the §5.4 Panel A values .778 / .447 must reproduce from direct ICD-10 prediction file)
+2. LingxiDiag 2-class / 4-class values are sourced from direct ICD-10-mode source artifacts (`mode_icd10/pilot_icd10/metrics.json` `table4` block contains 2class_Acc=0.7780127 n=473 and 4class_Acc=0.447 n=1000 directly, per Stage 0 audit §3), NOT inferred from Both-mode pass-through equivalence; the central canonical index mirror (`canonical_values`) is incomplete but source artifacts are complete
 3. the row is labeled as **Full HiED ICD-10 MAS** (NOT DtV, NOT MAS-only) — labels distinguish full-pipeline from checker-bypassed configurations
 4. §4.1 / §5.1 wording is updated to clearly distinguish Full HiED MAS from DtV comparator (per §4.2 clarification table in this plan)
 5. the update is reviewed as a **separate manuscript-impact commit**, NOT bundled with Gap A retraining or Gap B DtV cell-fill
@@ -512,7 +519,7 @@ Round 84 plan is therefore positioned as **pre-emptive review preparation**: eve
 | **21a** | All 19 numeric values verified against canonical sources; Stage 0 audit explicitly required before any new value enters manuscript |
 | 22 / 40a | Forbidden patterns ("MAS beats TF-IDF") explicitly preserved as forbidden in §3.5 / §8 decision tree; negation context maintained |
 | 25 / 27 | Both mode = architectural pass-through; clarification table §4.2 row 5 maintains framing |
-| **31a** | All §X.Y line-number references preserved; provenance gap (Full HiED ICD-10 LingxiDiag 2-class/4-class missing from canonical_values) explicitly flagged |
+| **31a** | All §X.Y line-number references preserved; central canonical index mirror gap (Full HiED ICD-10 LingxiDiag 2-class/4-class present DIRECT in `mode_icd10/pilot_icd10/metrics.json` `table4` block per Stage 0 audit §3, but absent from `canonical_values` mirror) explicitly flagged — NOT a provenance gap |
 | **33a** | This artifact uses sentence-level format; 0 long lines |
 | 38b | Plan uses `paper-integration-v0.1` tag reference (forward-looking), NOT brittle commit-hash |
 | **40a** | Explicit absence: TF-IDF-only LGBM stacker variant artifact does NOT exist; required production approach §3.3 documented |
