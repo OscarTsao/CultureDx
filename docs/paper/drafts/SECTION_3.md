@@ -4,7 +4,7 @@
 
 CultureDx evaluates Chinese-language psychiatric differential diagnosis as a benchmark task.
 The input is a Chinese psychiatric clinical dialogue or transcript; the output is a primary diagnosis code together with a ranked list of diagnostic candidates and, for multilabel metrics, a final predicted label set.
-The main target is the ICD-10 paper-parent 12-class taxonomy used by the LingxiDiag report [CITE — verify: LingxiDiag], with auxiliary 2-class and 4-class evaluations constructed from raw `DiagnosisCode` annotations to capture diagnostically meaningful distinctions required by the auxiliary evaluation tasks that the 12-class collapse cannot represent.
+The main target is the ICD-10 paper-parent 12-class taxonomy used by the LingxiDiag report [CITE xu2026lingxidiagbench], with auxiliary 2-class and 4-class evaluations constructed from raw `DiagnosisCode` annotations to capture diagnostically meaningful distinctions required by the auxiliary evaluation tasks that the 12-class collapse cannot represent.
 We frame the task throughout as a benchmark differential diagnosis task, not as a clinical diagnosis system; we make no claim of clinical deployment readiness or prospective clinical validity.
 
 ## 3.2 Datasets
@@ -20,7 +20,7 @@ Both datasets are synthetic or curated rather than clinician-adjudicated real-wo
 
 ### 3.2.1 LingxiDiag-16K
 
-LingxiDiag-16K is the primary in-domain benchmark, consisting of synthetic / curated Chinese psychiatric clinical dialogues released by the original LingxiDiag report [CITE — verify: LingxiDiag].
+LingxiDiag-16K is the primary in-domain benchmark, consisting of synthetic / curated Chinese psychiatric clinical dialogues released by the original LingxiDiag report [CITE xu2026lingxidiagbench].
 We evaluate on the published `test_final` split (N = 1000) for all primary in-domain claims throughout §5 and §6.
 Each case carries a raw `DiagnosisCode` annotation that we preserve for raw-code-aware auxiliary tasks; the 12-class evaluation collapses these raw codes to the paper's parent-level taxonomy via the `to_paper_parent` mapping defined in §3.3.
 

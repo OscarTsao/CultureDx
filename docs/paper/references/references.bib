@@ -1,28 +1,27 @@
 % CultureDx — bibliography
 % Generated during Phase 2 Step 5b citation apply-pass at HEAD bca33ce.
+% Round 69 unresolved-source mini-pass (HEAD d4992cc) added 5 entries
+%   (Bucket A ×2 + Bucket E ×3); manuscript prose now contains 0 [CITE — verify]
+%   markers and 30 resolved [CITE <bibkey>] markers across §1-§7.
 %
 % Verification policy:
 %   - Every entry below was directly fetched from a primary source page
 %     (DOI / arXiv / journal landing / proceedings / official organization)
-%     during this apply-pass. No training-data recall was used.
+%     during the apply-pass that introduced it. No training-data recall was used.
 %   - Per Citation Pass Plan v1.1 §8: arXiv-only / model-card / software-resource
 %     identifiers are recorded as such; no DOI is invented for entries that do
 %     not have one.
-%   - Sources that could not be uniquely identified during this apply-pass
-%     are NOT included here; they remain as [CITE — verify] markers in the
-%     prose with explicit rationale in CITATION_LEDGER.md.
+%   - All 20 entries in this bibliography correspond to the 20 unique source keys
+%     tracked in CITATION_LEDGER.md. There are no remaining unresolved sources.
 
 % =============================================================================
 % Bucket A — Paper / dataset
 % =============================================================================
 %
-% LingxiDiag and MDD-5k papers are NOT in this bibliography:
-%   - LingxiDiag: User has direct access to the paper artifact in the project;
-%     marked [CITE — verify: LingxiDiag] in prose. Apply-pass deferred to
-%     manual user verification per Citation Pass Plan v1.1 §8.4.
-%   - MDD-5k: Could not be uniquely identified during apply-pass; multiple
-%     candidate datasets exist with similar names.
-%     Marked [CITE — verify: MDD-5k].
+% LingxiDiag and MDD-5k entries (xu2026lingxidiagbench, yin2025mdd5k)
+% were added during the round 69 unresolved-source mini-pass and are
+% defined later in this file under "round-69 unresolved-source mini-pass".
+% No Bucket A markers remain unresolved.
 
 % =============================================================================
 % Bucket B — Standards / formal criteria
@@ -151,15 +150,10 @@
 % Bucket E — Classical clinical NLP / TF-IDF baselines
 % =============================================================================
 %
-% Bucket E entries are NOT in this bibliography:
-%   - PLOS One 2024 clinical NLP coding: placeholder name too vague to
-%     uniquely identify; multiple candidate papers match "PLOS One 2024
-%     clinical NLP coding". Marked [CITE — verify: PLOS One 2024].
-%   - JMIR AI 2024 BOW vs Bio-Clinical-BERT: similarly ambiguous; needs
-%     manual identification. Marked [CITE — verify: JMIR AI 2024].
-%   - Wang 2019 BMC clinical text classification: ambiguous; multiple
-%     candidate Wang 2019 BMC papers exist on this topic. Marked
-%     [CITE — verify: Wang 2019 BMC].
+% Bucket E entries (tavabi2024systematic, patel2024traditional, wang2019clinical)
+% were added during the round 69 unresolved-source mini-pass and are
+% defined later in this file under "round-69 unresolved-source mini-pass".
+% No Bucket E markers remain unresolved.
 
 % =============================================================================
 % Bucket F — Methods / tools
@@ -240,4 +234,81 @@
   doi       = {10.1214/aos/1176344552},
   url       = {https://projecteuclid.org/journals/annals-of-statistics/volume-7/issue-1/Bootstrap-Methods-Another-Look-at-the-Jackknife/10.1214/aos/1176344552.full},
   note      = {Original bootstrap resampling paper. Cited in §4.5 for percentile bootstrap confidence intervals on asymmetry ratios (§5.3) and disagreement-triage advantage analysis (§6.1).}
+}
+
+% =============================================================================
+% Bucket A — Paper / dataset (round 69 unresolved-source mini-pass additions)
+% =============================================================================
+
+@misc{xu2026lingxidiagbench,
+  author    = {Xu, Shihao and Zhou, Tiancheng and Ma, Jiatong and Ding, Yanli and Yan, Yiming and Xiao, Ming and Li, Guoyi and Geng, Haiyang and Han, Yunyun and Chen, Jianhua and Deng, Yafeng},
+  title     = {{LingxiDiagBench}: A Multi-Agent Framework for Benchmarking {LLMs} in Chinese Psychiatric Consultation and Diagnosis},
+  year      = {2026},
+  month     = feb,
+  archivePrefix = {arXiv},
+  eprint    = {2602.09379},
+  primaryClass = {cs.MA},
+  url       = {https://arxiv.org/abs/2602.09379},
+  note      = {The LingxiDiag-16K dataset (16,000 EMR-aligned synthetic consultation dialogues across 12 ICD-10 psychiatric categories) is the primary in-domain benchmark used in CultureDx. The companion LingxiDiagBench evaluation framework is published openly at https://github.com/Lingxi-mental-health/LingxiDiagBench. Round 69 verification: arXiv-only identifier; preprint submitted Feb 10, 2026 (v1) and revised Feb 11, 2026 (v2); paper indicates KDD '26 venue but archival DOI not yet assigned.}
+}
+
+@inproceedings{yin2025mdd5k,
+  author    = {Yin, Congchi and Li, Feng and Zhang, Shu and Wang, Zike and Shao, Jun and Li, Piji and Chen, Jianhua and Jiang, Xun},
+  title     = {{MDD-5k}: A New Diagnostic Conversation Dataset for Mental Disorders Synthesized via Neuro-Symbolic {LLM} Agents},
+  booktitle = {Proceedings of the {AAAI} Conference on Artificial Intelligence},
+  volume    = {39},
+  number    = {24},
+  pages     = {25715--25723},
+  year      = {2025},
+  publisher = {AAAI Press},
+  doi       = {10.1609/aaai.v39i24.34763},
+  url       = {https://ojs.aaai.org/index.php/AAAI/article/view/34763},
+  archivePrefix = {arXiv},
+  eprint    = {2408.12142},
+  note      = {Round 70 metadata correction: full author names verified via DBLP (Yin Congchi, Li Feng, Zhang Shu, Wang Zike, Shao Jun, Li Piji, Chen Jianhua, Jiang Xun); DOI 10.1609/aaai.v39i24.34763, AAAI 2025 vol 39 no 24, pp 25715-25723. External Chinese mental disorders diagnostic conversation dataset (5000 dialogues from 1000 patient cases, Shanghai Mental Health Center). Used in CultureDx as an external synthetic distribution-shift evaluation set, NOT as external clinical validation.}
+}
+
+% =============================================================================
+% Bucket E — Classical clinical NLP / TF-IDF baselines (round 69 unresolved-source mini-pass additions)
+% =============================================================================
+
+@article{tavabi2024systematic,
+  author    = {Tavabi, Nazgol and Singh, Mallika and Pruneski, James and Kiapour, Ata M.},
+  title     = {Systematic evaluation of common natural language processing techniques to codify clinical notes},
+  journal   = {PLOS ONE},
+  volume    = {19},
+  number    = {3},
+  pages     = {e0298892},
+  year      = {2024},
+  month     = mar,
+  doi       = {10.1371/journal.pone.0298892},
+  url       = {https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0298892},
+  note      = {Boston Children's Hospital / Harvard Medical School team. Systematically compares NLP techniques (including TF-IDF) for predicting CPT codes from operative notes. Cited in §2.4 as evidence that TF-IDF / lexical representations remain serious comparators in clinical-note NLP, NOT as evidence that TF-IDF generally beats deep models.}
+}
+
+@article{patel2024traditional,
+  author    = {Patel, Dhavalkumar and Timsina, Prem and Gorenstein, Larisa and Glicksberg, Benjamin S. and Raut, Ganesh and Cheetirala, Satya Narayan and Santana, Fabio and Tamegue, Jules and Kia, Arash and Zimlichman, Eyal and Levin, Matthew A. and Freeman, Robert and Klang, Eyal},
+  title     = {Traditional Machine Learning, Deep Learning, and {BERT} (Large Language Model) Approaches for Predicting Hospitalizations From Nurse Triage Notes: Comparative Evaluation of Resource Management},
+  journal   = {{JMIR} {AI}},
+  volume    = {3},
+  pages     = {e52190},
+  year      = {2024},
+  month     = aug,
+  doi       = {10.2196/52190},
+  url       = {https://ai.jmir.org/2024/1/e52190},
+  note      = {Mount Sinai / Sheba Medical Center team. Compares Bio-Clinical-BERT against BOW-LR-TF-IDF on 1.39M emergency department patients. Result: Bio-Clinical-BERT achieves 0.82/0.84/0.85 AUC vs BOW-LR-TF-IDF 0.81/0.83/0.84 (modest gap). Cited in §2.4 as evidence that classical TF-IDF/BOW baselines remain competitive with BERT-style models in clinical NLP, NOT as evidence that TF-IDF beats BERT generally.}
+}
+
+@article{wang2019clinical,
+  author    = {Wang, Yanshan and Sohn, Sunghwan and Liu, Sijia and Shen, Feichen and Wang, Liwei and Atkinson, Elizabeth J. and Amin, Shreyasee and Liu, Hongfang},
+  title     = {A clinical text classification paradigm using weak supervision and deep representation},
+  journal   = {{BMC} Medical Informatics and Decision Making},
+  volume    = {19},
+  number    = {1},
+  pages     = {1},
+  year      = {2019},
+  month     = jan,
+  doi       = {10.1186/s12911-018-0723-6},
+  url       = {https://link.springer.com/article/10.1186/s12911-018-0723-6},
+  note      = {Mayo Clinic team. Proposes weak-supervision plus deep-representation paradigm for clinical text classification; reports word embeddings outperform TF-IDF in their setting. Cited in §2.4 as broad clinical-text-classification background, NOT as direct proof that TF-IDF remains competitive with LLMs.}
 }

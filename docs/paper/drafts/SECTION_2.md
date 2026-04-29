@@ -5,7 +5,7 @@ Prior work in each area motivates the present framing: the system should be eval
 
 ## 2.1 Chinese psychiatric NLP and benchmark setting
 
-Recent Chinese psychiatric NLP benchmarks include synthetic and curated dialogue resources for diagnostic classification, such as the LingxiDiag-style 12-class paper-parent ICD-10 taxonomy used as our primary in-domain benchmark [CITE — verify: LingxiDiag] and the MDD-5k cross-dataset distribution-shift evaluation set [CITE — verify: MDD-5k].
+Recent Chinese psychiatric NLP benchmarks include synthetic and curated dialogue resources for diagnostic classification, such as the LingxiDiag-style 12-class paper-parent ICD-10 taxonomy used as our primary in-domain benchmark [CITE xu2026lingxidiagbench] and the MDD-5k cross-dataset distribution-shift evaluation set [CITE yin2025mdd5k].
 The datasets used in the present study are synthetic or curated rather than clinician-adjudicated real-world clinical transcripts, and benchmark performance on such datasets is distinct from real-world clinical validation.
 This distinction shapes the rest of §2: prior work motivates which dimensions to evaluate, but does not license clinical-deployment claims.
 
@@ -26,8 +26,8 @@ CultureDx belongs in this family but is scoped to Chinese psychiatric differenti
 ## 2.4 Classical baselines and hybrid systems
 
 Classical lexical and supervised baselines remain serious comparators in clinical NLP rather than weak strawmen.
-Clinical-note classification work commonly evaluates TF-IDF or other lexical representations as reproducible baseline feature spaces [CITE — verify: PLOS One 2024], and clinical NLP evaluations often compare BERT-style models with TF-IDF logistic-regression baselines because they represent different computational and interpretability trade-offs [CITE — verify: JMIR AI 2024].
-Machine-learning approaches more broadly have long been effective for extracting structured information from clinical narratives [CITE — verify: Wang 2019 BMC].
+Clinical-note classification work commonly evaluates TF-IDF or other lexical representations as reproducible baseline feature spaces [CITE tavabi2024systematic], and clinical NLP evaluations often compare BERT-style models with TF-IDF logistic-regression baselines because they represent different computational and interpretability trade-offs [CITE patel2024traditional].
+Machine-learning approaches more broadly have long been effective for extracting structured information from clinical narratives [CITE wang2019clinical].
 CultureDx is framed accordingly: we treat the supervised TF-IDF baseline as a strong reproduced comparator rather than an easily defeated baseline, and our reported benchmark system is a hybrid supervised + MAS stacker rather than an LLM-only system.
 The detailed numerical comparison and reproduction-gap discussion are deferred to §5.1, §5.2, and §5.5; here we record only that respect for classical baselines is structural to our framing, not incidental.
 
