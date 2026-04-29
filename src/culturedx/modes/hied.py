@@ -216,6 +216,111 @@ class HiEDMode(BaseModeOrchestrator):
         return self._checker_prompt_variant or self.prompt_variant
 
     @staticmethod
+    def _compute_audit_comorbid_beta2(
+        primary: str | None,
+        ranked_codes: list,
+        confirmed_codes: list,
+        checker_outputs: list,
+        decisive_threshold: float = 0.85,
+    ) -> list:
+        """BETA-2 audit-only comorbidity annotation gate.
+
+        Reproduces the sandbox R3-β strict gate
+        (T_decisive=0.85, dominance, criterion A status='met', in-confirmed,
+        max 1 emit). Output is written to decision_trace.audit_comorbid for
+        audit consumption only. Benchmark `comorbid_diagnoses` stays empty
+        under BETA-2 (Plan v1.3 §3 design lock #6).
+        """
+        if not primary or not ranked_codes:
+            return []
+        try:
+            from culturedx.eval.lingxidiag_paper import to_paper_parent
+        except Exception:
+            return []
+
+        confirmed_set_local = set(confirmed_codes or [])
+
+        DOMINATES = {
+            "F33": ["F32"],
+            "F31": ["F32", "F33"],
+            "F20": ["F22", "F32", "F33", "F31"],
+        }
+        F41_2_BLOCKERS = {"F32", "F33", "F41"}
+
+        def parent(x):
+            return to_paper_parent(x)
+
+        def dom_ok(p_par, cand_par, cand_full):
+            if p_par == "Z71" or cand_par == "Z71":
+                return False
+            if p_par in DOMINATES and cand_par in DOMINATES[p_par]:
+                return False
+            if cand_par in DOMINATES and p_par in DOMINATES[cand_par]:
+                return False
+            if cand_full == "F41.2" or str(cand_full).startswith("F41.2"):
+                if any(b in confirmed_set_local for b in F41_2_BLOCKERS):
+                    return False
+            return True
+
+        rco_by_code = {}
+        for co in (checker_outputs or []):
+            code = getattr(co, "disorder", None) or getattr(co, "disorder_code", None)
+            if not code:
+                continue
+            rco_by_code[code] = co
+
+        def crit_a_met(co_obj):
+            criteria = getattr(co_obj, "criteria", None) or []
+            for cr in criteria:
+                cid = getattr(cr, "criterion_id", None) or (cr.get("criterion_id") if isinstance(cr, dict) else None)
+                status = getattr(cr, "status", None) or (cr.get("status") if isinstance(cr, dict) else None)
+                if cid == "A":
+                    return str(status) == "met"
+            if criteria:
+                first = criteria[0]
+                status = getattr(first, "status", None) or (first.get("status") if isinstance(first, dict) else None)
+                return str(status) == "met"
+            return False
+
+        def decisive_score(co_obj):
+            criteria = getattr(co_obj, "criteria", None) or []
+            if not criteria:
+                return 0.0
+            weights = {"met": 1.0, "partial": 0.5, "insufficient_evidence": 0.3, "not_met": 0.0}
+            scores = []
+            for cr in criteria:
+                status = getattr(cr, "status", None) or (cr.get("status") if isinstance(cr, dict) else None)
+                conf = getattr(cr, "confidence", None) or (cr.get("confidence") if isinstance(cr, dict) else None)
+                w = weights.get(str(status), 0.0)
+                c = float(conf) if conf is not None else 0.0
+                scores.append(c * w)
+            return float(sum(scores) / len(scores)) if scores else 0.0
+
+        primary_parent = parent(primary)
+        out = []
+        for cand in (ranked_codes[1:5] if len(ranked_codes) > 1 else []):
+            if cand == primary:
+                continue
+            cp = parent(cand)
+            if cp == primary_parent:
+                continue
+            if cand not in confirmed_set_local:
+                continue
+            if not dom_ok(primary_parent, cp, cand):
+                continue
+            co = rco_by_code.get(cand)
+            if not co:
+                continue
+            if not crit_a_met(co):
+                continue
+            if decisive_score(co) < decisive_threshold:
+                continue
+            out.append(cand)
+            if len(out) >= 1:
+                break
+        return out
+
+    @staticmethod
     def _build_dsm5_evidence_trace(result: DiagnosisResult) -> dict[str, object]:
         """Extract a compact DSM-5 supplementary trace for dual-standard outputs."""
         return {
@@ -1439,6 +1544,17 @@ class HiEDMode(BaseModeOrchestrator):
             primary = comorbidity_result.primary
             comorbid = comorbidity_result.comorbid
 
+        # BETA-2 (Plan v1.3 Gap E §3 design lock #6): benchmark prediction set
+        # is primary-only. Strict-gated comorbid candidates are emitted to
+        # decision_trace.audit_comorbid (audit-only), NOT to comorbid_diagnoses.
+        audit_comorbid = self._compute_audit_comorbid_beta2(
+            primary=primary,
+            ranked_codes=ranked_codes,
+            confirmed_codes=logic_output.confirmed_codes,
+            checker_outputs=all_checker_outputs,
+        )
+        comorbid = []  # BETA-2: benchmark is primary-only
+
         stage_timings["total"] = time.monotonic() - case_start
 
         return DiagnosisResult(
@@ -1458,6 +1574,7 @@ class HiEDMode(BaseModeOrchestrator):
             decision_trace={
                 **decision_trace,
                 "dtv_mode": True,
+                "audit_comorbid": audit_comorbid,
                 "diagnostician_ranked": ranked_codes,
                 "diagnostician_reasoning": diag_reasoning,
                 "verify_codes": verify_codes,

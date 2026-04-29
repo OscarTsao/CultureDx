@@ -8,7 +8,7 @@ from typing import Any
 
 from culturedx.core.models import ClinicalCase, DiagnosisResult, EvidenceBrief, FailureInfo
 
-ARTIFACT_SCHEMA_VERSION = "v1"
+ARTIFACT_SCHEMA_VERSION = "v2"
 
 
 def _normalize(value: Any) -> Any:
