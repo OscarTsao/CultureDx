@@ -1,0 +1,10 @@
+{
+  "n_total": 925,
+  "n_unchanged_case": 848,
+  "n_transformed_case": 77,
+  "n_edge_case": 0,
+  "edge_case_ids": [],
+  "source_file": "results/gap_e_canonical_20260429_225243/mdd_dsm5_n925/predictions.jsonl",
+  "schema_version_in": "v2",
+  "schema_version_out": "v2b"
+}
