@@ -48,6 +48,30 @@ SUPPORTED_EXECUTION_MODES = frozenset({"auto", "benchmark_manual_scope", "produc
 SUPPORTED_REASONING_STANDARDS = frozenset({"icd10", "dsm5", "both"})
 
 
+def apply_beta2b_finalization(
+    primary: str | None,
+    top_ranked: list[str],
+    veto_applied: bool,
+    primary_source: str,
+    final_output_policy: str,
+) -> tuple[str | None, bool, str]:
+    """Apply BETA-2b primary-locked override iff feature flag is active.
+
+    Returns (primary, veto_applied, primary_source). Behavior-identical to
+    pre-refactor inline block at hied.py:1474-1479. Pure: no I/O, no logger,
+    no class state. Importable for offline Code Path Equivalence audits.
+
+    Plan v1.3.2 §3 design lock #1: when policy is beta2b_primary_locked,
+    primary becomes diagnostician_ranked[0], veto is cleared, primary_source
+    is stamped beta2b_locked. Otherwise inputs pass through unchanged.
+    """
+    if final_output_policy != "beta2b_primary_locked":
+        return primary, veto_applied, primary_source
+    if not top_ranked:
+        return primary, veto_applied, primary_source
+    return top_ranked[0], False, "beta2b_locked"
+
+
 class HiEDMode(BaseModeOrchestrator):
     """Primary evidence-grounded diagnosis orchestrator.
 
@@ -1473,10 +1497,11 @@ class HiEDMode(BaseModeOrchestrator):
 
         # BETA-2b feature flag: lock primary to diagnostician_ranked[0] always
         # (Plan v1.3.2 §3 design lock #1; bypasses veto/fallback above)
-        if self.final_output_policy == "beta2b_primary_locked" and top_ranked:
-            primary = top_ranked[0]
-            veto_applied = False
-            primary_source = "beta2b_locked"
+        # Inline logic extracted to module-level apply_beta2b_finalization helper
+        # so offline Code Path Equivalence audits can invoke without HiEDMode state.
+        primary, veto_applied, primary_source = apply_beta2b_finalization(
+            primary, top_ranked, veto_applied, primary_source, self.final_output_policy
+        )
 
         if primary_source != "top1":
             logger.info(
