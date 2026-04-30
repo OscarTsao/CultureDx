@@ -1,0 +1,52 @@
+{
+  "schema_version": "v2",
+  "run_id": "mdd_both_n20",
+  "dataset": "mdd5k",
+  "num_cases": 20,
+  "metrics": {
+    "diagnostics_internal": {
+      "comorbidity": {
+        "avg_gold_labels": 1.1,
+        "avg_predicted_labels": 1.0,
+        "comorbidity_detection_f1": 0.0,
+        "hamming_accuracy": 0.725,
+        "label_coverage": 0.725,
+        "label_precision": 0.75,
+        "subset_accuracy": 0.7
+      },
+      "diagnosis": {
+        "accuracy": 0.7,
+        "macro_f1": 0.35653235653235654,
+        "overall": 0.6181929181929181,
+        "top1_accuracy": 0.7,
+        "top3_accuracy": 0.7,
+        "weighted_f1": 0.6344322344322344
+      }
+    },
+    "metric_definitions": {
+      "diagnostics_internal.diagnosis.top1_accuracy": "primary == first gold (single-label, deprecated for paper citation)",
+      "diagnostics_internal.pilot_comparison_top1": "parent(primary) == parent(first gold) (single-label parent)",
+      "paper_canonical_top1": "table4.12class_Top1 (multi-label paper alignment)"
+    }
+  },
+  "slice_metrics": [
+    {
+      "abstention_rate": 0.0,
+      "num_cases": 9,
+      "slice": "F32",
+      "top1_accuracy": 1.0
+    },
+    {
+      "abstention_rate": 0.0,
+      "num_cases": 2,
+      "slice": "F42",
+      "top1_accuracy": 0.5
+    },
+    {
+      "abstention_rate": 0.0,
+      "num_cases": 20,
+      "slice": "somatized_expression",
+      "top1_accuracy": 0.7
+    }
+  ]
+}

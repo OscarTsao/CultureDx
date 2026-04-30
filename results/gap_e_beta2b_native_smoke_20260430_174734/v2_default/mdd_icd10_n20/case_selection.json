@@ -1,0 +1,42 @@
+{
+  "schema_version": "v2",
+  "run_id": "mdd_icd10_n20",
+  "dataset": "mdd5k_raw",
+  "num_cases": 20,
+  "case_ids": [
+    "patient_1",
+    "patient_10",
+    "patient_1002",
+    "patient_1003",
+    "patient_1004",
+    "patient_1005",
+    "patient_1006",
+    "patient_1008",
+    "patient_1009",
+    "patient_101",
+    "patient_1010",
+    "patient_1011",
+    "patient_1013",
+    "patient_1015",
+    "patient_1016",
+    "patient_1017",
+    "patient_1018",
+    "patient_1019",
+    "patient_102",
+    "patient_1020"
+  ],
+  "case_order_fingerprint": "c01381b84f4a8cad",
+  "runtime_context": {
+    "config_paths": [
+      "configs/base.yaml",
+      "configs/vllm_awq.yaml",
+      "configs/v2.4_final.yaml",
+      "configs/overlays/standard_icd10.yaml"
+    ],
+    "data_path": "data/raw/mdd5k_repo",
+    "limit": 20,
+    "seed": 42,
+    "split": null,
+    "with_evidence": false
+  }
+}
