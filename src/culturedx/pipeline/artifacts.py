@@ -138,7 +138,13 @@ def build_prediction_record(
 ) -> PredictionRecord:
     """Convert a diagnosis result into the canonical prediction schema."""
     failure_payload = [_normalize(f) for f in result.failures]
+    # BETA-2b feature flag: bump schema_version to "v2b" when policy active
+    schema_v = ARTIFACT_SCHEMA_VERSION
+    dt = result.decision_trace or {}
+    if isinstance(dt, dict) and dt.get("final_output_policy") == "beta2b_primary_locked":
+        schema_v = "v2b"
     return PredictionRecord(
+        schema_version=schema_v,
         run_id=run_id,
         case_id=case.case_id,
         order_index=order_index,

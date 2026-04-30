@@ -1,0 +1,4 @@
+# BETA-2b primary-locked feature flag overlay
+# Plan v1.3.2 §3 invariant: primary_diagnosis = diagnostician_ranked[0]
+mode:
+  final_output_policy: beta2b_primary_locked

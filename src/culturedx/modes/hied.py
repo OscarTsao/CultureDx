@@ -80,6 +80,7 @@ class HiEDMode(BaseModeOrchestrator):
         calibrator_mode: str = "heuristic-v2",
         calibrator_artifact_path: str | Path | None = None,
         force_prediction: bool = False,
+        final_output_policy: str = "default",
         stress_detection_enabled: bool = False,
         contrastive_primary_enabled: bool = False,
         contrastive_primary_prompt: str = "contrastive_primary_zh",
@@ -99,6 +100,7 @@ class HiEDMode(BaseModeOrchestrator):
         self.diagnose_then_verify = diagnose_then_verify
         self.prompt_variant = prompt_variant
         self.force_prediction = force_prediction
+        self.final_output_policy = final_output_policy
         normalized_reasoning_standard = str(reasoning_standard).strip().lower()
         if normalized_reasoning_standard not in SUPPORTED_REASONING_STANDARDS:
             raise ValueError(
@@ -1469,6 +1471,13 @@ class HiEDMode(BaseModeOrchestrator):
             confidence = 0.55
             primary_source = "no_confirmed_fallback"
 
+        # BETA-2b feature flag: lock primary to diagnostician_ranked[0] always
+        # (Plan v1.3.2 §3 design lock #1; bypasses veto/fallback above)
+        if self.final_output_policy == "beta2b_primary_locked" and top_ranked:
+            primary = top_ranked[0]
+            veto_applied = False
+            primary_source = "beta2b_locked"
+
         if primary_source != "top1":
             logger.info(
                 "Case %s: DtV primary from %s (top-1 %s -> primary %s)",
@@ -1575,6 +1584,7 @@ class HiEDMode(BaseModeOrchestrator):
                 **decision_trace,
                 "dtv_mode": True,
                 "audit_comorbid": audit_comorbid,
+                "final_output_policy": self.final_output_policy,
                 "diagnostician_ranked": ranked_codes,
                 "diagnostician_reasoning": diag_reasoning,
                 "verify_codes": verify_codes,

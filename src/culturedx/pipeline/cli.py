@@ -165,6 +165,7 @@ def run(
             force_prediction=cfg.mode.force_prediction,
             stress_detection_enabled=cfg.mode.stress_detection_enabled,
             contrastive_primary_enabled=cfg.mode.contrastive_primary_enabled,
+            final_output_policy=getattr(cfg.mode, "final_output_policy", "default"),
             contrastive_primary_prompt=cfg.mode.contrastive_primary_prompt,
         )
         if checker_llm is not None:
@@ -388,6 +389,7 @@ def sweep(
                 calibrator_artifact_path=cfg.mode.calibrator_artifact_path,
                 force_prediction=cfg.mode.force_prediction,
                 stress_detection_enabled=cfg.mode.stress_detection_enabled,
+                final_output_policy=getattr(cfg.mode, "final_output_policy", "default"),
             )
             if checker_llm is not None:
                 mode_kwargs["checker_llm_client"] = checker_llm
