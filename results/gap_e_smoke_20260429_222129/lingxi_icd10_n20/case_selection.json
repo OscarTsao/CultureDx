@@ -1,0 +1,42 @@
+{
+  "schema_version": "v2",
+  "run_id": "lingxi_icd10_n20",
+  "dataset": "lingxidiag16k",
+  "num_cases": 20,
+  "case_ids": [
+    "344699340",
+    "374577341",
+    "350352506",
+    "318518739",
+    "341328894",
+    "337522433",
+    "300493869",
+    "347729413",
+    "377662897",
+    "303364596",
+    "327826586",
+    "371726537",
+    "388559461",
+    "341042297",
+    "324224056",
+    "368679677",
+    "332278660",
+    "312389408",
+    "380913193",
+    "393761475"
+  ],
+  "case_order_fingerprint": "402487550600b3b6",
+  "runtime_context": {
+    "config_paths": [
+      "configs/base.yaml",
+      "configs/vllm_awq.yaml",
+      "configs/v2.4_final.yaml",
+      "configs/overlays/standard_icd10.yaml"
+    ],
+    "data_path": "data/raw/lingxidiag16k",
+    "limit": 20,
+    "seed": 42,
+    "split": null,
+    "with_evidence": false
+  }
+}
