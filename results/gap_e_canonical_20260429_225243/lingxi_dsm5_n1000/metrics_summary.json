@@ -1,0 +1,81 @@
+{
+  "schema_version": "v2",
+  "run_id": "lingxi_dsm5_n1000",
+  "dataset": "lingxidiag16k",
+  "num_cases": 1000,
+  "metrics": {
+    "diagnostics_internal": {
+      "comorbidity": {
+        "avg_gold_labels": 1.091,
+        "avg_predicted_labels": 1.0,
+        "comorbidity_detection_f1": 0.0,
+        "hamming_accuracy": 0.4485,
+        "label_coverage": 0.4485,
+        "label_precision": 0.475,
+        "subset_accuracy": 0.423
+      },
+      "diagnosis": {
+        "accuracy": 0.423,
+        "macro_f1": 0.20432117844889108,
+        "overall": 0.39842175795942814,
+        "top1_accuracy": 0.471,
+        "top3_accuracy": 0.471,
+        "weighted_f1": 0.42278761134825005
+      },
+      "four_class": {
+        "accuracy": 0.363,
+        "macro_f1": 0.20270966546195904,
+        "n_cases": 1000,
+        "weighted_f1": 0.25854011676396993
+      }
+    },
+    "metric_definitions": {
+      "diagnostics_internal.diagnosis.top1_accuracy": "primary == first gold (single-label, deprecated for paper citation)",
+      "diagnostics_internal.pilot_comparison_top1": "parent(primary) == parent(first gold) (single-label parent)",
+      "paper_canonical_top1": "table4.12class_Top1 (multi-label paper alignment)"
+    },
+    "table4": {
+      "12class_Acc": 0.419,
+      "12class_F1_macro": 0.16543614283450922,
+      "12class_F1_weighted": 0.3927919940436004,
+      "12class_Top1": 0.471,
+      "12class_Top3": 0.803,
+      "12class_n": 1000,
+      "2class_Acc": 0.7674418604651163,
+      "2class_F1_macro": 0.7352826510721248,
+      "2class_F1_weighted": 0.7936748142378498,
+      "2class_n": 473,
+      "4class_Acc": 0.458,
+      "4class_F1_macro": 0.3636539475464422,
+      "4class_F1_weighted": 0.37746172954834867,
+      "4class_n": 1000,
+      "Overall": 0.5224311945225447
+    }
+  },
+  "slice_metrics": [
+    {
+      "abstention_rate": 0.0,
+      "num_cases": 370,
+      "slice": "F32",
+      "top1_accuracy": 0.8810810810810811
+    },
+    {
+      "abstention_rate": 0.0,
+      "num_cases": 36,
+      "slice": "F42",
+      "top1_accuracy": 0.19444444444444445
+    },
+    {
+      "abstention_rate": 0.0,
+      "num_cases": 998,
+      "slice": "somatized_expression",
+      "top1_accuracy": 0.4709418837675351
+    },
+    {
+      "abstention_rate": 0.0,
+      "num_cases": 2,
+      "slice": "direct_expression",
+      "top1_accuracy": 0.5
+    }
+  ]
+}
