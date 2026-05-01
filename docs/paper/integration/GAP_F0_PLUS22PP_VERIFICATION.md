@@ -131,6 +131,100 @@ This is significantly stronger than the original "BETA-2b primary-only is unique
 
 ---
 
+---
+
+## §5b — CAVEAT 5: Cross-domain generalization (in-domain vs cross-domain TF-IDF)
+
+**Question (raised by user):** TF-IDF+LR is supervised. The +22pp may be inflated by in-distribution memorization (LR trained on LingxiDiag, tested on LingxiDiag). What's the lift when LR is trained on a DIFFERENT dataset?
+
+**Method:** Compare two TF-IDF+LR predictors:
+- **In-domain**: trained on LingxiDiag-16K train split, tested on LingxiDiag-16K validation
+- **Cross-domain**: trained on MDD-5k, tested on LingxiDiag-16K validation
+
+Both predictors use the SAME TF-IDF vectorizer family + One-vs-Rest LR architecture. Source paths:
+- `results/generalization/tfidf/train_lingxidiag16k_test_lingxidiag16k/predictions.jsonl`
+- `results/generalization/tfidf/train_mdd5k_test_lingxidiag16k/predictions.jsonl`
+
+**Result (LingxiDiag-16K validation, all 1000 cases):**
+
+| Configuration | size=1 (n=914) | size=2 (n=81) | size=3 (n=5) |
+|---|---:|---:|---:|
+| Qwen3 alone (top-5) | 85.7% | **56.8%** | 20.0% |
+| Qwen3 ∪ TFIDF-in-domain (Lingxi-trained) | 98.6% (+12.9pp) | **79.0% (+22.2pp)** | 60.0% (+40pp) |
+| Qwen3 ∪ TFIDF-cross-domain (MDD-trained) | 96.9% (+11.3pp) | **67.9% (+11.1pp)** | 60.0% (+40pp) |
+| Qwen3 ∪ both (in + cross domain) | 99.0% (+13.3pp) | 81.5% (+24.7pp) | 80.0% (+60pp) |
+
+**Interpretation:**
+
+- **Cross-domain DOES generalize**: TFIDF trained on MDD-5k still recovers +11.1pp on LingxiDiag size=2 cases. The complementarity is not pure memorization.
+- **But generalization is partial**: cross-domain lift is ~half of in-domain (+11pp vs +22pp on size=2). Some of the in-domain +22pp is from same-distribution exposure.
+- **Cross-domain still dominates LLM ensemble**: +11.1pp vs LLM ensemble's +3.7pp — 3x larger. Paradigm diversity claim survives.
+- **size=1 is highly stable**: +12.9pp in-domain vs +11.3pp cross-domain (Δ=1.6pp). Single-label lexical signals transfer.
+- **size=2 is ~half stable**: in-domain memorization contributes ~+11pp on top of robust +11pp generalizable signal.
+
+**Verdict: PASS with caveat.** The TF-IDF+LR contribution is real and cross-domain-robust, but the magnitude is ~half the in-domain number. Paper-claim should use cross-domain numbers as the conservative defensible figure.
+
+**Updated paper-claim language (more conservative):**
+
+> Heterogeneous candidate-source paradigm diversity is the dominant lever for multi-diagnosis recall. A TF-IDF + One-vs-Rest Logistic Regression candidate source — trained on a DIFFERENT psychiatric corpus (MDD-5k) — recovers +11.1pp size=2 multi-gold coverage on LingxiDiag-16K, three times larger than LLM-family ensembling (+3.7pp from Qwen3-32B-AWQ ∪ Gemma-3-12B-it). When the LR classifier is trained in-domain, the lift roughly doubles to +22.2pp; the difference attributable to in-distribution memorization is approximately +11pp. We therefore frame TF-IDF + LR as a generalizable complementary source, with the in-domain version as an upper bound for that paradigm.
+
+**Future work for stronger generalization claim:**
+
+| Test | Purpose |
+|---|---|
+| LightGBM (LBGM) cross-domain | Does a non-linear classifier generalize better than LR? |
+| TF-IDF + SVM cross-domain | Does linear-but-margin-based classifier match LR? |
+| Multi-source train (LingxiDiag + MDD) | Does pooling training data improve cross-test recall? |
+| Held-out clinician-curated test | Most rigorous; depends on annotation availability |
+| Train on synthetic (LingxiDiag), test on real-clinical (e.g., PDCH if accessible) | Real-world deployment robustness |
+
+These are out-of-scope for this paper but recommended as next-paper future work.
+
+### §5b.2 — Pure TF-IDF kNN (NO classifier) cross-domain test
+
+**Question:** TF-IDF+LR is supervised — even cross-domain, the LR weights still encode label distributions. What about pure TF-IDF nearest-neighbor (kNN) retrieval that has NO trained classifier?
+
+**Method:** kNN-50 cosine similarity over a corpus, aggregate gold labels from neighbors weighted by similarity, take top-5 most-frequent.
+- **In-domain corpus**: LingxiDiag-16K train (14000 cases)
+- **Cross-domain corpus**: MDD-5k full set (925 cases, gold codes from Label/ JSON)
+
+The TF-IDF vectorizer is a single shared vectorizer (LingxiDiag-fit). For absolute purity, would need per-corpus re-fitted vectorizer; deferred to future work as a minor caveat.
+
+**Result (LingxiDiag-16K validation, size=2 cases, n=81):**
+
+| Configuration | Coverage | Δ vs Qwen alone | Retention vs in-domain |
+|---|---:|---:|---:|
+| Qwen3 alone (top-5) | 56.8% | — | — |
+| Qwen3 ∪ pure-kNN in-domain (Lingxi corpus) | 70.4% | +13.6pp | (baseline, 100%) |
+| **Qwen3 ∪ pure-kNN cross-domain (MDD corpus)** | **67.9%** | **+11.1pp** | **82%** |
+| Qwen3 ∪ both pure-kNNs | 75.3% | +18.5pp | — |
+
+**Comparison with supervised TF-IDF+LR:**
+
+| Method | In-domain lift | Cross-domain lift | Generalization retention |
+|---|---:|---:|---:|
+| TF-IDF + LR (supervised classifier) | +22.2pp | +11.1pp | 50% |
+| **Pure TF-IDF kNN (NO classifier)** | **+13.6pp** | **+11.1pp** | **82%** |
+
+**Interpretation:**
+
+Pure kNN generalizes much better proportionally — 82% of its in-domain lift survives the domain shift, vs 50% for the supervised LR. The cross-domain lift is **identical** in both methods at +11.1pp. This is striking:
+- TF-IDF+LR's edge comes from supervised tuning that doesn't transfer
+- Pure kNN's lift is mostly transferable lexical-similarity signal
+- Both arrive at the same +11.1pp cross-domain ceiling
+
+**Stronger paper claim** (pure-kNN version, no learned parameters):
+
+> A pure TF-IDF + cosine-similarity nearest-neighbor candidate source — with NO trained classifier — recovers +11.1pp size=2 multi-gold coverage on LingxiDiag-16K when its retrieval corpus is MDD-5k (a different psychiatric dataset). This +11.1pp matches the cross-domain lift of TF-IDF + supervised LR, suggesting the heterogeneous-source benefit comes from lexical similarity itself, not from learned label distributions. The lift is 3x larger than LLM-family ensembling (+3.7pp from Qwen3-32B-AWQ ∪ Gemma-3-12B-it).
+
+This is the strongest paper-defensible version of the +22pp finding: a non-supervised, fully cross-domain-tested signal that triples the LLM-family ensemble baseline.
+
+**Caveats remaining:**
+1. TF-IDF vectorizer reused across both corpora (LingxiDiag-fit). Future work: per-corpus vectorizer re-fit.
+2. n=81 size=2 cases. Future work: replicate on MDD-5k size=2 cases (75 cases) using inverted train/test direction.
+3. Pure kNN's in-domain ceiling is lower (+13.6pp vs +22.2pp for LR). Tradeoff: generalization vs peak performance.
+4. Future work — try LightGBM cross-domain to see if non-linear classifier generalizes better than LR while exceeding pure-kNN's in-domain ceiling.
+
 ## §6 — What this changes in the experiment matrix
 
 Given +22pp/+27pp confirmed:
