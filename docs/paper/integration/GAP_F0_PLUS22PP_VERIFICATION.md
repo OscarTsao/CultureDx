@@ -225,6 +225,90 @@ This is the strongest paper-defensible version of the +22pp finding: a non-super
 3. Pure kNN's in-domain ceiling is lower (+13.6pp vs +22.2pp for LR). Tradeoff: generalization vs peak performance.
 4. Future work — try LightGBM cross-domain to see if non-linear classifier generalizes better than LR while exceeding pure-kNN's in-domain ceiling.
 
+### §5b.3 — Bidirectional kNN robustness test (Action 2)
+
+**Question:** the cross-domain lift was tested as Direction 1 (Lingxi test, MDD index). Does Direction 2 (MDD test, Lingxi index) also lift? If asymmetric, the claim must be scope-limited.
+
+**Method:** Using BETA-2b projection MDD predictions (n=75 size=2 cases), apply same kNN-50 lookup against:
+- In-domain MDD index (MDD-5k cases excluding test, n~850)
+- Cross-domain LingxiDiag-train index (n=14000)
+
+**Result:**
+
+| Direction | Test set | Index corpus | Cross-domain lift |
+|---|---|---|---:|
+| Direction 1 (already in §5b.2) | LingxiDiag size=2 (n=81) | MDD-5k full | **+11.1pp** ✓ |
+| **Direction 2 (this test)** | **MDD-5k size=2 (n=75)** | **LingxiDiag-train** | **+2.7pp** ✗ |
+| MDD in-domain reference | MDD-5k size=2 | MDD-self | +6.7pp |
+
+**Verdict:** ASYMMETRIC. The +11.1pp claim does not bidirectionally generalize. Direction 2 collapses to near LLM-ensemble baseline (Qwen+Gemma was +3.7pp). Even MDD in-domain only gives +6.7pp.
+
+**Possible explanations:**
+- LingxiDiag is structurally a "rich source corpus" — concept descriptions are diagnostic-keyword-dense, making kNN lookup effective when querying.
+- MDD-5k cases are full doctor-patient dialogues. The LLM Diagnostician already extracts most candidates from dialogue context, so TF-IDF lexical lookup adds marginal complementary information.
+- TF-IDF vocabulary (fit on LingxiDiag-style validated text) may not transfer to dialogue-style MDD case texts.
+
+### §5b.4 — Size=1 noise cost (Action 3)
+
+**Question:** Single-label cases (91% of dataset). Does adding TF-IDF candidates pollute their candidate pool?
+
+**Method:** For each size=1 case in LingxiDiag (n=914), count non-gold codes in:
+- Qwen3 alone top-5 (5 slots)
+- Qwen3 ∪ TF-IDF+LR top-5 (up to 10 slots after dedup)
+
+**Result:**
+
+| Source | Mean non-gold codes per case | Max | P95 |
+|---|---:|---:|---:|
+| Qwen3 alone top-5 | 4.01 / 5 (1 correct) | 5 | 5 |
+| Qwen3 ∪ TF-IDF+LR top-5 dedup | 5.75 / ~6 | 8 | 7 |
+| Net additional noise | **+1.74 non-gold codes** | — | — |
+
+**TF-IDF unique additions (codes added beyond Qwen3 top-5):**
+- Mean ~1.82 new codes per size=1 case
+- Almost all of them are non-gold (TF-IDF rarely adds the correct gold for size=1)
+
+**Implication:** Enabling TF-IDF union adds ~1.8 spurious candidates per size=1 case. For 91% of the dataset (single-label), this is pure noise. Downstream:
+- BETA-2b primary-only emission: noise has zero effect (only emits primary).
+- Any reranker over the pool: must filter ~+1.8 extra candidates, mostly non-gold.
+- LLM-as-reranker on union: extra context tokens + risk of distraction.
+
+The size=2 recall lift (+11pp cross-domain on Lingxi direction) trades against this size=1 noise (~+1.8 spurious candidates per single-label case). On a benchmark with 91% single-label and 9% multi-label, the trade is approximately:
+- Multi-gold rescue: ~9% of cases × 11pp = ~1pp aggregate EM lift potential
+- Single-label noise: ~91% of cases × downstream reranker cost (variable)
+
+For a closed-loop deployment, the net benefit depends on the downstream selector's robustness to noise.
+
+### §5b.5 — Updated paper claim (down-tuned)
+
+Combined Actions 2 + 3 results force a more conservative paper-claim formulation:
+
+**Down-tuned claim:**
+
+> On LingxiDiag-16K size=2 cases, augmenting Qwen3 top-5 with a TF-IDF + Logistic Regression candidate source recovers +22.2pp in-domain and +11.1pp cross-domain (when LR is trained on MDD-5k). However, the inverse direction — training the LR on LingxiDiag and testing on MDD-5k — yields only +2.7pp lift, comparable to LLM-family ensembling (+3.7pp). This asymmetry suggests the lexical-source benefit is direction-dependent and may correlate with corpus properties such as lexical density and case-text style. Additionally, on size=1 single-label cases (91% of the dataset), the TF-IDF union adds approximately 1.8 spurious non-gold candidates per case, raising the candidate pool from 5 to ~6 codes. The findings motivate further investigation into when and how heterogeneous candidate sources help in psychiatric MAS pipelines, but do not yet constitute a deployment-ready architectural component.
+
+**What this enables (stronger than null result):**
+
+- Identifies a real diagnostic decomposition (recall vs ranking, cross-direction asymmetry) absent from prior MAS evaluations
+- Quantifies the size=2 multi-gold recall ceiling across heterogeneous sources
+- Empirically rules out post-hoc emission gating as the right attack point (Round 159)
+- Empirically grounds where to investigate next — not "+22pp universal lift" but "asymmetric direction-specific recall gain in synthetic Chinese psychiatric corpora"
+
+**What it does NOT enable (avoid these claims):**
+
+- Universal heterogeneous-paradigm MAS architecture (only Direction 1 supports it)
+- 3x larger lift than LLM ensembling (apples-to-oranges comparison; same-condition is ~3pp vs ~3pp in Direction 2)
+- Real-world clinical deployment readiness (synthetic-to-synthetic only)
+- Generalizable component across psychiatric datasets (asymmetric)
+
+**Future-work tightening required for paper-canonical claim:**
+
+1. Replicate on a 3rd psychiatric corpus (e.g., real-clinical when IRB clears) to test directionality structurally
+2. Investigate why MDD-direction collapses — corpus statistics? case-text-style? Training-data overlap?
+3. Test if a per-corpus retrained TF-IDF vectorizer changes the asymmetry
+4. Test at different K values (kNN-10, kNN-100) to see if neighbor count matters
+5. LightGBM/XGBoost cross-direction comparison
+
 ## §6 — What this changes in the experiment matrix
 
 Given +22pp/+27pp confirmed:
