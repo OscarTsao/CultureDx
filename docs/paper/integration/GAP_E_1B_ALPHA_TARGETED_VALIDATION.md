@@ -2,7 +2,13 @@
 
 **Date:** 2026-05-01 11:51:02
 **Branch:** feature/gap-e-beta2-implementation
-**Status:** Sandbox audit. CPU-only. No production code change. Uncommitted.
+**Status:** Historical feature-branch sandbox audit.
+CPU-only. No production code change.
+Source family is dual_standard_full / BETA-2a-era predictions.
+This artifact is NOT BETA-2b-aligned validation and NOT manuscript-canonical.
+
+**Provenance note:** This report evaluates 1B-α against the dual_standard_full source family.
+A later provenance-alignment audit is required before using 1B-α as BETA-2c evidence.
 
 ## TL;DR
 
@@ -264,7 +270,13 @@ Signal-driven. The rule consults `logic_engine_confirmed_codes`, which is comput
 
 **Q2 — Is the rule clinically defensible?**
 
-Yes. Diagnostician-ranking and criterion-checker confirmation are two independent sources of evidence. When they disagree on rank-0, the conservative veto defers to whichever candidate has criterion-level confirmation. This mirrors a clinical second-opinion workflow: when the clinician's first-pass label lacks criterion support but the second-pass label is criterion-confirmed, switching is the more conservative position. Crucially, the rule does NOT introduce any trained classifier or hand-tuned threshold; it is a pure logical rule, and the rule fires only when both rank-0 lacks confirmation AND rank-1 has confirmation.
+Yes. Diagnostician-ranking and criterion-checker confirmation are two independent sources of evidence.
+When they disagree on rank-0, the conservative veto defers to whichever candidate has criterion-level
+confirmation. This mirrors a clinical second-opinion workflow: when the clinician's first-pass label
+lacks criterion support but the second-pass label is criterion-confirmed, switching is the more
+conservative position. Crucially, the rule does NOT introduce any trained classifier or hand-tuned
+threshold; it is a pure logical rule, and the rule fires only when both rank-0 lacks confirmation
+AND rank-1 has confirmation.
 
 ---
 
