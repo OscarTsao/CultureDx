@@ -1,9 +1,9 @@
-# Qwen3 Tier 2B Hierarchical-Prompt Canonical Audit (Partial: 4/6 modes)
+# Qwen3 Tier 2B Hierarchical-Prompt Canonical Audit (Partial: 5/6 modes)
 
-**Date:** 2026-05-01 (Qwen3 Tier 2B partial audit, 4/6 modes)
+**Date:** 2026-05-01 (Qwen3 Tier 2B partial audit, 5/6 modes)
 **Branch:** tier2b/hierarchical-prompt @ HEAD
 **Source:** `results/tier2b_canonical_20260501_081706/`  (Qwen3-32B-AWQ, hierarchical prompt v2)
-**Status:** PARTIAL — `mdd_dsm5` and `mdd_both` still running. Numbers below cover the 4 completed modes.
+**Status:** PARTIAL — `mdd_both` still running. Numbers below cover the 5 completed modes.
 
 ## TL;DR
 
@@ -17,7 +17,7 @@ Post-hoc rescue attempts (overlay 1B-α / 1F / Combo on tier2b output) **all RED
 
 ---
 
-## 1. Tier 2B vs BETA-2b head-to-head (4 modes)
+## 1. Tier 2B vs BETA-2b head-to-head (5 modes)
 
 | Mode | Policy | emit% | Top-1 | Top-3 | EM | mF1 | wF1 | Overall | sgEM | mgEM | 2c | 4c |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -33,6 +33,9 @@ Post-hoc rescue attempts (overlay 1B-α / 1F / Combo on tier2b output) **all RED
 | mdd_icd10 | BETA-2b | 0.0% | 0.5924 | 0.8422 | 0.5514 | 0.0909 | 0.5326 | 0.4053 | 0.6043 | 0.0000 | 0.6919 | 0.6584 |
 | mdd_icd10 | **Tier 2B** | 41.5% | 0.5784 | 0.8422 | 0.3459 | 0.1057 | 0.5152 | 0.3998 | 0.3673 | 0.1235 | 0.6843 | 0.6530 |
 | mdd_icd10 | Δ Tier 2B − BETA-2b | — | -0.0141 | — | -0.2054 | — | — | — | — | +0.1235 | — | — |
+| mdd_dsm5 | BETA-2b | 0.0% | 0.5795 | 0.8324 | 0.5351 | 0.0967 | 0.5116 | 0.3959 | 0.5865 | 0.0000 | 0.6843 | 0.6541 |
+| mdd_dsm5 | **Tier 2B** | 38.8% | 0.5838 | 0.8335 | 0.3762 | 0.0905 | 0.5202 | 0.3982 | 0.3957 | 0.1728 | 0.6854 | 0.6562 |
+| mdd_dsm5 | Δ Tier 2B − BETA-2b | — | +0.0043 | — | -0.1589 | — | — | — | — | +0.1728 | — | — |
 
 ---
 
@@ -61,6 +64,10 @@ Tests whether overlaying sandbox post-hoc gates on Tier 2B's primary changes the
 | mdd_icd10 | PH-α | 39.8% | 0.5805 | 0.3535 | 0.1235 |
 | mdd_icd10 | PH-1F | 6.3% | 0.5784 | 0.4962 | 0.0123 |
 | mdd_icd10 | PH-Combo | 6.3% | 0.5805 | 0.4973 | 0.0123 |
+| mdd_dsm5 | Tier 2B (baseline) | 38.8% | 0.5838 | 0.3762 | 0.1728 |
+| mdd_dsm5 | PH-α | 37.1% | 0.5762 | 0.3719 | 0.1728 |
+| mdd_dsm5 | PH-1F | 7.9% | 0.5838 | 0.5059 | 0.0370 |
+| mdd_dsm5 | PH-Combo | 7.8% | 0.5762 | 0.4984 | 0.0370 |
 
 ---
 
@@ -81,6 +88,7 @@ Per case, classify each prediction:
 | lingxi_dsm5 | 66 | 74 | 6 | 12 | 400 | 374 | 68 |
 | lingxi_both | 49 | 70 | 3 | 6 | 415 | 380 | 77 |
 | mdd_icd10 | 186 | 164 | 10 | 24 | 310 | 184 | 47 |
+| mdd_dsm5 | 168 | 147 | 14 | 30 | 334 | 195 | 37 |
 
 Read this as: **the dominant Tier 2B error mode is `emit_on_size1_correct_primary`** — the LLM had the right primary but added a spurious comorbid. This is pure precision damage that BETA-2b avoids by construction.
 
@@ -125,6 +133,16 @@ Read this as: **the dominant Tier 2B error mode is `emit_on_size1_correct_primar
 | F31 | F41 | 11 |
 | F39 | F41 | 8 |
 | F42 | F41 | 5 |
+
+**mdd_dsm5**
+
+| primary | comorbid | count |
+|---|---|---:|
+| F32 | F41 | 257 |
+| F41 | F32 | 54 |
+| F31 | F41 | 11 |
+| F41 | F39 | 7 |
+| F20 | F41 | 5 |
 
 ---
 
@@ -172,49 +190,69 @@ Pure precision damage (gold size=1, primary correct, but LLM emitted spurious co
 | patient_1008 | ['F32'] | F32 | ['F41'] |
 | patient_101 | ['F42'] | F42 | ['F41'] |
 
+**mdd_dsm5**
+
+| case_id | gold | tier2b primary | tier2b comorbid (spurious) |
+|---|---|---|---|
+| patient_10 | ['F32'] | F32 | ['F41'] |
+| patient_1008 | ['F32'] | F32 | ['F41'] |
+| patient_1017 | ['F32'] | F32 | ['F41'] |
+| patient_116 | ['F32'] | F32 | ['F41'] |
+| patient_127 | ['F42'] | F42 | ['F41'] |
+
 Multi-gold full rescues (where Tier 2B genuinely helped):
 
 **lingxi_icd10**
 
 | case_id | gold | tier2b primary | tier2b comorbid |
 |---|---|---|---|
-| 324712168 | ['F32', 'F41'] | F41 | ['F32'] |
-| 358277669 | ['F32', 'F41'] | F41 | ['F32'] |
-| 337706986 | ['F32', 'F41'] | F32 | ['F41'] |
+| 324712168 | ['F41', 'F32'] | F41 | ['F32'] |
+| 358277669 | ['F41', 'F32'] | F41 | ['F32'] |
+| 337706986 | ['F41', 'F32'] | F32 | ['F41'] |
 
 **lingxi_dsm5**
 
 | case_id | gold | tier2b primary | tier2b comorbid |
 |---|---|---|---|
-| 379930126 | ['F32', 'F41'] | F32 | ['F41'] |
-| 358277669 | ['F32', 'F41'] | F32 | ['F41'] |
-| 391255095 | ['F32', 'F41'] | F41 | ['F32'] |
-| 336070891 | ['F32', 'F41'] | F32 | ['F41'] |
-| 322204263 | ['F32', 'F41'] | F32 | ['F41'] |
+| 379930126 | ['F41', 'F32'] | F32 | ['F41'] |
+| 358277669 | ['F41', 'F32'] | F32 | ['F41'] |
+| 391255095 | ['F41', 'F32'] | F41 | ['F32'] |
+| 336070891 | ['F41', 'F32'] | F32 | ['F41'] |
+| 322204263 | ['F41', 'F32'] | F32 | ['F41'] |
 
 **lingxi_both**
 
 | case_id | gold | tier2b primary | tier2b comorbid |
 |---|---|---|---|
-| 324712168 | ['F32', 'F41'] | F41 | ['F32'] |
-| 358277669 | ['F32', 'F41'] | F41 | ['F32'] |
-| 337706986 | ['F32', 'F41'] | F32 | ['F41'] |
+| 324712168 | ['F41', 'F32'] | F41 | ['F32'] |
+| 358277669 | ['F41', 'F32'] | F41 | ['F32'] |
+| 337706986 | ['F41', 'F32'] | F32 | ['F41'] |
 
 **mdd_icd10**
 
 | case_id | gold | tier2b primary | tier2b comorbid |
 |---|---|---|---|
-| patient_114 | ['F32', 'F41'] | F32 | ['F41'] |
-| patient_204 | ['F32', 'F41'] | F32 | ['F41'] |
-| patient_210 | ['F32', 'F41'] | F32 | ['F41'] |
-| patient_242 | ['F32', 'F41'] | F41 | ['F32'] |
-| patient_244 | ['F32', 'F41'] | F32 | ['F41'] |
+| patient_114 | ['F41', 'F32'] | F32 | ['F41'] |
+| patient_204 | ['F41', 'F32'] | F32 | ['F41'] |
+| patient_210 | ['F41', 'F32'] | F32 | ['F41'] |
+| patient_242 | ['F41', 'F32'] | F41 | ['F32'] |
+| patient_244 | ['F41', 'F32'] | F32 | ['F41'] |
+
+**mdd_dsm5**
+
+| case_id | gold | tier2b primary | tier2b comorbid |
+|---|---|---|---|
+| patient_111 | ['F41', 'F32'] | F32 | ['F41'] |
+| patient_136 | ['F41', 'F32'] | F32 | ['F41'] |
+| patient_204 | ['F41', 'F32'] | F41 | ['F32'] |
+| patient_214 | ['F41', 'F32'] | F32 | ['F41'] |
+| patient_216 | ['F41', 'F32'] | F41 | ['F32'] |
 
 ---
 
 ## 5. Verdict
 
-**Qwen3 Tier 2B hierarchical prompt is RED on all 4 completed modes.**
+**Qwen3 Tier 2B hierarchical prompt is RED on all 5 completed modes.**
 
 Mechanism: LLM-as-emitter takes the option to emit comorbid more often than gold has multi-label cases (1.5x on Lingxi, 4.8x on MDD). Most spurious emits land on gold-size=1 cases where primary was correct, destroying EM precision. The mgEM rescue (3-12% on multi-gold cases) does not compensate for the EM loss on single-gold cases.
 

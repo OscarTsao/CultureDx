@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Qwen3 Tier 2B canonical analysis — comprehensive CPU work.
 
-Runs three analyses on the 4 completed Qwen3 Tier 2B modes:
+Runs three analyses on the 5 completed Qwen3 Tier 2B modes:
   1. Full metric battery vs BETA-2b baseline
   2. Post-hoc replay (1B-α / 1F / Combo / 2C-α / 1A-δ on tier2b primary)
   3. Sample case error analysis (where tier2b over-emits, what features)
@@ -33,12 +33,14 @@ COMPLETED = {
     "lingxi_dsm5":  "lingxi_dsm5_n1000",
     "lingxi_both":  "lingxi_both_n1000",
     "mdd_icd10":    "mdd_icd10_n925",
+    "mdd_dsm5":     "mdd_dsm5_n925",
 }
 BETA2B_MAP = {
     "lingxi_icd10": "lingxi_icd10_n1000",
     "lingxi_dsm5":  "lingxi_dsm5_n1000",
     "lingxi_both":  "lingxi_both_n1000",
     "mdd_icd10":    "mdd_icd10_n925",
+    "mdd_dsm5":     "mdd_dsm5_n925",
 }
 
 
@@ -215,7 +217,7 @@ def analyze_emit_errors(tier2b_recs):
 
 
 def main():
-    started = "2026-05-01 (Qwen3 Tier 2B partial audit, 4/6 modes)"
+    started = "2026-05-01 (Qwen3 Tier 2B partial audit, 5/6 modes)"
     print(f"[Qwen3 Tier 2B analysis] starting")
 
     # Phase 1: full metrics for tier2b vs BETA-2b
@@ -253,12 +255,12 @@ def main():
 
     # Render audit
     L = []
-    L.append("# Qwen3 Tier 2B Hierarchical-Prompt Canonical Audit (Partial: 4/6 modes)")
+    L.append("# Qwen3 Tier 2B Hierarchical-Prompt Canonical Audit (Partial: 5/6 modes)")
     L.append("")
     L.append(f"**Date:** {started}")
     L.append("**Branch:** tier2b/hierarchical-prompt @ HEAD")
     L.append(f"**Source:** `{TIER2B_DIR.relative_to(REPO)}/`  (Qwen3-32B-AWQ, hierarchical prompt v2)")
-    L.append("**Status:** PARTIAL — `mdd_dsm5` and `mdd_both` still running. Numbers below cover the 4 completed modes.")
+    L.append("**Status:** PARTIAL — `mdd_both` still running. Numbers below cover the 5 completed modes.")
     L.append("")
     L.append("## TL;DR")
     L.append("")
@@ -272,7 +274,7 @@ def main():
     L.append("")
     L.append("---")
     L.append("")
-    L.append("## 1. Tier 2B vs BETA-2b head-to-head (4 modes)")
+    L.append("## 1. Tier 2B vs BETA-2b head-to-head (5 modes)")
     L.append("")
     L.append("| Mode | Policy | emit% | Top-1 | Top-3 | EM | mF1 | wF1 | Overall | sgEM | mgEM | 2c | 4c |")
     L.append("|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|")
@@ -367,7 +369,7 @@ def main():
     L.append("")
     L.append("## 5. Verdict")
     L.append("")
-    L.append("**Qwen3 Tier 2B hierarchical prompt is RED on all 4 completed modes.**")
+    L.append("**Qwen3 Tier 2B hierarchical prompt is RED on all 5 completed modes.**")
     L.append("")
     L.append("Mechanism: LLM-as-emitter takes the option to emit comorbid more often than gold has multi-label cases (1.5x on Lingxi, 4.8x on MDD). Most spurious emits land on gold-size=1 cases where primary was correct, destroying EM precision. The mgEM rescue (3-12% on multi-gold cases) does not compensate for the EM loss on single-gold cases.")
     L.append("")
