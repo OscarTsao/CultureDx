@@ -144,6 +144,8 @@ class DiagnosticianAgent(BaseAgent):
             template_name = "diagnostician_v2_somatization_zh.jinja"
         elif prompt_variant == "v2_nos" and input.language == "zh":
             template_name = "diagnostician_v2_nos_zh.jinja"
+        elif prompt_variant == "v2_hierarchical" and input.language == "zh":
+            template_name = "diagnostician_v2_hierarchical_zh.jinja"
         elif prompt_variant in ("v2", "v2diag") and input.language == "zh":
             template_name = "diagnostician_v2_zh.jinja"
         else:
@@ -245,7 +247,29 @@ class DiagnosticianAgent(BaseAgent):
             ranked_codes.append(code)
             reasoning.append(str(item.get("reasoning", "")).strip())
 
+        # Tier 2B: extract optional primary_emit / comorbid_emit (hierarchical prompt)
+        primary_emit_raw = parsed.get("primary_emit")
+        comorbid_emit_raw = parsed.get("comorbid_emit")
+
+        def _normalize_emit(c: object) -> str | None:
+            if not c or not isinstance(c, str):
+                return None
+            cs = c.strip()
+            if not cs or cs.lower() in {"null", "none", "n/a", "nil"}:
+                return None
+            cs = _code_norm.get(cs, cs)
+            if cs not in allowed_codes:
+                return None
+            return cs
+
+        primary_emit = _normalize_emit(primary_emit_raw)
+        comorbid_emit = _normalize_emit(comorbid_emit_raw)
+        if comorbid_emit is not None and comorbid_emit == primary_emit:
+            comorbid_emit = None
+
         return {
             "ranked_codes": ranked_codes,
             "reasoning": reasoning,
+            "primary_emit": primary_emit,
+            "comorbid_emit": comorbid_emit,
         }

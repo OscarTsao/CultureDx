@@ -72,6 +72,31 @@ def apply_beta2b_finalization(
     return top_ranked[0], False, "beta2b_locked"
 
 
+def apply_tier2b_finalization(
+    primary: str | None,
+    comorbid: list[str],
+    top_ranked: list[str],
+    diag_primary_emit: str | None,
+    diag_comorbid_emit: str | None,
+    veto_applied: bool,
+    primary_source: str,
+    final_output_policy: str,
+) -> tuple[str | None, list[str], bool, str]:
+    """Apply Tier 2B hierarchical-prompt finalization iff feature flag is active.
+
+    Tier 2B: when the diagnostician was prompted to also emit a primary +
+    optional comorbid (hierarchical prompt), use those LLM decisions as the
+    benchmark final output. Falls back to passthrough if either field is missing.
+    """
+    if final_output_policy != "tier2b_hierarchical":
+        return primary, comorbid, veto_applied, primary_source
+    new_primary = diag_primary_emit if diag_primary_emit else (top_ranked[0] if top_ranked else primary)
+    new_comorbid: list[str] = []
+    if diag_comorbid_emit and diag_comorbid_emit != new_primary:
+        new_comorbid = [diag_comorbid_emit]
+    return new_primary, new_comorbid, False, "tier2b_hierarchical"
+
+
 class HiEDMode(BaseModeOrchestrator):
     """Primary evidence-grounded diagnosis orchestrator.
 
@@ -1498,9 +1523,21 @@ class HiEDMode(BaseModeOrchestrator):
         # BETA-2b feature flag: lock primary to diagnostician_ranked[0] always
         # (Plan v1.3.2 §3 design lock #1; bypasses veto/fallback above)
         # Inline logic extracted to module-level apply_beta2b_finalization helper
-        # so offline Code Path Equivalence audits can invoke without HiEDMode state.
+        # for offline Code Path Equivalence audits (Round 132 §B).
         primary, veto_applied, primary_source = apply_beta2b_finalization(
             primary, top_ranked, veto_applied, primary_source, self.final_output_policy
+        )
+
+        # Tier 2B hierarchical-prompt finalization (Round 159+).
+        diag_primary_emit = None
+        diag_comorbid_emit = None
+        if diag_output.parsed:
+            diag_primary_emit = diag_output.parsed.get("primary_emit")
+            diag_comorbid_emit = diag_output.parsed.get("comorbid_emit")
+        primary, comorbid, veto_applied, primary_source = apply_tier2b_finalization(
+            primary, comorbid, top_ranked,
+            diag_primary_emit, diag_comorbid_emit,
+            veto_applied, primary_source, self.final_output_policy,
         )
 
         if primary_source != "top1":
@@ -1512,12 +1549,14 @@ class HiEDMode(BaseModeOrchestrator):
                 primary,
             )
 
-        # Build comorbid list: prefer ranked order, must be confirmed and not primary
-        for rc in top_ranked:
-            if rc != primary and rc in confirmed_set:
-                comorbid.append(rc)
-                if len(comorbid) >= 1:
-                    break  # max 1 comorbid per paper protocol
+        # Build comorbid list: prefer ranked order, must be confirmed and not primary.
+        # Skip under tier2b_hierarchical — LLM-emitted comorbid is the source of truth.
+        if self.final_output_policy != "tier2b_hierarchical":
+            for rc in top_ranked:
+                if rc != primary and rc in confirmed_set:
+                    comorbid.append(rc)
+                    if len(comorbid) >= 1:
+                        break  # max 1 comorbid per paper protocol
 
         # R4: Primary-level Contrastive Disambiguation
         if self._contrastive_primary_enabled and self._contrastive_primary_template:
@@ -1566,7 +1605,8 @@ class HiEDMode(BaseModeOrchestrator):
                         if len(comorbid) >= 1:
                             break
 
-        if comorbid:
+        # Skip comorbidity_resolver under tier2b_hierarchical — LLM emission is final.
+        if comorbid and self.final_output_policy != "tier2b_hierarchical":
             confirmed_codes_list = [primary] + comorbid
             confidences = {primary: confidence}
             for i, c in enumerate(comorbid):
@@ -1587,7 +1627,11 @@ class HiEDMode(BaseModeOrchestrator):
             confirmed_codes=logic_output.confirmed_codes,
             checker_outputs=all_checker_outputs,
         )
-        comorbid = []  # BETA-2: benchmark is primary-only
+        # BETA-2: benchmark is primary-only — UNLESS tier2b_hierarchical policy is
+        # active, in which case the LLM-emitted comorbid (set by apply_tier2b_finalization
+        # earlier) is the benchmark output.
+        if self.final_output_policy != "tier2b_hierarchical":
+            comorbid = []
 
         stage_timings["total"] = time.monotonic() - case_start
 

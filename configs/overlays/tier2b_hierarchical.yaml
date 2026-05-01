@@ -1,0 +1,6 @@
+# Tier 2B hierarchical primary+comorbid prompt overlay (Round 159+)
+# Diagnostician emits ranked_diagnoses + primary_emit + comorbid_emit in one shot.
+# Final output uses LLM-emitted primary/comorbid instead of post-hoc gates.
+mode:
+  prompt_variant: v2_hierarchical
+  final_output_policy: tier2b_hierarchical
