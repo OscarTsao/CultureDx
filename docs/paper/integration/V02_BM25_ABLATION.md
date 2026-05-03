@@ -10,8 +10,11 @@
 |---|---:|---|
 | Qwen3-32B-AWQ rank-1 | 0.520 | CV mean across 5 folds |
 | TF-IDF + LR (standalone) | 0.5367 | Existing result |
-| **BM25 (best k1, b)** | 0.1720 | Standalone, max BM25 score over disorder defs; best grid point |
-| **BM25 (default k1=1.5, b=0.75)** | 0.1710 | Robertson-classic params |
+| **BM25 def-query (best k1, b)** | 0.1720 | Standalone, max BM25 score over disorder defs; best grid point |
+| **BM25 def-query (default k1=1.5, b=0.75)** | 0.1710 | Robertson-classic params |
+| **BM25 corpus-kNN (training cases)** | 0.4070 | Standard IR baseline: query test case, retrieve nearest training case; k1=1.5, b=0.75 |
+
+BM25 standalone modes are intentionally separated. Mode 1 (def-query) uses query=case text and corpus=disorder definitions; it measures zero-shot alignment to short disorder descriptions. Mode 2 (corpus-kNN) uses query=case text and corpus=14k training cases; it is the standard IR baseline analogous to the TF-IDF train/test split. The reranker cells D and E below continue to use def-query BM25 scores as disorder-definition features, which is the intended ablation for those cells.
 
 ## 5-fold CV reranker comparison (Top-1 lift over Qwen rank-1)
 

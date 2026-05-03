@@ -25,6 +25,7 @@ REPO = Path("/home/user/YuNing/CultureDx")
 QWEN_PREDICTIONS = REPO / "results/gap_e_beta2b_projection_20260430_164210/lingxi_icd10_n1000/predictions.jsonl"
 TFIDF_PREDICTIONS = REPO / "results/validation/tfidf_baseline/predictions.jsonl"
 LINGXI_PARQUET = REPO / "data/raw/lingxidiag16k/data/validation-00000-of-00001.parquet"
+LINGXI_TRAIN_PARQUET = REPO / "data/raw/lingxidiag16k/data/train-00000-of-00001.parquet"
 OUTPUT_DOC = REPO / "docs/paper/integration/V02_BM25_ABLATION.md"
 TIME_LIMIT_SECONDS = 25 * 60
 SEED = 42
@@ -94,6 +95,13 @@ class CaseBm25Scores:
     top1_base: str | None
 
 
+@dataclass(frozen=True)
+class TrainingCase:
+    case_id: str
+    tokens: list[str]
+    gold_base: str | None
+
+
 def base(c: str | None) -> str | None:
     return c.split(".")[0] if c else c
 
@@ -156,6 +164,17 @@ def load_case_texts(path: Path) -> dict[str, str]:
     return {str(row["patient_id"]): str(row.get("cleaned_text") or "") for row in rows}
 
 
+def load_training_cases(path: Path) -> list[TrainingCase]:
+    table = pq.read_table(path, columns=["patient_id", "cleaned_text", "DiagnosisCode"])
+    cases: list[TrainingCase] = []
+    for row in table.to_pylist():
+        case_id = str(row["patient_id"])
+        text = str(row.get("cleaned_text") or "")
+        diagnosis = str(row.get("DiagnosisCode") or "")
+        cases.append(TrainingCase(case_id=case_id, tokens=char_wb_bigrams(text), gold_base=base(diagnosis)))
+    return cases
+
+
 def build_bm25_scores(case_tokens: Mapping[str, Sequence[str]], k1: float, b: float) -> dict[str, CaseBm25Scores]:
     codes = list(DISORDER_DESCRIPTIONS)
     corpus = [char_wb_bigrams(DISORDER_DESCRIPTIONS[code]) for code in codes]
@@ -184,6 +203,50 @@ def build_bm25_scores(case_tokens: Mapping[str, Sequence[str]], k1: float, b: fl
             top1_base=base(top1_exact),
         )
     return by_case
+
+
+def bm25_corpus_knn_top1(
+    train_cases: Sequence[TrainingCase],
+    test_case_tokens: Mapping[str, Sequence[str]],
+    qwen_by_case: Mapping[str, Mapping[str, Any]],
+    k1: float,
+    b: float,
+) -> float:
+    model = BM25Okapi([case.tokens for case in train_cases], k1=k1, b=b)
+    doc_len = np.asarray(model.doc_len, dtype=float)
+    denominator_base = k1 * (1 - b + b * doc_len / model.avgdl)
+    postings: dict[str, tuple[np.ndarray, np.ndarray]] = {}
+    for doc_idx, freq_map in enumerate(model.doc_freqs):
+        for token, freq in freq_map.items():
+            if token not in postings:
+                postings[token] = ([], [])  # type: ignore[assignment]
+            idxs, freqs = postings[token]
+            idxs.append(doc_idx)  # type: ignore[attr-defined]
+            freqs.append(float(freq))  # type: ignore[attr-defined]
+    postings = {
+        token: (np.asarray(idxs, dtype=np.int32), np.asarray(freqs, dtype=float))
+        for token, (idxs, freqs) in postings.items()
+    }
+
+    labels = [case.gold_base for case in train_cases]
+    correct = 0
+    for cid in sorted(qwen_by_case):
+        query_counts: dict[str, int] = {}
+        for token in test_case_tokens[cid]:
+            query_counts[token] = query_counts.get(token, 0) + 1
+        scores = np.zeros(len(train_cases), dtype=float)
+        for token, query_count in query_counts.items():
+            idf = float(model.idf.get(token) or 0.0)
+            if idf == 0.0:
+                continue
+            posting = postings.get(token)
+            if posting is None:
+                continue
+            idxs, freqs = posting
+            scores[idxs] += query_count * idf * (freqs * (k1 + 1) / (freqs + denominator_base[idxs]))
+        pred_b = labels[int(np.argmax(scores))]
+        correct += int(pred_b == gold_primary_base(qwen_by_case[cid]))
+    return correct / len(qwen_by_case) if qwen_by_case else 0.0
 
 
 def bm25_candidate_score_rank(raw_code: str, scores: CaseBm25Scores) -> tuple[float, int]:
@@ -452,6 +515,7 @@ def fmt_pp_list(values: Sequence[float]) -> str:
 def render_markdown(
     baseline_accs: Sequence[float],
     standalone_rows: Sequence[dict[str, float]],
+    corpus_knn_acc: float,
     d_rows: Sequence[Mapping[str, Any]],
     e_sweep_rows: Sequence[dict[str, Any]],
 ) -> str:
@@ -516,8 +580,11 @@ def render_markdown(
         "|---|---:|---|",
         f"| Qwen3-32B-AWQ rank-1 | {a_mean:.3f} | CV mean across 5 folds |",
         "| TF-IDF + LR (standalone) | 0.5367 | Existing result |",
-        f"| **BM25 (best k1, b)** | {fmt_acc4(best_standalone['accuracy'])} | Standalone, max BM25 score over disorder defs; best grid point |",
-        f"| **BM25 (default k1=1.5, b=0.75)** | {fmt_acc4(default_standalone['accuracy'])} | Robertson-classic params |",
+        f"| **BM25 def-query (best k1, b)** | {fmt_acc4(best_standalone['accuracy'])} | Standalone, max BM25 score over disorder defs; best grid point |",
+        f"| **BM25 def-query (default k1=1.5, b=0.75)** | {fmt_acc4(default_standalone['accuracy'])} | Robertson-classic params |",
+        f"| **BM25 corpus-kNN (training cases)** | {fmt_acc4(corpus_knn_acc)} | Standard IR baseline: query test case, retrieve nearest training case; k1=1.5, b=0.75 |",
+        "",
+        "BM25 standalone modes are intentionally separated. Mode 1 (def-query) uses query=case text and corpus=disorder definitions; it measures zero-shot alignment to short disorder descriptions. Mode 2 (corpus-kNN) uses query=case text and corpus=14k training cases; it is the standard IR baseline analogous to the TF-IDF train/test split. The reranker cells D and E below continue to use def-query BM25 scores as disorder-definition features, which is the intended ablation for those cells.",
         "",
         "## 5-fold CV reranker comparison (Top-1 lift over Qwen rank-1)",
         "",
@@ -601,6 +668,14 @@ def main() -> None:
         print("[bm25_ablation] standalone BM25 Top-1")
         for row in standalone_rows:
             print(f"  k1={row['k1']:.1f} b={row['b']:.2f} top1={row['accuracy']:.4f}")
+        check_timeout(start_time, "BM25 corpus-kNN standalone")
+        train_cases = load_training_cases(LINGXI_TRAIN_PARQUET)
+        corpus_knn_acc = bm25_corpus_knn_top1(train_cases, case_tokens, qwen_by_case, *DEFAULT_PARAMS)
+        print(
+            f"[bm25_ablation] corpus-kNN k1={DEFAULT_PARAMS[0]:.1f} b={DEFAULT_PARAMS[1]:.2f} "
+            f"top1={corpus_knn_acc:.4f} train_cases={len(train_cases)}"
+        )
+        del train_cases
         check_timeout(start_time, "D_bm25")
 
         default_scores = bm25_cache[DEFAULT_PARAMS]
@@ -626,7 +701,7 @@ def main() -> None:
             print(f"[bm25_ablation] E k1={k1:.1f} b={b:.2f} {fmt_pp(mean_delta)} {fmt_std_pp(std_delta)} {fmt_pp_list(deltas)}")
             check_timeout(start_time, f"E_bm25 k1={k1} b={b}")
 
-        markdown = render_markdown(baseline_accs, standalone_rows, d_rows, e_sweep_rows)
+        markdown = render_markdown(baseline_accs, standalone_rows, corpus_knn_acc, d_rows, e_sweep_rows)
         check_timeout(start_time, "markdown write")
         OUTPUT_DOC.write_text(markdown, encoding="utf-8")
 
