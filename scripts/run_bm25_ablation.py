@@ -74,6 +74,13 @@ BM25_FEATURES = [
     "qwen_bm25_top1_agree",
 ]
 FULL_FEATURES = BASIC_FEATURES + BM25_FEATURES
+CORPUS_BM25_FEATURES = [
+    "bm25_max_score",
+    "bm25_sum_score",
+    "bm25_rank",
+    "in_bm25_top5",
+]
+FULL_CORPUS_FEATURES = BASIC_FEATURES + CORPUS_BM25_FEATURES
 
 K1_VALUES = [0.8, 1.2, 1.5, 2.0]
 B_VALUES = [0.4, 0.75, 1.0]
@@ -100,6 +107,13 @@ class TrainingCase:
     case_id: str
     tokens: list[str]
     gold_base: str | None
+
+
+@dataclass(frozen=True)
+class CorpusBm25Scores:
+    max_scores: dict[str, float]
+    sum_scores: dict[str, float]
+    top1_base: str | None
 
 
 def base(c: str | None) -> str | None:
@@ -205,32 +219,39 @@ def build_bm25_scores(case_tokens: Mapping[str, Sequence[str]], k1: float, b: fl
     return by_case
 
 
-def bm25_corpus_knn_top1(
+def build_corpus_bm25_scores(
     train_cases: Sequence[TrainingCase],
     test_case_tokens: Mapping[str, Sequence[str]],
-    qwen_by_case: Mapping[str, Mapping[str, Any]],
     k1: float,
     b: float,
-) -> float:
+) -> dict[str, CorpusBm25Scores]:
     model = BM25Okapi([case.tokens for case in train_cases], k1=k1, b=b)
     doc_len = np.asarray(model.doc_len, dtype=float)
     denominator_base = k1 * (1 - b + b * doc_len / model.avgdl)
-    postings: dict[str, tuple[np.ndarray, np.ndarray]] = {}
+    postings_lists: dict[str, tuple[list[int], list[float]]] = {}
     for doc_idx, freq_map in enumerate(model.doc_freqs):
         for token, freq in freq_map.items():
-            if token not in postings:
-                postings[token] = ([], [])  # type: ignore[assignment]
-            idxs, freqs = postings[token]
-            idxs.append(doc_idx)  # type: ignore[attr-defined]
-            freqs.append(float(freq))  # type: ignore[attr-defined]
+            if token not in postings_lists:
+                postings_lists[token] = ([], [])
+            idxs, freqs = postings_lists[token]
+            idxs.append(doc_idx)
+            freqs.append(float(freq))
     postings = {
         token: (np.asarray(idxs, dtype=np.int32), np.asarray(freqs, dtype=float))
-        for token, (idxs, freqs) in postings.items()
+        for token, (idxs, freqs) in postings_lists.items()
     }
 
     labels = [case.gold_base for case in train_cases]
-    correct = 0
-    for cid in sorted(qwen_by_case):
+    label_indices_lists: dict[str, list[int]] = {}
+    for doc_idx, label in enumerate(labels):
+        if label:
+            label_indices_lists.setdefault(label, []).append(doc_idx)
+    label_indices = {
+        label: np.asarray(indices, dtype=np.int32) for label, indices in label_indices_lists.items()
+    }
+
+    by_case: dict[str, CorpusBm25Scores] = {}
+    for cid in sorted(test_case_tokens):
         query_counts: dict[str, int] = {}
         for token in test_case_tokens[cid]:
             query_counts[token] = query_counts.get(token, 0) + 1
@@ -244,8 +265,27 @@ def bm25_corpus_knn_top1(
                 continue
             idxs, freqs = posting
             scores[idxs] += query_count * idf * (freqs * (k1 + 1) / (freqs + denominator_base[idxs]))
-        pred_b = labels[int(np.argmax(scores))]
-        correct += int(pred_b == gold_primary_base(qwen_by_case[cid]))
+        max_scores = {
+            label: float(scores[indices].max()) for label, indices in label_indices.items() if len(indices) > 0
+        }
+        sum_scores = {
+            label: float(scores[indices].sum()) for label, indices in label_indices.items() if len(indices) > 0
+        }
+        by_case[cid] = CorpusBm25Scores(
+            max_scores=max_scores,
+            sum_scores=sum_scores,
+            top1_base=labels[int(np.argmax(scores))],
+        )
+    return by_case
+
+
+def evaluate_corpus_knn_top1(
+    qwen_by_case: Mapping[str, Mapping[str, Any]],
+    corpus_scores_by_case: Mapping[str, CorpusBm25Scores],
+) -> float:
+    correct = 0
+    for cid, record in qwen_by_case.items():
+        correct += int(corpus_scores_by_case[cid].top1_base == gold_primary_base(record))
     return correct / len(qwen_by_case) if qwen_by_case else 0.0
 
 
@@ -256,6 +296,12 @@ def bm25_candidate_score_rank(raw_code: str, scores: CaseBm25Scores) -> tuple[fl
     if not cb:
         return 0.0, 99
     return scores.base_scores.get(cb, 0.0), scores.base_ranks.get(cb, 99)
+
+
+def corpus_candidate_rank(record: Mapping[str, Any], corpus_scores: CorpusBm25Scores) -> dict[str, int]:
+    candidate_bases = {cb for code in qwen_ranked(record)[:5] if (cb := base(code))}
+    ordered = sorted(candidate_bases, key=lambda cb: (-corpus_scores.max_scores.get(cb, 0.0), cb))
+    return {cb: rank for rank, cb in enumerate(ordered)}
 
 
 def evaluate_qwen_baseline(qwen_by_case: Mapping[str, Mapping[str, Any]], test_cases: set[str]) -> float:
@@ -342,6 +388,74 @@ def select_linear_weights(
     return best[1], best[2], best[0]
 
 
+def max_candidate_corpus_bm25(
+    qwen_by_case: Mapping[str, Mapping[str, Any]],
+    corpus_scores_by_case: Mapping[str, CorpusBm25Scores],
+    cases: set[str],
+) -> float:
+    max_score = 0.0
+    for cid in cases:
+        scores = corpus_scores_by_case[cid]
+        for code in qwen_ranked(qwen_by_case[cid])[:5]:
+            cb = base(code)
+            if cb:
+                max_score = max(max_score, scores.max_scores.get(cb, 0.0))
+    return max_score
+
+
+def predict_corpus_linear_combo(
+    record: Mapping[str, Any],
+    scores: CorpusBm25Scores,
+    max_bm25: float,
+    w_qwen: float,
+    w_bm25: float,
+) -> str | None:
+    best_code: str | None = None
+    best_score = float("-inf")
+    for rank_pos, code in enumerate(qwen_ranked(record)[:5]):
+        cb = base(code)
+        if not cb:
+            continue
+        bm25_score = scores.max_scores.get(cb, 0.0)
+        bm25_norm = bm25_score / max_bm25 if max_bm25 > 0 else 0.0
+        combined = w_qwen * (1.0 / (1.0 + rank_pos)) + w_bm25 * bm25_norm
+        if combined > best_score:
+            best_score = combined
+            best_code = cb
+    return best_code
+
+
+def evaluate_corpus_linear_combo(
+    qwen_by_case: Mapping[str, Mapping[str, Any]],
+    corpus_scores_by_case: Mapping[str, CorpusBm25Scores],
+    cases: set[str],
+    w_qwen: float,
+    w_bm25: float,
+) -> float:
+    max_bm25 = max_candidate_corpus_bm25(qwen_by_case, corpus_scores_by_case, cases)
+    correct = 0
+    for cid in cases:
+        pred_b = predict_corpus_linear_combo(
+            qwen_by_case[cid], corpus_scores_by_case[cid], max_bm25, w_qwen, w_bm25
+        )
+        correct += int(pred_b == gold_primary_base(qwen_by_case[cid]))
+    return correct / len(cases) if cases else 0.0
+
+
+def select_corpus_linear_weights(
+    qwen_by_case: Mapping[str, Mapping[str, Any]],
+    corpus_scores_by_case: Mapping[str, CorpusBm25Scores],
+    train_cases: set[str],
+) -> tuple[float, float, float]:
+    best = (float("-inf"), QWEN_WEIGHTS[0], BM25_WEIGHTS[0])
+    for w_qwen in QWEN_WEIGHTS:
+        for w_bm25 in BM25_WEIGHTS:
+            acc = evaluate_corpus_linear_combo(qwen_by_case, corpus_scores_by_case, train_cases, w_qwen, w_bm25)
+            if acc > best[0]:
+                best = (acc, w_qwen, w_bm25)
+    return best[1], best[2], best[0]
+
+
 def build_features(
     qwen_recs: Sequence[Mapping[str, Any]], bm25_by_case: Mapping[str, CaseBm25Scores]
 ) -> tuple[list[dict[str, float]], list[int], list[str], list[int]]:
@@ -384,6 +498,57 @@ def build_features(
                 "qwen_bm25_top1_agree": (
                     float(int(primary_b == case_scores.top1_base)) if primary_b and case_scores.top1_base else 0.0
                 ),
+            }
+            for pc in PRIMARY_CLASSES:
+                feat[f"is_{pc}"] = float(int(cb == pc))
+            X.append(feat)
+            y.append(int(cb == gold_b))
+            case_ids.append(cid)
+            ranks.append(rank_pos)
+    return X, y, case_ids, ranks
+
+
+def build_corpus_features(
+    qwen_recs: Sequence[Mapping[str, Any]],
+    corpus_scores_by_case: Mapping[str, CorpusBm25Scores],
+) -> tuple[list[dict[str, float]], list[int], list[str], list[int]]:
+    X: list[dict[str, float]] = []
+    y: list[int] = []
+    case_ids: list[str] = []
+    ranks: list[int] = []
+    for record in qwen_recs:
+        gold_b = gold_primary_base(record)
+        if not gold_b:
+            continue
+        cid = str(record["case_id"])
+        ranked = qwen_ranked(record)
+        trace = record.get("decision_trace", {}) or {}
+        confirmed = {base(str(c)) for c in trace.get("logic_engine_confirmed_codes", []) or [] if c}
+        raw_outputs = trace.get("raw_checker_outputs", []) or []
+        met_ratios = {
+            str(co.get("disorder_code")): float(co.get("met_ratio", 0.0) or 0.0)
+            for co in raw_outputs
+            if isinstance(co, Mapping) and co.get("disorder_code")
+        }
+        primary_b = base(ranked[0]) if ranked else None
+        corpus_scores = corpus_scores_by_case[cid]
+        candidate_ranks = corpus_candidate_rank(record, corpus_scores)
+        for rank_pos, code in enumerate(ranked[:5]):
+            cb = base(code)
+            if not cb:
+                continue
+            bm25_rank = candidate_ranks.get(cb, 99)
+            feat: dict[str, float] = {
+                "rank": float(rank_pos),
+                "met_ratio": float(met_ratios.get(code, 0.0)),
+                "in_confirmed": float(int(cb in confirmed)),
+                "n_confirmed": float(len(confirmed)),
+                "is_primary": float(int(rank_pos == 0)),
+                "in_pair_with_primary": float(int(cb in DOMAIN_PAIRS.get(primary_b, []))) if primary_b else 0.0,
+                "bm25_max_score": float(corpus_scores.max_scores.get(cb, 0.0)),
+                "bm25_sum_score": float(corpus_scores.sum_scores.get(cb, 0.0)),
+                "bm25_rank": float(bm25_rank),
+                "in_bm25_top5": float(int(bm25_rank < 5)),
             }
             for pc in PRIMARY_CLASSES:
                 feat[f"is_{pc}"] = float(int(cb == pc))
@@ -459,6 +624,25 @@ def evaluate_e_cv(
     return rows
 
 
+def evaluate_e2_cv(
+    qwen_recs: Sequence[Mapping[str, Any]],
+    qwen_by_case: Mapping[str, Mapping[str, Any]],
+    corpus_scores_by_case: Mapping[str, CorpusBm25Scores],
+    folds: Sequence[tuple[set[str], set[str]]],
+) -> list[dict[str, float]]:
+    X, y, row_case_ids, ranks = build_corpus_features(qwen_recs, corpus_scores_by_case)
+    X_arr = matrix_from_features(X, FULL_CORPUS_FEATURES)
+    y_arr = np.asarray(y, dtype=int)
+    case_ids_arr = np.asarray(row_case_ids, dtype=object)
+    ranks_arr = np.asarray(ranks, dtype=int)
+    rows: list[dict[str, float]] = []
+    for fold, (train_cases, test_cases) in enumerate(folds, start=1):
+        a_acc = evaluate_qwen_baseline(qwen_by_case, test_cases)
+        e_acc = evaluate_ml_fold(X_arr, y_arr, case_ids_arr, ranks_arr, train_cases, test_cases)
+        rows.append({"fold": float(fold), "a_acc": a_acc, "e2_acc": e_acc, "e2_delta": e_acc - a_acc})
+    return rows
+
+
 def evaluate_d_cv(
     qwen_by_case: Mapping[str, Mapping[str, Any]],
     bm25_by_case: Mapping[str, CaseBm25Scores],
@@ -475,6 +659,30 @@ def evaluate_d_cv(
                 "a_acc": a_acc,
                 "d_acc": d_acc,
                 "d_delta": d_acc - a_acc,
+                "w_qwen": w_qwen,
+                "w_bm25": w_bm25,
+                "train_acc": train_acc,
+            }
+        )
+    return rows
+
+
+def evaluate_d2_cv(
+    qwen_by_case: Mapping[str, Mapping[str, Any]],
+    corpus_scores_by_case: Mapping[str, CorpusBm25Scores],
+    folds: Sequence[tuple[set[str], set[str]]],
+) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for fold, (train_cases, test_cases) in enumerate(folds, start=1):
+        a_acc = evaluate_qwen_baseline(qwen_by_case, test_cases)
+        w_qwen, w_bm25, train_acc = select_corpus_linear_weights(qwen_by_case, corpus_scores_by_case, train_cases)
+        d_acc = evaluate_corpus_linear_combo(qwen_by_case, corpus_scores_by_case, test_cases, w_qwen, w_bm25)
+        rows.append(
+            {
+                "fold": fold,
+                "a_acc": a_acc,
+                "d2_acc": d_acc,
+                "d2_delta": d_acc - a_acc,
                 "w_qwen": w_qwen,
                 "w_bm25": w_bm25,
                 "train_acc": train_acc,
@@ -517,54 +725,61 @@ def render_markdown(
     standalone_rows: Sequence[dict[str, float]],
     corpus_knn_acc: float,
     d_rows: Sequence[Mapping[str, Any]],
+    d2_rows: Sequence[Mapping[str, Any]],
     e_sweep_rows: Sequence[dict[str, Any]],
+    e2_rows: Sequence[Mapping[str, float]],
 ) -> str:
     a_mean, _a_std = mean_std(baseline_accs)
     best_standalone = max(standalone_rows, key=lambda row: row["accuracy"])
     default_standalone = next(row for row in standalone_rows if (row["k1"], row["b"]) == DEFAULT_PARAMS)
     d_deltas = [float(row["d_delta"]) for row in d_rows]
     d_mean, d_std = mean_std(d_deltas)
+    d2_deltas = [float(row["d2_delta"]) for row in d2_rows]
+    d2_mean, d2_std = mean_std(d2_deltas)
     best_e = max(e_sweep_rows, key=lambda row: (row["mean_delta"], -row["std_delta"]))
     default_e = next(row for row in e_sweep_rows if (row["k1"], row["b"]) == DEFAULT_PARAMS)
+    e2_deltas = [float(row["e2_delta"]) for row in e2_rows]
+    e2_mean, e2_std = mean_std(e2_deltas)
     best_vs_tfidf = float(best_e["mean_delta"]) - TFIDF_G_DELTA
     default_vs_tfidf = float(default_e["mean_delta"]) - TFIDF_G_DELTA
+    e2_vs_tfidf = e2_mean - TFIDF_G_DELTA
 
-    if best_vs_tfidf > 0.010:
-        scenario_header = "### Scenario A: BM25 > TF-IDF (BM25_best > TF-IDF_G by >1pp)"
+    if e2_vs_tfidf > 0.010:
+        scenario_header = "### Scenario A: BM25 > TF-IDF (BM25 corpus-kNN E2 > TF-IDF_G by >1pp)"
         interpretation = (
-            "BM25 outperforms TF-IDF as the sparse lexical channel. Switching v0.2 primary to BM25 gains "
-            "IR-community credibility while preserving the 'sparse lexical retrieval beats dense neural SOTA' narrative."
+            "The proper corpus-kNN BM25 reranker outperforms TF-IDF as the sparse lexical channel. The earlier "
+            "def-query BM25 cells remain weak because short disorder definitions are a poor retrieval corpus, but "
+            "training-case retrieval provides the apples-to-apples IR baseline reviewers expect."
         )
         conclusion = (
-            f"BM25 is the stronger sparse reranker in this ablation, with best E_bm25 at {fmt_pp(best_e['mean_delta'])}. "
-            "The paper should foreground BM25 as the standard sparse baseline and retain TF-IDF as corroborating evidence."
+            f"BM25 corpus-kNN is the stronger sparse reranker in this ablation, with E2 at {fmt_pp(e2_mean)} versus "
+            "TF-IDF G at +7.0pp. The paper should foreground corpus-kNN BM25 as the standard IR baseline and retain "
+            "TF-IDF as corroborating evidence."
         )
-    elif abs(best_vs_tfidf) <= 0.010:
+    elif abs(e2_vs_tfidf) <= 0.010:
         scenario_header = "### Scenario B: BM25 ≈ TF-IDF (within ±1pp)"
         interpretation = (
-            "Both BM25 and TF-IDF achieve similar gains over the Qwen baseline, confirming that the benefit is "
-            "paradigm-level (sparse lexical retrieval) rather than specific to either weighting scheme. This strengthens "
-            "the paper's claims: even the simplest sparse retrieval methods consistently outperform the dense neural SOTA "
-            "on this clinical Chinese NLP task."
+            "The proper corpus-kNN BM25 reranker and TF-IDF achieve similar gains over the Qwen baseline, confirming "
+            "that the benefit is paradigm-level sparse lexical retrieval rather than specific to either weighting scheme. "
+            "The weak def-query BM25 cells show that short disorder definitions are not an adequate standalone BM25 corpus."
         )
         conclusion = (
-            f"BM25 and TF-IDF are comparable under the shared fold protocol: BM25 best is {fmt_pp(best_e['mean_delta'])} "
-            f"and BM25 default is {fmt_pp(default_e['mean_delta'])}, versus TF-IDF G at +7.0pp. The paper should answer "
-            "the reviewer by reporting BM25 as the canonical sparse baseline and framing the lift as robust across sparse "
-            "lexical weighting schemes."
+            f"BM25 corpus-kNN and TF-IDF are comparable under the shared fold protocol: E2 is {fmt_pp(e2_mean)} versus "
+            "TF-IDF G at +7.0pp. The paper should answer the reviewer by reporting corpus-kNN BM25 as the canonical "
+            "IR baseline and framing the lift as robust across sparse lexical weighting schemes."
         )
     else:
         scenario_header = "### Scenario C: BM25 < TF-IDF"
         interpretation = (
-            "TF-IDF with learned calibration (LightGBM) outperforms unsupervised BM25. This suggests that the supervised "
-            "ML calibration step is meaningful within the sparse lexical paradigm — raw BM25 scores are less informative "
-            "than TF-IDF probabilities from a trained classifier."
+            "TF-IDF with learned calibration (LightGBM) outperforms the proper corpus-kNN BM25 reranker. This suggests "
+            "that the supervised TF-IDF classifier probabilities are more informative than aggregated BM25 nearest-case "
+            "scores for this reranking task. The def-query BM25 cells are retained only as a zero-shot definition-alignment "
+            "diagnostic, not as the apples-to-apples TF-IDF analog."
         )
         conclusion = (
-            f"BM25 does not improve over Qwen in this disorder-definition retrieval setup and does not match the TF-IDF "
-            f"LightGBM result: BM25 best is {fmt_pp(best_e['mean_delta'])} versus TF-IDF G at +7.0pp. The paper should keep "
-            "TF-IDF as the stronger v0.2 sparse implementation while adding BM25 as the canonical IR baseline requested by "
-            "reviewers."
+            f"BM25 corpus-kNN E2 reaches {fmt_pp(e2_mean)} versus TF-IDF G at +7.0pp, while def-query BM25 remains near "
+            "zero lift. The paper should keep TF-IDF as the stronger v0.2 sparse implementation and present corpus-kNN "
+            "BM25 as the canonical IR baseline requested by reviewers."
         )
 
     lines = [
@@ -593,9 +808,11 @@ def render_markdown(
         f"| A | Qwen rank-1 baseline | {a_mean:.3f} | ±0.014 | {fmt_acc_list(baseline_accs)} |",
         "| F (=C) | TF-IDF, no ML (linear combo, per-fold tuned) | +7.2pp | ±1.2pp | [+7.0pp, +7.0pp, +9.5pp, +6.5pp, +6.0pp] |",
         "| G (=E) | TF-IDF, with ML (LightGBM) | +7.0pp | ±1.0pp | [+9.0pp, +6.5pp, +6.5pp, +6.5pp, +6.5pp] |",
-        f"| **D** | **BM25, no ML (linear combo)** | **{fmt_pp(d_mean)}** | **{fmt_std_pp(d_std)}** | **{fmt_pp_list(d_deltas)}** |",
-        f"| **E_best** | **BM25 + LightGBM (best k1, b)** | **{fmt_pp(best_e['mean_delta'])}** | **{fmt_std_pp(best_e['std_delta'])}** | **{fmt_pp_list(best_e['deltas'])}** |",
-        f"| **E_default** | **BM25 + LightGBM (k1=1.5, b=0.75)** | **{fmt_pp(default_e['mean_delta'])}** | **{fmt_std_pp(default_e['std_delta'])}** | — |",
+        f"| **D** | **BM25 def-query, no ML (linear combo)** | **{fmt_pp(d_mean)}** | **{fmt_std_pp(d_std)}** | **{fmt_pp_list(d_deltas)}** |",
+        f"| **E_best** | **BM25 def-query + LightGBM (best k1, b)** | **{fmt_pp(best_e['mean_delta'])}** | **{fmt_std_pp(best_e['std_delta'])}** | **{fmt_pp_list(best_e['deltas'])}** |",
+        f"| **E_default** | **BM25 def-query + LightGBM (k1=1.5, b=0.75)** | **{fmt_pp(default_e['mean_delta'])}** | **{fmt_std_pp(default_e['std_delta'])}** | — |",
+        f"| **D2** | **BM25 corpus-kNN, no ML (linear combo)** | **{fmt_pp(d2_mean)}** | **{fmt_std_pp(d2_std)}** | **{fmt_pp_list(d2_deltas)}** |",
+        f"| **E2** | **BM25 corpus-kNN + LightGBM** | **{fmt_pp(e2_mean)}** | **{fmt_std_pp(e2_std)}** | **{fmt_pp_list(e2_deltas)}** |",
         "",
         "## BM25 (k1, b) hyperparameter sweep on E_bm25",
         "",
@@ -611,9 +828,11 @@ def render_markdown(
             "",
             "| Comparison | Δ |",
             "|---|---:|",
-            f"| BM25 best − TF-IDF G (+7.0pp) | {fmt_pp(best_vs_tfidf)} |",
-            f"| BM25 default − TF-IDF G (+7.0pp) | {fmt_pp(default_vs_tfidf)} |",
-            f"| BM25 no-ML (D) − Qwen baseline | {fmt_pp(d_mean)} |",
+            f"| BM25 def-query best − TF-IDF G (+7.0pp) | {fmt_pp(best_vs_tfidf)} |",
+            f"| BM25 def-query default − TF-IDF G (+7.0pp) | {fmt_pp(default_vs_tfidf)} |",
+            f"| BM25 corpus-kNN E2 − TF-IDF G (+7.0pp) | {fmt_pp(e2_vs_tfidf)} |",
+            f"| BM25 def-query no-ML (D) − Qwen baseline | {fmt_pp(d_mean)} |",
+            f"| BM25 corpus-kNN no-ML (D2) − Qwen baseline | {fmt_pp(d2_mean)} |",
             "| TF-IDF no-ML (F) − Qwen baseline | +7.2pp |",
             "",
             "## Interpretation",
@@ -670,7 +889,8 @@ def main() -> None:
             print(f"  k1={row['k1']:.1f} b={row['b']:.2f} top1={row['accuracy']:.4f}")
         check_timeout(start_time, "BM25 corpus-kNN standalone")
         train_cases = load_training_cases(LINGXI_TRAIN_PARQUET)
-        corpus_knn_acc = bm25_corpus_knn_top1(train_cases, case_tokens, qwen_by_case, *DEFAULT_PARAMS)
+        corpus_scores_by_case = build_corpus_bm25_scores(train_cases, case_tokens, *DEFAULT_PARAMS)
+        corpus_knn_acc = evaluate_corpus_knn_top1(qwen_by_case, corpus_scores_by_case)
         print(
             f"[bm25_ablation] corpus-kNN k1={DEFAULT_PARAMS[0]:.1f} b={DEFAULT_PARAMS[1]:.2f} "
             f"top1={corpus_knn_acc:.4f} train_cases={len(train_cases)}"
@@ -688,6 +908,16 @@ def main() -> None:
                 f"  fold={row['fold']} d_acc={row['d_acc']:.3f} delta={fmt_pp(row['d_delta'])} "
                 f"weights=({row['w_qwen']:.1f},{row['w_bm25']:.1f}) train_acc={row['train_acc']:.3f}"
             )
+        check_timeout(start_time, "D2_bm25")
+        d2_rows = evaluate_d2_cv(qwen_by_case, corpus_scores_by_case, folds)
+        d2_deltas = [float(row["d2_delta"]) for row in d2_rows]
+        d2_mean, d2_std = mean_std(d2_deltas)
+        print(f"[bm25_ablation] D2_corpus={fmt_pp(d2_mean)} {fmt_std_pp(d2_std)} folds={fmt_pp_list(d2_deltas)}")
+        for row in d2_rows:
+            print(
+                f"  fold={row['fold']} d2_acc={row['d2_acc']:.3f} delta={fmt_pp(row['d2_delta'])} "
+                f"weights=({row['w_qwen']:.1f},{row['w_bm25']:.1f}) train_acc={row['train_acc']:.3f}"
+            )
         check_timeout(start_time, "E_bm25 sweep")
 
         e_sweep_rows: list[dict[str, Any]] = []
@@ -700,8 +930,21 @@ def main() -> None:
             )
             print(f"[bm25_ablation] E k1={k1:.1f} b={b:.2f} {fmt_pp(mean_delta)} {fmt_std_pp(std_delta)} {fmt_pp_list(deltas)}")
             check_timeout(start_time, f"E_bm25 k1={k1} b={b}")
+        check_timeout(start_time, "E2_bm25")
+        e2_rows = evaluate_e2_cv(qwen_recs, qwen_by_case, corpus_scores_by_case, folds)
+        e2_deltas = [float(row["e2_delta"]) for row in e2_rows]
+        e2_mean, e2_std = mean_std(e2_deltas)
+        print(f"[bm25_ablation] E2_corpus={fmt_pp(e2_mean)} {fmt_std_pp(e2_std)} folds={fmt_pp_list(e2_deltas)}")
 
-        markdown = render_markdown(baseline_accs, standalone_rows, corpus_knn_acc, d_rows, e_sweep_rows)
+        markdown = render_markdown(
+            baseline_accs,
+            standalone_rows,
+            corpus_knn_acc,
+            d_rows,
+            d2_rows,
+            e_sweep_rows,
+            e2_rows,
+        )
         check_timeout(start_time, "markdown write")
         OUTPUT_DOC.write_text(markdown, encoding="utf-8")
 

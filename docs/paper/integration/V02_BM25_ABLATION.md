@@ -23,9 +23,11 @@ BM25 standalone modes are intentionally separated. Mode 1 (def-query) uses query
 | A | Qwen rank-1 baseline | 0.520 | ±0.014 | [0.500, 0.540, 0.515, 0.515, 0.530] |
 | F (=C) | TF-IDF, no ML (linear combo, per-fold tuned) | +7.2pp | ±1.2pp | [+7.0pp, +7.0pp, +9.5pp, +6.5pp, +6.0pp] |
 | G (=E) | TF-IDF, with ML (LightGBM) | +7.0pp | ±1.0pp | [+9.0pp, +6.5pp, +6.5pp, +6.5pp, +6.5pp] |
-| **D** | **BM25, no ML (linear combo)** | **-0.9pp** | **±0.9pp** | **[-2.0pp, +0.0pp, +0.0pp, -0.5pp, -2.0pp]** |
-| **E_best** | **BM25 + LightGBM (best k1, b)** | **-0.1pp** | **±1.8pp** | **[+2.0pp, +0.5pp, -2.0pp, +1.5pp, -2.5pp]** |
-| **E_default** | **BM25 + LightGBM (k1=1.5, b=0.75)** | **-0.1pp** | **±2.1pp** | — |
+| **D** | **BM25 def-query, no ML (linear combo)** | **-0.9pp** | **±0.9pp** | **[-2.0pp, +0.0pp, +0.0pp, -0.5pp, -2.0pp]** |
+| **E_best** | **BM25 def-query + LightGBM (best k1, b)** | **-0.1pp** | **±1.8pp** | **[+2.0pp, +0.5pp, -2.0pp, +1.5pp, -2.5pp]** |
+| **E_default** | **BM25 def-query + LightGBM (k1=1.5, b=0.75)** | **-0.1pp** | **±2.1pp** | — |
+| **D2** | **BM25 corpus-kNN, no ML (linear combo)** | **+0.0pp** | **±0.0pp** | **[+0.0pp, +0.0pp, +0.0pp, +0.0pp, +0.0pp]** |
+| **E2** | **BM25 corpus-kNN + LightGBM** | **-1.5pp** | **±1.9pp** | **[+2.0pp, -2.5pp, -3.0pp, -1.0pp, -3.0pp]** |
 
 ## BM25 (k1, b) hyperparameter sweep on E_bm25
 
@@ -48,19 +50,21 @@ BM25 standalone modes are intentionally separated. Mode 1 (def-query) uses query
 
 | Comparison | Δ |
 |---|---:|
-| BM25 best − TF-IDF G (+7.0pp) | -7.1pp |
-| BM25 default − TF-IDF G (+7.0pp) | -7.1pp |
-| BM25 no-ML (D) − Qwen baseline | -0.9pp |
+| BM25 def-query best − TF-IDF G (+7.0pp) | -7.1pp |
+| BM25 def-query default − TF-IDF G (+7.0pp) | -7.1pp |
+| BM25 corpus-kNN E2 − TF-IDF G (+7.0pp) | -8.5pp |
+| BM25 def-query no-ML (D) − Qwen baseline | -0.9pp |
+| BM25 corpus-kNN no-ML (D2) − Qwen baseline | +0.0pp |
 | TF-IDF no-ML (F) − Qwen baseline | +7.2pp |
 
 ## Interpretation
 
 ### Scenario C: BM25 < TF-IDF
-TF-IDF with learned calibration (LightGBM) outperforms unsupervised BM25. This suggests that the supervised ML calibration step is meaningful within the sparse lexical paradigm — raw BM25 scores are less informative than TF-IDF probabilities from a trained classifier.
+TF-IDF with learned calibration (LightGBM) outperforms the proper corpus-kNN BM25 reranker. This suggests that the supervised TF-IDF classifier probabilities are more informative than aggregated BM25 nearest-case scores for this reranking task. The def-query BM25 cells are retained only as a zero-shot definition-alignment diagnostic, not as the apples-to-apples TF-IDF analog.
 
 ## Conclusion
 
-BM25 does not improve over Qwen in this disorder-definition retrieval setup and does not match the TF-IDF LightGBM result: BM25 best is -0.1pp versus TF-IDF G at +7.0pp. The paper should keep TF-IDF as the stronger v0.2 sparse implementation while adding BM25 as the canonical IR baseline requested by reviewers.
+BM25 corpus-kNN E2 reaches -1.5pp versus TF-IDF G at +7.0pp, while def-query BM25 remains near zero lift. The paper should keep TF-IDF as the stronger v0.2 sparse implementation and present corpus-kNN BM25 as the canonical IR baseline requested by reviewers.
 
 ## Lineage
 
