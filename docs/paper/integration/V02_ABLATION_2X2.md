@@ -6,34 +6,32 @@
 
 ## Results
 
-| Cell | Config | Mean ± std | Per-fold deltas |
-|---|---|---:|---|
-| A | Qwen rank-1 baseline (floor) | 0.520 ± 0.014 | [0.500, 0.540, 0.515, 0.515, 0.530] |
-| C | NO-ML linear combo (per-fold tuned weights) | +7.2pp ± 1.2pp | [+7.0pp, +7.0pp, +9.5pp, +6.5pp, +6.0pp] |
-| D | ML w/o TF-IDF (Qwen features only) | -0.1pp ± 1.5pp | [+1.5pp, +2.0pp, -1.5pp, -1.5pp, -1.0pp] |
-| E | ML w/ TF-IDF (full features) | +7.0pp ± 1.0pp | [+9.0pp, +6.5pp, +6.5pp, +6.5pp, +6.5pp] |
+| Cell | Config | 5-fold CV Top-1 lift | Mean ± std | Per-fold |
+|---|---|---:|---:|---:|
+| A | Qwen rank-1 baseline | — | 0.5200 ± 0.0138 abs | [0.5000, 0.5400, 0.5150, 0.5150, 0.5300] |
+| C | NO-ML linear combo (per-fold tuned weights) | +7.20pp | ± 1.21pp | [+7.00pp, +7.00pp, +9.50pp, +6.50pp, +6.00pp] |
+| D | ML w/o TF-IDF (Qwen features only) | -0.10pp | ± 1.53pp | [+1.50pp, +2.00pp, -1.50pp, -1.50pp, -1.00pp] |
+| E | ML w/ TF-IDF (full features) | +7.00pp | ± 1.00pp | [+9.00pp, +6.50pp, +6.50pp, +6.50pp, +6.50pp] |
 
 ## Decompositions
 
 | Comparison | Value | Interpretation |
-|---|---:|---|
-| C − A | +7.2pp | TF-IDF channel contribution without learning |
-| D − A | -0.1pp | ML contribution without orthogonal channel |
-| E − C | -0.2pp | ML's marginal contribution given TF-IDF |
-| E − D | +7.1pp | TF-IDF channel contribution given ML |
+|---:|---|---|
+| C − A | +7.20pp | TF-IDF channel contribution without learning |
+| D − A | -0.10pp | ML contribution without orthogonal channel |
+| E − C | -0.20pp | ML's marginal contribution given TF-IDF |
+| E − D | +7.10pp | TF-IDF channel contribution given ML |
 
 ## Architectural framing implications
 
-The decomposition separates a no-ML lexical-channel lift of +7.2pp from a Qwen-only ML lift of -0.1pp and a full learned-channel lift of +7.0pp. The resulting marginals, -0.2pp for ML given TF-IDF and +7.1pp for TF-IDF given ML, should be used as the paper's primary architectural framing numbers.
+The 5-fold matrix shows that the no-ML TF-IDF channel contributes +7.20pp over the same-fold Qwen rank-1 baseline, while the Qwen-only learned reranker contributes -0.10pp. Adding TF-IDF to the learned reranker yields +7.00pp overall, leaving a marginal ML-given-TF-IDF effect of -0.20pp and a marginal TF-IDF-given-ML effect of +7.10pp. These values frame v0.2 as a decomposition of lexical-channel signal versus learned candidate selection, rather than as evidence for a single undifferentiated reranking gain.
 
 ## Per-fold detail
 
-| Fold | A (baseline acc) | C delta | D delta | E delta |
+| Fold | A baseline | C lift | D lift | E lift |
 |---:|---:|---:|---:|---:|
-| 1 | 0.500 | +7.0pp | +1.5pp | +9.0pp |
-| 2 | 0.540 | +7.0pp | +2.0pp | +6.5pp |
-| 3 | 0.515 | +9.5pp | -1.5pp | +6.5pp |
-| 4 | 0.515 | +6.5pp | -1.5pp | +6.5pp |
-| 5 | 0.530 | +6.0pp | -1.0pp | +6.5pp |
-| **Mean** | **0.520** | **+7.2pp** | **-0.1pp** | **+7.0pp** |
-| **Std** | **0.014** | **±1.2pp** | **±1.5pp** | **±1.0pp** |
+| 1 | 0.5000 | +7.00pp | +1.50pp | +9.00pp |
+| 2 | 0.5400 | +7.00pp | +2.00pp | +6.50pp |
+| 3 | 0.5150 | +9.50pp | -1.50pp | +6.50pp |
+| 4 | 0.5150 | +6.50pp | -1.50pp | +6.50pp |
+| 5 | 0.5300 | +6.00pp | -1.00pp | +6.50pp |
